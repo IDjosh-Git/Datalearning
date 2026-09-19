@@ -1,0 +1,31 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+import handler from '../api/tutor.js';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const read=x=>fs.readFileSync(path.join(root,x),'utf8');
+const pages=['index.html','reference.html','tutor.html','auth.html','account.html','verify.html','courses/excel.html','courses/sql.html','courses/powerbi.html'];
+for(const p of pages){assert(read(p).includes('Data Analysis Learning Path'),'Missing rebrand '+p);assert(!read(p).includes('zen-logo.png'),'Old missing logo '+p)}
+for(const p of ['courses/excel.html','courses/sql.html','courses/powerbi.html']){const s=read(p);assert.equal((s.match(/class="guided-lab"/g)||[]).length,10,`${p} labs`);assert.equal((s.match(/class="question"/g)||[]).length,50,`${p} quizzes`);assert.equal((s.match(/class="week searchable"/g)||[]).length,10,`${p} weeks`);assert(s.includes('course-refresh.css'));}
+const refs=JSON.parse(read('assets/reference-data.js').replace(/^window.IJ_REFERENCE=/,'').replace(/;\s*$/,''));assert.equal(refs.length,54);for(const r of refs){assert(r.title&&r.code&&r.watch&&r.meaning)}
+for(const item of ['assets/da-logo.svg','assets/site.css','assets/tutor.js','assets/reference.js','api/tutor.js','lib/tutor-context.js','downloads/retail_orders.csv','downloads/retail_practice.sqlite'])assert(fs.existsSync(path.join(root,item)),item);
+assert.equal(read('downloads/retail_orders.csv').trim().split(/\r?\n/).length,361);
+assert(read('index.html').includes('esoterikjoshua@gmail.com'));
+assert(!read('assets/tutor.js').includes('process.env.OPENAI_API_KEY'));assert(!read('assets/supabase-config.js').includes('service_role'));
+const req=(method,body)=>({method,body,headers:{host:'example.vercel.app',origin:'https://example.vercel.app','x-forwarded-for':'203.0.113.45'}});
+async function run(r){return await new Promise((resolve,reject)=>{let output='',code,headers={};const res={set statusCode(v){code=v},get statusCode(){return code},setHeader(k,v){headers[k]=v},end(x){output=x;resolve({code,headers,body:JSON.parse(output)})}};Promise.resolve(handler(r,res)).catch(reject)})}
+delete process.env.OPENAI_API_KEY;
+let r=await run(req('GET'));assert.equal(r.code,200);assert.equal(r.body.aiEnabled,false);
+r=await run(req('POST',{question:'Explain SUMIFS'}));assert.equal(r.code,503);
+process.env.OPENAI_API_KEY='test-only-do-not-use';
+const originalFetch=globalThis.fetch;let sent;
+globalThis.fetch=async(_url,options)=>{sent=JSON.parse(options.body);assert.match(options.headers.Authorization,/test-only-do-not-use/);return {ok:true,status:200,json:async()=>({output:[{content:[{type:'output_text',text:'SUMIFS adds values matching several conditions.'}]}]})}};
+try{r=await run(req('GET'));assert.equal(r.body.aiEnabled,true);r=await run(req('POST',{question:'Explain SUMIFS',history:[{role:'user',content:'I use Excel'}]}));assert.equal(r.code,200);assert.match(r.body.answer,/SUMIFS/);assert.equal(sent.store,false);assert(sent.instructions.includes('Data Analysis Learning Path'));assert.equal(sent.input.length,2);r=await run(req('POST',{question:''}));assert.equal(r.code,400);const wrong=req('POST',{question:'hello'});wrong.headers.origin='https://external.invalid';r=await run(wrong);assert.equal(r.code,403);}finally{globalThis.fetch=originalFetch;delete process.env.OPENAI_API_KEY;}
+console.log('PASS Data Analysis Learning Path rebrand | 9 pages | 30 labs | 150 quiz questions | 54 references | practice CSV 360 orders');
+console.log('PASS Vercel AI GET/POST: unconfigured, configured/mock response, privacy, input validation, origin check');
+
+for (const c of ['excel','sql','powerbi']){ const t=read(`courses/${c}.html`); assert(t.includes('DALP-${code}-'),'New certificate ID format '+c); assert(t.includes("searchParams.set('id',payload.certificate_id)"),'Direct verification QR '+c); assert(t.includes('Data Analysis Learning Path'),'Branded certificate '+c); }
+assert(read('supabase_setup.sql').includes('DALP-(EXL|PBI|SQL)'),'New certificate schema');
+assert(read('README.md').includes('shared with other apps'),'Shared site auth guidance');
+console.log('PASS new certificate ID, stable QR verification and setup guidance');

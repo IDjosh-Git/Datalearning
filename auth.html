@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Sign In | Data Analysis Learning Path</title>
+<style>
+:root{--navy:#254559;--orange:#F27329;--bg:#f5f8fa;--border:#dce5e9;--muted:#667681}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:#1d2930}
+.wrap{width:min(880px,calc(100% - 28px));margin:40px auto}.brand{display:flex;align-items:center;gap:10px;margin-bottom:20px}.mark{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;background:var(--navy);color:#fff;font-weight:900}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.card{background:#fff;border:1px solid var(--border);border-radius:22px;padding:26px;box-shadow:0 16px 45px rgba(25,55,72,.08)}
+h1,h2{color:var(--navy);margin-top:0}p{color:var(--muted)}label{display:block;font-size:13px;font-weight:800;margin:12px 0 6px}
+input{width:100%;padding:12px;border:1px solid var(--border);border-radius:11px;font:inherit}button,.btn{width:100%;margin-top:14px;padding:12px;border:0;border-radius:11px;background:var(--navy);color:#fff;font-weight:850;cursor:pointer;text-decoration:none;display:inline-block;text-align:center}
+.secondary{background:#fff;color:var(--navy);border:1px solid var(--border)}.msg{margin-top:13px;padding:11px;border-radius:10px;background:#eef5f9;color:#40515c;font-size:13px;display:none}.warn{background:#fff4e8;color:#8a4b19}
+@media(max-width:720px){.grid{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="assets/brand-overrides.css">
+<link rel="stylesheet" href="assets/responsive-polish.css">
+<link rel="icon" type="image/svg+xml" href="assets/da-logo.svg"><link rel="stylesheet" href="assets/account-refresh.css"></head>
+<body>
+<div class="wrap">
+ <div class="brand auth-brand-shell"><img class="auth-brand-logo" src="assets/da-logo.svg" alt="Data Analysis Learning Path logo"><div class="brand-company-name"><strong>Data Analysis Learning Path</strong><span>Learner Account</span></div></div>
+ <div id="configWarn" class="msg warn"></div>
+ <div class="grid">
+  <section class="card">
+   <h1>Sign in</h1><p>Continue your learning on any device and keep your progress in the cloud. <strong>Your existing progress on this device will be uploaded automatically after sign-in.</strong></p>
+   <label>Email</label><input id="loginEmail" type="email" autocomplete="email">
+   <label>Password</label><input id="loginPassword" type="password" autocomplete="current-password">
+   <button id="loginBtn">Sign In</button>
+   <div id="loginMsg" class="msg"></div>
+  </section>
+  <section class="card">
+   <h2>Create learner account</h2><p>Your account stores course progress, quiz scores and issued certificates.</p>
+   <label>Full name</label><input id="fullName" type="text" autocomplete="name">
+   <label>Email</label><input id="signupEmail" type="email" autocomplete="email">
+   <label>Password</label><input id="signupPassword" type="password" minlength="6" autocomplete="new-password">
+   <button id="signupBtn">Create Account</button>
+   <div id="signupMsg" class="msg"></div>
+  </section>
+ </div>
+ <a class="btn secondary" href="index.html">Back to Learning Portal</a>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/supabase-config.js"></script>
+<script src="assets/supabase-client.js"></script>
+<script>
+const show=(id,msg,warn=false)=>{const e=document.getElementById(id);e.textContent=msg;e.style.display='block';e.className='msg'+(warn?' warn':'')};
+function returnUrl(){return new URLSearchParams(location.search).get('return')||'index.html'}
+(async()=>{
+ if(!window.ZAH_DB.configured){
+   show('configWarn','Database connection has not been configured yet. Add your Supabase project URL and publishable key in assets/supabase-config.js.',true);
+   return;
+ }
+ const u=await window.ZAH_DB.user();
+ if(u) location.href='account.html';
+})();
+document.getElementById('loginBtn').onclick=async()=>{
+ if(!window.ZAH_DB.configured)return;
+ const email=document.getElementById('loginEmail').value.trim(),password=document.getElementById('loginPassword').value;
+ const {error}=await window.ZAH_DB.client.auth.signInWithPassword({email,password});
+ if(error) show('loginMsg',error.message,true); else location.href=returnUrl();
+};
+document.getElementById('signupBtn').onclick=async()=>{
+ if(!window.ZAH_DB.configured)return;
+ const full_name=document.getElementById('fullName').value.trim(),email=document.getElementById('signupEmail').value.trim(),password=document.getElementById('signupPassword').value;
+ if(!full_name||!email||!password){show('signupMsg','Enter your full name, email and password.',true);return}
+ const redirect=new URL('auth.html',location.href).href;
+ const {data,error}=await window.ZAH_DB.client.auth.signUp({email,password,options:{data:{full_name},emailRedirectTo:redirect}});
+ if(error) show('signupMsg',error.message,true);
+ else if(data.session) location.href=returnUrl();
+ else show('signupMsg','Account created. Check your email to confirm your address, then sign in.');
+};
+</script>
+</body></html>

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cloud Sync Test | Data Analysis Learning Path</title>
+<link rel="stylesheet" href="assets/brand-overrides.css">
+<style>
+body{font-family:system-ui;background:#F2F2F2;margin:0;padding:24px;color:#1c2830}
+.card{max-width:850px;margin:auto;background:white;border:1px solid #dce5e9;border-radius:18px;padding:24px}
+.row{padding:12px 0;border-bottom:1px solid #e6ecef}.ok{color:#21603a}.bad{color:#8b2e2e}.wait{color:#705b22}
+button,a{display:inline-block;margin-top:12px;padding:10px 14px;border:0;border-radius:10px;background:#254559;color:#fff;text-decoration:none;font-weight:800}
+</style>
+<link rel="stylesheet" href="assets/responsive-polish.css">
+<link rel="icon" type="image/svg+xml" href="assets/da-logo.svg"><link rel="stylesheet" href="assets/account-refresh.css"></head>
+<body>
+<div class="card">
+<h1>Cloud Progress Sync Test</h1>
+<p>This page checks the signed-in learner and synchronizes Excel, SQL and Power BI progress with Supabase.</p>
+<div id="user" class="row wait">Checking learner account…</div>
+<div id="excel" class="row wait">Excel: waiting…</div>
+<div id="sql" class="row wait">SQL: waiting…</div>
+<div id="powerbi" class="row wait">Power BI: waiting…</div>
+<button id="retry">Run Sync Again</button>
+<a href="account.html">My Account</a>
+<a href="index.html">Learning Portal</a>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/supabase-config.js"></script>
+<script src="assets/supabase-client.js"></script>
+<script src="assets/progress-cloud.js"></script>
+<script>
+async function run(){
+ const userEl=document.getElementById('user');
+ const user=await window.ZAHProgressCloud.getUser();
+ if(!user){
+   userEl.className='row bad';userEl.textContent='Not signed in. Sign in first.';
+   return;
+ }
+ userEl.className='row ok';userEl.textContent='Signed in as: '+user.email;
+ const result=await window.ZAHProgressCloud.syncAll();
+ for(const slug of ['excel','sql','powerbi']){
+   const el=document.getElementById(slug),r=result.courses[slug];
+   if(r?.ok){
+     el.className='row ok';
+     el.textContent=`${slug.toUpperCase()}: ${r.completed}/10 weeks • ${r.percent}% • synced ${new Date(r.lastSync).toLocaleString()}`;
+   }else{
+     el.className='row bad';
+     el.textContent=`${slug.toUpperCase()}: sync failed — ${r?.error?.message || r?.reason || 'unknown error'}`;
+   }
+ }
+}
+document.getElementById('retry').onclick=run;
+run();
+</script>
+</body></html>

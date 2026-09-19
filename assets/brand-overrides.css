@@ -1,0 +1,197 @@
+
+:root{
+  --zah-navy:#254559;
+  --zah-navy-dark:#18313f;
+  --zah-navy-deep:#102832;
+  --zah-orange:#F27329;
+  --zah-offwhite:#F2F2F2;
+  --zah-soft-blue:#e7eef2;
+  --zah-soft-orange:#fff0e7;
+  --zah-text:#1c2830;
+  --zah-muted:#667681;
+}
+
+/* Normalize course-theme variables to Data Analysis Learning Path branding */
+:root{
+  --bg:#F2F2F2 !important;
+  --surface:#ffffff !important;
+  --surface-soft:#e7eef2 !important;
+  --surface-warm:#fff0e7 !important;
+  --text:#1c2830 !important;
+  --muted:#667681 !important;
+  --green:#254559 !important;
+  --green-dark:#18313f !important;
+  --green-deep:#102832 !important;
+  --green-light:#e7eef2 !important;
+  --brand:#254559 !important;
+  --brand-dark:#18313f !important;
+  --brand-deep:#102832 !important;
+  --brand-light:#e7eef2 !important;
+  --gold:#F27329 !important;
+  --blue:#254559 !important;
+  --border:#dce5e9 !important;
+}
+
+body{background:var(--zah-offwhite) !important;color:var(--zah-text)}
+.sidebar{
+  background:linear-gradient(180deg,var(--zah-navy-deep),var(--zah-navy) 62%,var(--zah-navy-dark)) !important;
+}
+.hero{
+  background:
+    radial-gradient(circle at 82% 16%,rgba(255,255,255,.14),transparent 25%),
+    radial-gradient(circle at 92% 85%,rgba(242,115,41,.22),transparent 25%),
+    linear-gradient(135deg,var(--zah-navy-dark),var(--zah-navy) 68%,#37657d) !important;
+  box-shadow:0 24px 60px rgba(37,69,89,.18) !important;
+}
+.project{
+  background:linear-gradient(135deg,var(--zah-navy-dark),var(--zah-navy)) !important;
+}
+.fill{background:var(--zah-orange) !important}
+.btn.primary,.week-num{background:var(--zah-navy) !important;border-color:var(--zah-navy) !important}
+.badge{background:var(--zah-soft-orange) !important;color:#a84913 !important}
+.icon,.score{background:var(--zah-soft-blue) !important;color:var(--zah-navy) !important}
+.complete-label{color:var(--zah-navy) !important}
+.complete-label input{accent-color:var(--zah-orange) !important}
+.map-card b{color:var(--zah-navy) !important}
+.toast{background:var(--zah-navy) !important}
+.capstone{
+  background:linear-gradient(135deg,#fffaf7,var(--zah-soft-orange)) !important;
+  border-color:#f4c9ad !important;
+}
+.mini.tip{background:#fff8f3 !important;border-color:#f4c9ad !important}
+.formula,.kbd{
+  background:#eef3f5 !important;
+  color:var(--zah-navy) !important;
+  border-color:#d9e3e7 !important;
+}
+.answer-note{background:#f4f7f8 !important}
+.topbar{background:rgba(242,242,242,.94) !important}
+
+/* Actual Data Analysis Learning Path logo */
+.brand-logo{
+  width:220px;
+  max-height:58px;
+  object-fit:contain;
+  object-position:left center;
+  display:block;
+}
+.sidebar-company-logo{
+  width:145px;
+  height:auto;
+  object-fit:contain;
+  flex:0 0 auto;
+  filter:drop-shadow(0 5px 12px rgba(0,0,0,.12));
+}
+.course-brand{
+  align-items:center !important;
+  gap:12px !important;
+}
+.course-brand h1{color:#fff !important}
+.course-brand p{color:#d7e4ea !important}
+.auth-brand-logo,.account-brand-logo,.verify-brand-logo{
+  width:210px;
+  max-height:66px;
+  object-fit:contain;
+  display:block;
+}
+.cert-brand-logo{
+  width:145px;
+  height:auto;
+  object-fit:contain;
+  display:block;
+  margin:0 auto;
+}
+.cert-brand-lockup{min-height:52px}
+.cert-brand-mark,.brand-mark,.mark{display:none !important}
+.cert-course{color:var(--zah-orange) !important}
+.cert-preview{border-color:var(--zah-navy) !important}
+.cert-inner{border-color:var(--zah-orange) !important}
+.cert-seal{border-color:var(--zah-orange) !important;color:var(--zah-navy) !important}
+.cert-signature-name{color:var(--zah-navy) !important}
+.portal-home-btn,#zah-sync-badge{background:var(--zah-navy) !important}
+.portal-home-btn:hover{background:var(--zah-navy-dark) !important}
+
+@media(max-width:680px){
+  .brand-logo{width:178px}
+  .sidebar-company-logo{width:125px}
+  .auth-brand-logo,.account-brand-logo,.verify-brand-logo{width:180px}
+  .cert-brand-logo{width:120px}
+}
+
+
+
+
+
+
+/* Refined company logo presentation: background removed from logo file, tighter spacing, company name shown beside logo. */
+.brand-shell,
+.course-brand-shell,
+.auth-brand-shell,
+.account-brand-shell,
+.verify-brand-shell,
+.cert-brand-shell{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.brand-logo,
+.sidebar-company-logo,
+.auth-brand-logo,
+.account-brand-logo,
+.verify-brand-logo,
+.cert-brand-logo{
+  object-fit:contain !important;
+  object-position:center !important;
+  width:auto !important;
+  height:auto !important;
+  background:transparent !important;
+  padding:0 !important;
+  border-radius:0 !important;
+  margin-right:0 !important;
+  flex:0 0 auto;
+}
+
+.brand-logo{height:58px !important; max-width:150px !important;}
+.sidebar-company-logo{height:64px !important; max-width:150px !important;}
+.auth-brand-logo,.account-brand-logo,.verify-brand-logo{height:66px !important; max-width:160px !important;}
+.cert-brand-logo{height:68px !important; max-width:160px !important;}
+
+.brand-company-name{
+  display:flex;
+  flex-direction:column;
+  line-height:1.05;
+}
+.brand-company-name strong{
+  color:#254559;
+  font-size:16px;
+  letter-spacing:.02em;
+}
+.brand-company-name span{
+  color:#F27329;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.course-brand .brand-company-name strong{color:#ffffff}
+.course-brand .brand-company-name span{color:#ffd5bf}
+.course-brand{gap:10px !important}
+
+.auth-brand-shell .brand-company-name strong,
+.account-brand-shell .brand-company-name strong,
+.verify-brand-shell .brand-company-name strong{
+  font-size:17px;
+}
+.cert-brand-shell .brand-company-name strong{font-size:14px}
+.cert-brand-shell .brand-company-name span{font-size:10px}
+
+@media(max-width:680px){
+  .brand-shell,.course-brand-shell,.auth-brand-shell,.account-brand-shell,.verify-brand-shell,.cert-brand-shell{gap:8px}
+  .brand-logo{height:46px !important; max-width:122px !important;}
+  .sidebar-company-logo{height:50px !important; max-width:120px !important;}
+  .auth-brand-logo,.account-brand-logo,.verify-brand-logo{height:54px !important; max-width:130px !important;}
+  .cert-brand-logo{height:56px !important; max-width:130px !important;}
+  .brand-company-name strong{font-size:14px}
+  .brand-company-name span{font-size:10px}
+}

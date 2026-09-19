@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Excel Mastery Roadmap | Basic to Dashboard Building</title>
+<meta name="description" content="A 10-week interactive Excel learning roadmap from beginner foundations to dashboard building.">
+<style>
+:root{
+  --bg:#f4f7f6;
+  --surface:#ffffff;
+  --surface-soft:#edf6f1;
+  --surface-warm:#fff7e7;
+  --text:#16221c;
+  --muted:#65736c;
+  --green:#217346;
+  --green-dark:#145733;
+  --green-deep:#0d3522;
+  --green-light:#dff2e7;
+  --gold:#f4a62a;
+  --blue:#2f6fed;
+  --red:#c94343;
+  --border:#dfe8e3;
+  --shadow:0 14px 40px rgba(21,73,48,.09);
+  --radius:20px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color:var(--text);
+  background:var(--bg);
+  line-height:1.6;
+}
+button,input{font:inherit}
+a{text-decoration:none;color:inherit}
+.app{display:grid;grid-template-columns:300px minmax(0,1fr);min-height:100vh}
+.sidebar{
+  position:sticky;top:0;height:100vh;overflow-y:auto;
+  background:linear-gradient(180deg,#0c3220,#102b20 58%,#0b241b);
+  color:#fff;padding:22px 18px;border-right:1px solid rgba(255,255,255,.08);
+  z-index:20;
+}
+.brand{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+.logo{
+  width:48px;height:48px;display:grid;place-items:center;border-radius:14px;
+  background:linear-gradient(135deg,#2d925e,#1d6c45);font-weight:900;font-size:22px;
+  box-shadow:0 12px 30px rgba(0,0,0,.2)
+}
+.brand h1{font-size:16px;line-height:1.15;margin:0}
+.brand p{font-size:12px;color:#b8cfc3;margin:4px 0 0}
+.searchbox{
+  display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:12px;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.11);
+  margin-bottom:18px
+}
+.searchbox input{width:100%;border:0;outline:0;background:transparent;color:#fff}
+.searchbox input::placeholder{color:#a7beb2}
+.nav-title{
+  margin:18px 10px 8px;font-size:10px;color:#8fac9d;text-transform:uppercase;
+  letter-spacing:.13em;font-weight:800
+}
+.nav-link{
+  display:flex;align-items:center;gap:10px;padding:10px 11px;margin:3px 0;border-radius:11px;
+  color:#dce9e2;font-size:13px;transition:.18s ease
+}
+.nav-link:hover,.nav-link.active{background:rgba(255,255,255,.10);color:#fff}
+.nav-num{
+  min-width:26px;height:26px;border-radius:8px;display:grid;place-items:center;
+  background:rgba(255,255,255,.08);font-size:11px;font-weight:800
+}
+.sidebar-progress{
+  margin-top:20px;padding:14px;border-radius:14px;background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.08)
+}
+.progress-meta{display:flex;justify-content:space-between;font-size:12px;color:#cbe0d5}
+.track{height:8px;background:rgba(255,255,255,.13);border-radius:999px;margin-top:9px;overflow:hidden}
+.fill{height:100%;width:0;background:#6fe0a1;border-radius:999px;transition:.3s ease}
+main{min-width:0}
+.topbar{
+  position:sticky;top:0;z-index:10;padding:13px 26px;
+  display:flex;justify-content:space-between;align-items:center;gap:12px;
+  background:rgba(244,247,246,.93);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)
+}
+.topbar-title{display:flex;align-items:center;gap:10px}
+.topbar strong{font-size:14px}
+.topbar small{color:var(--muted)}
+.menu-btn,.btn{
+  border:1px solid var(--border);background:var(--surface);color:var(--text);
+  padding:9px 13px;border-radius:10px;cursor:pointer;font-weight:700
+}
+.menu-btn{display:none}
+.btn.primary{background:var(--green);color:#fff;border-color:var(--green)}
+.btn:hover{filter:brightness(.98)}
+.content{max-width:1250px;margin:0 auto;padding:30px 30px 70px}
+.hero{
+  border-radius:28px;padding:44px;color:#fff;overflow:hidden;
+  background:
+    radial-gradient(circle at 82% 16%,rgba(255,255,255,.16),transparent 25%),
+    radial-gradient(circle at 92% 85%,rgba(244,166,42,.18),transparent 25%),
+    linear-gradient(135deg,#123d28,#217346 68%,#2f8c59);
+  box-shadow:0 24px 60px rgba(20,87,51,.20)
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border-radius:999px;
+  background:rgba(255,255,255,.13);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em
+}
+.hero h2{font-size:clamp(36px,5.5vw,68px);line-height:1.02;margin:18px 0 15px;max-width:980px}
+.hero p{max-width:820px;color:#e4f1ea;font-size:17px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px}
+.stat{
+  padding:15px;border-radius:15px;background:rgba(255,255,255,.09);
+  border:1px solid rgba(255,255,255,.14)
+}
+.stat strong{display:block;font-size:22px}.stat span{font-size:12px;color:#cfe3d8}
+.section-head{margin:42px 0 16px}
+.section-head h3{margin:0 0 5px;font-size:28px}.section-head p{margin:0;color:var(--muted)}
+.overview-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  padding:20px;box-shadow:0 8px 25px rgba(31,73,56,.05)
+}
+.icon{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--green-light);font-size:20px;margin-bottom:13px}
+.card h4{margin:0 0 7px}.card p{margin:0;color:var(--muted)}
+.course-map{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.map-card{
+  padding:14px;background:#fff;border:1px solid var(--border);border-radius:14px;
+  transition:.2s ease
+}
+.map-card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.map-card b{display:block;color:var(--green-dark);margin-bottom:3px}.map-card span{font-size:12px;color:var(--muted)}
+.week{
+  margin-top:24px;background:#fff;border:1px solid var(--border);border-radius:22px;
+  overflow:hidden;box-shadow:0 9px 30px rgba(28,76,54,.06)
+}
+.week-header{
+  display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;
+  padding:23px 25px;background:linear-gradient(180deg,#fff,#fbfdfc);
+  border-bottom:1px solid var(--border)
+}
+.week-num{
+  width:56px;height:56px;border-radius:17px;background:var(--green);color:#fff;
+  display:grid;place-items:center;font-size:20px;font-weight:900
+}
+.week-title h3{margin:0 0 4px;font-size:24px}.week-title p{margin:0;color:var(--muted);font-size:14px}
+.badge{padding:7px 10px;border-radius:999px;background:var(--surface-warm);color:#8c5b00;font-size:12px;font-weight:800}
+.week-body{padding:24px}
+.learning-grid{display:grid;grid-template-columns:1.18fr .82fr;gap:20px}
+.lesson-list{display:grid;gap:12px}
+.lesson{padding:17px;border:1px solid var(--border);border-radius:15px;background:#fcfefd}
+.lesson h4{margin:0 0 8px;font-size:17px}
+.lesson p{margin:0;color:var(--muted)}
+.lesson ul{margin:9px 0 0;padding-left:20px}.lesson li{margin:5px 0}
+.formula{
+  display:inline-block;background:#edf3ff;color:#244a91;border:1px solid #d7e2fb;
+  padding:2px 7px;border-radius:7px;font-family:Consolas,monospace;font-size:13px
+}
+.side-stack{display:grid;gap:13px;align-content:start}
+.mini{
+  padding:16px;border-radius:14px;border:1px solid var(--border);background:var(--surface-soft)
+}
+.mini.practice{background:#f7faff;border-color:#dbe6ff}
+.mini.tip{background:#fff9ed;border-color:#f2dfb7}
+.mini h4{margin:0 0 7px}.mini p{margin:0;color:#46564e}.mini ol,.mini ul{margin:8px 0 0;padding-left:20px}.mini li{margin:6px 0}
+.complete-label{display:flex;align-items:center;gap:9px;font-weight:750;color:var(--green-dark);padding:5px}
+.complete-label input{width:18px;height:18px;accent-color:var(--green)}
+.quiz{margin-top:22px;padding-top:20px;border-top:1px dashed var(--border)}
+.quiz h4{font-size:20px;margin:0 0 12px}
+.question{padding:15px;border:1px solid var(--border);border-radius:14px;margin:10px 0;background:#fff}
+.question p{margin:0 0 10px;font-weight:700}
+.option{display:block;margin:6px 0;color:#45554d}
+.answer-note{display:none;margin-top:9px;background:#f4f7f6;padding:9px 11px;border-radius:9px;font-size:13px;color:#47574f}
+.quiz-actions{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:13px}
+.score{display:none;padding:8px 11px;border-radius:10px;background:var(--green-light);font-weight:900;color:var(--green-dark)}
+.project{
+  margin-top:20px;padding:22px;border-radius:18px;color:#fff;
+  background:linear-gradient(135deg,#123426,#1c5d3d)
+}
+.project h4{margin:0 0 7px}.project p{margin:0;color:#d7e9e0}.project ul{padding-left:20px}
+.capstone{
+  margin-top:30px;padding:27px;border-radius:22px;background:linear-gradient(135deg,#fff8e8,#fff1cb);
+  border:1px solid #ecd59b
+}
+.capstone h3{margin-top:0}.check-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.check-item{display:flex;gap:10px;background:rgba(255,255,255,.78);padding:12px;border-radius:12px}
+.resources{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.kbd{font-family:Consolas,monospace;background:#eef1ef;border:1px solid #d9e1dd;border-bottom-width:2px;padding:2px 6px;border-radius:6px}
+.toast{
+  position:fixed;right:22px;bottom:22px;z-index:100;
+  background:#163728;color:#fff;padding:12px 16px;border-radius:12px;box-shadow:var(--shadow);
+  opacity:0;transform:translateY(12px);pointer-events:none;transition:.25s
+}
+.toast.show{opacity:1;transform:translateY(0)}
+.search-hidden{display:none!important}
+.footer{text-align:center;color:var(--muted);padding:28px 0 0;font-size:13px}
+@media(max-width:1050px){
+  .app{grid-template-columns:1fr}
+  .sidebar{position:fixed;left:-320px;width:300px;transition:.25s ease}
+  .sidebar.open{left:0}
+  .menu-btn{display:inline-block}
+  .overview-grid{grid-template-columns:repeat(2,1fr)}
+  .course-map{grid-template-columns:repeat(2,1fr)}
+  .learning-grid{grid-template-columns:1fr}
+}
+@media(max-width:680px){
+  .content{padding:18px 14px 55px}.topbar{padding:11px 14px}
+  .hero{padding:30px 22px;border-radius:21px}.stats,.overview-grid,.course-map,.resources,.check-grid{grid-template-columns:1fr}
+  .week-header{grid-template-columns:auto 1fr;padding:18px}
+  .badge{grid-column:2}.week-body{padding:17px}.week-title h3{font-size:20px}
+  .topbar .secondary-action{display:none}
+}
+@media print{
+  .sidebar,.topbar,.quiz-actions,.complete-label{display:none!important}
+  .app{display:block}.content{max-width:none;padding:0}.week{break-inside:avoid}
+  body{background:#fff}
+}
+
+.session-guide{margin-top:24px;border-top:1px solid var(--border);padding-top:22px}
+.session-guide>h4{font-size:22px;margin:0 0 6px}
+.session-guide>.intro{color:var(--muted);margin:0 0 16px}
+.session-block{
+  margin:14px 0;padding:20px;border:1px solid var(--border);border-radius:17px;background:#fcfefd
+}
+.session-block h5{margin:0 0 8px;font-size:18px;color:var(--green-dark)}
+.session-block h6{margin:16px 0 6px;font-size:14px;color:var(--green-deep);text-transform:uppercase;letter-spacing:.04em}
+.session-block p{margin:6px 0;color:#425249}
+.session-block ul,.session-block ol{margin:7px 0 0;padding-left:21px}
+.session-block li{margin:6px 0}
+.explain{
+  margin:12px 0;padding:13px 14px;border-left:4px solid var(--green);
+  background:var(--green-light);border-radius:0 11px 11px 0
+}
+.example-box{
+  margin:12px 0;padding:14px;border:1px solid #dbe6ff;background:#f7faff;border-radius:12px
+}
+.example-box b{color:#244a91}
+.try-box{
+  margin:12px 0;padding:14px;border:1px solid #f0d9a6;background:#fff8e8;border-radius:12px
+}
+.mistake-box{
+  margin:12px 0;padding:14px;border:1px solid #f0c6c6;background:#fff7f7;border-radius:12px
+}
+.recap-box{
+  margin:12px 0;padding:14px;border:1px solid var(--border);background:#f8faf9;border-radius:12px
+}
+.session-time{
+  display:inline-flex;gap:6px;align-items:center;padding:5px 9px;border-radius:999px;
+  background:#eef4f1;color:#52635a;font-size:12px;font-weight:800;margin-bottom:8px
+}
+.lesson-table{width:100%;border-collapse:collapse;margin-top:12px;font-size:14px}
+.lesson-table th,.lesson-table td{border:1px solid var(--border);padding:10px;text-align:left;vertical-align:top}
+.lesson-table th{background:#eef6f1;color:var(--green-deep)}
+
+</style>
+
+<style>
+.portal-home-btn{
+  position:fixed;left:18px;bottom:18px;z-index:9999;
+  display:inline-flex;align-items:center;gap:8px;
+  padding:10px 13px;border-radius:12px;
+  background:#254559;color:#fff;text-decoration:none;
+  font:700 13px Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 12px 28px rgba(20,45,58,.22);
+}
+.portal-home-btn:hover{background:#18313f}
+@media(max-width:680px){.portal-home-btn{left:12px;bottom:12px;padding:9px 11px}}
+@media print{.portal-home-btn{display:none!important}}
+</style>
+
+
+<style>
+.certificate-section{
+  margin-top:32px;padding:28px;border:1px solid var(--border);border-radius:22px;
+  background:linear-gradient(135deg,#ffffff,#f7fafb);box-shadow:0 10px 30px rgba(24,54,72,.06)
+}
+.certificate-section h3{margin:0 0 6px;font-size:28px}
+.certificate-section>p{margin:0 0 18px;color:var(--muted)}
+.cert-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:20px;align-items:start}
+.cert-controls{padding:20px;border:1px solid var(--border);border-radius:16px;background:#fff}
+.cert-controls label{display:block;font-weight:800;margin-bottom:7px}
+.cert-controls input{
+  width:100%;padding:12px 13px;border-radius:11px;border:1px solid var(--border);
+  outline:0;background:#fff;color:var(--text);margin-bottom:12px
+}
+.cert-controls input:focus{border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-light)}
+.cert-status{padding:11px 12px;border-radius:11px;background:#fff8e8;border:1px solid #ecd59b;color:#77520a;font-size:13px;margin-bottom:12px}
+.cert-status.ready{background:#eef8f1;border-color:#c9e6d1;color:#21603a}
+.cert-buttons{display:flex;gap:9px;flex-wrap:wrap}
+.cert-buttons .btn[disabled]{opacity:.45;cursor:not-allowed;filter:none}
+.cert-preview{
+  position:relative;aspect-ratio:1.414/1;border:10px solid #254559;background:#fff;
+  box-shadow:0 14px 30px rgba(25,55,72,.12);overflow:hidden
+}
+.cert-preview::before,.cert-preview::after{
+  content:"";position:absolute;width:180px;height:180px;border-radius:50%;
+  background:rgba(242,115,41,.10);z-index:0
+}
+.cert-preview::before{right:-70px;top:-70px}
+.cert-preview::after{left:-80px;bottom:-80px}
+.cert-inner{
+  position:absolute;inset:12px;border:2px solid #F27329;padding:5.5% 7%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;z-index:1
+}
+.cert-brand{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:900;color:#254559}
+.cert-title{font-family:Georgia,serif;font-size:clamp(25px,4vw,44px);line-height:1.1;margin:9px 0 5px;color:#18313f}
+.cert-sub{font-size:13px;color:#69777f}
+.cert-name{font-family:Georgia,serif;font-size:clamp(22px,3.2vw,36px);margin:14px 0 7px;color:#254559;border-bottom:1px solid #c8d3d9;padding:0 20px 5px;min-width:60%}
+.cert-course{font-size:clamp(16px,2.1vw,24px);font-weight:900;color:#F27329;margin-top:5px}
+.cert-meta{margin-top:12px;font-size:11px;color:#69777f}
+.cert-signatures{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:18px}
+.cert-sign{border-top:1px solid #8b9aa2;padding-top:5px;font-size:10px;color:#607079}
+.cert-seal{
+  position:absolute;right:6%;bottom:7%;width:64px;height:64px;border-radius:50%;
+  display:grid;place-items:center;border:4px double #F27329;color:#254559;font-weight:900;font-size:10px;
+  transform:rotate(-8deg);background:#fff
+}
+@media(max-width:850px){.cert-grid{grid-template-columns:1fr}.cert-preview{max-width:720px;width:100%}}
+@media print{.certificate-section{break-inside:avoid}.cert-controls{display:none}.cert-grid{display:block}.cert-preview{width:100%;box-shadow:none}}
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<style>
+.cert-qr{width:72px;height:72px;margin:9px auto 0;padding:4px;background:#fff;border:1px solid #d8e1e6;border-radius:8px}
+.cert-qr canvas,.cert-qr img{width:100%!important;height:100%!important;display:block}
+.cert-id-line{margin-top:6px;font-size:10px;color:#53656f;letter-spacing:.03em}
+.cert-verify-note{font-size:9px;color:#7b8a92;margin-top:2px}
+.cert-brand-lockup{display:flex;align-items:center;justify-content:center;gap:8px}
+.cert-brand-mark{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;background:#254559;color:#fff;font-weight:900}
+.cert-signature-name{font-family:"Segoe Script","Brush Script MT",cursive;font-size:21px;line-height:1;color:#254559}
+.cert-signature-role{font-size:9px;color:#607079;margin-top:3px}
+.cert-verification-info{margin-top:14px;padding:12px;border:1px solid #dce5e9;border-radius:11px;background:#f7fafb;font-size:12px;color:#5e6d75}
+@media(max-width:680px){.cert-qr{width:58px;height:58px}.cert-signature-name{font-size:17px}}
+</style>
+
+<link rel="stylesheet" href="../assets/brand-overrides.css">
+
+<style>
+.learner-account-btn{
+  position:fixed;
+  right:18px;
+  bottom:66px;
+  z-index:9998;
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  padding:10px 13px;
+  border-radius:12px;
+  background:#F27329;
+  color:#fff;
+  text-decoration:none;
+  font:800 12px Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  box-shadow:0 10px 25px rgba(20,45,58,.18);
+}
+.learner-account-btn:hover{filter:brightness(.95)}
+@media(max-width:680px){
+  .learner-account-btn{right:12px;bottom:62px;padding:9px 11px}
+}
+@media print{.learner-account-btn{display:none!important}}
+</style>
+
+<link rel="stylesheet" href="../assets/responsive-polish.css">
+<link rel="icon" href="../assets/da-logo.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/course-refresh.css"></head>
+<body>
+<div class="app">
+<aside class="sidebar" id="sidebar">
+  <div class="brand course-brand"><div class="course-brand-shell"><img class="sidebar-company-logo" src="../assets/da-logo.svg" alt="Data Analysis Learning Path logo"><div class="brand-company-name"><strong>Data Analysis Learning Path</strong><span>Excel Mastery Roadmap</span></div></div></div>
+  <div class="searchbox"><span>⌕</span><input id="searchInput" placeholder="Search lessons or formulas..." aria-label="Search course"></div>
+  <div class="nav-title">Course</div>
+  <a class="nav-link active" href="#overview"><span class="nav-num">⌂</span>Overview</a>
+  <div class="sidebar-tools"><a href="../reference.html">⌕ Formula &amp; query library</a><a href="../tutor.html">✦ Ask the tutor</a><a href="../downloads/START_HERE.md" download>↓ Practice data &amp; guide</a></div><div class="nav-title">Weekly Sessions</div>
+  <a class="nav-link" href="#week1"><span class="nav-num">1</span>Excel Foundations</a>
+  <a class="nav-link" href="#week2"><span class="nav-num">2</span>Formatting & Tables</a>
+  <a class="nav-link" href="#week3"><span class="nav-num">3</span>Formulas & Functions</a>
+  <a class="nav-link" href="#week4"><span class="nav-num">4</span>Logical & Lookup Functions</a>
+  <a class="nav-link" href="#week5"><span class="nav-num">5</span>Data Cleaning</a>
+  <a class="nav-link" href="#week6"><span class="nav-num">6</span>Sort, Filter & Analysis</a>
+  <a class="nav-link" href="#week7"><span class="nav-num">7</span>PivotTables</a>
+  <a class="nav-link" href="#week8"><span class="nav-num">8</span>Charts & Visualization</a>
+  <a class="nav-link" href="#week9"><span class="nav-num">9</span>Dashboard Design</a>
+  <a class="nav-link" href="#week10"><span class="nav-num">10</span>Dashboard Project</a>
+  <div class="sidebar-progress">
+    <div class="progress-meta"><span>Course progress</span><strong id="progressText">0%</strong></div>
+    <div class="track"><div class="fill" id="progressFill"></div></div>
+  </div>
+</aside>
+
+<main>
+<div class="topbar">
+  <div class="topbar-title">
+    <button class="menu-btn" id="menuBtn">☰</button>
+    <div><strong>Excel Learning Portal</strong><br><small>Learn → Practise → Test → Build</small></div>
+  </div>
+  <div class="course-top-actions">
+    <a class="btn course-account-link" id="learnerAccountBtn" href="../auth.html">Sign In</a>
+    <button class="btn secondary-action" onclick="window.print()">Print / Save PDF</button>
+    <button class="btn primary" id="resetBtn">Reset Progress</button>
+  </div>
+</div>
+
+<div class="content">
+<section class="hero searchable" id="overview">
+  <span class="eyebrow">10-week interactive learning path</span>
+  <h2>Learn Excel from zero to building your first professional dashboard.</h2>
+  <p>This course is structured for beginners who want practical Excel skills for work, analysis, reporting, and dashboard creation. Each week now includes guided teaching sessions, plain-English explanations, worked examples, practical exercises, common mistakes, recap points, and a knowledge test.</p>
+  <div class="stats">
+    <div class="stat"><strong>10 Weeks</strong><span>Progressive learning plan</span></div>
+    <div class="stat"><strong>30+</strong><span>Core lesson areas</span></div>
+    <div class="stat"><strong>50</strong><span>Test questions</span></div>
+    <div class="stat"><strong>1 Final</strong><span>Interactive dashboard project</span></div>
+  </div>
+</section>
+
+<div class="section-head"><h3>How to learn with this page</h3><p>Use one week at a time. Do not just read — open Excel and recreate every example.</p></div>
+<section class="overview-grid">
+  <div class="card"><div class="icon">📘</div><h4>1. Learn</h4><p>Read each topic and understand what the Excel feature is used for.</p></div>
+  <div class="card"><div class="icon">🧪</div><h4>2. Practise</h4><p>Complete the weekly task in Excel using a small sample dataset.</p></div>
+  <div class="card"><div class="icon">🧠</div><h4>3. Test</h4><p>Answer five questions each week and check your score immediately.</p></div>
+  <div class="card"><div class="icon">📊</div><h4>4. Build</h4><p>Combine the skills into a final interactive sales dashboard.</p></div>
+</section>
+
+<div class="section-head"><h3>Course map</h3><p>The course moves from Excel navigation to analysis, visualization, and dashboard delivery.</p></div>
+<section class="course-map">
+  <a class="map-card" href="#week1"><b>Week 1</b><span>Interface, cells, ranges, worksheets</span></a>
+  <a class="map-card" href="#week2"><b>Week 2</b><span>Formatting, data types, Excel Tables</span></a>
+  <a class="map-card" href="#week3"><b>Week 3</b><span>Core formulas and references</span></a>
+  <a class="map-card" href="#week4"><b>Week 4</b><span>IF, SUMIFS, XLOOKUP</span></a>
+  <a class="map-card" href="#week5"><b>Week 5</b><span>Cleaning messy data</span></a>
+  <a class="map-card" href="#week6"><b>Week 6</b><span>Sort, filter, conditional formatting</span></a>
+  <a class="map-card" href="#week7"><b>Week 7</b><span>PivotTables and slicers</span></a>
+  <a class="map-card" href="#week8"><b>Week 8</b><span>Charts and storytelling</span></a>
+  <a class="map-card" href="#week9"><b>Week 9</b><span>Dashboard layout and interactivity</span></a>
+  <a class="map-card" href="#week10"><b>Week 10</b><span>End-to-end dashboard project</span></a>
+</section>
+
+<!-- WEEK 1 -->
+<div class="course-study-note"><strong>Learn → recreate → check → explain.</strong> Work through the new guided lab in each week after reading the lesson. Aim for at least 4/5 on the weekly quiz before marking a week complete. Completion records are self-reported and are not externally accredited certificates. <a href="../downloads/START_HERE.md">Get the common practice dataset ↗</a></div><section class="week searchable" id="week1">
+<div class="week-header"><div class="week-num">1</div><div class="week-title"><h3>Excel Foundations & Navigation</h3><p>Understand the Excel workspace and become comfortable moving around a workbook.</p></div><span class="badge">Beginner</span></div>
+<div class="week-body">
+<div class="learning-grid">
+<div class="lesson-list">
+  <div class="lesson"><h4>1. Understanding Excel</h4><p>Learn the basic building blocks.</p><ul>
+    <li>A <b>workbook</b> is the Excel file.</li><li>A <b>worksheet</b> is a sheet inside a workbook.</li>
+    <li>Rows run horizontally and use numbers; columns run vertically and use letters.</li>
+    <li>A cell is identified by column + row, such as B5.</li><li>A range is a group of cells, such as A1:D20.</li>
+  </ul></div>
+  <div class="lesson"><h4>2. Excel Interface</h4><ul>
+    <li>Ribbon tabs: Home, Insert, Page Layout, Formulas, Data, Review, View.</li>
+    <li>Formula Bar for viewing or editing values and formulas.</li><li>Name Box for seeing the active cell or jumping to a location.</li>
+    <li>Sheet tabs for moving between worksheets.</li><li>Status Bar for quick Sum, Average, and Count.</li>
+  </ul></div>
+  <div class="lesson"><h4>3. Navigation & Selection</h4><ul>
+    <li>Select a cell, row, column, or block of data.</li><li>Use <span class="kbd">Ctrl + Home</span> to return to A1.</li>
+    <li>Use <span class="kbd">Ctrl + End</span> to move toward the last used cell.</li><li>Use <span class="kbd">Ctrl + Arrow</span> to move quickly through a data region.</li>
+    <li>Use <span class="kbd">Ctrl + Shift + Arrow</span> to select a large range.</li>
+  </ul></div>
+  <div class="lesson"><h4>4. Managing Workbooks & Sheets</h4><ul>
+    <li>Create, save, close, and reopen a workbook.</li><li>Rename, insert, move, copy, colour, and delete worksheets.</li>
+    <li>Difference between <b>.xlsx</b> and <b>.csv</b>.</li><li>Use Save As to create another version of a file.</li>
+  </ul></div>
+</div>
+<div class="side-stack">
+  <div class="mini"><h4>🎯 Week Goal</h4><p>Navigate Excel without fear and understand exactly where your data lives.</p></div>
+  <div class="mini practice"><h4>🧪 Practice Exercise</h4><ol>
+    <li>Create <b>Excel_Practice.xlsx</b>.</li><li>Create sheets named Sales, Products, Customers.</li>
+    <li>Enter 10 simple sales records on Sales.</li><li>Move Products before Customers.</li><li>Save, close, and reopen the workbook.</li>
+  </ol></div>
+  <div class="mini tip"><h4>💡 Beginner Tip</h4><p>Keep one row for column headers and one record per row. This becomes very important later.</p></div>
+  <label class="complete-label"><input type="checkbox" class="completeBox" data-week="1"> Mark Week 1 complete</label>
+</div>
+</div>
+
+<div class="session-guide">
+<h4>Detailed Learning Sessions</h4>
+<p class="intro">Week 1 is about becoming comfortable with Excel. The learner should understand the screen, know where data is entered, and move around a workbook without getting lost.</p>
+
+<div class="session-block">
+<span class="session-time">Session 1 • 60–75 minutes</span>
+<h5>Understanding the Excel Environment</h5>
+<div class="explain"><b>Explain it simply:</b> Think of Excel as a digital exercise book. The whole file is the <b>workbook</b>. Each page inside it is a <b>worksheet</b>. Every small box is a <b>cell</b>.</div>
+<h6>Step by step</h6>
+<ol>
+<li>Open Excel and create a <b>Blank Workbook</b>.</li>
+<li>Point to the column letters A, B, C and explain that columns run from top to bottom.</li>
+<li>Point to row numbers 1, 2, 3 and explain that rows run from left to right.</li>
+<li>Click cell B4. Explain that B is the column and 4 is the row.</li>
+<li>Type <b>Sales</b> into B4 and press Enter. Show that the active cell moves to the next row.</li>
+<li>Click the Formula Bar and show that the same value in the active cell appears there.</li>
+<li>Click the Name Box, type <b>H20</b>, and press Enter to jump directly to that cell.</li>
+</ol>
+<div class="example-box"><b>Worked example:</b> If a learner is told “enter 2500 in D8”, they should first find column D, then row 8, and type 2500 in the cell where both meet.</div>
+<h6>What learners should remember</h6>
+<ul><li>Workbook = file.</li><li>Worksheet = sheet inside the file.</li><li>Cell = one box.</li><li>Range = many cells selected together, for example A1:D10.</li></ul>
+</div>
+
+<div class="session-block">
+<span class="session-time">Session 2 • 60–75 minutes</span>
+<h5>Entering Data and Moving Around Quickly</h5>
+<h6>Guided activity</h6>
+<ol>
+<li>In row 1, type: Date, Customer, Product, Quantity, Unit Price.</li>
+<li>Enter five sample records underneath the headings.</li>
+<li>Use <span class="kbd">Tab</span> to move across columns and <span class="kbd">Enter</span> to move down.</li>
+<li>Use <span class="kbd">Ctrl + Home</span> to return to A1.</li>
+<li>Use <span class="kbd">Ctrl + Arrow</span> to jump to the edge of a data block.</li>
+<li>Select A1:E6. Explain that this is a range.</li>
+<li>Copy the range and paste it on another worksheet.</li>
+</ol>
+<div class="try-box"><b>Learner task:</b> Create a small attendance sheet with columns: Student Name, Monday, Tuesday, Wednesday, Thursday, Friday. Enter at least 8 students.</div>
+<div class="mistake-box"><b>Common mistakes:</b> Typing headings on different rows, leaving random blank rows, and putting two pieces of information in one cell such as “Lagos - South”. Keep each field in its own column.</div>
+</div>
+
+<div class="session-block">
+<span class="session-time">Session 3 • 45–60 minutes</span>
+<h5>Managing Sheets and Saving Work Properly</h5>
+<ol>
+<li>Rename Sheet1 to <b>Sales</b>.</li>
+<li>Insert two new sheets and name them <b>Products</b> and <b>Customers</b>.</li>
+<li>Move Products before Customers by dragging the tab.</li>
+<li>Right-click a sheet and change its tab colour.</li>
+<li>Use Save As and save the file as <b>Week1_Excel_Practice.xlsx</b>.</li>
+<li>Close Excel, reopen the file, and confirm all sheets are present.</li>
+</ol>
+<div class="recap-box"><b>End-of-week recap:</b> A learner is ready to move on when they can create a workbook, identify cells correctly, enter data in a simple table, add/rename/move sheets, and save the file without assistance.</div>
+</div>
+</div>
+
+<div class="quiz">
+<h4>Week 1 Test — 5 Questions</h4>
+<div class="question" data-answer="b"><p>1. What is the intersection of a row and a column called?</p><label class="option"><input type="radio" name="w1q1" value="a"> Workbook</label><label class="option"><input type="radio" name="w1q1" value="b"> Cell</label><label class="option"><input type="radio" name="w1q1" value="c"> Sheet tab</label><div class="answer-note">Correct answer: Cell.</div></div>
+<div class="question" data-answer="c"><p>2. Which file type is the normal Excel workbook format?</p><label class="option"><input type="radio" name="w1q2" value="a"> .pdf</label><label class="option"><input type="radio" name="w1q2" value="b"> .docx</label><label class="option"><input type="radio" name="w1q2" value="c"> .xlsx</label><div class="answer-note">Correct answer: .xlsx.</div></div>
+<div class="question" data-answer="a"><p>3. Which shortcut takes you to cell A1?</p><label class="option"><input type="radio" name="w1q3" value="a"> Ctrl + Home</label><label class="option"><input type="radio" name="w1q3" value="b"> Ctrl + S</label><label class="option"><input type="radio" name="w1q3" value="c"> Ctrl + P</label><div class="answer-note">Correct answer: Ctrl + Home.</div></div>
+<div class="question" data-answer="b"><p>4. Where can you view or edit a formula?</p><label class="option"><input type="radio" name="w1q4" value="a"> Status Bar</label><label class="option"><input type="radio" name="w1q4" value="b"> Formula Bar</label><label class="option"><input type="radio" name="w1q4" value="c"> Scroll Bar</label><div class="answer-note">Correct answer: Formula Bar.</div></div>
+<div class="question" data-answer="c"><p>5. What does a workbook contain?</p><label class="option"><input type="radio" name="w1q5" value="a"> Only formulas</label><label class="option"><input type="radio" name="w1q5" value="b"> Only one cell</label><label class="option"><input type="radio" name="w1q5" value="c"> One or more worksheets</label><div class="answer-note">Correct answer: One or more worksheets.</div></div>
+<div class="quiz-actions"><button class="btn primary gradeBtn">Check Score</button><button class="btn revealBtn">Show Answers</button><span class="score"></span></div>
+</div>
+</div>
+<div class="guided-lab"><div class="lab-kicker">✦ Guided practice · Week 1</div><h4>First look: read the data before calculating</h4><p class="lab-goal">Identify the observation represented by one row and learn to audit a newly opened file.</p><div class="lab-columns"><div><strong>Follow these steps</strong><ol><li>Download retail_orders.csv and import it using Data → From Text/CSV. Confirm there are 360 order rows, excluding the header.</li><li>Locate order_id, order_date, customer_id, quantity and status. Explain which values are identifiers versus quantities.</li><li>Save a separate working copy as Week01_Retail_Review.xlsx; never overwrite the raw CSV.</li></ol></div><div><strong>Worked example</strong><pre class="lab-code">Expected fields: order_id | order_date | customer_id | region | category | product | quantity | unit_price | unit_cost | discount_pct | status | sales_rep</pre></div></div><div class="lab-task"><b>Try it independently</b><p>List three questions the file could answer, one it cannot answer, and two data-quality checks.</p></div><details class="lab-check"><summary>Check your understanding / expected outcome</summary><p>You should be able to state the grain: one record per order_id in this fictional practice data.</p><p><strong>Common mistake:</strong> A column called order_id is a key, not a number to add. Inspect before assuming data types.</p></details><a class="lab-tutor" href="../tutor.html?q=Help%20me%20understand%20the%20EXCEL%20Week%201%20guided%20lab%3A%20First%20look%3A%20read%20the%20data%20before%20calculating.">Ask the tutor about this lab ↗</a></div></section>
+
+<!-- WEEK 2 -->
+<section class="week searchable" id="week2">
+<div class="week-header"><div class="week-num">2</div><div class="week-title"><h3>Data Entry, Formatting & Excel Tables</h3><p>Turn raw entries into clean, professional, analysis-ready data.</p></div><span class="badge">Core Skills</span></div>
+<div class="week-body">
+<div class="learning-grid">
+<div class="lesson-list">
+  <div class="lesson"><h4>1. Data Types & Entry</h4><ul><li>Recognize text, numbers, dates, times, percentages, and currency.</li><li>Use AutoFill to continue patterns.</li><li>Use Flash Fill for simple text pattern extraction.</li><li>Use Find & Replace to make controlled changes.</li><li>Copy, Cut, Paste, and Paste Special.</li></ul></div>
+  <div class="lesson"><h4>2. Formatting for Readability</h4><ul><li>Font, bold, border, fill, and alignment.</li><li>Number, Currency, Accounting, Percentage, and Date formats.</li><li>Wrap Text and proper column widths.</li><li>Use Format Painter.</li><li>Avoid excessive colours and unnecessary merged cells in datasets.</li></ul></div>
+  <div class="lesson"><h4>3. Excel Tables</h4><ul><li>Convert data using <span class="kbd">Ctrl + T</span>.</li><li>Understand table headers and built-in filtering.</li><li>Apply Table Styles.</li><li>Use the Total Row.</li><li>See how tables automatically expand when new data is added.</li></ul></div>
+  <div class="lesson"><h4>4. Basic Data Validation</h4><ul><li>Create a drop-down list.</li><li>Restrict invalid values.</li><li>Add input messages and error alerts.</li><li>Use validation to reduce data-entry mistakes.</li></ul></div>
+</div>
+<div class="side-stack">
+  <div class="mini"><h4>🎯 Week Goal</h4><p>Create a clean dataset that another analyst can understand immediately.</p></div>
+  <div class="mini practice"><h4>🧪 Practice Exercise</h4><ol><li>Create 25 sales records.</li><li>Use Date, Region, Salesperson, Product, Quantity, Unit Price.</li><li>Apply proper number formats.</li><li>Convert the range to an Excel Table.</li><li>Add a Region drop-down using Data Validation.</li></ol></div>
+  <label class="complete-label"><input type="checkbox" class="completeBox" data-week="2"> Mark Week 2 complete</label>
+</div>
+</div>
+
+<div class="session-guide">
+<h4>Detailed Learning Sessions</h4>
+<p class="intro">Week 2 teaches learners how to make data readable and structured. The goal is not decoration; the goal is clear, consistent data that Excel can work with.</p>
+
+<div class="session-block">
+<span class="session-time">Session 1 • 60–75 minutes</span>
+<h5>Understanding Data Types</h5>
+<div class="explain"><b>Explain it simply:</b> Excel treats different values differently. “1000” should behave like a number, “15/09/2026” should behave like a date, and “Lagos” should behave like text.</div>
+<table class="lesson-table"><tr><th>Data type</th><th>Example</th><th>Why it matters</th></tr>
+<tr><td>Text</td><td>Lagos</td><td>Used for names and categories.</td></tr>
+<tr><td>Number</td><td>1250</td><td>Can be added, averaged, multiplied.</td></tr>
+<tr><td>Date</td><td>15/09/2026</td><td>Can be grouped by month, quarter, year.</td></tr>
+<tr><td>Percentage</td><td>25%</td><td>Useful for rates, growth, margin.</td></tr>
+<tr><td>Currency</td><td>₦250,000</td><td>Used for financial values.</td></tr></table>
+<h6>Practice</h6>
+<ol><li>Type 0.15 and format it as Percentage.</li><li>Type 250000 and format it as Currency.</li><li>Type today’s date and apply a readable date format.</li><li>Change column widths so all headings are visible.</li><li>Apply Wrap Text to a long heading.</li></ol>
+</div>
+
+<div class="session-block">
+<span class="session-time">Session 2 • 75 minutes</span>
+<h5>Professional Formatting and Excel Tables</h5>
+<ol>
+<li>Select the header row and make it bold.</li>
+<li>Apply one simple fill colour to the header.</li>
+<li>Format amount columns consistently.</li>
+<li>Select the full dataset and press <span class="kbd">Ctrl + T</span>.</li>
+<li>Confirm “My table has headers”.</li>
+<li>Rename the table to <b>SalesData</b> from Table Design.</li>
+<li>Add one new record below the table and observe how the table expands automatically.</li>
+</ol>
+<div class="example-box"><b>Why tables matter:</b> If the dataset grows from 50 to 500 rows, formulas, filters and PivotTables are easier to manage when the source is a proper Excel Table.</div>
+<div class="mistake-box"><b>Avoid:</b> Merging cells inside raw data, using several unrelated colours, or formatting one row differently from the rest without a reason.</div>
+</div>
+
+<div class="session-block">
+<span class="session-time">Session 3 • 60 minutes</span>
+<h5>Data Validation and Controlled Entry</h5>
+<ol>
+<li>Create a small list: North, South, East, West.</li>
+<li>Select the Region cells in the sales table.</li>
+<li>Go to Data → Data Validation → List.</li>
+<li>Point the Source to the four-region list.</li>
+<li>Test the drop-down in the sales table.</li>
+<li>Try entering “Central” and observe the error alert.</li>
+</ol>
+<div class="try-box"><b>Learner task:</b> Add a second drop-down for Order Status with values Pending, Completed, Cancelled.</div>
+<div class="recap-box"><b>End-of-week recap:</b> The learner should now be able to enter data consistently, apply sensible formats, convert data to an Excel Table, and create a drop-down list that reduces typing errors.</div>
+</div>
+</div>
+
+<div class="quiz"><h4>Week 2 Test — 5 Questions</h4>
+<div class="question" data-answer="c"><p>1. Which shortcut converts a range to an Excel Table?</p><label class="option"><input type="radio" name="w2q1" value="a"> Ctrl + D</label><label class="option"><input type="radio" name="w2q1" value="b"> Ctrl + Shift + S</label><label class="option"><input type="radio" name="w2q1" value="c"> Ctrl + T</label><div class="answer-note">Correct answer: Ctrl + T.</div></div>
+<div class="question" data-answer="b"><p>2. Which feature continues a pattern such as January, February, March?</p><label class="option"><input type="radio" name="w2q2" value="a"> Solver</label><label class="option"><input type="radio" name="w2q2" value="b"> AutoFill</label><label class="option"><input type="radio" name="w2q2" value="c"> Goal Seek</label><div class="answer-note">Correct answer: AutoFill.</div></div>
+<div class="question" data-answer="a"><p>3. Which format is best for 0.25 when you want to display 25%?</p><label class="option"><input type="radio" name="w2q3" value="a"> Percentage</label><label class="option"><input type="radio" name="w2q3" value="b"> Currency</label><label class="option"><input type="radio" name="w2q3" value="c"> Date</label><div class="answer-note">Correct answer: Percentage.</div></div>
+<div class="question" data-answer="c"><p>4. What can Data Validation create?</p><label class="option"><input type="radio" name="w2q4" value="a"> A PivotTable</label><label class="option"><input type="radio" name="w2q4" value="b"> A macro</label><label class="option"><input type="radio" name="w2q4" value="c"> A controlled drop-down list</label><div class="answer-note">Correct answer: A controlled drop-down list.</div></div>
+<div class="question" data-answer="b"><p>5. Why are Excel Tables useful?</p><label class="option"><input type="radio" name="w2q5" value="a"> They prevent formulas</label><label class="option"><input type="radio" name="w2q5" value="b"> They make sorting, filtering, formatting and expansion easier</label><label class="option"><input type="radio" name="w2q5" value="c"> They automatically build dashboards</label><div class="answer-note">Correct answer: They make sorting, filtering, formatting and expansion easier.</div></div>
+<div class="quiz-actions"><button class="btn primary gradeBtn">Check Score</button><button class="btn revealBtn">Show Answers</button><span class="score"></span></div></div>
+</div>
+<div class="guided-lab"><div class="lab-kicker">✦ Guided practice · Week 2</div><h4>Create an analysis-ready Excel Table</h4><p class="lab-goal">Turn raw records into a consistent table that automatically expands.</p><div class="lab-columns"><div><strong>Follow these steps</strong><ol><li>Check the header row is unique and contains no blank cells. Convert the imported range to a Table with Ctrl+T and name it Orders under Table Design.</li><li>Set order_date to Date, quantity to Whole Number, price and cost to Number/Currency, and discount_pct to Percentage; verify that 0.10 appears as 10%.</li><li>Use Data Validation to limit a new status entry to Completed, Returned or Cancelled.</li></ol></div><div><strong>Worked example</strong><pre class="lab-code">Table name: Orders
+Data Validation list: Completed,Returned,Cancelled</pre></div></div><div class="lab-task"><b>Try it independently</b><p>Insert one temporary example row, check whether the Table expands, then remove it so the row count returns to 360.</p></div><details class="lab-check"><summary>Check your understanding / expected outcome</summary><p>Your source row count is still 360; filter arrows work and dates sort chronologically.</p><p><strong>Common mistake:</strong> Formatting a text value as a date does not convert it to a true date. Use import type detection or DATEVALUE when needed.</p></details><a class="lab-tutor" href="../tutor.html?q=Help%20me%20understand%20the%20EXCEL%20Week%202%20guided%20lab%3A%20Create%20an%20analysis-ready%20Excel%20Table.">Ask the tutor about this lab ↗</a></div></section>
+
+<!-- WEEK 3 -->
+<section class="week searchable" id="week3">
+<div class="week-header"><div class="week-num">3</div><div class="week-title"><h3>Formulas, References & Essential Functions</h3><p>Use Excel to calculate results instead of calculating manually.</p></div><span class="badge">Formulas</span></div>
+<div class="week-body">
+<div class="learning-grid">
+<div class="lesson-list">
+  <div class="lesson"><h4>1. Formula Fundamentals</h4><ul><li>Every formula starts with <span class="formula">=</span>.</li><li>Operators: +, -, *, /, ^.</li><li>Understand Excel order of operations.</li><li>Use brackets to control calculation order.</li><li>Copy formulas using the Fill Handle.</li></ul></div>
+  <div class="lesson"><h4>2. Cell References</h4><ul><li>Relative reference: <span class="formula">A1</span>.</li><li>Absolute reference: <span class="formula">$A$1</span>.</li><li>Mixed references: <span class="formula">A$1</span> and <span class="formula">$A1</span>.</li><li>Use <span class="kbd">F4</span> to cycle through reference types while editing a formula.</li></ul></div>
+  <div class="lesson"><h4>3. Essential Functions</h4><ul><li><span class="formula">SUM</span>, <span class="formula">AVERAGE</span>, <span class="formula">MIN</span>, <span class="formula">MAX</span>.</li><li><span class="formula">COUNT</span> and <span class="formula">COUNTA</span>.</li><li><span class="formula">ROUND</span>.</li><li>Example: <span class="formula">=SUM(E2:E100)</span>.</li></ul></div>
+  <div class="lesson"><h4>4. Business Calculations</h4><ul><li>Revenue = Quantity × Unit Price.</li><li>Profit = Revenue − Cost.</li><li>Margin % = Profit ÷ Revenue.</li><li>Discounted Price = Price × (1 − Discount%).</li><li>Lock a tax or target cell with an absolute reference.</li></ul></div>
+</div>
+<div class="side-stack">
+  <div class="mini"><h4>🎯 Week Goal</h4><p>Write formulas confidently and know why some references move while others stay fixed.</p></div>
+  <div class="mini practice"><h4>🧪 Practice Exercise</h4><ol><li>Add Revenue, Cost, Profit and Margin columns.</li><li>Use formulas rather than manual values.</li><li>Put a tax rate in one cell.</li><li>Use an absolute reference to calculate tax for all rows.</li><li>Calculate total and average revenue.</li></ol></div>
+  <label class="complete-label"><input type="checkbox" class="completeBox" data-week="3"> Mark Week 3 complete</label>
+</div>
+</div>
+
+<div class="session-guide">
+<h4>Detailed Learning Sessions</h4>
+<p class="intro">Week 3 introduces formulas. Learners should understand the logic of a formula before memorising functions.</p>
+
+<div class="session-block">
+<span class="session-time">Session 1 • 75 minutes</span>
+<h5>How Excel Formulas Work</h5>
+<div class="explain"><b>Explain it simply:</b> A formula is an instruction you give Excel. Instead of typing the answer, you tell Excel how to calculate the answer.</div>
+<h6>Start with simple calculations</h6>
+<ul>
+<li><span class="formula">=10+5</span> returns 15.</li>
+<li><span class="formula">=20-7</span> returns 13.</li>
+<li><span class="formula">=6*4</span> returns 24.</li>
+<li><span class="formula">=100/4</span> returns 25.</li>
+</ul>
+<h6>Move from numbers to cell references</h6>
+<ol><li>Put Quantity in C2 and Unit Price in D2.</li><li>In E2 type <span class="formula">=C2*D2</span>.</li><li>Press Enter.</li><li>Drag the fill handle down to copy the formula to other rows.</li></ol>
+<div class="example-box"><b>Business example:</b> Quantity = 5 and Unit Price = 12,000. Excel calculates Revenue as 5 × 12,000 = 60,000.</div>
+</div>
+
+<div class="session-block">
+<span class="session-time">Session 2 • 75 minutes</span>
+<h5>Relative and Absolute References</h5>
+<div class="explain"><b>Simple story:</b> A relative reference moves when copied. An absolute reference is “locked” and stays fixed.</div>
+<ol>
+<li>Put a tax rate of 7.5% in H1.</li>
+<li>In F2 type <span class="formula">=E2*$H$1</span>.</li>
+<li>Copy the formula down.</li>
+<li>Click different tax cells and observe that E2 changes to E3, E4, etc., but $H$1 stays fixed.</li>
+</ol>
+<div class="try-box"><b>Practice:</b> Put a discount rate in another cell and calculate Discount Amount for all transactions using an absolute reference.</div>
+<div class="mistake-box"><b>Common mistake:</b> Writing =E2*H1 and copying down will change H1 to H2, H3, H4. This gives wrong results if the tax rate exists only in H1.</div>
+</div>
+
+<div class="session-block">
+<span class="session-time">Session 3 • 75 minutes</span>
+<h5>Essential Functions for Everyday Excel</h5>
+<table class="lesson-table"><tr><th>Function</th><th>Use</th><th>Example</th></tr>
+<tr><td>SUM</td><td>Add values</td><td>=SUM(E2:E20)</td></tr>
+<tr><td>AVERAGE</td><td>Find mean</td><td>=AVERAGE(E2:E20)</td></tr>
+<tr><td>MIN</td><td>Smallest value</td><td>=MIN(E2:E20)</td></tr>
+<tr><td>MAX</td><td>Largest value</td><td>=MAX(E2:E20)</td></tr>
+<tr><td>COUNT</td><td>Count numeric cells</td><td>=COUNT(E2:E20)</td></tr>
+<tr><td>COUNTA</td><td>Count non-empty cells</td><td>=COUNTA(B2:B20)</td></tr>
+<tr><td>ROUND</td><td>Control decimal places</td><td>=ROUND(F2,2)</td></tr></table>
+<div class="try-box"><b>Learner task:</b> Calculate Total Revenue, Average Revenue, Highest Revenue, Lowest Revenue, and Number of Orders from the sample sales dataset.</div>
+<div class="recap-box"><b>End-of-week recap:</b> The learner should be able to create arithmetic formulas, copy formulas correctly, lock a reference, and use the most common summary functions.</div>
+</div>
+</div>
+
+<div class="quiz"><h4>Week 3 Test — 5 Questions</h4>
+<div class="question" data-answer="a"><p>1. What symbol begins an Excel formula?</p><label class="option"><input type="radio" name="w3q1" value="a"> =</label><label class="option"><input type="radio" name="w3q1" value="b"> #</label><label class="option"><input type="radio" name="w3q1" value="c"> @</label><div class="answer-note">Correct answer: =</div></div>
+<div class="question" data-answer="c"><p>2. Which reference is fully absolute?</p><label class="option"><input type="radio" name="w3q2" value="a"> A1</label><label class="option"><input type="radio" name="w3q2" value="b"> A$1</label><label class="option"><input type="radio" name="w3q2" value="c"> $A$1</label><div class="answer-note">Correct answer: $A$1.</div></div>
+<div class="question" data-answer="b"><p>3. Which function returns the largest number in a range?</p><label class="option"><input type="radio" name="w3q3" value="a"> MIN</label><label class="option"><input type="radio" name="w3q3" value="b"> MAX</label><label class="option"><input type="radio" name="w3q3" value="c"> COUNT</label><div class="answer-note">Correct answer: MAX.</div></div>
+<div class="question" data-answer="a"><p>4. Which formula correctly calculates Revenue from Quantity in C2 and Unit Price in D2?</p><label class="option"><input type="radio" name="w3q4" value="a"> =C2*D2</label><label class="option"><input type="radio" name="w3q4" value="b"> C2+D2=</label><label class="option"><input type="radio" name="w3q4" value="c"> =C2/D2</label><div class="answer-note">Correct answer: =C2*D2.</div></div>
+<div class="question" data-answer="c"><p>5. Which key helps cycle through reference styles while editing a formula?</p><label class="option"><input type="radio" name="w3q5" value="a"> F1</label><label class="option"><input type="radio" name="w3q5" value="b"> F2</label><label class="option"><input type="radio" name="w3q5" value="c"> F4</label><div class="answer-note">Correct answer: F4.</div></div>
+<div class="quiz-actions"><button class="btn primary gradeBtn">Check Score</button><button class="btn revealBtn">Show Answers</button><span class="score"></span></div></div>
+</div>
+<div class="guided-lab"><div class="lab-kicker">✦ Guided practice · Week 3</div><h4>Understand every part of a revenue formula</h4><p class="lab-goal">Combine relative row references, numeric columns, and a clear business rule.</p><div class="lab-columns"><div><strong>Follow these steps</strong><ol><li>Add a calculated column named net_sales to the Orders Table.</li><li>For each row, multiply quantity by unit_price after applying discount_pct; treat only Completed orders as revenue in this exercise.</li><li>Fill down, filter to a Completed row and recalculate with a handheld check: 2 × 10,000 × (1 − 0.10) = 18,000.</li></ol></div><div><strong>Worked example</strong><pre class="lab-code">=IF([@status]=&quot;Completed&quot;,[@quantity]*[@unit_price]*(1-[@discount_pct]),0)</pre></div></div><div class="lab-task"><b>Try it independently</b><p>Create a gross_profit column by subtracting quantity × unit_cost from net_sales only for Completed rows.</p></div><details class="lab-check"><summary>Check your understanding / expected outcome</summary><p>Completed net_sales summed over all rows equals 14,248,255.00 in the provided practice data.</p><p><strong>Common mistake:</strong> Do not subtract a 10% discount as the number 10: the CSV stores 0.10, not 10.</p></details><a class="lab-tutor" href="../tutor.html?q=Help%20me%20understand%20the%20EXCEL%20Week%203%20guided%20lab%3A%20Understand%20every%20part%20of%20a%20revenue%20formula.">Ask the tutor about this lab ↗</a></div></section>
+
+<!-- WEEK 4 -->
+<section class="week searchable" id="week4">
+<div class="week-header"><div class="week-num">4</div><div class="week-title"><h3>Logical, Conditional & Lookup Functions</h3><p>Answer business questions with criteria and bring information from other tables.</p></div><span class="badge">Analysis Functions</span></div>
+<div class="week-body">
+<div class="learning-grid">
+<div class="lesson-list">
+  <div class="lesson"><h4>1. IF & Logical Thinking</h4><ul><li><span class="formula">=IF(test, value_if_true, value_if_false)</span></li><li>Example: <span class="formula">=IF(H2>=100000,"Target Met","Below Target")</span>.</li><li>Use AND and OR when more than one condition is needed.</li><li>Understand simple nested IF, but avoid unnecessarily complex nesting.</li></ul></div>
+  <div class="lesson"><h4>2. Conditional Aggregations</h4><ul><li><span class="formula">SUMIF</span> and <span class="formula">SUMIFS</span>.</li><li><span class="formula">COUNTIF</span> and <span class="formula">COUNTIFS</span>.</li><li><span class="formula">AVERAGEIF</span> and <span class="formula">AVERAGEIFS</span>.</li><li>Example: total sales for one region or one product category.</li></ul></div>
+  <div class="lesson"><h4>3. Lookup Functions</h4><ul><li>Understand why lookup tables are used.</li><li>Use <span class="formula">XLOOKUP</span> where available.</li><li>Understand <span class="formula">VLOOKUP</span> for older versions.</li><li>Know exact match vs approximate match.</li><li>Use IFERROR to display a friendly result when a lookup fails.</li></ul></div>
+  <div class="lesson"><h4>4. Text & Date Helpers</h4><ul><li>LEFT, RIGHT, MID, LEN, CONCAT/TEXTJOIN.</li><li>YEAR, MONTH, DAY, TODAY.</li><li>Use TEXT when a custom display is needed.</li><li>Create Month or Year helper columns for analysis.</li></ul></div>
+</div>
+<div class="side-stack">
+  <div class="mini"><h4>🎯 Week Goal</h4><p>Use business rules, criteria, and lookup tables to enrich and summarize your data.</p></div>
+  <div class="mini practice"><h4>🧪 Practice Exercise</h4><ol><li>Create a Products table with Product ID, Product, Category, Cost.</li><li>Use XLOOKUP to bring Category and Cost into Sales.</li><li>Use IF to classify orders as High Value or Regular.</li><li>Use SUMIFS to calculate regional revenue.</li><li>Use COUNTIFS to count high-value orders by region.</li></ol></div>
+  <label class="complete-label"><input type="checkbox" class="completeBox" data-week="4"> Mark Week 4 complete</label>
+</div>
+</div>
+
+<div class="session-guide">
+<h4>Detailed Learning Sessions</h4>
+<p class="intro">Week 4 teaches Excel to make decisions, calculate with conditions, and retrieve information from another table.</p>
+
+<div class="session-block">
+<span class="session-time">Session 1 • 75 minutes</span>
+<h5>IF, AND and OR</h5>
+<div class="explain"><b>Explain it simply:</b> IF asks a question. If the answer is true, Excel returns one result. If false, it returns another.</div>
+<div class="example-box"><b>Example:</b> <span class="formula">=IF(E2>=100000,"High Value","Regular")</span><br>If Revenue is at least 100,000, the order is labelled High Value; otherwise it is Regular.</div>
+<h6>Add multiple conditions</h6>
+<ul><li><span class="formula">=IF(AND(E2>=100000,F2>=20000),"Excellent","Review")</span></li>
+<li><span class="formula">=IF(OR(C2="Lagos",C2="Abuja"),"Priority Market","Other")</span></li></ul>
+<div class="try-box"><b>Practice:</b> Create a Performance column: Sales >= 500,000 = “Target Met”; otherwise “Below Target”.</div>
+</div>
+
+<div class="session-block">
+<span class="session-time">Session 2 • 75 minutes</span>
+<h5>SUMIF/SUMIFS and COUNTIF/COUNTIFS</h5>
+<div class="explain"><b>Simple idea:</b> These functions do a calculation only for rows that meet a condition.</div>
+<ul>
+<li>Total Lagos revenue: <span class="formula">=SUMIF(C:C,"Lagos",E:E)</span></li>
+<li>Total Lagos Laptop revenue: <span class="formula">=SUMIFS(E:E,C:C,"Lagos",D:D,"Laptop")</span></li>
+<li>Count Lagos orders: <span class="formula">=COUNTIF(C:C,"Lagos")</span></li>
+<li>Count Lagos orders above 100,000: <span class="formula">=COUNTIFS(C:C,"Lagos",E:E,">100000")</span></li>
+</ul>
+<div class="mistake-box"><b>Watch the ranges:</b> In SUMIFS and COUNTIFS, all ranges should line up row-for-row. Do not use E2:E100 for one range and C2:C50 for another.</div>
+</div>
+
+<div class="session-block">
+<span class="session-time">Session 3 • 90 minutes</span>
+<h5>XLOOKUP, VLOOKUP and Error Handling</h5>
+<div class="explain"><b>Story:</b> Imagine the Sales table only has Product ID. The Products table contains Product ID, Product Name, Category and Cost. A lookup finds the Product ID and brings the required information into Sales.</div>
+<ol>
+<li>Create a Products table with ProductID, Product, Category, Unit Cost.</li>
+<li>In the Sales table, add a Category column.</li>
+<li>Use <span class="formula">=XLOOKUP([@ProductID],Products[ProductID],Products[Category],"Not Found")</span>.</li>
+<li>Repeat for Unit Cost.</li>
+<li>If XLOOKUP is unavailable, demonstrate VLOOKUP with exact match.</li>
+</ol>
+<div class="try-box"><b>Practice:</b> Add Customer Segment from a Customers table using Customer ID.</div>
+<div class="recap-box"><b>End-of-week recap:</b> The learner should be able to classify records with IF, calculate condition-based totals and counts, and retrieve matching information from another table.</div>
+</div>
+</div>
+
+<div class="quiz"><h4>Week 4 Test — 5 Questions</h4>
+<div class="question" data-answer="b"><p>1. Which function returns one result when a condition is TRUE and another when it is FALSE?</p><label class="option"><input type="radio" name="w4q1" value="a"> SUM</label><label class="option"><input type="radio" name="w4q1" value="b"> IF</label><label class="option"><input type="radio" name="w4q1" value="c"> ROUND</label><div class="answer-note">Correct answer: IF.</div></div>
+<div class="question" data-answer="c"><p>2. Which function can total values using multiple conditions?</p><label class="option"><input type="radio" name="w4q2" value="a"> COUNT</label><label class="option"><input type="radio" name="w4q2" value="b"> SUM</label><label class="option"><input type="radio" name="w4q2" value="c"> SUMIFS</label><div class="answer-note">Correct answer: SUMIFS.</div></div>
+<div class="question" data-answer="a"><p>3. Which modern function is designed to return a matching value from another range?</p><label class="option"><input type="radio" name="w4q3" value="a"> XLOOKUP</label><label class="option"><input type="radio" name="w4q3" value="b"> UPPER</label><label class="option"><input type="radio" name="w4q3" value="c"> MAX</label><div class="answer-note">Correct answer: XLOOKUP.</div></div>
+<div class="question" data-answer="b"><p>4. Which function returns the number of characters in a text value?</p><label class="option"><input type="radio" name="w4q4" value="a"> MID</label><label class="option"><input type="radio" name="w4q4" value="b"> LEN</label><label class="option"><input type="radio" name="w4q4" value="c"> YEAR</label><div class="answer-note">Correct answer: LEN.</div></div>
+<div class="question" data-answer="c"><p>5. What is IFERROR useful for?</p><label class="option"><input type="radio" name="w4q5" value="a"> Creating charts</label><label class="option"><input type="radio" name="w4q5" value="b"> Sorting data</label><label class="option"><input type="radio" name="w4q5" value="c"> Replacing formula errors with a controlled result</label><div class="answer-note">Correct answer: Replacing formula errors with a controlled result.</div></div>
+<div class="quiz-actions"><button class="btn primary gradeBtn">Check Score</button><button class="btn revealBtn">Show Answers</button><span class="score"></span></div></div>
+</div>
+<div class="guided-lab"><div class="lab-kicker">✦ Guided practice · Week 4</div><h4>Retrieve customer context safely</h4><p class="lab-goal">Use exact matching and validate keys rather than assuming the lookup worked.</p><div class="lab-columns"><div><strong>Follow these steps</strong><ol><li>Import retail_customers.csv into a second worksheet and name the Table Customers.</li><li>Add a segment column to Orders by looking up customer_id in Customers.</li><li>Filter results for Not found; check for blank, inconsistent or duplicate customer IDs.</li></ol></div><div><strong>Worked example</strong><pre class="lab-code">=XLOOKUP([@customer_id],Customers[customer_id],Customers[segment],&quot;Not found&quot;,0)</pre></div></div><div class="lab-task"><b>Try it independently</b><p>Create a summary of completed net_sales by customer segment with SUMIFS or a PivotTable.</p></div><details class="lab-check"><summary>Check your understanding / expected outcome</summary><p>The practice data contains 50 unique customer IDs; all 360 orders have a matching customer.</p><p><strong>Common mistake:</strong> XLOOKUP returns the first match when lookup keys are duplicated; enforce one row per customer in the dimension.</p></details><a class="lab-tutor" href="../tutor.html?q=Help%20me%20understand%20the%20EXCEL%20Week%204%20guided%20lab%3A%20Retrieve%20customer%20context%20safely.">Ask the tutor about this lab ↗</a></div></section>
+
+<!-- WEEK 5 -->
+<section class="week searchable" id="week5">
+<div class="week-header"><div class="week-num">5</div><div class="week-title"><h3>Data Cleaning & Preparation</h3><p>Fix messy data before analysis — one of the most important Excel skills.</p></div><span class="badge">Data Quality</span></div>
+<div class="week-body">
+<div class="learning-grid">
+<div class="lesson-list">
+  <div class="lesson"><h4>1. Identify Common Data Problems</h4><ul><li>Blank rows and columns.</li><li>Duplicate records.</li><li>Extra spaces.</li><li>Numbers stored as text.</li><li>Inconsistent spelling or category labels.</li><li>Dates stored in inconsistent formats.</li></ul></div>
+  <div class="lesson"><h4>2. Cleaning Tools</h4><ul><li>Remove Duplicates.</li><li>Find & Replace.</li><li>Text to Columns.</li><li>TRIM, CLEAN, UPPER, LOWER, PROPER.</li><li>Convert text numbers to numeric values.</li></ul></div>
+  <div class="lesson"><h4>3. Blank & Error Handling</h4><ul><li>Find blanks using filters or Go To Special.</li><li>Decide whether to fill, remove, or leave blanks.</li><li>Use IFERROR carefully.</li><li>Do not replace missing business data with zero unless zero is genuinely correct.</li></ul></div>
+  <div class="lesson"><h4>4. Data Structure Rules</h4><ul><li>One header row.</li><li>One record per row.</li><li>One field per column.</li><li>No subtotals inside raw data.</li><li>No decorative blank rows inside a dataset.</li><li>Keep source data separate from report output.</li></ul></div>
+</div>
+<div class="side-stack">
+  <div class="mini"><h4>🎯 Week Goal</h4><p>Take a messy sheet and turn it into a consistent, analysis-ready table.</p></div>
+  <div class="mini practice"><h4>🧪 Practice Exercise</h4><ol><li>Duplicate 5 records in your sales table.</li><li>Add inconsistent Region names such as "north", "NORTH ", "North".</li><li>Add extra spaces to customer names.</li><li>Clean the dataset using tools and formulas.</li><li>Confirm all dates and amounts are stored correctly.</li></ol></div>
+  <label class="complete-label"><input type="checkbox" class="completeBox" data-week="5"> Mark Week 5 complete</label>
+</div>
+</div>
+
+<div class="session-guide">
+<h4>Detailed Learning Sessions</h4>
+<p class="intro">Week 5 is about data quality. Learners should understand that a beautiful dashboard built on dirty data will still be wrong.</p>
+
+<div class="session-block">
+<span class="session-time">Session 1 • 60–75 minutes</span>
+<h5>Recognising Dirty Data</h5>
+<div class="explain"><b>Explain it simply:</b> Dirty data means the same idea appears in different forms, information is missing, records are repeated, or numbers/dates are stored wrongly.</div>
+<h6>Examples to show learners</h6>
+<ul><li>Lagos, lagos, LAGOS, Lagos&nbsp;&nbsp;</li><li>₦50,000 stored as text instead of number</li><li>Duplicate Order IDs</li><li>15/08/2026 mixed with “Aug 15, 2026” and text dates</li><li>Blank Product values</li></ul>
+<div class="try-box"><b>Class activity:</b> Give learners 15 messy records and ask them to identify every problem before they clean anything.</div>
+</div>
+
+<div class="session-block">
+<span class="session-time">Session 2 • 90 minutes</span>
+<h5>Cleaning with Built-in Tools and Functions</h5>
+<ol>
+<li>Use Remove Duplicates and explain which columns determine a true duplicate.</li>
+<li>Use Find & Replace to standardize simple text values.</li>
+<li>Use <span class="formula">=TRIM(A2)</span> to remove unnecessary spaces.</li>
+<li>Use <span class="formula">=PROPER(A2)</span> for names such as “john ade”.</li>
+<li>Use Text to Columns when data such as “Lagos|South” must be split.</li>
+<li>Convert text numbers to real numbers.</li>
+<li>Check that dates behave like dates by changing their date format.</li>
+</ol>
+<div class="mistake-box"><b>Important:</b> Do not use Remove Duplicates blindly. Two customers can have the same name and still be different people. Use an appropriate unique identifier where possible.</div>
+</div>
+
+<div class="session-block">
+<span class="session-time">Session 3 • 60 minutes</span>
+<h5>Handling Blanks and Creating Analysis-Ready Structure</h5>
+<ol>
+<li>Filter a column for blanks.</li>
+<li>Decide whether each blank should be corrected, left blank, or removed.</li>
+<li>Do not replace every blank with zero.</li>
+<li>Make sure there is only one header row.</li>
+<li>Remove decorative subtotals from raw data.</li>
+<li>Keep one record per row and one field per column.</li>
+</ol>
+<div class="example-box"><b>Example:</b> “No sale” can legitimately be zero, but “Unit Cost is unknown” should not automatically become zero because that would distort profit.</div>
+<div class="recap-box"><b>End-of-week recap:</b> Learners should be able to inspect a dataset, explain what is wrong, clean it carefully, and leave it in a simple rectangular table ready for analysis.</div>
+</div>
+</div>
+
+<div class="quiz"><h4>Week 5 Test — 5 Questions</h4>
+<div class="question" data-answer="a"><p>1. Which function removes unnecessary spaces from text?</p><label class="option"><input type="radio" name="w5q1" value="a"> TRIM</label><label class="option"><input type="radio" name="w5q1" value="b"> MAX</label><label class="option"><input type="radio" name="w5q1" value="c"> TODAY</label><div class="answer-note">Correct answer: TRIM.</div></div>
+<div class="question" data-answer="c"><p>2. Which rule describes good tabular data?</p><label class="option"><input type="radio" name="w5q2" value="a"> Several header rows</label><label class="option"><input type="radio" name="w5q2" value="b"> Random blank rows between records</label><label class="option"><input type="radio" name="w5q2" value="c"> One record per row</label><div class="answer-note">Correct answer: One record per row.</div></div>
+<div class="question" data-answer="b"><p>3. Which Excel command can delete repeated records?</p><label class="option"><input type="radio" name="w5q3" value="a"> Goal Seek</label><label class="option"><input type="radio" name="w5q3" value="b"> Remove Duplicates</label><label class="option"><input type="radio" name="w5q3" value="c"> Freeze Panes</label><div class="answer-note">Correct answer: Remove Duplicates.</div></div>
+<div class="question" data-answer="a"><p>4. Which tool can split "Nathan Edmond" into separate columns using a delimiter?</p><label class="option"><input type="radio" name="w5q4" value="a"> Text to Columns</label><label class="option"><input type="radio" name="w5q4" value="b"> Sort</label><label class="option"><input type="radio" name="w5q4" value="c"> Name Manager</label><div class="answer-note">Correct answer: Text to Columns.</div></div>
+<div class="question" data-answer="c"><p>5. Should missing values always be replaced with zero?</p><label class="option"><input type="radio" name="w5q5" value="a"> Yes, always</label><label class="option"><input type="radio" name="w5q5" value="b"> Only in dashboards</label><label class="option"><input type="radio" name="w5q5" value="c"> No, only when zero is logically correct</label><div class="answer-note">Correct answer: No, only when zero is logically correct.</div></div>
+<div class="quiz-actions"><button class="btn primary gradeBtn">Check Score</button><button class="btn revealBtn">Show Answers</button><span class="score"></span></div></div>
+</div>
+<div class="guided-lab"><div class="lab-kicker">✦ Guided practice · Week 5</div><h4>Clean methodically, not destructively</h4><p class="lab-goal">Create a repeatable cleaning checklist while retaining the raw source.</p><div class="lab-columns"><div><strong>Follow these steps</strong><ol><li>Copy the Orders Table to a working sheet and preserve an untouched Raw sheet.</li><li>Check blank keys, repeated order_id values, inconsistent status spelling, and numeric cells stored as text.</li><li>Use TRIM/CLEAN on a temporary text column and compare before/after values; record each change in a log.</li></ol></div><div><strong>Worked example</strong><pre class="lab-code">=COUNTIF(Orders[order_id],[@order_id])
+=TRIM(CLEAN(A2))</pre></div></div><div class="lab-task"><b>Try it independently</b><p>Deliberately introduce an extra space in one copied region value, then detect and correct it without changing the original data.</p></div><details class="lab-check"><summary>Check your understanding / expected outcome</summary><p>Your cleaning log should list issue, affected rows, proposed fix, and verification result.</p><p><strong>Common mistake:</strong> Remove Duplicates can destroy valid repeated transactions; confirm the intended grain first.</p></details><a class="lab-tutor" href="../tutor.html?q=Help%20me%20understand%20the%20EXCEL%20Week%205%20guided%20lab%3A%20Clean%20methodically%2C%20not%20destructively.">Ask the tutor about this lab ↗</a></div></section>
+
+<!-- WEEK 6 -->
+<section class="week searchable" id="week6">
+<div class="week-header"><div class="week-num">6</div><div class="week-title"><h3>Sorting, Filtering & Quick Analysis</h3><p>Explore data, identify patterns, and highlight important results.</p></div><span class="badge">Analysis</span></div>
+<div class="week-body">
+<div class="learning-grid">
+<div class="lesson-list">
+  <div class="lesson"><h4>1. Sort & Filter</h4><ul><li>Sort A→Z, Z→A, smallest→largest, oldest→newest.</li><li>Multi-level sorting.</li><li>Filter by text, number, date, and colour.</li><li>Use search inside a filter.</li><li>Clear one filter vs clear all filters.</li></ul></div>
+  <div class="lesson"><h4>2. Conditional Formatting</h4><ul><li>Highlight Cell Rules.</li><li>Top/Bottom Rules.</li><li>Data Bars.</li><li>Colour Scales.</li><li>Icon Sets.</li><li>Use formula-based rules for more control.</li></ul></div>
+  <div class="lesson"><h4>3. Subtotals & Quick Statistics</h4><ul><li>Use the Status Bar for instant Sum, Average, Count.</li><li>Understand SUBTOTAL for filtered lists.</li><li>Compare SUM vs SUBTOTAL behavior.</li><li>Use table Total Row for fast summaries.</li></ul></div>
+  <div class="lesson"><h4>4. Asking Business Questions</h4><ul><li>Which region has the highest revenue?</li><li>Which salesperson missed target?</li><li>Which products have the lowest margin?</li><li>What are the top 10 orders?</li><li>Which month has the highest sales?</li></ul></div>
+</div>
+<div class="side-stack">
+  <div class="mini"><h4>🎯 Week Goal</h4><p>Use Excel to investigate data instead of just storing it.</p></div>
+  <div class="mini practice"><h4>🧪 Practice Exercise</h4><ol><li>Sort Revenue from highest to lowest.</li><li>Filter one region.</li><li>Highlight Margin below 20% in red.</li><li>Show the top 10 Revenue values.</li><li>Answer three business questions from your data.</li></ol></div>
+  <label class="complete-label"><input type="checkbox" class="completeBox" data-week="6"> Mark Week 6 complete</label>
+</div>
+</div>
+
+<div class="session-guide">
+<h4>Detailed Learning Sessions</h4>
+<p class="intro">Week 6 shifts from preparing data to exploring it. The learner starts asking questions and using Excel to find answers.</p>
+
+<div class="session-block">
+<span class="session-time">Session 1 • 60 minutes</span>
+<h5>Sorting and Filtering Correctly</h5>
+<ol>
+<li>Sort Revenue largest to smallest.</li>
+<li>Sort Region A–Z and then Revenue largest to smallest using Custom Sort.</li>
+<li>Filter to one Region.</li>
+<li>Apply a Number Filter for Revenue greater than 100,000.</li>
+<li>Apply a Date Filter for the current month.</li>
+<li>Clear filters and verify the full dataset returns.</li>
+</ol>
+<div class="explain"><b>Explain it simply:</b> Sorting changes the order of rows. Filtering temporarily hides rows that do not match your question.</div>
+</div>
+
+<div class="session-block">
+<span class="session-time">Session 2 • 75 minutes</span>
+<h5>Conditional Formatting as a Visual Alert</h5>
+<ul>
+<li>Highlight Profit below 0.</li>
+<li>Highlight Revenue above target.</li>
+<li>Use Data Bars to compare values quickly.</li>
+<li>Use a colour scale carefully for performance ranges.</li>
+<li>Use Icon Sets only when the icons have a clear meaning.</li>
+</ul>
+<div class="example-box"><b>Example:</b> A manager can scan a Profit column and immediately notice negative values if they are highlighted consistently.</div>
+<div class="mistake-box"><b>Avoid:</b> Using red, yellow, green, blue and purple rules on the same table. Too much conditional formatting becomes visual noise.</div>
+</div>
+
+<div class="session-block">
+<span class="session-time">Session 3 • 75 minutes</span>
+<h5>Answering Business Questions</h5>
+<p>Give the learner five questions and make them explain which Excel feature they used to answer each one.</p>
+<ol>
+<li>Which 10 orders have the highest revenue?</li>
+<li>Which region generated the lowest total sales?</li>
+<li>Which records have negative profit?</li>
+<li>Which salesperson has the highest single order?</li>
+<li>How many visible orders remain after filtering to one region?</li>
+</ol>
+<div class="try-box"><b>Extension:</b> Introduce SUBTOTAL and show why a simple SUM may still include hidden rows while a properly chosen SUBTOTAL can respond to filtering.</div>
+<div class="recap-box"><b>End-of-week recap:</b> Learners should now be able to explore a dataset interactively and identify important records without changing the source data.</div>
+</div>
+</div>
+
+<div class="quiz"><h4>Week 6 Test — 5 Questions</h4>
+<div class="question" data-answer="b"><p>1. Which feature hides records that do not meet selected criteria?</p><label class="option"><input type="radio" name="w6q1" value="a"> Freeze Panes</label><label class="option"><input type="radio" name="w6q1" value="b"> Filter</label><label class="option"><input type="radio" name="w6q1" value="c"> Wrap Text</label><div class="answer-note">Correct answer: Filter.</div></div>
+<div class="question" data-answer="a"><p>2. Which feature visually highlights values based on rules?</p><label class="option"><input type="radio" name="w6q2" value="a"> Conditional Formatting</label><label class="option"><input type="radio" name="w6q2" value="b"> Name Box</label><label class="option"><input type="radio" name="w6q2" value="c"> Formula Bar</label><div class="answer-note">Correct answer: Conditional Formatting.</div></div>
+<div class="question" data-answer="c"><p>3. Which function is especially useful when you want a total that responds to filtered rows?</p><label class="option"><input type="radio" name="w6q3" value="a"> CONCAT</label><label class="option"><input type="radio" name="w6q3" value="b"> LEFT</label><label class="option"><input type="radio" name="w6q3" value="c"> SUBTOTAL</label><div class="answer-note">Correct answer: SUBTOTAL.</div></div>
+<div class="question" data-answer="b"><p>4. What is multi-level sorting?</p><label class="option"><input type="radio" name="w6q4" value="a"> Sorting a workbook twice</label><label class="option"><input type="radio" name="w6q4" value="b"> Sorting by more than one column in a defined order</label><label class="option"><input type="radio" name="w6q4" value="c"> Creating multiple worksheets</label><div class="answer-note">Correct answer: Sorting by more than one column in a defined order.</div></div>
+<div class="question" data-answer="a"><p>5. Which Conditional Formatting option gives horizontal bars inside cells?</p><label class="option"><input type="radio" name="w6q5" value="a"> Data Bars</label><label class="option"><input type="radio" name="w6q5" value="b"> Data Validation</label><label class="option"><input type="radio" name="w6q5" value="c"> Flash Fill</label><div class="answer-note">Correct answer: Data Bars.</div></div>
+<div class="quiz-actions"><button class="btn primary gradeBtn">Check Score</button><button class="btn revealBtn">Show Answers</button><span class="score"></span></div></div>
+</div>
+<div class="guided-lab"><div class="lab-kicker">✦ Guided practice · Week 6</div><h4>Build a decision question with filters</h4><p class="lab-goal">Use filtering and conditional formatting to isolate meaningful exceptions.</p><div class="lab-columns"><div><strong>Follow these steps</strong><ol><li>Filter status to Returned and count affected orders.</li><li>Create a conditional formatting rule to flag quantity &gt;= 5 and compare the result with a COUNTIFS summary.</li><li>Sort by net_sales descending; use order_id as a secondary tie-breaker to keep results stable.</li></ol></div><div><strong>Worked example</strong><pre class="lab-code">=COUNTIFS(Orders[status],&quot;Returned&quot;)
+=COUNTIFS(Orders[status],&quot;Completed&quot;,Orders[quantity],&quot;&gt;=5&quot;)</pre></div></div><div class="lab-task"><b>Try it independently</b><p>Write three sentences explaining whether high-quantity completed orders dominate revenue.</p></div><details class="lab-check"><summary>Check your understanding / expected outcome</summary><p>Verify the filtered count against the status counts shown in a PivotTable.</p><p><strong>Common mistake:</strong> A filter hides records; it does not remove them. Clear filters before auditing totals.</p></details><a class="lab-tutor" href="../tutor.html?q=Help%20me%20understand%20the%20EXCEL%20Week%206%20guided%20lab%3A%20Build%20a%20decision%20question%20with%20filters.">Ask the tutor about this lab ↗</a></div></section>
+
+<!-- WEEK 7 -->
+<section class="week searchable" id="week7">
+<div class="week-header"><div class="week-num">7</div><div class="week-title"><h3>PivotTables, PivotCharts & Slicers</h3><p>Summarize hundreds or thousands of rows without writing complex formulas.</p></div><span class="badge">Reporting</span></div>
+<div class="week-body">
+<div class="learning-grid">
+<div class="lesson-list">
+  <div class="lesson"><h4>1. PivotTable Concept</h4><ul><li>A PivotTable summarizes raw rows into useful categories.</li><li>Understand Rows, Columns, Values, and Filters.</li><li>Drag Revenue to Values and Region to Rows.</li><li>Switch aggregation from Sum to Count or Average.</li><li>Format PivotTable numbers properly.</li></ul></div>
+  <div class="lesson"><h4>2. Useful PivotTable Analysis</h4><ul><li>Sales by Region.</li><li>Profit by Product.</li><li>Revenue by Salesperson.</li><li>Monthly sales trend.</li><li>Top products or customers.</li><li>Show Values As % of Grand Total.</li></ul></div>
+  <div class="lesson"><h4>3. Grouping & Refreshing</h4><ul><li>Group dates by Month, Quarter, and Year.</li><li>Refresh PivotTable after source data changes.</li><li>Use Excel Tables as PivotTable sources so ranges expand.</li><li>Understand when a refresh is necessary.</li></ul></div>
+  <div class="lesson"><h4>4. Slicers & PivotCharts</h4><ul><li>Add Slicers for Region, Product, or Salesperson.</li><li>Add a Timeline when working with date fields.</li><li>Create PivotCharts from PivotTables.</li><li>Connect one slicer to multiple PivotTables using Report Connections.</li></ul></div>
+</div>
+<div class="side-stack">
+  <div class="mini"><h4>🎯 Week Goal</h4><p>Create interactive summaries that can later become dashboard components.</p></div>
+  <div class="mini practice"><h4>🧪 Practice Exercise</h4><ol><li>Create Revenue by Region PivotTable.</li><li>Create Profit by Product PivotTable.</li><li>Create Monthly Revenue PivotTable.</li><li>Add Region and Product slicers.</li><li>Create one PivotChart.</li></ol></div>
+  <label class="complete-label"><input type="checkbox" class="completeBox" data-week="7"> Mark Week 7 complete</label>
+</div>
+</div>
+
+<div class="session-guide">
+<h4>Detailed Learning Sessions</h4>
+<p class="intro">Week 7 teaches PivotTables. This is the bridge between raw data and dashboard analysis.</p>
+
+<div class="session-block">
+<span class="session-time">Session 1 • 90 minutes</span>
+<h5>PivotTable Basics</h5>
+<div class="explain"><b>Explain it simply:</b> A PivotTable takes many rows and summarizes them into a smaller report. It is like asking Excel, “Group my data this way and calculate this number for each group.”</div>
+<ol>
+<li>Click anywhere inside the SalesData table.</li>
+<li>Go to Insert → PivotTable.</li>
+<li>Place the PivotTable on a new worksheet.</li>
+<li>Drag Region to Rows.</li>
+<li>Drag Revenue to Values.</li>
+<li>Confirm the calculation is Sum of Revenue.</li>
+<li>Format Revenue as currency.</li>
+</ol>
+<div class="example-box"><b>Result:</b> Instead of 500 transaction rows, you may now have only four rows showing total Revenue for North, South, East and West.</div>
+</div>
+
+<div class="session-block">
+<span class="session-time">Session 2 • 90 minutes</span>
+<h5>Building Useful Pivot Analyses</h5>
+<ol>
+<li>Revenue by Region.</li>
+<li>Profit by Product Category.</li>
+<li>Revenue by Salesperson.</li>
+<li>Monthly Revenue trend.</li>
+<li>Order count by Region.</li>
+<li>Revenue as % of Grand Total.</li>
+</ol>
+<h6>Teach grouping</h6>
+<p>Put Date in Rows, right-click a date, choose Group, and select Months and Years. Explain why this is more useful than listing every individual day for a trend report.</p>
+<div class="mistake-box"><b>Common issue:</b> If date grouping does not work, some entries may not be real Excel dates.</div>
+</div>
+
+<div class="session-block">
+<span class="session-time">Session 3 • 75 minutes</span>
+<h5>Slicers, Timelines and PivotCharts</h5>
+<ol>
+<li>Add a Region slicer.</li>
+<li>Add a Product Category slicer.</li>
+<li>Add a Timeline for Date.</li>
+<li>Create a PivotChart from Monthly Revenue.</li>
+<li>Create a second PivotTable and connect the Region slicer to both using Report Connections.</li>
+<li>Test different selections and verify all intended visuals change.</li>
+</ol>
+<div class="recap-box"><b>End-of-week recap:</b> Learners should be able to convert a raw table into multiple summarized views, group dates, add visual filters and refresh the report when source data changes.</div>
+</div>
+</div>
+
+<div class="quiz"><h4>Week 7 Test — 5 Questions</h4>
+<div class="question" data-answer="c"><p>1. Which area usually contains numerical measures such as Revenue in a PivotTable?</p><label class="option"><input type="radio" name="w7q1" value="a"> Rows</label><label class="option"><input type="radio" name="w7q1" value="b"> Filters</label><label class="option"><input type="radio" name="w7q1" value="c"> Values</label><div class="answer-note">Correct answer: Values.</div></div>
+<div class="question" data-answer="a"><p>2. What should you do after the PivotTable source data changes?</p><label class="option"><input type="radio" name="w7q2" value="a"> Refresh the PivotTable</label><label class="option"><input type="radio" name="w7q2" value="b"> Delete Excel</label><label class="option"><input type="radio" name="w7q2" value="c"> Rename the workbook</label><div class="answer-note">Correct answer: Refresh the PivotTable.</div></div>
+<div class="question" data-answer="b"><p>3. What is a slicer mainly used for?</p><label class="option"><input type="radio" name="w7q3" value="a"> Typing formulas</label><label class="option"><input type="radio" name="w7q3" value="b"> Visually filtering PivotTables</label><label class="option"><input type="radio" name="w7q3" value="c"> Removing duplicates</label><div class="answer-note">Correct answer: Visually filtering PivotTables.</div></div>
+<div class="question" data-answer="c"><p>4. What can date fields often be grouped into?</p><label class="option"><input type="radio" name="w7q4" value="a"> Fonts and colours</label><label class="option"><input type="radio" name="w7q4" value="b"> Rows and cells only</label><label class="option"><input type="radio" name="w7q4" value="c"> Months, quarters and years</label><div class="answer-note">Correct answer: Months, quarters and years.</div></div>
+<div class="question" data-answer="a"><p>5. A PivotChart is connected to what?</p><label class="option"><input type="radio" name="w7q5" value="a"> A PivotTable</label><label class="option"><input type="radio" name="w7q5" value="b"> A Word document</label><label class="option"><input type="radio" name="w7q5" value="c"> The Name Box</label><div class="answer-note">Correct answer: A PivotTable.</div></div>
+<div class="quiz-actions"><button class="btn primary gradeBtn">Check Score</button><button class="btn revealBtn">Show Answers</button><span class="score"></span></div></div>
+</div>
+<div class="guided-lab"><div class="lab-kicker">✦ Guided practice · Week 7</div><h4>Create PivotTables that reconcile</h4><p class="lab-goal">Use one measure definition consistently across different summarizations.</p><div class="lab-columns"><div><strong>Follow these steps</strong><ol><li>Insert a PivotTable from the Orders Table and place region in Rows.</li><li>Place net_sales in Values and verify the aggregation is Sum, not Count.</li><li>Add status as a Filter set to Completed and compare the grand total to a separate SUMIFS calculation.</li></ol></div><div><strong>Worked example</strong><pre class="lab-code">=SUMIFS(Orders[net_sales],Orders[status],&quot;Completed&quot;)</pre></div></div><div class="lab-task"><b>Try it independently</b><p>Add Month and Year to a second PivotTable and produce a region-by-month view.</p></div><details class="lab-check"><summary>Check your understanding / expected outcome</summary><p>The completed revenue grand total is 14,248,255.00, regardless of whether it is grouped by region, product or month.</p><p><strong>Common mistake:</strong> PivotTables do not necessarily refresh automatically after source changes; use Refresh and check the source range.</p></details><a class="lab-tutor" href="../tutor.html?q=Help%20me%20understand%20the%20EXCEL%20Week%207%20guided%20lab%3A%20Create%20PivotTables%20that%20reconcile.">Ask the tutor about this lab ↗</a></div></section>
+
+<!-- WEEK 8 -->
+<section class="week searchable" id="week8">
+<div class="week-header"><div class="week-num">8</div><div class="week-title"><h3>Charts & Data Visualization</h3><p>Choose the right visual for the question and make charts easy to understand.</p></div><span class="badge">Visualization</span></div>
+<div class="week-body">
+<div class="learning-grid">
+<div class="lesson-list">
+  <div class="lesson"><h4>1. Choose the Right Chart</h4><ul><li>Column/Bar: compare categories.</li><li>Line: show trends over time.</li><li>Pie/Donut: simple part-to-whole with few categories only.</li><li>Scatter: compare two numerical variables.</li><li>Combo: compare measures with different scales or add a target line.</li></ul></div>
+  <div class="lesson"><h4>2. Chart Formatting</h4><ul><li>Use a clear chart title.</li><li>Remove unnecessary gridlines and borders.</li><li>Use data labels only when helpful.</li><li>Format axes and number units.</li><li>Keep colours consistent and purposeful.</li><li>Avoid 3D charts for normal business reporting.</li></ul></div>
+  <div class="lesson"><h4>3. Build KPI Cards</h4><ul><li>Display Total Revenue, Total Profit, Margin %, Orders.</li><li>Use large, clear numbers.</li><li>Use linked cells or shapes for presentation.</li><li>Use sensible number formats such as £1.2M or ₦850K where appropriate.</li></ul></div>
+  <div class="lesson"><h4>4. Visual Storytelling</h4><ul><li>Every chart should answer a question.</li><li>Put important visuals at the top or left.</li><li>Use titles that communicate meaning, not only field names.</li><li>Use whitespace to separate sections.</li></ul></div>
+</div>
+<div class="side-stack">
+  <div class="mini"><h4>🎯 Week Goal</h4><p>Create clean charts that communicate rather than decorate.</p></div>
+  <div class="mini practice"><h4>🧪 Practice Exercise</h4><ol><li>Create monthly Revenue line chart.</li><li>Create Revenue by Region bar chart.</li><li>Create Profit by Product chart.</li><li>Build four KPI cards.</li><li>Use one consistent colour theme.</li></ol></div>
+  <label class="complete-label"><input type="checkbox" class="completeBox" data-week="8"> Mark Week 8 complete</label>
+</div>
+</div>
+
+<div class="session-guide">
+<h4>Detailed Learning Sessions</h4>
+<p class="intro">Week 8 focuses on choosing charts for meaning, not decoration. Learners start turning analysis into visual communication.</p>
+
+<div class="session-block">
+<span class="session-time">Session 1 • 75 minutes</span>
+<h5>Choosing the Right Chart</h5>
+<table class="lesson-table"><tr><th>Question</th><th>Recommended chart</th><th>Reason</th></tr>
+<tr><td>How does sales change over time?</td><td>Line chart</td><td>Shows trend clearly.</td></tr>
+<tr><td>Which region sells the most?</td><td>Bar/Column chart</td><td>Easy category comparison.</td></tr>
+<tr><td>What share belongs to each category?</td><td>Donut/Pie with few categories</td><td>Shows simple part-to-whole.</td></tr>
+<tr><td>How do Sales and Profit compare?</td><td>Combo chart</td><td>Can display different measures together.</td></tr>
+</table>
+<div class="try-box"><b>Exercise:</b> Give learners 8 business questions and ask them to choose the best chart before opening Excel.</div>
+</div>
+
+<div class="session-block">
+<span class="session-time">Session 2 • 90 minutes</span>
+<h5>Formatting Charts Professionally</h5>
+<ol>
+<li>Create a Revenue by Region bar chart.</li>
+<li>Write a meaningful title such as <b>West Region Leads Revenue</b> instead of just “Revenue”.</li>
+<li>Remove unnecessary chart borders.</li>
+<li>Reduce gridlines if they do not help interpretation.</li>
+<li>Format values using K or M where appropriate.</li>
+<li>Use one main colour and one highlight colour.</li>
+<li>Sort bar charts so comparison is easier.</li>
+</ol>
+<div class="mistake-box"><b>Avoid:</b> 3D charts, rainbow colours, very small fonts, long legends and data labels on every point when they add no value.</div>
+</div>
+
+<div class="session-block">
+<span class="session-time">Session 3 • 75 minutes</span>
+<h5>KPI Cards and Visual Storytelling</h5>
+<p>Create four key summary metrics:</p>
+<ul><li>Total Revenue</li><li>Total Profit</li><li>Profit Margin %</li><li>Total Orders</li></ul>
+<div class="example-box"><b>Good KPI card:</b> Large number, short label, consistent number format, enough white space, no unnecessary decoration.</div>
+<div class="try-box"><b>Learner task:</b> Arrange the four KPI cards in one row and place a trend chart below them. Ask another learner to explain what they understand from the page within 10 seconds.</div>
+<div class="recap-box"><b>End-of-week recap:</b> Learners should be able to match a business question to an appropriate chart and format charts so the message is obvious.</div>
+</div>
+</div>
+
+<div class="quiz"><h4>Week 8 Test — 5 Questions</h4>
+<div class="question" data-answer="b"><p>1. Which chart is usually best for showing a monthly trend?</p><label class="option"><input type="radio" name="w8q1" value="a"> Pie chart</label><label class="option"><input type="radio" name="w8q1" value="b"> Line chart</label><label class="option"><input type="radio" name="w8q1" value="c"> Gauge only</label><div class="answer-note">Correct answer: Line chart.</div></div>
+<div class="question" data-answer="a"><p>2. Which chart is useful for comparing categories?</p><label class="option"><input type="radio" name="w8q2" value="a"> Bar or column chart</label><label class="option"><input type="radio" name="w8q2" value="b"> Line chart only</label><label class="option"><input type="radio" name="w8q2" value="c"> No chart can compare categories</label><div class="answer-note">Correct answer: Bar or column chart.</div></div>
+<div class="question" data-answer="c"><p>3. Which dashboard design choice is generally poor practice?</p><label class="option"><input type="radio" name="w8q3" value="a"> Clear titles</label><label class="option"><input type="radio" name="w8q3" value="b"> Consistent colours</label><label class="option"><input type="radio" name="w8q3" value="c"> Unnecessary 3D charts</label><div class="answer-note">Correct answer: Unnecessary 3D charts.</div></div>
+<div class="question" data-answer="b"><p>4. What should a KPI card emphasize?</p><label class="option"><input type="radio" name="w8q4" value="a"> Decorative images</label><label class="option"><input type="radio" name="w8q4" value="b"> An important summary number</label><label class="option"><input type="radio" name="w8q4" value="c"> A long paragraph</label><div class="answer-note">Correct answer: An important summary number.</div></div>
+<div class="question" data-answer="a"><p>5. What should every chart ideally do?</p><label class="option"><input type="radio" name="w8q5" value="a"> Answer a useful question</label><label class="option"><input type="radio" name="w8q5" value="b"> Use as many colours as possible</label><label class="option"><input type="radio" name="w8q5" value="c"> Contain every field in the dataset</label><div class="answer-note">Correct answer: Answer a useful question.</div></div>
+<div class="quiz-actions"><button class="btn primary gradeBtn">Check Score</button><button class="btn revealBtn">Show Answers</button><span class="score"></span></div></div>
+</div>
+<div class="guided-lab"><div class="lab-kicker">✦ Guided practice · Week 8</div><h4>Choose a chart that matches the question</h4><p class="lab-goal">Design visuals that can be interpreted without a verbal explanation.</p><div class="lab-columns"><div><strong>Follow these steps</strong><ol><li>Create a monthly Completed revenue PivotTable using true dates.</li><li>Insert a line chart for monthly trends and a bar chart for revenue by region.</li><li>Use descriptive titles, readable number formats, a consistent scale and a source/definition note.</li></ol></div><div><strong>Worked example</strong><pre class="lab-code">Chart title: Completed net sales by month (2025)
+Measure: Sum of Orders[net_sales], Completed orders only</pre></div></div><div class="lab-task"><b>Try it independently</b><p>Write one insight and one caveat beneath each chart; compare the last and first available months.</p></div><details class="lab-check"><summary>Check your understanding / expected outcome</summary><p>A reader can identify the period, currency and metric definition without guessing.</p><p><strong>Common mistake:</strong> Do not use a line chart for unrelated categorical rankings; a bar chart usually communicates those better.</p></details><a class="lab-tutor" href="../tutor.html?q=Help%20me%20understand%20the%20EXCEL%20Week%208%20guided%20lab%3A%20Choose%20a%20chart%20that%20matches%20the%20question.">Ask the tutor about this lab ↗</a></div></section>
+
+<!-- WEEK 9 -->
+<section class="week searchable" id="week9">
+<div class="week-header"><div class="week-num">9</div><div class="week-title"><h3>Dashboard Planning, Design & Interactivity</h3><p>Combine KPIs, charts, and filters into one clean reporting page.</p></div><span class="badge">Dashboard Design</span></div>
+<div class="week-body">
+<div class="learning-grid">
+<div class="lesson-list">
+  <div class="lesson"><h4>1. Dashboard Planning</h4><ul><li>Start with the audience: manager, sales lead, operations team, etc.</li><li>Define 4–6 key questions the dashboard should answer.</li><li>Select KPIs before choosing chart types.</li><li>Sketch the layout before building.</li></ul></div>
+  <div class="lesson"><h4>2. Recommended Layout</h4><ul><li>Header: report title and date context.</li><li>Top row: KPI cards.</li><li>Middle: trend and comparison visuals.</li><li>Side or top area: slicers.</li><li>Bottom: supporting details or smaller visuals.</li></ul></div>
+  <div class="lesson"><h4>3. Interactivity</h4><ul><li>Add Slicers for Region, Product, Salesperson.</li><li>Add a Timeline for date filtering.</li><li>Connect slicers to all relevant PivotTables.</li><li>Test that all visuals respond correctly.</li></ul></div>
+  <div class="lesson"><h4>4. UI/UX Principles</h4><ul><li>Use a limited colour palette.</li><li>Maintain alignment and consistent spacing.</li><li>Prioritize readability over decoration.</li><li>Use contrast to highlight the most important metric.</li><li>Keep filters clearly labelled.</li><li>Remove worksheet gridlines on the final dashboard page.</li></ul></div>
+</div>
+<div class="side-stack">
+  <div class="mini"><h4>🎯 Week Goal</h4><p>Design a dashboard that a manager can understand within a few seconds.</p></div>
+  <div class="mini practice"><h4>🧪 Practice Exercise</h4><ol><li>Create a new Dashboard worksheet.</li><li>Turn off gridlines.</li><li>Create a dashboard wireframe with shapes.</li><li>Add four KPI spaces, three chart spaces and two filter spaces.</li><li>Place your Week 8 visuals into the layout.</li></ol></div>
+  <div class="mini tip"><h4>💡 Dashboard Rule</h4><p>If an item does not help the user answer a business question, consider removing it.</p></div>
+  <label class="complete-label"><input type="checkbox" class="completeBox" data-week="9"> Mark Week 9 complete</label>
+</div>
+</div>
+
+<div class="session-guide">
+<h4>Detailed Learning Sessions</h4>
+<p class="intro">Week 9 brings everything together into dashboard design. The key lesson is that a dashboard is a decision-making page, not a collection of every chart you know.</p>
+
+<div class="session-block">
+<span class="session-time">Session 1 • 75 minutes</span>
+<h5>Planning Before Building</h5>
+<div class="explain"><b>Explain it simply:</b> Before choosing charts, decide who will use the dashboard and what decisions they need to make.</div>
+<h6>Example audience: Sales Manager</h6>
+<ul>
+<li>How much did we sell?</li>
+<li>Are sales increasing or decreasing?</li>
+<li>Which region is strongest?</li>
+<li>Which product is underperforming?</li>
+<li>Which salesperson needs attention?</li>
+</ul>
+<div class="try-box"><b>Wireframe task:</b> On paper, draw a rectangle for the dashboard. Place four KPI boxes at the top, two large charts in the middle, one supporting chart below, and filters on the left or top.</div>
+</div>
+
+<div class="session-block">
+<span class="session-time">Session 2 • 90 minutes</span>
+<h5>Building the Dashboard Layout</h5>
+<ol>
+<li>Create a new worksheet named Dashboard.</li>
+<li>Turn off gridlines.</li>
+<li>Set sensible column widths and row heights.</li>
+<li>Add a clear report title.</li>
+<li>Place KPI cards in one aligned row.</li>
+<li>Place the trend visual where the eye reaches it quickly.</li>
+<li>Align charts using Excel’s Align tools.</li>
+<li>Keep spacing consistent between objects.</li>
+</ol>
+<div class="mistake-box"><b>Common beginner problem:</b> Filling every empty space. White space is not wasted space; it helps the user separate information.</div>
+</div>
+
+<div class="session-block">
+<span class="session-time">Session 3 • 90 minutes</span>
+<h5>Interactivity and Dashboard Testing</h5>
+<ol>
+<li>Add Region, Product and Salesperson slicers.</li>
+<li>Add a Date Timeline.</li>
+<li>Connect each slicer to all relevant PivotTables.</li>
+<li>Select one region and check that every intended chart changes.</li>
+<li>Clear the filter and check that totals return to normal.</li>
+<li>Resize slicers so selections are readable.</li>
+<li>Test the page at normal zoom and presentation zoom.</li>
+</ol>
+<div class="recap-box"><b>End-of-week recap:</b> A learner is ready for the final project when they can plan the dashboard first, create a clean layout, connect filters correctly and explain why each visual is on the page.</div>
+</div>
+</div>
+
+<div class="quiz"><h4>Week 9 Test — 5 Questions</h4>
+<div class="question" data-answer="a"><p>1. What should come before choosing chart types?</p><label class="option"><input type="radio" name="w9q1" value="a"> Understanding the audience and business questions</label><label class="option"><input type="radio" name="w9q1" value="b"> Choosing random colours</label><label class="option"><input type="radio" name="w9q1" value="c"> Adding animations</label><div class="answer-note">Correct answer: Understanding the audience and business questions.</div></div>
+<div class="question" data-answer="c"><p>2. Where are KPI cards commonly placed?</p><label class="option"><input type="radio" name="w9q2" value="a"> Hidden in another workbook</label><label class="option"><input type="radio" name="w9q2" value="b"> Under the source data</label><label class="option"><input type="radio" name="w9q2" value="c"> Near the top of the dashboard</label><div class="answer-note">Correct answer: Near the top of the dashboard.</div></div>
+<div class="question" data-answer="b"><p>3. Why should slicer connections be tested?</p><label class="option"><input type="radio" name="w9q3" value="a"> To increase workbook file size</label><label class="option"><input type="radio" name="w9q3" value="b"> To make sure the intended visuals respond to the filters</label><label class="option"><input type="radio" name="w9q3" value="c"> To change the Excel version</label><div class="answer-note">Correct answer: To make sure the intended visuals respond to the filters.</div></div>
+<div class="question" data-answer="a"><p>4. Which design principle improves readability?</p><label class="option"><input type="radio" name="w9q4" value="a"> Consistent alignment and spacing</label><label class="option"><input type="radio" name="w9q4" value="b"> Many unrelated font styles</label><label class="option"><input type="radio" name="w9q4" value="c"> Filling every empty space</label><div class="answer-note">Correct answer: Consistent alignment and spacing.</div></div>
+<div class="question" data-answer="c"><p>5. What should you usually do with worksheet gridlines on a polished dashboard?</p><label class="option"><input type="radio" name="w9q5" value="a"> Make them thicker</label><label class="option"><input type="radio" name="w9q5" value="b"> Turn them bright red</label><label class="option"><input type="radio" name="w9q5" value="c"> Hide them</label><div class="answer-note">Correct answer: Hide them.</div></div>
+<div class="quiz-actions"><button class="btn primary gradeBtn">Check Score</button><button class="btn revealBtn">Show Answers</button><span class="score"></span></div></div>
+</div>
+<div class="guided-lab"><div class="lab-kicker">✦ Guided practice · Week 9</div><h4>Assemble a usable dashboard</h4><p class="lab-goal">Design from the decision the stakeholder needs to make.</p><div class="lab-columns"><div><strong>Follow these steps</strong><ol><li>Write three stakeholder questions: how much sold, where performance differs, and how it changed over time.</li><li>Add three KPI cards (Completed net sales, Completed orders, Gross profit) sourced from your PivotTables or formulas.</li><li>Add a month selector, aligned visual hierarchy, accessible contrast and a last-updated note.</li></ol></div><div><strong>Worked example</strong><pre class="lab-code">KPI definitions:
+Net sales = completed discounted revenue
+Gross profit = net sales − completed quantity × unit_cost</pre></div></div><div class="lab-task"><b>Try it independently</b><p>Ask someone to answer the three stakeholder questions using only your dashboard; revise anything they cannot find.</p></div><details class="lab-check"><summary>Check your understanding / expected outcome</summary><p>Cards and charts agree with each other after filters change.</p><p><strong>Common mistake:</strong> Avoid placing independently filtered PivotTables behind a dashboard without clear slicer connections.</p></details><a class="lab-tutor" href="../tutor.html?q=Help%20me%20understand%20the%20EXCEL%20Week%209%20guided%20lab%3A%20Assemble%20a%20usable%20dashboard.">Ask the tutor about this lab ↗</a></div></section>
+
+<!-- WEEK 10 -->
+<section class="week searchable" id="week10">
+<div class="week-header"><div class="week-num">10</div><div class="week-title"><h3>Final Excel Dashboard Project</h3><p>Build and present an end-to-end interactive sales dashboard.</p></div><span class="badge">Capstone</span></div>
+<div class="week-body">
+<div class="learning-grid">
+<div class="lesson-list">
+  <div class="lesson"><h4>1. Prepare the Dataset</h4><ul><li>Use at least 200 rows if possible.</li><li>Recommended fields: Date, Order ID, Region, Salesperson, Product, Category, Quantity, Unit Price, Revenue, Cost, Profit.</li><li>Check blanks, duplicates, inconsistent labels and date formats.</li><li>Convert the final source into an Excel Table.</li></ul></div>
+  <div class="lesson"><h4>2. Create Analysis Layers</h4><ul><li>Create helper columns only where necessary.</li><li>Create PivotTables for Revenue by Region, Profit by Product, Monthly Revenue, Salesperson performance.</li><li>Calculate Total Revenue, Total Profit, Margin %, and Total Orders.</li></ul></div>
+  <div class="lesson"><h4>3. Build the Dashboard</h4><ul><li>Add report title and period.</li><li>Add KPI cards.</li><li>Add monthly trend line chart.</li><li>Add region and product comparison charts.</li><li>Add Region/Product/Salesperson slicers and date Timeline.</li><li>Apply one professional colour theme.</li></ul></div>
+  <div class="lesson"><h4>4. Quality Assurance</h4><ul><li>Check every slicer connection.</li><li>Check totals against source data.</li><li>Check chart titles, spelling, alignment, and number formats.</li><li>Refresh all PivotTables.</li><li>Ask: can a new user understand the page without explanation?</li></ul></div>
+</div>
+<div class="side-stack">
+  <div class="mini"><h4>🎯 Final Goal</h4><p>Produce a one-page Excel dashboard that is accurate, interactive, readable, and presentation-ready.</p></div>
+  <div class="mini practice"><h4>📦 Deliverables</h4><ol><li>Raw Data worksheet.</li><li>Clean Data worksheet if needed.</li><li>Pivot/Analysis worksheet.</li><li>Dashboard worksheet.</li><li>At least 4 KPIs, 3 visuals, and 2 interactive filters.</li></ol></div>
+  <label class="complete-label"><input type="checkbox" class="completeBox" data-week="10"> Mark Week 10 complete</label>
+</div>
+</div>
+
+<div class="project">
+<h4>🏆 Capstone Challenge</h4>
+<p>Imagine you are reporting to a Sales Manager. Your dashboard should answer:</p>
+<ul><li>How much revenue and profit did we make?</li><li>How is performance changing month by month?</li><li>Which region performs best?</li><li>Which products generate the most revenue and profit?</li><li>Which salespeople are above or below expectations?</li><li>Can the manager filter the report without editing formulas?</li></ul>
+</div>
+
+
+<div class="session-guide">
+<h4>Detailed Learning Sessions</h4>
+<p class="intro">Week 10 is the complete project. Learners should work through the same sequence an analyst would follow in a real assignment.</p>
+
+<div class="session-block">
+<span class="session-time">Session 1 • 90 minutes</span>
+<h5>Project Brief, Data Audit and Cleaning</h5>
+<div class="explain"><b>Scenario:</b> You have been given a sales transaction file and asked to create a one-page management dashboard for monthly performance.</div>
+<h6>Project questions</h6>
+<ul>
+<li>What is total Revenue?</li><li>What is total Profit?</li><li>What is Profit Margin?</li>
+<li>How are Revenue and Profit changing by month?</li><li>Which Region performs best?</li>
+<li>Which Product Categories contribute most?</li><li>Who are the strongest salespeople?</li>
+</ul>
+<h6>Data audit checklist</h6>
+<ol>
+<li>Confirm one header row.</li><li>Check data types.</li><li>Remove genuine duplicates.</li><li>Review blanks.</li><li>Standardize category names.</li><li>Convert the final range to an Excel Table.</li>
+</ol>
+</div>
+
+<div class="session-block">
+<span class="session-time">Session 2 • 120 minutes</span>
+<h5>Create Calculations and Analysis</h5>
+<ol>
+<li>Create Revenue = Quantity × Unit Price if it is not already present.</li>
+<li>Create Profit = Revenue − Cost.</li>
+<li>Create Profit Margin = Profit ÷ Revenue.</li>
+<li>Create PivotTable: Revenue by Region.</li>
+<li>Create PivotTable: Revenue and Profit by Month.</li>
+<li>Create PivotTable: Profit by Product Category.</li>
+<li>Create PivotTable: Revenue by Salesperson.</li>
+<li>Create KPI totals for Revenue, Profit, Margin and Orders.</li>
+</ol>
+<div class="try-box"><b>Validation task:</b> Independently calculate Total Revenue with SUM and confirm it matches the PivotTable Grand Total.</div>
+</div>
+
+<div class="session-block">
+<span class="session-time">Session 3 • 120 minutes</span>
+<h5>Build and Test the Dashboard</h5>
+<ol>
+<li>Create the dashboard header and reporting period.</li>
+<li>Add four KPI cards.</li>
+<li>Add a monthly trend chart.</li>
+<li>Add Revenue by Region bar chart.</li>
+<li>Add Profit by Product Category bar chart.</li>
+<li>Add Region and Product slicers plus Date Timeline.</li>
+<li>Apply consistent fonts, colours, spacing and number formats.</li>
+<li>Check slicer connections.</li>
+<li>Refresh all PivotTables.</li>
+<li>Ask another person to use the dashboard without instructions.</li>
+</ol>
+<div class="mistake-box"><b>Final QA traps:</b> Wrong totals, slicers connected to only one chart, inconsistent currency formats, chart titles that do not explain the metric, overcrowding, and hidden errors in the source data.</div>
+<div class="recap-box"><b>Final success standard:</b> The dashboard should be accurate, interactive, easy to read, and useful enough that a manager can answer the main business questions without opening the raw-data sheet.</div>
+</div>
+</div>
+
+<div class="quiz"><h4>Week 10 Test — 5 Questions</h4>
+<div class="question" data-answer="b"><p>1. What should be done before building visuals?</p><label class="option"><input type="radio" name="w10q1" value="a"> Add random colours</label><label class="option"><input type="radio" name="w10q1" value="b"> Clean and validate the source data</label><label class="option"><input type="radio" name="w10q1" value="c"> Hide all worksheets</label><div class="answer-note">Correct answer: Clean and validate the source data.</div></div>
+<div class="question" data-answer="c"><p>2. Which is a suitable KPI for a sales dashboard?</p><label class="option"><input type="radio" name="w10q2" value="a"> Cell colour count</label><label class="option"><input type="radio" name="w10q2" value="b"> Number of worksheets</label><label class="option"><input type="radio" name="w10q2" value="c"> Total Revenue</label><div class="answer-note">Correct answer: Total Revenue.</div></div>
+<div class="question" data-answer="a"><p>3. What is an important dashboard QA step?</p><label class="option"><input type="radio" name="w10q3" value="a"> Reconcile dashboard totals with source data</label><label class="option"><input type="radio" name="w10q3" value="b"> Add 3D effects</label><label class="option"><input type="radio" name="w10q3" value="c"> Use every chart available</label><div class="answer-note">Correct answer: Reconcile dashboard totals with source data.</div></div>
+<div class="question" data-answer="b"><p>4. Why use an Excel Table as the source?</p><label class="option"><input type="radio" name="w10q4" value="a"> It stops new rows from being added</label><label class="option"><input type="radio" name="w10q4" value="b"> It creates a structured source that can expand with new rows</label><label class="option"><input type="radio" name="w10q4" value="c"> It prevents filters</label><div class="answer-note">Correct answer: It creates a structured source that can expand with new rows.</div></div>
+<div class="question" data-answer="c"><p>5. A successful dashboard should primarily be:</p><label class="option"><input type="radio" name="w10q5" value="a"> Crowded</label><label class="option"><input type="radio" name="w10q5" value="b"> Decorative</label><label class="option"><input type="radio" name="w10q5" value="c"> Accurate, clear and useful</label><div class="answer-note">Correct answer: Accurate, clear and useful.</div></div>
+<div class="quiz-actions"><button class="btn primary gradeBtn">Check Score</button><button class="btn revealBtn">Show Answers</button><span class="score"></span></div></div>
+</div>
+<div class="guided-lab"><div class="lab-kicker">✦ Guided practice · Week 10</div><h4>Deliver your first analytical case study</h4><p class="lab-goal">Demonstrate a reproducible workflow and communicate uncertainty.</p><div class="lab-columns"><div><strong>Follow these steps</strong><ol><li>Start from an untouched CSV and build your model again without copying prior manual edits.</li><li>Record data source, row count, assumptions, key formulas and validation checks in a Read Me worksheet.</li><li>Present a two-minute walkthrough: question, method, result, interpretation and what you would investigate next.</li></ol></div><div><strong>Worked example</strong><pre class="lab-code">Quality checks:
+360 source orders
+50 unique customer IDs
+14,248,255.00 completed net sales</pre></div></div><div class="lab-task"><b>Try it independently</b><p>Submit the workbook with raw input, cleaned Table, calculations, PivotTables, dashboard and a concise interpretation.</p></div><details class="lab-check"><summary>Check your understanding / expected outcome</summary><p>Another learner should be able to refresh the data and reproduce the same KPIs.</p><p><strong>Common mistake:</strong> A polished dashboard without correct and documented definitions is not a finished analysis.</p></details><a class="lab-tutor" href="../tutor.html?q=Help%20me%20understand%20the%20EXCEL%20Week%2010%20guided%20lab%3A%20Deliver%20your%20first%20analytical%20case%20study.">Ask the tutor about this lab ↗</a></div></section>
+
+<section class="capstone searchable">
+<h3>Final Dashboard Checklist</h3>
+<p>Before you consider the course complete, confirm that your workbook meets these requirements.</p>
+<div class="check-grid">
+  <div class="check-item">✅ <span>Source data is clean and formatted as an Excel Table.</span></div>
+  <div class="check-item">✅ <span>No duplicate records or accidental blank rows.</span></div>
+  <div class="check-item">✅ <span>Key formulas return correct results.</span></div>
+  <div class="check-item">✅ <span>PivotTables refresh successfully.</span></div>
+  <div class="check-item">✅ <span>Dashboard includes meaningful KPI cards.</span></div>
+  <div class="check-item">✅ <span>Charts use appropriate chart types.</span></div>
+  <div class="check-item">✅ <span>Slicers and Timeline filter relevant visuals.</span></div>
+  <div class="check-item">✅ <span>Colours, fonts, spacing and alignment are consistent.</span></div>
+  <div class="check-item">✅ <span>Numbers use readable formats such as K, M, %, or currency.</span></div>
+  <div class="check-item">✅ <span>Dashboard answers real business questions.</span></div>
+</div>
+</section>
+
+
+
+
+
+<section class="certificate-section searchable" id="certificate">
+  <h3>Course Completion Certificate</h3>
+  <p>Complete all 10 weeks, enter your full name, and generate your personalized certificate.</p>
+  <div class="cert-grid">
+    <div class="cert-controls">
+      <label for="excel-cert-name">Learner full name</label>
+      <input id="excel-cert-name" type="text" maxlength="70" placeholder="Enter your full name exactly as it should appear">
+      <div class="cert-status" id="excel-cert-status">Complete all 10 weeks to unlock your certificate.</div>
+      <div class="cert-buttons">
+        <button class="btn primary" id="excel-generate-cert" disabled>Generate Certificate</button>
+        <button class="btn" id="excel-download-cert" disabled>Download PNG</button>
+        <button class="btn" id="excel-print-cert" disabled>Print / Save PDF</button>
+      </div>
+      <div class="cert-verification-info"><b>Verification:</b> Each certificate receives a unique ID and QR code. Scan the QR to open its verification details.</div>
+    </div>
+    <div class="cert-preview" id="excel-cert-preview">
+      <div class="cert-inner">
+        <div class="cert-brand-lockup"><div class="cert-brand-shell"><img id="excel-cert-logo-img" class="cert-brand-logo" src="../assets/da-logo.svg" alt="Data Analysis Learning Path logo"><div class="brand-company-name"><strong>Data Analysis Learning Path</strong><span>Certificate</span></div></div></div>
+        <div class="cert-title">Certificate of Completion</div>
+        <div class="cert-sub">This certificate is proudly presented to</div>
+        <div class="cert-name" id="excel-cert-display-name">Learner Name</div>
+        <div class="cert-sub">for successfully completing the</div>
+        <div class="cert-course">Excel Data Analysis</div>
+        <div class="cert-meta">10-week structured learning programme • Practical lessons • Weekly tests • Capstone project</div>
+        <div class="cert-qr" id="excel-cert-qr"></div>
+        <div class="cert-id-line">Certificate ID: <strong id="excel-cert-id">—</strong></div>
+        <div class="cert-verify-note">Scan QR to view verification details</div>
+        <div class="cert-signatures">
+          <div class="cert-sign"><div class="cert-signature-name">Idowu Joshua</div><div class="cert-signature-role">Learning Path Facilitator • Data Analysis Learning Path</div></div>
+          <div class="cert-sign">Date of Completion: <span id="excel-cert-date">—</span></div>
+        </div>
+        <div class="cert-seal">COMPLETED</div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+const progressKey='excelRoadmapProgress', slug='excel', course='Excel Data Analysis', code='EXL', store='zahCertificate:'+slug;
+const $=s=>document.getElementById(slug+'-'+s), name=$('cert-name'), status=$('cert-status'), gen=$('generate-cert'), down=$('download-cert'), print=$('print-cert'), shown=$('cert-display-name'), dt=$('cert-date'), cid=$('cert-id'), qr=$('cert-qr');
+const complete=()=>{try{return Object.values(JSON.parse(localStorage.getItem(progressKey)||'{}')).filter(Boolean).length>=10}catch(e){return false}};
+const dateText=iso=>new Date(iso+'T00:00:00').toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric'});
+const randomHex=()=>{let a=new Uint8Array(6);crypto.getRandomValues(a);return [...a].map(x=>x.toString(16).padStart(2,'0')).join('').toUpperCase()};
+const b64=s=>btoa(unescape(encodeURIComponent(s))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+async function digest(s){let h=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return [...new Uint8Array(h)].slice(0,10).map(x=>x.toString(16).padStart(2,'0')).join('').toUpperCase()}
+function verifyUrl(payload){let u=new URL('../verify.html',location.href);u.searchParams.set('id',payload.certificate_id);return u.toString()}
+function drawQR(url){qr.innerHTML='';if(typeof QRCode!=='undefined')new QRCode(qr,{text:url,width:128,height:128,colorDark:'#18313f',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M})}
+function unlock(){let ok=complete();gen.disabled=!ok;if(ok){status.textContent='All 10 weeks completed — your certificate is unlocked.';status.classList.add('ready')}else{status.textContent='Complete all 10 weeks to unlock your certificate.';status.classList.remove('ready');down.disabled=true;print.disabled=true}}
+async function generate(){
+ if(!complete())return; let nm=name.value.trim(); if(!nm){status.textContent='Enter your full name before generating the certificate.';status.classList.remove('ready');name.focus();return}
+ let old=JSON.parse(localStorage.getItem(store)||'null'), cert;
+ if(old&&old.name===nm&&old.course===course&&old.payload?.issuer==='Data Analysis Learning Path') cert=old;
+ else{
+   let iso=new Date().toISOString().slice(0,10), id=`DALP-${code}-${iso.replaceAll('-','')}-${randomHex()}`;
+   let integrity=await digest(`DATA-ANALYSIS-LEARNING-PATH|${id}|${nm}|${course}|${iso}`);
+   let payload={issuer:'Data Analysis Learning Path',certificate_id:id,learner:nm,course:course,completion_date:iso,integrity:integrity,verification_version:1};
+   cert={name:nm,course:course,id:id,date_iso:iso,payload:payload};localStorage.setItem(store,JSON.stringify(cert));
+ }
+ shown.textContent=cert.name;cid.textContent=cert.id;dt.textContent=dateText(cert.date_iso);drawQR(verifyUrl(cert.payload));down.disabled=false;print.disabled=false;status.textContent='Certificate generated. Download it as PNG or save it as PDF.';status.classList.add('ready');
+}
+function renderCanvas(){
+ let cert=JSON.parse(localStorage.getItem(store)||'null');if(!cert)return null;
+ let c=document.createElement('canvas');c.width=1600;c.height=1131;let x=c.getContext('2d');
+ x.fillStyle='#fff';x.fillRect(0,0,1600,1131);x.strokeStyle='#254559';x.lineWidth=24;x.strokeRect(12,12,1576,1107);x.strokeStyle='#F27329';x.lineWidth=4;x.strokeRect(48,48,1504,1035);
+ x.textAlign='center';let brandLogo=document.getElementById('excel-cert-logo-img');if(brandLogo&&brandLogo.complete&&brandLogo.naturalWidth){x.drawImage(brandLogo,756,65,88,88);}x.fillStyle='#18313f';x.font='bold 28px Arial';x.fillText('DATA ANALYSIS LEARNING PATH',800,190);x.font='bold 72px Georgia';x.fillText('Certificate of Completion',800,260);
+ x.fillStyle='#667681';x.font='28px Arial';x.fillText('This certificate is proudly presented to',800,320);x.fillStyle='#254559';x.font='bold 62px Georgia';x.fillText(cert.name,800,435);
+ x.strokeStyle='#c8d3d9';x.lineWidth=2;x.beginPath();x.moveTo(390,465);x.lineTo(1210,465);x.stroke();x.fillStyle='#667681';x.font='28px Arial';x.fillText('for successfully completing the',800,535);
+ x.fillStyle='#F27329';x.font='bold 48px Arial';x.fillText(course,800,610);x.fillStyle='#667681';x.font='22px Arial';x.fillText('10-week structured learning programme • Practical lessons • Weekly tests • Capstone project',800,675);
+ let qc=qr.querySelector('canvas');if(qc)x.drawImage(qc,720,715,160,160);x.fillStyle='#53656f';x.font='bold 21px Arial';x.fillText('Certificate ID: '+cert.id,800,905);x.fillStyle='#7b8a92';x.font='17px Arial';x.fillText('Scan QR to view verification details',800,935);
+ x.strokeStyle='#8b9aa2';x.beginPath();x.moveTo(250,945);x.lineTo(610,945);x.moveTo(990,945);x.lineTo(1350,945);x.stroke();x.fillStyle='#254559';x.font='40px cursive';x.fillText('Idowu Joshua',430,930);x.fillStyle='#607079';x.font='19px Arial';x.fillText('Learning Path Facilitator • Data Analysis Learning Path',430,978);x.fillText('Date of Completion: '+dateText(cert.date_iso),1170,978);
+ x.strokeStyle='#F27329';x.lineWidth=7;x.beginPath();x.arc(1400,905,62,0,Math.PI*2);x.stroke();x.fillStyle='#254559';x.font='bold 17px Arial';x.fillText('COMPLETED',1400,912);return c
+}
+function download(){let c=renderCanvas(),cert=JSON.parse(localStorage.getItem(store)||'null');if(!c||!cert)return;let a=document.createElement('a');a.download=cert.name.replace(/[^a-z0-9]+/gi,'_')+'_'+code+'_Certificate.png';a.href=c.toDataURL('image/png');a.click()}
+function doPrint(){let c=renderCanvas();if(!c)return;let w=open('','_blank'),img=c.toDataURL('image/png');w.document.write(`<html><head><title>${course} Certificate</title><style>body{margin:0;display:grid;place-items:center;background:white}img{width:100%;max-width:1120px}@page{size:A4 landscape;margin:6mm}</style></head><body><img src="${img}">
+</body></html>`);w.document.close();setTimeout(()=>w.print(),400)}
+gen.addEventListener('click',generate);down.addEventListener('click',download);print.addEventListener('click',doPrint);document.addEventListener('change',e=>{if(e.target&&e.target.classList.contains('completeBox'))setTimeout(unlock,0)});unlock();
+let saved=JSON.parse(localStorage.getItem(store)||'null');if(saved){name.value=saved.name;shown.textContent=saved.name;cid.textContent=saved.id;dt.textContent=dateText(saved.date_iso);drawQR(verifyUrl(saved.payload));if(complete()){down.disabled=false;print.disabled=false}}
+})();
+</script>
+
+<div class="section-head"><h3>Recommended weekly routine</h3><p>A simple structure that keeps the course practical.</p></div>
+<section class="resources">
+  <div class="card"><div class="icon">⏱️</div><h4>Session 1 — Learn</h4><p>60–90 minutes. Read the topics and recreate examples in Excel.</p></div>
+  <div class="card"><div class="icon">🛠️</div><h4>Session 2 — Practise</h4><p>60–90 minutes. Complete the weekly exercise without copying blindly.</p></div>
+  <div class="card"><div class="icon">🎯</div><h4>Session 3 — Review</h4><p>30–45 minutes. Take the test, revisit weak areas, and mark the week complete.</p></div>
+</section>
+
+<div class="footer">Excel Mastery Roadmap • Basic to Dashboard Building • Interactive single-file learning portal</div>
+</div>
+</main>
+</div>
+<div class="toast" id="toast">Progress saved.</div>
+
+<script>
+const sidebar = document.getElementById('sidebar');
+document.getElementById('menuBtn').addEventListener('click',()=>sidebar.classList.toggle('open'));
+document.querySelectorAll('.nav-link').forEach(a=>a.addEventListener('click',()=>sidebar.classList.remove('open')));
+
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  clearTimeout(window.toastTimer);
+  window.toastTimer=setTimeout(()=>t.classList.remove('show'),1800);
+}
+
+const completeBoxes=[...document.querySelectorAll('.completeBox')];
+function loadProgress(){
+  const saved=JSON.parse(localStorage.getItem('excelRoadmapProgress')||'{}');
+  completeBoxes.forEach(cb=>cb.checked=!!saved[cb.dataset.week]);
+  updateProgress(false);
+}
+function updateProgress(showToast=true){
+  const saved={};
+  completeBoxes.forEach(cb=>saved[cb.dataset.week]=cb.checked);
+  localStorage.setItem('excelRoadmapProgress',JSON.stringify(saved));
+  const done=completeBoxes.filter(cb=>cb.checked).length;
+  const pct=Math.round(done/completeBoxes.length*100);
+  document.getElementById('progressFill').style.width=pct+'%';
+  document.getElementById('progressText').textContent=pct+'%';
+  if(showToast) toast('Progress saved.');
+}
+completeBoxes.forEach(cb=>cb.addEventListener('change',()=>updateProgress(true)));
+
+document.getElementById('resetBtn').addEventListener('click',()=>{
+  if(confirm('Reset all saved course progress and quiz selections?')){
+    localStorage.removeItem('excelRoadmapProgress');
+    completeBoxes.forEach(cb=>cb.checked=false);
+    document.querySelectorAll('input[type=radio]').forEach(r=>r.checked=false);
+    document.querySelectorAll('.score,.answer-note').forEach(el=>el.style.display='none');
+    updateProgress(false);
+    toast('Course progress reset.');
+  }
+});
+
+document.querySelectorAll('.quiz').forEach(quiz=>{
+  quiz.querySelector('.gradeBtn').addEventListener('click',()=>{
+    const qs=[...quiz.querySelectorAll('.question')];
+    let correct=0, answered=0;
+    qs.forEach(q=>{
+      const chosen=q.querySelector('input[type=radio]:checked');
+      if(chosen){answered++; if(chosen.value===q.dataset.answer) correct++;}
+    });
+    const score=quiz.querySelector('.score');
+    score.style.display='inline-block';
+    score.textContent=`Score: ${correct}/${qs.length} (${Math.round(correct/qs.length*100)}%)`;
+    if(answered<qs.length) toast(`You answered ${answered} of ${qs.length} questions.`);
+  });
+  quiz.querySelector('.revealBtn').addEventListener('click',e=>{
+    const notes=quiz.querySelectorAll('.answer-note');
+    const opening=[...notes].some(n=>n.style.display!=='block');
+    notes.forEach(n=>n.style.display=opening?'block':'none');
+    e.currentTarget.textContent=opening?'Hide Answers':'Show Answers';
+  });
+});
+
+const search=document.getElementById('searchInput');
+search.addEventListener('input',()=>{
+  const term=search.value.trim().toLowerCase();
+  document.querySelectorAll('.searchable').forEach(section=>{
+    const match=!term || section.innerText.toLowerCase().includes(term);
+    section.classList.toggle('search-hidden',!match);
+  });
+});
+
+const sections=[...document.querySelectorAll('section[id]')];
+const navLinks=[...document.querySelectorAll('.nav-link')];
+const observer=new IntersectionObserver(entries=>{
+  entries.filter(e=>e.isIntersecting).forEach(entry=>{
+    navLinks.forEach(n=>n.classList.remove('active'));
+    const link=document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+    if(link) link.classList.add('active');
+  });
+},{rootMargin:'-20% 0px -70% 0px',threshold:0});
+sections.forEach(s=>observer.observe(s));
+
+loadProgress();
+</script>
+<a class="portal-home-btn" href="../index.html" aria-label="Back to learning portal">← Learning Portal</a>
+
+<script>window.ZAH_COURSE_SLUG='excel';window.ZAH_COURSE_TITLE='Excel Data Analysis';window.ZAH_PROGRESS_KEY='excelRoadmapProgress';</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../assets/supabase-config.js"></script>
+<script src="../assets/supabase-client.js"></script>
+<script src="../assets/progress-cloud.js"></script>
+<script src="../assets/course-sync.js"></script>
+<script src="../assets/course-account.js"></script>
+</body>
+</html>

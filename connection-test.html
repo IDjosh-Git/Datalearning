@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Supabase Connection Test</title>
+<style>
+body{font-family:system-ui;background:#f5f8fa;color:#1d2930;margin:0;padding:24px}
+.card{max-width:720px;margin:auto;background:#fff;border:1px solid #dce5e9;border-radius:18px;padding:24px}
+.ok{color:#21603a;background:#eef8f1;padding:12px;border-radius:10px}
+.bad{color:#8b2e2e;background:#fff1f1;padding:12px;border-radius:10px}
+code{background:#eef3f6;padding:2px 6px;border-radius:6px}
+</style>
+<link rel="stylesheet" href="assets/brand-overrides.css">
+<link rel="stylesheet" href="assets/responsive-polish.css">
+<link rel="icon" type="image/svg+xml" href="assets/da-logo.svg"><link rel="stylesheet" href="assets/account-refresh.css"></head>
+<body>
+<div class="card">
+<div class="auth-brand-shell"><img class="auth-brand-logo" src="assets/da-logo.svg" alt="Data Analysis Learning Path logo"><div class="brand-company-name"><strong>Data Analysis Learning Path</strong><span>Connection Test</span></div></div><h1>Supabase Connection Test</h1>
+<p>Project: <code>https://hotysnqorkqbiconjskl.supabase.co</code></p>
+<div id="status">Testing connection…</div>
+<p><a href="index.html">Back to Learning Portal</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/supabase-config.js"></script>
+<script src="assets/supabase-client.js"></script>
+<script>
+(async()=>{
+ const el=document.getElementById('status');
+ try{
+   if(!window.ZAH_DB.configured) throw new Error('Supabase config was not detected.');
+   const {data,error}=await window.ZAH_DB.client.auth.getSession();
+   if(error) throw error;
+   el.className='ok';
+   el.textContent='Connection configuration loaded successfully. Supabase responded to the browser client.';
+ }catch(e){
+   el.className='bad';
+   el.textContent='Connection test failed: '+e.message;
+ }
+})();
+</script>
+</body>
+</html>
