@@ -1,6 +1,6 @@
 # Data Analysis Learning Path
 
-A responsive, Vercel-ready learning portal built from the uploaded three-course site. This package contains three 10-week courses (Excel, SQL, Power BI), 150 existing quiz questions, 30 additional guided labs, 54 searchable reference examples, an editable tutor chat, a new DA logo, and a **fictional** practice dataset that works across all three tracks.
+A responsive, Vercel-ready learning portal built from the uploaded three-course site. This package also includes a free **8-lesson Introduction to Data Analysis** (everyday applications, worked lunch-kiosk case study, downloadable five-row CSV, interactive calculator and 12-question knowledge check). The introduction uses local-only checkmarks and does not affect cloud progress or the three existing course certificates. The package contains three 10-week courses (Excel, SQL, Power BI), 150 existing quiz questions, 30 additional guided labs, 54 searchable reference examples, an editable tutor chat, a new DA logo, and a **fictional** practice dataset that works across all three tracks.
 
 **Contact:** [esoterikjoshua@gmail.com](mailto:esoterikjoshua@gmail.com)
 
@@ -8,7 +8,7 @@ A responsive, Vercel-ready learning portal built from the uploaded three-course 
 
 1. Extract the ZIP. Open the **Data_Analysis_Learning_Path** folder and upload its **contents** (including `api/`, `lib/`, `assets/`, `courses/`, `downloads/`, `index.html`, `vercel.json` and `package.json`) to the root of one GitHub repository. Do not upload the ZIP itself, put the entire folder inside another folder, or upload only `index.html`.
 2. In Vercel, **Add New → Project → Import** the GitHub repository. Set Framework Preset to **Other**; leave Root Directory as `./` (repository root). No build command is needed. Click **Deploy**.
-3. Confirm that `/`, `/courses/excel.html`, `/courses/sql.html`, `/courses/powerbi.html`, `/reference.html`, `/tutor.html`, `/downloads/retail_orders.csv` and `/api/tutor` load on your `*.vercel.app` domain. A GET request to `/api/tutor` should return JSON with `aiEnabled: false` before an API key is configured. If it returns 404, the `api/` folder was not deployed at the repository root.
+3. Confirm that `/`, `/courses/introduction.html`, `/courses/excel.html`, `/courses/sql.html`, `/courses/powerbi.html`, `/reference.html`, `/tutor.html`, `/downloads/retail_orders.csv` and `/api/tutor` load on your `*.vercel.app` domain. A GET request to `/api/tutor` should return JSON with `aiEnabled: false` before an API key is configured. If it returns 404, the `api/` folder was not deployed at the repository root.
 4. Later GitHub commits trigger new deployments automatically when the repository is connected to Vercel.
 
 The static site, all course pages, quiz scoring, local progress and formula search work without an OpenAI API key. The chat falls back to a **clearly identified reference-library guide**; it is not represented as full generative AI.
@@ -43,6 +43,7 @@ Open `downloads/START_HERE.md`. The dataset is synthetic, not real customers or 
 
 | File | Contents |
 |---|---|
+| `downloads/kiosk_week.csv` | Five-day fictional kiosk case study for the beginner introduction |
 | `downloads/retail_orders.csv` | 360 dated order records |
 | `downloads/retail_customers.csv` | 50 customer records |
 | `downloads/retail_targets.csv` | 48 monthly-region target rows |
@@ -58,8 +59,11 @@ Data_Analysis_Learning_Path/
   index.html                 Home
   reference.html             Searchable, copyable formula/query library
   tutor.html                 Editable chat: reference mode or live AI
+  courses/introduction.html   Eight beginner lessons and complete worked case study
   courses/{excel,sql,powerbi}.html
   assets/site.css            Main responsive design
+  assets/introduction.css    Beginner course layout
+  assets/introduction.js     Local checkmarks, calculator and 12-question quiz
   assets/course-refresh.css  Restyled original lesson pages
   assets/da-logo.svg         New vector logo
   assets/reference-data.js   54 educational examples
@@ -73,3 +77,7 @@ Data_Analysis_Learning_Path/
 ## Quality checks
 
 Run `npm test` in the extracted project to run structural/content/API mock checks. They do not send a paid AI request or email, and they do not alter a Supabase database. Test real Auth confirmation, certificate verification and live AI after configuring your actual services.
+
+## Beginner orientation (new)
+
+Visit `courses/introduction.html` from the homepage or the sidebar of any technical course. The orientation includes 8 in-depth lessons, daily-life applications, question-to-decision process, grain and data types, quality and privacy, six core calculations, a five-day lunch-kiosk worked example and first mini-project. Download `downloads/kiosk_week.csv` for the worked Excel practice. Lesson checkmarks are deliberately **stored on-device only** using `dalpIntroductionProgressV1`; this introduction does not modify the Supabase learning schema, the 10-week progress records or the certificate rules. The introductory quiz is self-check practice, not an accredited assessment.

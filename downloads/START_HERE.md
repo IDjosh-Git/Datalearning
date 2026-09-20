@@ -1,3 +1,7 @@
+# Before you open Excel, SQL or Power BI
+
+If you are brand new to analysing data, visit `courses/introduction.html` from the website first. It teaches why analysis matters, the question-to-decision process, six starter calculations, a worked five-day food-kiosk example and a practice quiz. Download **`kiosk_week.csv`** and follow its detailed Excel exercise to learn how revenue differs from profit. This is a separate, fictional beginner example, not a replacement for the connected retail dataset below.
+
 # Start here — practical data analysis study kit
 
 This is a **fictional retail dataset** for learning, not real customer or financial information. Dates cover January–December 2025. Prices and targets are illustrative Nigerian naira (₦) amounts, not market statistics.

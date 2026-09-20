@@ -29,3 +29,35 @@ for (const c of ['excel','sql','powerbi']){ const t=read(`courses/${c}.html`); a
 assert(read('supabase_setup.sql').includes('DALP-(EXL|PBI|SQL)'),'New certificate schema');
 assert(read('README.md').includes('shared with other apps'),'Shared site auth guidance');
 console.log('PASS new certificate ID, stable QR verification and setup guidance');
+
+// Beginner course must remain separate from the three certificate-bearing tracks.
+const intro=read('courses/introduction.html');
+assert(intro.includes('Introduction to <em>Data Analysis</em>'));
+for(let i=1;i<=8;i++){
+  assert(intro.includes(`data-intro-check="${i}"`),`Missing foundation check ${i}`);
+  assert(intro.includes(`data-lesson="${i}"`),`Missing lesson ${i}`);
+}
+for(const topic of ['daily life','data quality','break-even','kiosk','Excel','SQL','Power BI'])assert(intro.toLowerCase().includes(topic.toLowerCase()),'Intro topic: '+topic);
+for(const course of ['excel','sql','powerbi']){
+  const html=read(`courses/${course}.html`);
+  assert(html.includes('href="introduction.html"'),`Missing foundation link from ${course}`);
+  assert(html.includes('course-intro-callout'),`Missing foundation explanation in ${course}`);
+}
+const introJs=read('assets/introduction.js');
+assert.equal((introJs.match(/\{q:'/g)||[]).length,12,'Twelve introductory questions');
+assert(!introJs.includes('ZAH_PROGRESS_KEY')&&!introJs.includes('ZAHProgressCloud')&&!introJs.includes('supabase'), 'Intro does not mutate cloud progress or schema');
+assert(read('index.html').includes('Explore Introduction to Data Analysis'));
+const kiosk=read('downloads/kiosk_week.csv').trim().split(/\r?\n/);
+assert.equal(kiosk.length,6,'five-row fictional kiosk CSV + header');
+const records=kiosk.slice(1).map(line=>{
+ const [date,day,units,price,variable,fixed,weather]=line.split(',');
+ assert(date&&day&&weather);
+ return {units:+units,price:+price,variable:+variable,fixed:+fixed};
+});
+const sum=key=>records.reduce((acc,row)=>acc+key(row),0);
+assert.equal(sum(r=>r.units),124);
+assert.equal(sum(r=>r.units*r.price),186000);
+assert.equal(sum(r=>r.units*r.variable),111600);
+assert.equal(sum(r=>r.fixed),30000);
+assert.equal(sum(r=>r.units*(r.price-r.variable)-r.fixed),44400);
+console.log('PASS introduction | 8 lessons | 12 questions | three course links | separate local progress | kiosk CSV arithmetic');
