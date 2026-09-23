@@ -25,10 +25,11 @@ try{r=await run(req('GET'));assert.equal(r.body.aiEnabled,true);r=await run(req(
 console.log('PASS Data Analysis Learning Path rebrand | 9 pages | 30 labs | 150 quiz questions | 54 references | practice CSV 360 orders');
 console.log('PASS Vercel AI GET/POST: unconfigured, configured/mock response, privacy, input validation, origin check');
 
-for (const c of ['excel','sql','powerbi']){ const t=read(`courses/${c}.html`); assert(t.includes('DALP-${code}-'),'New certificate ID format '+c); assert(t.includes("searchParams.set('id',payload.certificate_id)"),'Direct verification QR '+c); assert(t.includes('Data Analysis Learning Path'),'Branded certificate '+c); }
+for (const c of ['excel','sql','powerbi']){ const t=read(`courses/${c}.html`); assert(t.includes(`../capstone.html?course=${c}`),'Capstone route '+c); assert(!t.includes("localStorage.setItem(store"),'No self-issued certificate '+c); assert(t.includes('modern.css'),'Course theme '+c); }
 assert(read('supabase_setup.sql').includes('DALP-(EXL|PBI|SQL)'),'New certificate schema');
-assert(read('README.md').includes('shared with other apps'),'Shared site auth guidance');
-console.log('PASS new certificate ID, stable QR verification and setup guidance');
+assert(read('supabase_setup.sql').includes('learning_private.publish_capstone_review'),'Owner-only manual publishing');
+assert(!read('vercel.json').includes('crons'),'No automated assessment schedule');
+console.log('PASS manually reviewed capstone flow | 3 courses | verified completion database');
 
 // Beginner course must remain separate from the three certificate-bearing tracks.
 const intro=read('courses/introduction.html');
@@ -46,7 +47,7 @@ for(const course of ['excel','sql','powerbi']){
 const introJs=read('assets/introduction.js');
 assert.equal((introJs.match(/\{q:'/g)||[]).length,12,'Twelve introductory questions');
 assert(!introJs.includes('ZAH_PROGRESS_KEY')&&!introJs.includes('ZAHProgressCloud')&&!introJs.includes('supabase'), 'Intro does not mutate cloud progress or schema');
-assert(read('index.html').includes('Explore Introduction to Data Analysis'));
+assert(read('index.html').includes('courses/introduction.html'));
 const kiosk=read('downloads/kiosk_week.csv').trim().split(/\r?\n/);
 assert.equal(kiosk.length,6,'five-row fictional kiosk CSV + header');
 const records=kiosk.slice(1).map(line=>{

@@ -20,7 +20,7 @@ h1{margin:0 0 7px;color:var(--navy-dark);font-size:34px}p{color:var(--muted)}
 </style>
 <link rel="stylesheet" href="assets/brand-overrides.css">
 <link rel="stylesheet" href="assets/responsive-polish.css">
-<link rel="icon" type="image/svg+xml" href="assets/da-logo.svg"><link rel="stylesheet" href="assets/account-refresh.css"></head>
+<link rel="icon" type="image/svg+xml" href="assets/da-logo.svg"><link rel="stylesheet" href="assets/account-refresh.css"><link rel="stylesheet" href="assets/modern.css"></head>
 <body>
 <div class="wrap">
  <div class="brand verify-brand-shell"><img class="verify-brand-logo" src="assets/da-logo.svg" alt="Data Analysis Learning Path logo"><div class="brand-company-name"><strong>Data Analysis Learning Path</strong><span>Certificate Verification</span></div></div>
@@ -35,6 +35,7 @@ h1{margin:0 0 7px;color:var(--navy-dark);font-size:34px}p{color:var(--muted)}
    <div class="k">Completion date</div><div class="v" id="date"></div>
    <div class="k">Issuer</div><div class="v" id="issuer"></div>
    <div class="k">Integrity check</div><div class="v" id="integrity"></div>
+   <div class="k" id="scoreLabel" style="display:none">Capstone score</div><div class="v" id="scoreValue" style="display:none"></div>
   </div>
   <div class="note"><b>Verification type:</b> an available Supabase database record is checked where configured. A course-completion record documents this self-paced learning journey; it is not an accredited professional certification. If the required database function is absent, verification may not work until the setup SQL is applied.</div>
   <a class="btn" href="index.html">Back to Learning Portal</a>
@@ -74,10 +75,12 @@ function decode64(s){s=s.replace(/-/g,'+').replace(/_/g,'/');while(s.length%4)s+
    document.getElementById('date').textContent=new Date(row.completion_date+'T00:00:00').toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric'});
    document.getElementById('issuer').textContent='Data Analysis Learning Path';
    document.getElementById('integrity').textContent='Database record confirmed';
+   const {data:capScore,error:scoreError}=await window.ZAH_DB.client.schema('api').rpc('verify_capstone',{p_certificate_id:certId});
+   if(!scoreError&&capScore?.[0]?.capstone_score!=null){document.getElementById('scoreLabel').style.display='block';document.getElementById('scoreValue').style.display='block';document.getElementById('scoreValue').textContent=capScore[0].capstone_score+' / 100 (assessed capstone)'}
  }catch(e){
    st.className='status bad';
    st.textContent='Not verified: '+e.message;
  }
 })();
 </script>
-</body></html>
+<script src="assets/modern.js"></script></body></html>

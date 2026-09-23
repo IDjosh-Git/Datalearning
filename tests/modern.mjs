@@ -1,0 +1,37 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const read=x=>fs.readFileSync(path.join(root,x),'utf8');
+const page=read('index.html'),learner=read('capstone.html'),owner=read('reviewer.html'),db=read('supabase_setup.sql');
+for(const slug of ['excel','sql','powerbi']){
+ assert(page.includes(`data-track="${slug}"`));
+ assert(learner.includes(`data-course="${slug}"`));
+ assert(fs.existsSync(path.join(root,`assets/icon-${slug}.svg`)));
+ assert(read(`courses/${slug}.html`).includes(`../capstone.html?course=${slug}`));
+}
+for(const id of ['learnerName','projectTitle','projectSummary','evidenceInput','reviewStatus','certificatePaper','downloadCertificate'])assert(learner.includes(`id="${id}"`),id);
+for(const id of ['reviewGate','reviewApp','reviewSearch','reviewCourse','reviewFilter','reviewList','reviewEvidence','reviewPreview','gradingFields','gradeSummary','publishReview'])assert(owner.includes(`id="${id}"`),id);
+assert(learner.includes('Photos or screenshots preferred'),'Photo preference is visible');
+assert(learner.includes('capstone-evidence')===false,'Storage references remain in JS, not markup');
+assert(owner.includes('exceljs@4.4.0'),'XLSX in-page preview');
+const ownerJs=read('assets/reviewer.js');
+for(const term of ['createSignedUrl','download(f.path)','new window.ExcelJS.Workbook',"schema('api').rpc('submit_capstone_review'",'window.confirm','published_score'])assert(ownerJs.includes(term),term);
+assert(ownerJs.includes(".from('capstone_reviewers')"),'Owner login allowlist enforced');
+assert(ownerJs.includes('PENDING'),'Only pending submissions may be scored');
+assert(read('account.html').includes('id="instructorAccess" hidden'),'Owner-only navigation hidden by default');
+assert(db.includes('public.capstone_reviewers')&&db.includes('capstone_reviewers_select_own'),'Secure reviewer allowlist');
+assert(db.includes('capstone_read_reviewer')&&db.includes('capstone_evidence_read_reviewer'),'Reviewer access is RLS protected');
+assert(db.includes('user_id=(select auth.uid())'),'Learner isolation');
+assert(db.includes("s.status not in ('submitted','processing','review_error','needs_manual_review')"),'No duplicate publication');
+assert(db.includes("total>=70")&&db.includes('insert into public.certificates'),'Passing certificate issued atomically');
+assert(db.includes('revoke insert,update,delete on public.certificates from authenticated'),'No browser certificate forgery');
+assert(db.includes('learning_private.publish_capstone_review')&&db.includes('api.submit_capstone_review'),'Protected grading RPC');
+assert(db.includes("not exists(\n  select 1 from public.capstone_reviewers"),'Database checks owner at grading time');
+assert(!db.includes('if now() < s.review_due_at'),'Five-day wait does not delay publication');
+assert(!fs.existsSync(path.join(root,'api/review-capstones.js')),'AI grading endpoint removed');
+assert(!read('vercel.json').includes('crons'),'No scheduled grader');
+assert(!learner.toLowerCase().includes('ai review provider'),'Learners are not sent to an AI grader');
+assert(read('OWNER_SETUP.sql').includes('00000000-0000-0000-0000-000000000000'),'Owner UID setup instructions');
+console.log('PASS manual grading: private reviewer gate, searchable inbox, photo/PDF/text/XLSX previews, protected score publication, no AI grader or cron');

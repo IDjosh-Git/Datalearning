@@ -143,61 +143,6 @@
     }
   }
 
-  function certFromLocal(){
-    try{return JSON.parse(localStorage.getItem('zahCertificate:'+slug)||'null')}
-    catch(e){return null}
-  }
-
-  async function registerCertificate(){
-    if(!currentUser) currentUser=await window.ZAHProgressCloud.getUser();
-    if(!currentUser) return;
-    const cert=certFromLocal();
-    if(!cert || !cert.id) return;
-
-    // A local printable certificate is not a registered completion record.
-    // First flush pending weeks and verify all ten are stored in Supabase.
-    const st=document.getElementById(slug+'-cert-status');
-    try{
-      const synced=await window.ZAHProgressCloud.syncCourse(slug,{user:currentUser});
-      if(!synced.ok || synced.completed!==10){
-        if(st) st.textContent='Complete and cloud-sync all 10 weeks before registering this completion record.';
-        badge('Complete cloud sync first','error');
-        return;
-      }
-    }catch(error){
-      console.error('Cannot verify course completion',error);
-      if(st) st.textContent='Cloud sync is unavailable. Your locally generated certificate is not registered; try again later.';
-      badge('Cloud sync unavailable','error');
-      return;
-    }
-
-    const row={
-      certificate_id:cert.id,
-      user_id:currentUser.id,
-      learner_name:cert.name,
-      course_slug:slug,
-      course_title:courseTitle,
-      completion_date:cert.date_iso,
-      issued_at:new Date().toISOString(),
-      status:'active'
-    };
-
-    try{
-      const {error}=await window.ZAH_DB.client.from('certificates').insert(row);
-      if(error && error.code==='23505'){
-        const {data:existing,error:lookupError}=await window.ZAH_DB.client.from('certificates')
-          .select('certificate_id,user_id').eq('certificate_id',cert.id).eq('user_id',currentUser.id).maybeSingle();
-        if(lookupError || !existing) throw error;
-      }else if(error) throw error;
-      if(st) st.textContent='Course-completion record registered. Use the QR code to verify the database entry.';
-      badge(`Completion registered • ${timeLabel(new Date())}`);
-    }catch(error){
-      console.error('Certificate registration failed',error);
-      if(st) st.textContent='Certificate generated locally, but database registration failed. Tap the sync button and try again.';
-      badge('Certificate registration error','error');
-    }
-  }
-
   // Queue every user change, even while signed out.
   document.addEventListener('change',e=>{
     if(e.target && e.target.classList.contains('completeBox')){
@@ -209,22 +154,11 @@
     const t=e.target;
     if(!t || !t.id) return;
 
-    if(t.id===slug+'-generate-cert' && window.ZAH_DB?.configured && !currentUser){
-      e.preventDefault();
-      e.stopImmediatePropagation();
-      const st=document.getElementById(slug+'-cert-status');
-      if(st) st.textContent='Sign in first so your certificate can be stored and verified online.';
-      location.href='../auth.html?return='+encodeURIComponent(location.href);
-      return;
-    }
 
     if(t.classList.contains('gradeBtn')){
       setTimeout(()=>saveQuiz(t),100);
     }
 
-    if(t.id===slug+'-generate-cert'){
-      setTimeout(registerCertificate,1200);
-    }
 
     // The original page resets local progress programmatically and therefore
     // does not fire checkbox change events. Sync the resulting snapshot.

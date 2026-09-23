@@ -23,7 +23,7 @@ table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px;bor
 @media(max-width:600px){.continue-actions{display:grid;grid-template-columns:1fr}.continue-actions .btn{width:100%;text-align:center}}
 </style>
 
-<link rel="icon" type="image/svg+xml" href="assets/da-logo.svg"><link rel="stylesheet" href="assets/account-refresh.css"></head>
+<link rel="icon" type="image/svg+xml" href="assets/da-logo.svg"><link rel="stylesheet" href="assets/account-refresh.css"><link rel="stylesheet" href="assets/modern.css"></head>
 <body>
 <div class="wrap">
  <div class="top">
@@ -36,9 +36,11 @@ table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px;bor
    <p id="accountSyncStatus">Checking your cloud progress…</p>
   </div>
 
+  <div class="card full" id="instructorAccess" hidden><h2>Instructor review desk</h2><p>Your private submission queue, project previews, grading rubric and publishing controls.</p><a class="btn" href="reviewer.html">Open instructor review desk →</a></div>
+
   <div class="card full" id="completionGuide">
    <h2>How your progress and completion record work</h2>
-   <p>Sign in, finish weekly lessons and quizzes, and check that Cloud Sync says complete. After you mark all ten weeks in a course, open that course's Certificate section, enter your name and select <strong>Generate Certificate</strong>. The site registers a separate completion record only after the ten weeks have synced successfully. Scan the printed QR code or use the verification link shown below to check it.</p>
+   <p>Sign in, finish weekly lessons and quizzes, and check that Cloud Sync says complete. After all ten weeks are synced, submit a capstone project with files and screenshots in the Capstone Studio. Your instructor reviews your files and publishes the score and feedback once marking is finished. A passing score of at least 70/100 qualifies for a registered completion certificate. Open the Capstone Studio to view your score, feedback and printable certificate.</p>
    <p class="muted">These are self-paced course-completion records, not accredited professional certifications. If syncing fails, your progress stays on this device until you retry.</p>
   </div>
   <div class="card full">
@@ -47,6 +49,7 @@ table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px;bor
     <a class="btn" href="courses/excel.html">Excel Course</a>
     <a class="btn" href="courses/sql.html">SQL Course</a>
     <a class="btn" href="courses/powerbi.html">Power BI Course</a>
+    <a class="btn" href="capstone.html" style="background:#713a55">Capstone Studio &amp; Certificates ↗</a>
    </div>
   </div>
 
@@ -56,6 +59,11 @@ table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px;bor
   <div class="card full">
    <h2>Quiz Results</h2>
    <table><thead><tr><th>Course</th><th>Week</th><th>Score</th><th>Percentage</th></tr></thead><tbody id="quizBody"></tbody></table>
+  </div>
+  <div class="card full">
+   <h2>Capstone assessments</h2>
+   <div id="accountCapstones" class="muted">Loading your submission status…</div>
+   <p><a href="capstone.html" class="btn" style="display:inline-block">Open capstone studio →</a></p>
   </div>
   <div class="card full">
    <h2>Certificates</h2>
@@ -76,6 +84,8 @@ table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px;bor
  }
  const user=await window.ZAHProgressCloud.getUser();
  if(!user){location.href='auth.html';return}
+
+ window.ZAH_DB.client.from('capstone_reviewers').select('user_id').eq('user_id',user.id).maybeSingle().then(({data})=>{if(data)document.getElementById('instructorAccess').hidden=false}).catch(()=>{});
 
  document.getElementById('who').textContent=user.user_metadata?.full_name?`${user.user_metadata.full_name} • ${user.email}`:user.email;
 
@@ -118,6 +128,11 @@ table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px;bor
    .select('certificate_id,course_title,completion_date,status')
    .eq('user_id',user.id)
    .order('issued_at',{ascending:false});
+ const {data:submissions, error:capError}=await window.ZAH_DB.client.from('capstone_submissions').select('course_slug,project_title,status,score,created_at,review_due_at').eq('user_id',user.id).order('created_at',{ascending:false});
+ const capHost=document.getElementById('accountCapstones');
+ if(capError)capHost.textContent='Assessment table unavailable. Run the updated supabase_setup.sql before using capstone reviews.';
+ else if(!submissions.length)capHost.textContent='No capstones submitted yet.';
+ else{const labels={excel:'Excel',sql:'SQL',powerbi:'Power BI'};capHost.replaceChildren();submissions.forEach(r=>{const line=document.createElement('p'),a=document.createElement('a');a.textContent=labels[r.course_slug]+' · '+r.project_title+' · '+r.status.replaceAll('_',' ')+(r.score!=null?' · '+r.score+'/100':'');a.href='capstone.html?course='+encodeURIComponent(r.course_slug);a.style.cssText='color:var(--brand);font-weight:800';line.append(a);capHost.append(line)})}
  document.getElementById('certBody').innerHTML=(c||[]).map(r=>`<tr><td>${r.certificate_id}</td><td>${r.course_title}</td><td>${r.completion_date}</td><td>${r.status}</td><td><a href="verify.html?id=${encodeURIComponent(r.certificate_id)}" class="btn">Verify ↗</a></td></tr>`).join('')||'<tr><td colspan="5">No completion records registered yet.</td></tr>';
 })();
 
@@ -126,4 +141,4 @@ document.getElementById('logout').onclick=async()=>{
  location.href='index.html';
 };
 </script>
-</body></html>
+<script src="assets/modern.js"></script></body></html>

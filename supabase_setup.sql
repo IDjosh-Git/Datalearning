@@ -3,7 +3,7 @@
 -- The project is shared by other applications: keep its existing Auth Site URL; add
 -- your learning domain under Auth > URL Configuration > Redirect URLs instead.
 -- Creates only learning-specific tables; does not touch portfolio, library or auth triggers.
--- Run once after reviewing in Supabase SQL Editor.
+-- Safe to rerun after reviewing and backing up your existing project.
 create table if not exists public.course_progress (
  user_id uuid not null references auth.users(id) on delete cascade,
  course_slug text not null check(course_slug in ('excel','sql','powerbi')),
@@ -89,3 +89,234 @@ language sql stable security invoker set search_path=''
 as $$ select * from learning_private.lookup_completion_record(p_certificate_id); $$;
 revoke all on function api.verify_certificate(text) from public;
 grant execute on function api.verify_certificate(text) to anon,authenticated;
+
+-- ======================================================================
+-- V3: Owner-reviewed capstones. No AI assessor, cron or delayed publication.
+-- Existing learning data, historical submissions and certificates are retained.
+-- ======================================================================
+create table if not exists public.capstone_reviewers (
+ user_id uuid primary key references auth.users(id) on delete cascade,
+ added_at timestamptz not null default now()
+);
+alter table public.capstone_reviewers enable row level security;
+revoke all on public.capstone_reviewers from anon,authenticated;
+grant select on public.capstone_reviewers to authenticated;
+drop policy if exists capstone_reviewers_select_own on public.capstone_reviewers;
+create policy capstone_reviewers_select_own on public.capstone_reviewers
+ for select to authenticated using (user_id=(select auth.uid()));
+-- No INSERT/UPDATE/DELETE granted to website users. Add the owner via SQL
+-- Editor using OWNER_SETUP.sql after finding their Auth user ID.
+
+create table if not exists public.capstone_submissions (
+ id uuid primary key default gen_random_uuid(),
+ user_id uuid not null references auth.users(id) on delete cascade,
+ course_slug text not null check(course_slug in ('excel','sql','powerbi')),
+ learner_name text not null check(length(btrim(learner_name)) between 3 and 90),
+ project_title text not null check(length(btrim(project_title)) between 5 and 110),
+ project_summary text not null check(length(btrim(project_summary)) between 80 and 4000),
+ attachments jsonb not null check(jsonb_typeof(attachments)='array' and jsonb_array_length(attachments) between 1 and 4),
+ status text not null default 'submitted' check(status in ('submitted','processing','review_error','approved','needs_revision','needs_manual_review')),
+ created_at timestamptz not null default now(),
+ review_due_at timestamptz not null default now() + interval '5 days', -- instructor target, NOT a grade-release gate
+ review_started_at timestamptz,
+ reviewed_at timestamptz,
+ review_attempts integer not null default 0 check(review_attempts between 0 and 10),
+ score integer check(score between 0 and 100),
+ score_breakdown jsonb not null default '{}'::jsonb,
+ review_summary text,
+ strengths jsonb not null default '[]'::jsonb,
+ improvements jsonb not null default '[]'::jsonb,
+ next_steps jsonb not null default '[]'::jsonb,
+ evidence_notes text,
+ review_error_detail text,
+ reviewed_by uuid references auth.users(id) on delete set null,
+ certificate_id text references public.certificates(certificate_id) on delete set null
+);
+alter table public.capstone_submissions add column if not exists reviewed_by uuid references auth.users(id) on delete set null;
+create index if not exists capstone_due_idx on public.capstone_submissions(status,review_due_at);
+create index if not exists capstone_learner_idx on public.capstone_submissions(user_id,course_slug,created_at desc);
+create unique index if not exists capstone_one_active_per_course on public.capstone_submissions(user_id,course_slug)
+ where status in ('submitted','processing','review_error','approved');
+
+-- All user-supplied grading fields are overwritten on insertion.
+-- Evidence paths must belong to the authenticated learner's new submission.
+create or replace function public.capstone_on_insert()
+returns trigger language plpgsql security invoker set search_path = '' as $$
+declare f jsonb;
+begin
+ new.status := 'submitted'; new.created_at := now();
+ new.review_due_at := now() + interval '5 days'; -- expected turnaround, not automatic assessment
+ new.review_started_at := null; new.reviewed_at := null; new.review_attempts := 0;
+ new.score := null; new.score_breakdown := '{}'::jsonb;
+ new.review_summary := null; new.strengths := '[]'::jsonb;
+ new.improvements := '[]'::jsonb; new.next_steps := '[]'::jsonb;
+ new.evidence_notes := null; new.review_error_detail := null;
+ new.reviewed_by := null; new.certificate_id := null;
+ for f in select value from jsonb_array_elements(new.attachments)
+ loop
+  if jsonb_typeof(f) <> 'object' or
+     left(coalesce(f->>'path',''),length(new.user_id::text || '/' || new.id::text || '/')) <> new.user_id::text || '/' || new.id::text || '/' or
+     coalesce(f->>'name','') = '' or
+     coalesce(f->>'size','') !~ '^[0-9]{1,10}$' or
+     (f->>'size')::bigint > 12582912
+  then raise exception 'Invalid evidence attachment or ownership path'; end if;
+ end loop;
+ return new;
+end $$;
+drop trigger if exists set_capstone_submission_defaults on public.capstone_submissions;
+create trigger set_capstone_submission_defaults before insert on public.capstone_submissions
+ for each row execute function public.capstone_on_insert();
+
+alter table public.capstone_submissions enable row level security;
+revoke all on public.capstone_submissions from anon,authenticated;
+grant select,insert on public.capstone_submissions to authenticated;
+drop policy if exists capstone_read_own on public.capstone_submissions;
+create policy capstone_read_own on public.capstone_submissions for select to authenticated
+ using (user_id=(select auth.uid()));
+drop policy if exists capstone_read_reviewer on public.capstone_submissions;
+create policy capstone_read_reviewer on public.capstone_submissions for select to authenticated
+ using (exists(select 1 from public.capstone_reviewers a where a.user_id=(select auth.uid())));
+drop policy if exists capstone_insert_after_course on public.capstone_submissions;
+create policy capstone_insert_after_course on public.capstone_submissions for insert to authenticated
+ with check (user_id=(select auth.uid()) and
+  (select count(*) from public.course_progress cp
+   where cp.user_id=(select auth.uid()) and cp.course_slug=capstone_submissions.course_slug and cp.completed=true)=10);
+
+-- Only the learner and the allowlisted owner can fetch a private evidence file.
+insert into storage.buckets(id,name,public,file_size_limit)
+values ('capstone-evidence','capstone-evidence',false,12582912)
+on conflict (id) do update set public=false,file_size_limit=12582912;
+drop policy if exists capstone_evidence_upload_own on storage.objects;
+create policy capstone_evidence_upload_own on storage.objects for insert to authenticated
+ with check (bucket_id='capstone-evidence' and (storage.foldername(name))[1]=(select auth.uid())::text);
+drop policy if exists capstone_evidence_read_own on storage.objects;
+create policy capstone_evidence_read_own on storage.objects for select to authenticated
+ using (bucket_id='capstone-evidence' and (storage.foldername(name))[1]=(select auth.uid())::text);
+drop policy if exists capstone_evidence_read_reviewer on storage.objects;
+create policy capstone_evidence_read_reviewer on storage.objects for select to authenticated
+ using (bucket_id='capstone-evidence' and exists(select 1 from public.capstone_reviewers a where a.user_id=(select auth.uid())));
+drop policy if exists capstone_evidence_remove_own on storage.objects;
+create policy capstone_evidence_remove_own on storage.objects for delete to authenticated
+ using (bucket_id='capstone-evidence' and (storage.foldername(name))[1]=(select auth.uid())::text);
+
+-- Learners cannot manufacture a completion certificate from browser progress.
+drop policy if exists certificates_insert_when_complete on public.certificates;
+revoke insert,update,delete on public.certificates from authenticated;
+grant select on public.certificates to authenticated;
+alter table public.certificates add column if not exists capstone_submission_id uuid
+ references public.capstone_submissions(id) on delete set null;
+
+-- Remove the v2 automated reviewer functions if this script is run as an upgrade.
+drop function if exists public.claim_due_capstones(integer);
+drop function if exists public.issue_capstone_certificate(uuid);
+
+-- One atomic owner-only action: check scoring rubric, publish feedback and
+-- (for a passing project) register a certificate immediately. No five-day gate.
+create or replace function learning_private.publish_capstone_review(
+ p_submission_id uuid,
+ p_scores jsonb,
+ p_summary text,
+ p_strengths text[],
+ p_improvements text[],
+ p_next_steps text[],
+ p_evidence_notes text default null
+)
+returns table(submission_id uuid,published_score integer,review_status text,issued_certificate_id text)
+language plpgsql security definer set search_path = '' as $$
+declare s public.capstone_submissions%rowtype;
+ rubric text[] := array['problem_and_objectives','data_preparation_and_quality','technical_execution','analysis_and_insights','communication_and_evidence'];
+ maxima integer[] := array[25,20,20,20,15];
+ i integer; n integer; total integer := 0; v_status text; v_id text; v_course_title text; v_code text;
+begin
+ if (select auth.uid()) is null or not exists(
+  select 1 from public.capstone_reviewers a where a.user_id=(select auth.uid())
+ ) then raise exception 'Only the authorised capstone reviewer can publish an assessment' using errcode='42501'; end if;
+ if p_submission_id is null then raise exception 'Choose a submission'; end if;
+ if p_scores is null or jsonb_typeof(p_scores)<>'object' or
+   (select count(*) from jsonb_object_keys(p_scores))<>5
+ then raise exception 'All five rubric scores are required'; end if;
+ for i in 1..5 loop
+  if not (p_scores ? rubric[i]) or jsonb_typeof(p_scores->rubric[i])<>'number' or
+    (p_scores->>rubric[i]) !~ '^[0-9]{1,3}$'
+  then raise exception 'Invalid rubric score: %',rubric[i]; end if;
+  n := (p_scores->>rubric[i])::integer;
+  if n<0 or n>maxima[i] then raise exception 'Rubric score out of range: %',rubric[i]; end if;
+  total := total+n;
+ end loop;
+ if length(btrim(coalesce(p_summary,''))) not between 20 and 4000 then
+  raise exception 'Write a summary of 20–4000 characters'; end if;
+ if length(coalesce(p_evidence_notes,''))>2000 or
+    coalesce(array_length(p_strengths,1),0)>10 or
+    coalesce(array_length(p_improvements,1),0)>10 or
+    coalesce(array_length(p_next_steps,1),0)>10
+ then raise exception 'Feedback is too long'; end if;
+ select * into s from public.capstone_submissions c where c.id=p_submission_id for update;
+ if not found then raise exception 'Submission not found'; end if;
+ if s.status not in ('submitted','processing','review_error','needs_manual_review') then
+  raise exception 'This submission has already been assessed'; end if;
+ if (select count(*) from public.course_progress cp
+     where cp.user_id=s.user_id and cp.course_slug=s.course_slug and cp.completed=true)<>10
+ then raise exception 'Ten synced weeks are required before publishing'; end if;
+ v_status := case when total>=70 then 'approved' else 'needs_revision' end;
+ update public.capstone_submissions c set
+  score=total,score_breakdown=p_scores,status=v_status,review_summary=btrim(p_summary),
+  strengths=to_jsonb(coalesce(p_strengths,array[]::text[])),
+  improvements=to_jsonb(coalesce(p_improvements,array[]::text[])),
+  next_steps=to_jsonb(coalesce(p_next_steps,array[]::text[])),
+  evidence_notes=nullif(btrim(coalesce(p_evidence_notes,'')),''),reviewed_at=now(),reviewed_by=(select auth.uid()),
+  review_error_detail=null
+ where c.id=s.id;
+ if total>=70 then
+  perform pg_advisory_xact_lock(hashtext(s.user_id::text || ':' || s.course_slug)::bigint);
+  select c.certificate_id into v_id from public.certificates c
+  where c.user_id=s.user_id and c.course_slug=s.course_slug and c.status='active'
+  order by c.issued_at desc limit 1;
+  if v_id is null then
+   v_course_title := case s.course_slug when 'excel' then 'Excel Data Analysis'
+    when 'sql' then 'SQL for Data Analytics' else 'Power BI' end;
+   v_code := case s.course_slug when 'excel' then 'EXL' when 'sql' then 'SQL' else 'PBI' end;
+   v_id := 'DALP-'||v_code||'-'||to_char(current_date,'YYYYMMDD')||'-'||upper(substr(md5(gen_random_uuid()::text),1,12));
+   insert into public.certificates(certificate_id,user_id,learner_name,course_slug,course_title,completion_date,issued_at,status,capstone_submission_id)
+   values (v_id,s.user_id,s.learner_name,s.course_slug,v_course_title,current_date,now(),'active',s.id);
+  end if;
+  update public.capstone_submissions c set certificate_id=v_id where c.id=s.id;
+ end if;
+ return query select s.id,total,v_status,v_id;
+end $$;
+revoke all on function learning_private.publish_capstone_review(uuid,jsonb,text,text[],text[],text[],text) from public,anon,authenticated;
+grant execute on function learning_private.publish_capstone_review(uuid,jsonb,text,text[],text[],text[],text) to authenticated;
+
+-- Expose only a thin, invoker-rights RPC; it delegates to the protected
+-- function in a NON-exposed schema, which checks the logged-in user against
+-- the reviewer allowlist before touching any learner data.
+create or replace function api.submit_capstone_review(
+ p_submission_id uuid,p_scores jsonb,p_summary text,
+ p_strengths text[],p_improvements text[],p_next_steps text[],p_evidence_notes text default null
+)
+returns table(submission_id uuid,published_score integer,review_status text,issued_certificate_id text)
+language sql security invoker set search_path = '' as $$
+ select * from learning_private.publish_capstone_review(
+  p_submission_id,p_scores,p_summary,p_strengths,p_improvements,p_next_steps,p_evidence_notes
+ );
+$$;
+revoke all on function api.submit_capstone_review(uuid,jsonb,text,text[],text[],text[],text) from public,anon,authenticated;
+grant execute on function api.submit_capstone_review(uuid,jsonb,text,text[],text[],text[],text) to authenticated;
+
+-- Limited public certificate verification by exact certificate ID only.
+create or replace function learning_private.lookup_capstone_score(p_certificate_id text)
+returns table(capstone_score integer,reviewed_at timestamptz)
+language sql stable security definer set search_path = '' as $$
+ select s.score,s.reviewed_at from public.certificates c
+ join public.capstone_submissions s on s.id=c.capstone_submission_id
+ where c.certificate_id=p_certificate_id and c.status='active' and s.status='approved'
+ limit 1;
+$$;
+revoke all on function learning_private.lookup_capstone_score(text) from public;
+grant execute on function learning_private.lookup_capstone_score(text) to anon,authenticated;
+create or replace function api.verify_capstone(p_certificate_id text)
+returns table(capstone_score integer,reviewed_at timestamptz)
+language sql stable security invoker set search_path = '' as $$
+ select * from learning_private.lookup_capstone_score(p_certificate_id);
+$$;
+revoke all on function api.verify_capstone(text) from public;
+grant execute on function api.verify_capstone(text) to anon,authenticated;

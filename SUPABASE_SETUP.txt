@@ -1,15 +1,7 @@
-DATA ANALYSIS LEARNING PATH — OPTIONAL CLOUD SETUP
-
-The source package has a Supabase project URL and publishable browser key in assets/supabase-config.js. Existing auth account support is preserved, but course_progress, quiz_results and certificates were not present in the connected project when inspected. Local lessons, quizzes, reference search and progress work without these tables.
-
-To activate CLOUD progress, review and run the included supabase_setup.sql in the SQL Editor of the specific Supabase project configured in assets/supabase-config.js. The revised script affects only learning-specific objects; it does not replace auth.users triggers, library tables or portfolio content. It enables row-level security for learner-owned rows.
-
-Add your learning site’s exact /auth.html URL to Authentication > URL Configuration > Redirect URLs. Keep the current Site URL if this project is shared with the portfolio and scanner. The default confirmation-email flow needs functional email delivery (configure SMTP for production when appropriate).
-
-To activate QR completion-record verification, expose the api schema in Supabase Data API settings. The verification endpoint returns a limited public view for an exact ID. A self-reported course-completion record is not an accredited credential.
-
-Never publish a service_role key. The browser publishable key is expected to be public. Do not run an old SQL script that replaces a global auth.users trigger in a shared Supabase project.
-
-For complete Vercel + AI instructions, open README.md.
-
-For detailed steps, see CLOUD_SETUP_STEP_BY_STEP.md.
+Manual capstone grading setup:
+1. Back up your existing Supabase project and run supabase_setup.sql in its SQL Editor.
+2. Expose public + api schemas (never learning_private) in Supabase Data API settings.
+3. Sign into your website with your instructor account. In Supabase Auth > Users copy that account's User UID.
+4. Replace the zero UID placeholder in OWNER_SETUP.sql with your own User UID. Run it once.
+5. Redeploy your site. Sign in, open My learning > Instructor review desk, inspect photos/files, enter rubric scores and publish.
+No AI grader, service-role key or CRON_SECRET is needed for manual assessment. OPENAI_API_KEY remains optional for the separate tutor.

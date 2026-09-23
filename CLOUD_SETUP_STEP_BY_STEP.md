@@ -1,42 +1,40 @@
-# Data Analysis Learning Path — cloud progress and completion records
+# Manual instructor assessment · Cloud setup
 
-**The package is already connected to a Supabase project** via `assets/supabase-config.js`. It has its URL and public publishable key, but the learning-specific tables are **not created by deploying to Vercel**. The instructions below are for the Supabase project shown in that file. Back up any existing project before changes. Do not create a second project unless you also intentionally update the configuration.
+## 1. SQL upgrade (run once, then keep your SQL files)
 
-## 1. Deploy the updated learning site
-Extract the ZIP, upload **all contents** (including `assets/`, `courses/`, `api/`, `lib/`, `index.html`, `supabase_setup.sql` and `vercel.json`) to one GitHub repository and import that repository into Vercel. When replacing an existing project, commit these files to the same GitHub repository. Record the full production URL, e.g. `https://your-learning-site.vercel.app`. Do not upload the ZIP itself as the site.
+Go to **Supabase → your existing learning app project → SQL Editor**. Back up the project, open `supabase_setup.sql`, inspect and run the complete file. Do not create a second project if your learner accounts and progress already exist in the current one. This migration keeps the old tables, all submitted capstones and previous certificates. It adds the `capstone_reviewers` allowlist, reviewer-only access to all submissions and private evidence, and a protected `api.submit_capstone_review` RPC. It removes the old cron-claim/automatic-issuance RPCs. The certificate registry can now be written only through the protected manual review function.
 
-## 2. Create the learning tables (one-time database setup)
-1. Sign in at [Supabase Dashboard](https://supabase.com/dashboard) and open the project whose ID matches the URL in `assets/supabase-config.js` (the current package is set to `hotysnqorkqbiconjskl`). Do not choose an unrelated project.
-2. Select **SQL Editor → New query**.
-3. Open the packaged **`supabase_setup.sql`** on your device, copy all its SQL into the editor, review it, then click **Run** once. This creates `course_progress`, `quiz_results` and `certificates`, with per-user row-level security (RLS). It also creates a narrowly scoped certificate lookup function in the `api` schema. The script does **not** modify existing library or portfolio tables.
-4. Under **Database → Tables** or **Table Editor**, confirm the three new tables exist. Existing learners, including those using the other apps in this Supabase project, are not automatically issued completion records.
+In Data API settings, the exposed schema list should include **`public` and `api`**. Do not expose `learning_private`. Supabase RLS lets learners read their own records and allows the explicitly registered reviewer to see all submissions. Only the manual review RPC can publish a grade and certificate.
 
-## 3. Allow sign-ups and email confirmations
-1. Open **Authentication → Providers → Email** and enable email/password sign-in and new-user signups. Keep email confirmation enabled if possible.
-2. Under **Authentication → URL Configuration**, add your exact production URL **plus `/auth.html`** to **Redirect URLs** (for example `https://your-learning-site.vercel.app/auth.html`). The signup flow explicitly redirects here after confirmation.
-3. **This Supabase project is shared with your other apps. Keep its existing Site URL** unless you intend to change their default sign-in redirects. Add the new learning URL to the allow-list instead.
-4. If confirmation emails do not arrive, check spam and Supabase's email sending limits; configure custom SMTP for production if needed. Do not put an SMTP password or Supabase secret/service-role key in public website files.
+## 2. Authorize your own login (essential)
 
-## 4. Check learner cloud progress
-1. Open your Vercel learning site in a normal browser; select **Sign in / register**, create a learner account, and confirm the email if prompted. Sign in.
-2. Open Excel, complete week 1, then look for **Synced** on the course. On **My Account**, check that Excel shows **1 of 10 weeks**.
-3. To verify cross-device sync, sign in to the same learner account on another browser/device. The previously completed week should appear there. If it does not, check **My Account → Cloud Sync**, then return to the course and tap the sync-status button to retry. Do not clear the original browser's storage before confirming sync.
-4. Quiz scores appear under **My Account → Quiz Results** after answering a quiz and clicking its grade button. Course completion is currently learner-marked, not independently graded or proctored.
+1. Sign into the website using the email address you want to use as owner/instructor.
+2. Open Supabase → **Authentication → Users**, click **that user** and copy their **User UID**. An email address or password is *not* a substitute for the UID.
+3. Open `OWNER_SETUP.sql`. Replace `00000000-0000-0000-0000-000000000000` with your actual UID. Run it in the Supabase SQL Editor. This creates a single row in `public.capstone_reviewers`, not an additional user.
+4. Confirm the new row's UID matches your Supabase Auth profile. Only explicitly allowlisted accounts may enter the review desk and publish assessments; ordinary learners may not read other learners' submissions or evidence.
 
-## 5. Register a course-completion record and enable QR checks
-1. When all **10 weeks** of a course have been marked complete and synced, open that course's **Certificate** section. Enter the learner's full name and click **Generate Certificate**. Wait for the message **“Course-completion record registered.”** A local PNG/PDF without this confirmation is **not** a registered record.
-2. In **My Account → Certificates**, the registered record should appear with a **Verify** link. New certificate IDs start with `DALP-`; historical `IJL-` IDs are still recognised by the SQL setup.
-3. To enable verification for anyone holding the QR code: open **Supabase → Project Settings / Integrations → Data API → Exposed schemas** and **add `api`** without removing `public`. Save the setting. The function only returns limited fields for an exact active certificate ID. Test the actual QR/Verify link in a private browser window.
-4. The checker shows **Not verified** until database registration succeeds and the function is accessible. In the browser, test `https://your-learning-site.vercel.app/verify.html?id=YOUR_REAL_CERTIFICATE_ID` using an actually registered ID, not an invented one.
+If you want **only yourself** to grade, add only your own UID. Revoke access by deleting the allowlist row from SQL Editor. Do not attempt to gate the reviewer area only by hiding menu links or by checking an email address in JavaScript.
 
-**Privacy and meaning:** Verification reveals the learner name, course, completion date and ID to anyone who has the certificate link. Obtain appropriate learner consent. These are self-paced **course-completion records**, not Microsoft credentials, university awards or accredited professional certifications. The learner can mark their own weeks complete; quizzes are recorded but are not currently a condition for issuing a record.
+## 3. Website deployment
 
-## Troubleshooting
-- **“Database not configured”**: inspect `assets/supabase-config.js` (publishable key only) and whether the Supabase client script loaded.
-- **“Could not find table / permission denied”**: confirm the setup SQL ran in the correct project; verify tables, grants and RLS policies.
-- **“Sign in to sync”**: sign in; if email confirmation is required, confirm your email first.
-- **“Sync error”**: do not delete browser data; reconnect, check the browser console and retry the course’s sync button.
-- **“Certificate registration error”**: first confirm all 10 weeks show synced in **My Account**. A locally generated image is not a database registration.
-- **“Not verified”**: ensure the `api` schema is in the exposed Data API schemas, use a real registered ID, and confirm the certificate record is active.
+Extract the ZIP into the GitHub repository connected to your current Vercel project. Upload all files including `reviewer.html`, `assets/reviewer.js`, `assets/reviewer.css`, the upgraded SQL and supporting course content. Redeploy the Vercel project. **No scheduled assessment job** or server secrets are required to grade; the browser uses your signed-in Supabase session and the protected database RPC. Remove the old cron and its credentials if not needed elsewhere.
 
-Setup does not require `OPENAI_API_KEY`; that key is only for live AI tutor responses.
+The old `api/review-capstones.js` is absent from this ZIP; also delete any existing copy from your GitHub repository. Only the separate optional AI *tutor* still uses `/api/tutor`, which requires `OPENAI_API_KEY` if you want live chat. Without the API key, the tutor uses its built-in reference mode.
+
+## 4. Review a learner's project
+
+Sign in as the authorised instructor and open **My learning → Instructor review desk** or `/reviewer.html`. The inbox includes all submitted capstones with filters for **course, status and learner/project search**, with pagination. Select one project to read the learner's summary and inspect each uploaded item. The file gallery prioritizes **photos/screenshots**, previews PDF, TXT, CSV, SQL and XLSX in-page, and provides an open/download link for every file. PBIX requires Power BI Desktop. Use a phone or laptop.
+
+Enter five integer scores with maxima of **25, 20, 20, 20 and 15**. Add an overall remark (minimum 20 characters), strengths, areas to improve and next steps. The total updates while you type; only clicking **Publish assessment** releases the grade. A confirmation prompts you before publishing. If the grade is at least **70/100**, the transaction also issues the verified course-completion certificate; otherwise the learner may revise and resubmit. Results appear in the learner's Capstone Studio immediately after your successful submission (they may need to refresh).
+
+The database still records an internal five-day *target* date for historical compatibility, but **it does not defer results**. There is no AI review, no scheduled assessment and no automatic score generation.
+
+## 5. Security / test checklist
+
+- Sign in as a normal learner: `/reviewer.html` must say **Access restricted**, and direct Supabase queries must not return other learners' capstones or private attachments. Learners cannot call the grading RPC successfully.
+- Sign in as the allowlisted owner: see all submissions and private evidence; able to publish once per submission. Learners must not be able to submit scores, change an existing grade, issue a certificate or upload evidence under another account's folder.
+- Test scores **69** and **70** on two different sample projects. A 69 should show feedback and allow a revision; 70 should issue the certificate immediately. Refresh the learner page and check the public verifier with the issued certificate ID.
+- Confirm existing certificates still verify and existing progress/quiz records remain. Test both light/dark themes and smartphone width.
+- Do not put a Supabase secret/service-role key or any API key in website HTML or JavaScript. The frontend contains only the intended public publishable key. Publish an evidence retention/deletion policy before inviting learners.
+
+**Scope:** The local test suite checks source structure and protected SQL logic, but you must run the end-to-end Auth/RLS/upload/publishing tests against your actual Supabase project after deploying this upgrade. The ZIP has not modified your live database or Vercel settings.

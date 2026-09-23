@@ -15,7 +15,7 @@ input{width:100%;padding:12px;border:1px solid var(--border);border-radius:11px;
 </style>
 <link rel="stylesheet" href="assets/brand-overrides.css">
 <link rel="stylesheet" href="assets/responsive-polish.css">
-<link rel="icon" type="image/svg+xml" href="assets/da-logo.svg"><link rel="stylesheet" href="assets/account-refresh.css"></head>
+<link rel="icon" type="image/svg+xml" href="assets/da-logo.svg"><link rel="stylesheet" href="assets/account-refresh.css"><link rel="stylesheet" href="assets/modern.css"></head>
 <body>
 <div class="wrap">
  <div class="brand auth-brand-shell"><img class="auth-brand-logo" src="assets/da-logo.svg" alt="Data Analysis Learning Path logo"><div class="brand-company-name"><strong>Data Analysis Learning Path</strong><span>Learner Account</span></div></div>
@@ -44,14 +44,14 @@ input{width:100%;padding:12px;border:1px solid var(--border);border-radius:11px;
 <script src="assets/supabase-client.js"></script>
 <script>
 const show=(id,msg,warn=false)=>{const e=document.getElementById(id);e.textContent=msg;e.style.display='block';e.className='msg'+(warn?' warn':'')};
-function returnUrl(){return new URLSearchParams(location.search).get('return')||'index.html'}
+function returnUrl(){try{const requested=new URL(new URLSearchParams(location.search).get('return')||'index.html',location.href);return requested.origin===location.origin?requested.toString():'index.html'}catch(_){return 'index.html'}}
 (async()=>{
  if(!window.ZAH_DB.configured){
    show('configWarn','Database connection has not been configured yet. Add your Supabase project URL and publishable key in assets/supabase-config.js.',true);
    return;
  }
  const u=await window.ZAH_DB.user();
- if(u) location.href='account.html';
+ if(u) location.href=returnUrl();
 })();
 document.getElementById('loginBtn').onclick=async()=>{
  if(!window.ZAH_DB.configured)return;
@@ -70,4 +70,4 @@ document.getElementById('signupBtn').onclick=async()=>{
  else show('signupMsg','Account created. Check your email to confirm your address, then sign in.');
 };
 </script>
-</body></html>
+<script src="assets/modern.js"></script></body></html>

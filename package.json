@@ -1,1 +1,16 @@
-{"name":"data-analysis-learning-path","version":"1.0.0","private":true,"type":"module","description":"Static learning portal and optional Vercel AI tutor","scripts":{"test":"node tests/smoke.mjs"}}
+{
+  "name": "data-analysis-learning-path",
+  "version": "3.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Modern learning portal with private owner-graded capstones",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node tests/smoke.mjs && node tests/modern.mjs"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.57.0"
+  }
+}
