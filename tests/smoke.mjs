@@ -5,7 +5,7 @@ import {fileURLToPath} from 'node:url';
 import handler from '../api/tutor.js';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=x=>fs.readFileSync(path.join(root,x),'utf8');
-const pages=['index.html','reference.html','tutor.html','auth.html','account.html','verify.html','courses/excel.html','courses/sql.html','courses/powerbi.html'];
+const pages=['index.html','reference.html','tutor.html','auth.html','account.html','verify.html','progress.html','courses/excel.html','courses/sql.html','courses/powerbi.html'];
 for(const p of pages){assert(read(p).includes('Data Analysis Learning Path'),'Missing rebrand '+p);assert(!read(p).includes('zen-logo.png'),'Old missing logo '+p)}
 for(const p of ['courses/excel.html','courses/sql.html','courses/powerbi.html']){const s=read(p);assert.equal((s.match(/class="guided-lab"/g)||[]).length,10,`${p} labs`);assert.equal((s.match(/class="question"/g)||[]).length,50,`${p} quizzes`);assert.equal((s.match(/class="week searchable"/g)||[]).length,10,`${p} weeks`);assert(s.includes('course-refresh.css'));}
 const refs=JSON.parse(read('assets/reference-data.js').replace(/^window.IJ_REFERENCE=/,'').replace(/;\s*$/,''));assert.equal(refs.length,54);for(const r of refs){assert(r.title&&r.code&&r.watch&&r.meaning)}
@@ -46,7 +46,8 @@ for(const course of ['excel','sql','powerbi']){
 }
 const introJs=read('assets/introduction.js');
 assert.equal((introJs.match(/\{q:'/g)||[]).length,12,'Twelve introductory questions');
-assert(!introJs.includes('ZAH_PROGRESS_KEY')&&!introJs.includes('ZAHProgressCloud')&&!introJs.includes('supabase'), 'Intro does not mutate cloud progress or schema');
+assert(introJs.includes('ZAHProgressCloud')&&introJs.includes("const slug = 'introduction'"), 'Intro syncs through the shared cloud progress engine');
+assert(read('supabase_setup.sql').includes("('introduction','excel','sql','powerbi')"),'Introduction allowed in course progress');
 assert(read('index.html').includes('courses/introduction.html'));
 const kiosk=read('downloads/kiosk_week.csv').trim().split(/\r?\n/);
 assert.equal(kiosk.length,6,'five-row fictional kiosk CSV + header');
@@ -61,4 +62,4 @@ assert.equal(sum(r=>r.units*r.price),186000);
 assert.equal(sum(r=>r.units*r.variable),111600);
 assert.equal(sum(r=>r.fixed),30000);
 assert.equal(sum(r=>r.units*(r.price-r.variable)-r.fixed),44400);
-console.log('PASS introduction | 8 lessons | 12 questions | three course links | separate local progress | kiosk CSV arithmetic');
+console.log('PASS introduction | 8 lessons | 12 questions | cross-device cloud progress | certificate tracks remain separate | kiosk CSV arithmetic');

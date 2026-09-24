@@ -1,9 +1,10 @@
 
 (function(){
   const COURSE_MAP = {
-    excel:   { key:'excelRoadmapProgress', title:'Excel Data Analysis' },
-    sql:     { key:'sqlRoadmapProgress', title:'SQL for Data Analytics' },
-    powerbi: { key:'powerbiRoadmapProgress', title:'Power BI' }
+    introduction: { key:'dalpIntroductionProgressV1', title:'Introduction to Data Analysis', units:8, unitLabel:'lessons' },
+    excel:        { key:'excelRoadmapProgress', title:'Excel Data Analysis', units:10, unitLabel:'weeks' },
+    sql:          { key:'sqlRoadmapProgress', title:'SQL for Data Analytics', units:10, unitLabel:'weeks' },
+    powerbi:      { key:'powerbiRoadmapProgress', title:'Power BI', units:10, unitLabel:'weeks' }
   };
 
   function safeParse(value, fallback={}){
@@ -19,12 +20,12 @@
     localStorage.setItem(key, JSON.stringify(progress || {}));
   }
 
-  function normalizedProgress(rows){
+  function normalizedProgress(rows, totalUnits=10){
     const result={};
-    for(let w=1;w<=10;w++) result[String(w)] = false;
+    for(let w=1;w<=totalUnits;w++) result[String(w)] = false;
     (rows||[]).forEach(r=>{
       const w=Number(r.week_no);
-      if(w>=1 && w<=10) result[String(w)] = !!r.completed;
+      if(w>=1 && w<=totalUnits) result[String(w)] = !!r.completed;
     });
     return result;
   }
@@ -144,7 +145,7 @@
     // Completed local weeks are preserved so the user's current device does
     // not lose earlier work. This runs only once per user/device/course.
     if(!migrated){
-      for(let w=1;w<=10;w++){
+      for(let w=1;w<=info.units;w++){
         const key=String(w);
         if(local[key] === true && !pending[key]){
           const remote=remoteByWeek.get(key);
@@ -168,7 +169,7 @@
 
     // 3) Supabase is now the source of truth.
     remoteRows=await fetchCourseRows(user.id,slug);
-    const progress=normalizedProgress(remoteRows);
+    const progress=normalizedProgress(remoteRows,info.units);
     writeLocal(info.key,progress);
 
     const latest=(remoteRows||[])
@@ -185,7 +186,7 @@
       user,
       progress,
       completed:Object.values(progress).filter(Boolean).length,
-      percent:Object.values(progress).filter(Boolean).length*10,
+      percent:Math.round(Object.values(progress).filter(Boolean).length/info.units*100),
       lastSync:latest
     };
   }
@@ -242,7 +243,7 @@
 
     const now=new Date().toISOString();
     const rows=[];
-    for(let w=1;w<=10;w++){
+    for(let w=1;w<=info.units;w++){
       const value=!!progress[String(w)];
       queueForUser(user.id,slug,w,value);
       rows.push(rowFor(user.id,slug,w,value,now));

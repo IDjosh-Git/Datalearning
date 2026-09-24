@@ -38,3 +38,15 @@ The database still records an internal five-day *target* date for historical com
 - Do not put a Supabase secret/service-role key or any API key in website HTML or JavaScript. The frontend contains only the intended public publishable key. Publish an evidence retention/deletion policy before inviting learners.
 
 **Scope:** The local test suite checks source structure and protected SQL logic, but you must run the end-to-end Auth/RLS/upload/publishing tests against your actual Supabase project after deploying this upgrade. The ZIP has not modified your live database or Vercel settings.
+
+## Instructor learner-progress + cross-device Introduction upgrade
+
+After uploading this version, **run the latest `supabase_setup.sql` again in the same Supabase project**. It adds the protected instructor progress functions and expands `course_progress` so the 8-lesson Introduction can sync to the signed-in learner account. Introduction progress is for monitoring only; it cannot unlock a specialist certificate.
+
+Then sign in with the instructor account listed in `capstone_reviewers` and open **My Account → Open learner progress**. The instructor dashboard includes Introduction, Excel, SQL and Power BI and can be filtered by learner, learning path and status.
+
+For a learner who already completed Introduction on one phone before this upgrade, open the upgraded site on that phone and sign in once. The local Introduction checkmarks are migrated to Supabase on first sync. After that, signing into the same account on a laptop will retrieve those checkmarks. Anonymous progress cannot move between devices until it is attached to a signed-in account.
+
+## Light and dark mode
+
+Every main page now loads a shared final theme layer (`assets/theme-polish.css`) and applies the saved theme before page paint. Test the portal, My Learning, Introduction, all three specialist courses, Capstone Studio, Review Desk, Learner Progress, Reference Library, Tutor, Auth and Verify pages in both modes after deployment.

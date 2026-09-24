@@ -1,28 +1,49 @@
-/* Introduction is deliberately local-only; it must not affect the 10-week certificate tracks. */
+/* Introduction progress syncs across devices when signed in, but it remains separate from certificate eligibility. */
 (() => {
   'use strict';
   const key = 'dalpIntroductionProgressV1';
+  const slug = 'introduction';
   const checkboxes = [...document.querySelectorAll('input[data-intro-check]')];
   const progressText = document.getElementById('introProgressText');
   const progressBar = document.getElementById('introProgressBar');
   const progressFill = document.getElementById('introProgressFill');
+  const syncStatus = document.getElementById('introSyncStatus');
   const safeRead = () => { try { return JSON.parse(localStorage.getItem(key) || '{}') || {}; } catch { return {}; } };
-  const paint = () => {
+  const paint = progress => {
+    const state = progress || Object.fromEntries(checkboxes.map(c => [c.dataset.introCheck, c.checked]));
+    for (const cb of checkboxes) cb.checked = state[cb.dataset.introCheck] === true;
     const count = checkboxes.filter(c => c.checked).length;
-    progressText.textContent = `${count} / 8 lessons`;
-    progressBar.setAttribute('aria-valuenow', String(count));
-    progressFill.style.width = `${count / 8 * 100}%`;
+    if(progressText) progressText.textContent = `${count} / 8 lessons`;
+    if(progressBar) progressBar.setAttribute('aria-valuenow', String(count));
+    if(progressFill) progressFill.style.width = `${count / 8 * 100}%`;
   };
-  const saved = safeRead();
+  const showSync = (text, state='') => {
+    if(!syncStatus) return;
+    syncStatus.textContent=text;
+    syncStatus.dataset.state=state;
+  };
+  paint(safeRead());
   for (const cb of checkboxes) {
-    cb.checked = saved[cb.dataset.introCheck] === true;
-    cb.addEventListener('change', () => {
+    cb.addEventListener('change', async () => {
       const next = Object.fromEntries(checkboxes.map(c => [c.dataset.introCheck, c.checked]));
-      try { localStorage.setItem(key, JSON.stringify(next)); } catch { /* still works in a restricted browser */ }
-      paint();
+      try { localStorage.setItem(key, JSON.stringify(next)); } catch { /* local fallback */ }
+      paint(next);
+      if(!window.ZAHProgressCloud){ showSync('Saved on this device','offline'); return; }
+      const result=await window.ZAHProgressCloud.saveWeek(slug,Number(cb.dataset.introCheck),cb.checked);
+      if(result.ok) showSync('Synced to your account','ok');
+      else if(result.reason==='signed_out') showSync('Saved here • sign in to sync across devices','offline');
+      else showSync('Saved here • cloud sync will retry','warning');
     });
   }
-  paint();
+  (async()=>{
+    if(!window.ZAHProgressCloud){ showSync('Saved on this device','offline'); return; }
+    try{
+      const result=await window.ZAHProgressCloud.syncCourse(slug);
+      if(result.ok){ paint(result.progress); showSync('Cloud sync complete','ok'); }
+      else if(result.reason==='signed_out') showSync('Sign in to sync this introduction across devices','offline');
+      else showSync('Saved on this device • cloud unavailable','warning');
+    }catch(error){ console.error('Introduction cloud sync failed',error); showSync('Saved on this device • sync retry available','warning'); }
+  })();
 
   const money = n => new Intl.NumberFormat('en-NG', {style:'currency',currency:'NGN',maximumFractionDigits:2}).format(n);
   const form = document.getElementById('kioskCalc');

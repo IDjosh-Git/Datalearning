@@ -1,9 +1,10 @@
 
 (function(){
   const COURSE_MAP = {
-    excel:   { key:'excelRoadmapProgress' },
-    powerbi: { key:'powerbiRoadmapProgress' },
-    sql:     { key:'sqlRoadmapProgress' }
+    introduction:{ key:'dalpIntroductionProgressV1', units:8 },
+    excel:       { key:'excelRoadmapProgress', units:10 },
+    powerbi:     { key:'powerbiRoadmapProgress', units:10 },
+    sql:         { key:'sqlRoadmapProgress', units:10 }
   };
 
   function safeLocalProgress(key){
@@ -17,7 +18,8 @@
 
   function paintCourse(slug, progress){
     const completed = Object.values(progress || {}).filter(Boolean).length;
-    const pct = Math.max(0, Math.min(100, Math.round((completed / 10) * 100)));
+    const units = COURSE_MAP[slug]?.units || 10;
+    const pct = Math.max(0, Math.min(100, Math.round((completed / units) * 100)));
 
     const bar = document.getElementById(slug + '-progress');
     const label = document.getElementById(slug + '-progress-text');

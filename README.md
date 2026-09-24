@@ -23,3 +23,18 @@ The existing 8-lesson introduction, three full 10-week courses, 150 quiz questio
 **Privacy and limitations:** The instructor and each learner can view appropriate files in the private bucket; the owner can download attachments while assessing on the go. A Power BI `.pbix` file cannot be rendered inside the browser: use screenshots for fast review or download the `.pbix` to Power BI Desktop. ExcelJS 4.4.0 is loaded via a CDN only on the private reviewer page to display an XLSX preview; if offline, download the workbook instead. For security, publish a data-retention policy and avoid client/customer datasets without permission. A completion certificate is not an accredited or Microsoft-issued certification.
 
 See `CLOUD_SETUP_STEP_BY_STEP.md` for setup, security checks and troubleshooting.
+
+## Instructor learner progress
+
+The instructor workspace now includes `progress.html`, a private learner-progress dashboard. It shows learners with activity in the learning tables, course progress, quiz count/average, capstone status, certificate status and latest activity. Click **View details** to see all ten weeks and the quiz result for each week.
+
+Access is not granted by hiding the page alone. The dashboard calls instructor-only RPC functions in the `learning_private`/`api` schemas, and each protected function checks the signed-in user against `public.capstone_reviewers`. Re-run the latest `supabase_setup.sql` after upgrading so these functions exist.
+
+
+## Cross-device Introduction progress
+
+The 8-lesson Introduction path is now stored in `course_progress` when the learner is signed in. Existing local Introduction checkmarks are migrated to the signed-in account on first sync, so the same progress can appear on phone and laptop. This requires rerunning the latest `supabase_setup.sql`. The Introduction remains a foundation module and does not count toward certificate eligibility.
+
+## Instructor learner progress
+
+Authorised reviewers can open `progress.html` to see Introduction, Excel, SQL and Power BI progress. The dashboard is protected by the same `capstone_reviewers` allowlist as the Review Desk.

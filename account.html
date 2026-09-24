@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>My Learning | Data Analysis Learning Path</title>
+<title>My Learning | Data Analysis Learning Path</title><script>try{const t=localStorage.getItem('dalp-theme');document.documentElement.dataset.theme=(t==='dark'||t==='light')?t:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch(e){document.documentElement.dataset.theme='light'}</script>
 <style>
 :root{--navy:#254559;--orange:#F27329;--bg:#f5f8fa;--border:#dce5e9;--muted:#667681}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:#1d2930}
@@ -23,7 +23,7 @@ table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px;bor
 @media(max-width:600px){.continue-actions{display:grid;grid-template-columns:1fr}.continue-actions .btn{width:100%;text-align:center}}
 </style>
 
-<link rel="icon" type="image/svg+xml" href="assets/da-logo.svg"><link rel="stylesheet" href="assets/account-refresh.css"><link rel="stylesheet" href="assets/modern.css"></head>
+<link rel="icon" type="image/svg+xml" href="assets/da-logo.svg"><link rel="stylesheet" href="assets/account-refresh.css"><link rel="stylesheet" href="assets/modern.css"><link rel="stylesheet" href="assets/theme-polish.css"></head>
 <body>
 <div class="wrap">
  <div class="top">
@@ -36,16 +36,17 @@ table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px;bor
    <p id="accountSyncStatus">Checking your cloud progress…</p>
   </div>
 
-  <div class="card full" id="instructorAccess" hidden><h2>Instructor review desk</h2><p>Your private submission queue, project previews, grading rubric and publishing controls.</p><a class="btn" href="reviewer.html">Open instructor review desk →</a></div>
+  <div class="card full" id="instructorAccess" hidden><h2>Instructor workspace</h2><p>Monitor learner progress and assess submitted capstone projects. These tools are only displayed for authorised instructor accounts.</p><div class="continue-actions"><a class="btn" href="progress.html">Open learner progress →</a><a class="btn" href="reviewer.html" style="background:#713a55">Open review desk →</a></div></div>
 
   <div class="card full" id="completionGuide">
    <h2>How your progress and completion record work</h2>
-   <p>Sign in, finish weekly lessons and quizzes, and check that Cloud Sync says complete. After all ten weeks are synced, submit a capstone project with files and screenshots in the Capstone Studio. Your instructor reviews your files and publishes the score and feedback once marking is finished. A passing score of at least 70/100 qualifies for a registered completion certificate. Open the Capstone Studio to view your score, feedback and printable certificate.</p>
+   <p>Sign in so your Introduction and specialist-course progress can sync across your devices. Finish weekly lessons and quizzes, and check that Cloud Sync says complete. After all ten weeks are synced, submit a capstone project with files and screenshots in the Capstone Studio. Your instructor reviews your files and publishes the score and feedback once marking is finished. A passing score of at least 70/100 qualifies for a registered completion certificate. Open the Capstone Studio to view your score, feedback and printable certificate.</p>
    <p class="muted">These are self-paced course-completion records, not accredited professional certifications. If syncing fails, your progress stays on this device until you retry.</p>
   </div>
   <div class="card full">
    <h2>Continue Learning</h2>
    <div class="continue-actions">
+    <a class="btn" href="courses/introduction.html">Introduction</a>
     <a class="btn" href="courses/excel.html">Excel Course</a>
     <a class="btn" href="courses/sql.html">SQL Course</a>
     <a class="btn" href="courses/powerbi.html">Power BI Course</a>
@@ -53,6 +54,7 @@ table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px;bor
    </div>
   </div>
 
+  <div class="card"><h3>Introduction</h3><p id="introductionText">0 of 8 lessons</p><div class="bar"><div id="introductionBar" class="fill" style="width:0%"></div></div></div>
   <div class="card"><h3>Excel</h3><p id="excelText">0 of 10 weeks</p><div class="bar"><div id="excelBar" class="fill" style="width:0%"></div></div></div>
   <div class="card"><h3>SQL</h3><p id="sqlText">0 of 10 weeks</p><div class="bar"><div id="sqlBar" class="fill" style="width:0%"></div></div></div>
   <div class="card"><h3>Power BI</h3><p id="powerbiText">0 of 10 weeks</p><div class="bar"><div id="powerbiBar" class="fill" style="width:0%"></div></div></div>
@@ -71,7 +73,7 @@ table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px;bor
   </div>
  </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0"></script>
 <script src="assets/supabase-config.js"></script>
 <script src="assets/supabase-client.js"></script>
 <script src="assets/progress-cloud.js"></script>
@@ -93,9 +95,9 @@ table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px;bor
  const syncResult=await window.ZAHProgressCloud.syncAll();
  const successful=Object.values(syncResult.courses||{}).filter(c=>c?.ok).length;
  if(syncStatus){
-   syncStatus.textContent=successful===3
-     ? 'Cloud sync complete. This account is the source of truth across your devices.'
-     : `Cloud sync completed for ${successful} of 3 courses. Open a course and tap the sync status to retry any failed course.`;
+   syncStatus.textContent=successful===4
+     ? 'Cloud sync complete. Your Introduction, Excel, SQL and Power BI progress now follows this account across devices.'
+     : `Cloud sync completed for ${successful} of 4 learning paths. Open a learning path and retry any failed sync.`;
  }
 
  const {data:p,error:pErr}=await window.ZAH_DB.client
@@ -104,9 +106,10 @@ table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px;bor
    .eq('user_id',user.id);
  if(pErr && syncStatus) syncStatus.textContent='Could not load cloud progress: '+pErr.message;
 
- ['excel','sql','powerbi'].forEach(c=>{
-   const done=(p||[]).filter(r=>r.course_slug===c&&r.completed).length,pct=done*10;
-   document.getElementById(c+'Text').textContent=`${done} of 10 weeks`;
+ const trackUnits={introduction:8,excel:10,sql:10,powerbi:10};
+ Object.entries(trackUnits).forEach(([c,total])=>{
+   const done=(p||[]).filter(r=>r.course_slug===c&&r.completed).length,pct=Math.round(done/total*100);
+   document.getElementById(c+'Text').textContent=`${done} of ${total} ${c==='introduction'?'lessons':'weeks'}`;
    document.getElementById(c+'Bar').style.width=pct+'%';
  });
 

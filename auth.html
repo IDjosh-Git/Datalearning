@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Sign In | Data Analysis Learning Path</title>
+<title>Sign In | Data Analysis Learning Path</title><script>try{const t=localStorage.getItem('dalp-theme');document.documentElement.dataset.theme=(t==='dark'||t==='light')?t:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch(e){document.documentElement.dataset.theme='light'}</script>
 <style>
 :root{--navy:#254559;--orange:#F27329;--bg:#f5f8fa;--border:#dce5e9;--muted:#667681}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:#1d2930}
@@ -15,7 +15,7 @@ input{width:100%;padding:12px;border:1px solid var(--border);border-radius:11px;
 </style>
 <link rel="stylesheet" href="assets/brand-overrides.css">
 <link rel="stylesheet" href="assets/responsive-polish.css">
-<link rel="icon" type="image/svg+xml" href="assets/da-logo.svg"><link rel="stylesheet" href="assets/account-refresh.css"><link rel="stylesheet" href="assets/modern.css"></head>
+<link rel="icon" type="image/svg+xml" href="assets/da-logo.svg"><link rel="stylesheet" href="assets/account-refresh.css"><link rel="stylesheet" href="assets/modern.css"><link rel="stylesheet" href="assets/theme-polish.css"></head>
 <body>
 <div class="wrap">
  <div class="brand auth-brand-shell"><img class="auth-brand-logo" src="assets/da-logo.svg" alt="Data Analysis Learning Path logo"><div class="brand-company-name"><strong>Data Analysis Learning Path</strong><span>Learner Account</span></div></div>
@@ -39,7 +39,7 @@ input{width:100%;padding:12px;border:1px solid var(--border);border-radius:11px;
  </div>
  <a class="btn secondary" href="index.html">Back to Learning Portal</a>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0"></script>
 <script src="assets/supabase-config.js"></script>
 <script src="assets/supabase-client.js"></script>
 <script>

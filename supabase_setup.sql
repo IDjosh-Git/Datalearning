@@ -6,7 +6,7 @@
 -- Safe to rerun after reviewing and backing up your existing project.
 create table if not exists public.course_progress (
  user_id uuid not null references auth.users(id) on delete cascade,
- course_slug text not null check(course_slug in ('excel','sql','powerbi')),
+ course_slug text not null check(course_slug in ('introduction','excel','sql','powerbi')),
  week_no integer not null check(week_no between 1 and 10),
  completed boolean not null default false,
  completed_at timestamptz,
@@ -320,3 +320,174 @@ language sql stable security invoker set search_path = '' as $$
 $$;
 revoke all on function api.verify_capstone(text) from public;
 grant execute on function api.verify_capstone(text) to anon,authenticated;
+
+
+-- V5: Introduction progress is now cloud-synced across devices.
+-- It is tracked for learning analytics only and never qualifies for a certificate.
+do $$
+begin
+ if exists(select 1 from pg_constraint where conrelid='public.course_progress'::regclass and conname='course_progress_course_slug_check') then
+  alter table public.course_progress drop constraint course_progress_course_slug_check;
+ end if;
+ alter table public.course_progress add constraint course_progress_course_slug_check
+  check(course_slug in ('introduction','excel','sql','powerbi'));
+exception when duplicate_object then null;
+end $$;
+
+-- ======================================================================
+-- V4: Instructor-only learner progress reporting.
+-- Keeps learner-owned RLS unchanged; instructor access is provided only
+-- through protected RPC functions that verify capstone_reviewers.
+-- ======================================================================
+create or replace function learning_private.instructor_progress_overview()
+returns table(
+ learner_user_id uuid,
+ learner_name text,
+ learner_email text,
+ course_slug text,
+ completed_weeks integer,
+ progress_percent integer,
+ quizzes_taken integer,
+ quiz_average integer,
+ capstone_status text,
+ capstone_score integer,
+ certificate_id text,
+ last_activity timestamptz
+)
+language plpgsql stable security definer set search_path = '' as $$
+begin
+ if (select auth.uid()) is null or not exists(
+  select 1 from public.capstone_reviewers r where r.user_id=(select auth.uid())
+ ) then
+  raise exception 'Only the authorised instructor can view learner progress' using errcode='42501';
+ end if;
+
+ return query
+ with learning_activity as (
+  select cp.user_id,cp.course_slug from public.course_progress cp
+  union
+  select qr.user_id,qr.course_slug from public.quiz_results qr
+  union
+  select cs.user_id,cs.course_slug from public.capstone_submissions cs
+  union
+  select c.user_id,c.course_slug from public.certificates c
+ ), active_tracks as (
+  select distinct la.user_id,la.course_slug from learning_activity la
+ )
+ select
+  a.user_id as learner_user_id,
+  coalesce(
+   (select cs.learner_name from public.capstone_submissions cs where cs.user_id=a.user_id order by cs.created_at desc limit 1),
+   (select c.learner_name from public.certificates c where c.user_id=a.user_id order by c.issued_at desc limit 1),
+   nullif(split_part(coalesce(u.email,''),'@',1),''),
+   'Learner'
+  )::text as learner_name,
+  coalesce(u.email,'')::text as learner_email,
+  a.course_slug::text,
+  (select count(*)::integer from public.course_progress cp where cp.user_id=a.user_id and cp.course_slug=a.course_slug and cp.completed=true) as completed_weeks,
+  round((select count(*)::numeric from public.course_progress cp where cp.user_id=a.user_id and cp.course_slug=a.course_slug and cp.completed=true) / (case when a.course_slug='introduction' then 8 else 10 end) * 100)::integer as progress_percent,
+  (select count(*)::integer from public.quiz_results qr where qr.user_id=a.user_id and qr.course_slug=a.course_slug) as quizzes_taken,
+  coalesce((select round(avg(qr.percentage))::integer from public.quiz_results qr where qr.user_id=a.user_id and qr.course_slug=a.course_slug),0) as quiz_average,
+  (select cs.status from public.capstone_submissions cs where cs.user_id=a.user_id and cs.course_slug=a.course_slug order by cs.created_at desc limit 1)::text as capstone_status,
+  (select cs.score from public.capstone_submissions cs where cs.user_id=a.user_id and cs.course_slug=a.course_slug order by cs.created_at desc limit 1)::integer as capstone_score,
+  (select c.certificate_id from public.certificates c where c.user_id=a.user_id and c.course_slug=a.course_slug and c.status='active' order by c.issued_at desc limit 1)::text as certificate_id,
+  (select max(x.activity_at) from (
+    select max(cp.updated_at) as activity_at from public.course_progress cp where cp.user_id=a.user_id and cp.course_slug=a.course_slug
+    union all
+    select max(qr.submitted_at) from public.quiz_results qr where qr.user_id=a.user_id and qr.course_slug=a.course_slug
+    union all
+    select max(coalesce(cs.reviewed_at,cs.created_at)) from public.capstone_submissions cs where cs.user_id=a.user_id and cs.course_slug=a.course_slug
+    union all
+    select max(c.issued_at) from public.certificates c where c.user_id=a.user_id and c.course_slug=a.course_slug
+   ) x) as last_activity
+ from active_tracks a
+ join auth.users u on u.id=a.user_id
+ order by 2,4;
+end $$;
+revoke all on function learning_private.instructor_progress_overview() from public,anon,authenticated;
+grant execute on function learning_private.instructor_progress_overview() to authenticated;
+
+create or replace function api.instructor_progress_overview()
+returns table(
+ learner_user_id uuid,
+ learner_name text,
+ learner_email text,
+ course_slug text,
+ completed_weeks integer,
+ progress_percent integer,
+ quizzes_taken integer,
+ quiz_average integer,
+ capstone_status text,
+ capstone_score integer,
+ certificate_id text,
+ last_activity timestamptz
+)
+language sql stable security invoker set search_path = '' as $$
+ select * from learning_private.instructor_progress_overview();
+$$;
+revoke all on function api.instructor_progress_overview() from public,anon,authenticated;
+grant execute on function api.instructor_progress_overview() to authenticated;
+
+create or replace function learning_private.instructor_progress_detail(p_user_id uuid,p_course_slug text)
+returns table(
+ week_no integer,
+ completed boolean,
+ completed_at timestamptz,
+ quiz_percentage integer,
+ quiz_score integer,
+ quiz_total integer,
+ quiz_submitted_at timestamptz
+)
+language plpgsql stable security definer set search_path = '' as $$
+begin
+ if (select auth.uid()) is null or not exists(
+  select 1 from public.capstone_reviewers r where r.user_id=(select auth.uid())
+ ) then
+  raise exception 'Only the authorised instructor can view learner progress' using errcode='42501';
+ end if;
+ if p_user_id is null or p_course_slug is null or p_course_slug not in ('introduction','excel','sql','powerbi') then
+  raise exception 'Invalid learner or course';
+ end if;
+ if not exists(
+  select 1 from public.course_progress cp where cp.user_id=p_user_id and cp.course_slug=p_course_slug
+  union all
+  select 1 from public.quiz_results qr where qr.user_id=p_user_id and qr.course_slug=p_course_slug
+  union all
+  select 1 from public.capstone_submissions cs where cs.user_id=p_user_id and cs.course_slug=p_course_slug
+  union all
+  select 1 from public.certificates c where c.user_id=p_user_id and c.course_slug=p_course_slug
+ ) then
+  raise exception 'No learning activity found for this learner and course';
+ end if;
+ return query
+ select
+  g.week_no::integer,
+  coalesce(cp.completed,false) as completed,
+  cp.completed_at,
+  qr.percentage::integer as quiz_percentage,
+  qr.score::integer as quiz_score,
+  qr.total::integer as quiz_total,
+  qr.submitted_at as quiz_submitted_at
+ from generate_series(1,case when p_course_slug='introduction' then 8 else 10 end) as g(week_no)
+ left join public.course_progress cp on cp.user_id=p_user_id and cp.course_slug=p_course_slug and cp.week_no=g.week_no
+ left join public.quiz_results qr on qr.user_id=p_user_id and qr.course_slug=p_course_slug and qr.week_no=g.week_no
+ order by g.week_no;
+end $$;
+revoke all on function learning_private.instructor_progress_detail(uuid,text) from public,anon,authenticated;
+grant execute on function learning_private.instructor_progress_detail(uuid,text) to authenticated;
+
+create or replace function api.instructor_progress_detail(p_user_id uuid,p_course_slug text)
+returns table(
+ week_no integer,
+ completed boolean,
+ completed_at timestamptz,
+ quiz_percentage integer,
+ quiz_score integer,
+ quiz_total integer,
+ quiz_submitted_at timestamptz
+)
+language sql stable security invoker set search_path = '' as $$
+ select * from learning_private.instructor_progress_detail(p_user_id,p_course_slug);
+$$;
+revoke all on function api.instructor_progress_detail(uuid,text) from public,anon,authenticated;
+grant execute on function api.instructor_progress_detail(uuid,text) to authenticated;

@@ -1,0 +1,119 @@
+/* DALP V5 — unified light/dark visual layer. Loaded last on every HTML page. */
+:root{
+  --app-bg:#f6f7f9;--app-surface:#ffffff;--app-surface-2:#f0f2f5;--app-surface-3:#e9edf2;
+  --app-text:#1d2939;--app-muted:#667085;--app-line:#dfe3e8;--app-line-strong:#cbd2da;
+  --app-brand:#713a55;--app-brand-strong:#5b2c44;--app-brand-soft:#f5e9ef;--app-brand-text:#713a55;
+  --app-success:#187653;--app-warning:#9a681a;--app-danger:#a33f54;--app-info:#476dba;
+  --app-shadow:0 14px 40px rgba(24,32,48,.07);--app-shadow-soft:0 7px 22px rgba(24,32,48,.045);
+  --intro-accent:#7955a5;--excel-accent:#168358;--sql-accent:#476dba;--pbi-accent:#a57912;
+  color-scheme:light;
+}
+html[data-theme="dark"]{
+  --app-bg:#0f1722;--app-surface:#172231;--app-surface-2:#1d2a3b;--app-surface-3:#243348;
+  --app-text:#eef2f7;--app-muted:#a9b4c4;--app-line:#314156;--app-line-strong:#42536a;
+  --app-brand:#c07b9e;--app-brand-strong:#d18dac;--app-brand-soft:#342634;--app-brand-text:#e4abc5;
+  --app-success:#65c89e;--app-warning:#e2b86c;--app-danger:#ed91a5;--app-info:#8dacEE;
+  --app-shadow:0 14px 40px rgba(0,0,0,.19);--app-shadow-soft:0 7px 22px rgba(0,0,0,.14);
+  color-scheme:dark;
+}
+html,body{background:var(--app-bg)!important;color:var(--app-text)!important}
+body{min-height:100vh}
+body,button,input,select,textarea{font-synthesis:none}
+::selection{background:color-mix(in srgb,var(--app-brand) 28%,transparent);color:var(--app-text)}
+a{color:inherit}
+hr{border-color:var(--app-line)!important}
+
+/* Shared surfaces and form controls */
+.card,.feature-panel,.search-area,.ref-card,.chat-side,.chat-panel,.cap-panel,.cap-side-panel,.ip-panel,.ip-detail,.review-panel,.review-detail,.review-stat,.ip-stats article{
+  background:var(--app-surface)!important;color:var(--app-text)!important;border-color:var(--app-line)!important;box-shadow:var(--app-shadow-soft)!important;
+}
+input:not([type="checkbox"]):not([type="radio"]),select,textarea{
+  background:var(--app-surface)!important;color:var(--app-text)!important;border-color:var(--app-line-strong)!important;
+}
+input::placeholder,textarea::placeholder{color:var(--app-muted)!important;opacity:.9}
+select option{background:var(--app-surface);color:var(--app-text)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid color-mix(in srgb,var(--app-brand) 55%,#fff);outline-offset:3px}
+
+/* Navigation / footer */
+.nav-shell{background:rgba(20,30,44,.96)!important;border-color:#344254!important;backdrop-filter:blur(16px)}
+.nav-links a{color:#dce4ee!important}.nav-links a:hover,.nav-links a[aria-current="page"]{color:#fff!important;background:rgba(255,255,255,.08)!important}
+.nav-links a.account-link{background:var(--app-brand)!important;color:#fff!important}.wordmark small{color:#e7b8cf!important}
+.footer{background:#111b29!important;color:#aebccc!important}.footer h4,.footer strong{color:#fff!important}.footer a{color:#c0ccda!important}.footer a:hover{color:#f0bed4!important}.footer p{color:#aebccc!important}
+.lp-theme-btn{border-color:rgba(255,255,255,.16)!important;background:rgba(255,255,255,.08)!important;color:#eef4fb!important}
+body:not(:has(.nav-shell)) .lp-theme-btn{background:var(--app-surface)!important;color:var(--app-text)!important;border-color:var(--app-line)!important;box-shadow:var(--app-shadow-soft)}
+
+/* Homepage */
+.lp-dashboard-strip,.lp-course,.lp-feature,.lp-step{background:var(--app-surface)!important;border-color:var(--app-line)!important;color:var(--app-text)!important;box-shadow:var(--app-shadow-soft)!important}
+.lp-course p,.lp-feature p,.lp-step p,.lp-dashboard-strip p,.lp-progress-meta,.section-head p{color:var(--app-muted)!important}
+.lp-course li{color:var(--app-text)!important}.lp-progress-line{background:var(--app-surface-3)!important}
+.lp-course[data-track="intro"] .lp-progress-line>div{background:var(--intro-accent)!important}
+.lp-course[data-track="excel"] .lp-progress-line>div{background:var(--excel-accent)!important}
+.lp-course[data-track="sql"] .lp-progress-line>div{background:var(--sql-accent)!important}
+.lp-course[data-track="powerbi"] .lp-progress-line>div{background:var(--pbi-accent)!important}
+.lp-tools{background:var(--app-surface)!important;border-color:var(--app-line)!important}.lp-filter{background:var(--app-surface-2)!important;color:var(--app-text)!important;border-color:var(--app-line)!important}.lp-filter.active{background:var(--app-brand)!important;color:white!important;border-color:var(--app-brand)!important}
+.lp-search{background:var(--app-surface-2)!important;border-color:var(--app-line)!important}.lp-search input{background:transparent!important;border:0!important;color:var(--app-text)!important}
+.lp-secondary,.button.outline,.cap-outline{background:var(--app-surface)!important;color:var(--app-text)!important;border-color:var(--app-line-strong)!important}.lp-primary,.button.primary,.btn,.cap-submit,.instructor-access-button{background:var(--app-brand)!important;color:white!important;border-color:var(--app-brand)!important}.lp-primary:hover,.button.primary:hover,.btn:hover,.cap-submit:hover,.instructor-access-button:hover{background:var(--app-brand-strong)!important}
+
+/* Account/auth/verification pages with legacy !important CSS */
+body:has(#accountSyncStatus),body:has(#authForm),body:has(#status){background:var(--app-bg)!important;color:var(--app-text)!important}
+body:has(#accountSyncStatus) .card,body:has(#authForm) .card,body:has(#status) .card{background:var(--app-surface)!important;color:var(--app-text)!important;border-color:var(--app-line)!important;box-shadow:var(--app-shadow)!important}
+body:has(#accountSyncStatus) h1,body:has(#accountSyncStatus) h2,body:has(#accountSyncStatus) h3,body:has(#authForm) h1,body:has(#authForm) h2,body:has(#status) h1,body:has(#status) h2{color:var(--app-text)!important}
+body:has(#accountSyncStatus) p,body:has(#authForm) p,body:has(#status) p,.muted{color:var(--app-muted)!important}
+body:has(#accountSyncStatus) th,body:has(#accountSyncStatus) td,body:has(#status) th,body:has(#status) td{color:var(--app-text)!important;border-color:var(--app-line)!important}
+body:has(#accountSyncStatus) .bar{background:var(--app-surface-3)!important}.account-brand-shell .brand-company-name strong,.auth-brand-shell .brand-company-name strong,.verify-brand-shell .brand-company-name strong{color:var(--app-text)!important}.account-brand-shell .brand-company-name span,.auth-brand-shell .brand-company-name span,.verify-brand-shell .brand-company-name span{color:var(--app-brand-text)!important}
+
+/* Course shells — keep the sidebar dark in both modes, harmonise content area. */
+body:has(.sidebar){background:var(--app-bg)!important;color:var(--app-text)!important}
+body:has(.sidebar) .topbar{background:color-mix(in srgb,var(--app-surface) 94%,transparent)!important;border-color:var(--app-line)!important;color:var(--app-text)!important}
+body:has(.sidebar) .section-head h3,body:has(.sidebar) .week-title h3,body:has(.sidebar) .guided-lab h4,body:has(.sidebar) .capstone h3{color:var(--app-text)!important}
+body:has(.sidebar) .week,body:has(.sidebar) .card,body:has(.sidebar) .map-card,body:has(.sidebar) .session-block,body:has(.sidebar) .lesson,body:has(.sidebar) .guided-lab,body:has(.sidebar) .lab-task,body:has(.sidebar) .lab-check{
+  background:var(--app-surface)!important;color:var(--app-text)!important;border-color:var(--app-line)!important;box-shadow:var(--app-shadow-soft)!important;
+}
+body:has(.sidebar) .week-header{background:var(--app-surface-2)!important;border-color:var(--app-line)!important}
+body:has(.sidebar) .session-block p,body:has(.sidebar) .lab-goal,body:has(.sidebar) .lab-columns ol,body:has(.sidebar) .lab-task p,body:has(.sidebar) .course-study-note,body:has(.sidebar) .course-intro-callout p{color:var(--app-muted)!important}
+body:has(.sidebar) .mini,body:has(.sidebar) .formula,body:has(.sidebar) .kbd,body:has(.sidebar) .answer-note{background:var(--app-surface-2)!important;color:var(--app-text)!important;border-color:var(--app-line)!important}
+body:has(.sidebar) .mini.tip{background:color-mix(in srgb,var(--app-warning) 11%,var(--app-surface))!important;border-color:color-mix(in srgb,var(--app-warning) 30%,var(--app-line))!important}
+body:has(.sidebar) .course-study-note,body:has(.sidebar) .course-intro-callout,body:has(.sidebar) .capstone{background:linear-gradient(120deg,color-mix(in srgb,var(--app-info) 10%,var(--app-surface)),color-mix(in srgb,var(--app-success) 8%,var(--app-surface)))!important;border-color:var(--app-line)!important}
+body:has(.sidebar) .complete-label,body:has(.sidebar) .map-card b,body:has(.sidebar) .lab-task b,body:has(.sidebar) .lab-check summary{color:var(--app-brand-text)!important}
+body:has(.sidebar) .sidebar{background:linear-gradient(165deg,#0b1422,#17283d 78%,#1a3345)!important}.sidebar .lp-theme-btn{width:100%;margin:8px 0;background:#223750!important;border-color:#39516d!important;color:#eef5ff!important}
+
+/* Introduction page */
+body:has(.intro-hero) .intro-progress-card,body:has(.intro-hero) .intro-lesson,body:has(.intro-hero) .question-card,body:has(.intro-hero) .try-card,body:has(.intro-hero) .soft-box,body:has(.intro-hero) .idea-card,body:has(.intro-hero) .caution-card,body:has(.intro-hero) .finish-card,body:has(.intro-hero) .side-help{
+  background:var(--app-surface)!important;color:var(--app-text)!important;border-color:var(--app-line)!important;box-shadow:var(--app-shadow-soft)!important;
+}
+body:has(.intro-hero) h2,body:has(.intro-hero) h3,body:has(.intro-hero) h4,body:has(.intro-hero) strong{color:var(--app-text)}
+body:has(.intro-hero) p,body:has(.intro-hero) li,body:has(.intro-hero) .question-card label,body:has(.intro-hero) .intro-disclosure{color:var(--app-muted)!important}
+body:has(.intro-hero) .intro-side{background:var(--app-surface)!important;border-color:var(--app-line)!important}
+body:has(.intro-hero) .intro-side a{color:var(--app-text)!important;border-color:var(--app-line)!important}
+body:has(.intro-hero) .intro-side a:hover{background:var(--app-surface-2)!important}
+body:has(.intro-hero) .question-feedback{background:var(--app-surface-2)!important;color:var(--app-text)!important}
+body:has(.intro-hero) .quiz-summary{background:color-mix(in srgb,var(--app-success) 12%,var(--app-surface))!important;border-color:color-mix(in srgb,var(--app-success) 30%,var(--app-line))!important;color:var(--app-success)!important}
+body:has(.intro-hero) .lesson-table th,body:has(.intro-hero) .lesson-table td{background:var(--app-surface)!important;color:var(--app-text)!important;border-color:var(--app-line)!important}
+body:has(.intro-hero) .metric-strip>*,body:has(.intro-hero) .three-points>*,body:has(.intro-hero) .everyday-grid>*{background:var(--app-surface-2)!important;color:var(--app-text)!important;border-color:var(--app-line)!important}
+.intro-sync-status{display:block;font-size:10px;color:var(--app-muted);margin-top:7px;font-weight:750}.intro-sync-status[data-state="ok"]{color:var(--app-success)}.intro-sync-status[data-state="warning"]{color:var(--app-warning)}
+
+/* Capstone / review / instructor progress */
+.cap-notice{background:color-mix(in srgb,var(--app-brand) 10%,var(--app-surface))!important;color:var(--app-brand-text)!important;border-color:color-mix(in srgb,var(--app-brand) 25%,var(--app-line))!important}.cap-notice.success{background:color-mix(in srgb,var(--app-success) 11%,var(--app-surface))!important;color:var(--app-success)!important;border-color:color-mix(in srgb,var(--app-success) 30%,var(--app-line))!important}.cap-notice.warning{background:color-mix(in srgb,var(--app-warning) 11%,var(--app-surface))!important;color:var(--app-warning)!important;border-color:color-mix(in srgb,var(--app-warning) 30%,var(--app-line))!important}.cap-notice.error{background:color-mix(in srgb,var(--app-danger) 11%,var(--app-surface))!important;color:var(--app-danger)!important;border-color:color-mix(in srgb,var(--app-danger) 30%,var(--app-line))!important}
+.cap-track,.cap-course-status,.cap-file,.cap-empty,.cap-feedback-card,.review-evidence,.review-score-card,.review-feedback-card,.ip-week{background:var(--app-surface-2)!important;color:var(--app-text)!important;border-color:var(--app-line)!important}.cap-drop{background:var(--app-surface-2)!important;border-color:var(--app-line-strong)!important}.cap-choose{background:var(--app-surface)!important;color:var(--app-text)!important;border-color:var(--app-line)!important}
+.ip-table th,.ip-table td,.review-table th,.review-table td{color:var(--app-text)!important;border-color:var(--app-line)!important}.ip-table tbody tr:hover,.review-row:hover{background:var(--app-surface-2)!important}.ip-progress{background:var(--app-surface-3)!important}.ip-status{border:1px solid var(--app-line)!important}
+.ip-status.completed{color:var(--app-success)!important}.ip-status.awaiting_review{color:var(--app-warning)!important}.ip-status.revision{color:var(--app-danger)!important}.ip-status.in_progress,.ip-status.ready{color:var(--app-info)!important}
+
+/* Reference & tutor */
+.ref-meta span,.prompt-chip{background:var(--app-surface-2)!important;color:var(--app-info)!important;border-color:var(--app-line)!important}.snippet,.code-line,.lab-code{background:#0c1626!important;color:#c8f1df!important;border-color:#2a3d56!important}.messages{background:linear-gradient(180deg,var(--app-surface),var(--app-surface-2))!important}.bubble{background:var(--app-surface-2)!important;color:var(--app-text)!important;border-color:var(--app-line)!important}.bubble.user{background:color-mix(in srgb,var(--app-brand) 18%,var(--app-surface))!important}.status{background:color-mix(in srgb,var(--app-success) 13%,var(--app-surface))!important;color:var(--app-success)!important}.status.offline{background:color-mix(in srgb,var(--app-warning) 13%,var(--app-surface))!important;color:var(--app-warning)!important}
+
+/* Instructor access panel */
+.instructor-access-panel{background:var(--app-bg)!important}.instructor-access-card{background:linear-gradient(135deg,var(--app-surface),color-mix(in srgb,var(--app-brand) 5%,var(--app-surface)))!important;border-color:var(--app-line)!important;box-shadow:var(--app-shadow-soft)!important}.instructor-access-card h3{color:var(--app-text)!important}.instructor-access-card p,.instructor-access-note{color:var(--app-muted)!important}
+
+/* Small-screen polish */
+@media(max-width:760px){
+  .lp-theme-btn .theme-label{display:none}.lp-theme-btn{min-width:42px;padding:8px}.nav-inner{gap:8px}
+  body:has(#accountSyncStatus) .wrap{width:min(100% - 20px,1180px)!important;margin-top:20px!important}
+  .ip-table-wrap,.review-table-wrap{border:1px solid var(--app-line);border-radius:14px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
+@media(min-width:980px){body:has(#accountSyncStatus) .grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}}
+.review-track.introduction{background:color-mix(in srgb,var(--intro-accent) 14%,var(--app-surface))!important;color:var(--intro-accent)!important;border:1px solid color-mix(in srgb,var(--intro-accent) 30%,var(--app-line))!important}
+.review-track.excel{background:color-mix(in srgb,var(--excel-accent) 12%,var(--app-surface))!important;color:var(--excel-accent)!important}
+.review-track.sql{background:color-mix(in srgb,var(--sql-accent) 12%,var(--app-surface))!important;color:var(--sql-accent)!important}
+.review-track.powerbi{background:color-mix(in srgb,var(--pbi-accent) 13%,var(--app-surface))!important;color:var(--pbi-accent)!important}

@@ -35,3 +35,22 @@ assert(!read('vercel.json').includes('crons'),'No scheduled grader');
 assert(!learner.toLowerCase().includes('ai review provider'),'Learners are not sent to an AI grader');
 assert(read('OWNER_SETUP.sql').includes('00000000-0000-0000-0000-000000000000'),'Owner UID setup instructions');
 console.log('PASS manual grading: private reviewer gate, searchable inbox, photo/PDF/text/XLSX previews, protected score publication, no AI grader or cron');
+
+// Instructor-only learner progress monitor.
+const progressPage=read('progress.html'),progressJs=read('assets/progress-admin.js');
+for(const id of ['progressGate','progressApp','statLearners','statTracks','statCompleted','statReview','progressSearch','progressCourse','progressStatus','progressBody','learnerDetail','weekGrid'])assert(progressPage.includes(`id="${id}"`),id);
+assert(read('account.html').includes('href="progress.html"'),'Instructor workspace links to learner progress');
+assert(owner.includes('href="progress.html"'),'Review desk links to learner progress');
+assert(progressJs.includes(".from('capstone_reviewers')"),'Progress page checks instructor allowlist');
+assert(progressJs.includes("schema('api').rpc('instructor_progress_overview'"),'Progress overview uses protected RPC');
+assert(progressJs.includes("schema('api').rpc('instructor_progress_detail'"),'Week detail uses protected RPC');
+assert(db.includes('learning_private.instructor_progress_overview')&&db.includes('api.instructor_progress_overview'),'Protected instructor overview RPC');
+assert(db.includes('learning_private.instructor_progress_detail')&&db.includes('api.instructor_progress_detail'),'Protected week detail RPC');
+assert(db.includes("Only the authorised instructor can view learner progress"),'Database rechecks instructor identity');
+assert(db.includes('join auth.users u on u.id=a.user_id'),'Progress report identifies learning users only');
+assert(progressPage.includes('<option value="introduction">Introduction</option>'),'Instructor filter includes Introduction');
+assert(progressJs.includes("introduction:'Introduction'")&&progressJs.includes('introduction:8'),'Instructor dashboard understands 8-lesson Introduction');
+assert(db.includes("p_course_slug not in ('introduction','excel','sql','powerbi')"),'Instructor detail accepts Introduction');
+for(const p of ['index.html','account.html','auth.html','capstone.html','progress.html','reviewer.html','reference.html','tutor.html','verify.html','courses/introduction.html','courses/excel.html','courses/sql.html','courses/powerbi.html']){const html=read(p);assert(html.includes('theme-polish.css'),`Unified theme CSS ${p}`);assert(html.includes('dalp-theme'),`Early theme init ${p}`)}
+console.log('PASS instructor progress: private allowlist, Introduction + specialist filters, aggregate progress, lesson/week drill-down');
+console.log('PASS unified light/dark theme layer across learner, instructor, course and utility pages');

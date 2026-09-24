@@ -1,9 +1,9 @@
 {
   "name": "data-analysis-learning-path",
-  "version": "3.0.0",
+  "version": "3.2.0",
   "private": true,
   "type": "module",
-  "description": "Modern learning portal with private owner-graded capstones",
+  "description": "Modern learning portal with private instructor progress tracking and owner-graded capstones",
   "engines": {
     "node": ">=20"
   },
@@ -11,6 +11,6 @@
     "test": "node tests/smoke.mjs && node tests/modern.mjs"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.57.0"
+    "@supabase/supabase-js": "2.57.0"
   }
 }
