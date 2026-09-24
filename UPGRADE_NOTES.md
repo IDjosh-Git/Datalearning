@@ -20,3 +20,12 @@
 5. To migrate old Introduction progress from a phone, open the upgraded Introduction page on that phone while signed into the learner account. Then open the same account on the laptop.
 
 Anonymous/local progress cannot automatically move between devices until the learner signs in and the device containing that local progress syncs it to the account.
+
+## 3.3.0 — cross-device recovery and authentication redesign
+
+- Fixed a migration gap that could leave Introduction checkmarks only in a phone browser instead of Supabase.
+- Sign-in now waits for a one-time recovery pass that uploads completed legacy units from the current device before redirecting.
+- Recovery only promotes completed legacy units; it does not let stale local data erase newer cloud completions.
+- All local CSS/JavaScript references now carry a release version so phones and laptops do not continue using stale cached sync/theme code after redeployment.
+- Rebuilt the sign-in/create-account page with the same mature wine/slate visual system, responsive light/dark modes, clearer account tabs and a visible cloud-recovery explanation.
+- Supabase remains the shared source of truth after recovery. Use the same production site URL and the same learner account on every device.
