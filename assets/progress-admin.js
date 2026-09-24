@@ -19,7 +19,6 @@
  }
  const statusLabel=s=>({completed:'Completed',awaiting_review:'Awaiting review',revision:'Revision requested',ready:'Ready for capstone',inactive:'Inactive 14+ days',in_progress:'In progress'}[s]||s);
  const capstoneLabel=s=>({submitted:'Awaiting review',processing:'Awaiting review',review_error:'Awaiting review',needs_manual_review:'Awaiting review',approved:'Passed',needs_revision:'Revision requested'}[s]||'Not submitted');
- function debounce(fn,ms){let t;return (...a)=>{clearTimeout(t);t=setTimeout(()=>fn(...a),ms)}}
  async function init(){
    if(!window.ZAH_DB?.configured||!db()){gate('This site is not connected to Supabase. Configure the project and run the latest supabase_setup.sql.','error');return}
    try{
@@ -28,7 +27,7 @@
      const {data:owner,error:ownerError}=await db().from('capstone_reviewers').select('user_id').eq('user_id',data.user.id).maybeSingle();if(ownerError)throw ownerError;
      if(!owner){gate('Access restricted. This account is not on the instructor allowlist.','warning');return}
      el('progressGate').hidden=true;el('progressApp').hidden=false;
-     el('progressSearch').addEventListener('input',debounce(applyFilters,180));
+     el('progressLearner').addEventListener('change',applyFilters);
      el('progressCourse').addEventListener('change',applyFilters);el('progressStatus').addEventListener('change',applyFilters);
      el('refreshProgress').onclick=loadOverview;el('closeDetail').onclick=()=>{el('learnerDetail').hidden=true;selected=null};
      await loadOverview();
@@ -36,10 +35,10 @@
  }
  async function loadOverview(){
    el('progressBody').innerHTML='<tr><td colspan="10" class="ip-empty">Loading learner progress…</td></tr>';
-   const {data,error}=await db().schema('api').rpc('instructor_progress_overview');
-   if(error){el('progressBody').innerHTML='<tr><td colspan="10" class="ip-empty">Progress report unavailable: '+esc(error.message)+'. Run the latest supabase_setup.sql.</td></tr>';return}
+   const {data,error}=await db().rpc('instructor_progress_overview');
+   if(error){el('progressBody').innerHTML='<tr><td colspan="10" class="ip-empty"><strong>Progress report unavailable.</strong><br>'+esc(error.message)+'</td></tr>';return}
    rows=(data||[]).map(r=>({...r,completed_weeks:Number(r.completed_weeks||0),progress_percent:Number(r.progress_percent||0),quizzes_taken:Number(r.quizzes_taken||0),quiz_average:r.quizzes_taken?Number(r.quiz_average||0):null}));
-   paintStats();applyFilters();
+   populateLearners();paintStats();applyFilters();
  }
  function paintStats(){
    el('statLearners').textContent=new Set(rows.map(r=>r.learner_user_id)).size;
@@ -47,9 +46,17 @@
    el('statCompleted').textContent=rows.filter(r=>rowStatus(r)==='completed').length;
    el('statReview').textContent=rows.filter(r=>PENDING.includes(r.capstone_status)).length;
  }
+ function populateLearners(){
+   const select=el('progressLearner'),current=select.value;
+   const learners=[...new Map(rows.map(r=>[r.learner_user_id,{id:r.learner_user_id,name:r.learner_name||'Learner'}])).values()]
+     .sort((a,b)=>a.name.localeCompare(b.name,undefined,{sensitivity:'base'}));
+   select.replaceChildren(new Option('All learners',''));
+   for(const learner of learners) select.add(new Option(learner.name,learner.id));
+   if(learners.some(l=>l.id===current)) select.value=current;
+ }
  function applyFilters(){
-   const q=el('progressSearch').value.trim().toLowerCase(),course=el('progressCourse').value,status=el('progressStatus').value;
-   filtered=rows.filter(r=>(!q||String(r.learner_name||'').toLowerCase().includes(q)||String(r.learner_email||'').toLowerCase().includes(q))&&(!course||r.course_slug===course)&&(status==='all'||rowStatus(r)===status));
+   const learner=el('progressLearner').value,course=el('progressCourse').value,status=el('progressStatus').value;
+   filtered=rows.filter(r=>(!learner||r.learner_user_id===learner)&&(!course||r.course_slug===course)&&(status==='all'||rowStatus(r)===status));
    render();
  }
  function render(){
@@ -68,7 +75,7 @@
    selected=r;el('learnerDetail').hidden=false;el('detailCourse').textContent=(TRACKS[r.course_slug]||r.course_slug).toUpperCase();el('detailCourse').className='review-track '+r.course_slug;el('detailLearner').textContent=r.learner_name||'Learner';el('detailEmail').textContent=r.learner_email||'';const total=UNITS[r.course_slug]||10;el('detailWeeks').textContent=r.completed_weeks+'/'+total;el('detailQuizAvg').textContent=r.course_slug==='introduction'?'Not tracked':(r.quiz_average==null?'—':r.quiz_average+'%');el('detailCapstone').textContent=r.course_slug==='introduction'?'Not required':capstoneLabel(r.capstone_status);el('detailCertificate').textContent=r.course_slug==='introduction'?'Not required':(r.certificate_id?'Issued':'Not issued');
    const review=el('detailReviewLink');review.hidden=r.course_slug==='introduction'||!PENDING.includes(r.capstone_status);review.href='reviewer.html';
    const grid=el('weekGrid');grid.innerHTML='<div class="ip-empty">Loading weekly detail…</div>';el('learnerDetail').scrollIntoView({behavior:'smooth',block:'start'});
-   const {data,error}=await db().schema('api').rpc('instructor_progress_detail',{p_user_id:r.learner_user_id,p_course_slug:r.course_slug});
+   const {data,error}=await db().rpc('instructor_progress_detail',{p_user_id:r.learner_user_id,p_course_slug:r.course_slug});
    if(selected!==r)return;if(error){grid.innerHTML='<div class="ip-empty">Could not load weekly detail: '+esc(error.message)+'</div>';return}
    grid.replaceChildren();for(const w of data||[]){const card=document.createElement('article');card.className='ip-week'+(w.completed?' done':'');card.innerHTML='<strong>'+(r.course_slug==='introduction'?'Lesson ':'Week ')+Number(w.week_no)+'</strong><span class="week-state">'+(w.completed?'✓ Completed':'○ Not complete')+'</span><small>'+(r.course_slug==='introduction'?'Foundation lesson':('Quiz: '+(w.quiz_percentage==null?'Not submitted':Number(w.quiz_percentage)+'%')))+'</small>'+(w.completed_at?'<small>Completed '+esc(date(w.completed_at))+'</small>':'');grid.append(card)}
  }

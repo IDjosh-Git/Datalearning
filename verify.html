@@ -18,9 +18,9 @@ h1{margin:0 0 7px;color:var(--navy-dark);font-size:34px}p{color:var(--muted)}
 .btn{display:inline-flex;margin-top:20px;background:var(--navy);color:#fff;text-decoration:none;padding:11px 15px;border-radius:11px;font-weight:800}
 @media(max-width:600px){.grid{grid-template-columns:1fr}.k{border-bottom:0;padding-bottom:2px}.v{padding-top:2px}}
 </style>
-<link rel="stylesheet" href="assets/brand-overrides.css?v=20260924.3">
-<link rel="stylesheet" href="assets/responsive-polish.css?v=20260924.3">
-<link rel="icon" type="image/svg+xml" href="assets/da-logo.svg"><link rel="stylesheet" href="assets/account-refresh.css?v=20260924.3"><link rel="stylesheet" href="assets/modern.css?v=20260924.3"><link rel="stylesheet" href="assets/theme-polish.css?v=20260924.3"></head>
+<link rel="stylesheet" href="assets/brand-overrides.css?v=20260924.4">
+<link rel="stylesheet" href="assets/responsive-polish.css?v=20260924.4">
+<link rel="icon" type="image/svg+xml" href="assets/da-logo.svg"><link rel="stylesheet" href="assets/account-refresh.css?v=20260924.4"><link rel="stylesheet" href="assets/modern.css?v=20260924.4"><link rel="stylesheet" href="assets/theme-polish.css?v=20260924.4"></head>
 <body>
 <div class="wrap">
  <div class="brand verify-brand-shell"><img class="verify-brand-logo" src="assets/da-logo.svg" alt="Data Analysis Learning Path logo"><div class="brand-company-name"><strong>Data Analysis Learning Path</strong><span>Certificate Verification</span></div></div>
@@ -42,8 +42,8 @@ h1{margin:0 0 7px;color:var(--navy-dark);font-size:34px}p{color:var(--muted)}
  </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0"></script>
-<script src="assets/supabase-config.js?v=20260924.3"></script>
-<script src="assets/supabase-client.js?v=20260924.3"></script>
+<script src="assets/supabase-config.js?v=20260924.4"></script>
+<script src="assets/supabase-client.js?v=20260924.4"></script>
 <script>
 function decode64(s){s=s.replace(/-/g,'+').replace(/_/g,'/');while(s.length%4)s+='=';return decodeURIComponent(escape(atob(s)))}
 (async()=>{
@@ -59,7 +59,6 @@ function decode64(s){s=s.replace(/-/g,'+').replace(/_/g,'/');while(s.length%4)s+
    if(!certId) throw Error('No certificate ID was provided.');
 
    const {data,error}=await window.ZAH_DB.client
-     .schema('api')
      .rpc('verify_certificate',{p_certificate_id:certId});
 
    if(error) throw error;
@@ -75,7 +74,7 @@ function decode64(s){s=s.replace(/-/g,'+').replace(/_/g,'/');while(s.length%4)s+
    document.getElementById('date').textContent=new Date(row.completion_date+'T00:00:00').toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric'});
    document.getElementById('issuer').textContent='Data Analysis Learning Path';
    document.getElementById('integrity').textContent='Database record confirmed';
-   const {data:capScore,error:scoreError}=await window.ZAH_DB.client.schema('api').rpc('verify_capstone',{p_certificate_id:certId});
+   const {data:capScore,error:scoreError}=await window.ZAH_DB.client.rpc('verify_capstone',{p_certificate_id:certId});
    if(!scoreError&&capScore?.[0]?.capstone_score!=null){document.getElementById('scoreLabel').style.display='block';document.getElementById('scoreValue').style.display='block';document.getElementById('scoreValue').textContent=capScore[0].capstone_score+' / 100 (assessed capstone)'}
  }catch(e){
    st.className='status bad';
@@ -83,4 +82,4 @@ function decode64(s){s=s.replace(/-/g,'+').replace(/_/g,'/');while(s.length%4)s+
  }
 })();
 </script>
-<script src="assets/modern.js?v=20260924.3"></script></body></html>
+<script src="assets/modern.js?v=20260924.4"></script></body></html>

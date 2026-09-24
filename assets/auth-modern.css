@@ -23,3 +23,15 @@
 html[data-theme="dark"] .auth-tab.active{box-shadow:0 3px 12px rgba(0,0,0,.25)!important}.auth-page .lp-theme-btn{position:static!important;margin:0!important;background:var(--app-surface)!important;color:var(--app-text)!important;border-color:var(--app-line)!important}
 @media(max-width:860px){.auth-layout{grid-template-columns:1fr}.auth-story{min-height:auto;padding:34px}.auth-story h1{font-size:38px}.auth-story-foot{display:none}.auth-forms{padding:32px}.auth-benefits{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.auth-shell{width:min(100% - 20px,1120px);padding-top:16px}.auth-topbar{margin-bottom:16px}.auth-wordmark span{display:none}.auth-back span{display:none}.auth-layout{border-radius:20px}.auth-story{padding:27px 23px}.auth-story h1{font-size:32px}.auth-story>div>p{font-size:12px}.auth-benefits{grid-template-columns:1fr}.auth-forms{padding:26px 20px}.auth-heading h2{font-size:24px}}
+
+/* V3.4 visual correction: consistent auth treatment on desktop, tablet and phone. */
+.auth-top-actions .lp-theme-btn{height:42px;min-width:42px;padding:0 11px!important;border-radius:11px!important;display:inline-flex!important;align-items:center;justify-content:center;gap:7px;box-shadow:none!important}
+.auth-layout{background:var(--app-surface)!important}
+.auth-story{background:radial-gradient(circle at 88% 12%,rgba(213,143,177,.20),transparent 30%),linear-gradient(145deg,#172231 0%,#223348 56%,#5f3249 118%)!important}
+html[data-theme="dark"] .auth-story{background:radial-gradient(circle at 88% 12%,rgba(209,141,172,.16),transparent 30%),linear-gradient(145deg,#0b121d 0%,#142235 58%,#432637 120%)!important}
+.auth-forms{border-left:1px solid var(--app-line)}
+.auth-field input:hover{border-color:color-mix(in srgb,var(--app-brand) 38%,var(--app-line-strong))!important}
+.auth-back:hover{border-color:color-mix(in srgb,var(--app-brand) 35%,var(--app-line));background:var(--app-surface-2)}
+@media(max-width:860px){.auth-forms{border-left:0;border-top:1px solid var(--app-line)}.auth-story{min-height:0!important}.auth-layout{box-shadow:var(--app-shadow-soft)}}
+@media(max-width:600px){.auth-top-actions{gap:7px}.auth-top-actions .lp-theme-btn{width:42px;min-width:42px;padding:0!important}.auth-top-actions .theme-label{display:none}.auth-wordmark img{width:40px;height:40px}.auth-story{padding:24px 20px!important}.auth-story h1{font-size:30px!important;max-width:320px}.auth-benefit{padding:12px}.auth-forms{padding:24px 18px!important}.auth-field input,.auth-submit{height:48px}.auth-tabs{margin-bottom:20px}}
+@media(max-width:390px){.auth-shell{width:min(100% - 14px,1120px)}.auth-story{padding:21px 17px!important}.auth-forms{padding:22px 15px!important}.auth-heading h2{font-size:23px!important}.auth-kicker{font-size:9px}}

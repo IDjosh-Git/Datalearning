@@ -38,3 +38,7 @@ The 8-lesson Introduction path is now stored in `course_progress` when the learn
 ## Instructor learner progress
 
 Authorised reviewers can open `progress.html` to see Introduction, Excel, SQL and Power BI progress. The dashboard is protected by the same `capstone_reviewers` allowlist as the Review Desk.
+
+
+### V3.4 important fix
+The instructor dashboard no longer requires Supabase to expose a custom `api` schema. Run the included `supabase_setup.sql` (safe to rerun), deploy all files together, then hard-refresh the deployed site. Learner Progress includes a learner-name dropdown and uses the shared cloud progress stored in `course_progress`.

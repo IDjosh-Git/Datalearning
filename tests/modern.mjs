@@ -17,7 +17,7 @@ assert(learner.includes('Photos or screenshots preferred'),'Photo preference is 
 assert(learner.includes('capstone-evidence')===false,'Storage references remain in JS, not markup');
 assert(owner.includes('exceljs@4.4.0'),'XLSX in-page preview');
 const ownerJs=read('assets/reviewer.js');
-for(const term of ['createSignedUrl','download(f.path)','new window.ExcelJS.Workbook',"schema('api').rpc('submit_capstone_review'",'window.confirm','published_score'])assert(ownerJs.includes(term),term);
+for(const term of ['createSignedUrl','download(f.path)','new window.ExcelJS.Workbook',"db().rpc('submit_capstone_review'",'window.confirm','published_score'])assert(ownerJs.includes(term),term);
 assert(ownerJs.includes(".from('capstone_reviewers')"),'Owner login allowlist enforced');
 assert(ownerJs.includes('PENDING'),'Only pending submissions may be scored');
 assert(read('account.html').includes('id="instructorAccess" hidden'),'Owner-only navigation hidden by default');
@@ -27,7 +27,7 @@ assert(db.includes('user_id=(select auth.uid())'),'Learner isolation');
 assert(db.includes("s.status not in ('submitted','processing','review_error','needs_manual_review')"),'No duplicate publication');
 assert(db.includes("total>=70")&&db.includes('insert into public.certificates'),'Passing certificate issued atomically');
 assert(db.includes('revoke insert,update,delete on public.certificates from authenticated'),'No browser certificate forgery');
-assert(db.includes('learning_private.publish_capstone_review')&&db.includes('api.submit_capstone_review'),'Protected grading RPC');
+assert(db.includes('learning_private.publish_capstone_review')&&db.includes('public.submit_capstone_review'),'Protected grading RPC');
 assert(db.includes("not exists(\n  select 1 from public.capstone_reviewers"),'Database checks owner at grading time');
 assert(!db.includes('if now() < s.review_due_at'),'Five-day wait does not delay publication');
 assert(!fs.existsSync(path.join(root,'api/review-capstones.js')),'AI grading endpoint removed');
@@ -38,19 +38,22 @@ console.log('PASS manual grading: private reviewer gate, searchable inbox, photo
 
 // Instructor-only learner progress monitor.
 const progressPage=read('progress.html'),progressJs=read('assets/progress-admin.js');
-for(const id of ['progressGate','progressApp','statLearners','statTracks','statCompleted','statReview','progressSearch','progressCourse','progressStatus','progressBody','learnerDetail','weekGrid'])assert(progressPage.includes(`id="${id}"`),id);
+for(const id of ['progressGate','progressApp','statLearners','statTracks','statCompleted','statReview','progressLearner','progressCourse','progressStatus','progressBody','learnerDetail','weekGrid'])assert(progressPage.includes(`id="${id}"`),id);
 assert(read('account.html').includes('href="progress.html"'),'Instructor workspace links to learner progress');
 assert(owner.includes('href="progress.html"'),'Review desk links to learner progress');
 assert(progressJs.includes(".from('capstone_reviewers')"),'Progress page checks instructor allowlist');
-assert(progressJs.includes("schema('api').rpc('instructor_progress_overview'"),'Progress overview uses protected RPC');
-assert(progressJs.includes("schema('api').rpc('instructor_progress_detail'"),'Week detail uses protected RPC');
-assert(db.includes('learning_private.instructor_progress_overview')&&db.includes('api.instructor_progress_overview'),'Protected instructor overview RPC');
-assert(db.includes('learning_private.instructor_progress_detail')&&db.includes('api.instructor_progress_detail'),'Protected week detail RPC');
+assert(progressJs.includes("db().rpc('instructor_progress_overview'"),'Progress overview uses protected public RPC');
+assert(progressJs.includes("db().rpc('instructor_progress_detail'"),'Week detail uses protected public RPC');
+assert(db.includes('learning_private.instructor_progress_overview')&&db.includes('public.instructor_progress_overview'),'Protected instructor overview RPC');
+assert(db.includes('learning_private.instructor_progress_detail')&&db.includes('public.instructor_progress_detail'),'Protected week detail RPC');
 assert(db.includes("Only the authorised instructor can view learner progress"),'Database rechecks instructor identity');
 assert(db.includes('join auth.users u on u.id=a.user_id'),'Progress report identifies learning users only');
 assert(progressPage.includes('<option value="introduction">Introduction</option>'),'Instructor filter includes Introduction');
+assert(progressPage.includes('id="progressLearner"')&&!progressPage.includes('id="progressSearch"'),'Learner filter is a name dropdown');
+assert(progressJs.includes("new Option(learner.name,learner.id)"),'Learner dropdown is populated by name');
+assert(!progressJs.includes("schema('api')"),'No custom API schema dependency remains');
 assert(progressJs.includes("introduction:'Introduction'")&&progressJs.includes('introduction:8'),'Instructor dashboard understands 8-lesson Introduction');
 assert(db.includes("p_course_slug not in ('introduction','excel','sql','powerbi')"),'Instructor detail accepts Introduction');
 for(const p of ['index.html','account.html','auth.html','capstone.html','progress.html','reviewer.html','reference.html','tutor.html','verify.html','courses/introduction.html','courses/excel.html','courses/sql.html','courses/powerbi.html']){const html=read(p);assert(html.includes('theme-polish.css'),`Unified theme CSS ${p}`);assert(html.includes('dalp-theme'),`Early theme init ${p}`)}
-console.log('PASS instructor progress: private allowlist, Introduction + specialist filters, aggregate progress, lesson/week drill-down');
+console.log('PASS instructor progress: public RPC wrapper, private allowlist, learner-name dropdown, aggregate progress, lesson/week drill-down');
 console.log('PASS unified light/dark theme layer across learner, instructor, course and utility pages');

@@ -69,8 +69,8 @@ create policy certificates_insert_when_complete on public.certificates for inser
  (select count(*) from public.course_progress p where p.user_id=(select auth.uid()) and p.course_slug=certificates.course_slug and p.completed=true)>=10
 );
 -- Public verification reads only limited fields for an exact, active record ID.
--- Keep elevated lookup logic in an UNEXPOSED schema; the exposed API wrapper is
--- SECURITY INVOKER. In Supabase Data API expose 'api', never 'learning_private'.
+-- Keep elevated lookup logic in an UNEXPOSED schema. Public SECURITY INVOKER
+-- wrappers are used because Supabase exposes the public schema by default.
 create schema if not exists learning_private;
 revoke all on schema learning_private from public;
 grant usage on schema learning_private to anon,authenticated;
@@ -81,14 +81,12 @@ as $$ select c.certificate_id,c.learner_name,c.course_title,c.completion_date,c.
   from public.certificates c where c.certificate_id=p_certificate_id and c.status='active' limit 1; $$;
 revoke all on function learning_private.lookup_completion_record(text) from public;
 grant execute on function learning_private.lookup_completion_record(text) to anon,authenticated;
-create schema if not exists api;
-grant usage on schema api to anon,authenticated;
-create or replace function api.verify_certificate(p_certificate_id text)
+create or replace function public.verify_certificate(p_certificate_id text)
 returns table(certificate_id text,learner_name text,course_title text,completion_date date,status text,issued_at timestamptz)
 language sql stable security invoker set search_path=''
 as $$ select * from learning_private.lookup_completion_record(p_certificate_id); $$;
-revoke all on function api.verify_certificate(text) from public;
-grant execute on function api.verify_certificate(text) to anon,authenticated;
+revoke all on function public.verify_certificate(text) from public;
+grant execute on function public.verify_certificate(text) to anon,authenticated;
 
 -- ======================================================================
 -- V3: Owner-reviewed capstones. No AI assessor, cron or delayed publication.
@@ -286,10 +284,10 @@ end $$;
 revoke all on function learning_private.publish_capstone_review(uuid,jsonb,text,text[],text[],text[],text) from public,anon,authenticated;
 grant execute on function learning_private.publish_capstone_review(uuid,jsonb,text,text[],text[],text[],text) to authenticated;
 
--- Expose only a thin, invoker-rights RPC; it delegates to the protected
+-- Expose only a thin public, invoker-rights RPC; it delegates to the protected
 -- function in a NON-exposed schema, which checks the logged-in user against
 -- the reviewer allowlist before touching any learner data.
-create or replace function api.submit_capstone_review(
+create or replace function public.submit_capstone_review(
  p_submission_id uuid,p_scores jsonb,p_summary text,
  p_strengths text[],p_improvements text[],p_next_steps text[],p_evidence_notes text default null
 )
@@ -299,8 +297,8 @@ language sql security invoker set search_path = '' as $$
   p_submission_id,p_scores,p_summary,p_strengths,p_improvements,p_next_steps,p_evidence_notes
  );
 $$;
-revoke all on function api.submit_capstone_review(uuid,jsonb,text,text[],text[],text[],text) from public,anon,authenticated;
-grant execute on function api.submit_capstone_review(uuid,jsonb,text,text[],text[],text[],text) to authenticated;
+revoke all on function public.submit_capstone_review(uuid,jsonb,text,text[],text[],text[],text) from public,anon,authenticated;
+grant execute on function public.submit_capstone_review(uuid,jsonb,text,text[],text[],text[],text) to authenticated;
 
 -- Limited public certificate verification by exact certificate ID only.
 create or replace function learning_private.lookup_capstone_score(p_certificate_id text)
@@ -313,13 +311,13 @@ language sql stable security definer set search_path = '' as $$
 $$;
 revoke all on function learning_private.lookup_capstone_score(text) from public;
 grant execute on function learning_private.lookup_capstone_score(text) to anon,authenticated;
-create or replace function api.verify_capstone(p_certificate_id text)
+create or replace function public.verify_capstone(p_certificate_id text)
 returns table(capstone_score integer,reviewed_at timestamptz)
 language sql stable security invoker set search_path = '' as $$
  select * from learning_private.lookup_capstone_score(p_certificate_id);
 $$;
-revoke all on function api.verify_capstone(text) from public;
-grant execute on function api.verify_capstone(text) to anon,authenticated;
+revoke all on function public.verify_capstone(text) from public;
+grant execute on function public.verify_capstone(text) to anon,authenticated;
 
 
 -- V5: Introduction progress is now cloud-synced across devices.
@@ -379,6 +377,7 @@ begin
   coalesce(
    (select cs.learner_name from public.capstone_submissions cs where cs.user_id=a.user_id order by cs.created_at desc limit 1),
    (select c.learner_name from public.certificates c where c.user_id=a.user_id order by c.issued_at desc limit 1),
+   nullif(btrim(coalesce(u.raw_user_meta_data->>'full_name','')),''),
    nullif(split_part(coalesce(u.email,''),'@',1),''),
    'Learner'
   )::text as learner_name,
@@ -407,7 +406,7 @@ end $$;
 revoke all on function learning_private.instructor_progress_overview() from public,anon,authenticated;
 grant execute on function learning_private.instructor_progress_overview() to authenticated;
 
-create or replace function api.instructor_progress_overview()
+create or replace function public.instructor_progress_overview()
 returns table(
  learner_user_id uuid,
  learner_name text,
@@ -425,8 +424,8 @@ returns table(
 language sql stable security invoker set search_path = '' as $$
  select * from learning_private.instructor_progress_overview();
 $$;
-revoke all on function api.instructor_progress_overview() from public,anon,authenticated;
-grant execute on function api.instructor_progress_overview() to authenticated;
+revoke all on function public.instructor_progress_overview() from public,anon,authenticated;
+grant execute on function public.instructor_progress_overview() to authenticated;
 
 create or replace function learning_private.instructor_progress_detail(p_user_id uuid,p_course_slug text)
 returns table(
@@ -476,7 +475,7 @@ end $$;
 revoke all on function learning_private.instructor_progress_detail(uuid,text) from public,anon,authenticated;
 grant execute on function learning_private.instructor_progress_detail(uuid,text) to authenticated;
 
-create or replace function api.instructor_progress_detail(p_user_id uuid,p_course_slug text)
+create or replace function public.instructor_progress_detail(p_user_id uuid,p_course_slug text)
 returns table(
  week_no integer,
  completed boolean,
@@ -489,5 +488,9 @@ returns table(
 language sql stable security invoker set search_path = '' as $$
  select * from learning_private.instructor_progress_detail(p_user_id,p_course_slug);
 $$;
-revoke all on function api.instructor_progress_detail(uuid,text) from public,anon,authenticated;
-grant execute on function api.instructor_progress_detail(uuid,text) to authenticated;
+revoke all on function public.instructor_progress_detail(uuid,text) from public,anon,authenticated;
+grant execute on function public.instructor_progress_detail(uuid,text) to authenticated;
+
+
+-- Refresh Supabase Data API function cache after a rerun.
+notify pgrst, 'reload schema';

@@ -29,3 +29,11 @@ Anonymous/local progress cannot automatically move between devices until the lea
 - All local CSS/JavaScript references now carry a release version so phones and laptops do not continue using stale cached sync/theme code after redeployment.
 - Rebuilt the sign-in/create-account page with the same mature wine/slate visual system, responsive light/dark modes, clearer account tabs and a visible cloud-recovery explanation.
 - Supabase remains the shared source of truth after recovery. Use the same production site URL and the same learner account on every device.
+
+
+## V3.4 — Instructor progress API + learner dropdown + theme corrections
+- Instructor progress, capstone publishing and certificate verification now use public RPC wrappers; no custom `api` schema exposure is required.
+- Fixed a duplicate Introduction constraint-drop statement in the SQL setup.
+- Learner Progress now uses a dropdown of learner names rather than free-text name/email search.
+- Auth theme toggle is placed correctly in the sign-in header.
+- Added responsive colour/surface corrections and cache version `20260924.4`.
