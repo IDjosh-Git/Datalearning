@@ -37,3 +37,10 @@ Anonymous/local progress cannot automatically move between devices until the lea
 - Learner Progress now uses a dropdown of learner names rather than free-text name/email search.
 - Auth theme toggle is placed correctly in the sign-in header.
 - Added responsive colour/surface corrections and cache version `20260924.4`.
+
+
+## v3.6 Learner Progress visibility
+- Every confirmed learner account now appears in the instructor Learner Progress dropdown, even before the learner completes a lesson, quiz, capstone, or certificate.
+- Learners with no learning activity are shown as **Not Started — 0%** on the Introduction path so the instructor can open their record immediately.
+- Instructor/reviewer accounts and unconfirmed email accounts remain excluded from learner reporting.
+- The detail view can now show the full incomplete lesson grid for a confirmed learner who has not started yet.

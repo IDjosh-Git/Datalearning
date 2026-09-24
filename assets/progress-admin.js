@@ -14,10 +14,11 @@
    if(r.capstone_status==='needs_revision')return 'revision';
    if(r.course_slug!=='introduction'&&Number(r.completed_weeks)>=10)return 'ready';
    if(r.course_slug==='introduction'&&Number(r.completed_weeks)>=8)return 'completed';
+   if(!r.last_activity&&Number(r.completed_weeks||0)===0&&Number(r.quizzes_taken||0)===0&&!r.capstone_status&&!r.certificate_id)return 'not_started';
    if(r.last_activity&&Date.now()-new Date(r.last_activity).getTime()>=14*86400000)return 'inactive';
    return 'in_progress';
  }
- const statusLabel=s=>({completed:'Completed',awaiting_review:'Awaiting review',revision:'Revision requested',ready:'Ready for capstone',inactive:'Inactive 14+ days',in_progress:'In progress'}[s]||s);
+ const statusLabel=s=>({completed:'Completed',awaiting_review:'Awaiting review',revision:'Revision requested',ready:'Ready for capstone',inactive:'Inactive 14+ days',not_started:'Not started',in_progress:'In progress'}[s]||s);
  const capstoneLabel=s=>({submitted:'Awaiting review',processing:'Awaiting review',review_error:'Awaiting review',needs_manual_review:'Awaiting review',approved:'Passed',needs_revision:'Revision requested'}[s]||'Not submitted');
  async function init(){
    if(!window.ZAH_DB?.configured||!db()){gate('This site is not connected to Supabase. Configure the project and run the latest supabase_setup.sql.','error');return}
@@ -42,7 +43,7 @@
  }
  function paintStats(){
    el('statLearners').textContent=new Set(rows.map(r=>r.learner_user_id)).size;
-   el('statTracks').textContent=rows.filter(r=>rowStatus(r)!=='completed').length;
+   el('statTracks').textContent=rows.filter(r=>!['completed','not_started'].includes(rowStatus(r))).length;
    el('statCompleted').textContent=rows.filter(r=>rowStatus(r)==='completed').length;
    el('statReview').textContent=rows.filter(r=>PENDING.includes(r.capstone_status)).length;
  }

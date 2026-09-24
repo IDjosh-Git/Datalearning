@@ -361,7 +361,14 @@ begin
  end if;
 
  return query
- with learning_activity as (
+ with eligible_learners as (
+  select u.id,u.email,u.raw_user_meta_data
+  from auth.users u
+  where u.email_confirmed_at is not null
+    and not exists(
+      select 1 from public.capstone_reviewers r where r.user_id=u.id
+    )
+ ), learning_activity as (
   select cp.user_id,cp.course_slug from public.course_progress cp
   union
   select qr.user_id,qr.course_slug from public.quiz_results qr
@@ -370,7 +377,15 @@ begin
   union
   select c.user_id,c.course_slug from public.certificates c
  ), active_tracks as (
-  select distinct la.user_id,la.course_slug from learning_activity la
+  select distinct la.user_id,la.course_slug
+  from learning_activity la
+  join eligible_learners el on el.id=la.user_id
+  union
+  select el.id,'introduction'::text
+  from eligible_learners el
+  where not exists(
+    select 1 from learning_activity la where la.user_id=el.id
+  )
  )
  select
   a.user_id as learner_user_id,
@@ -400,7 +415,7 @@ begin
     select max(c.issued_at) from public.certificates c where c.user_id=a.user_id and c.course_slug=a.course_slug
    ) x) as last_activity
  from active_tracks a
- join auth.users u on u.id=a.user_id
+ join eligible_learners u on u.id=a.user_id
  order by 2,4;
 end $$;
 revoke all on function learning_private.instructor_progress_overview() from public,anon,authenticated;
@@ -448,15 +463,15 @@ begin
   raise exception 'Invalid learner or course';
  end if;
  if not exists(
-  select 1 from public.course_progress cp where cp.user_id=p_user_id and cp.course_slug=p_course_slug
-  union all
-  select 1 from public.quiz_results qr where qr.user_id=p_user_id and qr.course_slug=p_course_slug
-  union all
-  select 1 from public.capstone_submissions cs where cs.user_id=p_user_id and cs.course_slug=p_course_slug
-  union all
-  select 1 from public.certificates c where c.user_id=p_user_id and c.course_slug=p_course_slug
+  select 1
+  from auth.users u
+  where u.id=p_user_id
+    and u.email_confirmed_at is not null
+    and not exists(
+      select 1 from public.capstone_reviewers r where r.user_id=u.id
+    )
  ) then
-  raise exception 'No learning activity found for this learner and course';
+  raise exception 'Learner account not found or not confirmed';
  end if;
  return query
  select

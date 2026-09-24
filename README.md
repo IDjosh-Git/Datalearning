@@ -42,3 +42,7 @@ Authorised reviewers can open `progress.html` to see Introduction, Excel, SQL an
 
 ### V3.4 important fix
 The instructor dashboard no longer requires Supabase to expose a custom `api` schema. Run the included `supabase_setup.sql` (safe to rerun), deploy all files together, then hard-refresh the deployed site. Learner Progress includes a learner-name dropdown and uses the shared cloud progress stored in `course_progress`.
+
+
+### Learner Progress visibility
+Confirmed learner accounts appear in the instructor dashboard immediately after registration/confirmation. Learners with no activity are labelled **Not Started — 0%** until they begin.

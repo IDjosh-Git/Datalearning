@@ -47,12 +47,14 @@ assert(progressJs.includes("db().rpc('instructor_progress_detail'"),'Week detail
 assert(db.includes('learning_private.instructor_progress_overview')&&db.includes('public.instructor_progress_overview'),'Protected instructor overview RPC');
 assert(db.includes('learning_private.instructor_progress_detail')&&db.includes('public.instructor_progress_detail'),'Protected week detail RPC');
 assert(db.includes("Only the authorised instructor can view learner progress"),'Database rechecks instructor identity');
-assert(db.includes('join auth.users u on u.id=a.user_id'),'Progress report identifies learning users only');
+assert(db.includes('with eligible_learners as')&&db.includes('u.email_confirmed_at is not null'),'Progress report includes confirmed learner accounts');
+assert(db.includes("select el.id,'introduction'::text")&&db.includes('where not exists('),'Confirmed learners with no activity get a Not Started row');
 assert(progressPage.includes('<option value="introduction">Introduction</option>'),'Instructor filter includes Introduction');
 assert(progressPage.includes('id="progressLearner"')&&!progressPage.includes('id="progressSearch"'),'Learner filter is a name dropdown');
 assert(progressJs.includes("new Option(learner.name,learner.id)"),'Learner dropdown is populated by name');
 assert(!progressJs.includes("schema('api')"),'No custom API schema dependency remains');
 assert(progressJs.includes("introduction:'Introduction'")&&progressJs.includes('introduction:8'),'Instructor dashboard understands 8-lesson Introduction');
+assert(progressJs.includes("return 'not_started'")&&progressPage.includes('value="not_started"'),'Instructor dashboard labels zero-activity learners Not Started');
 assert(db.includes("p_course_slug not in ('introduction','excel','sql','powerbi')"),'Instructor detail accepts Introduction');
 for(const p of ['index.html','account.html','auth.html','capstone.html','progress.html','reviewer.html','reference.html','tutor.html','verify.html','courses/introduction.html','courses/excel.html','courses/sql.html','courses/powerbi.html']){const html=read(p);assert(html.includes('theme-polish.css'),`Unified theme CSS ${p}`);assert(html.includes('dalp-theme'),`Early theme init ${p}`)}
 console.log('PASS instructor progress: public RPC wrapper, private allowlist, learner-name dropdown, aggregate progress, lesson/week drill-down');

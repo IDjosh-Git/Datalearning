@@ -13,7 +13,10 @@ if(!auth.includes('auth-modern.css?v=20260924.4')) throw new Error('Modern auth 
 const pages=['index.html','account.html','auth.html','capstone.html','progress.html','reference.html','reviewer.html','tutor.html','verify.html','courses/introduction.html','courses/excel.html','courses/sql.html','courses/powerbi.html'];
 for(const page of pages){
   const html=read(page);
-  if(!html.includes('theme-polish.css?v=20260924.4') && page!=='auth.html') throw new Error(`Theme layer not versioned on ${page}`);
-  if(/assets\/[A-Za-z0-9._-]+\.(css|js)(?!\?v=20260924\.4)/.test(html.replace(/https:\/\/[^\"']+/g,''))) throw new Error(`Unversioned local asset on ${page}`);
+  const v=page==='progress.html'?'20260924.6':'20260924.4';
+  if(!html.includes(`theme-polish.css?v=${v}`) && page!=='auth.html') throw new Error(`Theme layer not versioned on ${page}`);
+  const local=html.replace(/https:\/\/[^"']+/g,'');
+  const refs=[...local.matchAll(/assets\/[A-Za-z0-9._-]+\.(?:css|js)(?:\?v=([0-9.]+))?/g)];
+  if(refs.some(m=>m[1]!==v)) throw new Error(`Unversioned local asset on ${page}`);
 }
 console.log('PASS cross-device regression: forced legacy recovery after auth, cloud-first refresh, cache-busted app assets, redesigned light/dark sign-in');
