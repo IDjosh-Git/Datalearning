@@ -8,7 +8,7 @@
     "node": ">=20"
   },
   "scripts": {
-    "test": "node tests/smoke.mjs && node tests/modern.mjs && node tests/sync-regression.mjs"
+    "test": "node tests/smoke.mjs && node tests/modern.mjs && node tests/sync-regression.mjs && node tests/course-content.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.57.0"

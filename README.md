@@ -46,3 +46,17 @@ The instructor dashboard no longer requires Supabase to expose a custom `api` sc
 
 ### Learner Progress visibility
 Confirmed learner accounts appear in the instructor dashboard immediately after registration/confirmation. Learners with no activity are labelled **Not Started — 0%** until they begin.
+
+
+## October 2026: expanded teaching material and AI prompt library
+
+- **AI Integration** (`courses/ai.html`): 10 detailed weekly modules, three teaching blocks or equivalent worked sessions per week, applied AI labs, 50 formative quiz questions, privacy checks and an instructor-assessed capstone.
+- **Prompt library** (`prompt-library.html`): 300 searchable and copyable prompts across 20 categories, favorites in local browser storage and export of saved prompts to a text file. No external API key is needed for the library; prompts must be pasted into an approved tool.
+- **Excel, SQL and Power BI**: 10 new practical mastery tasks per track (30 total), each with a required submission and independent validation instructions, in addition to existing lessons, labs and 150 questions.
+- **Answer guide** (`downloads/WORKED_SOLUTIONS.md`): checked Excel/SQLite/Python/DAX examples and clear fictional retail benchmarks.
+- **Quiz cloud sync:** repaired the click handler for quiz buttons without HTML IDs.
+- **Database certificate validation:** `supabase_setup.sql` and `AI_COURSE_DATABASE_MIGRATION.sql` now support `DALP-AIA-YYYYMMDD-XXXXXXXXXXXX` IDs for verified AI course certificates. Existing historical IDs are unaffected.
+
+To upgrade an **existing** deployed Supabase database, run `AI_COURSE_DATABASE_MIGRATION.sql` in the Supabase SQL editor. For a **new** installation, run the complete `supabase_setup.sql` following the normal documented order and owner setup. Do not replace the existing database or its records.
+
+- **Offline copies:** `downloads/AI_PROMPT_LIBRARY_300.md` and `downloads/AI_ANALYTICS_GLOSSARY.md` provide portable references.

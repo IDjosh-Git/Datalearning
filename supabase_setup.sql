@@ -25,7 +25,7 @@ create table if not exists public.quiz_results (
  primary key(user_id,course_slug,week_no)
 );
 create table if not exists public.certificates (
- certificate_id text primary key check(certificate_id ~ '^(IJL-(EXL|PBI|SQL)-[0-9]{8}-[A-F0-9]{6}|DALP-(EXL|PBI|SQL)-[0-9]{8}-[A-F0-9]{12})$'),
+ certificate_id text primary key check(certificate_id ~ '^(IJL-(EXL|PBI|SQL)-[0-9]{8}-[A-F0-9]{6}|DALP-(EXL|PBI|SQL|AIA)-[0-9]{8}-[A-F0-9]{12})$'),
  user_id uuid not null references auth.users(id) on delete cascade,
  learner_name text not null,
  course_slug text not null check(course_slug in ('excel','sql','powerbi','ai')),
@@ -34,6 +34,23 @@ create table if not exists public.certificates (
  issued_at timestamptz not null default now(),
  status text not null default 'active' check(status in ('active','revoked'))
 );
+-- Upgrade existing databases: allow DALP-AIA certificates without weakening previous ID formats.
+DO $$ DECLARE c record; BEGIN
+ FOR c IN
+  SELECT conname FROM pg_constraint
+  WHERE conrelid='public.certificates'::regclass AND contype='c'
+    AND pg_get_constraintdef(oid) ILIKE '%certificate_id%'
+    AND pg_get_constraintdef(oid) ILIKE '%DALP%'
+ LOOP
+  EXECUTE format('ALTER TABLE public.certificates DROP CONSTRAINT %I', c.conname);
+ END LOOP;
+ IF NOT EXISTS (SELECT 1 FROM pg_constraint
+    WHERE conrelid='public.certificates'::regclass AND conname='certificates_certificate_id_valid') THEN
+  ALTER TABLE public.certificates ADD CONSTRAINT certificates_certificate_id_valid
+  CHECK (certificate_id ~ '^(IJL-(EXL|PBI|SQL)-[0-9]{8}-[A-F0-9]{6}|DALP-(EXL|PBI|SQL|AIA)-[0-9]{8}-[A-F0-9]{12})$');
+ END IF;
+END $$;
+
 create index if not exists course_progress_user_idx on public.course_progress(user_id);
 create index if not exists quiz_results_user_idx on public.quiz_results(user_id);
 create index if not exists certificates_user_idx on public.certificates(user_id);

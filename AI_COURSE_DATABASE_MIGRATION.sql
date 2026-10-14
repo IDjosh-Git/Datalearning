@@ -15,6 +15,24 @@ DO $$ DECLARE r record; BEGIN
  END LOOP;
 END $$;
 
+
+-- Upgrade existing databases: allow DALP-AIA certificates without weakening previous ID formats.
+DO $$ DECLARE c record; BEGIN
+ FOR c IN
+  SELECT conname FROM pg_constraint
+  WHERE conrelid='public.certificates'::regclass AND contype='c'
+    AND pg_get_constraintdef(oid) ILIKE '%certificate_id%'
+    AND pg_get_constraintdef(oid) ILIKE '%DALP%'
+ LOOP
+  EXECUTE format('ALTER TABLE public.certificates DROP CONSTRAINT %I', c.conname);
+ END LOOP;
+ IF NOT EXISTS (SELECT 1 FROM pg_constraint
+    WHERE conrelid='public.certificates'::regclass AND conname='certificates_certificate_id_valid') THEN
+  ALTER TABLE public.certificates ADD CONSTRAINT certificates_certificate_id_valid
+  CHECK (certificate_id ~ '^(IJL-(EXL|PBI|SQL)-[0-9]{8}-[A-F0-9]{6}|DALP-(EXL|PBI|SQL|AIA)-[0-9]{8}-[A-F0-9]{12})$');
+ END IF;
+END $$;
+
 -- Re-apply the authoritative instructor-only function definitions with AI slug mappings.
 create or replace function learning_private.publish_capstone_review(
  p_submission_id uuid,

@@ -5,7 +5,7 @@ import {fileURLToPath} from 'node:url';
 import handler from '../api/tutor.js';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=x=>fs.readFileSync(path.join(root,x),'utf8');
-const pages=['index.html','reference.html','tutor.html','auth.html','account.html','verify.html','progress.html','courses/excel.html','courses/sql.html','courses/powerbi.html'];
+const pages=['index.html','reference.html','tutor.html','auth.html','account.html','verify.html','progress.html','courses/excel.html','courses/sql.html','courses/powerbi.html','courses/ai.html','prompt-library.html'];
 for(const p of pages){assert(read(p).includes('Data Analysis Learning Path'),'Missing rebrand '+p);assert(!read(p).includes('zen-logo.png'),'Old missing logo '+p)}
 for(const p of ['courses/excel.html','courses/sql.html','courses/powerbi.html']){const s=read(p);assert.equal((s.match(/class="guided-lab"/g)||[]).length,10,`${p} labs`);assert.equal((s.match(/class="question"/g)||[]).length,50,`${p} quizzes`);assert.equal((s.match(/class="week searchable"/g)||[]).length,10,`${p} weeks`);assert(s.includes('course-refresh.css'));}
 const refs=JSON.parse(read('assets/reference-data.js').replace(/^window.IJ_REFERENCE=/,'').replace(/;\s*$/,''));assert.equal(refs.length,54);for(const r of refs){assert(r.title&&r.code&&r.watch&&r.meaning)}
@@ -25,11 +25,11 @@ try{r=await run(req('GET'));assert.equal(r.body.aiEnabled,true);r=await run(req(
 console.log('PASS Data Analysis Learning Path rebrand | 9 pages | 30 labs | 150 quiz questions | 54 references | practice CSV 360 orders');
 console.log('PASS Vercel AI GET/POST: unconfigured, configured/mock response, privacy, input validation, origin check');
 
-for (const c of ['excel','sql','powerbi']){ const t=read(`courses/${c}.html`); assert(t.includes(`../capstone.html?course=${c}`),'Capstone route '+c); assert(!t.includes("localStorage.setItem(store"),'No self-issued certificate '+c); assert(t.includes('modern.css'),'Course theme '+c); }
-assert(read('supabase_setup.sql').includes('DALP-(EXL|PBI|SQL)'),'New certificate schema');
+for (const c of ['excel','sql','powerbi','ai']){ const t=read(`courses/${c}.html`); assert(t.includes(`../capstone.html?course=${c}`),'Capstone route '+c); assert(!t.includes("localStorage.setItem(store"),'No self-issued certificate '+c); assert(t.includes(c==='ai'?'ai-course.css':'modern.css'),'Course theme '+c); }
+assert(read('supabase_setup.sql').includes('DALP-(EXL|PBI|SQL|AIA)'),'Four certificate code formats supported');
 assert(read('supabase_setup.sql').includes('learning_private.publish_capstone_review'),'Owner-only manual publishing');
 assert(!read('vercel.json').includes('crons'),'No automated assessment schedule');
-console.log('PASS manually reviewed capstone flow | 3 courses | verified completion database');
+console.log('PASS manually reviewed capstone flow | 4 courses | verified completion database');
 
 // Beginner course must remain separate from the three certificate-bearing tracks.
 const intro=read('courses/introduction.html');
@@ -47,7 +47,7 @@ for(const course of ['excel','sql','powerbi']){
 const introJs=read('assets/introduction.js');
 assert.equal((introJs.match(/\{q:'/g)||[]).length,12,'Twelve introductory questions');
 assert(introJs.includes('ZAHProgressCloud')&&introJs.includes("const slug = 'introduction'"), 'Intro syncs through the shared cloud progress engine');
-assert(read('supabase_setup.sql').includes("('introduction','excel','sql','powerbi')"),'Introduction allowed in course progress');
+assert(read('supabase_setup.sql').includes("('introduction','excel','sql','powerbi','ai')"),'Introduction and AI allowed in course progress');
 assert(read('index.html').includes('courses/introduction.html'));
 const kiosk=read('downloads/kiosk_week.csv').trim().split(/\r?\n/);
 assert.equal(kiosk.length,6,'five-row fictional kiosk CSV + header');

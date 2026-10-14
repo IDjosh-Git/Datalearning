@@ -26,3 +26,10 @@ This is a **fictional retail dataset** for learning, not real customer or financ
 - A completed-week checkbox is self-reported progress, not an externally accredited credential. QR completion-record verification is not a trusted central registry.
 
 For questions: esoterikjoshua@gmail.com.
+
+## Expanded full-course practice and AI prompts
+
+- **`WORKED_SOLUTIONS.md`** provides tested expected outcomes and starter formulas in Excel, SQLite, Python and DAX. Use them after attempting the exercise.
+- **`../prompt-library.html`** is the searchable collection of 300 AI-assisted analytics prompts in 20 topics. Learners can copy, save, filter and export prompts; they must customize the bracketed placeholders.
+- The standalone **AI Integration** course is `../courses/ai.html`: 10 weeks of detailed sessions, application laboratories, five-question weekly quizzes, practical deliverables and instructor-reviewed capstone.
+- All Excel, SQL and Power BI weeks now include independent mastery tasks and reconciliation expectations.

@@ -5,7 +5,7 @@ import {fileURLToPath} from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=x=>fs.readFileSync(path.join(root,x),'utf8');
 const page=read('index.html'),learner=read('capstone.html'),owner=read('reviewer.html'),db=read('supabase_setup.sql');
-for(const slug of ['excel','sql','powerbi']){
+for(const slug of ['excel','sql','powerbi','ai']){
  assert(page.includes(`data-track="${slug}"`));
  assert(learner.includes(`data-course="${slug}"`));
  assert(fs.existsSync(path.join(root,`assets/icon-${slug}.svg`)));
@@ -55,7 +55,7 @@ assert(progressJs.includes("new Option(learner.name,learner.id)"),'Learner dropd
 assert(!progressJs.includes("schema('api')"),'No custom API schema dependency remains');
 assert(progressJs.includes("introduction:'Introduction'")&&progressJs.includes('introduction:8'),'Instructor dashboard understands 8-lesson Introduction');
 assert(progressJs.includes("return 'not_started'")&&progressPage.includes('value="not_started"'),'Instructor dashboard labels zero-activity learners Not Started');
-assert(db.includes("p_course_slug not in ('introduction','excel','sql','powerbi')"),'Instructor detail accepts Introduction');
+assert(db.includes("p_course_slug not in ('introduction','excel','sql','powerbi','ai')"),'Instructor detail accepts Introduction and AI');
 for(const p of ['index.html','account.html','auth.html','capstone.html','progress.html','reviewer.html','reference.html','tutor.html','verify.html','courses/introduction.html','courses/excel.html','courses/sql.html','courses/powerbi.html']){const html=read(p);assert(html.includes('theme-polish.css'),`Unified theme CSS ${p}`);assert(html.includes('dalp-theme'),`Early theme init ${p}`)}
 console.log('PASS instructor progress: public RPC wrapper, private allowlist, learner-name dropdown, aggregate progress, lesson/week drill-down');
 console.log('PASS unified light/dark theme layer across learner, instructor, course and utility pages');

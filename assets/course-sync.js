@@ -151,8 +151,8 @@
   });
 
   document.addEventListener('click',e=>{
-    const t=e.target;
-    if(!t || !t.id) return;
+    const t=e.target?.closest?.('button');
+    if(!t) return;
 
 
     if(t.classList.contains('gradeBtn')){
