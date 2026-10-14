@@ -5,7 +5,8 @@
   const mapping={
     excel:{key:'excelRoadmapProgress'},
     sql:{key:'sqlRoadmapProgress'},
-    powerbi:{key:'powerbiRoadmapProgress'}
+    powerbi:{key:'powerbiRoadmapProgress'},
+    ai:{key:'aiRoadmapProgress'}
   };
 
   function paint(slug,progress){

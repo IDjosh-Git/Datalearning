@@ -4,7 +4,8 @@
     introduction:{ key:'dalpIntroductionProgressV1', title:'Introduction to Data Analysis', units:8, route:'courses/introduction.html' },
     excel:       { key:'excelRoadmapProgress', title:'Excel for Data Analysis', units:10, route:'courses/excel.html' },
     powerbi:     { key:'powerbiRoadmapProgress', title:'Power BI & DAX', units:10, route:'courses/powerbi.html' },
-    sql:         { key:'sqlRoadmapProgress', title:'SQL for Data Analysis', units:10, route:'courses/sql.html' }
+    sql:         { key:'sqlRoadmapProgress', title:'SQL for Data Analysis', units:10, route:'courses/sql.html' },
+    ai:          { key:'aiRoadmapProgress', title:'AI Integration in Data Analysis', units:10, route:'courses/ai.html' }
   };
 
   function safeLocalProgress(key){

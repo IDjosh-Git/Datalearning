@@ -4,7 +4,8 @@
     introduction: { key:'dalpIntroductionProgressV1', title:'Introduction to Data Analysis', units:8, unitLabel:'lessons' },
     excel:        { key:'excelRoadmapProgress', title:'Excel Data Analysis', units:10, unitLabel:'weeks' },
     sql:          { key:'sqlRoadmapProgress', title:'SQL for Data Analytics', units:10, unitLabel:'weeks' },
-    powerbi:      { key:'powerbiRoadmapProgress', title:'Power BI', units:10, unitLabel:'weeks' }
+    powerbi:      { key:'powerbiRoadmapProgress', title:'Power BI', units:10, unitLabel:'weeks' },
+    ai:           { key:'aiRoadmapProgress', title:'AI Integration in Data Analysis', units:10, unitLabel:'weeks' }
   };
   const MIGRATION_VERSION='v4';
   let allSyncPromise=null;

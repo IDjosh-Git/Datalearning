@@ -1,8 +1,8 @@
 (()=>{'use strict';
  const db=()=>window.ZAH_DB?.client;
  const el=id=>document.getElementById(id);
- const TRACKS={introduction:'Introduction',excel:'Excel',sql:'SQL',powerbi:'Power BI'};
- const UNITS={introduction:8,excel:10,sql:10,powerbi:10};
+ const TRACKS={introduction:'Introduction',excel:'Excel',sql:'SQL',powerbi:'Power BI',ai:'AI Integration'};
+ const UNITS={introduction:8,excel:10,sql:10,powerbi:10,ai:10};
  const PENDING=['submitted','processing','review_error','needs_manual_review'];
  let rows=[],filtered=[],selected=null;
  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
