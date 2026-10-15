@@ -7,13 +7,13 @@ const auth=read('auth.html');
 if(!cloud.includes("const MIGRATION_VERSION='v4'")) throw new Error('Missing v4 legacy recovery marker');
 if(!cloud.includes('recoverCurrentDevice')) throw new Error('Missing post-auth recovery function');
 if(!cloud.includes("local[key]===true")) throw new Error('Legacy completed progress is not recovered');
-if(!auth.includes('progress-cloud.js?v=20260924.4')) throw new Error('Auth page does not load versioned progress engine');
+if(!auth.includes('progress-cloud.js?v=20261015.3')) throw new Error('Auth page does not load versioned progress engine');
 if(!auth.includes('await window.ZAHProgressCloud.recoverCurrentDevice(user)')) throw new Error('Sign-in does not wait for device recovery');
-if(!auth.includes('auth-modern.css?v=20260924.4')) throw new Error('Modern auth theme not loaded');
+if(!auth.includes('auth-modern.css?v=20261015.3')) throw new Error('Modern auth theme not loaded');
 const pages=['index.html','account.html','auth.html','capstone.html','progress.html','reference.html','reviewer.html','tutor.html','verify.html','courses/introduction.html','courses/excel.html','courses/sql.html','courses/powerbi.html'];
 for(const page of pages){
   const html=read(page);
-  const v=page==='progress.html'?'20260924.6':(['index.html','account.html'].includes(page)?'20261015.1':'20260924.4');
+  const v='20261015.3';
   if(!html.includes(`theme-polish.css?v=${v}`) && page!=='auth.html') throw new Error(`Theme layer not versioned on ${page}`);
   const local=html.replace(/https:\/\/[^"']+/g,'');
   const refs=[...local.matchAll(/assets\/[A-Za-z0-9._-]+\.(?:css|js)(?:\?v=([0-9.]+))?/g)];

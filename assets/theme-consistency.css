@@ -1,0 +1,236 @@
+/* DALP Theme Consistency v6 — one visual language across all pages.
+   Dark mode is powered by the existing saved dalp-theme preference.
+   Preserve specialist track accents (Excel green / SQL blue / Power BI gold). */
+:root {
+  --ui-font:Inter,"DM Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --ui-radius:16px;
+  --ui-navy:#192537;
+  --ui-plum:#713a55;
+  --ui-hero:radial-gradient(circle at 82% 10%,rgba(182,107,149,.24),transparent 42%),linear-gradient(125deg,#192537 0%,#263249 57%,#422f46 100%);
+}
+body{font-family:var(--ui-font)}
+button,input,select,textarea{font-family:inherit}
+a,button{touch-action:manipulation}
+:where(button,a,input,select,textarea,summary):focus-visible{outline:3px solid color-mix(in srgb,var(--app-brand) 65%,white);outline-offset:3px}
+:where(.card,.lp-course,.lp-feature,.ref-card,.review-panel,.ip-panel){border-radius:var(--ui-radius)}
+:where(.course-top,.pl-header,.footer,.nav-shell) a:hover{text-decoration:underline;text-underline-offset:4px}
+
+/* ----------------------------------------------------
+   AI Course — cards, course weeks, teaching content
+   ---------------------------------------------------- */
+body.lp-ai-page{background:var(--app-bg)!important;color:var(--app-text)!important;line-height:1.7}
+.lp-ai-page .course-top{background:#172233;color:#f2f4f8;border-bottom:1px solid #354153;letter-spacing:normal;min-height:70px}
+.lp-ai-page .course-top>a,.lp-ai-page .course-top-actions>a{color:#f2e6ed;font-weight:750}
+.lp-ai-page .course-top-actions{display:flex;align-items:center;gap:13px;flex-wrap:wrap}
+.lp-ai-page .course-top-actions .lp-theme-btn{border-color:#ffffff33!important;background:#ffffff12!important;color:#fff!important;box-shadow:none;min-height:39px}
+.lp-ai-page .ai-hero{background:var(--ui-hero);color:#fff}
+.lp-ai-page .ai-hero h1{color:#fff;font-weight:850}
+.lp-ai-page .ai-hero h1 em{color:#f1bdce}
+.lp-ai-page .ai-hero .eyebrow{color:#f3cddd}
+.lp-ai-page .ai-hero p{color:#e1e6ee}
+.lp-ai-page .ai-hero .metrics span{color:#f0eaf0}
+.lp-ai-page .ai-hero .metrics b{color:#fff}
+.lp-ai-page .course-wrap{color:var(--app-text)}
+.lp-ai-page .intro>div,.lp-ai-page .navigator,.lp-ai-page .unit,.lp-ai-page .ai-orientation{
+ background:var(--app-surface)!important;color:var(--app-text)!important;
+ border:1px solid var(--app-line)!important;box-shadow:var(--app-shadow-soft)!important;
+}
+.lp-ai-page .intro h2,.lp-ai-page .unit h2,.lp-ai-page .ai-orientation h2,.lp-ai-page .unit h3{color:var(--app-text)}
+.lp-ai-page .intro p,.lp-ai-page .goal,.lp-ai-page .progress-card small{color:var(--app-muted)}
+.lp-ai-page .intro a,.lp-ai-page .unit a,.lp-ai-page .ai-orientation a{color:var(--app-brand-text);text-underline-offset:3px}
+.lp-ai-page .bar{background:var(--app-surface-3)}
+.lp-ai-page .bar>div{background:linear-gradient(90deg,#995475,#d393ac)}
+.lp-ai-page .progress-card button,.lp-ai-page .week-links a,.lp-ai-page .ai-quiz .quiz-actions button:not(.gradeBtn){
+ background:var(--app-surface-2)!important;color:var(--app-text)!important;
+ border:1px solid var(--app-line-strong)!important;
+}
+.lp-ai-page .progress-card button,.lp-ai-page .ai-quiz button{min-height:41px}
+.lp-ai-page .week-links a:hover,.lp-ai-page .progress-card button:hover{background:var(--app-brand-soft)!important;color:var(--app-brand-text)!important}
+.lp-ai-page .unit-head,.lp-ai-page .expanded-lessons{border-color:var(--app-line)}
+.lp-ai-page .unit-count,.lp-ai-page .learning-kicker,.lp-ai-page .tool-label{color:var(--app-brand-text)}
+.lp-ai-page .unit-grid h3,.lp-ai-page .expanded-lessons h3{color:var(--app-brand-text)}
+.lp-ai-page .unit-grid aside,.lp-ai-page .orientation-grid>div,.lp-ai-page .ai-quiz,.lp-ai-page .ai-tool-directory,.lp-ai-page .tool-deep-dive{
+ background:var(--app-surface-2)!important;color:var(--app-text)!important;border:1px solid var(--app-line)!important;
+}
+.lp-ai-page .orientation-grid b,.lp-ai-page .tool-directory-grid strong,.lp-ai-page .tool-head strong{color:var(--app-text)}
+.lp-ai-page .orientation-grid p,.lp-ai-page .tool-directory-grid span,.lp-ai-page .tool-head span,
+.lp-ai-page .expanded-lessons p,.lp-ai-page .expanded-lessons li,.lp-ai-page .tool-case .tool-task{color:var(--app-muted)}
+.lp-ai-page .tool-directory-grid>div,.lp-ai-page .tool-case,.lp-ai-page .ai-quiz .question{
+ background:var(--app-surface)!important;color:var(--app-text)!important;border-color:var(--app-line)!important;
+}
+.lp-ai-page .tool-assignment,.lp-ai-page .tool-note,.lp-ai-page .ai-tip,.lp-ai-page .exercise{
+ background:color-mix(in srgb,var(--app-brand) 10%,var(--app-surface))!important;
+ color:var(--app-text)!important;border-left:4px solid var(--app-brand)!important;
+}
+.lp-ai-page .unit-grid .prompt,.lp-ai-page .expanded-lessons pre{background:#111b2a!important;color:#eff5fd!important;border:1px solid #34465d;max-width:100%;overflow:auto}
+.lp-ai-page .expanded-lessons code:not(pre code){background:var(--app-surface-3);color:var(--app-text)}
+.lp-ai-page .complete{color:var(--app-brand-text)}
+.lp-ai-page input[type="checkbox"],.lp-ai-page input[type="radio"]{accent-color:var(--app-brand)}
+.lp-ai-page .ai-prompt-link,.lp-ai-page .ai-quiz .quiz-actions .gradeBtn{
+ display:inline-block;background:var(--app-brand)!important;color:white!important;border-color:var(--app-brand)!important;
+}
+.lp-ai-page .ai-prompt-link:hover,.lp-ai-page .ai-quiz .quiz-actions .gradeBtn:hover{background:var(--app-brand-strong)!important}
+.lp-ai-page .ai-quiz h3,.lp-ai-page .ai-quiz .score{color:var(--app-text)!important}
+.lp-ai-page .ai-quiz .quiz-intro p{color:var(--app-muted)}
+.lp-ai-page .ai-quiz .option{color:var(--app-text);border-color:var(--app-line)}
+.lp-ai-page .ai-quiz .option:hover{background:var(--app-surface-2)}
+.lp-ai-page .ai-quiz .answer-note{background:var(--app-surface-2);color:var(--app-text)}
+.lp-ai-page .ai-quiz .question.is-wrong{border-color:var(--app-danger)!important}
+.lp-ai-page .ai-quiz .question.is-correct{border-color:var(--app-success)!important}
+.lp-ai-page .finish{background:var(--ui-hero);color:#fff;border:1px solid #39465a}
+.lp-ai-page .finish :is(h2,h3,h4,p,li){color:#f8f4f7}
+.lp-ai-page .finish a{color:#f0b9d0}
+.lp-ai-page footer{background:#172233;color:#c5d0dd}
+.lp-ai-page footer a{color:#f5dbe7}
+
+/* ----------------------------------------------------
+   AI Prompt Library — searchable content and controls
+   ---------------------------------------------------- */
+body.lp-prompt-page{background:var(--app-bg)!important;color:var(--app-text)!important;line-height:1.65}
+.lp-prompt-page .pl-header{background:#172233;border-bottom:1px solid #354153;min-height:72px;gap:18px}
+.lp-prompt-page .pl-header .brand{color:#fff}
+.lp-prompt-page .pl-header nav{margin-left:auto}
+.lp-prompt-page .pl-header nav a{color:#e1e7f0;font-weight:700}
+.lp-prompt-page .pl-header nav a:hover{color:#fff}
+.lp-prompt-page .course-top-actions{display:flex;align-items:center;gap:10px}
+.lp-prompt-page .course-top-actions .lp-theme-btn{border-color:#ffffff33!important;background:#ffffff12!important;color:#fff!important;box-shadow:none}
+.lp-prompt-page .pl-hero{background:var(--ui-hero);color:#fff}
+.lp-prompt-page .pl-hero h1{color:#fff;font-weight:850}
+.lp-prompt-page .pl-hero h1 em{color:#f1bdce}
+.lp-prompt-page .pl-hero .eyebrow{color:#f3cddd}
+.lp-prompt-page .pl-hero p{color:#e2e8f1}
+.lp-prompt-page .pl-pills span{color:#f0e7ed;border-color:#ffffff44}
+.lp-prompt-page .pl-hero-art{background:#ffffff0c;border-color:#ffffff36}
+.lp-prompt-page .pl-art-bubble{background:#f9e5ee;color:#6e3754}
+.lp-prompt-page .pl-art-lines i{background:#d3a0ba68}
+.lp-prompt-page .pl-art-panel,.lp-prompt-page .pl-art-panel span{color:#e9dbe5}
+.lp-prompt-page .usage,.lp-prompt-page .library{
+ background:var(--app-surface)!important;color:var(--app-text)!important;
+ border:1px solid var(--app-line)!important;box-shadow:var(--app-shadow-soft)!important;
+}
+.lp-prompt-page :is(.usage,.library) h2,.lp-prompt-page .prompt-card h3{color:var(--app-text)}
+.lp-prompt-page .usage-heading p,.lp-prompt-page .usage-grid p,.lp-prompt-page .result-meta p{color:var(--app-muted)}
+.lp-prompt-page .eyebrow,.lp-prompt-page .usage-grid span,.lp-prompt-page .category-label{color:var(--app-brand-text)}
+.lp-prompt-page .usage-grid>div,.lp-prompt-page .filter-bar{
+ background:var(--app-surface-2)!important;border:1px solid var(--app-line);color:var(--app-text);
+}
+.lp-prompt-page .pl-usage-note{background:var(--app-brand-soft);border-left-color:var(--app-brand);color:var(--app-text)}
+.lp-prompt-page .pl-usage-note code{color:var(--app-text)}
+.lp-prompt-page .library-actions button,.lp-prompt-page #clearFilters,.lp-prompt-page .more-row button,.lp-prompt-page .download-all{
+ background:var(--app-surface)!important;border:1px solid var(--app-line-strong)!important;color:var(--app-text)!important;
+}
+.lp-prompt-page .library-actions button.active{background:var(--app-brand-soft)!important;border-color:var(--app-brand)!important;color:var(--app-brand-text)!important}
+.lp-prompt-page .library-actions button:hover,.lp-prompt-page #clearFilters:hover,.lp-prompt-page .more-row button:hover,.lp-prompt-page .download-all:hover{border-color:var(--app-brand)!important}
+.lp-prompt-page .filter-bar label{color:var(--app-text)}
+.lp-prompt-page .filter-bar input,.lp-prompt-page .filter-bar select{
+ background:var(--app-surface)!important;color:var(--app-text)!important;border:1px solid var(--app-line-strong)!important;
+}
+.lp-prompt-page .prompt-card{
+ background:var(--app-surface)!important;color:var(--app-text)!important;border:1px solid var(--app-line)!important;
+ box-shadow:var(--app-shadow-soft)!important;
+}
+.lp-prompt-page .prompt-card:hover{border-color:var(--app-brand)!important;box-shadow:var(--app-shadow)!important}
+.lp-prompt-page .prompt-id,.lp-prompt-page .prompt-tags span{color:var(--app-muted)}
+.lp-prompt-page .prompt-tags span{background:var(--app-surface-2);border-color:var(--app-line)}
+.lp-prompt-page .favorite{background:var(--app-surface-2);color:var(--app-muted)}
+.lp-prompt-page .favorite.is-saved{background:color-mix(in srgb,var(--app-warning) 16%,var(--app-surface));color:var(--app-warning)}
+.lp-prompt-page .prompt-details summary{color:var(--app-brand-text)}
+.lp-prompt-page .prompt-content{background:var(--app-surface-2)!important;color:var(--app-text)!important;border:1px solid var(--app-line)}
+.lp-prompt-page .copy-button{background:var(--app-brand)!important;color:#fff!important;min-height:41px}
+.lp-prompt-page .copy-button:hover{background:var(--app-brand-strong)!important}
+.lp-prompt-page .bottom-cta{background:var(--ui-hero);color:#fff;border:1px solid #41516a}
+.lp-prompt-page .bottom-cta h2,.lp-prompt-page .bottom-cta p{color:#fff}
+.lp-prompt-page .bottom-cta a{color:#713a55;background:#fff2f7}
+.lp-prompt-page footer{background:#172233;color:#c5d0dd}
+.lp-prompt-page footer a{color:#f5dbe7}
+.lp-prompt-page .toast{background:#172233;color:#fff}
+.lp-prompt-page .skip:focus{background:var(--app-surface);color:var(--app-text);border:1px solid var(--app-line)}
+
+/* Generic training content readability in dark mode. Keep track-specific identity. */
+html[data-theme="dark"] body:has(.sidebar) :is(.week,.lesson,.session-block,.guided-lab) :is(pre,code){color:#f4f7fc}
+html[data-theme="dark"] body:has(.sidebar) .course-study-note a{color:var(--app-brand-text)}
+
+@media(max-width:800px){
+  .lp-ai-page .course-top{gap:14px;padding:13px 19px}
+  .lp-ai-page .course-top-actions{gap:7px}
+  .lp-prompt-page .pl-header{padding:14px 22px;gap:12px}
+  .lp-prompt-page .pl-header nav{gap:14px}
+}
+@media(max-width:600px){
+  .lp-ai-page .course-top{align-items:flex-start;flex-direction:column}
+  .lp-ai-page .course-top-actions{width:100%;justify-content:space-between}
+  .lp-ai-page .navigator{align-items:flex-start}
+  .lp-ai-page .week-links a{width:42px;height:42px}
+  .lp-prompt-page .pl-header{align-items:flex-start}
+  .lp-prompt-page .pl-header nav{order:3;flex-basis:100%;margin:0}
+  .lp-prompt-page .course-top-actions{margin-left:auto}
+  .lp-prompt-page .pl-hero{padding:48px 22px}
+  .lp-prompt-page .pl-shell{padding-inline:15px}
+  .lp-prompt-page .prompt-grid,.lp-prompt-page .usage-grid{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){.lp-ai-page *,.lp-prompt-page *{scroll-behavior:auto!important}}
+
+/* ----------------------------------------------------
+   Final refinements — even course cards and shared accents
+   ---------------------------------------------------- */
+.lp-home .lp-course-grid { align-items:stretch; }
+.lp-home .lp-course { height:100%; }
+.lp-home .lp-course[data-track="ai"] { background:var(--app-surface)!important; border:1px solid var(--app-line)!important; box-shadow:var(--app-shadow-soft)!important; }
+.lp-home .lp-course[data-track="ai"]:hover { box-shadow:var(--app-shadow)!important; }
+.lp-home .lp-course[data-track="ai"] .lp-progress-line>div { background:#824765!important; }
+.lp-home .lp-course[data-track="ai"] .lp-progress-meta b { color:var(--app-brand-text); }
+.lp-home .lp-course .lp-course-tag { color:var(--app-muted); }
+.lp-home .lp-course-footer { border-color:var(--app-line); }
+/* Home-page prompt resources must not become an unrelated light-blue island. */
+.lp-prompt-promo {
+  padding:40px max(20px,5%);text-align:center;
+  background:var(--app-surface-2);border-block:1px solid var(--app-line);
+}
+.lp-prompt-promo-inner { max-width:820px;margin-inline:auto; }
+.lp-prompt-promo-eyebrow {
+  display:inline-block;font-size:11px;font-weight:850;letter-spacing:.14em;
+  color:var(--app-brand-text);
+}
+.lp-prompt-promo h2 { font-size:clamp(23px,3vw,30px);letter-spacing:-.035em;color:var(--app-text);margin:10px 0; }
+.lp-prompt-promo p { color:var(--app-muted);line-height:1.75;font-size:14px;margin:8px auto 23px;max-width:660px; }
+.lp-prompt-promo-button {
+  display:inline-flex;align-items:center;justify-content:center;gap:14px;
+  padding:12px 22px;border-radius:11px;text-decoration:none;font-weight:800;
+  font-size:13px;background:var(--app-brand);color:white!important;
+  box-shadow:0 7px 20px rgba(55,24,45,.13);
+}
+.lp-prompt-promo-button:hover { background:var(--app-brand-strong);color:white!important;transform:translateY(-1px); }
+/* Intro's final callout previously hard-coded a light-blue fill even in dark mode. */
+body .job-ready-banner,body .job-ready-extension {
+  background:var(--app-brand-soft)!important;border:1px solid var(--app-line)!important;
+  color:var(--app-text)!important;box-shadow:var(--app-shadow-soft)!important;
+}
+body .job-ready-banner a,body .job-ready-extension a { color:var(--app-brand-text)!important; }
+/* Keep linked resources readable in dark mode across existing course pages. */
+html[data-theme="dark"] body:has(.sidebar) :is(.course-study-note,.course-intro-callout,.guided-lab,.job-ready-extension) {
+  border-color:var(--app-line)!important;
+}
+html[data-theme="dark"] body:has(.sidebar) :is(.course-study-note,.course-intro-callout,.guided-lab,.job-ready-extension) a {
+  color:var(--app-brand-text)!important;
+}
+@media(max-width:500px){
+  .lp-prompt-promo { padding:31px 18px; }
+  .lp-prompt-promo-button { width:100%; max-width:350px; }
+}
+
+/* Resume-learning feature uses the same surfaces as course cards in both modes. */
+.lp-home .lp-smart-banner {
+  background:linear-gradient(120deg,var(--app-surface),color-mix(in srgb,var(--app-brand) 5%,var(--app-surface)))!important;
+  border:1px solid var(--app-line)!important;box-shadow:var(--app-shadow-soft)!important;
+  color:var(--app-text)!important;
+}
+.lp-home .lp-smart-banner .lp-smart-copy h3,.lp-home .lp-smart-banner .lp-smart-stats strong{color:var(--app-text)!important}
+.lp-home .lp-smart-banner .lp-smart-copy p,.lp-home .lp-smart-banner .lp-smart-stats span{color:var(--app-muted)!important}
+.lp-home .lp-smart-banner .lp-smart-stats>div {
+  background:var(--app-surface-2)!important;border:1px solid var(--app-line)!important;
+  color:var(--app-text)!important;
+}
+.lp-home .lp-smart-tag{
+  background:var(--app-brand-soft)!important;border:1px solid var(--app-line)!important;
+  color:var(--app-brand-text)!important;
+}
