@@ -13,7 +13,7 @@ if(!auth.includes('auth-modern.css?v=20260924.4')) throw new Error('Modern auth 
 const pages=['index.html','account.html','auth.html','capstone.html','progress.html','reference.html','reviewer.html','tutor.html','verify.html','courses/introduction.html','courses/excel.html','courses/sql.html','courses/powerbi.html'];
 for(const page of pages){
   const html=read(page);
-  const v=page==='progress.html'?'20260924.6':'20260924.4';
+  const v=page==='progress.html'?'20260924.6':(['index.html','account.html'].includes(page)?'20261015.1':'20260924.4');
   if(!html.includes(`theme-polish.css?v=${v}`) && page!=='auth.html') throw new Error(`Theme layer not versioned on ${page}`);
   const local=html.replace(/https:\/\/[^"']+/g,'');
   const refs=[...local.matchAll(/assets\/[A-Za-z0-9._-]+\.(?:css|js)(?:\?v=([0-9.]+))?/g)];

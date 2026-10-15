@@ -1,0 +1,18 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+const read=x=>fs.readFileSync(x,'utf8');
+const home=read('index.html'), account=read('account.html'), css=read('assets/modern.css');
+assert.equal((home.match(/data-track="ai"/g)||[]).length,1,'AI course must appear exactly once on homepage');
+assert(home.indexOf('data-track="ai"')>home.indexOf('data-track="intro"'),'AI must follow Introduction');
+assert(home.indexOf('data-track="ai"')<home.indexOf('data-track="excel"'),'AI must be discoverable in first row');
+assert(home.includes('href="courses/ai.html" aria-label="Open AI Integration in Data Analysis course"'),'AI homepage card CTA must be accessible');
+assert(home.includes('id="ai-progress"') && home.includes('id="ai-progress-text"'),'AI homepage progress must exist');
+assert(home.includes('>5 courses</span>'),'Course count must include Introduction + 4 specialists');
+assert(css.includes('.lp-home .lp-course[data-track="ai"]') && css.includes('grid-column:span 2'),'AI must be featured');
+assert(css.includes('.lp-course-cta::after'),'AI homepage card must be fully clickable');
+assert(account.includes('class="card ai-account-course-card" href="courses/ai.html"'),'My Learning must contain dedicated clickable AI card');
+assert(account.includes('id="aiText"') && account.includes('id="aiBar"'),'My Learning must display AI cloud progress');
+assert(account.includes('successful===5') && account.includes('ai:10'),'My Learning must sync five tracks');
+assert(account.includes('AI Integration Course ↗'),'My Learning must offer direct AI continuation');
+assert(fs.existsSync('courses/ai.html'),'AI course destination must exist');
+console.log('PASS AI course discoverability on homepage and My Learning dashboard; click targets, responsive layout and five-track progress');
