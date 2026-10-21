@@ -148,12 +148,17 @@
     }
   }
 
-  if(document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', refreshFromCloud, {once:true});
-  }else{
-    refreshFromCloud();
+  // Keep cloud reconciliation responsive without doing the same network work on
+  // DOMContentLoaded, pageshow and every short window-focus change.
+  let lastRefresh = 0, refreshing = false;
+  async function scheduledRefresh(force=false){
+    if(refreshing || (!force && Date.now()-lastRefresh<90000)) return;
+    refreshing=true;lastRefresh=Date.now();
+    try { await refreshFromCloud(); }
+    finally { refreshing=false; document.dispatchEvent(new CustomEvent('dalp:progress-updated')); }
   }
-
-  window.addEventListener('pageshow', refreshFromCloud);
-  window.addEventListener('focus', refreshFromCloud);
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>scheduledRefresh(true),{once:true});
+  else scheduledRefresh(true);
+  window.addEventListener('pageshow',e=>{if(e.persisted)scheduledRefresh();});
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)scheduledRefresh();});
 })();

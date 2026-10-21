@@ -48,11 +48,13 @@
    const {data:session,error:sessionError}=await client.auth.getSession();
    if(sessionError){if(/refresh|invalid|session.*missing/i.test(sessionError.message||'')){exit();return;}showError();return;}
    if(!session?.session){let owned=false;try{owned=!!localStorage.getItem(ownerKey)}catch(_){}exit(owned);return;}
-   const {data,error}=await client.auth.getUser();
+   const sessionId=session.session.user?.id;
+   const [verified,roleResult]=await Promise.all([client.auth.getUser(),sessionId?client.from('site_admins').select('user_id').eq('user_id',sessionId).maybeSingle():Promise.resolve(null)]);
+   const {data,error}=verified;
    if(error){if(/invalid.*jwt|jwt.*expired|invalid.*refresh|session.*missing|user.*not.*found/i.test(error.message||'')){exit();return;}showError();return;}
-   if(!data?.user||data.user.is_anonymous){exit();return;}
+   if(!data?.user||data.user.is_anonymous||(sessionId&&data.user.id!==sessionId)){exit();return;}
    // Fail closed: do not assume a learner role when the role service cannot be checked.
-   const {data:admin,error:roleError}=await client.from('site_admins').select('user_id').eq('user_id',data.user.id).maybeSingle();
+   const {data:admin,error:roleError}=roleResult || await client.from('site_admins').select('user_id').eq('user_id',data.user.id).maybeSingle();
    if(roleError){console.warn('Administrator role lookup failed',roleError);showError();return;}
    const role=admin?'admin':'learner';
    prepareWorkspace(data.user);window.DALP_AUTH_USER=data.user;window.DALP_ROLE=role;

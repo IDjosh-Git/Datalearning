@@ -1,14 +1,14 @@
 <!DOCTYPE html>
+
 <html lang="en">
-<head>
+<head><link crossorigin="anonymous" href="https://cdn.jsdelivr.net" rel="preconnect"/>
 <script>document.documentElement.classList.add('dalp-auth-checking')</script>
-<link rel="stylesheet" href="assets/auth-gate.css?v=20261021.2">
+<link href="assets/auth-gate.css?v=20261021.2" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0"></script>
 <script src="assets/supabase-config.js?v=20261021"></script>
 <script src="assets/supabase-client.js?v=20261021"></script>
-<script src="assets/auth-gate.js?v=20261021.2"></script>
-
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script src="assets/auth-gate.js?v=20261021.3"></script>
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1.0" name="viewport"/>
 <title>My Learning | Data Analysis Learning Path</title><script>try{const t=localStorage.getItem('dalp-theme');document.documentElement.dataset.theme=(t==='dark'||t==='light')?t:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch(e){document.documentElement.dataset.theme='light'}</script>
 <style>
 :root{--navy:#254559;--orange:#F27329;--bg:#f5f8fa;--border:#dce5e9;--muted:#667681}
@@ -21,9 +21,8 @@ table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px;bor
 .full{grid-column:1/-1}.muted{color:var(--muted)}
 @media(max-width:760px){.grid{grid-template-columns:1fr}.top{align-items:flex-start;flex-direction:column}}
 </style>
-<link rel="stylesheet" href="assets/brand-overrides.css?v=20261015.3">
-<link rel="stylesheet" href="assets/responsive-polish.css?v=20261015.3">
-
+<link href="assets/brand-overrides.css?v=20261015.3" rel="stylesheet"/>
+<link href="assets/responsive-polish.css?v=20261015.3" rel="stylesheet"/>
 <style>
 .continue-actions{display:flex;flex-wrap:wrap;gap:9px}
 .continue-actions .btn{margin:0}
@@ -44,72 +43,65 @@ table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px;bor
 [data-theme="dark"] .ai-account-course-card .ai-account-start{color:#c5c7ff}
 
 </style>
-
-<link rel="icon" type="image/svg+xml" href="assets/da-logo.svg"><link rel="stylesheet" href="assets/account-refresh.css?v=20261015.3"><link rel="stylesheet" href="assets/modern.css?v=20261015.3"><link rel="stylesheet" href="assets/theme-polish.css?v=20261015.3"><link rel="stylesheet" href="assets/theme-consistency.css?v=20261015.3">
-<link rel="stylesheet" href="assets/unified-finish.css?v=20261015.3"><link rel="stylesheet" href="assets/device-responsive.css?v=20261015.3"><link rel="stylesheet" href="assets/responsive-v2.css?v=20261015.3"><link rel="stylesheet" href="assets/desktop-auth-finish.css?v=20261021.2">
-</head>
+<link href="assets/da-logo.svg" rel="icon" type="image/svg+xml"/><link href="assets/account-refresh.css?v=20261015.3" rel="stylesheet"/><link href="assets/modern.css?v=20261015.3" rel="stylesheet"/><link href="assets/theme-polish.css?v=20261015.3" rel="stylesheet"/><link href="assets/theme-consistency.css?v=20261015.3" rel="stylesheet"/>
+<link href="assets/unified-finish.css?v=20261015.3" rel="stylesheet"/><link href="assets/device-responsive.css?v=20261015.3" rel="stylesheet"/><link href="assets/responsive-v2.css?v=20261015.3" rel="stylesheet"/><link href="assets/desktop-auth-finish.css?v=20261021.2" rel="stylesheet"/>
+<link href="assets/workspace-shell.css?v=20261021.3" rel="stylesheet"/></head>
 <body data-responsive-page="account">
 <div class="wrap">
- <div class="top">
-  <div class="brand account-brand-shell"><img class="account-brand-logo" src="assets/da-logo.svg" alt="Data Analysis Learning Path logo"><div class="brand-company-name"><strong>Data Analysis Learning Path</strong><span id="who">Loading learner account…</span></div></div>
-  <div><a class="btn" href="index.html">Learning Portal</a> <button class="btn" id="logout">Sign Out</button></div>
- </div>
- <div class="grid">
-  <div class="card full">
-   <h2>Cloud Sync</h2>
-   <p id="accountSyncStatus">Checking your cloud progress…</p>
-  </div>
-
-  <div class="card full" id="instructorAccess" hidden><h2>Administrator workspace</h2><p>Monitor learner progress and assess submitted capstone projects. Only authorised administrators can use these management tools.</p><div class="continue-actions"><a class="btn" href="admin.html">Admin dashboard →</a><a class="btn" href="progress.html">Learner progress →</a><a class="btn" href="reviewer.html" style="background:#713a55">Open review desk →</a></div></div>
-
-  <div class="card full" id="completionGuide">
-   <h2>How your progress and completion record work</h2>
-   <p>Sign in so your Introduction and specialist-course progress can sync across your devices. Finish weekly lessons and quizzes, and check that Cloud Sync says complete. After all ten weeks are synced, submit a capstone project with files and screenshots in the Capstone Studio. Your instructor reviews your files and publishes the score and feedback once marking is finished. A passing score of at least 70/100 qualifies for a registered completion certificate. Open the Capstone Studio to view your score, feedback and printable certificate.</p>
-   <p class="muted">These are self-paced course-completion records, not accredited professional certifications. If syncing fails, your progress stays on this device until you retry.</p>
-  </div>
-  <div class="card full">
-   <h2>Continue Learning</h2>
-   <div class="continue-actions">
-    <a class="btn" href="courses/introduction.html">Introduction</a>
-    <a class="btn" href="courses/excel.html">Excel Course</a>
-    <a class="btn" href="courses/sql.html">SQL Course</a>
-    <a class="btn" href="courses/powerbi.html">Power BI Course</a>
-    <a class="btn ai-course-action" href="courses/ai.html">AI Integration Course ↗</a>
-    <a class="btn" href="capstone.html" style="background:#713a55">Capstone Studio &amp; Certificates ↗</a>
-   </div>
-  </div>
-
-  <div class="card"><h3>Introduction</h3><p id="introductionText">0 of 8 lessons</p><div class="bar"><div id="introductionBar" class="fill" style="width:0%"></div></div></div>
-  <div class="card"><h3>Excel</h3><p id="excelText">0 of 10 weeks</p><div class="bar"><div id="excelBar" class="fill" style="width:0%"></div></div></div>
-  <div class="card"><h3>SQL</h3><p id="sqlText">0 of 10 weeks</p><div class="bar"><div id="sqlBar" class="fill" style="width:0%"></div></div></div>
-  <div class="card"><h3>Power BI</h3><p id="powerbiText">0 of 10 weeks</p><div class="bar"><div id="powerbiBar" class="fill" style="width:0%"></div></div></div>
-  <a class="card ai-account-course-card" href="courses/ai.html" aria-label="Open AI Integration in Data Analysis course">
-   <span class="ai-account-badge">AI &amp; AUTOMATION · 10 WEEKS</span>
-   <h3>AI Integration in Data Analysis <span aria-hidden="true">↗</span></h3>
-   <p>Practical AI workflows, 300 ready-to-use prompts and responsible analysis.</p>
-   <p id="aiText">0 of 10 weeks</p>
-   <div class="bar"><div id="aiBar" class="fill" style="width:0%"></div></div>
-   <span class="ai-account-start">Open AI course →</span>
-  </a>
-  <div class="card full">
-   <h2>Quiz Results</h2>
-   <table><thead><tr><th>Course</th><th>Week</th><th>Score</th><th>Percentage</th></tr></thead><tbody id="quizBody"></tbody></table>
-  </div>
-  <div class="card full">
-   <h2>Capstone assessments</h2>
-   <div id="accountCapstones" class="muted">Loading your submission status…</div>
-   <p><a href="capstone.html" class="btn" style="display:inline-block">Open capstone studio →</a></p>
-  </div>
-  <div class="card full">
-   <h2>Certificates</h2>
-   <table><thead><tr><th>Certificate ID</th><th>Course</th><th>Date</th><th>Status</th><th>Verify</th></tr></thead><tbody id="certBody"></tbody></table>
-  </div>
- </div>
+<div class="top">
+<div class="brand account-brand-shell"><img alt="Data Analysis Learning Path logo" class="account-brand-logo" src="assets/da-logo.svg"/><div class="brand-company-name"><strong>Data Analysis Learning Path</strong><span id="who">Loading learner account…</span></div></div>
+<div><a class="btn" href="index.html">Learning Portal</a> <button class="btn" id="logout">Sign Out</button></div>
 </div>
-
-
-
-<script src="assets/progress-cloud.js?v=20261015.3"></script>
+<div class="grid">
+<div class="card full">
+<h2>Cloud Sync</h2>
+<p id="accountSyncStatus">Checking your cloud progress…</p>
+</div>
+<div class="card full" id="instructorAccess" hidden><h2>Administrator workspace</h2><p>Monitor learner progress and assess submitted capstone projects. Only authorised administrators can use these management tools.</p><div class="continue-actions"><a class="btn" href="admin.html">Admin dashboard →</a><a class="btn" href="progress.html">Learner progress →</a><a class="btn" href="reviewer.html" style="background:#713a55">Open review desk →</a></div></div>
+<div class="card full" id="completionGuide">
+<h2>How your progress and completion record work</h2>
+<p>Sign in so your Introduction and specialist-course progress can sync across your devices. Finish weekly lessons and quizzes, and check that Cloud Sync says complete. After all ten weeks are synced, submit a capstone project with files and screenshots in the Capstone Studio. Your instructor reviews your files and publishes the score and feedback once marking is finished. A passing score of at least 70/100 qualifies for a registered completion certificate. Open the Capstone Studio to view your score, feedback and printable certificate.</p>
+<p class="muted">These are self-paced course-completion records, not accredited professional certifications. If syncing fails, your progress stays on this device until you retry.</p>
+</div>
+<div class="card full">
+<h2>Continue Learning</h2>
+<div class="continue-actions">
+<a class="btn" href="courses/introduction.html">Introduction</a>
+<a class="btn" href="courses/excel.html">Excel Course</a>
+<a class="btn" href="courses/sql.html">SQL Course</a>
+<a class="btn" href="courses/powerbi.html">Power BI Course</a>
+<a class="btn ai-course-action" href="courses/ai.html">AI Integration Course ↗</a>
+<a class="btn" href="capstone.html" style="background:#713a55">Capstone Studio &amp; Certificates ↗</a>
+</div>
+</div>
+<div class="card"><h3>Introduction</h3><p id="introductionText">0 of 8 lessons</p><div class="bar"><div class="fill" id="introductionBar" style="width:0%"></div></div></div>
+<div class="card"><h3>Excel</h3><p id="excelText">0 of 10 weeks</p><div class="bar"><div class="fill" id="excelBar" style="width:0%"></div></div></div>
+<div class="card"><h3>SQL</h3><p id="sqlText">0 of 10 weeks</p><div class="bar"><div class="fill" id="sqlBar" style="width:0%"></div></div></div>
+<div class="card"><h3>Power BI</h3><p id="powerbiText">0 of 10 weeks</p><div class="bar"><div class="fill" id="powerbiBar" style="width:0%"></div></div></div>
+<a class="card ai-account-course-card" href="courses/ai.html" aria-label="Open AI Integration in Data Analysis course">
+<span class="ai-account-badge">AI &amp; AUTOMATION · 10 WEEKS</span>
+<h3>AI Integration in Data Analysis <span aria-hidden="true">↗</span></h3>
+<p>Practical AI workflows, 300 ready-to-use prompts and responsible analysis.</p>
+<p id="aiText">0 of 10 weeks</p>
+<div class="bar"><div class="fill" id="aiBar" style="width:0%"></div></div>
+<span class="ai-account-start">Open AI course →</span>
+</a>
+<div class="card full">
+<h2>Quiz Results</h2>
+<table><thead><tr><th>Course</th><th>Week</th><th>Score</th><th>Percentage</th></tr></thead><tbody id="quizBody"></tbody></table>
+</div>
+<div class="card full">
+<h2>Capstone assessments</h2>
+<div class="muted" id="accountCapstones">Loading your submission status…</div>
+<p><a class="btn" href="capstone.html" style="display:inline-block">Open capstone studio →</a></p>
+</div>
+<div class="card full">
+<h2>Certificates</h2>
+<table><thead><tr><th>Certificate ID</th><th>Course</th><th>Date</th><th>Status</th><th>Verify</th></tr></thead><tbody id="certBody"></tbody></table>
+</div>
+</div>
+</div>
+<script src="assets/progress-cloud.js?v=20261021.3"></script>
 <script>
 (async()=>{
  const syncStatus=document.getElementById('accountSyncStatus');
@@ -178,4 +170,4 @@ document.getElementById('logout').onclick=async()=>{
  location.replace('auth.html');
 };
 </script>
-<script src="assets/modern.js?v=20261015.3"></script><link rel="stylesheet" href="assets/learner-companion.css?v=20261015.3"><script defer src="assets/course-studio-data.js?v=20261015.3"></script><script defer src="assets/learner-companion.js?v=20261015.3"></script><a class="dalp-floating-link dalp-floating-practice" href="practice.html" aria-label="Open interactive SQL and Excel practice arena" style="position:fixed;left:16px;bottom:16px;z-index:999;display:inline-block;border-radius:100px;padding:11px 15px;background:#173b54;color:#fff;text-decoration:none;font-weight:700;box-shadow:0 6px 22px #0003;font-size:.86rem">⚡ Practice Arena</a><script src="assets/responsive-v2.js?v=20261015.3" defer></script></body></html>
+<script defer="" src="assets/modern.js?v=20261015.3"></script><link href="assets/learner-companion.css?v=20261015.3" rel="stylesheet"/><script defer="" src="assets/learner-companion.js?v=20261021.3"></script><a aria-label="Open interactive SQL and Excel practice arena" class="dalp-floating-link dalp-floating-practice" href="practice.html" style="position:fixed;left:16px;bottom:16px;z-index:999;display:inline-block;border-radius:100px;padding:11px 15px;background:#173b54;color:#fff;text-decoration:none;font-weight:700;box-shadow:0 6px 22px #0003;font-size:.86rem">⚡ Practice Arena</a><script defer="" src="assets/responsive-v2.js?v=20261015.3"></script><script defer="" src="assets/workspace-shell.js?v=20261021.3"></script></body></html>

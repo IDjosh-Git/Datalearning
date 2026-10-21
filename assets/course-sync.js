@@ -177,10 +177,12 @@
   },true);
 
   // Keep local-only actions made while the page is open queued.
-  window.addEventListener('online',()=>runSync(false));
-  window.addEventListener('focus',()=>runSync(false));
-  window.addEventListener('pageshow',()=>runSync(false));
-
+  // Avoid repeated full-course reconciliation when rapidly switching windows.
+  let lastAutoSync=0;
+  const autoSync=()=>{if(Date.now()-lastAutoSync<90000)return;lastAutoSync=Date.now();runSync(false);};
+  window.addEventListener('online',()=>{lastAutoSync=0;autoSync();});
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)autoSync();});
+  window.addEventListener('pageshow',e=>{if(e.persisted)autoSync();});
   addBadge();
-  runSync(false);
+  autoSync();
 })();

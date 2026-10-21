@@ -1,15 +1,16 @@
 {
   "name": "data-analysis-learning-path",
-  "version": "3.8.0",
+  "version": "4.0.0",
   "private": true,
   "type": "module",
-  "description": "Responsive LMS with Supabase authentication, learner profiles, and administrator role-based access",
+  "description": "Performance-first learning workspace with shared navigation, secure Supabase role access, personalized dashboard and responsive course experience",
   "engines": {
     "node": ">=20"
   },
   "scripts": {
     "test": "node tests/smoke.mjs && node tests/modern.mjs && node tests/sync-regression.mjs && node tests/course-content.mjs && node tests/ai-card-visibility.mjs && node tests/auth-first.mjs && node tests/auth-gate-runtime.mjs && node tests/admin-roles.mjs",
-    "test:responsive": "node tests/responsive-coverage.mjs"
+    "test:responsive": "node tests/responsive-coverage.mjs",
+    "test:workspace": "node tests/workspace-coverage.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.57.0"

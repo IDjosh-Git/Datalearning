@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 
 <html lang="en">
-<head>
+<head><link crossorigin="anonymous" href="https://cdn.jsdelivr.net" rel="preconnect"/>
 <script>document.documentElement.classList.add('dalp-auth-checking')</script>
-<link rel="stylesheet" href="../assets/auth-gate.css?v=20261021.2">
+<link href="../assets/auth-gate.css?v=20261021.2" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0"></script>
 <script src="../assets/supabase-config.js?v=20261021"></script>
 <script src="../assets/supabase-client.js?v=20261021"></script>
-<script src="../assets/auth-gate.js?v=20261021.2"></script>
+<script src="../assets/auth-gate.js?v=20261021.3"></script>
 <meta charset="utf-8"/><meta content="width=device-width,initial-scale=1.0" name="viewport"/>
 <title>SQL Mastery Roadmap | Beginner to Analytics</title><script>try{const t=localStorage.getItem('dalp-theme');document.documentElement.dataset.theme=(t==='dark'||t==='light')?t:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch(e){document.documentElement.dataset.theme='light'}</script><meta content="A detailed 10-week SQL course from database foundations to analytical SQL and dashboard-ready outputs." name="description"/>
 <style>
@@ -129,7 +129,7 @@ main{min-width:0}.topbar{position:sticky;top:0;z-index:10;padding:13px 26px;disp
 @media(max-width:850px){.cert-grid{grid-template-columns:1fr}.cert-preview{max-width:720px;width:100%}}
 @media print{.certificate-section{break-inside:avoid}.cert-controls{display:none}.cert-grid{display:block}.cert-preview{width:100%;box-shadow:none}}
 </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
 <style>
 .cert-qr{width:72px;height:72px;margin:9px auto 0;padding:4px;background:#fff;border:1px solid #d8e1e6;border-radius:8px}
 .cert-qr canvas,.cert-qr img{width:100%!important;height:100%!important;display:block}
@@ -142,7 +142,7 @@ main{min-width:0}.topbar{position:sticky;top:0;z-index:10;padding:13px 26px;disp
 .cert-verification-info{margin-top:14px;padding:12px;border:1px solid #dce5e9;border-radius:11px;background:#f7fafb;font-size:12px;color:#5e6d75}
 @media(max-width:680px){.cert-qr{width:58px;height:58px}.cert-signature-name{font-size:17px}}
 </style>
-<link href="../assets/brand-overrides.css?v=20261015.3" rel="stylesheet"/>
+<link href="../assets/brand-overrides.css?v=20261015.3" rel="stylesheet">
 <style>
 .learner-account-btn{
   position:fixed;
@@ -167,10 +167,11 @@ main{min-width:0}.topbar{position:sticky;top:0;z-index:10;padding:13px 26px;disp
 @media print{.learner-account-btn{display:none!important}}
 </style>
 <link href="../assets/responsive-polish.css?v=20261015.3" rel="stylesheet"/>
-<link href="../assets/da-logo.svg" rel="icon" type="image/svg+xml"/><link href="../assets/course-refresh.css?v=20261015.3" rel="stylesheet"/><link href="../assets/modern.css?v=20261015.3" rel="stylesheet"/><link href="../assets/course-modern.css?v=20261015.3" rel="stylesheet"/><link href="../assets/theme-polish.css?v=20261015.3" rel="stylesheet"/><link rel="stylesheet" href="../assets/theme-consistency.css?v=20261015.3">
-<link rel="stylesheet" href="../assets/course-studio.css?v=20261015.3">
-<link rel="stylesheet" href="../assets/unified-finish.css?v=20261015.3"><link rel="stylesheet" href="../assets/device-responsive.css?v=20261015.3"><link rel="stylesheet" href="../assets/responsive-v2.css?v=20261015.3"></head>
-<body data-responsive-page="courses/sql" data-course="sql">
+<link href="../assets/da-logo.svg" rel="icon" type="image/svg+xml"/><link href="../assets/course-refresh.css?v=20261015.3" rel="stylesheet"/><link href="../assets/modern.css?v=20261015.3" rel="stylesheet"/><link href="../assets/course-modern.css?v=20261015.3" rel="stylesheet"/><link href="../assets/theme-polish.css?v=20261015.3" rel="stylesheet"/><link href="../assets/theme-consistency.css?v=20261015.3" rel="stylesheet"/>
+<link href="../assets/course-studio.css?v=20261015.3" rel="stylesheet"/>
+<link href="../assets/unified-finish.css?v=20261015.3" rel="stylesheet"/><link href="../assets/device-responsive.css?v=20261015.3" rel="stylesheet"/><link href="../assets/responsive-v2.css?v=20261015.3" rel="stylesheet"/></link><link href="../assets/workspace-shell.css?v=20261021.3" rel="stylesheet"/><link rel="stylesheet" href="../assets/course-experience.css?v=20261021.3">
+</head>
+<body data-course="sql" data-responsive-page="courses/sql">
 <div class="app"><aside class="sidebar" id="sidebar">
 <div class="brand course-brand"><div class="course-brand-shell"><img alt="Data Analysis Learning Path logo" class="sidebar-company-logo" src="../assets/da-logo.svg"/><div class="brand-company-name"><strong>Data Analysis Learning Path</strong><span>SQL Mastery Roadmap</span></div></div></div>
 <div class="searchbox"><span>⌕</span><input aria-label="Search course" id="searchInput" placeholder="Search lessons, terms or formulas..."/></div>
@@ -513,11 +514,8 @@ const observer=new IntersectionObserver(entries=>{entries.filter(e=>e.isIntersec
 sections.forEach(s=>observer.observe(s));loadProgress();
 </script><a aria-label="Back to learning portal" class="portal-home-btn" href="../index.html">← Learning Portal</a>
 <script>window.ZAH_COURSE_SLUG='sql';window.ZAH_COURSE_TITLE='SQL for Data Analytics';window.ZAH_PROGRESS_KEY='sqlRoadmapProgress';</script>
-
-
-
-<script src="../assets/progress-cloud.js?v=20261015.3"></script>
-<script src="../assets/course-sync.js?v=20261015.3"></script>
-<script src="../assets/course-account.js?v=20261015.3"></script>
-<script src="../assets/modern.js?v=20261015.3"></script><script src="../assets/course-studio-data.js?v=20261015.3"></script><script src="../assets/course-studio.js?v=20261015.3"></script>
-<link rel="stylesheet" href="../assets/learner-companion.css?v=20261015.3"><script defer src="../assets/course-studio-data.js?v=20261015.3"></script><script defer src="../assets/learner-companion.js?v=20261015.3"></script><a href="../practice.html" aria-label="Open interactive SQL and Excel practice arena" style="position:fixed;left:16px;bottom:16px;z-index:999;display:inline-block;border-radius:100px;padding:11px 15px;background:#173b54;color:#fff;text-decoration:none;font-weight:700;box-shadow:0 6px 22px #0003;font-size:.86rem">⚡ Practice Arena</a><script defer src="../assets/course-checkpoints.js?v=20261015.3"></script><script src="../assets/responsive-v2.js?v=20261015.3" defer></script></body></html>
+<script defer="" src="../assets/progress-cloud.js?v=20261021.3"></script>
+<script defer="" src="../assets/course-sync.js?v=20261021.3"></script>
+<script defer="" src="../assets/course-account.js?v=20261021.3"></script>
+<script defer="" src="../assets/modern.js?v=20261015.3"></script><script defer="" src="../assets/course-studio-data.js?v=20261015.3"></script><script defer="" src="../assets/course-studio.js?v=20261015.3"></script>
+<link href="../assets/learner-companion.css?v=20261015.3" rel="stylesheet"/><script defer="" src="../assets/learner-companion.js?v=20261021.3"></script><a aria-label="Open interactive SQL and Excel practice arena" href="../practice.html" style="position:fixed;left:16px;bottom:16px;z-index:999;display:inline-block;border-radius:100px;padding:11px 15px;background:#173b54;color:#fff;text-decoration:none;font-weight:700;box-shadow:0 6px 22px #0003;font-size:.86rem">⚡ Practice Arena</a><script defer="" src="../assets/course-checkpoints.js?v=20261015.3"></script><script defer="" src="../assets/responsive-v2.js?v=20261015.3"></script><script defer="" src="../assets/workspace-shell.js?v=20261021.3"></script></body></html>

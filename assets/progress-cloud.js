@@ -26,6 +26,9 @@
 
   async function getUser(){
     if(!window.ZAH_DB?.configured||!window.ZAH_DB?.client) return null;
+    // Reuse the identity already verified by the global auth gate this page load.
+    // Database RLS still verifies the JWT independently on each cloud request.
+    if(window.DALP_AUTH_USER?.id)return window.DALP_AUTH_USER;
     try{ const {data,error}=await window.ZAH_DB.client.auth.getUser(); if(error) throw error; return data?.user||null; }
     catch(e){ console.error('Unable to read Supabase user',e); return null; }
   }
@@ -72,12 +75,13 @@
       }
     }
 
-    if(rowsToPush.length){ const dedup={}; rowsToPush.forEach(r=>dedup[String(r.week_no)]=r); await upsertRows(Object.values(dedup)); }
+    if(rowsToPush.length){ const dedup={}; rowsToPush.forEach(r=>dedup[String(r.week_no)]=r); await upsertRows(Object.values(dedup));
+      // Only re-fetch when pending or recovered work changed the remote rows.
+      remoteRows=await fetchCourseRows(user.id,slug); }
     writePending(pendingKey(user.id,slug),{});
     try{ localStorage.setItem(migratedKey(user.id,slug),'1'); }catch(_){}
 
     // Cloud becomes the shared source of truth after recovery.
-    remoteRows=await fetchCourseRows(user.id,slug);
     const progress=normalizedProgress(remoteRows,info.units); writeLocal(info.key,progress);
     const latest=(remoteRows||[]).map(r=>r.updated_at).filter(Boolean).sort().at(-1)||new Date().toISOString();
     try{ localStorage.setItem(`zahLastSync:${user.id}:${slug}`,latest); }catch(_){}
@@ -112,11 +116,12 @@
     if(allSyncPromise&&!opts.forceLegacyMigration) return allSyncPromise;
     const task=(async()=>{
       const user=opts.user||await getUser(); if(!user)return {ok:false,reason:'signed_out',user:null,courses:{}};
-      const courses={};
-      for(const slug of Object.keys(COURSE_MAP)){
-        try{ courses[slug]=await syncCourse(slug,{user,forceLegacyMigration:!!opts.forceLegacyMigration}); }
-        catch(error){ console.error(`Sync failed for ${slug}`,error); courses[slug]={ok:false,reason:'error',error,progress:readLocal(COURSE_MAP[slug].key)}; }
-      }
+      // Each course is independent; parallel reads avoid five sequential network waits.
+      const entries=await Promise.all(Object.keys(COURSE_MAP).map(async slug=>{
+        try{return [slug,await syncCourse(slug,{user,forceLegacyMigration:!!opts.forceLegacyMigration})];}
+        catch(error){console.error(`Sync failed for ${slug}`,error);return [slug,{ok:false,reason:'error',error,progress:readLocal(COURSE_MAP[slug].key)}];}
+      }));
+      const courses=Object.fromEntries(entries);
       return {ok:Object.values(courses).every(x=>x.ok),user,courses};
     })();
     if(!opts.forceLegacyMigration) allSyncPromise=task;

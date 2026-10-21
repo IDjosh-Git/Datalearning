@@ -13,9 +13,9 @@ for(const f of htmlFiles.filter(x=>!x.endsWith('auth.html'))){
  const rel=path.relative(root,f);
  const gate=html.indexOf('document.documentElement.classList.add(\'dalp-auth-checking\')');
  assert(gate>=0,`Missing pre-render authentication cover on ${rel}`);
- assert(/assets\/auth-gate\.js\?v=20261021(?:\.2)?/.test(html),`Missing session guard ${rel}`);
- assert(/assets\/auth-gate\.css\?v=20261021(?:\.2)?/.test(html),`Missing fail-closed css ${rel}`);
- assert(/assets\/auth-gate\.js\?v=20261021(?:\.2)?/.test(html.slice(0,html.indexOf('</head>'))),`Guard not in head ${rel}`);
+ assert(/assets\/auth-gate\.js\?v=20261021(?:\.[23])?/.test(html),`Missing session guard ${rel}`);
+ assert(/assets\/auth-gate\.css\?v=20261021(?:\.[23])?/.test(html),`Missing fail-closed css ${rel}`);
+ assert(/assets\/auth-gate\.js\?v=20261021(?:\.[23])?/.test(html.slice(0,html.indexOf('</head>'))),`Guard not in head ${rel}`);
  assert.equal((html.match(/src="https:\/\/cdn.jsdelivr.net\/npm\/@supabase\/supabase-js@2.57.0"/g)||[]).length,1,`Auth SDK not once on ${rel}`);
 }
 for(const id of ['loginForm','signupForm','forgotForm','resetForm','loginEmail','loginPassword','signupEmail','signupPassword','signupConfirm','forgotEmail','newPassword','confirmNewPassword','loginBtn','signupBtn','forgotBtn','resetBtn'])assert(publicPage.includes(`id="${id}"`),`Missing ${id}`);

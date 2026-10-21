@@ -1,0 +1,63 @@
+/* Learning Path 4.0 • consistent workspace navigation, accessible on every device */
+:root {--dl-navy:#172c3f;--dl-navy-2:#254559;--dl-orange:#f27329;--dl-paper:#f7f9fc;--dl-border:#e3eaf0;--dl-ink:#1b3144}
+html {scroll-padding-top:92px}
+body.dl-workspace{min-width:0}
+body.dl-workspace .nav-shell,body.dl-workspace .lp-context-bar{display:none!important}
+.dl-shell{position:sticky;top:0;z-index:9991;width:100%;background:var(--dl-navy);color:#fff;border-bottom:1px solid #ffffff20;box-shadow:0 3px 18px #0f26301a;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+.dl-shell-inner{min-height:68px;max-width:1900px;margin:0 auto;padding:0 clamp(16px,2.8vw,48px);display:flex;align-items:center;gap:clamp(10px,1.5vw,28px)}
+.dl-shell-brand{display:flex;align-items:center;gap:10px;flex:0 0 auto;min-width:0;color:white!important;text-decoration:none!important}
+.dl-shell-brand img{width:39px;height:39px;object-fit:contain;border-radius:11px;background:#fff;padding:3px}
+.dl-shell-brand span{display:flex;flex-direction:column;line-height:1.18}
+.dl-shell-brand b{font-size:13px;color:white;letter-spacing:-.015em}.dl-shell-brand small{font-size:10px;font-weight:600;color:#b6cad7;letter-spacing:.02em;margin-top:3px}
+.dl-shell-nav{display:flex;gap:3px;align-items:center;flex:1;min-width:0;justify-content:center}
+.dl-shell-nav a{color:#d6e2e9!important;font-size:12px;white-space:nowrap;text-decoration:none!important;font-weight:730;padding:11px clamp(8px,.8vw,14px);border-radius:10px;transition:background .16s,color .16s}
+.dl-shell-nav a:hover{background:#ffffff13;color:#fff!important}
+.dl-shell-nav a[aria-current="page"]{background:#ffffff18;color:#fff!important;box-shadow:inset 0 -2px 0 var(--dl-orange)}
+.dl-shell-actions{display:flex;align-items:center;gap:9px;flex:0 0 auto;margin-left:auto}
+.dl-shell-search,.dl-shell-menu{display:flex;align-items:center;justify-content:center;gap:8px;border:1px solid #ffffff36;background:#ffffff12;color:#f6f9ff;min-height:38px;padding:8px 12px;border-radius:10px;font:700 12px/1 system-ui;cursor:pointer}
+.dl-shell-search kbd{font:700 10px system-ui;padding:3px 5px;border-radius:5px;background:#ffffff19;color:#cedce4}
+.dl-shell-search:hover,.dl-shell-menu:hover{background:#ffffff27}
+.dl-shell-avatar{width:38px;height:38px;border-radius:12px;background:#f27329;color:#182b40!important;display:grid;place-items:center;font-weight:900;font-size:14px;text-decoration:none!important}
+.dl-shell-menu{display:none}
+.dl-shell button:focus-visible,.dl-shell a:focus-visible,.dl-command a:focus-visible,.dl-command button:focus-visible,.dl-command input:focus-visible{outline:3px solid var(--dl-orange);outline-offset:3px}
+.dl-command[hidden],.dl-shell-overlay[hidden]{display:none!important}
+.dl-shell-overlay{position:fixed;inset:68px 0 0;background:#08111ab8;z-index:9991}
+.dl-command{position:fixed;inset:0;z-index:9999;background:#0a1826a8;display:grid;place-items:start center;padding:clamp(75px,15vh,150px) 16px 20px;font-family:Inter,system-ui,sans-serif}
+.dl-command-card{background:#fff;color:#1f3447;width:min(100%,610px);border:1px solid #d9e3eb;border-radius:19px;box-shadow:0 28px 95px #0b1b2d66;overflow:hidden}
+.dl-command-top{padding:17px 19px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #e5ecf1}
+.dl-command-top input{flex:1;border:0;outline:none!important;min-width:0;font:500 16px system-ui;color:#182d43;background:transparent}
+.dl-command-close{background:#f0f4f7;border:0;border-radius:8px;padding:7px 9px;cursor:pointer;color:#42576c;font-size:11px;font-weight:800}
+.dl-command-items{max-height:min(60vh,440px);overflow-y:auto;padding:10px}
+.dl-command-items a{display:flex;align-items:center;justify-content:space-between;gap:12px;border-radius:11px;text-decoration:none!important;color:#253b50!important;padding:14px 13px;font-size:14px;font-weight:800}
+.dl-command-items a:hover,.dl-command-items a:focus-visible{background:#eef5f8}
+.dl-command-items span{color:#7c8d9b;font-size:12px;font-weight:500}
+.dl-command-items p{padding:10px 16px;color:#627183}
+.dl-command-foot{padding:12px 17px;background:#f7fafc;border-top:1px solid #e8edf1;font-size:11px;color:#627183}
+body.dl-workspace .wrap{width:min(calc(100% - clamp(32px,6vw,100px)),1660px)!important;max-width:1660px!important}
+body.dl-workspace .dalp-admin-hero .wrap,body.dl-workspace .dalp-admin-content{max-width:1660px!important;width:min(calc(100% - clamp(32px,6vw,100px)),1660px)!important}
+body.dl-workspace .app>.sidebar{top:68px;height:calc(100dvh - 68px)}
+body.dl-workspace .app .topbar{top:68px}
+body.dl-workspace .app{min-height:calc(100dvh - 68px)}
+body.dl-workspace .page-hero{padding-block:clamp(31px,4vw,65px)}
+body.dl-workspace .course-topbar,body.dl-workspace .topbar{z-index:30}
+body.dl-workspace .lc-launch{z-index:990}
+/* Navigation now provides Practice and Lab, so the older floating duplications are removed. */
+body.dl-workspace .dalp-floating-lab,body.dl-workspace .dalp-floating-practice,body.dl-workspace .portal-home-btn{display:none!important}
+/* Progressive rendering for long theory-heavy lessons. Do not apply to interactive studio forms or search results. */
+@supports(content-visibility:auto){body.dl-workspace .app .week{content-visibility:auto;contain-intrinsic-size:auto 800px}}
+@media(min-width:1650px){body.dl-workspace .app{grid-template-columns:300px minmax(0,1fr)}body.dl-workspace .app main{min-width:0}}
+@media(max-width:1180px){.dl-shell-brand small{display:none}.dl-shell-nav a{padding:10px 8px;font-size:11px}.dl-shell-search kbd{display:none}}
+@media(max-width:950px){
+ .dl-shell-inner{min-height:62px;padding-inline:16px;gap:10px}
+ .dl-shell-brand b{font-size:12px}.dl-shell-brand img{width:35px;height:35px}
+ .dl-shell-nav{display:none;position:absolute;top:62px;left:0;right:0;background:#192f43;max-height:calc(100dvh - 62px);overflow-y:auto;padding:14px 16px 20px;box-shadow:0 16px 26px #081a2c40;align-items:stretch;flex-direction:column;z-index:9993}
+ .dl-shell-nav.is-open{display:flex}.dl-shell-nav a{font-size:14px;padding:14px 16px}
+ .dl-shell-menu{display:flex}.dl-shell-search span{display:none}.dl-shell-search{padding:8px 10px;min-width:38px}
+ .dl-shell-overlay{top:62px}
+ body.dl-workspace .app>.sidebar{top:62px;height:calc(100dvh - 62px)}
+ body.dl-workspace .app .topbar{top:62px}
+ body.dl-workspace .app{min-height:calc(100dvh - 62px)}
+ }
+@media(max-width:520px){.dl-shell-brand b{font-size:11px}.dl-shell-brand img{height:32px;width:32px}.dl-shell-brand span{max-width:137px}.dl-shell-actions{gap:6px}.dl-shell-avatar{height:35px;width:35px;border-radius:11px}.dl-shell-menu{padding:8px 9px}.dl-shell-search{padding:8px 9px}body.dl-workspace .wrap{width:calc(100% - 28px)!important}body.dl-workspace .dalp-admin-hero .wrap,body.dl-workspace .dalp-admin-content{width:calc(100% - 28px)!important}}
+@media(prefers-reduced-motion:reduce){.dl-shell *{transition:none!important}}
+html[data-theme="dark"] .dl-command-card{background:#1d3041;color:#f4f8fa;border-color:#3b5364}html[data-theme="dark"] .dl-command-top input{color:#fff}html[data-theme="dark"] .dl-command-items a{color:#e5ecf2!important}html[data-theme="dark"] .dl-command-items a:hover{background:#33495b}html[data-theme="dark"] .dl-command-foot{background:#17293a;border-color:#3b5364;color:#d2dfeb}
