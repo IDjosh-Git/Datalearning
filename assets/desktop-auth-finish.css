@@ -1,0 +1,46 @@
+/* Desktop-first adaptive layout and polished authentication: October 2026 */
+*,*::before,*::after{box-sizing:border-box}
+html,body{max-width:100%;overflow-x:clip}
+@media(min-width:1200px){
+  .container{width:min(94%,1680px)!important;max-width:1680px!important;margin-inline:auto}
+  .wrap{width:min(94%,1600px)!important;max-width:1600px!important;margin-inline:auto}
+  .topbar .container.nav{width:min(94%,1680px)!important;max-width:1680px!important}
+}
+@media(min-width:1700px){.container,.topbar .container.nav{width:min(92%,1840px)!important;max-width:1840px!important}}
+.auth-page{min-height:100svh;background:radial-gradient(ellipse at 8% 2%,color-mix(in srgb,var(--app-brand) 8%,transparent),transparent 52%),var(--app-bg)!important}
+.auth-page .auth-shell{width:min(calc(100% - clamp(24px,5vw,112px)),1550px)!important;max-width:none;margin:0 auto;padding:clamp(16px,2.2vw,30px) 0 28px}
+.auth-page .auth-layout{grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr)!important;min-height:min(730px,calc(100svh - 165px));border-radius:clamp(18px,2vw,30px);box-shadow:0 28px 85px rgba(13,29,48,.11)}
+.auth-page .auth-story{min-height:0!important;padding:clamp(32px,4vw,76px)!important;gap:26px}
+.auth-page .auth-forms{min-width:0;padding:clamp(30px,4.2vw,72px)!important}
+.auth-page .auth-forms>*{width:100%;max-width:470px;margin-inline:auto}
+.auth-page .auth-story h1{max-width:670px;font-size:clamp(36px,3.7vw,65px);line-height:1.09;text-wrap:balance}
+.auth-page .auth-heading h2{font-size:clamp(27px,2.6vw,37px);line-height:1.18}
+.auth-page .auth-benefits{max-width:600px}
+.auth-page .auth-field input{font-size:16px!important;min-width:0}
+.auth-page .auth-story,.auth-page .auth-forms{overflow-wrap:anywhere}
+.auth-page button:focus-visible,.auth-page a:focus-visible,.auth-page input:focus-visible{outline:2px solid var(--app-brand)!important;outline-offset:3px}
+.auth-page .auth-msg{overflow-wrap:anywhere}
+@media(max-width:1000px){
+ .auth-page .auth-shell{width:min(calc(100% - 32px),760px)!important}
+ .auth-page .auth-layout{grid-template-columns:minmax(0,1fr)!important;min-height:0}
+ .auth-page .auth-forms{order:-1!important;padding:clamp(24px,5vw,44px)!important}
+ .auth-page .auth-story{padding:clamp(24px,5vw,44px)!important}
+ .auth-page .auth-forms>*{max-width:520px}
+ .auth-page .auth-story h1{font-size:clamp(29px,5vw,43px)}
+}
+@media(max-width:600px){
+ .auth-page .auth-shell{width:calc(100% - 20px)!important;padding-top:12px}
+ .auth-page .auth-layout{border-radius:18px}
+ .auth-page .auth-forms{padding:25px 20px!important}
+ .auth-page .auth-story{padding:23px 20px!important}
+ .auth-page .auth-story h1{font-size:clamp(27px,8vw,36px)!important}
+ .auth-page .auth-heading h2{font-size:26px}
+ .auth-page .auth-tabs{gap:4px}
+ .auth-page .auth-topbar{gap:8px;margin-bottom:14px}
+ .auth-page .auth-wordmark{min-width:0}
+ .auth-page .auth-wordmark strong{font-size:12px;overflow-wrap:normal}
+ .auth-page .auth-secure-chip{font-size:0!important;min-width:33px}
+ .auth-page .auth-benefits{grid-template-columns:1fr}
+ .auth-page .auth-benefit:nth-child(n+2){display:none}
+}
+@media(max-width:360px){.auth-page .auth-shell{width:calc(100% - 12px)!important}.auth-page .auth-forms{padding:22px 15px!important}}

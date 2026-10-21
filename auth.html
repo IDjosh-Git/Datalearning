@@ -12,12 +12,13 @@
 <link rel="stylesheet" href="assets/theme-consistency.css?v=20261015.3">
 <link rel="stylesheet" href="assets/unified-finish.css?v=20261015.3"><link rel="stylesheet" href="assets/device-responsive.css?v=20261015.3"><link rel="stylesheet" href="assets/responsive-v2.css?v=20261015.3">
 <link rel="stylesheet" href="assets/auth-first.css?v=20261021">
+<link rel="stylesheet" href="assets/desktop-auth-finish.css?v=20261021.2">
 </head>
 <body class="auth-page" data-responsive-page="auth" data-auth-mode="login">
 <div class="auth-shell">
   <header class="auth-topbar">
     <div class="auth-wordmark"><img src="assets/da-logo.svg" alt="Data Analysis Learning Path logo"><span><strong>Data Analysis Learning Path</strong><span>Learn · practise · build · present</span></span></div>
-    <div class="auth-top-actions"><span class="auth-secure-chip">● Secure learner access</span></div>
+    <div class="auth-top-actions"><span class="auth-secure-chip">● Secure account access</span></div>
   </header>
   <main class="auth-layout">
     <section class="auth-story" aria-label="About the learning platform">
@@ -34,7 +35,7 @@
       </div>
       <div class="auth-story-foot"><span class="auth-dot"></span> Powered by secure account authentication</div>
     </section>
-    <section class="auth-forms" aria-label="Learner sign-in and registration">
+    <section class="auth-forms" aria-label="Learner and administrator sign-in and registration">
       <div class="auth-heading"><small>WELCOME TO YOUR LEARNING PATH</small><h2 id="authTitle">Welcome back</h2><p id="authSubtitle">Sign in to pick up exactly where you left off.</p></div>
       <div id="configWarn" class="auth-msg warn" role="alert" aria-live="assertive" hidden></div>
       <div class="auth-tabs" id="authTabs" role="tablist" aria-label="Account action">
@@ -80,7 +81,7 @@
         </form>
         <p class="auth-switch"><button type="button" data-auth-mode="login">Back to sign in</button></p>
       </section>
-      <div class="auth-account-note"><span aria-hidden="true">✦</span><p>New learners create an account first. After confirming your email (if requested), sign in to unlock all courses and tools.</p></div>
+      <div class="auth-account-note"><span aria-hidden="true">✦</span><p>Learners and administrators sign in here. New learners create an account first; administrator permissions are assigned securely by your platform owner.</p></div>
       <p class="auth-footer-note">Passwords are processed by Supabase Authentication. Your learning records are linked to your account.</p>
     </section>
   </main>

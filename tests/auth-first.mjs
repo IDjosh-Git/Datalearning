@@ -20,7 +20,7 @@ for(const f of htmlFiles.filter(x=>!x.endsWith('auth.html'))){
 }
 for(const id of ['loginForm','signupForm','forgotForm','resetForm','loginEmail','loginPassword','signupEmail','signupPassword','signupConfirm','forgotEmail','newPassword','confirmNewPassword','loginBtn','signupBtn','forgotBtn','resetBtn'])assert(publicPage.includes(`id="${id}"`),`Missing ${id}`);
 const auth=read('assets/auth-flow.js');
-for(const term of ['signInWithPassword','signUp','resetPasswordForEmail','updateUser','signInWithOAuth','return','location.replace(destination())','emailRedirectTo','PASSWORD_RECOVERY','8 characters'])assert(auth.includes(term),`Missing auth logic ${term}`);
+for(const term of ['signInWithPassword','signUp','resetPasswordForEmail','updateUser','signInWithOAuth','return','location.replace(target)','emailRedirectTo','PASSWORD_RECOVERY','8 characters'])assert(auth.includes(term),`Missing auth logic ${term}`);
 const gate=read('assets/auth-gate.js');
 for(const term of ['auth.getSession()','auth.getUser()','loginDestination()','prepareWorkspace','clearLocalCourseCache','SIGNED_OUT','USER_DELETED','dalp-auth-checking','showError()','onAuthStateChange'])assert(gate.includes(term),`Missing guard logic ${term}`);
 assert(read('assets/progress-cloud.js').includes('recoverCurrentDevice(user){ return syncAll({user:user||null}); }'),'No forced recovery on account switching');

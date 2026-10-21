@@ -62,7 +62,17 @@
         ]);
       }
     }catch(e){console.warn('Post-login preparation will retry',e)}
-    location.replace(destination());
+    let target=destination();
+    // Administrators use the same credentials and form as learners.
+    // An explicit deep link always wins; otherwise land in admin workspace.
+    try {
+      const hasExplicitReturn=new URLSearchParams(location.search).has('return');
+      if(!hasExplicitReturn&&window.ZAH_DB?.client&&user?.id){
+        const {data:admin,error:roleError}=await window.ZAH_DB.client.from('site_admins').select('user_id').eq('user_id',user.id).maybeSingle();
+        if(!roleError&&admin)target=new URL('admin.html',location.href).href;
+      }
+    }catch(error){console.warn('Role landing lookup deferred to page gate',error)}
+    location.replace(target);
   }
   const dbReady=()=>{
     if(db())return true;
