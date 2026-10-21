@@ -8,7 +8,7 @@ const read=x=>fs.readFileSync(path.join(root,x),'utf8');
 const pages=['index.html','reference.html','tutor.html','auth.html','account.html','verify.html','progress.html','courses/excel.html','courses/sql.html','courses/powerbi.html','courses/ai.html','prompt-library.html'];
 for(const p of pages){assert(read(p).includes('Data Analysis Learning Path'),'Missing rebrand '+p);assert(!read(p).includes('zen-logo.png'),'Old missing logo '+p)}
 for(const p of ['courses/excel.html','courses/sql.html','courses/powerbi.html']){const s=read(p);assert.equal((s.match(/class="guided-lab"/g)||[]).length,10,`${p} labs`);assert.equal((s.match(/class="question"/g)||[]).length,50,`${p} quizzes`);assert.equal((s.match(/class="week searchable"/g)||[]).length,10,`${p} weeks`);assert(s.includes('course-refresh.css'));}
-const refs=JSON.parse(read('assets/reference-data.js').replace(/^window.IJ_REFERENCE=/,'').replace(/;\s*$/,''));assert.equal(refs.length,54);for(const r of refs){assert(r.title&&r.code&&r.watch&&r.meaning)}
+const refs=JSON.parse(read('assets/reference-data.js').replace(/^window.IJ_REFERENCE=/,'').replace(/;\s*$/,''));assert.equal(refs.length,603);for(const r of refs){assert(r.title&&r.code&&r.watch&&r.meaning)}
 for(const item of ['assets/da-logo.svg','assets/site.css','assets/tutor.js','assets/reference.js','api/tutor.js','lib/tutor-context.js','downloads/retail_orders.csv','downloads/retail_practice.sqlite'])assert(fs.existsSync(path.join(root,item)),item);
 assert.equal(read('downloads/retail_orders.csv').trim().split(/\r?\n/).length,361);
 assert(read('index.html').includes('esoterikjoshua@gmail.com'));
@@ -22,7 +22,7 @@ process.env.OPENAI_API_KEY='test-only-do-not-use';
 const originalFetch=globalThis.fetch;let sent;
 globalThis.fetch=async(_url,options)=>{sent=JSON.parse(options.body);assert.match(options.headers.Authorization,/test-only-do-not-use/);return {ok:true,status:200,json:async()=>({output:[{content:[{type:'output_text',text:'SUMIFS adds values matching several conditions.'}]}]})}};
 try{r=await run(req('GET'));assert.equal(r.body.aiEnabled,true);r=await run(req('POST',{question:'Explain SUMIFS',history:[{role:'user',content:'I use Excel'}]}));assert.equal(r.code,200);assert.match(r.body.answer,/SUMIFS/);assert.equal(sent.store,false);assert(sent.instructions.includes('Data Analysis Learning Path'));assert.equal(sent.input.length,2);r=await run(req('POST',{question:''}));assert.equal(r.code,400);const wrong=req('POST',{question:'hello'});wrong.headers.origin='https://external.invalid';r=await run(wrong);assert.equal(r.code,403);}finally{globalThis.fetch=originalFetch;delete process.env.OPENAI_API_KEY;}
-console.log('PASS Data Analysis Learning Path rebrand | 9 pages | 30 labs | 150 quiz questions | 54 references | practice CSV 360 orders');
+console.log('PASS Data Analysis Learning Path rebrand | 9 pages | 30 labs | 150 quiz questions | 603 references | practice CSV 360 orders');
 console.log('PASS Vercel AI GET/POST: unconfigured, configured/mock response, privacy, input validation, origin check');
 
 for (const c of ['excel','sql','powerbi','ai']){ const t=read(`courses/${c}.html`); assert(t.includes(`../capstone.html?course=${c}`),'Capstone route '+c); assert(!t.includes("localStorage.setItem(store"),'No self-issued certificate '+c); assert(t.includes(c==='ai'?'ai-course.css':'modern.css'),'Course theme '+c); }
