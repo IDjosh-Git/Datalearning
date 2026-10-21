@@ -1,0 +1,366 @@
+/*
+ * Responsive System v2 — comprehensive layout remediation.
+ * Applied after all component styles on EVERY HTML route.
+ * Breakpoints: compact phones, wide phones, tablets, laptops, desktops.
+ * Scoped selectors intentionally avoid changing business logic or theme tokens.
+ */
+:root{--rv-gutter:clamp(14px,3.8vw,32px);--rv-touch:44px}
+html{min-width:0;max-width:100%;-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-padding-top:76px}
+body{min-width:0;max-width:100%}
+*,*::before,*::after{box-sizing:border-box}
+:is(main,section,article,aside,header,nav,footer,.app,.wrap,.container,.content,.card,.lp-course,.lp-demo,.lp-quick-card,.lp-smart-banner,.tutor-grid,.tutor-chat,.tutor-sidebar,.pc-detail,.pc-sidebar,.study-studio,.studio-content,.auth-layout,.auth-story,.auth-forms,.review-shell,.cap-layout,.ip-content){min-width:0}
+:is(img,video,canvas,svg,iframe){max-width:100%}
+:is(img,video){height:auto}
+:is(h1,h2,h3,h4,h5,p,li,th,td,label,small,blockquote){overflow-wrap:break-word}
+:is(pre,.snippet,.lab-code,.sql-editor,.query-output,.code-block,.review-sheet,.pc-sheet,.table-wrap,.table-scroll,.table-container,.table-responsive){max-width:100%;overflow-x:auto;overscroll-behavior-inline:contain;-webkit-overflow-scrolling:touch}
+pre{tab-size:2} :is(input,select,textarea){min-width:0;max-width:100%}
+:is(.lp-course-grid,.lp-quick-grid,.lp-hero-grid,.lp-dashboard-strip,.lp-smart-banner,.intro-home-panel,.path,.hero-grid,.course-grid,.stats,.overview-grid,.course-map,.learning-grid,.tutor-grid,.pc-layout,.intro,.unit-grid,.cap-layout,.cap-side,.review-shell,.review-stats,.ip-stats,.studio-content,.auth-layout,.pl-shell,.prompt-grid,.usage-grid)>*{min-width:0}
+/* Prevent fixed desktop spacing from pushing page content off-screen. */
+:where(.wrap,.container,.course-wrap,.pc-wrap,.auth-shell,.pl-shell){max-width:100%}
+:where(button,.btn,.button,input[type=button],input[type=submit],summary){touch-action:manipulation}
+:is(button,a,input,textarea,select,summary,[role=button]):focus-visible{outline:3px solid var(--app-brand,#b55f80);outline-offset:3px}
+/* Common primary navigation. */
+.nav-shell{z-index:100;position:relative}
+.nav-inner{min-width:0}
+.nav-inner .wordmark{min-width:0;flex:0 1 auto}
+.nav-inner .wordmark span{min-width:0}
+.nav-toggle{width:44px;min-width:44px;min-height:44px;display:grid;place-items:center;line-height:1!important;flex:0 0 44px;cursor:pointer}
+.nav-links{min-width:0}
+/* Let course content preserve horizontal-scrolling datasets and code examples. */
+:is(.lesson-table,.ip-table,.review-preview table,.pc-sheet table){max-width:none}
+:is(.week-body,.expanded-lessons,.studio-pane,.cap-panel,.ref-card,.review-detail){min-width:0}
+/* Long code and document headings should wrap without clipping. */
+:is(.week-body,.unit-grid,.expanded-lessons,.studio-pane,.review-detail) :is(pre,code){max-width:100%}
+/* Floating helpers occupy intentionally separate layers rather than cover one another. */
+.lc-launch{z-index:994}
+.lc-panel{z-index:1205;overscroll-behavior:contain}
+/* -------- Mid-size laptops and large tablets -------- */
+@media(max-width:1100px){
+ .nav-shell .nav-toggle{display:grid!important}
+ .nav-shell .nav-links{display:none!important;position:absolute!important;left:0!important;right:0!important;top:100%!important;width:100%!important;max-height:min(74dvh,700px)!important;overflow-y:auto!important;padding:10px!important;gap:3px!important;flex-direction:column!important;align-items:stretch!important;background:#172436!important;border:1px solid #34485e!important;border-radius:0 0 16px 16px!important;box-shadow:0 16px 32px #07112040;z-index:130!important}
+ .nav-shell .nav-links.open{display:flex!important}
+ .nav-shell .nav-links a{width:100%;padding:12px 15px!important;white-space:normal!important;color:#f5f7fa!important}
+ .nav-shell .nav-links a:focus-visible{outline-color:white}
+ .lp-course-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .lp-quick-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .review-inbox{position:static}
+}
+@media(max-width:900px){
+ .lp-hero-grid,.intro-home-panel,.lp-smart-banner{grid-template-columns:minmax(0,1fr)!important}
+ .lp-hero{padding:54px 0 66px!important}
+ .lp-demo{width:100%;max-width:670px;margin:0 auto}
+ .lp-hero-actions{flex-wrap:wrap}
+ .lp-smart-stats{width:100%}
+ .intro-home-example{max-width:none}
+ .pc-layout,.tutor-grid,.chat-layout,.review-shell,.cap-layout,.auth-layout{grid-template-columns:minmax(0,1fr)!important}
+ .pc-sidebar{max-height:none}
+ .review-inbox{position:static!important}
+ .review-list{max-height:min(45dvh,520px)}
+ .auth-story{min-height:0!important}
+ .auth-benefits{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .study-studio{width:100%;max-width:100%}
+ .pl-hero-art{display:none}
+ .footer-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+/* -------- Tablets and compact notebooks -------- */
+@media(max-width:760px){
+ :is(.cap-side,.ip-stats,.review-stats,.overview-grid,.course-map,.resources,.usage-grid,.prompt-grid){grid-template-columns:repeat(2,minmax(0,1fr))}
+ .auth-forms{padding:26px!important}
+ .auth-story{padding:30px!important}
+ .tutor-grid{gap:14px}
+ .studio-content{grid-template-columns:minmax(0,1fr)!important}
+ .studio-tools{align-items:stretch}
+ .studio-tools input{flex:1 1 100%;min-width:0}
+ .studio-head{flex-wrap:wrap;align-items:start}
+ .studio-counter{margin-left:auto}
+ .pc-hero{padding:26px}
+ .pc-wrap{padding-top:23px}
+ .course-top-actions{display:flex!important;align-items:center!important;flex-wrap:wrap!important;gap:8px!important;width:100%!important}
+ .course-top-actions .secondary-action{display:none!important}
+ .course-top-actions>.btn,.course-top-actions>a.btn{flex:1 1 110px!important;width:auto!important;min-width:0!important;min-height:42px!important;max-width:none!important;padding:9px 10px!important;font-size:12px!important}
+ .course-top-actions>.lp-theme-btn{flex:0 0 44px!important;width:44px!important;min-width:44px!important;min-height:44px!important;padding:6px!important;margin:0!important}
+ .course-top-actions .theme-label{display:none!important}
+ .topbar{align-items:flex-start!important;padding:12px var(--rv-gutter)!important;gap:9px!important}
+ .topbar-title{flex:1 1 100%!important;align-items:center!important;gap:10px!important;min-width:0!important}
+ .topbar-title>div{min-width:0}
+ .topbar-title strong{font-size:clamp(13px,3vw,17px)!important}
+ .topbar-title small{font-size:11px!important}
+ .menu-btn{flex:0 0 44px;width:44px;min-height:44px!important;display:inline-flex;justify-content:center;align-items:center;padding:8px!important}
+ .content{padding-left:var(--rv-gutter)!important;padding-right:var(--rv-gutter)!important;padding-bottom:95px!important;max-width:100%!important}
+ .content .hero{padding:clamp(22px,5vw,34px)!important}
+ .content .hero h2{font-size:clamp(29px,7.2vw,44px)!important;line-height:1.16!important;letter-spacing:-.03em!important}
+ .content .hero p{font-size:clamp(13px,3.6vw,15px)!important;line-height:1.7!important}
+ .content .stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ .content .overview-grid,.content .course-map{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ .week-header{grid-template-columns:44px minmax(0,1fr)!important;gap:10px!important}
+ .week-num{width:44px!important;height:44px!important}
+ .week-header .badge{grid-column:1/-1!important;margin-left:0!important;justify-self:start}
+ .week-body{padding:clamp(13px,3vw,20px)!important}
+ .sidebar{max-width:min(86vw,330px)!important;overscroll-behavior:contain}
+ .sidebar.open{left:0!important}
+ .lp-ai-page .ai-hero{padding:45px var(--rv-gutter)!important}
+ .lp-ai-page .course-wrap{padding:22px var(--rv-gutter) 55px!important}
+ .lp-ai-page .intro,.lp-ai-page .unit-grid{grid-template-columns:minmax(0,1fr)!important}
+ .lp-ai-page .metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:14px;row-gap:15px}
+ .lp-ai-page .metrics span{display:grid;gap:2px;align-content:start}
+ .lp-ai-page .metrics b{font-size:clamp(22px,5vw,27px)}
+ .lp-ai-page .orientation-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .cap-hero,.ip-hero,.review-hero{padding:44px 0 58px!important}
+ .cap-hero h1,.ip-hero h1,.review-hero h1{font-size:clamp(31px,6vw,45px)!important}
+ .search-row{display:flex;flex-wrap:wrap;gap:9px!important}
+ .search-row input{flex:1 1 100%!important;width:100%}
+ .search-row select{flex:1 1 160px!important;max-width:100%!important}
+ .review-two{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .pc-detail textarea{font-size:16px}
+}
+/* -------- All phones, portrait and narrow landscape -------- */
+@media(max-width:600px){
+ :root{--rv-gutter:clamp(12px,4vw,18px)}
+ html{scroll-padding-top:68px}
+ :is(input,textarea,select){font-size:16px!important} /* no iOS focus zoom */
+ :is(.wrap,.container){width:calc(100% - 2 * var(--rv-gutter))!important;margin-inline:auto!important}
+ :is(.nav-inner){min-height:62px!important;gap:7px!important}
+ .wordmark{max-width:calc(100% - 100px);gap:9px!important}
+ .wordmark img{width:38px!important;height:38px!important;flex:0 0 38px}
+ .wordmark strong{font-size:clamp(12px,3.8vw,15px)!important;line-height:1.25}
+ .wordmark small{font-size:9px!important}
+ .nav-links{max-height:calc(100dvh - 75px)!important}
+ .lp-theme-btn{flex:0 0 auto}
+ .lp-context-bar{margin-top:0!important;margin-bottom:0!important;padding-block:8px!important}
+ .lp-context-nav{width:100%;display:flex!important;flex-wrap:nowrap!important;white-space:nowrap;gap:6px!important;overflow-x:auto!important;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity;padding:5px!important;scrollbar-width:thin}
+ .lp-context-chip{flex:0 0 auto!important;white-space:nowrap!important;min-height:38px;scroll-snap-align:start}
+ .lp-hero{padding:36px 0 52px!important}
+ .lp-hero-grid{gap:25px!important;grid-template-columns:minmax(0,1fr)!important}
+ .lp-hero h1{font-size:clamp(33px,9vw,48px)!important;line-height:1.12!important;letter-spacing:-.045em!important}
+ .lp-hero p{font-size:clamp(14px,3.8vw,16px)!important;line-height:1.66!important}
+ .lp-hero-actions{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:10px!important}
+ .lp-hero-actions a{display:flex!important;justify-content:center;text-align:center;width:100%;min-width:0;min-height:44px}
+ .lp-hero-proof{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px!important}
+ .lp-hero-proof>div{min-width:0}
+ .lp-hero-proof b{font-size:clamp(20px,5vw,26px)}
+ .lp-hero-proof span{font-size:10px}
+ .lp-demo{max-width:100%;min-width:0}
+ .lp-demo-inner{padding:clamp(12px,4vw,20px)!important}
+ .lp-demo-metrics{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:7px!important}
+ .lp-demo-metric{min-width:0;padding:10px 7px!important}
+ .lp-demo-metric b{font-size:clamp(14px,4.4vw,21px)!important}
+ .lp-demo-metric small{font-size:9px}
+ .lp-demo-chip{position:static!important;width:fit-content;max-width:100%;margin:9px 0 0 auto!important}
+ .lp-dashboard{margin-top:0!important}
+ .lp-dashboard-strip{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:0}
+ .lp-dashboard-strip>div:first-child{grid-column:1/-1}
+ .lp-dashboard-strip>div{padding:13px!important;min-width:0}
+ .lp-dashboard-strip strong{font-size:clamp(15px,4.4vw,21px)}
+ .lp-home .section{padding-block:36px!important}
+ .lp-home .section-head h2{font-size:clamp(25px,6.5vw,34px)!important}
+ .lp-quick-grid,.lp-course-grid,.lp-smart-stats,.intro-home-panel,.path{grid-template-columns:minmax(0,1fr)!important}
+ .lp-quick-card,.lp-course{padding:clamp(17px,5vw,24px)!important}
+ .lp-smart-banner,.intro-home-panel{padding:clamp(18px,5vw,26px)!important}
+ .lp-smart-actions{flex-wrap:wrap;gap:9px}
+ .lp-smart-actions a{flex:1 1 145px;text-align:center}
+ .lp-tools{display:flex!important;gap:7px!important;align-items:stretch;flex-wrap:wrap!important}
+ .lp-search{flex:1 1 100%;min-width:0}
+ .lp-search input{width:100%}
+ .lp-filter{flex:1 1 auto;min-height:43px}
+ .lp-course-top,.lp-course-footer{min-width:0}
+ .footer-grid{grid-template-columns:minmax(0,1fr)!important}
+ /* Specialist course interaction surfaces */
+ .app{display:block!important;width:100%}
+ .app>main{width:100%;min-width:0}
+ .topbar{padding:10px var(--rv-gutter)!important;gap:8px!important}
+ .topbar-title{margin:0!important}
+ .topbar-title .lp-icon.small{max-width:24px!important;max-height:24px!important}
+ .course-top-actions{display:flex!important;grid-template-columns:none!important;flex-wrap:nowrap!important;justify-content:space-between!important;align-items:stretch!important;gap:7px!important}
+ .course-top-actions>.btn,.course-top-actions>a.btn{flex:1 1 0!important;width:auto!important;font-size:clamp(10px,3vw,12px)!important;padding:8px 6px!important;line-height:1.2!important}
+ .course-top-actions>.lp-theme-btn{flex:0 0 43px!important;width:43px!important;min-width:43px!important}
+ .content{padding:18px var(--rv-gutter) 98px!important}
+ .content .stats,.content .overview-grid,.content .course-map,.content .resources,.content .check-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+ .content .stat,.content .card,.content .map-card{padding:clamp(11px,3vw,17px)!important}
+ .content .stat strong{font-size:clamp(17px,5vw,24px)!important}
+ .content .hero h2{font-size:clamp(29px,7.7vw,40px)!important}
+ .content .section-head{margin-top:26px}
+ .week-title h3{font-size:clamp(18px,5vw,22px)!important}
+ .week-body :is(.lesson,.session-block,.lab-panel,.quiz-card){min-width:0}
+ .week-body :is(.learning-grid,.check-grid,.lab-columns){grid-template-columns:minmax(0,1fr)!important}
+ .lesson-table{display:block;width:100%;overflow:auto;-webkit-overflow-scrolling:touch}
+ .lesson-table tbody{display:table;width:max-content;min-width:100%}
+ .week :is(textarea,select,input:not([type=checkbox]):not([type=radio])){max-width:100%}
+ .study-studio{margin:19px 0!important;padding:15px!important;border-radius:17px!important}
+ .studio-head{align-items:flex-start!important;gap:9px!important}
+ .studio-counter{min-width:86px!important;padding:10px!important}
+ .studio-unit summary{padding:12px!important;gap:8px!important;align-items:flex-start!important}
+ .studio-number{flex:0 0 32px!important;padding:7px!important}
+ .studio-status{margin-left:auto;white-space:normal!important;line-height:1.25;overflow-wrap:anywhere;text-align:center}
+ .studio-name{min-width:0}
+ .studio-name b{font-size:14px!important}
+ .studio-content{padding:0 12px 12px!important;gap:12px!important}
+ .studio-pane{padding:14px!important}
+ .studio-tools input,.studio-tools select,.studio-tools button{flex:1 1 100%;width:100%;max-width:100%}
+ .studio-actions>button{flex:1 1 130px;min-height:43px}
+ /* AI course */
+ .lp-ai-page .course-top{padding:13px var(--rv-gutter)!important;gap:8px!important}
+ .lp-ai-page .course-top-actions{flex-wrap:wrap!important;justify-content:flex-start!important}
+ .lp-ai-page .course-top-actions a{flex:0 1 auto!important;min-height:40px}
+ .lp-ai-page .ai-hero{padding:36px var(--rv-gutter) 43px!important}
+ .lp-ai-page .ai-hero h1{font-size:clamp(32px,8.8vw,47px)!important;line-height:1.13!important;letter-spacing:-.045em!important}
+ .lp-ai-page .ai-hero p{font-size:15px!important}
+ .lp-ai-page .metrics{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:23px}
+ .lp-ai-page .intro,.lp-ai-page .unit-grid,.lp-ai-page .orientation-grid,.lp-ai-page .tool-directory-grid,.lp-ai-page .tool-cases{grid-template-columns:minmax(0,1fr)!important}
+ .lp-ai-page .unit,.lp-ai-page .navigator,.lp-ai-page .intro>div,.lp-ai-page .ai-orientation{padding:clamp(14px,4.5vw,21px)!important;border-radius:15px!important}
+ .lp-ai-page .unit h2{font-size:clamp(21px,5.5vw,28px)!important}
+ .lp-ai-page .week-links{gap:5px}
+ .lp-ai-page .week-links a{min-width:39px;min-height:40px}
+ .lp-ai-page .ai-quiz{padding:15px!important}
+ .lp-ai-page .expanded-lessons{min-width:0}
+ /* Tutor: conversation first, suggestions still available immediately below it */
+ .tutor-shell{padding-top:22px!important;padding-bottom:105px!important}
+ .tutor-intro{margin-bottom:15px}
+ .tutor-intro h1{font-size:clamp(30px,8vw,39px)!important}
+ .tutor-grid{display:flex!important;flex-direction:column!important;gap:13px!important}
+ .tutor-chat{order:0;width:100%;border-radius:15px!important}
+ .tutor-sidebar{order:1;width:100%;padding:16px!important;border-radius:15px!important}
+ .tutor-chat .tutor-toolbar{padding:12px!important;gap:9px!important}
+ .tutor-identity{width:100%}
+ .tutor-toolbar-actions{width:100%!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:6px!important}
+ .tutor-chat .tutor-toolbar-btn{font-size:11px!important;min-width:0!important;min-height:42px!important;padding:7px 5px!important;white-space:normal!important;overflow-wrap:break-word!important}
+ .tutor-context-bar{gap:9px!important;flex-wrap:wrap!important}
+ .tutor-chat .messages{min-height:230px!important;max-height:min(47dvh,410px)!important;padding:12px!important}
+ .tutor-chat .bubble{max-width:97%;padding:12px!important}
+ .tutor-chat .tutor-composer{margin:8px 10px 5px!important;display:flex!important;flex-wrap:wrap!important;gap:7px!important}
+ .tutor-chat .tutor-composer textarea{flex:1 1 100%!important;width:100%!important;min-height:72px!important;font-size:16px!important}
+ .tutor-chat .tutor-composer button{min-height:44px!important;margin-left:auto}
+ .tutor-prompt-list{grid-template-columns:minmax(0,1fr)!important;margin:15px 0!important}
+ .tutor-sidebar .prompt-chip{min-height:44px!important;margin-top:0}
+ /* Practice and reference workflows */
+ .pc-wrap{padding:16px var(--rv-gutter) 96px!important}
+ .pc-hero{border-radius:17px!important;padding:23px 18px!important;margin-bottom:14px!important}
+ .pc-hero h1{font-size:clamp(26px,7vw,37px)!important}
+ .pc-layout{grid-template-columns:minmax(0,1fr)!important;gap:13px!important}
+ .pc-sidebar,.pc-detail{padding:17px!important;border-radius:15px!important}
+ .pc-sidebar{max-height:none!important}
+ .pc-item{min-height:45px}
+ .pc-buttons>button{flex:1 1 130px;min-height:44px}
+ .pc-sheet table{min-width:max-content}
+ .search-area{padding:17px!important;margin-top:-20px!important}
+ .search-row{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:10px!important}
+ .search-row input,.search-row select{width:100%!important;max-width:100%!important}
+ .ref-grid{grid-template-columns:minmax(0,1fr)!important}
+ .ref-card{padding:17px!important}
+ .ref-actions{gap:8px!important;flex-wrap:wrap!important}
+ .chat-side,.chat-panel{border-radius:15px!important}
+ /* Prompt library */
+ .pl-header{flex-wrap:wrap!important;align-items:flex-start!important;gap:12px!important}
+ .pl-header nav{display:flex!important;width:100%;justify-content:flex-start!important;gap:7px!important;flex-wrap:wrap!important}
+ .pl-header nav a{min-height:40px;display:inline-flex;align-items:center}
+ .pl-hero{padding:34px var(--rv-gutter)!important}
+ .pl-hero h1{font-size:clamp(29px,7.5vw,40px)!important}
+ .pl-shell{padding:17px var(--rv-gutter) 98px!important}
+ .usage-grid,.prompt-grid,.filter-bar{grid-template-columns:minmax(0,1fr)!important}
+ .prompt-card{min-width:0}
+ .library-top{flex-wrap:wrap!important;gap:9px!important}
+ /* Project, instructor, and progress */
+ .cap-hero,.ip-hero,.review-hero{padding:36px 0 53px!important}
+ .cap-hero h1,.ip-hero h1,.review-hero h1{font-size:clamp(30px,7.7vw,42px)!important;line-height:1.17!important}
+ .cap-content,.ip-content,.review-content{max-width:100%;margin-bottom:80px!important}
+ .cap-layout,.cap-side,.ip-stats,.review-shell{grid-template-columns:minmax(0,1fr)!important}
+ .cap-panel,.cap-side-panel,.review-detail,.ip-panel{padding:17px!important}
+ .cap-track-picker{display:flex;flex-wrap:wrap!important;gap:8px!important}
+ .cap-track{flex:1 1 130px;min-width:0}
+ .cap-milestones{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important}
+ .review-stats{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important}
+ .review-stat,.ip-stats article{padding:14px!important}
+ .review-stat strong,.ip-stats strong{font-size:clamp(22px,6vw,30px)!important}
+ .review-filters,.review-two{grid-template-columns:minmax(0,1fr)!important}
+ .review-list{max-height:330px!important}
+ .review-grade{grid-template-columns:minmax(0,1fr) 78px;gap:8px;padding:10px}
+ .review-preview-head{flex-wrap:wrap!important}
+ .review-preview iframe{height:min(56dvh,520px)!important}
+ .ip-panel-head{flex-wrap:wrap!important;gap:12px!important;padding:16px!important}
+ .ip-table-wrap,.ip-table-container{width:100%;overflow-x:auto}
+ .ip-stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ /* Account, sign-in, verification, utility pages */
+ .auth-shell{width:calc(100% - 2 * var(--rv-gutter))!important;padding-top:14px!important}
+ .auth-topbar{gap:8px!important;margin-bottom:13px!important}
+ .auth-wordmark{min-width:0}
+ .auth-wordmark img{width:40px;height:40px;flex:0 0 40px}
+ .auth-story{padding:23px 18px!important}
+ .auth-story h1{color:#fff!important;-webkit-text-fill-color:#fff!important;font-size:clamp(28px,7.4vw,36px)!important;line-height:1.13!important}
+ .auth-story p{color:#dbe3ec!important}
+ .auth-kicker{white-space:normal!important;max-width:100%}
+ .auth-benefits{grid-template-columns:minmax(0,1fr)!important;margin-top:22px!important}
+ .auth-benefit{padding:12px!important}
+ .auth-forms{padding:22px 17px!important}
+ .auth-tabs{gap:4px}
+ .auth-tab{min-height:43px}
+ .auth-field input,.auth-submit{font-size:16px!important;min-height:46px}
+ .auth-page .auth-forms{padding-bottom:35px!important}
+ body[data-responsive-page="account"] :is(.wrap,.container),body[data-responsive-page="verify"] :is(.wrap,.container),body[data-responsive-page="connection-test"] :is(.wrap,.container),body[data-responsive-page="sync-test"] :is(.wrap,.container){width:calc(100% - 2 * var(--rv-gutter))!important}
+ body[data-responsive-page="account"] .grid,body[data-responsive-page="verify"] .grid{grid-template-columns:minmax(0,1fr)!important}
+ body[data-responsive-page="account"] .top,body[data-responsive-page="verify"] .top{flex-wrap:wrap!important;gap:12px!important}
+ body[data-responsive-page="account"] .card,body[data-responsive-page="verify"] .card{padding:17px!important}
+ /* On each phone, floating tools remain reachable without obscuring page actions */
+ .dalp-floating-lab,.dalp-floating-practice{bottom:calc(9px + env(safe-area-inset-bottom))!important;width:calc(50vw - 16px)!important;max-width:calc(50vw - 16px)!important}
+ .dalp-floating-lab{right:9px!important}
+ .dalp-floating-practice{left:9px!important}
+ .dalp-floating-lab>a,.dalp-floating-practice{display:flex!important;align-items:center;justify-content:center;text-align:center;max-width:100%;width:100%!important;min-height:43px!important;padding:7px 5px!important;font-size:clamp(9px,2.7vw,11px)!important;line-height:1.2!important;white-space:normal!important;border-radius:14px!important;box-shadow:0 4px 15px #0002!important}
+ .lc-launch{right:10px!important;bottom:calc(63px + env(safe-area-inset-bottom))!important;font-size:11px!important;min-height:38px!important;padding:7px 12px!important;max-width:60vw!important}
+ .lc-panel{right:8px!important;left:8px!important;bottom:calc(113px + env(safe-area-inset-bottom))!important;width:auto!important;max-height:min(68dvh,610px)!important;padding:14px!important;border-radius:15px!important}
+ .lc-metrics{gap:5px!important}
+ .lc-metrics div{padding:9px 4px!important}
+ .lc-metrics strong{font-size:19px!important}
+ .portal-home-btn{left:10px!important;bottom:calc(64px + env(safe-area-inset-bottom))!important;max-width:46vw!important;min-height:38px!important;padding:7px 9px!important;font-size:10px!important;z-index:900!important}
+ #zah-sync-badge{bottom:calc(113px + env(safe-area-inset-bottom))!important;max-width:49vw!important;right:10px!important;font-size:10px!important;z-index:880!important}
+ .toast.show{bottom:calc(117px + env(safe-area-inset-bottom))!important;max-width:calc(100vw - 30px)!important}
+ body{padding-bottom:max(80px,env(safe-area-inset-bottom))}
+}
+@media(max-width:370px){
+ :root{--rv-gutter:12px}
+ .nav-inner{gap:5px!important}
+ .wordmark img{width:34px!important;height:34px!important;flex-basis:34px!important}
+ .wordmark strong{font-size:12px!important}
+ .nav-inner .lp-theme-btn{min-width:36px!important;width:36px!important;padding:5px!important}
+ .lp-hero h1{font-size:32px!important}
+ .lp-hero-proof{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px!important}
+ .lp-demo-metrics{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+ .content .stats,.content .overview-grid,.content .course-map,.content .resources,.content .check-grid{grid-template-columns:minmax(0,1fr)!important}
+ .course-top-actions>.lp-theme-btn{flex-basis:38px!important;min-width:38px!important}
+ .lp-ai-page .metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .cap-milestones,.review-stats{grid-template-columns:minmax(0,1fr)!important}
+ .auth-topbar .auth-wordmark span{display:none}
+}
+/* Short landscape phones: optimise vertical real estate. */
+@media(max-height:500px) and (max-width:900px){
+ .nav-shell .nav-links{max-height:calc(100dvh - 55px)!important}
+ .sidebar{height:100dvh!important;overflow-y:auto!important}
+ .tutor-chat .messages{min-height:140px!important;max-height:40dvh!important}
+ .lc-panel{max-height:65dvh!important}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
+@media print{.lc-launch,.lc-panel,.dalp-floating-lab,.dalp-floating-practice,.portal-home-btn{display:none!important}}
+/* Targeted final fixes identified in the 320/390/768px pass. */
+html,body{overflow-x:clip}
+.auth-page .auth-story>div>p{color:#dbe3ec!important;-webkit-text-fill-color:#dbe3ec!important;opacity:1!important}
+.auth-page .auth-benefit span{color:#d1dae3!important;-webkit-text-fill-color:#d1dae3!important}
+@media(max-width:760px){
+ body[data-responsive-page="courses/introduction"] .intro-side nav{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto!important;max-width:100%;scroll-snap-type:x proximity;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+ body[data-responsive-page="courses/introduction"] .intro-side nav>a{flex:0 0 auto;scroll-snap-align:start;min-height:45px;white-space:nowrap}
+ body[data-responsive-page="courses/introduction"] .intro-hero-grid{grid-template-columns:minmax(0,1fr)!important;gap:25px!important}
+ body[data-responsive-page="courses/introduction"] .intro-hero h1{font-size:clamp(31px,7.8vw,46px)!important}
+ body[data-responsive-page="courses/introduction"] .intro-hero{padding-top:39px!important}
+ body[data-responsive-page="courses/introduction"] .intro-side{max-width:100%;overflow:hidden!important}
+ body[data-responsive-page="courses/introduction"] .intro-lesson{padding:clamp(16px,4vw,24px)!important}
+ body[data-responsive-page="courses/introduction"] :is(.three-points,.everyday-grid,.two-cols,.formula-grid,.tools-grid,.whatif){grid-template-columns:minmax(0,1fr)!important}
+ body[data-responsive-page="courses/introduction"] .table-wrap{max-width:100%;overflow-x:auto}
+}
+@media(max-width:600px){
+ body[data-responsive-page="account"] .card.full{overflow-x:auto!important;-webkit-overflow-scrolling:touch}
+ body[data-responsive-page="account"] .card.full>table{min-width:490px!important;width:100%}
+ body[data-responsive-page="connection-test"] code,body[data-responsive-page="sync-test"] code{overflow-wrap:anywhere!important;word-break:break-word!important;white-space:normal!important}
+ .lp-prompt-page .filter-bar>*{min-width:0;max-width:100%}
+ .lc-panel textarea,.lc-panel input,.lc-panel select{min-height:44px}
+}
+/* Remove browser-default body gutters on standalone authentication pages. */
+body{margin:0}
+@media(max-width:760px){
+ .lp-ai-page .course-top>a,.lp-ai-page .course-top-actions a{display:inline-flex!important;align-items:center!important;min-height:40px!important;max-width:100%;white-space:normal!important}
+}

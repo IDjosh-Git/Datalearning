@@ -8,7 +8,8 @@
     "node": ">=20"
   },
   "scripts": {
-    "test": "node tests/smoke.mjs && node tests/modern.mjs && node tests/sync-regression.mjs && node tests/course-content.mjs && node tests/ai-card-visibility.mjs"
+    "test": "node tests/smoke.mjs && node tests/modern.mjs && node tests/sync-regression.mjs && node tests/course-content.mjs && node tests/ai-card-visibility.mjs",
+    "test:responsive": "node tests/responsive-coverage.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.57.0"
