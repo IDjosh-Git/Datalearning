@@ -1,18 +1,21 @@
 {
   "name": "data-analysis-learning-path",
-  "version": "4.0.0",
+  "version": "9.0.0",
   "private": true,
   "type": "module",
-  "description": "Performance-first learning workspace with shared navigation, secure Supabase role access, personalized dashboard and responsive course experience",
+  "description": "Role-protected learning platform with course learning workspaces and unified administrator console",
   "engines": {
     "node": ">=20"
   },
   "scripts": {
     "test": "node tests/smoke.mjs && node tests/modern.mjs && node tests/sync-regression.mjs && node tests/course-content.mjs && node tests/ai-card-visibility.mjs && node tests/auth-first.mjs && node tests/auth-gate-runtime.mjs && node tests/admin-roles.mjs",
     "test:responsive": "node tests/responsive-coverage.mjs",
-    "test:workspace": "node tests/workspace-coverage.mjs"
+    "test:workspace": "node tests/workspace-coverage.mjs",
+    "test:admin": "node tests/admin-console-v6.mjs",
+    "test:server-auth": "node tests/server-auth.mjs && node tests/middleware-access.mjs"
   },
   "dependencies": {
-    "@supabase/supabase-js": "2.57.0"
+    "@supabase/supabase-js": "2.57.0",
+    "@vercel/functions": "3.9.9"
   }
 }

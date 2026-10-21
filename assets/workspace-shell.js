@@ -1,6 +1,6 @@
 /* Consistent, role-aware learning workspace navigation. No external services required. */
 (()=>{'use strict';
-if(document.body.classList.contains('auth-page')||/^(verify|connection-test|sync-test)\.html$/.test(location.pathname.split('/').pop()))return;
+if(document.body.hasAttribute('data-admin-console')||document.body.classList.contains('auth-page')||/^(verify|connection-test|sync-test)\.html$/.test(location.pathname.split('/').pop()))return;
 const onCourse=location.pathname.includes('/courses/'),root=onCourse?'../':'';
 const page=location.pathname.split('/').pop()||'index.html';
 const links=[['Dashboard','index.html','index'],['Courses','index.html#courses','course'],['Practice','practice.html','practice'],['AI Tutor','tutor.html','tutor'],['Lab','learning-lab.html','learning-lab'],['Library','reference.html','reference'],['Progress','account.html','account']];

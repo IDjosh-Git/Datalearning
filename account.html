@@ -6,7 +6,7 @@
 <link href="assets/auth-gate.css?v=20261021.2" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0"></script>
 <script src="assets/supabase-config.js?v=20261021"></script>
-<script src="assets/supabase-client.js?v=20261021"></script>
+<script src="assets/supabase-client.js?v=20261021"></script><script defer src="assets/server-session.js?v=20261022"></script>
 <script src="assets/auth-gate.js?v=20261021.3"></script>
 <meta charset="utf-8"/><meta content="width=device-width,initial-scale=1.0" name="viewport"/>
 <title>My Learning | Data Analysis Learning Path</title><script>try{const t=localStorage.getItem('dalp-theme');document.documentElement.dataset.theme=(t==='dark'||t==='light')?t:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch(e){document.documentElement.dataset.theme='light'}</script>
@@ -54,14 +54,14 @@ table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px;bor
 </div>
 <div class="grid">
 <div class="card full">
-<h2>Cloud Sync</h2>
-<p id="accountSyncStatus">Checking your cloud progress…</p>
+<h2>Your saved progress</h2>
+<p id="accountSyncStatus">Checking your latest progress…</p>
 </div>
 <div class="card full" id="instructorAccess" hidden><h2>Administrator workspace</h2><p>Monitor learner progress and assess submitted capstone projects. Only authorised administrators can use these management tools.</p><div class="continue-actions"><a class="btn" href="admin.html">Admin dashboard →</a><a class="btn" href="progress.html">Learner progress →</a><a class="btn" href="reviewer.html" style="background:#713a55">Open review desk →</a></div></div>
 <div class="card full" id="completionGuide">
-<h2>How your progress and completion record work</h2>
-<p>Sign in so your Introduction and specialist-course progress can sync across your devices. Finish weekly lessons and quizzes, and check that Cloud Sync says complete. After all ten weeks are synced, submit a capstone project with files and screenshots in the Capstone Studio. Your instructor reviews your files and publishes the score and feedback once marking is finished. A passing score of at least 70/100 qualifies for a registered completion certificate. Open the Capstone Studio to view your score, feedback and printable certificate.</p>
-<p class="muted">These are self-paced course-completion records, not accredited professional certifications. If syncing fails, your progress stays on this device until you retry.</p>
+<h2>How to complete a course</h2>
+<p>Work through each week and complete the practice and quizzes. Your progress is saved to your account so you can continue on another device. Once all ten weeks are complete and your progress is up to date, submit your final project with supporting files and screenshots. Your instructor will review your work and share a score and feedback. A score of 70/100 or higher qualifies you for a course-completion certificate, which you can view in the Capstone Studio.</p>
+<p class="muted">These certificates recognise completion of our self-paced courses; they are not professional accreditation. If your connection is interrupted, your progress stays on this device until it can be saved to your account.</p>
 </div>
 <div class="card full">
 <h2>Continue Learning</h2>
@@ -97,7 +97,7 @@ table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px;bor
 </div>
 <div class="card full">
 <h2>Certificates</h2>
-<table><thead><tr><th>Certificate ID</th><th>Course</th><th>Date</th><th>Status</th><th>Verify</th></tr></thead><tbody id="certBody"></tbody></table>
+<table><thead><tr><th>Certificate ID</th><th>Course</th><th>Date</th><th>Status</th><th>Certificate</th></tr></thead><tbody id="certBody"></tbody></table>
 </div>
 </div>
 </div>
@@ -106,7 +106,7 @@ table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px;bor
 (async()=>{
  const syncStatus=document.getElementById('accountSyncStatus');
  if(!window.ZAH_DB.configured){
-   if(syncStatus) syncStatus.textContent='Database is not configured.';
+   if(syncStatus) syncStatus.textContent='Your learning account is temporarily unavailable. Please try signing in again.';
    location.href='auth.html';return;
  }
  const user=await window.ZAHProgressCloud.getUser();
@@ -116,20 +116,20 @@ table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px;bor
 
  document.getElementById('who').textContent=user.user_metadata?.full_name?`${user.user_metadata.full_name} • ${user.email}`:user.email;
 
- if(syncStatus) syncStatus.textContent='Syncing progress from this device to your account…';
+ if(syncStatus) syncStatus.textContent='Saving your latest progress…';
  const syncResult=await window.ZAHProgressCloud.syncAll();
  const successful=Object.values(syncResult.courses||{}).filter(c=>c?.ok).length;
  if(syncStatus){
    syncStatus.textContent=successful===5
-     ? 'Cloud sync complete. Your Introduction, Excel, SQL, Power BI and AI Integration progress now follows this account across devices.'
-     : `Cloud sync completed for ${successful} of 5 learning paths. Open a learning path and retry any failed sync.`;
+     ? 'Your progress is up to date. You can pick up your lessons on any device.'
+     : `Your progress was updated for ${successful} of 5 courses. Open any remaining course and try again.`;
  }
 
  const {data:p,error:pErr}=await window.ZAH_DB.client
    .from('course_progress')
    .select('course_slug,week_no,completed,updated_at')
    .eq('user_id',user.id);
- if(pErr && syncStatus) syncStatus.textContent='Could not load cloud progress: '+pErr.message;
+ if(pErr && syncStatus) syncStatus.textContent='We couldn’t load your latest progress. Please refresh this page or try again later.';
 
  const trackUnits={introduction:8,excel:10,sql:10,powerbi:10,ai:10};
  Object.entries(trackUnits).forEach(([c,total])=>{
@@ -158,13 +158,15 @@ table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px;bor
    .order('issued_at',{ascending:false});
  const {data:submissions, error:capError}=await window.ZAH_DB.client.from('capstone_submissions').select('course_slug,project_title,status,score,created_at,review_due_at').eq('user_id',user.id).order('created_at',{ascending:false});
  const capHost=document.getElementById('accountCapstones');
- if(capError)capHost.textContent='Assessment table unavailable. Run the updated supabase_setup.sql before using capstone reviews.';
+ if(capError)capHost.textContent='Your assessment records are unavailable right now. Please try again later or contact your instructor.';
  else if(!submissions.length)capHost.textContent='No capstones submitted yet.';
  else{const labels={excel:'Excel',sql:'SQL',powerbi:'Power BI',ai:'AI Integration'};capHost.replaceChildren();submissions.forEach(r=>{const line=document.createElement('p'),a=document.createElement('a');a.textContent=(labels[r.course_slug]||r.course_slug.toUpperCase())+' · '+r.project_title+' · '+r.status.replaceAll('_',' ')+(r.score!=null?' · '+r.score+'/100':'');a.href='capstone.html?course='+encodeURIComponent(r.course_slug);a.style.cssText='color:var(--brand);font-weight:800';line.append(a);capHost.append(line)})}
- document.getElementById('certBody').innerHTML=(c||[]).map(r=>`<tr><td>${r.certificate_id}</td><td>${r.course_title}</td><td>${r.completion_date}</td><td>${r.status}</td><td><a href="verify.html?id=${encodeURIComponent(r.certificate_id)}" class="btn">Verify ↗</a></td></tr>`).join('')||'<tr><td colspan="5">No completion records registered yet.</td></tr>';
+ const escapeHTML = value => String(value ?? '').replace(/[&<>\"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[c]));
+ document.getElementById('certBody').innerHTML=(c||[]).map(r=>`<tr><td>${escapeHTML(r.certificate_id)}</td><td>${escapeHTML(r.course_title)}</td><td>${escapeHTML(r.completion_date)}</td><td>${escapeHTML(r.status)}</td><td><a href="certificate.html?id=${encodeURIComponent(r.certificate_id)}" class="btn">View &amp; download ↗</a></td></tr>`).join('')||'<tr><td colspan="5">No completion records registered yet.</td></tr>';
 })();
 
 document.getElementById('logout').onclick=async()=>{
+ await window.DALP_SERVER_SESSION?.clear();
  if(window.ZAH_DB.client) await window.ZAH_DB.client.auth.signOut();
  window.DALP_AUTH_GATE?.clearLocalCourseCache();
  location.replace('auth.html');

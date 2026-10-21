@@ -6,7 +6,7 @@ import handler from '../api/tutor.js';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=x=>fs.readFileSync(path.join(root,x),'utf8');
 const pages=['index.html','reference.html','tutor.html','auth.html','account.html','verify.html','progress.html','courses/excel.html','courses/sql.html','courses/powerbi.html','courses/ai.html','prompt-library.html'];
-for(const p of pages){assert(read(p).includes('Data Analysis Learning Path'),'Missing rebrand '+p);assert(!read(p).includes('zen-logo.png'),'Old missing logo '+p)}
+for(const p of pages){assert(read(p).includes('Data Analysis Learning Path'),'Missing rebrand '+p);assert(!read(p).includes('assets/retired-logo.png'),'Old missing logo '+p)}
 for(const p of ['courses/excel.html','courses/sql.html','courses/powerbi.html']){const s=read(p);assert.equal((s.match(/class="guided-lab"/g)||[]).length,10,`${p} labs`);assert.equal((s.match(/class="question"/g)||[]).length,50,`${p} quizzes`);assert.equal((s.match(/class="week searchable"/g)||[]).length,10,`${p} weeks`);assert(s.includes('course-refresh.css'));}
 const refs=JSON.parse(read('assets/reference-data.js').replace(/^window.IJ_REFERENCE=/,'').replace(/;\s*$/,''));assert.equal(refs.length,603);for(const r of refs){assert(r.title&&r.code&&r.watch&&r.meaning)}
 for(const item of ['assets/da-logo.svg','assets/site.css','assets/tutor.js','assets/reference.js','api/tutor.js','lib/tutor-context.js','downloads/retail_orders.csv','downloads/retail_practice.sqlite'])assert(fs.existsSync(path.join(root,item)),item);

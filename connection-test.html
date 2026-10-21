@@ -6,11 +6,11 @@
 <link href="assets/auth-gate.css?v=20261021.2" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0"></script>
 <script src="assets/supabase-config.js?v=20261021"></script>
-<script src="assets/supabase-client.js?v=20261021"></script>
+<script src="assets/supabase-client.js?v=20261021"></script><script defer src="assets/server-session.js?v=20261022"></script>
 <script src="assets/auth-gate.js?v=20261021.3"></script>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<title>Supabase Connection Test</title><script>try{const t=localStorage.getItem('dalp-theme');document.documentElement.dataset.theme=(t==='dark'||t==='light')?t:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch(e){document.documentElement.dataset.theme='light'}</script>
+<title>Account Connection Check | Data Analysis Learning Path</title><script>try{const t=localStorage.getItem('dalp-theme');document.documentElement.dataset.theme=(t==='dark'||t==='light')?t:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch(e){document.documentElement.dataset.theme='light'}</script>
 <style>
 body{font-family:system-ui;background:#f5f8fa;color:#1d2930;margin:0;padding:24px}
 .card{max-width:720px;margin:auto;background:#fff;border:1px solid #dce5e9;border-radius:18px;padding:24px}
@@ -25,8 +25,8 @@ code{background:#eef3f6;padding:2px 6px;border-radius:6px}
 </head>
 <body data-responsive-page="connection-test">
 <div class="card">
-<div class="auth-brand-shell"><img alt="Data Analysis Learning Path logo" class="auth-brand-logo" src="assets/da-logo.svg"/><div class="brand-company-name"><strong>Data Analysis Learning Path</strong><span>Connection Test</span></div></div><h1>Supabase Connection Test</h1>
-<p>Project: <code>https://hotysnqorkqbiconjskl.supabase.co</code></p>
+<div class="auth-brand-shell"><img alt="Data Analysis Learning Path logo" class="auth-brand-logo" src="assets/da-logo.svg"/><div class="brand-company-name"><strong>Data Analysis Learning Path</strong><span>Connection Test</span></div></div><h1>Check your account connection</h1>
+<p>We’re checking that your account can connect securely.</p>
 <div id="status">Testing connection…</div>
 <p><a href="index.html">Back to Learning Portal</a></p>
 </div>
@@ -34,14 +34,14 @@ code{background:#eef3f6;padding:2px 6px;border-radius:6px}
 (async()=>{
  const el=document.getElementById('status');
  try{
-   if(!window.ZAH_DB.configured) throw new Error('Supabase config was not detected.');
+   if(!window.ZAH_DB.configured) throw new Error('Your account connection is unavailable.');
    const {data,error}=await window.ZAH_DB.client.auth.getSession();
    if(error) throw error;
    el.className='ok';
-   el.textContent='Connection configuration loaded successfully. Supabase responded to the browser client.';
+   el.textContent='Your account connection is working. You can continue learning.';
  }catch(e){
    el.className='bad';
-   el.textContent='Connection test failed: '+e.message;
+   el.textContent='We couldn’t connect to your account right now. Please refresh and try again.';
  }
 })();
 </script>

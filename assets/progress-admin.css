@@ -7,3 +7,5 @@
 @media(max-width:980px){.ip-filters{grid-template-columns:repeat(3,minmax(0,1fr))}.ip-filters label:first-child{grid-column:auto}}
 @media(max-width:760px){.ip-content{margin-top:-22px}.ip-hero{padding:42px 0 62px}.ip-panel-head{padding:20px}.ip-filters{padding:0 20px 18px;grid-template-columns:1fr}.ip-panel-head .cap-outline{width:100%}.ip-table-wrap{margin:0 12px 12px}.ip-table-foot{padding:12px 18px}.ip-detail-head{flex-direction:column}.ip-detail-head .cap-outline{width:100%}}
 @media(max-width:430px){.ip-stats{grid-template-columns:1fr}.ip-detail-summary{grid-template-columns:1fr}.ip-hero h1{font-size:36px}.ip-content{width:min(100% - 16px,1180px)!important}}
+
+.ip-cert-link{display:inline-block;margin-top:5px;color:#216b67!important;text-decoration:underline;text-underline-offset:3px;font-weight:800;font-size:11px}

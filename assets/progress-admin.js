@@ -21,23 +21,23 @@
  const statusLabel=s=>({completed:'Completed',awaiting_review:'Awaiting review',revision:'Revision requested',ready:'Ready for capstone',inactive:'Inactive 14+ days',not_started:'Not started',in_progress:'In progress'}[s]||s);
  const capstoneLabel=s=>({submitted:'Awaiting review',processing:'Awaiting review',review_error:'Awaiting review',needs_manual_review:'Awaiting review',approved:'Passed',needs_revision:'Revision requested'}[s]||'Not submitted');
  async function init(){
-   if(!window.ZAH_DB?.configured||!db()){gate('This site is not connected to Supabase. Configure the project and run the latest supabase_setup.sql.','error');return}
+   if(!window.ZAH_DB?.configured||!db()){gate('Progress reports are temporarily unavailable. Please try again later or contact your administrator.','error');return}
    try{
      const {data,error}=await db().auth.getUser();if(error)throw error;
      if(!data?.user){el('progressGate').innerHTML='Instructor sign-in required. <a href="auth.html?return='+encodeURIComponent(location.href)+'">Sign in to continue ↗</a>';return}
      const {data:owner,error:ownerError}=await db().from('capstone_reviewers').select('user_id').eq('user_id',data.user.id).maybeSingle();if(ownerError)throw ownerError;
-     if(!owner){gate('Access restricted. This account is not on the instructor allowlist.','warning');return}
+     if(!owner){gate('You do not have permission to view learner reports. Please contact an administrator if you need access.','warning');return}
      el('progressGate').hidden=true;el('progressApp').hidden=false;
      el('progressLearner').addEventListener('change',applyFilters);
      el('progressCourse').addEventListener('change',applyFilters);el('progressStatus').addEventListener('change',applyFilters);
      el('refreshProgress').onclick=loadOverview;el('closeDetail').onclick=()=>{el('learnerDetail').hidden=true;selected=null};
      await loadOverview();
-   }catch(err){console.error(err);gate('Cannot load the instructor progress dashboard: '+err.message,'error')}
+   }catch(err){console.error(err);gate('We couldn’t open learner reports right now. Please try again later.','error')}
  }
  async function loadOverview(){
    el('progressBody').innerHTML='<tr><td colspan="10" class="ip-empty">Loading learner progress…</td></tr>';
    const {data,error}=await db().rpc('instructor_progress_overview');
-   if(error){el('progressBody').innerHTML='<tr><td colspan="10" class="ip-empty"><strong>Progress report unavailable.</strong><br>'+esc(error.message)+'</td></tr>';return}
+   if(error){el('progressBody').innerHTML='<tr><td colspan="10" class="ip-empty"><strong>Progress reports are unavailable.</strong><br>Please try again in a moment.</td></tr>';return}
    rows=(data||[]).map(r=>({...r,completed_weeks:Number(r.completed_weeks||0),progress_percent:Number(r.progress_percent||0),quizzes_taken:Number(r.quizzes_taken||0),quiz_average:r.quizzes_taken?Number(r.quiz_average||0):null}));
    populateLearners();paintStats();applyFilters();
  }
@@ -67,7 +67,7 @@
      const tr=document.createElement('tr'),st=rowStatus(r);
      const total=UNITS[r.course_slug]||10;
      const capstone=r.course_slug==='introduction'?'Not required':capstoneLabel(r.capstone_status);
-     const cert=r.course_slug==='introduction'?'Not required':(r.certificate_id?'Issued':'—');
+     const cert=r.course_slug==='introduction'?'Not required':(r.certificate_id?'Issued <a class="ip-cert-link" href="certificate.html?id='+encodeURIComponent(r.certificate_id)+'" target="_blank" rel="noopener">View ↗</a>':'—');
      tr.innerHTML='<td><strong>'+esc(r.learner_name||'Learner')+'</strong><small>'+esc(r.learner_email||'')+'</small></td><td><strong>'+esc(TRACKS[r.course_slug]||r.course_slug)+'</strong></td><td>'+r.completed_weeks+'/'+total+'</td><td><div class="ip-progress" title="'+r.progress_percent+'%"><span style="width:'+Math.max(0,Math.min(100,r.progress_percent))+'%"></span></div><small>'+r.progress_percent+'%</small></td><td>'+(r.course_slug==='introduction'?'—':r.quizzes_taken+'/10')+'</td><td>'+(r.course_slug==='introduction'?'—':(r.quiz_average==null?'—':r.quiz_average+'%'))+'</td><td><span class="ip-status '+st+'">'+esc(capstone)+'</span>'+(r.course_slug!=='introduction'&&r.capstone_score!=null?'<small>'+Number(r.capstone_score)+'/100</small>':'')+'</td><td>'+cert+'</td><td>'+esc(date(r.last_activity))+'<small>'+esc(statusLabel(st))+'</small></td><td><button type="button" class="ip-view">View details →</button></td>';
      tr.querySelector('.ip-view').onclick=()=>openDetail(r);body.append(tr);
    }
@@ -77,7 +77,7 @@
    const review=el('detailReviewLink');review.hidden=r.course_slug==='introduction'||!PENDING.includes(r.capstone_status);review.href='reviewer.html';
    const grid=el('weekGrid');grid.innerHTML='<div class="ip-empty">Loading weekly detail…</div>';el('learnerDetail').scrollIntoView({behavior:'smooth',block:'start'});
    const {data,error}=await db().rpc('instructor_progress_detail',{p_user_id:r.learner_user_id,p_course_slug:r.course_slug});
-   if(selected!==r)return;if(error){grid.innerHTML='<div class="ip-empty">Could not load weekly detail: '+esc(error.message)+'</div>';return}
+   if(selected!==r)return;if(error){grid.innerHTML='<div class="ip-empty">We couldn’t load this learner’s weekly progress. Please try again.</div>';return}
    grid.replaceChildren();for(const w of data||[]){const card=document.createElement('article');card.className='ip-week'+(w.completed?' done':'');card.innerHTML='<strong>'+(r.course_slug==='introduction'?'Lesson ':'Week ')+Number(w.week_no)+'</strong><span class="week-state">'+(w.completed?'✓ Completed':'○ Not complete')+'</span><small>'+(r.course_slug==='introduction'?'Foundation lesson':('Quiz: '+(w.quiz_percentage==null?'Not submitted':Number(w.quiz_percentage)+'%')))+'</small>'+(w.completed_at?'<small>Completed '+esc(date(w.completed_at))+'</small>':'');grid.append(card)}
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();

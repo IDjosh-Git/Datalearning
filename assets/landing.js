@@ -70,7 +70,7 @@
     }
     if(countEl) countEl.textContent = String(best.completed);
     if(focusEl) focusEl.textContent = best.title.startsWith('Introduction') ? 'Introduction' : best.title.split(' ').slice(0,2).join(' ');
-    if(syncEl) syncEl.textContent = signedIn ? 'Cloud synced' : 'Local';
+    if(syncEl) syncEl.textContent = signedIn ? 'Up to date' : 'On this device';
   }
 
   function setAccountState(signedIn){

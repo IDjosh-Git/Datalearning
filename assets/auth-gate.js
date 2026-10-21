@@ -27,7 +27,7 @@
  function addSignOut(){
   if(!document.getElementById('dalpGlobalLogout')&&!document.getElementById('logout')){
    const host=document.querySelector('.nav-links,.course-top-actions,.auth-top-actions,.sidebar');
-   if(host){const b=document.createElement('button');b.id='dalpGlobalLogout';b.className='dalp-gate-logout';b.type='button';b.textContent='Sign out';b.addEventListener('click',async()=>{b.disabled=true;b.textContent='Signing out…';try{await window.ZAH_DB.client.auth.signOut()}catch(e){console.warn('Sign-out failed',e)}exit()});host.append(b);}
+   if(host){const b=document.createElement('button');b.id='dalpGlobalLogout';b.className='dalp-gate-logout';b.type='button';b.textContent='Sign out';b.addEventListener('click',async()=>{b.disabled=true;b.textContent='Signing out…';try{await window.DALP_SERVER_SESSION?.clear();await window.ZAH_DB.client.auth.signOut()}catch(e){console.warn('Sign-out failed',e)}exit()});host.append(b);}
   }
   document.querySelectorAll('a.account-link,a.course-account-link').forEach(a=>{a.textContent='My account';a.href=toPage('account.html').href});
  }
@@ -59,11 +59,13 @@
    const role=admin?'admin':'learner';
    prepareWorkspace(data.user);window.DALP_AUTH_USER=data.user;window.DALP_ROLE=role;
    if(restricted.has(page)&&role!=='admin'){paint('denied');return;}
+   // Renew the short-lived HttpOnly hosting cookie on page access and token refresh.
+   try{await window.DALP_SERVER_SESSION?.establish(session.session)}catch(err){console.warn('Session renewal will retry',err)}
    authenticated=true;document.documentElement.classList.remove('dalp-auth-checking');
    if(gate){gate.remove();gate=null;}
    const init=()=>{addSignOut();enhanceRoleUI();};
    if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
-   client.auth.onAuthStateChange(event=>{if(event==='SIGNED_OUT'||event==='USER_DELETED')exit();});
+   client.auth.onAuthStateChange((event,newSession)=>{if(event==='SIGNED_OUT'||event==='USER_DELETED'){void window.DALP_SERVER_SESSION?.clear();exit();}else if(event==='TOKEN_REFRESHED'&&newSession){void window.DALP_SERVER_SESSION?.establish(newSession).catch(()=>{});}});
   }catch(e){console.warn('Unable to validate permissions',e);showError();}
   finally{working=false;}
  }

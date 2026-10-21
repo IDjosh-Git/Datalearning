@@ -30,19 +30,19 @@
       paint(next);
       if(!window.ZAHProgressCloud){ showSync('Saved on this device','offline'); return; }
       const result=await window.ZAHProgressCloud.saveWeek(slug,Number(cb.dataset.introCheck),cb.checked);
-      if(result.ok) showSync('Synced to your account','ok');
-      else if(result.reason==='signed_out') showSync('Saved here • sign in to sync across devices','offline');
-      else showSync('Saved here • cloud sync will retry','warning');
+      if(result.ok) showSync('Progress saved to your account','ok');
+      else if(result.reason==='signed_out') showSync('Saved on this device • sign in to continue anywhere','offline');
+      else showSync('Saved on this device • we’ll update your account when possible','warning');
     });
   }
   (async()=>{
     if(!window.ZAHProgressCloud){ showSync('Saved on this device','offline'); return; }
     try{
       const result=await window.ZAHProgressCloud.syncCourse(slug);
-      if(result.ok){ paint(result.progress); showSync('Cloud sync complete','ok'); }
-      else if(result.reason==='signed_out') showSync('Sign in to sync this introduction across devices','offline');
-      else showSync('Saved on this device • cloud unavailable','warning');
-    }catch(error){ console.error('Introduction cloud sync failed',error); showSync('Saved on this device • sync retry available','warning'); }
+      if(result.ok){ paint(result.progress); showSync('Your progress is up to date','ok'); }
+      else if(result.reason==='signed_out') showSync('Sign in to keep your progress across devices','offline');
+      else showSync('Saved on this device • we’ll retry soon','warning');
+    }catch(error){ console.error('Introduction cloud sync failed',error); showSync('Saved on this device • tap to try again','warning'); }
   })();
 
   const money = n => new Intl.NumberFormat('en-NG', {style:'currency',currency:'NGN',maximumFractionDigits:2}).format(n);

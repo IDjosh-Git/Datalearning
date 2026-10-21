@@ -1,18 +1,26 @@
-/* Administrator-only learner directory. Database RLS enforces these permissions. */
+/* Admin Console v6 — owner-only data, scoped directory, insights and exports.
+   No privileged credentials or mutation operations appear in the browser. */
 (function(){'use strict';
  const $=id=>document.getElementById(id);
- const COURSE={introduction:['Introduction',8],excel:['Excel',10],sql:['SQL',10],powerbi:['Power BI',10],ai:['AI Integration',10]};
- let profiles=[],progress=[],quizzes=[],submissions=[],certificates=[],filtered=[];
- const db=()=>window.ZAH_DB?.client;
+ const COURSE={introduction:['Introduction',8,'01'],excel:['Excel',10,'XL'],sql:['SQL',10,'SQL'],powerbi:['Power BI',10,'BI'],ai:['AI Integration',10,'AI']};
+ const PENDING=new Set(['submitted','processing','review_error','needs_manual_review']);
+ let profiles=[],progress=[],quizzes=[],submissions=[],certificates=[],filtered=[],page=0,busy=false;
+ let progressByUser=new Map(),quizByUser=new Map(),subByUser=new Map(),certByUser=new Map(),profilesById=new Map();
+ const pageSize=12,db=()=>window.ZAH_DB?.client;
  const esc=v=>String(v??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
- const shortDate=v=>v?new Date(v).toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'}):'—';
- const notice=(message,isError=false)=>{const n=$('adminNotice');n.textContent=message;n.style.background=isError?'#fff0eb':'#f0f9f5';n.style.color=isError?'#9e3323':'#1d624c';n.hidden=false};
- const stamp=r=>r?.updated_at||r?.completed_at||r?.submitted_at||r?.created_at||null;
+ const date=v=>v?new Date(v).toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'}):'—';
+ const time=v=>v?new Date(v).toLocaleString(undefined,{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}):'—';
  const latest=dates=>dates.filter(Boolean).sort().at(-1)||null;
- function rowsFor(uid){return progress.filter(r=>r.user_id===uid);}
+ function notice(message,isError=false){const n=$('adminNotice');n.textContent=message;n.style.background=isError?'#fff0eb':'#f0f9f5';n.style.color=isError?'#9e3323':'#1d624c';n.hidden=false}
+ const group=(items,key)=>{const map=new Map();for(const r of items){const k=r[key];if(!map.has(k))map.set(k,[]);map.get(k).push(r)}return map};
+ function rowsFor(uid){return progressByUser.get(uid)||[]}
  function profileStats(user){
-  const rows=rowsFor(user.user_id),done=rows.filter(r=>r.completed),paths=new Set(rows.map(r=>r.course_slug)),last=latest([...rows.map(stamp),...quizzes.filter(r=>r.user_id===user.user_id).map(stamp),...submissions.filter(r=>r.user_id===user.user_id).map(stamp)]);
-  return {paths:paths.size,completed:done.length,last,active:paths.size>0||quizzes.some(r=>r.user_id===user.user_id)||submissions.some(r=>r.user_id===user.user_id)};
+  const rows=rowsFor(user.user_id),qs=quizByUser.get(user.user_id)||[],subs=subByUser.get(user.user_id)||[],certs=certByUser.get(user.user_id)||[];
+  const paths=new Set([...rows.map(r=>r.course_slug),...qs.map(r=>r.course_slug),...subs.map(r=>r.course_slug)]);
+  const completed=rows.filter(r=>r.completed).length;
+  const last=latest([...rows.map(r=>r.updated_at||r.completed_at),...qs.map(r=>r.submitted_at),...subs.map(r=>r.created_at)]);
+  const completedPath=Object.entries(COURSE).some(([slug,[,units]])=>rows.filter(r=>r.course_slug===slug&&r.completed).length>=units)||certs.length>0;
+  return {paths:paths.size,completed,last,active:paths.size>0,completedPath,courseSet:paths};
  }
  async function fetchAll(table,fields){
   const all=[],pageSize=500;
@@ -21,65 +29,118 @@
    if(error)throw new Error(table+': '+error.message);
    all.push(...(data||[]));if(!data||data.length<pageSize)return all;
   }
-  throw new Error('More than 10,000 '+table+' records. Narrow this export or increase server pagination before continuing.');
+  throw new Error('There are too many records to display at once. Please narrow your search.');
  }
  function paintStats(){
-  const myId=window.DALP_AUTH_USER?.id;
-  const learners=profiles.filter(p=>p.user_id!==myId),active=learners.filter(p=>profileStats(p).active).length;
+  const learners=profiles.filter(p=>p.user_id!==window.DALP_AUTH_USER?.id);
   $('adminTotal').textContent=learners.length;
-  $('adminActive').textContent=active;
-  $('adminCompleted').textContent=progress.filter(r=>r.completed).length;
-  $('adminPending').textContent=submissions.filter(s=>['submitted','processing','review_error','needs_manual_review'].includes(s.status)).length;
+  $('adminActive').textContent=learners.filter(p=>profileStats(p).active).length;
+  $('adminCompleted').textContent=progress.filter(r=>r.completed&&r.user_id!==window.DALP_AUTH_USER?.id).length;
+  $('adminPending').textContent=submissions.filter(s=>PENDING.has(s.status)&&s.user_id!==window.DALP_AUTH_USER?.id).length;
+  $('adminUpdated').textContent='Updated '+new Date().toLocaleTimeString(undefined,{hour:'numeric',minute:'2-digit'});
+ }
+ function paintInsights(){
+  const attention=$('adminAttention'),activity=$('adminActivity'),courses=$('adminCourseCards');
+  attention.replaceChildren();activity.replaceChildren();courses.replaceChildren();
+  const outstanding=submissions.filter(s=>PENDING.has(s.status)&&s.user_id!==window.DALP_AUTH_USER?.id).sort((a,b)=>String(a.created_at||'').localeCompare(String(b.created_at||'')));
+  if(!outstanding.length) attention.innerHTML='<div class="ac-task"><span class="ac-task-badge">✓</span><div class="ac-task-copy"><strong>Your assessment queue is clear</strong><small>New capstone submissions will appear here when received.</small></div></div>';
+  outstanding.slice(0,4).forEach(s=>{
+   const p=profilesById.get(s.user_id),row=document.createElement('div');row.className='ac-task';
+   const label=COURSE[s.course_slug]?.[0]||s.course_slug||'Course';
+   row.innerHTML='<span class="ac-task-badge">◷</span><div class="ac-task-copy"><strong>'+esc(p?.full_name||p?.email||'Learner')+' · '+esc(label)+'</strong><small>'+esc(date(s.created_at))+' · '+esc((s.status||'submitted').replaceAll('_',' '))+'</small></div><a href="reviewer.html">Assess →</a>';attention.append(row);
+  });
+  if(outstanding.length>4){const more=document.createElement('a');more.className='ac-inline-link';more.href='reviewer.html';more.textContent='View all '+outstanding.length+' pending submissions →';attention.append(more)}
+  const recent=[...progress.filter(r=>r.completed&&r.user_id!==window.DALP_AUTH_USER?.id).map(r=>({id:r.user_id,type:'Lesson completed',when:r.completed_at||r.updated_at,detail:(COURSE[r.course_slug]?.[0]||r.course_slug||'Learning path')+' · Unit '+r.week_no})),...submissions.filter(r=>r.user_id!==window.DALP_AUTH_USER?.id).map(r=>({id:r.user_id,type:'Capstone submitted',when:r.created_at,detail:COURSE[r.course_slug]?.[0]||r.course_slug||'Learning path'})),...quizzes.filter(r=>r.user_id!==window.DALP_AUTH_USER?.id).map(r=>({id:r.user_id,type:'Knowledge check completed',when:r.submitted_at,detail:COURSE[r.course_slug]?.[0]||r.course_slug||'Learning path'})),...profiles.filter(r=>r.user_id!==window.DALP_AUTH_USER?.id).map(r=>({id:r.user_id,type:'New learner joined',when:r.joined_at,detail:'Account created'}))]
+   .filter(r=>r.when).sort((a,b)=>String(b.when).localeCompare(String(a.when))).slice(0,4);
+  if(!recent.length)activity.innerHTML='<p class="ac-empty">No activity recorded yet. New learner events will appear here.</p>';
+  recent.forEach(r=>{const p=profilesById.get(r.id),el=document.createElement('div');el.className='ac-event';el.innerHTML='<span class="ac-event-icon">↗</span><div class="ac-event-copy"><strong>'+esc(r.type)+'</strong><small>'+esc(p?.full_name||p?.email||'Learner')+' · '+esc(r.detail)+' · '+esc(time(r.when))+'</small></div>';activity.append(el)});
+  for(const [slug,[label,total,abbr]] of Object.entries(COURSE)){
+   const owners=new Set([...progress.filter(r=>r.course_slug===slug).map(r=>r.user_id),...quizzes.filter(r=>r.course_slug===slug).map(r=>r.user_id),...submissions.filter(r=>r.course_slug===slug).map(r=>r.user_id)]);
+   owners.delete(window.DALP_AUTH_USER?.id);
+   const units=progress.filter(r=>r.course_slug===slug&&r.completed&&r.user_id!==window.DALP_AUTH_USER?.id).length;
+   const average=owners.size?Math.min(100,Math.round(units/(total*owners.size)*100)):0;
+   const card=document.createElement('article');card.className='ac-course-card';
+   card.innerHTML='<span class="ac-course-symbol">'+abbr+'</span><h3>'+esc(label)+'</h3><small>'+owners.size+' learner'+(owners.size===1?'':'s')+' started</small><strong>'+average+'%</strong><small>Average units completed</small><div class="ac-course-bar"><span style="width:'+average+'%"></span></div><button type="button" data-course="'+slug+'">View enrolled learners →</button>';
+   card.querySelector('button').addEventListener('click',()=>{$('adminCourse').value=slug;page=0;render();location.hash='admin-learners';});courses.append(card);
+  }
+ }
+ function filteredLearners(){
+  const q=$('adminSearch').value.trim().toLowerCase(),status=$('adminStatus').value,course=$('adminCourse').value;
+  return profiles.filter(p=>{
+   if(p.user_id===window.DALP_AUTH_USER?.id)return false;
+   const s=profileStats(p);
+   const match=!q||[p.full_name,p.email].some(v=>String(v||'').toLowerCase().includes(q));
+   const st=status==='all'||(status==='active'&&s.active)||(status==='new'&&!s.active)||(status==='completed'&&s.completedPath);
+   const co=course==='all'||s.courseSet.has(course);
+   return match&&st&&co;
+  }).sort((a,b)=>String(b.joined_at||'').localeCompare(String(a.joined_at||'')));
  }
  function render(){
-  const q=$('adminSearch').value.trim().toLowerCase(),status=$('adminStatus').value;
-  filtered=profiles.filter(p=>{if(p.user_id===window.DALP_AUTH_USER?.id)return false;const stats=profileStats(p);return (!q||[p.full_name,p.email].some(v=>String(v||'').toLowerCase().includes(q)))&&(status==='all'||(status==='active'?stats.active:!stats.active))});
-  const body=$('adminLearnerRows');body.replaceChildren();
-  if(!filtered.length){const tr=document.createElement('tr');tr.innerHTML='<td colspan="5">No learners match your filters.</td>';body.append(tr);}
-  filtered.forEach(p=>{const s=profileStats(p),tr=document.createElement('tr');const label=(p.full_name||p.email?.split('@')[0]||'Unnamed learner');tr.innerHTML='<td><strong>'+esc(label)+'</strong><small>'+esc(p.email)+'</small></td><td>'+s.paths+'</td><td>'+s.completed+'</td><td>'+esc(shortDate(s.last))+'</td><td><button type="button" class="dalp-learner-view">View record →</button></td>';tr.querySelector('button').addEventListener('click',()=>showLearner(p));body.append(tr)});
-  $('adminRowCount').textContent='Showing '+filtered.length+' of '+(profiles.length-(window.DALP_AUTH_USER?.id?1:0))+' learners. All learners are stored as individual profiles.';
+  filtered=filteredLearners();page=Math.max(0,Math.min(page,Math.max(0,Math.ceil(filtered.length/pageSize)-1)));
+  const tbody=$('adminLearnerRows');tbody.replaceChildren();
+  const batch=filtered.slice(page*pageSize,(page+1)*pageSize);
+  if(!batch.length){const r=document.createElement('tr');r.innerHTML='<td colspan="5">No learners match your filters. Try another search or clear your filters.</td>';tbody.append(r)}
+  for(const p of batch){const s=profileStats(p),tr=document.createElement('tr'),label=p.full_name||p.email?.split('@')[0]||'Unnamed learner';
+   tr.innerHTML='<td><strong>'+esc(label)+'</strong><small>'+esc(p.email)+'</small></td><td>'+s.paths+'</td><td>'+s.completed+'</td><td>'+esc(date(s.last))+'</td><td><button type="button" class="dalp-learner-view">Open record →</button></td>';
+   tr.querySelector('button').addEventListener('click',()=>showLearner(p));tbody.append(tr);
+  }
+  const start=filtered.length?page*pageSize+1:0,end=Math.min(filtered.length,(page+1)*pageSize);
+  $('adminRowCount').textContent='Showing '+start+'–'+end+' of '+filtered.length+' matching learners';
+  $('adminPageInfo').textContent='Page '+(page+1)+' of '+Math.max(1,Math.ceil(filtered.length/pageSize));
+  $('adminPrevPage').disabled=page===0;$('adminNextPage').disabled=(page+1)*pageSize>=filtered.length;
  }
  function showLearner(p){
   $('adminDetailName').textContent=p.full_name||'Learner';$('adminDetailEmail').textContent=p.email||'';
   const rows=rowsFor(p.user_id),details=$('adminDetailContent');details.replaceChildren();
+  const summary=document.createElement('p');summary.className='ac-learner-summary';const s=profileStats(p);summary.textContent=s.completed+' learning units completed · '+s.paths+' courses started · Last activity '+date(s.last);details.append(summary);
   const tracks=document.createElement('div');tracks.className='dalp-admin-track-list';
   for(const [slug,[title,total]] of Object.entries(COURSE)){
-   const count=rows.filter(r=>r.course_slug===slug&&r.completed).length,pct=Math.round(100*count/total),qs=quizzes.filter(q=>q.user_id===p.user_id&&q.course_slug===slug),submission=submissions.filter(s=>s.user_id===p.user_id&&s.course_slug===slug).sort((a,b)=>String(b.created_at).localeCompare(String(a.created_at)))[0],certificate=certificates.some(c=>c.user_id===p.user_id&&c.course_slug===slug);
-   const card=document.createElement('article');card.className='dalp-admin-track';
+   const count=rows.filter(r=>r.course_slug===slug&&r.completed).length,pct=Math.min(100,Math.round(100*count/total));
+   const qs=(quizByUser.get(p.user_id)||[]).filter(q=>q.course_slug===slug),subs=(subByUser.get(p.user_id)||[]).filter(s=>s.course_slug===slug).sort((a,b)=>String(b.created_at).localeCompare(String(a.created_at))),certificate=(certByUser.get(p.user_id)||[]).some(c=>c.course_slug===slug);
    const avg=qs.length?Math.round(qs.reduce((sum,q)=>sum+Number(q.percentage||0),0)/qs.length)+'%':'Not yet taken';
-   card.innerHTML='<h3>'+esc(title)+'</h3><strong>'+count+' / '+total+' units</strong><div class="dalp-admin-meter"><span style="width:'+pct+'%"></span></div><p>Quiz results: '+qs.length+' · Average: '+avg+'</p><p>Capstone: '+esc(submission?.status||'Not submitted')+'</p><p>Certificate: '+(certificate?'Issued':'Not issued')+'</p>';
+   const card=document.createElement('article');card.className='dalp-admin-track';
+   card.innerHTML='<h3>'+esc(title)+'</h3><strong>'+count+' / '+total+' lessons</strong><div class="dalp-admin-meter"><span style="width:'+pct+'%"></span></div><p>Quizzes: '+qs.length+' · Average: '+avg+'</p><p>Capstone: '+esc(subs[0]?.status?.replaceAll('_',' ')||'Not submitted')+'</p><p>Certificate: '+(certificate?'Issued':'Not issued')+'</p>';
    tracks.append(card);
   }
-  details.append(tracks);$('adminLearnerDetail').hidden=false;$('adminLearnerDetail').scrollIntoView({behavior:'smooth',block:'start'});
+  details.append(tracks);$('adminLearnerDetail').hidden=false;
  }
  function exportCSV(){
-  const head=['Learner name','Email','Profile created','Tracks started','Lessons completed','Last activity'];
-  const cell=v=>'"'+String(v??'').replaceAll('"','""')+'"';
+  // Export all filtered matches, not merely the currently displayed page. Prevent CSV formula injection.
+  const safe=v=>{let s=String(v??'');if(/^[\s]*[=+@\-\t\r]/.test(s))s="'"+s;return '"'+s.replaceAll('"','""')+'"'};
+  const head=['Learner name','Email','Profile created','Courses started','Lessons completed','Last activity'];
   const lines=[head,...filtered.map(p=>{const s=profileStats(p);return [p.full_name,p.email,p.joined_at,s.paths,s.completed,s.last||'']})];
-  const csv='\ufeff'+lines.map(row=>row.map(cell).join(',')).join('\r\n');
-  const blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='learner-directory-'+new Date().toISOString().slice(0,10)+'.csv';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+  const csv='\ufeff'+lines.map(row=>row.map(safe).join(',')).join('\r\n');
+  const blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='academy-learners-'+new Date().toISOString().slice(0,10)+'.csv';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
  }
- let busy=false;
  async function load(){
-  if(busy)return;busy=true;notice('Loading learner directory…');$('adminReload').disabled=true;
+  if(busy)return;busy=true;notice('Loading academy reports…');$('adminReload').disabled=true;
   try{
-   const [p,c,q,s,cert]=await Promise.all([fetchAll('learner_profiles','user_id,full_name,email,joined_at,last_seen_at'),fetchAll('course_progress','user_id,course_slug,week_no,completed,updated_at,completed_at'),fetchAll('quiz_results','user_id,course_slug,week_no,percentage,submitted_at'),fetchAll('capstone_submissions','user_id,course_slug,status,created_at'),fetchAll('certificates','user_id,course_slug,certificate_id')]);
+   const [p,c,q,s,cert]=await Promise.all([
+    fetchAll('learner_profiles','user_id,full_name,email,joined_at,last_seen_at'),
+    fetchAll('course_progress','user_id,course_slug,week_no,completed,updated_at,completed_at'),
+    fetchAll('quiz_results','user_id,course_slug,week_no,percentage,submitted_at'),
+    fetchAll('capstone_submissions','user_id,course_slug,status,created_at'),
+    fetchAll('certificates','user_id,course_slug,certificate_id')]);
    profiles=p;progress=c;quizzes=q;submissions=s;certificates=cert;
-   paintStats();render();$('adminNotice').hidden=true;
-  }catch(e){console.error('Admin dashboard data failed',e);notice('Unable to load the administrator workspace: '+e.message,true)}
-  finally{busy=false;$('adminReload').disabled=false;}
+   progressByUser=group(progress,'user_id');quizByUser=group(quizzes,'user_id');subByUser=group(submissions,'user_id');certByUser=group(certificates,'user_id');profilesById=new Map(profiles.map(p=>[p.user_id,p]));
+   page=0;paintStats();paintInsights();render();$('adminNotice').hidden=true;
+  }catch(e){console.error('Admin reports could not be loaded',e);notice('We couldn’t load your dashboard. Please try again in a moment.',true)}
+  finally{busy=false;$('adminReload').disabled=false}
  }
  async function init(){
   if(window.DALP_ROLE!=='admin')return;
-  if(!db()){notice('Supabase is unavailable. Connect the application before opening the admin dashboard.',true);return;}
+  if(!db()){notice('The administrator dashboard is unavailable right now. Please refresh the page or try again later.',true);return;}
   const {data,error}=await db().auth.getUser();if(error||!data?.user){notice('Administrator session could not be verified. Please sign in again.',true);return;}
   const {data:admin,error:roleError}=await db().from('site_admins').select('user_id').eq('user_id',data.user.id).maybeSingle();
   if(roleError||!admin){notice('Administrator authorisation failed. Learner details will not be shown.',true);return;}
   $('adminWorkspace').hidden=false;
-  $('adminSearch').addEventListener('input',render);$('adminStatus').addEventListener('change',render);
+  $('adminSearch').addEventListener('input',()=>{page=0;render()});$('adminStatus').addEventListener('change',()=>{page=0;render()});$('adminCourse').addEventListener('change',()=>{page=0;render()});
   $('adminReload').addEventListener('click',load);$('adminExport').addEventListener('click',exportCSV);
+  $('adminPrevPage').addEventListener('click',()=>{page--;render()});$('adminNextPage').addEventListener('click',()=>{page++;render()});
   $('adminCloseDetail').addEventListener('click',()=>{$('adminLearnerDetail').hidden=true});
+  document.addEventListener('keydown',e=>{if(e.key==='/'&&!/input|textarea|select/i.test(document.activeElement?.tagName)&&!e.ctrlKey&&!e.metaKey&&!e.altKey){e.preventDefault();$('adminSearch').focus()}});
   await load();
  }
- if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{if(window.DALP_ROLE==='admin')init();else window.addEventListener('dalp:auth-ready',init,{once:true})},{once:true});else if(window.DALP_ROLE==='admin')init();else window.addEventListener('dalp:auth-ready',init,{once:true});
+ let started=false;const once=()=>{if(started||window.DALP_ROLE!=='admin')return;started=true;init()};
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{once();window.addEventListener('dalp:auth-ready',once)},{once:true});else{once();window.addEventListener('dalp:auth-ready',once)}
 })();

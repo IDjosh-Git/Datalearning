@@ -43,7 +43,12 @@
     if(/invalid login credentials/i.test(m))return 'Email or password is incorrect. Try again, or reset your password.';
     if(/email not confirmed/i.test(m))return 'Please confirm your email using the link we sent you, then sign in.';
     if(/rate limit/i.test(m))return 'Too many attempts. Please try again a little later.';
-    return m;
+    if(/(network|fetch|timeout|connection)/i.test(m))return 'We couldn’t connect right now. Check your internet connection and try again.';
+    if(/(database|schema|supabase|provider|jwt|postgrest|config|500|502|503)/i.test(m))return 'Something went wrong while opening your account. Please try again later.';
+    if(/already registered|already been registered/i.test(m))return 'This email already has an account. Please sign in instead.';
+    if(/weak password|password.{0,30}(length|short|weak)/i.test(m))return 'Choose a stronger password and try again.';
+    console.warn('Account request failed:', e);
+    return 'We couldn’t complete your request right now. Please try again or contact support.';
   }
   const emailOk=e=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
   let completing=false;
@@ -62,6 +67,9 @@
         ]);
       }
     }catch(e){console.warn('Post-login preparation will retry',e)}
+    // Server verifies the signed-in identity and sets an HttpOnly session for protected pages.
+    try { const {data}=await db().auth.getSession(); await window.DALP_SERVER_SESSION.establish(data?.session); }
+    catch(error){completing=false;message(msgId||'loginMsg','We couldn’t open your secure learning space. Please try signing in again.');return;}
     let target=destination();
     // Administrators use the same credentials and form as learners.
     // An explicit deep link always wins; otherwise land in admin workspace.
@@ -76,7 +84,7 @@
   }
   const dbReady=()=>{
     if(db())return true;
-    message('configWarn','Sign-in service is unavailable. Check your connection and the Supabase configuration, then reload this page.');
+    message('configWarn','We can’t open sign-in right now. Please check your connection and try again. If the problem continues, contact support.');
     return false;
   };
   $('signInTab').addEventListener('click',()=>setMode('login'));
@@ -110,7 +118,7 @@
       if(error)throw error;
       // When confirmations are disabled, Supabase can create an active session.
       // Still require explicit sign-in after creating a password account.
-      if(data?.session){await db().auth.signOut({scope:'local'});}
+      if(data?.session){await window.DALP_SERVER_SESSION?.clear();await db().auth.signOut({scope:'local'});}
       $('loginEmail').value=email;
       setMode('login');
       message('loginMsg',data?.session?'Account created! Sign in with the email and password you just chose.':'Account request received. Check your email for the verification link, then return to sign in.','success');
@@ -141,6 +149,7 @@
       if(sErr||!data.session)throw new Error('Your reset link has expired. Request another link.');
       const {error}=await db().auth.updateUser({password});
       if(error)throw error;
+      await window.DALP_SERVER_SESSION?.clear();
       await db().auth.signOut({scope:'local'});
       setMode('login');
       message('loginMsg','Your password has been updated. Sign in with your new password.','success');

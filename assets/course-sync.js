@@ -14,7 +14,7 @@
     b.id='zah-sync-badge';
     b.type='button';
     b.style.cssText='position:fixed;right:18px;bottom:18px;z-index:9998;background:#254559;color:white;padding:10px 13px;border:0;border-radius:12px;font:700 12px system-ui;box-shadow:0 10px 25px rgba(20,45,58,.22);cursor:pointer';
-    b.textContent='Checking cloud sync…';
+    b.textContent='Checking saved progress…';
     b.title='Tap to sync now';
     b.addEventListener('click',()=>runSync(true));
     document.body.appendChild(b);
@@ -53,29 +53,29 @@
     syncRunning=true;
     try{
       if(!window.ZAH_DB || !window.ZAH_DB.configured){
-        badge('Database not configured','error');
+        badge('Progress saving unavailable','error');
         return;
       }
 
       currentUser=await window.ZAHProgressCloud.getUser();
       if(!currentUser){
-        badge('Sign in to sync','offline');
+        badge('Sign in to save progress','offline');
         if(manual) location.href='../auth.html?return='+encodeURIComponent(location.href);
         return;
       }
 
-      badge('Syncing…');
+      badge('Saving progress…');
       const result=await window.ZAHProgressCloud.syncCourse(slug,{user:currentUser});
       if(!result.ok){
-        badge('Sync unavailable — tap to retry','error');
+        badge('Couldn’t save yet — tap to retry','error');
         return;
       }
 
       applyProgress(result.progress);
-      badge(`Synced • ${timeLabel(result.lastSync)}`);
+      badge(`Progress saved • ${timeLabel(result.lastSync)}`);
     }catch(error){
       console.error('Course cloud sync failed',error);
-      badge('Sync error — tap to retry','error');
+      badge('Couldn’t update progress — tap to retry','error');
     }finally{
       syncRunning=false;
     }
@@ -90,13 +90,13 @@
     const result=await window.ZAHProgressCloud.saveWeek(slug,week,cb.checked,currentUser);
     if(result.ok){
       currentUser=result.user || currentUser;
-      badge(`Synced • ${timeLabel(result.lastSync)}`);
+      badge(`Progress saved • ${timeLabel(result.lastSync)}`);
     }else if(result.reason==='signed_out'){
-      badge('Saved on this device • sign in to sync','offline');
+      badge('Saved here • sign in to continue anywhere','offline');
     }else if(result.reason==='not_configured'){
-      badge('Saved locally • database unavailable','error');
+      badge('Saved on this device • try again later','error');
     }else{
-      badge('Saved locally • cloud retry pending','error');
+      badge('Saved on this device • will retry soon','error');
     }
   }
 
@@ -136,10 +136,10 @@
         .from('quiz_results')
         .upsert(row,{onConflict:'user_id,course_slug,week_no'});
       if(error) throw error;
-      badge(`Quiz synced • ${timeLabel(new Date())}`);
+      badge(`Quiz saved • ${timeLabel(new Date())}`);
     }catch(error){
       console.error('Quiz sync failed',error);
-      badge('Quiz saved on page • cloud error','error');
+      badge('Quiz completed • couldn’t update your account','error');
     }
   }
 
@@ -169,9 +169,9 @@
           progress[String(cb.dataset.week)]=cb.checked;
         });
         const res=await window.ZAHProgressCloud.saveSnapshot(slug,progress,currentUser);
-        if(res.ok) badge(`Reset synced • ${timeLabel(res.lastSync)}`);
-        else if(res.reason==='signed_out') badge('Reset saved locally • sign in to sync','offline');
-        else badge('Reset pending cloud sync','error');
+        if(res.ok) badge(`Changes saved • ${timeLabel(res.lastSync)}`);
+        else if(res.reason==='signed_out') badge('Changes saved here • sign in to save to your account','offline');
+        else badge('Changes saved here • update pending','error');
       },500);
     }
   },true);

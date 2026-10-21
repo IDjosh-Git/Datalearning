@@ -31,11 +31,29 @@
       ]
     },
     {
-      "source": "/(auth|account|admin|reviewer|progress).html",
+      "source": "/(auth|account|admin|reviewer|progress|capstone|certificate|verify).html",
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "no-cache, must-revalidate"
+          "value": "private, no-store, max-age=0"
+        }
+      ]
+    },
+    {
+      "source": "/assets/(admin-dashboard|admin-console|progress-admin|reviewer)\\.(js|css)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "private, no-store, max-age=0"
+        }
+      ]
+    },
+    {
+      "source": "/(connection-test|sync-test).html",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "private, no-store, max-age=0"
         }
       ]
     }

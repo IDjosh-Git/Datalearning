@@ -1,0 +1,35 @@
+/* Professional verified course-completion credential. Screen and A4 print use the same SVG. */
+.certificate-paper{background:transparent!important;width:100%!important;aspect-ratio:1684/1191!important;border:0!important;outline:0!important;box-shadow:0 18px 65px rgba(15,40,58,.14)!important;container-type:normal!important;overflow:hidden!important;min-width:0!important;border-radius:4px!important}
+.certificate-paper svg{display:block;width:100%;height:auto;max-width:100%;background:#fffcf6}
+.certificate-paper-wrapper{overflow:visible!important;max-width:100%}
+#certSection{min-width:0}#certificateContainer{min-width:0}
+.cap-cert-controls{gap:10px!important;align-items:center;flex-wrap:wrap}
+.cap-cert-controls a,.cap-cert-controls button{min-height:44px}
+.cert-note{margin:0 0 16px;font-size:12px;color:var(--muted);line-height:1.75}
+.certificate-open-link{background:#e9f3f1!important;color:#116258!important;border-color:#bbd9d3!important;text-decoration:none}
+.certificate-open-link:hover{background:#d9eee9!important}
+.dalp-cert-viewer{padding:44px 0 80px;min-height:90vh;background:linear-gradient(180deg,#e7efed,#f6f8f7)}
+.dalp-cert-viewer .cert-view-wrap{width:min(1270px,calc(100% - 36px));margin:0 auto}
+.dalp-cert-viewer .cert-view-header{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:22px;flex-wrap:wrap}
+.dalp-cert-viewer .cert-view-header h1{margin:6px 0;font-size:clamp(26px,3vw,37px);color:#172f43}
+.dalp-cert-viewer .cert-view-header p{color:#627581;font-size:13px;margin:0}
+.dalp-cert-viewer .cert-view-controls{display:flex;gap:10px;flex-wrap:wrap}
+.dalp-cert-viewer .cert-view-controls button,.dalp-cert-viewer .cert-view-controls a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;border:1px solid #cad8da;background:white;border-radius:12px;padding:12px 17px;font-size:13px;font-weight:700;color:#1c3b4d;text-decoration:none;cursor:pointer}
+.dalp-cert-viewer .cert-view-controls .primary{background:#1b3a4a;color:white;border-color:#1b3a4a}
+.dalp-cert-viewer .cert-view-panel{padding:16px;background:white;border:1px solid #d7e4e2;border-radius:18px;box-shadow:0 15px 45px rgba(30,60,71,.08)}
+.dalp-cert-viewer .cert-view-panel .certificate-paper{max-width:100%}
+.dalp-cert-viewer .cert-view-caption{color:#546973;font-size:13px;margin:20px 4px;line-height:1.8}
+.dalp-cert-viewer .cert-view-message{border:1px solid #bcd6d4;background:#f0faf8;border-radius:12px;padding:16px;color:#17443f}
+@media(max-width:670px){.certificate-paper{min-width:610px!important}.certificate-paper-wrapper{overflow-x:auto!important;overscroll-behavior-x:contain}.dalp-cert-viewer{padding:22px 0 50px}.dalp-cert-viewer .cert-view-wrap{width:calc(100% - 20px)}.dalp-cert-viewer .cert-view-panel{padding:6px;border-radius:9px}.dalp-cert-viewer .cert-view-controls{width:100%}.dalp-cert-viewer .cert-view-controls>*{flex:1 1 45%;padding:10px!important;font-size:12px}}
+@media print{
+ @page{size:A4 landscape;margin:0}
+ html,body{width:297mm!important;height:210mm!important;margin:0!important;padding:0!important;background:white!important;print-color-adjust:exact!important;-webkit-print-color-adjust:exact!important}
+ .certificate-paper{position:fixed!important;inset:0!important;width:297mm!important;height:210mm!important;max-width:none!important;min-width:0!important;display:block!important;margin:0!important;padding:0!important;border:0!important;box-shadow:none!important;page-break-inside:avoid!important;break-inside:avoid!important;z-index:999999!important;background:white!important}
+ .certificate-paper svg{width:297mm!important;height:210mm!important;display:block!important}
+ .certificate-paper-wrapper{display:block!important;position:static!important;overflow:visible!important}
+ body>*:not(main){display:none!important}
+ main{position:static!important;display:block!important;margin:0!important;padding:0!important}
+ main:not(.dalp-cert-viewer)>*:not(.cap-content){display:none!important}
+ .cap-content,.cap-layout,.cap-main,#certSection,#certificateContainer,.dalp-cert-viewer,.cert-view-wrap,.cert-view-panel{display:block!important;position:static!important;width:auto!important;min-width:0!important;max-width:none!important;margin:0!important;padding:0!important;border:0!important;box-shadow:none!important;overflow:visible!important;background:white!important}
+ .cap-main>*:not(#certSection),.cap-side,#certSection>*:not(#certificateContainer),.cert-view-header,.cert-view-caption,.cert-view-message{display:none!important}
+}

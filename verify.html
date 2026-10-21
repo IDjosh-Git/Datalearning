@@ -1,91 +1,11 @@
-<!DOCTYPE html>
-
-<html lang="en">
-<head><link crossorigin="anonymous" href="https://cdn.jsdelivr.net" rel="preconnect"/>
-<script>document.documentElement.classList.add('dalp-auth-checking')</script>
-<link href="assets/auth-gate.css?v=20261021.2" rel="stylesheet"/>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0"></script>
-<script src="assets/supabase-config.js?v=20261021"></script>
-<script src="assets/supabase-client.js?v=20261021"></script>
-<script src="assets/auth-gate.js?v=20261021.3"></script>
-<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1.0" name="viewport"/>
-<title>Completion Record Check | Data Analysis Learning Path</title><script>try{const t=localStorage.getItem('dalp-theme');document.documentElement.dataset.theme=(t==='dark'||t==='light')?t:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch(e){document.documentElement.dataset.theme='light'}</script>
-<style>
-:root{--navy:#254559;--navy-dark:#18313f;--orange:#F27329;--bg:#f5f8fa;--border:#dce5e9;--muted:#667681}
-*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:#1c2830}
-.wrap{width:min(820px,calc(100% - 28px));margin:50px auto}.brand{display:flex;align-items:center;gap:10px;margin-bottom:22px}
-.mark{width:45px;height:45px;border-radius:13px;display:grid;place-items:center;background:var(--navy);color:#fff;font-weight:900}
-.card{background:#fff;border:1px solid var(--border);border-radius:24px;padding:30px;box-shadow:0 18px 50px rgba(25,55,72,.10)}
-h1{margin:0 0 7px;color:var(--navy-dark);font-size:34px}p{color:var(--muted)}
-.status{margin:22px 0;padding:16px;border-radius:14px;background:#fff8e8;border:1px solid #ecd59b;color:#77520a;font-weight:800}
-.status.ok{background:#eef8f1;border-color:#c9e6d1;color:#21603a}.status.bad{background:#fff1f1;border-color:#efc6c6;color:#8b2e2e}
-.grid{display:grid;grid-template-columns:190px 1fr;border-top:1px solid var(--border);margin-top:20px}
-.k,.v{padding:13px 0;border-bottom:1px solid var(--border)}.k{font-weight:800;color:var(--navy)}.v{color:#40515c;word-break:break-word}
-.note{margin-top:20px;padding:14px;border-radius:12px;background:#f1f5f7;color:#5c6b74;font-size:13px}
-.btn{display:inline-flex;margin-top:20px;background:var(--navy);color:#fff;text-decoration:none;padding:11px 15px;border-radius:11px;font-weight:800}
-@media(max-width:600px){.grid{grid-template-columns:1fr}.k{border-bottom:0;padding-bottom:2px}.v{padding-top:2px}}
-</style>
-<link href="assets/brand-overrides.css?v=20261015.3" rel="stylesheet"/>
-<link href="assets/responsive-polish.css?v=20261015.3" rel="stylesheet"/>
-<link href="assets/da-logo.svg" rel="icon" type="image/svg+xml"/><link href="assets/account-refresh.css?v=20261015.3" rel="stylesheet"/><link href="assets/modern.css?v=20261015.3" rel="stylesheet"/><link href="assets/theme-polish.css?v=20261015.3" rel="stylesheet"/><link href="assets/theme-consistency.css?v=20261015.3" rel="stylesheet"/>
-<link href="assets/unified-finish.css?v=20261015.3" rel="stylesheet"/><link href="assets/device-responsive.css?v=20261015.3" rel="stylesheet"/><link href="assets/responsive-v2.css?v=20261015.3" rel="stylesheet"/><link href="assets/desktop-auth-finish.css?v=20261021.2" rel="stylesheet"/>
-</head>
-<body data-responsive-page="verify">
-<div class="wrap">
-<div class="brand verify-brand-shell"><img alt="Data Analysis Learning Path logo" class="verify-brand-logo" src="assets/da-logo.svg"/><div class="brand-company-name"><strong>Data Analysis Learning Path</strong><span>Certificate Verification</span></div></div>
-<div class="card">
-<h1>Certificate Verification</h1>
-<p>Verification details for an Data Analysis Learning Path course-completion certificate.</p>
-<div class="status" id="status">Checking certificate details…</div>
-<div class="grid" id="details" style="display:none">
-<div class="k">Certificate ID</div><div class="v" id="id"></div>
-<div class="k">Learner</div><div class="v" id="learner"></div>
-<div class="k">Course</div><div class="v" id="course"></div>
-<div class="k">Completion date</div><div class="v" id="date"></div>
-<div class="k">Issuer</div><div class="v" id="issuer"></div>
-<div class="k">Integrity check</div><div class="v" id="integrity"></div>
-<div class="k" id="scoreLabel" style="display:none">Capstone score</div><div class="v" id="scoreValue" style="display:none"></div>
-</div>
-<div class="note"><b>Verification type:</b> an available Supabase database record is checked where configured. A course-completion record documents this self-paced learning journey; it is not an accredited professional certification. If the required database function is absent, verification may not work until the setup SQL is applied.</div>
-<a class="btn" href="index.html">Back to Learning Portal</a>
-</div>
-</div>
-<script>
-function decode64(s){s=s.replace(/-/g,'+').replace(/_/g,'/');while(s.length%4)s+='=';return decodeURIComponent(escape(atob(s)))}
-(async()=>{
- const st=document.getElementById('status');
- try{
-   if(!window.ZAH_DB.configured) throw Error('The certificate database is not configured yet.');
-   const qs=new URLSearchParams(location.search);
-   let certId=qs.get('id');
-   if(!certId && qs.get('c')){
-     const payload=JSON.parse(decode64(qs.get('c')));
-     certId=payload.certificate_id;
-   }
-   if(!certId) throw Error('No certificate ID was provided.');
-
-   const {data,error}=await window.ZAH_DB.client
-     .rpc('verify_certificate',{p_certificate_id:certId});
-
-   if(error) throw error;
-   const row=Array.isArray(data)?data[0]:data;
-   if(!row) throw Error('Certificate not found in the Data Analysis Learning Path database.');
-
-   st.className='status ok';
-   st.textContent='Verified — this certificate exists in the Data Analysis Learning Path database.';
-   document.getElementById('details').style.display='grid';
-   document.getElementById('id').textContent=row.certificate_id;
-   document.getElementById('learner').textContent=row.learner_name;
-   document.getElementById('course').textContent=row.course_title;
-   document.getElementById('date').textContent=new Date(row.completion_date+'T00:00:00').toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric'});
-   document.getElementById('issuer').textContent='Data Analysis Learning Path';
-   document.getElementById('integrity').textContent='Database record confirmed';
-   const {data:capScore,error:scoreError}=await window.ZAH_DB.client.rpc('verify_capstone',{p_certificate_id:certId});
-   if(!scoreError&&capScore?.[0]?.capstone_score!=null){document.getElementById('scoreLabel').style.display='block';document.getElementById('scoreValue').style.display='block';document.getElementById('scoreValue').textContent=capScore[0].capstone_score+' / 100 (assessed capstone)'}
- }catch(e){
-   st.className='status bad';
-   st.textContent='Not verified: '+e.message;
- }
-})();
-</script>
-<script defer="" src="assets/modern.js?v=20261015.3"></script><link href="assets/learner-companion.css?v=20261015.3" rel="stylesheet"/><script defer="" src="assets/course-studio-data.js?v=20261015.3"></script><script defer="" src="assets/learner-companion.js?v=20261021.3"></script><a aria-label="Open interactive SQL and Excel practice arena" class="dalp-floating-link dalp-floating-practice" href="practice.html" style="position:fixed;left:16px;bottom:16px;z-index:999;display:inline-block;border-radius:100px;padding:11px 15px;background:#173b54;color:#fff;text-decoration:none;font-weight:700;box-shadow:0 6px 22px #0003;font-size:.86rem">⚡ Practice Arena</a><script defer="" src="assets/responsive-v2.js?v=20261015.3"></script></body></html>
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#19364a"><title>Verify a Certificate | Data Analysis Learning Path</title><meta name="description" content="Confirm that a Data Analysis Learning Path course-completion certificate is genuine and currently active."><link rel="icon" type="image/svg+xml" href="assets/da-logo.svg">
+<script>try{const t=localStorage.getItem('dalp-theme');document.documentElement.dataset.theme=(t==='dark'||t==='light')?t:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch(e){document.documentElement.dataset.theme='light'}</script>
+<link rel="stylesheet" href="assets/site.css?v=20261015.3"><link rel="stylesheet" href="assets/modern.css?v=20261015.3"><link rel="stylesheet" href="assets/theme-polish.css?v=20261015.3"><link rel="stylesheet" href="assets/responsive-v2.css?v=20261015.3"><link rel="stylesheet" href="assets/certificate-verify.css?v=20261022">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0"></script><script src="assets/supabase-config.js?v=20261021"></script><script src="assets/supabase-client.js?v=20261021"></script></head>
+<body data-responsive-page="verify"><main class="verify-shell"><div class="verify-wrap"><header class="verify-header"><a class="verify-mark" href="index.html" aria-label="Data Analysis Learning Path home"><span class="verify-logo">DA</span><span><strong>Data Analysis Learning Path</strong><small>Official learning records</small></span></a><a class="verify-home" href="index.html">Learning home ↗</a></header>
+<section class="verify-hero"><span class="verify-eyebrow">CREDENTIAL CHECK</span><h1>Verify a certificate</h1><p>Confirm that a course-completion certificate was issued by Data Analysis Learning Path and is currently active. Enter the certificate ID shown on the document or scan its verification code.</p></section>
+<section class="verify-panel" aria-label="Certificate lookup"><form id="verifyForm" class="verify-form"><label for="verifyInput">Certificate ID</label><div class="verify-search"><input id="verifyInput" name="id" autocomplete="off" maxlength="180" placeholder="Enter the ID printed on the certificate" required><button type="submit" id="verifySubmit">Verify certificate →</button></div><p class="verify-tip">You can also open the verification link or scan the QR code printed on the certificate.</p></form><div id="verifyStatus" class="verify-status" role="status" aria-live="polite">Enter a certificate ID to check its authenticity.</div>
+<div id="verifyResult" class="verify-result" hidden><div class="verify-valid"><span aria-hidden="true" class="verify-check">✓</span><div><strong>Certificate confirmed</strong><p>This record matches an active course-completion certificate.</p></div></div><dl class="verify-details"><div><dt>Issued to</dt><dd id="verifiedLearner"></dd></div><div><dt>Course completed</dt><dd id="verifiedCourse"></dd></div><div><dt>Certificate ID</dt><dd id="verifiedId"></dd></div><div><dt>Date of completion</dt><dd id="verifiedDate"></dd></div><div><dt>Issued by</dt><dd>Data Analysis Learning Path</dd></div><div><dt>Current status</dt><dd><span class="verify-active">Active and confirmed</span></dd></div><div id="verifiedScoreGroup" hidden><dt>Assessed capstone</dt><dd id="verifiedScore"></dd></div></dl></div></section>
+<div class="verify-footnote"><strong>About this record</strong><p>This confirms that the listed learner completed the learning programme and met the course assessment requirements. It is a course-completion certificate, not an accredited degree, professional licence or independent professional certification. Verification does not grant access to the learner's private submissions.</p></div>
+</div></main><script src="assets/certificate-verify.js?v=20261022" defer></script><script defer src="assets/responsive-v2.js?v=20261015.3"></script></body></html>

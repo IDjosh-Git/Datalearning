@@ -8,7 +8,7 @@ function paths(folder){return fs.readdirSync(folder,{withFileTypes:true}).flatMa
   return item.isDirectory()?paths(f):f.endsWith('.html')?[f]:[];
 });}
 const pages=paths(root).filter(f=>!f.includes(`${path.sep}node_modules${path.sep}`));
-assert.equal(pages.length,20,'Every route must be covered');
+assert.equal(pages.length,21,'Every route must be covered');
 for(const file of pages){
   const html=fs.readFileSync(file,'utf8');
   const page=path.relative(root,file).replaceAll('\\','/').replace(/\.html$/,'');
