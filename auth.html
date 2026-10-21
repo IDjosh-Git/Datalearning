@@ -2,115 +2,96 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><meta name="theme-color" content="#192537">
-<title>Sign In | Data Analysis Learning Path</title>
+<title>Sign in or create account | Data Analysis Learning Path</title>
+<meta name="description" content="Sign in or create a learner account to access your data analysis courses, practice projects, tutor, and saved progress.">
 <script>try{const t=localStorage.getItem('dalp-theme');document.documentElement.dataset.theme=(t==='dark'||t==='light')?t:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch(e){document.documentElement.dataset.theme='light'}</script>
 <link rel="icon" type="image/svg+xml" href="assets/da-logo.svg">
 <link rel="stylesheet" href="assets/modern.css?v=20261015.3">
 <link rel="stylesheet" href="assets/responsive-polish.css?v=20261015.3"><link rel="stylesheet" href="assets/theme-polish.css?v=20261015.3">
 <link rel="stylesheet" href="assets/auth-modern.css?v=20261015.3">
 <link rel="stylesheet" href="assets/theme-consistency.css?v=20261015.3">
-<link rel="stylesheet" href="assets/unified-finish.css?v=20261015.3"><link rel="stylesheet" href="assets/device-responsive.css?v=20261015.3"><link rel="stylesheet" href="assets/responsive-v2.css?v=20261015.3"></head>
-<body data-responsive-page="auth" class="auth-page">
+<link rel="stylesheet" href="assets/unified-finish.css?v=20261015.3"><link rel="stylesheet" href="assets/device-responsive.css?v=20261015.3"><link rel="stylesheet" href="assets/responsive-v2.css?v=20261015.3">
+<link rel="stylesheet" href="assets/auth-first.css?v=20261021">
+</head>
+<body class="auth-page" data-responsive-page="auth" data-auth-mode="login">
 <div class="auth-shell">
   <header class="auth-topbar">
-    <a class="auth-wordmark" href="index.html"><img src="assets/da-logo.svg" alt="Data Analysis Learning Path logo"><span><strong>Data Analysis Learning Path</strong><span>Learn · practise · build · present</span></span></a>
-    <div class="auth-top-actions"><a class="auth-back" href="index.html" aria-label="Back to learning portal">← <span>Learning portal</span></a></div>
+    <div class="auth-wordmark"><img src="assets/da-logo.svg" alt="Data Analysis Learning Path logo"><span><strong>Data Analysis Learning Path</strong><span>Learn · practise · build · present</span></span></div>
+    <div class="auth-top-actions"><span class="auth-secure-chip">● Secure learner access</span></div>
   </header>
-
   <main class="auth-layout">
-    <section class="auth-story" aria-label="Learning account benefits">
+    <section class="auth-story" aria-label="About the learning platform">
       <div>
-        <span class="auth-kicker">One account · every device</span>
-        <h1>Your learning should follow you.</h1>
-        <p>Sign in once and your course checkmarks, quiz results, capstone status and completion records stay attached to your learner account—not to a single phone or laptop.</p>
+        <span class="auth-kicker">YOUR LEARNING SPACE</span>
+        <h1>Build your data skills.<br>Keep every milestone.</h1>
+        <p>Learn by doing. Follow practical learning paths in Excel, SQL, Power BI and AI—then continue seamlessly from your last lesson.</p>
+        <div class="auth-course-chips"><span>Excel</span><span>SQL</span><span>Power BI</span><span>AI Analytics</span></div>
         <div class="auth-benefits">
-          <div class="auth-benefit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12a8 8 0 1 0 2.3-5.7L4 8.6"/><path d="M4 4v4.6h4.6"/></svg><div><b>Cross-device progress</b><span>Existing completed lessons on this device are recovered into your cloud account after sign-in.</span></div></div>
-          <div class="auth-benefit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M8 9h8M8 13h5"/></svg><div><b>One learning record</b><span>Introduction, Excel, SQL and Power BI progress are loaded from the same Supabase learner profile.</span></div></div>
-          <div class="auth-benefit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 4.5 6v5.4c0 4.5 3 7.8 7.5 9.6 4.5-1.8 7.5-5.1 7.5-9.6V6L12 3Z"/><path d="m9 12 2 2 4-4"/></svg><div><b>Protected learner data</b><span>Each learner sees only their own learning record; instructor tools remain separately protected.</span></div></div>
+          <div class="auth-benefit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12a8 8 0 1 0 2.3-5.7L4 8.6"/><path d="M4 4v4.6h4.6"/></svg><div><b>Pick up where you left off</b><span>Course and quiz progress stays with your account.</span></div></div>
+          <div class="auth-benefit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M8 9h8M8 13h5"/></svg><div><b>One path, every device</b><span>Continue on your phone, tablet or laptop.</span></div></div>
+          <div class="auth-benefit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 4.5 6v5.4c0 4.5 3 7.8 7.5 9.6 4.5-1.8 7.5-5.1V6L12 3Z"/><path d="m9 12 2 2 4-4"/></svg><div><b>Your own learning record</b><span>Personal progress and instructor records are access-controlled.</span></div></div>
         </div>
       </div>
-      <div class="auth-story-foot"><span class="auth-dot"></span> Secure cloud sync powered by your Supabase project</div>
+      <div class="auth-story-foot"><span class="auth-dot"></span> Powered by secure account authentication</div>
     </section>
-
-    <section class="auth-forms">
-      <div class="auth-heading"><small>Learner account</small><h2 id="authTitle">Welcome back</h2><p id="authSubtitle">Sign in to continue from your most recent progress.</p></div>
-      <div id="configWarn" class="auth-msg auth-config"></div>
-      <div class="auth-tabs" role="tablist" aria-label="Account action">
-        <button class="auth-tab active" id="signInTab" type="button" role="tab" aria-selected="true">Sign in</button>
-        <button class="auth-tab" id="createTab" type="button" role="tab" aria-selected="false">Create account</button>
+    <section class="auth-forms" aria-label="Learner sign-in and registration">
+      <div class="auth-heading"><small>WELCOME TO YOUR LEARNING PATH</small><h2 id="authTitle">Welcome back</h2><p id="authSubtitle">Sign in to pick up exactly where you left off.</p></div>
+      <div id="configWarn" class="auth-msg warn" role="alert" aria-live="assertive" hidden></div>
+      <div class="auth-tabs" id="authTabs" role="tablist" aria-label="Account action">
+        <button class="auth-tab active" id="signInTab" type="button" role="tab" aria-controls="loginPanel" aria-selected="true">Sign in</button>
+        <button class="auth-tab" id="createTab" type="button" role="tab" aria-controls="signupPanel" aria-selected="false">Create account</button>
       </div>
-
-      <section class="auth-panel" id="loginPanel" role="tabpanel">
-        <div class="auth-field"><label for="loginEmail">Email address</label><input id="loginEmail" type="email" autocomplete="email" placeholder="you@example.com"></div>
-        <div class="auth-field"><label for="loginPassword">Password</label><input id="loginPassword" type="password" autocomplete="current-password" placeholder="Enter your password"></div>
-        <button class="auth-submit" id="loginBtn" type="button">Sign in & sync progress</button>
-        <div id="loginMsg" class="auth-msg" aria-live="polite"></div>
+      <section class="auth-panel" id="loginPanel" role="tabpanel" aria-labelledby="signInTab">
+        <form id="loginForm" novalidate>
+          <div class="auth-field"><label for="loginEmail">Email address</label><input id="loginEmail" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com" required></div>
+          <div class="auth-field"><label for="loginPassword">Password</label><div class="auth-input-wrap"><input id="loginPassword" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required><button class="auth-eye" type="button" data-password-toggle="loginPassword" aria-label="Show password">Show</button></div></div>
+          <div class="auth-inline-row"><button type="button" class="auth-inline-link" data-auth-mode="forgot">Forgot password?</button></div>
+          <button class="auth-submit" id="loginBtn" type="submit" data-busy-text="Signing in…">Sign in</button>
+          <div id="loginMsg" class="auth-msg" role="status" aria-live="polite" hidden></div>
+        </form>
+        <div class="auth-separator auth-google" hidden><span>or</span></div><button type="button" class="auth-google auth-google-btn" hidden>Continue with Google</button>
+        <p class="auth-switch">New to the learning path? <button type="button" data-auth-mode="create">Create an account</button></p>
       </section>
-
-      <section class="auth-panel" id="signupPanel" role="tabpanel" hidden>
-        <div class="auth-field"><label for="fullName">Full name</label><input id="fullName" type="text" autocomplete="name" placeholder="Your full name"></div>
-        <div class="auth-field"><label for="signupEmail">Email address</label><input id="signupEmail" type="email" autocomplete="email" placeholder="you@example.com"></div>
-        <div class="auth-field"><label for="signupPassword">Password <span style="color:var(--app-muted);font-weight:700">6+ characters</span></label><input id="signupPassword" type="password" minlength="6" autocomplete="new-password" placeholder="Create a password"></div>
-        <button class="auth-submit" id="signupBtn" type="button">Create learner account</button>
-        <div id="signupMsg" class="auth-msg" aria-live="polite"></div>
+      <section class="auth-panel" id="signupPanel" role="tabpanel" aria-labelledby="createTab" hidden>
+        <form id="signupForm" novalidate>
+          <div class="auth-field"><label for="fullName">Full name</label><input id="fullName" name="name" type="text" autocomplete="name" placeholder="Your full name" required maxlength="120"></div>
+          <div class="auth-field"><label for="signupEmail">Email address</label><input id="signupEmail" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com" required></div>
+          <div class="auth-field"><label for="signupPassword">Create password</label><div class="auth-input-wrap"><input id="signupPassword" name="password" type="password" minlength="8" autocomplete="new-password" placeholder="At least 8 characters" required><button class="auth-eye" type="button" data-password-toggle="signupPassword" aria-label="Show password">Show</button></div><small class="auth-field-hint">Use at least 8 characters. A unique passphrase is recommended.</small></div>
+          <div class="auth-field"><label for="signupConfirm">Confirm password</label><div class="auth-input-wrap"><input id="signupConfirm" name="confirmPassword" type="password" minlength="8" autocomplete="new-password" placeholder="Re-enter your password" required><button class="auth-eye" type="button" data-password-toggle="signupConfirm" aria-label="Show password">Show</button></div></div>
+          <button class="auth-submit" id="signupBtn" type="submit" data-busy-text="Creating account…">Create account</button>
+          <div id="signupMsg" class="auth-msg" role="status" aria-live="polite" hidden></div>
+        </form>
+        <p class="auth-switch">Already have an account? <button type="button" data-auth-mode="login">Sign in</button></p>
       </section>
-
-      <div class="auth-sync-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 7h-9M20 12h-6M20 17h-9"/><path d="m4 7 2 2 3-3m-5 6 2 2 3-3m-5 6 2 2 3-3"/></svg><span><strong>Progress recovery:</strong> when you sign in on a device that already has completed lesson checkmarks, the app attempts to upload those completed units before opening your dashboard. Keep using the same production website address on each device.</span></div>
-      <p class="auth-footer-note">Your password is handled by Supabase Authentication and is not stored in this website's files.</p>
+      <section class="auth-panel" id="forgotPanel" hidden>
+        <form id="forgotForm" novalidate>
+          <div class="auth-field"><label for="forgotEmail">Account email address</label><input id="forgotEmail" type="email" autocomplete="email" placeholder="you@example.com" required></div>
+          <button class="auth-submit" id="forgotBtn" type="submit" data-busy-text="Sending link…">Send reset link</button>
+          <div id="forgotMsg" class="auth-msg" role="status" aria-live="polite" hidden></div>
+        </form>
+        <p class="auth-switch"><button type="button" data-auth-mode="login">← Back to sign in</button></p>
+      </section>
+      <section class="auth-panel" id="resetPanel" hidden>
+        <form id="resetForm" novalidate>
+          <div class="auth-field"><label for="newPassword">New password</label><div class="auth-input-wrap"><input id="newPassword" type="password" autocomplete="new-password" minlength="8" placeholder="At least 8 characters" required><button type="button" class="auth-eye" data-password-toggle="newPassword" aria-label="Show password">Show</button></div></div>
+          <div class="auth-field"><label for="confirmNewPassword">Confirm new password</label><div class="auth-input-wrap"><input id="confirmNewPassword" type="password" autocomplete="new-password" minlength="8" placeholder="Confirm new password" required><button type="button" class="auth-eye" data-password-toggle="confirmNewPassword" aria-label="Show password">Show</button></div></div>
+          <button class="auth-submit" id="resetBtn" type="submit" data-busy-text="Updating password…">Update password</button>
+          <div id="resetMsg" class="auth-msg" role="status" aria-live="polite" hidden></div>
+        </form>
+        <p class="auth-switch"><button type="button" data-auth-mode="login">Back to sign in</button></p>
+      </section>
+      <div class="auth-account-note"><span aria-hidden="true">✦</span><p>New learners create an account first. After confirming your email (if requested), sign in to unlock all courses and tools.</p></div>
+      <p class="auth-footer-note">Passwords are processed by Supabase Authentication. Your learning records are linked to your account.</p>
     </section>
   </main>
+  <footer class="auth-site-foot">Learn at your pace · Build practical skills · Keep making progress</footer>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0"></script>
-<script src="assets/supabase-config.js?v=20261015.3"></script>
-<script src="assets/supabase-client.js?v=20261015.3"></script>
+<script src="assets/supabase-config.js?v=20261021"></script>
+<script src="assets/supabase-client.js?v=20261021"></script>
 <script src="assets/progress-cloud.js?v=20261015.3"></script>
+<script src="assets/auth-options.js?v=20261021"></script>
 <script src="assets/modern.js?v=20261015.3"></script>
-<script>
-const $=id=>document.getElementById(id);
-const show=(id,msg,warn=false,success=false)=>{const e=$(id);e.textContent=msg;e.style.display='block';e.className='auth-msg'+(warn?' warn':'')+(success?' success':'')};
-const hide=id=>{$(id).style.display='none'};
-function returnUrl(){try{const requested=new URL(new URLSearchParams(location.search).get('return')||'account.html',location.href);return requested.origin===location.origin?requested.toString():'account.html'}catch(_){return 'account.html'}}
-function setMode(mode){
- const login=mode==='login'; $('loginPanel').hidden=!login;$('signupPanel').hidden=login;
- $('signInTab').classList.toggle('active',login);$('createTab').classList.toggle('active',!login);
- $('signInTab').setAttribute('aria-selected',String(login));$('createTab').setAttribute('aria-selected',String(!login));
- $('authTitle').textContent=login?'Welcome back':'Create your learner account';
- $('authSubtitle').textContent=login?'Sign in to continue from your most recent progress.':'Create one account so your progress can move with you across devices.';
-}
-$('signInTab').onclick=()=>setMode('login'); $('createTab').onclick=()=>setMode('create');
-async function recoverAndGo(user,msgId){
- show(msgId,'Signed in. Recovering this device’s progress and syncing with the cloud…',false,true);
- try{
-   const result=await window.ZAHProgressCloud.recoverCurrentDevice(user);
-   const ok=Object.values(result.courses||{}).filter(c=>c?.ok).length;
-   show(msgId,`Cloud sync finished for ${ok} of 4 learning paths. Opening your dashboard…`,ok<4,ok===4);
- }catch(error){console.error('Post-login progress recovery failed',error);show(msgId,'Signed in. Cloud recovery will continue from your learning dashboard.',true)}
- location.href=returnUrl();
-}
-(async()=>{
- if(!window.ZAH_DB.configured){show('configWarn','Database connection is not configured. Add your Supabase project URL and publishable key before using learner accounts.',true);return;}
- const u=await window.ZAH_DB.user();
- if(u) await recoverAndGo(u,'loginMsg');
-})();
-$('loginBtn').onclick=async()=>{
- if(!window.ZAH_DB.configured)return; hide('loginMsg');
- const email=$('loginEmail').value.trim(),password=$('loginPassword').value;
- if(!email||!password){show('loginMsg','Enter your email address and password.',true);return;}
- $('loginBtn').disabled=true;$('loginBtn').textContent='Signing in…';
- const {data,error}=await window.ZAH_DB.client.auth.signInWithPassword({email,password});
- if(error){show('loginMsg',error.message,true);$('loginBtn').disabled=false;$('loginBtn').textContent='Sign in & sync progress';return;}
- await recoverAndGo(data.user,'loginMsg');
-};
-$('signupBtn').onclick=async()=>{
- if(!window.ZAH_DB.configured)return; hide('signupMsg');
- const full_name=$('fullName').value.trim(),email=$('signupEmail').value.trim(),password=$('signupPassword').value;
- if(!full_name||!email||!password){show('signupMsg','Enter your full name, email and password.',true);return;}
- $('signupBtn').disabled=true;$('signupBtn').textContent='Creating account…';
- const redirect=new URL('auth.html',location.href).href;
- const {data,error}=await window.ZAH_DB.client.auth.signUp({email,password,options:{data:{full_name},emailRedirectTo:redirect}});
- if(error){show('signupMsg',error.message,true);$('signupBtn').disabled=false;$('signupBtn').textContent='Create learner account';return;}
- if(data.session) await recoverAndGo(data.user,'signupMsg');
- else {show('signupMsg','Account created. Check your email to confirm your address, then return here to sign in.',false,true);$('signupBtn').disabled=false;$('signupBtn').textContent='Create learner account';}
-};
-</script>
-<link rel="stylesheet" href="assets/learner-companion.css?v=20261015.3"><script defer src="assets/course-studio-data.js?v=20261015.3"></script><script defer src="assets/learner-companion.js?v=20261015.3"></script><a class="dalp-floating-link dalp-floating-practice" href="practice.html" aria-label="Open interactive SQL and Excel practice arena" style="position:fixed;left:16px;bottom:16px;z-index:999;display:inline-block;border-radius:100px;padding:11px 15px;background:#173b54;color:#fff;text-decoration:none;font-weight:700;box-shadow:0 6px 22px #0003;font-size:.86rem">⚡ Practice Arena</a><script src="assets/responsive-v2.js?v=20261015.3" defer></script></body></html>
+<script src="assets/auth-flow.js?v=20261021"></script>
+<script src="assets/responsive-v2.js?v=20261015.3" defer></script>
+</body></html>

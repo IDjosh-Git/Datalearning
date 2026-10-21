@@ -123,9 +123,9 @@
     try{return await task;}finally{if(allSyncPromise===task)allSyncPromise=null;}
   }
 
-  // Used immediately after authentication so old on-device progress is pushed
-  // before the browser navigates away from the sign-in page.
-  async function recoverCurrentDevice(user){ return syncAll({user:user||null,forceLegacyMigration:true}); }
+  // Import legacy device progress only once for each account, and never force a
+  // reimport when changing accounts on shared browsers.
+  async function recoverCurrentDevice(user){ return syncAll({user:user||null}); }
 
   window.ZAHProgressCloud={COURSE_MAP,MIGRATION_VERSION,getUser,readLocal,writeLocal,queueAnonymous,queueForUser,syncCourse,saveWeek,saveSnapshot,syncAll,recoverCurrentDevice};
 })();

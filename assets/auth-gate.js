@@ -1,0 +1,71 @@
+/* Auth-first role-based gate: Supabase validates identity and RLS enforces record access.
+   The browser hides protected UI, but published static HTML/assets require hosting middleware
+   for true file-level protection. */
+(function(){
+ 'use strict';
+ const root=new URL('../',new URL(document.currentScript.src,location.href));
+ const toPage=name=>new URL(name,root);
+ const restricted=new Set(['admin.html','progress.html','reviewer.html','connection-test.html','sync-test.html']);
+ const ownerKey='dalpLastLearnerId';
+ const courseKeys=['dalpIntroductionProgressV1','excelRoadmapProgress','sqlRoadmapProgress','powerbiRoadmapProgress','aiRoadmapProgress'];
+ let gate,working=false,authenticated=false;
+ const page=location.pathname.split('/').pop().toLowerCase()||'index.html';
+ function loginDestination(){const u=toPage('auth.html');u.searchParams.set('return',location.pathname+location.search+location.hash);return u.href;}
+ function clearLocalCourseCache(){try{courseKeys.forEach(k=>localStorage.removeItem(k));['introduction','excel','sql','powerbi','ai'].forEach(k=>localStorage.removeItem('zahPendingAnonymous:'+k));}catch(_){}}
+ function prepareWorkspace(user){if(!user?.id)return;try{const owner=localStorage.getItem(ownerKey);if(owner&&owner!==user.id)clearLocalCourseCache();localStorage.setItem(ownerKey,user.id);}catch(_){}}
+ function exit(clearCache=true){if(clearCache)clearLocalCourseCache();try{sessionStorage.removeItem('dalpGateUser')}catch(_){}location.replace(loginDestination());}
+ function paint(kind='loading'){
+  if(!document.body)return;
+  if(!gate){gate=document.createElement('div');gate.id='dalp-auth-gate';gate.setAttribute('role','status');gate.setAttribute('aria-live','polite');document.body.prepend(gate);}
+  const isError=kind==='error',denied=kind==='denied';gate.className=(isError?'dalp-gate-error':denied?'dalp-gate-denied':'');
+  const h=denied?'This area is for administrators':isError?'Unable to verify your access':'Checking your learning account';
+  const desc=denied?'You are signed in as a learner. Your courses and saved progress remain available. Contact your platform administrator if you need a different role.':isError?'Your connection or role lookup failed. Access stays locked until we can verify your account.':'Validating your session and permissions before opening the page.';
+  gate.innerHTML='<section class="dalp-gate-box"><div class="dalp-gate-brand"><img src="'+toPage('assets/da-logo.svg').href+'" alt=""><span>Data Analysis Learning Path<small>Secure '+(denied?'admin':'learning')+' area</small></span></div><span class="dalp-gate-spin" aria-hidden="true"></span><h2>'+h+'</h2><p>'+desc+'</p>'+(denied?'<a class="dalp-gate-go" href="'+toPage('index.html').href+'">Return to learner dashboard →</a>':isError?'<button type="button" id="dalpGateRetry">Retry connection</button>':'')+'</section>';
+  if(isError)gate.querySelector('#dalpGateRetry').addEventListener('click',check);
+ }
+ function showError(){paint('error');}
+ function addSignOut(){
+  if(!document.getElementById('dalpGlobalLogout')&&!document.getElementById('logout')){
+   const host=document.querySelector('.nav-links,.course-top-actions,.auth-top-actions,.sidebar');
+   if(host){const b=document.createElement('button');b.id='dalpGlobalLogout';b.className='dalp-gate-logout';b.type='button';b.textContent='Sign out';b.addEventListener('click',async()=>{b.disabled=true;b.textContent='Signing out…';try{await window.ZAH_DB.client.auth.signOut()}catch(e){console.warn('Sign-out failed',e)}exit()});host.append(b);}
+  }
+  document.querySelectorAll('a.account-link,a.course-account-link').forEach(a=>{a.textContent='My account';a.href=toPage('account.html').href});
+ }
+ function enhanceRoleUI(){
+  const role=window.DALP_ROLE;document.documentElement.dataset.dalpRole=role;
+  document.querySelectorAll('[data-admin-only]').forEach(node=>{node.hidden=role!=='admin'});
+  if(role==='admin'){
+   const host=document.querySelector('.nav-links,.course-top-actions,.sidebar,.auth-top-actions');
+   if(host&&!document.getElementById('dalpAdminLink')){const a=document.createElement('a');a.id='dalpAdminLink';a.className=host.classList.contains('sidebar')?'lp-course-link':'dalp-admin-link';a.href=toPage('admin.html').href;a.textContent='⚙ Admin dashboard';host.append(a);}
+  }else{document.querySelectorAll('.instructor-access-panel').forEach(n=>n.remove());}
+  window.dispatchEvent(new CustomEvent('dalp:auth-ready',{detail:{role}}));
+ }
+ async function check(){
+  if(working||authenticated)return;working=true;paint();
+  try{
+   const client=window.ZAH_DB?.client;
+   if(!window.ZAH_DB?.configured||!client){showError();return;}
+   const {data:session,error:sessionError}=await client.auth.getSession();
+   if(sessionError){if(/refresh|invalid|session.*missing/i.test(sessionError.message||'')){exit();return;}showError();return;}
+   if(!session?.session){let owned=false;try{owned=!!localStorage.getItem(ownerKey)}catch(_){}exit(owned);return;}
+   const {data,error}=await client.auth.getUser();
+   if(error){if(/invalid.*jwt|jwt.*expired|invalid.*refresh|session.*missing|user.*not.*found/i.test(error.message||'')){exit();return;}showError();return;}
+   if(!data?.user||data.user.is_anonymous){exit();return;}
+   // Fail closed: do not assume a learner role when the role service cannot be checked.
+   const {data:admin,error:roleError}=await client.from('site_admins').select('user_id').eq('user_id',data.user.id).maybeSingle();
+   if(roleError){console.warn('Administrator role lookup failed',roleError);showError();return;}
+   const role=admin?'admin':'learner';
+   prepareWorkspace(data.user);window.DALP_AUTH_USER=data.user;window.DALP_ROLE=role;
+   if(restricted.has(page)&&role!=='admin'){paint('denied');return;}
+   authenticated=true;document.documentElement.classList.remove('dalp-auth-checking');
+   if(gate){gate.remove();gate=null;}
+   const init=()=>{addSignOut();enhanceRoleUI();};
+   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
+   client.auth.onAuthStateChange(event=>{if(event==='SIGNED_OUT'||event==='USER_DELETED')exit();});
+  }catch(e){console.warn('Unable to validate permissions',e);showError();}
+  finally{working=false;}
+ }
+ window.DALP_AUTH_GATE={prepareWorkspace,clearLocalCourseCache,loginDestination,restrictedPages:Array.from(restricted)};
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{if(!authenticated&&!gate)paint()},{once:true});
+ check();
+})();

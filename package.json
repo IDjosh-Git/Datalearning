@@ -1,14 +1,14 @@
 {
   "name": "data-analysis-learning-path",
-  "version": "3.6.0",
+  "version": "3.8.0",
   "private": true,
   "type": "module",
-  "description": "Modern learning portal with private instructor progress tracking and owner-graded capstones",
+  "description": "Responsive LMS with Supabase authentication, learner profiles, and administrator role-based access",
   "engines": {
     "node": ">=20"
   },
   "scripts": {
-    "test": "node tests/smoke.mjs && node tests/modern.mjs && node tests/sync-regression.mjs && node tests/course-content.mjs && node tests/ai-card-visibility.mjs",
+    "test": "node tests/smoke.mjs && node tests/modern.mjs && node tests/sync-regression.mjs && node tests/course-content.mjs && node tests/ai-card-visibility.mjs && node tests/auth-first.mjs && node tests/auth-gate-runtime.mjs && node tests/admin-roles.mjs",
     "test:responsive": "node tests/responsive-coverage.mjs"
   },
   "dependencies": {

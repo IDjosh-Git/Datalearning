@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>document.documentElement.classList.add('dalp-auth-checking')</script>
+<link rel="stylesheet" href="assets/auth-gate.css?v=20261021.2">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0"></script>
+<script src="assets/supabase-config.js?v=20261021"></script>
+<script src="assets/supabase-client.js?v=20261021"></script>
+<script src="assets/auth-gate.js?v=20261021.2"></script>
+
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Completion Record Check | Data Analysis Learning Path</title><script>try{const t=localStorage.getItem('dalp-theme');document.documentElement.dataset.theme=(t==='dark'||t==='light')?t:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch(e){document.documentElement.dataset.theme='light'}</script>
 <style>
@@ -42,9 +49,9 @@ h1{margin:0 0 7px;color:var(--navy-dark);font-size:34px}p{color:var(--muted)}
   <a class="btn" href="index.html">Back to Learning Portal</a>
  </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0"></script>
-<script src="assets/supabase-config.js?v=20261015.3"></script>
-<script src="assets/supabase-client.js?v=20261015.3"></script>
+
+
+
 <script>
 function decode64(s){s=s.replace(/-/g,'+').replace(/_/g,'/');while(s.length%4)s+='=';return decodeURIComponent(escape(atob(s)))}
 (async()=>{
