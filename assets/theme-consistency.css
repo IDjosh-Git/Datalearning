@@ -234,3 +234,60 @@ html[data-theme="dark"] body:has(.sidebar) :is(.course-study-note,.course-intro-
   background:var(--app-brand-soft)!important;border:1px solid var(--app-line)!important;
   color:var(--app-brand-text)!important;
 }
+
+
+/* Visual regression hardening, 21 October 2026.
+   Shared tokens and overflow-safe controls across course and utility screens. */
+*,*::before,*::after{box-sizing:border-box}
+html{max-width:100%;scroll-padding-top:84px}
+body{max-width:100%;min-width:0;overflow-x:clip}
+:where(main,section,article,aside,header,footer,nav,.container,.shell,.content,.card){min-width:0}
+:where(h1,h2,h3,h4,p,li,dd,dt,label,summary,a,button){overflow-wrap:break-word}
+:where(img,svg,video,canvas){max-width:100%}
+:where(img,video){height:auto}
+:where(pre,code){overflow-wrap:normal}
+pre{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+:where(table){max-width:100%}
+:where(input,select,textarea){max-width:100%;min-width:0}
+:where(button,[role="button"],input[type="submit"],input[type="button"]){min-height:40px}
+:where(.card,.lp-course,.ref-card,.course-studio-card,.practice-card){min-width:0}
+:where(.card,.lp-course,.ref-card) :is(h2,h3,p){max-width:100%}
+:where(.dalp-floating-link){font-family:var(--ui-font);line-height:1.25}
+.dalp-floating-lab,.dalp-floating-practice{
+  position:fixed!important;z-index:950!important;
+  max-width:calc(50vw - 20px);bottom:max(16px,env(safe-area-inset-bottom))!important;
+}
+.dalp-floating-lab{right:max(16px,env(safe-area-inset-right))!important}
+.dalp-floating-practice{left:max(16px,env(safe-area-inset-left))!important}
+.dalp-floating-lab>a,.dalp-floating-practice{
+  display:inline-flex!important;align-items:center;justify-content:center;
+  max-width:100%;min-height:44px!important;text-align:center;white-space:normal;
+  padding:10px 14px!important;font-size:clamp(11px,1.8vw,14px)!important;
+  text-decoration:none!important;overflow-wrap:anywhere;
+}
+:where(.dalp-floating-lab>a,.dalp-floating-practice):focus-visible{
+  outline:3px solid var(--app-brand,#713a55);outline-offset:3px;
+}
+@media(max-width:600px){
+  body{padding-bottom:calc(82px + env(safe-area-inset-bottom))!important}
+  .dalp-floating-lab,.dalp-floating-practice{
+    bottom:calc(10px + env(safe-area-inset-bottom))!important;
+    width:calc(50% - 15px)!important;max-width:none!important;
+  }
+  .dalp-floating-lab{right:10px!important}
+  .dalp-floating-practice{left:10px!important}
+  .dalp-floating-lab>a,.dalp-floating-practice{
+    width:100%;min-height:48px!important;padding:9px 7px!important;
+    font-size:12px!important;box-shadow:0 3px 12px #0002!important;
+  }
+  :where(.course-top,.lp-header,.pl-header,.nav-shell){max-width:100%;min-width:0}
+  :where(.course-top-actions,.pl-header nav){flex-wrap:wrap}
+  :where(.lp-course-grid,.prompt-grid,.usage-grid){min-width:0}
+}
+@media(max-width:360px){
+  .dalp-floating-lab>a,.dalp-floating-practice{font-size:11px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  html:focus-within{scroll-behavior:auto}
+  *,*::before,*::after{scroll-behavior:auto!important}
+}
