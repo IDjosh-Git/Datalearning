@@ -8,7 +8,7 @@ for(const page of pages){
  const html=fs.readFileSync(path.join(root,page),'utf8');
  const rel=page.startsWith('courses/')?'../':'';
  assert.equal(html.split(`${rel}assets/theme-navigation-v16.css?v=20261022.16`).length-1,1,`${page}: v16 final CSS missing or duplicated`);
- assert.equal(html.split(`${rel}assets/theme-control-v14.js?v=20261022.16`).length-1,1,`${page}: theme controller missing or duplicated`);
+ assert.equal(html.split(`${rel}assets/theme-control-v14.js?v=20261022.18`).length-1,1,`${page}: theme controller missing or duplicated`);
  assert(!html.includes('</link>'),`${page}: invalid legacy closing LINK tag`);
 }
 const theme=fs.readFileSync(path.join(root,'assets/theme-control-v14.js'),'utf8');

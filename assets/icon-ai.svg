@@ -1,1 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="17" fill="#eae9ff"/><g fill="none" stroke="#6750c9" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><rect x="16" y="16" width="32" height="32" rx="9"/><path d="M26 9v7m12-7v7M26 48v7m12-7v7M9 26h7m-7 12h7m32-12h7m-7 12h7"/><path d="m32 23 3.5 7.5L43 34l-7.5 3.5L32 45l-3.5-7.5L21 34l7.5-3.5z"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="AI integration course symbol">
+<title>AI integration for data analysis</title><defs><linearGradient id="ai-bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#936BE7"/><stop offset="1" stop-color="#433DB2"/></linearGradient></defs>
+<rect x="5" y="5" width="54" height="54" rx="14" fill="url(#ai-bg)"/>
+<g fill="none" stroke="#C6B9FF" stroke-width="2" stroke-linejoin="round"><path d="m19 21 14-8 14 8v21l-14 9-14-9Z"/><path d="m19 21 14 11 14-11M33 32v19"/></g>
+<g fill="#F7F5FF"><circle cx="19" cy="21" r="4"/><circle cx="47" cy="21" r="4"/><circle cx="33" cy="13" r="4"/><circle cx="33" cy="32" r="5"/><circle cx="19" cy="42" r="4"/><circle cx="47" cy="42" r="4"/><circle cx="33" cy="51" r="4"/></g>
+</svg>

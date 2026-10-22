@@ -1,1 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="#eaf1ff"/><ellipse cx="32" cy="17" rx="20" ry="8" fill="#4877bb"/><path d="M12 17v29c0 5 9 9 20 9s20-4 20-9V17" fill="#315c96"/><path d="M12 31c0 5 9 9 20 9s20-4 20-9M12 44c0 5 9 9 20 9s20-4 20-9" stroke="#b9d5ff" stroke-width="2.5" fill="none"/><ellipse cx="32" cy="17" rx="20" ry="8" fill="#618fd1"/><path d="M25 17h14" stroke="white" stroke-width="3" stroke-linecap="round"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="SQL database course symbol">
+<title>SQL — relational databases</title><defs><linearGradient id="sql-main" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#308BD6"/><stop offset="1" stop-color="#184C92"/></linearGradient></defs>
+<ellipse cx="32" cy="14" rx="23" ry="10" fill="#66BDF0"/>
+<path d="M9 14v31c0 6.3 10.3 11 23 11s23-4.7 23-11V14c0 6-10.3 10-23 10S9 20 9 14Z" fill="url(#sql-main)"/>
+<path d="M9 28.5c0 6 10.3 10.5 23 10.5s23-4.5 23-10.5M9 41.5C9 47.5 19.3 52 32 52s23-4.5 23-10.5" fill="none" stroke="#9EDBFF" stroke-width="2" opacity=".82"/>
+<rect x="14" y="27" width="36" height="19" rx="5" fill="#102C60"/>
+<text x="32" y="40.6" fill="#FFF" font-family="Arial,Helvetica,sans-serif" font-size="12.8" font-weight="800" letter-spacing=".6" text-anchor="middle">SQL</text>
+</svg>
