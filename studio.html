@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#254559">
+<title>Practice Studio | Data Analysis Learning Path</title>
+<meta name="description" content="Focus on one practical data-analysis skill at a time with guided examples, hands-on questions and explanations.">
+<script>document.documentElement.classList.add('dalp-auth-checking');try{const t=localStorage.getItem('dalp-theme');document.documentElement.dataset.theme=(t==='light'||t==='dark')?t:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch(e){document.documentElement.dataset.theme='light'}</script>
+<link rel="stylesheet" href="assets/auth-gate.css?v=20261021.2">
+<link rel="stylesheet" href="assets/responsive-v2.css?v=20261015.3">
+<link rel="stylesheet" href="assets/theme-unified-v10.css?v=20261022">
+<link rel="stylesheet" href="assets/workspace-shell.css?v=20261021.3">
+<link rel="stylesheet" href="assets/practice-studio-v11.css?v=20261022.2">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0"></script>
+<script src="assets/supabase-config.js?v=20261021"></script><script src="assets/supabase-client.js?v=20261021"></script>
+<script defer src="assets/server-session.js?v=20261022"></script><script src="assets/auth-gate.js?v=20261021.3"></script>
+</head><body class="ps-page" data-responsive-page="studio">
+<main class="ps-main">
+ <div class="ps-heading"><div class="ps-eyebrow"><span class="ps-dot"></span> YOUR LEARNING TOOLS <span aria-hidden="true"> / </span> PRACTICE STUDIO</div><div class="ps-title-row"><div><h1>Practice <em>Studio.</em></h1><p>Choose a subject, practise one skill and check the explanation. Your weekly lessons stay separate and easy to find.</p></div><a class="ps-outline-action" href="index.html#courses">← All courses</a></div></div>
+ <div class="ps-callout" role="note"><span class="ps-callout-icon" aria-hidden="true">✓</span><div><strong>Interactive practice, in one dedicated space</strong><p>Worked examples, short challenges and self-checks for every course. <a href="#ps-workspace" class="ps-jump">Start with a skill ↓</a></p><details class="ps-offline-details"><summary>How does practising offline work?</summary><p>Your answers are saved on this device for your signed-in account. You can continue an already open exercise without a connection, but opening the site, signing in and loading new pages may need internet access. Please note: this is not a downloadable offline course.</p></details></div><button id="ps-restore" type="button" hidden>Restore older device practice</button></div>
+ <nav class="ps-course-nav" aria-label="Choose a subject" id="ps-course-nav"></nav>
+ <button type="button" id="ps-browse-mobile" class="ps-mobile-browse" aria-controls="ps-rail" aria-expanded="false"><span class="ps-browse-icon" aria-hidden="true">☷</span><span id="ps-browse-label">Browse skills</span><span aria-hidden="true">⌄</span></button>
+ <div class="ps-layout" id="ps-workspace">
+  <aside class="ps-rail" id="ps-rail" aria-label="Skills in this subject"><div class="ps-rail-head"><div><span class="ps-overline">SKILL PATH</span><h2>Choose an exercise</h2><small id="ps-list-count">Loading…</small></div><strong class="ps-total" id="ps-skill-total">0</strong></div>
+   <div class="ps-rail-controls"><label class="ps-search-label" for="ps-search">Search skills</label><input id="ps-search" type="search" autocomplete="off" placeholder="Search a topic or example…"><label class="ps-filter-label" for="ps-filter">Show</label><select id="ps-filter"><option value="all">All skills</option><option value="todo">Still to practise</option><option value="done">Completed skills</option></select></div>
+   <div class="ps-skill-list" id="ps-skill-list"></div>
+   <div class="ps-rail-foot">Choose any skill. Your course lessons are always one click away.</div>
+  </aside>
+  <section class="ps-focus" aria-labelledby="ps-skill-title"><div class="ps-focus-top"><span class="ps-overline" id="ps-course-label">Select a skill</span><div class="ps-progress"><strong id="ps-progress-total">0 / 12</strong><div class="ps-progress-track"><div id="ps-progress-fill"></div></div><span id="ps-progress-label">0% of skills completed</span></div></div>
+  <div id="ps-focus-area"><h2 id="ps-skill-title">Getting your practice ready…</h2><p class="ps-subtitle" id="ps-skill-description"></p>
+   <div class="ps-example"><div class="ps-block-label"><span>01</span> LEARN BY EXAMPLE</div><h3>See how it works</h3><p id="ps-example"></p></div>
+   <div class="ps-task"><div class="ps-block-label"><span>02</span> YOUR TURN</div><h3>Try it yourself</h3><p id="ps-prompt"></p><label for="ps-answer">Your answer or working</label><textarea id="ps-answer" rows="6" spellcheck="true" placeholder="Write your approach, formula, query or explanation here…"></textarea><div class="ps-task-actions"><button type="button" class="ps-secondary" id="ps-reveal">Check explanation</button><button type="button" class="ps-primary" id="ps-complete">Mark skill complete</button></div><div id="ps-solution" class="ps-solution" hidden><h4>Suggested explanation</h4><p id="ps-solution-copy"></p><h4>A common mistake to avoid</h4><p id="ps-pitfall"></p><small>These exercises are self-assessed and do not replace your course quizzes or graded assignments.</small></div></div></div>
+   <div class="ps-footnav"><button type="button" class="ps-secondary" id="ps-prev">← Previous skill</button><a href="courses/introduction.html" id="ps-back-course">Open course lessons ↗</a><button type="button" class="ps-primary" id="ps-next">Next skill →</button></div><p id="ps-status" role="status" aria-live="polite" class="ps-status"></p>
+  </section>
+ </div>
+ <div class="ps-more"><div><span class="ps-overline">NEXT STEP</span><h2>Keep learning beyond practice</h2><p>Return to your weekly lessons, or explore guided exercises and reference materials.</p></div><a href="learning-lab.html">Explore the Learning Lab →</a><a href="practice.html">Open the Practice Arena →</a></div>
+</main>
+<script defer src="assets/course-studio-data.js?v=20261022"></script><script defer src="assets/course-studio.js?v=20261022.2"></script><script defer src="assets/workspace-shell.js?v=20261021.3"></script><script defer src="assets/responsive-v2.js?v=20261015.3"></script>
+</body></html>

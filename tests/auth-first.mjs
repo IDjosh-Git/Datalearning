@@ -5,7 +5,7 @@ const root=process.cwd();
 const read=x=>fs.readFileSync(path.join(root,x),'utf8');
 const paths=dir=>fs.readdirSync(dir,{withFileTypes:true}).flatMap(x=>x.isDirectory()?paths(path.join(dir,x.name)):x.name.endsWith('.html')?[path.join(dir,x.name)]:[]);
 const htmlFiles=paths(root);
-assert.equal(htmlFiles.length,21,'Expected all 21 app pages');
+assert.equal(htmlFiles.length,22,'Expected all 22 app pages');
 const publicPage=read('auth.html');
 assert(!publicPage.includes('auth-gate.js'),'Sign-in page must remain public');
 assert(!read('verify.html').includes('auth-gate.js'),'Third-party certificate verification must be public');

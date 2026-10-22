@@ -3,8 +3,8 @@
 if(document.body.hasAttribute('data-admin-console')||document.body.classList.contains('auth-page')||/^(verify|connection-test|sync-test)\.html$/.test(location.pathname.split('/').pop()))return;
 const onCourse=location.pathname.includes('/courses/'),root=onCourse?'../':'';
 const page=location.pathname.split('/').pop()||'index.html';
-const links=[['Dashboard','index.html','index'],['Courses','index.html#courses','course'],['Practice','practice.html','practice'],['AI Tutor','tutor.html','tutor'],['Lab','learning-lab.html','learning-lab'],['Library','reference.html','reference'],['Progress','account.html','account']];
-const extra=[['Learning Lab','learning-lab.html'],['Prompt library','prompt-library.html'],['Capstone studio','capstone.html'],['Study notes & references','reference.html'],['Introduction course','courses/introduction.html'],['Excel course','courses/excel.html'],['SQL course','courses/sql.html'],['Power BI course','courses/powerbi.html'],['AI Integration course','courses/ai.html']];
+const links=[['Dashboard','index.html','index'],['Courses','index.html#courses','course'],['Practice Studio','studio.html','studio'],['AI Tutor','tutor.html','tutor'],['Lab','learning-lab.html','learning-lab'],['Library','reference.html','reference'],['Progress','account.html','account']];
+const extra=[['Practice Arena','practice.html'],['Practice Studio','studio.html'],['Learning Lab','learning-lab.html'],['Prompt library','prompt-library.html'],['Capstone studio','capstone.html'],['Study notes & references','reference.html'],['Introduction course','courses/introduction.html'],['Excel course','courses/excel.html'],['SQL course','courses/sql.html'],['Power BI course','courses/powerbi.html'],['AI Integration course','courses/ai.html']];
 const active=onCourse?'course':page==='index.html'?'index':page==='admin.html'?'admin':page.replace('.html','');
 const iconSearch='<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg>';
 const bar=document.createElement('header');bar.className='dl-shell';bar.setAttribute('aria-label','Global learning workspace');

@@ -142,3 +142,10 @@ body.cw-intro-ready .intro-lesson.cw-intro-current{scroll-margin-top:90px;}
 
 body.cw-workspace-ready>a.portal-home-btn,body.cw-intro-ready>a.portal-home-btn{display:none!important;}
 @media(max-width:720px){body.cw-workspace-ready>a[href="../practice.html"][style*="position:fixed"],body.cw-intro-ready>a[href="../practice.html"][style*="position:fixed"]{display:none!important;}body.cw-intro-ready .intro-side{display:none!important;} .cw-intro-nav{width:calc(100% - 24px);margin-top:12px;} }
+
+/* v11: prominent course practice shortcut, separate from lesson steps */
+.cw-studio-promo{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:16px 0 19px;padding:18px 22px;border:1px solid #7abbb4;border-radius:15px;background:#e8f6f2;color:#163a38}
+.cw-studio-promo strong{font-size:1.04rem;display:block;margin:4px 0}.cw-studio-promo p{margin:0;font-size:.87rem;color:#45665f;line-height:1.5;max-width:620px}
+.cw-studio-kicker{font-size:.69rem;letter-spacing:.12em;font-weight:850;color:#086a5d}.cw-studio-entry{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;min-height:43px;padding:11px 15px;background:#176e60;color:white!important;border-radius:11px;font-weight:800;font-size:.86rem;text-decoration:none!important}
+.cw-studio-entry:hover{background:#095c50}html[data-theme="dark"] .cw-studio-promo{background:#183c39;color:#ecfff9;border-color:#447e76}html[data-theme="dark"] .cw-studio-promo p{color:#c1dcd5}html[data-theme="dark"] .cw-studio-kicker{color:#80e3cd}
+@media(max-width:700px){.cw-studio-promo{flex-direction:column;align-items:stretch;padding:15px;gap:12px}.cw-studio-entry{width:100%;white-space:normal;text-align:center}}
