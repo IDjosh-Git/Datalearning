@@ -1,0 +1,100 @@
+/* v20 – in-flow course status and accessible learning-coach entry, no obstructing floats. */
+#dlp-course-utility-strip{
+ display:flex;align-items:center;flex-wrap:wrap;gap:8px 10px;
+ width:100%;min-width:0;box-sizing:border-box;margin:12px 0 22px;
+ padding:8px 11px;background:var(--app-surface,#fff);color:var(--app-text,#24384a);
+ border:1px solid var(--app-line,#d4e0e9);border-radius:14px;
+}
+#dlp-course-utility-strip > :is(button,a),
+body.dl-workspace #dlp-course-utility-strip > :is(button,a){
+ display:inline-flex!important;align-items:center;justify-content:center;gap:7px;
+ position:static!important;float:none!important;inset:auto!important;
+ width:auto!important;min-width:0;max-width:100%!important;min-height:36px;
+ padding:7px 11px!important;margin:0!important;
+ font:700 12px/1.3 system-ui,sans-serif!important;
+ border-radius:9px!important;border:1px solid var(--app-line,#d4e0e9)!important;
+ box-shadow:none!important;background:var(--app-surface-2,#f1f6fa)!important;
+ color:var(--app-text,#263c50)!important;text-decoration:none!important;
+ transform:none!important;white-space:normal!important;cursor:pointer;
+}
+#dlp-course-utility-strip .dlp-utility-practice:hover,
+#dlp-course-utility-strip .lc-launch:hover{border-color:var(--app-accent,#e57939)!important}
+#dlp-course-utility-strip .dlp-sync-slot{display:flex;min-width:0;margin-inline-start:auto;align-items:center}
+body #zah-sync-badge,body.dl-workspace #zah-sync-badge{
+ display:inline-flex!important;position:static!important;float:none!important;inset:auto!important;
+ align-items:center;gap:7px;max-width:100%!important;min-height:33px;
+ margin:0!important;padding:6px 11px!important;
+ background:var(--app-surface-2,#edf5f6)!important;
+ color:var(--app-text,#263c50)!important;border:1px solid var(--app-line,#cadbe2)!important;
+ border-radius:999px!important;box-shadow:none!important;
+ transform:none!important;font:700 11px/1.35 system-ui,sans-serif!important;
+ text-align:left;white-space:normal!important;overflow-wrap:anywhere;cursor:pointer;z-index:auto!important;
+}
+#zah-sync-badge::before{content:'↻';font-weight:900;font-size:14px;line-height:1}
+#zah-sync-badge[data-state="normal"]::before{content:'✓';color:#168467}
+#zah-sync-badge[data-state="error"]::before{content:'!';color:#c8544b}
+#zah-sync-badge[data-state="offline"]::before{content:'•';color:#b67d29}
+html[data-theme="dark"] #dlp-course-utility-strip{background:#1b3042!important;border-color:#456078!important;color:#edf5fc!important}
+html[data-theme="dark"] #dlp-course-utility-strip > :is(button,a),
+html[data-theme="dark"] #zah-sync-badge{background:#263e50!important;color:#ecf4fb!important;border-color:#587184!important}
+html[data-theme="dark"] #zah-sync-badge[data-state="normal"]::before{color:#73e1ad}
+html[data-theme="dark"] #zah-sync-badge[data-state="error"]::before{color:#ffa398}
+html[data-theme="dark"] #zah-sync-badge[data-state="offline"]::before{color:#ffd494}
+/* The coach is a regular navigation / course action and never a persistent overlay. */
+body .lc-launch,body.dl-workspace .lc-launch{
+ position:static!important;inset:auto!important;float:none!important;
+ display:inline-flex;align-items:center;justify-content:center;gap:7px;
+ min-height:38px;min-width:0;max-width:100%!important;
+ padding:7px 11px!important;margin:0!important;
+ background:var(--app-surface-2,#f1f6fa);color:var(--app-text,#263c50);
+ border:1px solid var(--app-line,#cadbe2);border-radius:10px;
+ box-shadow:none!important;transform:none!important;
+ font:750 12px/1.25 system-ui,sans-serif;text-align:center;white-space:normal;cursor:pointer;
+}
+.lc-launch-icon{font-size:17px;line-height:1;color:#ef8b50}
+body.dl-workspace .dl-shell-actions > .lc-launch{flex:0 0 auto;min-width:40px;min-height:40px;padding:7px 10px!important}
+@media(min-width:951px) and (max-width:1360px){body.dl-workspace .dl-shell-actions > .lc-launch .lc-launch-label{display:none}}
+body.dl-workspace #dlPrimaryNav > .lc-launch{width:100%!important;justify-content:flex-start!important;min-height:44px;text-align:left;background:transparent!important;color:inherit!important;border-color:transparent!important;border-radius:10px!important;padding:11px 14px!important}
+body.dl-workspace #dlPrimaryNav > .lc-launch .lc-launch-label{display:inline}
+body.dl-workspace #dlPrimaryNav > .lc-launch:hover{background:#ffffff18!important}
+body.dl-workspace #dlPrimaryNav > .lc-launch:focus-visible,
+body .lc-launch:focus-visible,body #zah-sync-badge:focus-visible{outline:3px solid #ef9857!important;outline-offset:2px!important}
+/* The learning tools intentionally open a dismissible dialog instead of covering actions by default. */
+body.lc-dialog-open{overflow:hidden!important}
+.lc-backdrop{position:fixed!important;inset:0!important;z-index:20000!important;background:rgba(8,19,30,.58)!important;backdrop-filter:blur(2px)}
+.lc-backdrop[hidden]{display:none!important}
+body .lc-panel{
+ position:fixed!important;inset:12px 12px 12px auto!important;
+ z-index:20001!important;width:min(440px,calc(100vw - 24px))!important;
+ max-height:calc(100dvh - 24px)!important;overflow:auto!important;
+ border-radius:18px!important;padding:18px!important;
+ background:#fff!important;color:#1b3447!important;border:1px solid #cedce5!important;
+ box-shadow:0 24px 90px #001b3680!important;
+ overscroll-behavior:contain;
+}
+body .lc-panel[hidden]{display:none!important}
+.lc-panel .lc-top{position:sticky;top:-18px;z-index:2;padding:8px 0 12px;margin-top:-8px;background:inherit;border-bottom:1px solid currentColor}
+.lc-panel .lc-top h2{font-size:clamp(18px,3vw,22px)!important;line-height:1.3!important}
+.lc-panel .lc-close{min-width:42px;min-height:42px;flex:0 0 42px;display:grid;place-items:center}
+html[data-theme="dark"] body .lc-panel{background:#1b3042!important;color:#ecf5fc!important;border-color:#536c80!important}
+html[data-theme="dark"] body .lc-panel :is(.lc-metrics div,.lc-review){background:#283f51!important;color:#edf5fc!important;border:1px solid #4a6479!important}
+html[data-theme="dark"] body .lc-panel :is(button,select,textarea,input){background:#29465b!important;color:#f2f7fb!important;border-color:#668196!important}
+html[data-theme="dark"] body .lc-panel :is(.lc-feedback,.lc-review small){color:#c1d3e2!important}
+html[data-theme="dark"] body .lc-panel .lc-badge{background:#4f3f23!important;color:#ffe5a0!important}
+html[data-theme="dark"] body .lc-panel .lc-progress{background:#405a69}
+html[data-theme="dark"] body .lc-panel .lc-progress div{background:#5ecdbb}
+@media(max-width:950px){
+ body .lc-panel{inset:auto 8px 8px 8px!important;width:auto!important;max-height:min(88dvh,calc(100dvh - 16px))!important;border-radius:18px!important;padding:16px!important}
+ #dlp-course-utility-strip{margin:10px 0 18px;gap:7px;padding:8px}
+}
+@media(max-width:480px){
+ #dlp-course-utility-strip > :is(button,a),body.dl-workspace #dlp-course-utility-strip > :is(button,a){font-size:11px!important;padding:6px 9px!important;min-height:35px}
+ #dlp-course-utility-strip .dlp-sync-slot{flex:1 1 100%;justify-content:flex-start;margin-inline-start:0}
+ body #zah-sync-badge,body.dl-workspace #zah-sync-badge{font-size:10.5px!important;min-height:31px;max-width:100%!important}
+ body .lc-panel{bottom:0!important;left:0!important;right:0!important;max-height:92dvh!important;border-radius:20px 20px 0 0!important;padding:16px!important}
+ body .lc-panel :is(textarea,input,select){font-size:16px!important}
+}
+@media print{.lc-launch,.lc-panel,.lc-backdrop,#zah-sync-badge,#dlp-course-utility-strip{display:none!important}}
+
+/* Align the course toolbar with full-bleed hero layouts as well as sidebar courses. */
+body:has(.ai-hero) #dlp-course-utility-strip,body:has(.intro-hero) #dlp-course-utility-strip{max-width:min(1200px,calc(100% - 32px));margin:12px auto 14px}

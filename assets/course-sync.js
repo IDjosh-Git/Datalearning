@@ -13,11 +13,16 @@
     const b=document.createElement('button');
     b.id='zah-sync-badge';
     b.type='button';
-    b.style.cssText='position:fixed;right:18px;bottom:18px;z-index:9998;background:#254559;color:white;padding:10px 13px;border:0;border-radius:12px;font:700 12px system-ui;box-shadow:0 10px 25px rgba(20,45,58,.22);cursor:pointer';
+    b.className='dlp-inline-sync';
     b.textContent='Checking saved progress…';
-    b.title='Tap to sync now';
+    b.title='Check or retry account sync';
+    b.setAttribute('aria-live','polite');
     b.addEventListener('click',()=>runSync(true));
-    document.body.appendChild(b);
+    const strip=document.getElementById('dlp-course-utility-strip');
+    const host=strip||document.querySelector('.content,.progress-card,main');
+    if(strip){const slot=document.createElement('span');slot.className='dlp-sync-slot';slot.appendChild(b);strip.appendChild(slot)}
+    else if(host)host.prepend(b);
+    else document.body.appendChild(b);
   }
 
   function badge(text,state='normal'){
@@ -25,7 +30,7 @@
     const b=document.getElementById('zah-sync-badge');
     b.textContent=text;
     b.dataset.state=state;
-    b.style.background=state==='error'?'#9b3b3b':state==='offline'?'#6c5a2c':'#254559';
+    // Palette is controlled by the selected light/dark theme, never inline styles.
   }
 
   function timeLabel(value){
