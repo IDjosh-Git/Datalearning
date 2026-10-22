@@ -1,0 +1,124 @@
+/* Data Analysis Learning Path – adaptive visual-system hardening v15.
+   Loaded last on every route; no functional selectors or page permissions modified. */
+:root{--dl-v15-gap:clamp(12px,2.5vw,28px);--dl-v15-accent:#f27329}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-padding-top:84px}
+*,*::before,*::after{box-sizing:border-box}
+:where(body,main,section,article,aside,header,nav,footer){min-width:0}
+:where(img,video,iframe,canvas){max-width:100%;height:auto}
+:where(pre,.table-wrap,.table-scroll,.table-responsive,.responsive-table,.dalp-admin-table-wrap,.ip-table-wrap,.review-table-wrap){max-width:100%;overflow-x:auto;overscroll-behavior-inline:contain;-webkit-overflow-scrolling:touch}
+:where(pre,code){tab-size:2}
+:where(h1,h2,h3,h4,p,li,blockquote,figcaption){overflow-wrap:break-word}
+:where(input,textarea,select){max-width:100%;min-width:0}
+:where(a,button,input,select,textarea,summary,[role="button"]):focus-visible{outline:3px solid #ed813e!important;outline-offset:3px!important}
+[hidden]{display:none!important}
+/* Always-visible, bounded theme button, including pages with independent button rules. */
+html[data-theme] body #dalpThemeToggle{box-sizing:border-box!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;flex:0 0 44px!important;width:44px!important;height:44px!important;min-width:44px!important;min-height:44px!important;max-width:44px!important;max-height:44px!important;padding:10px!important;margin:0!important;gap:0!important;line-height:1!important;overflow:hidden!important;border-radius:12px!important;white-space:nowrap!important}
+html[data-theme] body #dalpThemeToggle svg{display:block!important;position:static!important;inset:auto!important;flex:0 0 21px!important;width:21px!important;height:21px!important;max-width:21px!important;max-height:21px!important;stroke:currentColor!important}
+html[data-theme="light"] body #dalpThemeToggle .theme-sun{display:none!important}
+html[data-theme="light"] body #dalpThemeToggle .theme-moon{display:block!important}
+html[data-theme="dark"] body #dalpThemeToggle .theme-sun{display:block!important}
+html[data-theme="dark"] body #dalpThemeToggle .theme-moon{display:none!important}
+html[data-theme] body #dalpThemeToggle .dlp-theme-caption{display:none!important}
+html[data-theme] body #dalpThemeToggle.dlp-theme-floating{position:fixed!important;top:calc(12px + env(safe-area-inset-top,0px))!important;right:12px!important;left:auto!important;bottom:auto!important;z-index:10002!important}
+/* Inputs that trigger iOS zoom or become unreadable when the interface shrinks. */
+@media(pointer:coarse){:where(input,select,textarea){font-size:max(16px,1rem)}}
+/* Keep course chapters, datasets and assessments separated consistently. */
+body.dl-workspace :is(.cw-week-context,.cw-tab-panel,.cw-resources,.cw-week-controls,.cw-module,.cw-bottom){min-width:0;max-width:100%}
+body.dl-workspace :is(.cw-weekstrip,.cw-module-tabs){max-width:100%;overflow-x:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+body.dl-workspace :is(.cw-tab-panel,.lesson,.session-block,.studio-content,.guided-lab) :is(pre,table){max-width:100%}
+body.dl-workspace :is(.cw-tab-panel,.lesson,.session-block,.studio-content,.guided-lab) pre{overflow-x:auto}
+/* Shared colour/contrast for labels, inputs and interactive details. */
+html[data-theme="light"] body :is(.search-label,.ref-controls label,.ref-search label){color:#345269!important}
+html[data-theme="dark"] body :is(.search-label,.ref-controls label,.ref-search label){color:#d4e3ef!important}
+html[data-theme="light"] body :is(input,textarea)::placeholder{color:#6a7e91;opacity:1}
+html[data-theme="dark"] body :is(input,textarea)::placeholder{color:#b6c9d8;opacity:1}
+/* Bring account actions and the standalone practice link into the common system. */
+body.dalp-account-page .account-studio-link{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;padding:13px 16px;border-radius:14px;background:var(--app-surface-2,#eef4f8);border:1px solid var(--app-line,#d9e4ed);color:var(--app-text,#233d51);line-height:1.5}
+body.dalp-account-page .account-studio-link a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:9px 12px;border-radius:10px;background:#186c66;color:#fff!important;font-size:13px;font-weight:800;text-decoration:none!important}
+body.dalp-account-page .account-studio-link span{font-size:13px;color:var(--app-muted,#52687a)}
+body.dalp-account-page .top :is(a,button){min-height:42px;border-radius:11px}
+html[data-theme="dark"] body.dalp-account-page .account-studio-link{background:#21384b;color:#eef6fa;border-color:#476176}
+html[data-theme="dark"] body.dalp-account-page .account-studio-link a{background:#24766d!important;color:#fff!important}
+html[data-theme="dark"] body.dalp-account-page .account-studio-link span{color:#c2d5e3}
+/* Balanced quick-find and tutor surfaces. */
+body.dl-workspace :is(.dl-command-card,.chat-layout,.ps-focus,.ps-task){min-width:0}
+body.dl-workspace .dl-command{max-width:100vw}
+body.dl-workspace .dl-command-card{max-height:calc(100dvh - 110px);overflow:auto}
+/* Mobile first: remove double-spacing and let one activity dominate each screen. */
+@media(max-width:760px){
+ :root{--dl-v15-gap:14px}
+ body.dl-workspace .dl-shell-inner{gap:6px!important;padding-inline:clamp(8px,2.8vw,16px)!important}
+ body.dl-workspace .dl-shell-brand{flex:1 1 auto!important;min-width:0!important;overflow:hidden}
+ body.dl-workspace .dl-shell-brand span{min-width:0}
+ body.dl-workspace .dl-shell-brand b{font-size:12px!important;white-space:normal;line-height:1.15!important}
+ body.dl-workspace .dl-shell-brand small{font-size:10px!important;white-space:normal}
+ body.dl-workspace .dl-shell-actions{display:flex!important;flex:0 0 auto!important;gap:5px!important;align-items:center!important}
+ body.dl-workspace .dl-shell-search{width:40px!important;min-width:40px!important;height:44px!important;flex:0 0 40px!important}
+ body.dl-workspace .dl-shell-avatar{width:36px!important;min-width:36px!important;flex:0 0 36px!important;height:40px!important}
+ body.dl-workspace .dl-shell-menu{display:none!important}
+ body.dl-workspace .dl-mobile-tabs,body.ac-ready .ac-mobile-tabs{padding-bottom:env(safe-area-inset-bottom,0px)!important}
+ body.dl-workspace .dl-mobile-tabs .dl-tab,body.ac-ready .ac-mobile-tabs .ac-mobile-tab{min-height:53px!important}
+ body.dl-workspace .wrap,body.dl-workspace .course-wrap,body.dl-workspace .dl-home{width:calc(100% - 2 * clamp(12px,4vw,20px))!important;max-width:none!important;margin-inline:auto!important}
+ body.dl-workspace :is(.cw-week-context,.cw-tab-panel,.cw-resources,.cw-week-controls,.cw-overview-head,.cw-module){min-width:0!important;max-width:100%!important}
+ body.dl-workspace :is(.cw-week-context,.cw-tab-panel,.cw-resources,.cw-overview-head){padding-inline:clamp(12px,4vw,20px)!important}
+ body.dl-workspace :is(.cw-week-chip,.cw-tab,.cw-select-wrap select,.cw-arrow){min-height:44px}
+ body.dl-workspace .cw-week-controls,body.dl-workspace .cw-bottom{gap:10px!important}
+ body.dl-workspace :is(.cw-weekstrip,.cw-module-tabs){scrollbar-width:thin}
+ body.dl-workspace .course-top{padding-inline:clamp(12px,4vw,18px)!important}
+ body.dl-workspace :is(.course-top-actions,.cw-bottom,.cw-week-controls,.cw-resources){scroll-margin-top:75px}
+ body.lp-home.dl-workspace .ps-home-promo{padding:4px 0 10px!important}
+ body.lp-home.dl-workspace .ps-home-inner{padding:18px!important;gap:12px!important;border-radius:18px!important}
+ body.lp-home.dl-workspace #courses{padding-top:8px!important}
+ body.lp-home.dl-workspace #courses .section-head{margin-bottom:16px!important}
+ body.lp-home.dl-workspace .section{padding-top:clamp(20px,6vw,32px)!important;padding-bottom:clamp(20px,6vw,36px)!important}
+ body.lp-home.dl-workspace .dl-home-sectionhead{margin-top:22px!important}
+ body.dalp-account-page .account-studio-link{margin-block:12px!important;padding:12px!important}
+ body.dalp-account-page .account-studio-link a{width:100%;min-height:44px!important}
+ body.dalp-account-page .account-studio-link span{font-size:12px}
+ body.dalp-account-page .top{gap:10px!important}
+ body.dalp-account-page .top #logout{font-size:13px!important}
+ body.ac-ready :is(.ac-topbar,.ac-main-frame,.ac-page-area,.ac-section,.ac-kpis,.ac-course-grid){min-width:0!important;max-width:100%!important}
+ body.ac-ready :is(.ac-kpis,.ac-course-grid,.ac-shortcut-grid){gap:12px!important}
+ body.ac-ready .ac-breadcrumb{overflow:hidden;min-width:0!important}
+ body.auth-page .auth-shell{width:calc(100% - clamp(20px,5vw,40px))!important;max-width:100%!important}
+ body.auth-page .auth-forms{padding:clamp(20px,5.5vw,30px)!important}
+ body.auth-page :is(.auth-tab,.auth-submit,.auth-field input){min-height:44px!important}
+ body.auth-page .auth-wordmark{min-width:0;overflow:hidden}
+ body.auth-page .auth-wordmark strong{overflow-wrap:break-word}
+ body.ps-page :is(.ps-focus,.ps-layout,.ps-task,.ps-panel){min-width:0!important;max-width:100%!important}
+ body.ps-page .ps-task{padding-inline:clamp(12px,4vw,20px)!important}
+ body.dl-workspace .chat-input textarea{min-height:44px;font-size:16px!important}
+}
+@media(max-width:359px){
+ body.dl-workspace .dl-shell-brand img{width:31px!important;height:31px!important}
+ body.dl-workspace .dl-shell-brand b{font-size:10px!important}
+ body.dl-workspace .dl-shell-brand small{font-size:9px!important}
+ body.dl-workspace .dl-shell-search{min-width:36px!important;width:36px!important;flex-basis:36px!important}
+ body.dl-workspace .dl-shell-avatar{min-width:32px!important;width:32px!important;flex-basis:32px!important}
+ body.dl-workspace :is(.dl-track-grid,.dl-home-tools){grid-template-columns:1fr!important}
+}
+/* Tablet layout and laptop: cards reflow without mixed desktop/mobile components. */
+@media(min-width:761px) and (max-width:1100px){
+ body.dl-workspace .wrap,body.dl-workspace .course-wrap,body.dl-workspace .dl-home{width:calc(100% - 40px)!important;max-width:none!important}
+ body.dl-workspace :is(.dl-home-grid,.cw-resources){min-width:0}
+ body.dl-workspace .dl-home-grid{grid-template-columns:1fr!important}
+ body.dl-workspace .dl-track-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+ body.dl-workspace .dl-home-tools{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ body.ac-ready :is(.ac-kpis,.ac-course-grid){grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+/* On very wide screens fill side whitespace with grids, not 200-character text lines. */
+@media(min-width:1450px){
+ body.dl-workspace :is(.wrap,.course-wrap,.dl-home){width:calc(100% - clamp(48px,4.5vw,128px))!important;max-width:2240px!important}
+ body.dl-workspace :is(.lesson p,.session-block p,.expanded-lessons p,.intro-lesson p){max-width:96ch}
+ body.dl-workspace .dl-shell-inner{max-width:2240px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+@media print{#dalpThemeToggle,.dl-mobile-tabs,.ac-mobile-tabs{display:none!important}}
+/* Resolve the legacy account button selector with ID-level specificity. */
+html[data-theme] body.dalp-account-page:has(#accountSyncStatus) .top .btn{background:var(--app-surface-2,#edf3f7)!important;color:var(--app-text,#24445b)!important;border:1px solid var(--app-line-strong,#aac0d0)!important;box-shadow:none!important}
+html[data-theme] body.dalp-account-page:has(#accountSyncStatus) .top #logout{background:transparent!important;color:var(--app-text,#24445b)!important;border:1px solid var(--app-line-strong,#aac0d0)!important}
+html[data-theme="dark"] body.dalp-account-page:has(#accountSyncStatus) .top .btn{background:#254057!important;color:#edf5fa!important;border-color:#587188!important}
+html[data-theme="dark"] body.dalp-account-page:has(#accountSyncStatus) .top #logout{background:transparent!important;color:#ebf3fb!important}
+/* Search labels must remain visible even in dark mode on older utility pages. */
+html[data-theme="light"] body[data-responsive-page="reference"] .search-area label{color:#345269!important;opacity:1!important}
+html[data-theme="dark"] body[data-responsive-page="reference"] .search-area label{color:#d4e3ef!important;opacity:1!important}
