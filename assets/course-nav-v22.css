@@ -1,0 +1,38 @@
+/* v22: One mobile navigation system for every course.
+   Global header owns the drawer. Course title bars contain identity/actions only.
+   Weekly navigation stays inside the learning workspace. */
+@media (max-width:1050px) {
+  body.dl-workspace .app>.sidebar {display:none!important}
+  body.dl-workspace .app .topbar {position:relative!important;top:auto!important;z-index:21!important}
+  body.dl-workspace .app .topbar .menu-btn {display:none!important}
+  body.dl-workspace .app .topbar-title {min-width:0!important}
+  body.dl-workspace .app .topbar .topbar-title>div {min-width:0!important}
+  body.dl-workspace .app .topbar-title strong {overflow-wrap:break-word!important}
+}
+@media (max-width:950px) {
+  /* The header menu and bottom More open the same accessible, grouped drawer. */
+  body.dl-workspace .dl-shell-menu {display:flex!important;align-items:center!important;justify-content:center!important;flex:0 0 42px!important;min-width:42px!important;width:42px!important;min-height:42px!important;padding:7px!important}
+  body.dl-workspace .dl-shell-menu[aria-expanded="true"] {background:#ffffff2e!important}
+  body.dl-workspace .dl-shell {z-index:1100!important}
+  body.dl-workspace .dl-shell-overlay {z-index:11001!important}
+  body.dl-workspace .dl-shell-nav {z-index:11002!important}
+  body.dl-workspace .dl-shell-actions {margin-left:auto!important}
+  body.dl-workspace .app .topbar {box-shadow:none!important}
+}
+@media (max-width:420px) {
+  /* Narrow phones: retain menu/search/theme without squeezing the course title. */
+  body.dl-workspace .dl-shell-inner {gap:4px!important;padding-inline:8px!important}
+  body.dl-workspace .dl-shell-actions {gap:4px!important}
+  body.dl-workspace .dl-shell-brand {min-width:0!important;flex:1 1 auto!important}
+  body.dl-workspace .dl-shell-brand img {flex:0 0 30px!important;width:30px!important;height:30px!important}
+  body.dl-workspace .dl-shell-brand b {font-size:11px!important}
+  body.dl-workspace .dl-shell-brand small {font-size:9px!important}
+  body.dl-workspace .dl-shell-search {flex:0 0 35px!important;width:35px!important;min-width:35px!important;max-width:35px!important;height:40px!important;min-height:40px!important;padding:6px!important}
+  body.dl-workspace .dl-shell-avatar {display:none!important}
+  html[data-theme] body.dl-workspace .dl-shell #dalpThemeToggle {--ux-control-size:40px!important}
+  body.dl-workspace .dl-shell-menu {flex:0 0 40px!important;width:40px!important;min-width:40px!important;min-height:40px!important}
+}
+@media (max-width:760px) {
+  body.dl-workspace .app .topbar {padding-block:10px!important}
+  body.dl-workspace .app .topbar-title strong {font-size:13px!important;line-height:1.25!important}
+}

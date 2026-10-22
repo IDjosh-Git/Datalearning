@@ -1,0 +1,10 @@
+/* v22: one persistent site header at tablet/phone widths. Course header scrolls with lesson. */
+@media(max-width:950px){
+ body.dl-workspace .app .topbar{position:relative!important;top:auto!important;inset-block-start:auto!important;z-index:40!important;box-shadow:none!important;min-height:56px!important;scroll-margin-top:68px;}
+ body.dl-workspace .app .topbar .course-top-actions.dl-options-open{z-index:50!important;}
+ body.dl-workspace .app .topbar .course-top-actions .dl-course-actions-toggle{min-height:42px!important;}
+ body.dl-workspace .cw-workspace, body.dl-workspace .cw-intro-nav{scroll-margin-top:calc(70px + env(safe-area-inset-top,0px));}
+ html{scroll-padding-top:calc(70px + env(safe-area-inset-top,0px));}
+}
+@media(max-width:760px){body.dl-workspace .app .topbar{min-height:52px!important}}
+@media print{body.dl-workspace .app .topbar{position:static!important}}

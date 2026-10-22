@@ -28,7 +28,8 @@
   bar.innerHTML=`<div class="cw-breadcrumb"><a href="../index.html">My learning</a><span aria-hidden="true">›</span><span>${esc(names[course])}</span><span aria-hidden="true">›</span><strong id="cw-crumb-current">Week 1</strong></div>
   <div class="cw-overview-head"><div><span class="cw-kicker">YOUR LEARNING WORKSPACE · 10 WEEKS</span><h1 id="cw-focus-title">Week 1</h1><p id="cw-focus-goal">Learn at your own pace.</p></div><div class="cw-overview-actions"><button type="button" class="cw-text-action" id="cw-guide-toggle" aria-expanded="false">Course guide & final project</button><a class="cw-text-action cw-mastery-link" href="#course-mastery-checkpoint">Mastery checkpoint ↓</a><a class="cw-help" href="../tutor.html">✦ Ask the tutor</a></div></div>
   <div class="cw-studio-promo"><div><span class="cw-studio-kicker">SKILL PRACTICE</span><strong>Ready to try what you have learned?</strong><p>Open a focused practice workspace with worked examples and self-check activities. Your week stays right here.</p></div><a href="../studio.html?course=${course}" class="cw-studio-entry">Open Practice Studio ↗</a></div>
-  <div class="cw-week-controls"><label class="cw-select-wrap"><span>Jump to any week</span><select id="cw-week-select" aria-label="Choose a week">${info.map(x=>`<option value="${x.n}">Week ${x.n}: ${esc(x.title)}</option>`).join('')}</select></label><div class="cw-direction"><button type="button" class="cw-arrow" data-cw-move="-1">← Previous week</button><button type="button" class="cw-arrow cw-next" data-cw-move="1">Next week →</button></div></div>
+  <div class="cw-mobile-week-head" aria-label="Current course week"><div class="cw-mobile-week-copy"><span class="cw-mobile-step" id="cw-mobile-week-counter">WEEK 1 OF 10</span><strong id="cw-mobile-week-title">Start learning</strong><div class="cw-mobile-progress" role="progressbar" aria-label="Course week" aria-valuemin="1" aria-valuemax="10" aria-valuenow="1"><span id="cw-mobile-progress-fill"></span></div></div><div class="cw-mobile-week-actions"><button type="button" class="cw-mobile-step-btn" data-cw-move="-1" aria-label="Previous week">‹</button><button type="button" class="cw-mobile-step-btn" data-cw-move="1" aria-label="Next week">›</button><button type="button" class="cw-mobile-choose" id="cw-mobile-choose" aria-expanded="false" aria-controls="cw-week-controls">All weeks <span aria-hidden="true">⌄</span></button></div></div>
+  <div class="cw-week-controls" id="cw-week-controls"><label class="cw-select-wrap"><span>Jump to any week</span><select id="cw-week-select" aria-label="Choose a week">${info.map(x=>`<option value="${x.n}">Week ${x.n}: ${esc(x.title)}</option>`).join('')}</select></label><div class="cw-direction"><button type="button" class="cw-arrow" data-cw-move="-1">← Previous week</button><button type="button" class="cw-arrow cw-next" data-cw-move="1">Next week →</button></div></div>
   <nav class="cw-weekstrip" aria-label="Select learning week">${info.map(x=>`<button type="button" class="cw-week-chip" data-cw-week="${x.n}" aria-pressed="false"><span class="cw-week-chip-top">WEEK ${String(x.n).padStart(2,'0')} <span class="cw-check" aria-hidden="true">◌</span></span><strong>${esc(x.title)}</strong></button>`).join('')}</nav>
   <div class="cw-resources"><div class="cw-resource-primary"><span class="cw-resource-icon" aria-hidden="true">▤</span><div><b>Practice dataset</b><small>Ready for this week's exercises · local download</small></div>${toLink(db.main[0],db.main[1],'cw-download')}</div><details class="cw-resource-more"><summary>More datasets & resources <span aria-hidden="true">⌄</span></summary><div>${db.files.map(d=>toLink(d[0],d[1],'cw-resource-link')).join('')}${toLink('Worked solutions','../downloads/WORKED_SOLUTIONS.md','cw-resource-link')}</div></details><div class="cw-resource-side">${toLink(db.video[0],db.video[1],'cw-video')}<small>Optional video companion · opens externally</small></div></div>
   <p class="cw-resource-tip"><strong>How to practise:</strong> ${esc(db.note)} All downloads above are included in this website.</p>
@@ -69,6 +70,16 @@
     weeks.forEach((x,i)=>x.classList.toggle('cw-current',i+1===v));
     buttons.forEach((b,i)=>{const on=i+1===v;b.classList.toggle('cw-selected',on);b.setAttribute('aria-pressed',String(on))});
     select.value=String(v);
+    const mobileLabel=bar.querySelector('#cw-mobile-week-title');
+    if(mobileLabel){
+      bar.querySelector('#cw-mobile-week-counter').textContent=`WEEK ${v} OF ${info.length}`;
+      mobileLabel.textContent=info[v-1].title;
+      const progress=bar.querySelector('.cw-mobile-progress');
+      progress.setAttribute('aria-valuenow',String(v));
+      bar.querySelector('#cw-mobile-progress-fill').style.width=`${v/info.length*100}%`;
+    }
+    bar.classList.remove('cw-week-nav-open');
+    bar.querySelector('#cw-mobile-choose')?.setAttribute('aria-expanded','false');
     bar.querySelector('#cw-crumb-current').textContent=`Week ${v}`;
     bar.querySelector('#cw-focus-title').textContent=`Week ${String(v).padStart(2,'0')} · ${info[v-1].title}`;
     bar.querySelector('#cw-focus-goal').textContent=info[v-1].goal||'Read the lesson, complete practical exercises and check your learning.';
@@ -85,7 +96,20 @@
     starting=false;
   }
   bar.addEventListener('click',e=>{const wk=e.target.closest('[data-cw-week]');if(wk){openWeek(wk.dataset.cwWeek);return;}if(e.target.closest('#cw-guide-toggle')){if(guide)openWeek(active);else openGuide();}});
+  const mobileChoose=bar.querySelector('#cw-mobile-choose');
+  mobileChoose?.addEventListener('click',()=>{
+    const opened=bar.classList.toggle('cw-week-nav-open');
+    mobileChoose.setAttribute('aria-expanded',String(opened));
+    if(opened)select.focus({preventScroll:true});
+  });
   select.addEventListener('change',()=>openWeek(select.value));
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'&&bar.classList.contains('cw-week-nav-open')){
+      bar.classList.remove('cw-week-nav-open');
+      mobileChoose?.setAttribute('aria-expanded','false');
+      mobileChoose?.focus({preventScroll:true});
+    }
+  });
   document.addEventListener('click',e=>{
     const move=e.target.closest('[data-cw-move]');if(move&&document.body.classList.contains('cw-workspace-ready')){openWeek(active+Number(move.dataset.cwMove));return;}
     const link=e.target.closest('a[href^="#week"]');if(link&&/^#week\d+$/.test(link.getAttribute('href'))){e.preventDefault();openWeek(link.getAttribute('href').slice(5));document.querySelector('.sidebar')?.classList.remove('open');return;}
