@@ -1,0 +1,140 @@
+/* v16 final source of truth for navigation + theme placement.
+   Intentionally loaded AFTER every legacy stylesheet. */
+:root{--ux-control-size:44px;--ux-focus:#ef8f4d;--ux-gutter:clamp(12px,3.5vw,30px)}
+html[data-theme="light"]{color-scheme:light;--ux-control-surface:#eef4f9;--ux-control-text:#193449;--ux-control-line:#b5cbd9;--ux-drawer:#142b40;--ux-drawer-ink:#f0f6fc;--ux-drawer-muted:#bed1e0}
+html[data-theme="dark"]{color-scheme:dark;--ux-control-surface:#263e53;--ux-control-text:#f4f8fc;--ux-control-line:#607d94;--ux-drawer:#132638;--ux-drawer-ink:#f1f7fc;--ux-drawer-muted:#c4d4e2}
+/* No floating theme switch, ever: the button gets its own allocated place in a flex row. */
+html[data-theme] body #dalpThemeToggle,html[data-theme] body #dalpThemeToggle.dlp-theme-floating{position:static!important;inset:auto!important;transform:none!important;z-index:auto!important;display:inline-grid!important;place-items:center!important;width:var(--ux-control-size)!important;height:var(--ux-control-size)!important;min-width:var(--ux-control-size)!important;min-height:var(--ux-control-size)!important;max-width:var(--ux-control-size)!important;max-height:var(--ux-control-size)!important;flex:0 0 var(--ux-control-size)!important;padding:10px!important;margin:0!important;border:1px solid var(--ux-control-line)!important;border-radius:12px!important;background:var(--ux-control-surface)!important;color:var(--ux-control-text)!important;box-shadow:none!important;isolation:isolate;vertical-align:middle}
+html[data-theme] body #dalpThemeToggle :is(.theme-sun,.theme-moon){grid-area:1/1!important;width:21px!important;height:21px!important;position:static!important;stroke:currentColor!important;visibility:visible!important}
+html[data-theme="light"] body #dalpThemeToggle .theme-sun,html[data-theme="dark"] body #dalpThemeToggle .theme-moon{display:none!important}
+html[data-theme="light"] body #dalpThemeToggle .theme-moon,html[data-theme="dark"] body #dalpThemeToggle .theme-sun{display:block!important}
+html[data-theme] body #dalpThemeToggle .dlp-theme-caption{display:none!important}
+html[data-theme] body #dalpThemeToggle:focus-visible{outline:3px solid var(--ux-focus)!important;outline-offset:2px!important}
+/* Learner header has a dedicated slot; no absolute positioning, no overlap with search/profile. */
+body.dl-workspace .dl-shell{z-index:1000}
+body.dl-workspace .dl-shell-inner{display:flex!important;align-items:center!important;min-width:0!important;max-width:2240px;gap:clamp(6px,0.9vw,14px)}
+body.dl-workspace .dl-shell-brand{min-width:0!important}
+body.dl-workspace .dl-shell-actions{display:flex!important;align-items:center!important;flex:0 0 auto!important;min-width:0!important;gap:clamp(4px,.55vw,10px)!important}
+html[data-theme] body.dl-workspace .dl-shell #dalpThemeToggle{--ux-control-surface:#294257;--ux-control-text:#f6f9fd;--ux-control-line:#668197}
+body.dl-workspace .dl-shell #dalpThemeToggle:hover{filter:brightness(1.13)}
+/* Admin topbar allocations; put status and portal in the side menu on narrow screens. */
+body.ac-ready .ac-topbar{z-index:100;min-width:0}
+body.ac-ready .ac-top-actions{display:flex!important;align-items:center!important;gap:8px!important;min-width:0}
+body.ac-ready .ac-top-actions > *{flex-shrink:0}
+/* Independent pages receive a real top utility ROW, not a floating element. */
+.dlp-appearance-row{position:relative!important;z-index:20;display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:8px;padding:10px var(--ux-gutter);margin:0!important;width:100%;max-width:100%;background:transparent!important;min-height:64px}
+.dlp-appearance-row #dalpThemeToggle{margin-left:auto!important}
+/* Responsive permanent bottom tabs and left-hand slide-over More menu. */
+@media(max-width:950px){
+ body.dl-workspace .dl-shell-nav{position:fixed!important;inset:0 auto 0 0!important;top:0!important;bottom:0!important;left:0!important;right:auto!important;width:min(340px,88vw)!important;height:100dvh!important;max-height:100dvh!important;padding:0 12px 24px!important;border:0!important;border-right:1px solid #48637b!important;border-radius:0 18px 18px 0!important;background:var(--ux-drawer)!important;box-shadow:14px 0 40px #06152466!important;color:var(--ux-drawer-ink)!important;overflow-y:auto!important;overscroll-behavior:contain;scrollbar-width:thin;z-index:11002!important;display:flex!important;flex-direction:column!important;gap:3px!important;align-items:stretch!important;justify-content:flex-start!important;visibility:hidden!important;pointer-events:none!important;transform:translateX(-105%)!important;transition:transform .22s ease,visibility .22s ease!important;padding-bottom:calc(24px + env(safe-area-inset-bottom,0px))!important}
+ body.dl-workspace .dl-shell-nav.is-open{visibility:visible!important;pointer-events:auto!important;transform:translateX(0)!important}
+ body.dl-workspace .dl-shell-overlay{display:block!important;position:fixed!important;inset:0!important;top:0!important;bottom:0!important;background:#071723b8!important;z-index:11001!important}
+ body.dl-workspace .dl-shell-overlay[hidden]{display:none!important}
+ body.dl-workspace.dl-drawer-open{overflow:hidden!important}
+ body.dl-workspace .dl-shell-nav a{width:100%!important;flex:0 0 auto!important;display:flex!important;align-items:center!important;min-height:46px!important;padding:11px 14px!important;margin:0!important;white-space:normal!important;border-radius:11px!important;color:var(--ux-drawer-ink)!important;font-size:14px!important;font-weight:660!important;text-decoration:none!important;line-height:1.35!important}
+ body.dl-workspace .dl-shell-nav a:hover,body.dl-workspace .dl-shell-nav a:focus-visible{background:#ffffff1c!important}
+ body.dl-workspace .dl-shell-nav a[aria-current="page"]{background:#334f66!important;box-shadow:inset 3px 0 0 #ff9b55!important}
+ body.dl-workspace .dl-drawer-head{position:sticky;top:0;z-index:2;display:flex!important;align-items:center;justify-content:space-between;gap:12px;margin:0 -12px 10px;padding:23px 17px 15px;background:var(--ux-drawer);border-bottom:1px solid #ffffff27}
+ body.dl-workspace .dl-drawer-head span{display:flex;flex-direction:column;gap:4px;min-width:0}
+ body.dl-workspace .dl-drawer-head strong{font:800 18px/1.2 system-ui;color:var(--ux-drawer-ink)}
+ body.dl-workspace .dl-drawer-head small{font:500 12px/1.3 system-ui;color:var(--ux-drawer-muted)}
+ body.dl-workspace .dl-drawer-close{width:44px;min-width:44px;height:44px;flex:0 0 44px;border:1px solid #ffffff4a;border-radius:11px;background:#ffffff13;color:#fff;cursor:pointer;font-size:18px}
+ body.dl-workspace .dl-nav-section{display:block!important;flex:0 0 auto;margin:16px 10px 6px!important;padding:0;font:800 10px/1.4 system-ui;letter-spacing:.13em;color:var(--ux-drawer-muted)!important;text-transform:uppercase}
+ body.dl-workspace .dl-shell-nav a.dl-nav-extra{display:flex!important}
+ body.dl-workspace .dl-shell-inner{min-height:60px!important;gap:6px!important;padding-inline:clamp(8px,2.8vw,16px)!important}
+ body.dl-workspace .dl-shell-brand{flex:1 1 0!important;min-width:0!important;max-width:none!important}
+ body.dl-workspace .dl-shell-brand span{min-width:0!important;overflow:hidden}
+ body.dl-workspace .dl-shell-brand b{font-size:clamp(10px,2.9vw,13px)!important;line-height:1.1!important;white-space:normal!important}
+ body.dl-workspace .dl-shell-brand small{display:block!important;font-size:10px!important;line-height:1.1!important;white-space:normal!important}
+ body.dl-workspace .dl-shell-actions{margin-left:0!important;flex:0 0 auto!important;gap:5px!important}
+ body.dl-workspace .dl-shell-search,body.dl-workspace .dl-shell-avatar{flex:0 0 38px!important;width:38px!important;min-width:38px!important;max-width:38px!important;height:42px!important;min-height:42px!important;padding:7px!important}
+ html[data-theme] body.dl-workspace .dl-shell #dalpThemeToggle{--ux-control-size:42px;--ux-control-surface:#294257;--ux-control-text:#fff;--ux-control-line:#668197}
+ body.dl-workspace .dl-shell-menu{display:flex!important;flex:0 0 42px;min-width:42px;width:42px;height:42px;min-height:42px;padding:8px!important}
+ body.dl-workspace .dl-mobile-tabs{z-index:1000!important}
+ /* Admin drawer: same left alignment, same backdrop and close affordance. */
+ body.ac-ready.ac-menu-open{overflow:hidden!important}
+ body.ac-ready .ac-sidebar{width:min(340px,88vw)!important;max-width:min(340px,88vw)!important;box-shadow:16px 0 45px #06152466!important;z-index:11002!important;padding-top:21px!important;padding-bottom:calc(30px + env(safe-area-inset-bottom,0px))!important;border-radius:0 18px 18px 0!important}
+ body.ac-ready .ac-nav-overlay{z-index:11001!important}
+ body.ac-ready .ac-drawer-close{display:grid!important;place-items:center;position:absolute;top:17px;right:14px;width:42px;height:42px;border:1px solid #ffffff50;border-radius:11px;background:#ffffff1c;color:#fff;font-size:17px;z-index:2;cursor:pointer}
+ body.ac-ready .ac-brand{padding-right:48px;min-height:56px}
+ body.ac-ready .ac-mobile-tabs{z-index:1000!important}
+ body.ac-ready .ac-topbar{gap:7px!important}
+ body.ac-ready .ac-secure,body.ac-ready .ac-top-portal{display:none!important}
+ body.ac-ready .ac-breadcrumb{flex:1 1 0!important;min-width:0!important}
+ body.ac-ready .ac-breadcrumb strong{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+ html[data-theme] body.ac-ready #dalpThemeToggle{--ux-control-size:42px}
+}
+@media(min-width:951px){.dl-drawer-head,.dl-nav-section,.dl-shell-nav a.dl-nav-extra,.ac-drawer-close{display:none!important}}
+@media(max-width:359px){body.dl-workspace .dl-shell-inner{padding-inline:8px!important;gap:3px!important}body.dl-workspace .dl-shell-brand img{width:29px!important;height:29px!important}body.dl-workspace .dl-shell-brand small{font-size:9px!important}body.dl-workspace .dl-shell-search,body.dl-workspace .dl-shell-avatar{min-width:34px!important;max-width:34px!important;width:34px!important;flex-basis:34px!important}html[data-theme] body.dl-workspace .dl-shell #dalpThemeToggle{--ux-control-size:40px}}
+@media(prefers-reduced-motion:reduce){body.dl-workspace .dl-shell-nav{transition:none!important}}
+@media print{html[data-theme] body #dalpThemeToggle,.dlp-appearance-row,.dl-mobile-tabs,.ac-mobile-tabs,.dl-shell-overlay{display:none!important}}
+
+@media(max-width:760px){body.dl-workspace .dl-shell-menu{display:none!important}}
+
+/* Final palette repair: legacy sign-in styling used hard-coded light surfaces in both themes. */
+html[data-theme="dark"] body.auth-page:has(#loginBtn){background:#0e1925!important;color:#edf5fc!important}
+html[data-theme="dark"] body.auth-page:has(#loginBtn) .auth-shell{color:#edf5fc!important}
+html[data-theme="dark"] body.auth-page:has(#loginBtn) .auth-layout{background:#192b3c!important;border-color:#40576a!important;box-shadow:0 18px 55px #030a126b!important}
+html[data-theme="dark"] body.auth-page:has(#loginBtn) .auth-forms{background:#192b3c!important;border-color:#40576a!important}
+html[data-theme="dark"] body.auth-page:has(#loginBtn) .auth-topbar{color:#edf5fc!important}
+html[data-theme="dark"] body.auth-page:has(#loginBtn) .auth-wordmark :is(strong,span){color:#e6eff7!important}
+html[data-theme="dark"] body.auth-page:has(#loginBtn) .auth-heading h2{color:#f4f8fd!important}
+html[data-theme="dark"] body.auth-page:has(#loginBtn) .auth-heading p{color:#bdcede!important}
+html[data-theme="dark"] body.auth-page:has(#loginBtn) .auth-heading small{color:#ffac74!important}
+html[data-theme="dark"] body.auth-page:has(#loginBtn) .auth-tabs{background:#24394b!important;border-color:#4a637a!important}
+html[data-theme="dark"] body.auth-page:has(#loginBtn) button.auth-tab{color:#d1e1ed!important;background:transparent!important}
+html[data-theme="dark"] body.auth-page:has(#loginBtn) button.auth-tab.active,
+html[data-theme="dark"] body.auth-page:has(#loginBtn) button.auth-tab[aria-selected="true"]{background:#46617b!important;color:#fff!important;box-shadow:0 2px 10px #07152152!important}
+html[data-theme="dark"] body.auth-page:has(#loginBtn) .auth-field label{color:#e5f0f8!important}
+html[data-theme="dark"] body.auth-page:has(#loginBtn) .auth-field input{color:#f1f7fb!important;background:#22394c!important;border-color:#5b7489!important;caret-color:#ffab75!important}
+html[data-theme="dark"] body.auth-page:has(#loginBtn) .auth-field input::placeholder{color:#bed0df!important;opacity:1!important}
+html[data-theme="dark"] body.auth-page:has(#loginBtn) .auth-eye{color:#ffd0ad!important}
+html[data-theme="dark"] body.auth-page:has(#loginBtn) .auth-inline-link,
+html[data-theme="dark"] body.auth-page:has(#loginBtn) .auth-switch button{color:#ffb380!important}
+html[data-theme="dark"] body.auth-page:has(#loginBtn) .auth-switch,
+html[data-theme="dark"] body.auth-page:has(#loginBtn) .auth-footer-note{color:#c2d2e0!important}
+html[data-theme="dark"] body.auth-page:has(#loginBtn) .auth-info-note,
+html[data-theme="dark"] body.auth-page:has(#loginBtn) .auth-sync-note{background:#23384b!important;color:#d4e3ef!important;border-color:#4d6477!important}
+html[data-theme="dark"] body.auth-page:has(#loginBtn) .auth-msg{background:#294155!important;border-color:#5a748b!important;color:#eef6fc!important}
+html[data-theme="dark"] body.auth-page:has(#loginBtn) .auth-secure-chip{background:#263e51!important;color:#d9e8f3!important}
+/* Secondary toolbars must follow the selected course theme, not remain white islands. */
+html[data-theme="dark"] body.dl-workspace .app :is(.topbar,.course-topbar){background:#172a3b!important;color:#eff5fc!important;border-color:#40586a!important}
+html[data-theme="dark"] body.dl-workspace .app :is(.topbar,.course-topbar) :is(h1,h2,h3,p,span,strong,small){color:inherit}
+html[data-theme="dark"] body.dl-workspace .app :is(.topbar,.course-topbar) :is(button,select){background:#263f53;color:#f4f9fd;border-color:#5e788e}
+/* Admin pages use a matching dark canvas around their intentionally branded KPI panels. */
+html[data-theme="dark"] body.ac-ready{background:#101c29!important;color:#e9f1f8!important}
+html[data-theme="dark"] body.ac-ready :is(.ac-main-frame,.ac-page-area){background:#101c29!important;color:#e9f1f8!important}
+html[data-theme="dark"] body.ac-ready .ac-topbar{background:#192b3b!important;border-color:#405768!important;color:#f0f6fb!important}
+html[data-theme="dark"] body.ac-ready .ac-breadcrumb,html[data-theme="dark"] body.ac-ready .ac-breadcrumb strong{color:#e7f0f7!important}
+html[data-theme="dark"] body.ac-ready .ac-mobile-menu{background:#253e53!important;border-color:#5a758b!important;color:#fff!important}
+html[data-theme="dark"] body.ac-ready .ac-top-user{color:#172638!important}
+html[data-theme="dark"] body.ac-ready :is(.ac-kpis article,.ac-priorities,.ac-activity,.ac-roster-panel,.ac-course-card,.ac-detail-sheet){background:#1d3041!important;color:#edf4fa!important;border-color:#405a71!important}
+html[data-theme="dark"] body.ac-ready :is(.ac-kpis article,.ac-priorities,.ac-activity,.ac-roster-panel,.ac-course-card,.ac-detail-sheet) :is(h2,h3,h4,strong){color:#f3f7fc!important}
+html[data-theme="dark"] body.ac-ready :is(.ac-kpis article,.ac-priorities,.ac-activity,.ac-roster-panel,.ac-course-card,.ac-detail-sheet) :is(p,small,label){color:#c4d2df!important}
+html[data-theme="dark"] body.ac-ready :is(input,select,textarea){background:#233d51!important;color:#f3f8fd!important;border-color:#57738a!important}
+html[data-theme="dark"] body.ac-ready :is(input,textarea)::placeholder{color:#bcd0dd!important;opacity:1!important}
+
+/* A real, consistent toolbar on utility pages rather than an empty button row. */
+.dlp-appearance-row{justify-content:space-between!important;border-bottom:1px solid var(--app-line,#cfdde8);background:var(--app-surface,#fff)!important;color:var(--app-text,#243a50)!important;padding-block:9px!important}
+.dlp-appearance-brand{display:inline-flex;align-items:center;gap:10px;min-width:0;color:inherit!important;text-decoration:none!important;font:700 clamp(11px,2.6vw,14px)/1.2 system-ui,sans-serif}
+.dlp-appearance-brand span:last-child{display:block;min-width:0}
+.dlp-appearance-brand strong{font-weight:800}
+.dlp-appearance-mark{display:grid;place-items:center;width:37px;height:37px;flex:0 0 37px;background:#173a50;color:#fff;border-radius:10px;font-size:20px}
+@media(max-width:359px){.dlp-appearance-brand{font-size:10px}.dlp-appearance-row{min-height:58px}}
+/* Use standard palette for high-contrast labels in both themes. */
+html[data-theme="light"] body :is(.dl-nav-section,.cw-resource-tip,.cw-week-context>p){opacity:1}
+html[data-theme="dark"] body :is(input,textarea,select)::placeholder{color:#b7c8d7!important;opacity:1!important}
+html[data-theme="light"] body :is(input,textarea,select)::placeholder{color:#66798d!important;opacity:1!important}
+/* Final high-contrast mobile navigation treatments, consistent on learner/admin screens. */
+@media(max-width:760px){
+  html[data-theme="light"] body.dl-workspace .dl-mobile-tabs{background:#fff!important;border-top:1px solid #cedae4!important}
+  html[data-theme="light"] body.dl-workspace .dl-mobile-tabs .dl-tab{color:#365269!important}
+  html[data-theme="light"] body.dl-workspace .dl-mobile-tabs .dl-tab.is-active{background:#fff0e3!important;color:#914110!important}
+  html[data-theme="dark"] body.dl-workspace .dl-mobile-tabs{background:#172a3b!important;border-top:1px solid #4e6376!important}
+  html[data-theme="dark"] body.dl-workspace .dl-mobile-tabs .dl-tab{color:#d0e0ec!important}
+  html[data-theme="dark"] body.dl-workspace .dl-mobile-tabs .dl-tab.is-active{background:#463325!important;color:#ffd0a7!important}
+  html[data-theme="light"] body.ac-ready .ac-mobile-tabs .ac-mobile-tab{color:#365269!important}
+  html[data-theme="dark"] body.ac-ready .ac-mobile-tabs .ac-mobile-tab{color:#d0e0ec!important}
+  body.dl-workspace .dl-mobile-tabs .dl-tab,body.ac-ready .ac-mobile-tabs .ac-mobile-tab{min-width:0!important;min-height:48px!important;outline-offset:-3px!important}
+  body.dl-workspace .dl-mobile-tabs .dl-tab:focus-visible,body.ac-ready .ac-mobile-tabs .ac-mobile-tab:focus-visible{outline:3px solid #ef9752!important}
+}

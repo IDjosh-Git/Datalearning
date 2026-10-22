@@ -6,7 +6,7 @@ for(const p of ['admin.html','progress.html','reviewer.html']){
  const html=read(p);
  assert(html.includes('data-admin-console='),p+' has no admin UI marker');
  assert(html.includes('admin-console.css?v=20261021.4'),p+' needs unique stylesheet');
- assert(html.includes('admin-console.js?v=20261021.4'),p+' needs admin shell');
+ assert(html.includes('admin-console.js?v=20261022.16'),p+' needs admin shell');
  assert(html.includes('auth-gate.js'),p+' must preserve secure auth');
 }
 for(const id of ['adminOverview','adminWorkspace','adminSearch','adminStatus','adminCourse','adminPageInfo','adminPrevPage','adminNextPage','adminAttention','adminActivity','adminCourseCards','adminLearnerDetail','adminLearnerRows','adminDetailBackdrop']){

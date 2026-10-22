@@ -12,6 +12,7 @@
  const aside=document.createElement('aside');aside.className='ac-sidebar';aside.id='acSidebar';aside.setAttribute('aria-label','Administration navigation');
  const branding=document.createElement('a');branding.className='ac-brand';branding.href='admin.html';branding.innerHTML='<img src="assets/da-logo.svg" alt="" width="38" height="38"><span><strong>Data Analysis Learning Path</strong><small>ADMIN CONSOLE</small></span>';
  aside.append(branding);
+ const drawerClose=document.createElement('button');drawerClose.className='ac-drawer-close';drawerClose.type='button';drawerClose.setAttribute('aria-label','Close administrator navigation');drawerClose.textContent='✕';aside.append(drawerClose);
  const navEl=document.createElement('nav');navEl.className='ac-side-nav';navEl.setAttribute('aria-label','Administrator sections');
  nav.forEach(group=>{const heading=document.createElement('p');heading.className='ac-side-label';heading.textContent=group.caption;navEl.append(heading);group.items.forEach(([label,href,id,ico])=>{const a=document.createElement('a');a.className='ac-side-link';a.href=href;a.dataset.section=id;a.innerHTML='<span class="ac-side-icon" aria-hidden="true">'+ico+'</span><span class="ac-side-name"></span><span class="ac-side-arrow" aria-hidden="true">›</span>';a.querySelector('.ac-side-name').textContent=label;navEl.append(a)})});aside.append(navEl);
  const bottom=document.createElement('div');bottom.className='ac-side-bottom';bottom.innerHTML='<div class="ac-support"><span class="ac-support-symbol">✦</span><strong>Teach with confidence</strong><p>Every learner milestone in one workspace.</p></div><a href="account.html" class="ac-side-account"><span class="ac-avatar" aria-hidden="true">A</span><span><strong id="acUserName">Administrator</strong><small id="acUserEmail">Secure access</small></span><span aria-hidden="true">↗</span></a>';aside.append(bottom);
@@ -26,12 +27,15 @@
  const area=document.createElement('div');area.className='ac-page-area';
  main.parentNode.insertBefore(shell,main);shell.append(aside,backdrop,frame);frame.append(header,area);area.append(main);
  root.classList.add('ac-ready');
- let previouslyFocused=null;
- function closeMenu(){root.classList.remove('ac-menu-open');mobileToggle.setAttribute('aria-expanded','false');mobileToggle.setAttribute('aria-label','Open navigation');}
- function openMenu(){root.classList.add('ac-menu-open');mobileToggle.setAttribute('aria-expanded','true');mobileToggle.setAttribute('aria-label','Close navigation');aside.querySelector('.ac-side-link')?.focus();}
- mobileToggle.addEventListener('click',()=>root.classList.contains('ac-menu-open')?closeMenu():openMenu());backdrop.addEventListener('click',closeMenu);
+ let previouslyFocused=null;let drawerPreviousFocus=null;
+ function closeMenu(){const wasOpen=root.classList.contains('ac-menu-open');root.classList.remove('ac-menu-open');mobileToggle.setAttribute('aria-expanded','false');mobileToggle.setAttribute('aria-label','Open navigation');if(wasOpen&&drawerPreviousFocus?.isConnected)drawerPreviousFocus.focus({preventScroll:true});drawerPreviousFocus=null;}
+ function openMenu(){drawerPreviousFocus=document.activeElement;root.classList.add('ac-menu-open');mobileToggle.setAttribute('aria-expanded','true');mobileToggle.setAttribute('aria-label','Close navigation');drawerClose.focus({preventScroll:true});} 
+ mobileToggle.addEventListener('click',()=>root.classList.contains('ac-menu-open')?closeMenu():openMenu());backdrop.addEventListener('click',closeMenu);drawerClose.addEventListener('click',closeMenu);
  navEl.addEventListener('click',e=>{if(e.target.closest('a'))closeMenu()});
- document.addEventListener('keydown',e=>{if(e.key==='Escape'&&root.classList.contains('ac-menu-open')){closeMenu();mobileToggle.focus();}});
+ document.addEventListener('keydown',e=>{
+ if(e.key==='Escape'&&root.classList.contains('ac-menu-open'))closeMenu();
+ if(e.key==='Tab'&&root.classList.contains('ac-menu-open')){const items=[...aside.querySelectorAll('a[href],button:not([disabled])')].filter(el=>el.getClientRects().length);if(!items.length)return;const first=items[0],last=items.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}
+});
 
  // Mobile admin essentials are always one tap away. The full sidebar remains in More.
  const quickNav=document.createElement('nav');quickNav.className='ac-mobile-tabs';quickNav.setAttribute('aria-label','Mobile administration navigation');

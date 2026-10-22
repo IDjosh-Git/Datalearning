@@ -12,16 +12,35 @@ bar.innerHTML='<div class="dl-shell-inner"><a class="dl-shell-brand" href="'+roo
 const overlay=document.createElement('div');overlay.className='dl-shell-overlay';overlay.hidden=true;
 const command=document.createElement('div');command.className='dl-command';command.hidden=true;command.setAttribute('role','dialog');command.setAttribute('aria-modal','true');command.setAttribute('aria-label','Quick find');command.innerHTML='<div class="dl-command-card"><div class="dl-command-top">'+iconSearch+'<input type="search" id="dlQuickInput" placeholder="Search courses, lessons and tools" aria-label="Search destinations"><button type="button" class="dl-command-close" id="dlQuickClose" aria-label="Close quick find">ESC</button></div><div class="dl-command-items" id="dlQuickItems"></div><div class="dl-command-foot">Choose a result to open it. Tip: use Ctrl+K (or ⌘K) anywhere.</div></div>';
 document.body.prepend(bar,overlay,command);document.body.classList.add('dl-workspace');
-const nav=bar.querySelector('#dlPrimaryNav');const menu=bar.querySelector('#dlMenuBtn');const input=command.querySelector('#dlQuickInput');const results=command.querySelector('#dlQuickItems');let restoreFocus=null;
-function renderNav(){nav.replaceChildren();for(const [label,url,id] of links){const a=document.createElement('a');a.href=root+url;a.textContent=label;if(id===active)a.setAttribute('aria-current','page');nav.append(a)}if(window.DALP_ROLE==='admin'){let a=document.createElement('a');a.href=root+'admin.html';a.textContent='Admin';if(active==='admin')a.setAttribute('aria-current','page');nav.append(a)}}
-function closeMenu(){nav.classList.remove('is-open');menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-label','Open navigation');overlay.hidden=true}
-function toggleMenu(){const shouldOpen=!nav.classList.contains('is-open');nav.classList.toggle('is-open',shouldOpen);menu.setAttribute('aria-expanded',String(shouldOpen));menu.setAttribute('aria-label',shouldOpen?'Close navigation':'Open navigation');overlay.hidden=!shouldOpen}
+const nav=bar.querySelector('#dlPrimaryNav');const navParent=nav.parentNode;const navNext=nav.nextSibling;const menu=bar.querySelector('#dlMenuBtn');const input=command.querySelector('#dlQuickInput');const results=command.querySelector('#dlQuickItems');let restoreFocus=null;
+function renderNav(){
+ nav.replaceChildren();
+ const head=document.createElement('div');head.className='dl-drawer-head';head.innerHTML='<span><strong>Explore learning</strong><small>Choose where to go</small></span><button class="dl-drawer-close" type="button" aria-label="Close navigation">✕</button>';
+ head.querySelector('button').addEventListener('click',closeMenu);nav.append(head);
+ const section=text=>{const p=document.createElement('p');p.className='dl-nav-section';p.textContent=text;nav.append(p)};
+ const link=(label,url,id,extra=false)=>{const a=document.createElement('a');a.href=root+url;a.textContent=label;if(extra)a.classList.add('dl-nav-extra');if(id===active)a.setAttribute('aria-current','page');nav.append(a)};
+ section('Main navigation');for(const [label,url,id] of links)link(label,url,id);
+ section('Courses');for(const [label,url] of [['Introduction','courses/introduction.html'],['Excel','courses/excel.html'],['SQL','courses/sql.html'],['Power BI','courses/powerbi.html'],['AI Integration','courses/ai.html']])link(label,url,null,true);
+ section('More tools');for(const [label,url] of [['Practice Arena','practice.html'],['Prompt library','prompt-library.html'],['Capstone studio','capstone.html']])link(label,url,null,true);
+ if(window.DALP_ROLE==='admin'){section('Administrator');link('Admin dashboard','admin.html',null,true);link('Progress reports','progress.html',null,true);link('Assessment desk','reviewer.html',null,true)}
+} 
+let drawerPreviousFocus=null;
+function closeMenu(){const wasOpen=nav.classList.contains('is-open');nav.classList.remove('is-open');if(nav.parentNode!==navParent)navParent.insertBefore(nav,navNext);document.body.classList.remove('dl-drawer-open');menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-label','Open navigation');overlay.hidden=true;if(wasOpen&&drawerPreviousFocus?.isConnected)drawerPreviousFocus.focus({preventScroll:true});drawerPreviousFocus=null}
+function toggleMenu(){const shouldOpen=!nav.classList.contains('is-open');if(!shouldOpen){closeMenu();return}drawerPreviousFocus=document.activeElement;if(innerWidth<=950)document.body.appendChild(nav);nav.classList.add('is-open');document.body.classList.add('dl-drawer-open');menu.setAttribute('aria-expanded','true');menu.setAttribute('aria-label','Close navigation');overlay.hidden=false;nav.querySelector('.dl-drawer-close')?.focus({preventScroll:true})}
+
 function destinationList(){return [...links.map(x=>[x[0],x[1]]),...extra,...(window.DALP_ROLE==='admin'?[['Admin dashboard','admin.html'],['Instructor reviewer desk','reviewer.html'],['Learner analytics','progress.html']]:[])];}
 function renderSearch(){const query=input.value.toLowerCase().trim(),found=destinationList().filter(([name])=>!query||name.toLowerCase().includes(query)).slice(0,12);results.replaceChildren();if(!found.length){const p=document.createElement('p');p.textContent='No matching destination. Try Excel, SQL, Tutor, or Practice.';results.append(p)}for(const [name,url] of found){const a=document.createElement('a');a.href=root+url;a.textContent=name;const span=document.createElement('span');span.textContent='Open →';a.append(span);results.append(a)}}
 function openSearch(){closeMenu();restoreFocus=document.activeElement;command.hidden=false;input.value='';renderSearch();input.focus()}
 function closeSearch(){command.hidden=true;restoreFocus?.focus?.()}
 bar.querySelector('#dlSearchBtn').addEventListener('click',openSearch);menu.addEventListener('click',toggleMenu);overlay.addEventListener('click',closeMenu);nav.addEventListener('click',e=>{if(e.target.closest('a'))closeMenu()});command.querySelector('#dlQuickClose').addEventListener('click',closeSearch);command.addEventListener('click',e=>{if(e.target===command)closeSearch()});input.addEventListener('input',renderSearch);input.addEventListener('keydown',e=>{if(e.key==='Enter'){const a=results.querySelector('a');if(a)location.href=a.href;}});
-document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();command.hidden?openSearch():closeSearch()}else if(e.key==='Escape'){if(!command.hidden)closeSearch();else closeMenu()}});
+document.addEventListener('keydown',e=>{
+ if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();command.hidden?openSearch():closeSearch()}
+ else if(e.key==='Escape'){if(!command.hidden)closeSearch();else closeMenu()}
+ else if(e.key==='Tab'&&nav.classList.contains('is-open')){
+  const items=[...nav.querySelectorAll('a[href],button:not([disabled])')].filter(el=>el.getClientRects().length);if(!items.length)return;
+  const first=items[0],last=items.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}
+ }
+});
 window.addEventListener('resize',()=>{if(innerWidth>950)closeMenu()},{passive:true});
 window.addEventListener('dalp:auth-ready',()=>{renderNav();updateIdentity()});
 function updateIdentity(){const u=window.DALP_AUTH_USER;const nm=u?.user_metadata?.full_name||u?.email?.split('@')[0]||'Learner';bar.querySelector('.dl-shell-avatar').textContent=nm.split(/\s+/).filter(Boolean).slice(0,2).map(x=>x[0].toUpperCase()).join('')||'ME';bar.querySelector('.dl-shell-avatar').title=nm+(window.DALP_ROLE==='admin'?' • Administrator':' • Learner');}

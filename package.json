@@ -1,6 +1,6 @@
 {
   "name": "data-analysis-learning-path",
-  "version": "15.0.0",
+  "version": "16.0.0",
   "private": true,
   "type": "module",
   "description": "Adaptive learning platform with responsive design system and cross-device theme controls",
@@ -14,7 +14,8 @@
     "test:admin": "node tests/admin-console-v6.mjs",
     "test:server-auth": "node tests/server-auth.mjs && node tests/middleware-access.mjs",
     "test:mobile:v14": "node tests/mobile-v14.mjs",
-    "test:responsive:v15": "node tests/responsive-v15.mjs"
+    "test:responsive:v15": "node tests/responsive-v15.mjs",
+    "test:theme:v16": "node tests/theme-navigation-v16.mjs && node tests/theme-nav-v16.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.57.0",
