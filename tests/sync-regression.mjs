@@ -18,6 +18,6 @@ for(const page of pages){
   if(!html.includes(`theme-polish.css?v=${v}`) && page!=='auth.html') throw new Error(`Theme layer not versioned on ${page}`);
   const local=html.replace(/https:\/\/[^"']+/g,'');
   const refs=[...local.matchAll(/assets\/[A-Za-z0-9._-]+\.(?:css|js)(?:\?v=([0-9.]+))?/g)];
-  if(refs.some(m=>!['20261021','20261021.2','20261021.3','20261021.4','20261022','20261022.2','20261022.14','20261022.15','20261022.16',v].includes(m[1]))) throw new Error(`Unversioned local asset on ${page}`);
+  if(refs.some(m=>!['20261021','20261021.2','20261021.3','20261021.4','20261022','20261022.2','20261022.14','20261022.15','20261022.16','20261022.17',v].includes(m[1]))) throw new Error(`Unversioned local asset on ${page}`);
 }
 console.log('PASS cross-device regression: scoped one-time legacy recovery, cloud-first refresh, cache-busted app assets, redesigned light/dark sign-in');
