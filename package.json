@@ -1,6 +1,6 @@
 {
   "name": "data-analysis-learning-path",
-  "version": "12.0.0",
+  "version": "13.0.0",
   "private": true,
   "type": "module",
   "description": "Learning platform with unified accessible light/dark course themes and fluid wide-screen layouts",
@@ -9,7 +9,7 @@
   },
   "scripts": {
     "test": "node tests/smoke.mjs && node tests/modern.mjs && node tests/sync-regression.mjs && node tests/course-content.mjs && node tests/ai-card-visibility.mjs && node tests/auth-first.mjs && node tests/auth-gate-runtime.mjs && node tests/admin-roles.mjs",
-    "test:responsive": "node tests/responsive-coverage.mjs",
+    "test:responsive": "node tests/responsive-coverage.mjs && node tests/mobile-v13.mjs",
     "test:workspace": "node tests/workspace-coverage.mjs",
     "test:admin": "node tests/admin-console-v6.mjs",
     "test:server-auth": "node tests/server-auth.mjs && node tests/middleware-access.mjs"

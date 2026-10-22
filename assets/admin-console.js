@@ -32,6 +32,18 @@
  mobileToggle.addEventListener('click',()=>root.classList.contains('ac-menu-open')?closeMenu():openMenu());backdrop.addEventListener('click',closeMenu);
  navEl.addEventListener('click',e=>{if(e.target.closest('a'))closeMenu()});
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&root.classList.contains('ac-menu-open')){closeMenu();mobileToggle.focus();}});
+
+ // Mobile admin essentials are always one tap away. The full sidebar remains in More.
+ const quickNav=document.createElement('nav');quickNav.className='ac-mobile-tabs';quickNav.setAttribute('aria-label','Mobile administration navigation');
+ const adminItems=[['Overview','admin.html','overview','▦'],['Learners','admin.html#admin-learners','learners','♙'],['Progress','progress.html','progress','◫'],['Reviews','reviewer.html','reviews','✓']];
+ for(const [label,href,id,icon] of adminItems){const a=document.createElement('a');a.href=href;a.className='ac-mobile-tab';a.dataset.tab=id;a.innerHTML='<span aria-hidden="true">'+icon+'</span><small>'+label+'</small>';quickNav.append(a)}
+ const moreAdmin=document.createElement('button');moreAdmin.type='button';moreAdmin.className='ac-mobile-tab';moreAdmin.setAttribute('aria-controls','acSidebar');moreAdmin.setAttribute('aria-expanded','false');moreAdmin.innerHTML='<span aria-hidden="true">☰</span><small>More</small>';quickNav.append(moreAdmin);
+ moreAdmin.addEventListener('click',()=>{root.classList.contains('ac-menu-open')?closeMenu():openMenu();moreAdmin.setAttribute('aria-expanded',String(root.classList.contains('ac-menu-open')))});
+ const mobileNavObserver=new MutationObserver(()=>moreAdmin.setAttribute('aria-expanded',String(root.classList.contains('ac-menu-open'))));mobileNavObserver.observe(root,{attributes:true,attributeFilter:['class']});
+ root.append(quickNav);
+ function selectMobile(){const hash=location.hash;const active=current==='overview'?(hash==='#admin-learners'?'learners':'overview'):current==='reviews'?'reviews':'progress';quickNav.querySelectorAll('a').forEach(a=>{const chosen=a.dataset.tab===active;a.classList.toggle('is-active',chosen);if(chosen)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')})}
+ window.addEventListener('hashchange',selectMobile);selectMobile();
+
  const bp=window.matchMedia('(min-width: 1025px)');bp.addEventListener?.('change',()=>{if(bp.matches)closeMenu()});
  function updateActive(){const h=location.hash;const active=current==='overview'?(h==='#admin-learners'?'learners':h==='#admin-courses'?'courses':'overview'):current;navEl.querySelectorAll('.ac-side-link').forEach(a=>{const match=a.dataset.section===active;a.classList.toggle('ac-selected',match);if(match)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});}
  window.addEventListener('hashchange',updateActive);updateActive();

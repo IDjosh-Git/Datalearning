@@ -26,5 +26,37 @@ window.addEventListener('resize',()=>{if(innerWidth>950)closeMenu()},{passive:tr
 window.addEventListener('dalp:auth-ready',()=>{renderNav();updateIdentity()});
 function updateIdentity(){const u=window.DALP_AUTH_USER;const nm=u?.user_metadata?.full_name||u?.email?.split('@')[0]||'Learner';bar.querySelector('.dl-shell-avatar').textContent=nm.split(/\s+/).filter(Boolean).slice(0,2).map(x=>x[0].toUpperCase()).join('')||'ME';bar.querySelector('.dl-shell-avatar').title=nm+(window.DALP_ROLE==='admin'?' • Administrator':' • Learner');}
 if(onCourse&&window.DALP_AUTH_USER?.id){try{localStorage.setItem('dalp-last-course:'+window.DALP_AUTH_USER.id,page.replace('.html',''))}catch(_){}}
+
+// Compact-first navigation. The same destinations remain available in the full More menu.
+const tabBar=document.createElement('nav');
+tabBar.className='dl-mobile-tabs';
+tabBar.setAttribute('aria-label','Mobile learning navigation');
+const tabItems=[
+ ['Home',root+'index.html','home','<path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/>'],
+ ['Courses',root+'index.html#courses','courses','<path d="M3 5.5c4.4-1.2 6.6-.8 9 1v14c-2.4-1.8-4.6-2.2-9-1zM21 5.5c-4.4-1.2-6.6-.8-9 1v14c2.4-1.8 4.6-2.2 9-1z"/>'],
+ ['Practice',root+'studio.html','practice','<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h5M8 16h3"/>'],
+ ['Tutor',root+'tutor.html','tutor','<path d="M4 5h16v12H9l-5 4z"/><path d="M8 10h8M8 13h5"/>']
+];
+const svgPath=d=>'<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+d+'</svg>';
+const mobileActive=onCourse||page==='index.html'&&location.hash==='#courses'?'courses':page==='index.html'?'home':page==='studio.html'||page==='practice.html'?'practice':page==='tutor.html'?'tutor':'more';
+for(const [label,url,key,path] of tabItems){const link=document.createElement('a');link.href=url;link.className='dl-tab'+(mobileActive===key?' is-active':'');if(mobileActive===key)link.setAttribute('aria-current','page');link.innerHTML=svgPath(path)+'<span>'+label+'</span>';tabBar.append(link)}
+const more=document.createElement('button');more.type='button';more.className='dl-tab'+(mobileActive==='more'?' is-active':'');more.setAttribute('aria-label','More learning destinations');more.setAttribute('aria-controls','dlPrimaryNav');more.setAttribute('aria-expanded','false');more.innerHTML=svgPath('<circle cx="5" cy="12" r="1.3"/><circle cx="12" cy="12" r="1.3"/><circle cx="19" cy="12" r="1.3"/>')+'<span>More</span>';tabBar.append(more);
+more.addEventListener('click',()=>{toggleMenu();more.setAttribute('aria-expanded',menu.getAttribute('aria-expanded'))});
+// Move potentially destructive course actions behind a deliberate compact-screen option.
+if(onCourse){
+ const courseActions=document.querySelector('.course-top-actions');
+ if(courseActions && !courseActions.querySelector('.dl-course-actions-toggle')){
+  const actionToggle=document.createElement('button');actionToggle.type='button';actionToggle.className='dl-course-actions-toggle';actionToggle.textContent='Options';actionToggle.setAttribute('aria-expanded','false');
+  courseActions.prepend(actionToggle);
+  actionToggle.addEventListener('click',()=>{const expanded=courseActions.classList.toggle('dl-options-open');actionToggle.setAttribute('aria-expanded',String(expanded));actionToggle.textContent=expanded?'Close options':'Options'});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&courseActions.classList.contains('dl-options-open')){courseActions.classList.remove('dl-options-open');actionToggle.setAttribute('aria-expanded','false');actionToggle.textContent='Options'}});
+ }
+}
+
+// Keep the two accessible menu triggers in sync across breakpoints.
+const mobileObserver=new MutationObserver(()=>more.setAttribute('aria-expanded',menu.getAttribute('aria-expanded')));
+mobileObserver.observe(menu,{attributes:true,attributeFilter:['aria-expanded']});
+document.body.append(tabBar);
+
 renderNav();updateIdentity();
 })();
