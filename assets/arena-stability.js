@@ -1,7 +1,7 @@
 /* Practice Arena stability and adaptive mobile workspace. */
 (()=>{'use strict';
 const root=document.getElementById('practiceDetail');if(!root)return;
-const KEY='dalp-arena-ui-v2';let prefs={};try{prefs=JSON.parse(localStorage.getItem(KEY)||'{}')||{}}catch{prefs={}}
+const KEY='dalp-arena-ui-v2';let prefs={};try{const restored=JSON.parse(localStorage.getItem(KEY)||'{}');prefs=restored&&typeof restored==='object'&&!Array.isArray(restored)?restored:{}}catch{prefs={}}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(prefs))}catch(e){console.warn('Arena UI preferences cannot be saved:',e.message)}};
 let scheduled=false,lastShell=null;
 function apply(){scheduled=false;try{
