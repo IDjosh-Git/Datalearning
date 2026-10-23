@@ -1,0 +1,40 @@
+/* Practice Arena: depth, touch and responsive layers. All chroma follows theme tokens. */
+body[data-responsive-page="practice"]{--depth-shadow:0 10px 30px -10px rgba(0,0,0,.3),0 4px 12px -2px rgba(0,0,0,.15);--depth-tint:color-mix(in srgb,var(--accent-color) 10%,var(--card-bg));background:var(--bg)!important;overscroll-behavior:none}
+body[data-responsive-page="practice"] .pc-wrap{position:relative;isolation:isolate;height:100dvh;max-height:100dvh;overflow:hidden!important}
+body[data-responsive-page="practice"] .pc-wrap:before{content:"";pointer-events:none;position:absolute;inset:-20% -8% 34%;z-index:-1;background:radial-gradient(ellipse at 73% 18%,color-mix(in srgb,var(--accent-color) 12%,transparent),transparent 55%)}
+body[data-responsive-page="practice"] :is(.pc-hero,.hub-topbar,.pc-detail,.ide-shell,.ide-primary,.ide-secondary,.hub-dialog){background:var(--card-bg)!important;border:1px solid var(--border-color)!important;color:var(--text-color)!important;box-shadow:var(--depth-shadow),inset 0 1px 0 color-mix(in srgb,var(--text-color) 5%,transparent)!important;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+body[data-responsive-page="practice"] .hub-topbar{position:relative;overflow:hidden}
+body[data-responsive-page="practice"] .hub-topbar:before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:var(--accent-color);box-shadow:0 0 19px var(--accent-color)}
+body[data-responsive-page="practice"] .ide-primary:focus-within{box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--accent-color) 50%,transparent),0 0 24px -18px var(--accent-color)!important}
+body[data-responsive-page="practice"] .ide-editor-toolbar{background:var(--card-bg)!important;box-shadow:0 -8px 24px -16px rgba(0,0,0,.3);z-index:7}
+body[data-responsive-page="practice"] :is(.hub-primary,.hub-close,#hubFeaturedLaunch,.ide-modes button,.ide-results-tabs button,.ide-reset,.ide-run,.ide-mobile-nav button,.hub-dialog button,.arena-preset-bar button,.arena-mobile-action button){min-height:44px;min-width:44px;touch-action:manipulation;transition:transform .18s cubic-bezier(.16,1,.3,1),box-shadow .22s,border-color .22s}
+body[data-responsive-page="practice"] :is(button,[role="button"]):active{transform:scale(.96)}
+body[data-responsive-page="practice"] :is(button,input,select,[tabindex]):focus-visible{outline:2px solid var(--accent-color)!important;outline-offset:2px}
+body[data-responsive-page="practice"] :is(.ide-panel,.ide-grid-scroll,.arena-table-scroll,.hub-cards,.pc-question,.arena-editor textarea,.ide-primary,.ide-secondary){scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--accent-color) 40%,var(--border-color)) transparent;overscroll-behavior:contain}
+body[data-responsive-page="practice"] .hub-cards .pc-item{box-shadow:0 5px 16px -13px rgba(0,0,0,.25),inset 0 1px 0 color-mix(in srgb,var(--text-color) 5%,transparent)!important}
+body[data-responsive-page="practice"] .hub-cards .pc-item.selected{box-shadow:0 0 0 1px var(--accent-color),0 8px 26px -12px color-mix(in srgb,var(--accent-color) 55%,transparent)!important}
+body[data-responsive-page="practice"] .arena-mobile-action{display:none}
+body[data-responsive-page="practice"] .arena-mobile-sheet[hidden]{display:none!important}
+body[data-responsive-page="practice"] .arena-mobile-sheet{position:fixed;inset:0;z-index:100050;display:flex;align-items:flex-end;justify-content:center}
+body[data-responsive-page="practice"] .arena-sheet-backdrop{position:absolute;inset:0;background:color-mix(in srgb,var(--bg) 67%,transparent);backdrop-filter:blur(7px)}
+body[data-responsive-page="practice"] .arena-sheet-body{position:relative;display:flex;flex-direction:column;background:var(--card-bg);color:var(--text-color);border:1px solid var(--border-color);border-radius:22px 22px 0 0;width:min(720px,100%);max-height:85dvh;min-height:35dvh;box-shadow:0 -16px 60px rgba(0,0,0,.24);animation:arenaSlide .32s cubic-bezier(.16,1,.3,1)}
+body[data-responsive-page="practice"] .arena-sheet-handle{width:43px;height:5px;border-radius:8px;background:var(--border-color);margin:10px auto 4px;flex:none}
+body[data-responsive-page="practice"] .arena-sheet-head{padding:8px 16px 12px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-color)}
+body[data-responsive-page="practice"] .arena-sheet-head button{min-width:44px;min-height:44px;border-radius:12px;border:1px solid var(--border-color);background:var(--card-bg);color:var(--text-color)}
+body[data-responsive-page="practice"] .arena-sheet-content{padding:16px;overflow:auto;min-height:0;scrollbar-width:thin}
+body[data-responsive-page="practice"] .arena-sheet-content :is(h3,strong){color:var(--accent-color)}
+@keyframes arenaSlide{from{opacity:.6;transform:translateY(45px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:900px){
+body[data-responsive-page="practice"] .ide-content{min-height:0}
+body[data-responsive-page="practice"] .ide-mobile-nav{flex:none;z-index:4;box-shadow:0 7px 16px -14px rgba(0,0,0,.3)}
+body[data-responsive-page="practice"] .ide-mobile-nav button{min-height:44px}
+body[data-responsive-page="practice"] .ide-editor-toolbar{padding-bottom:8px}
+body[data-responsive-page="practice"] .arena-mobile-action{display:flex;flex:none;align-items:center;gap:9px;justify-content:space-between;min-height:64px;padding:8px 12px calc(8px + env(safe-area-inset-bottom));background:var(--card-bg);border-top:1px solid var(--border-color);box-shadow:0 -10px 26px -15px rgba(0,0,0,.35);z-index:12}
+body[data-responsive-page="practice"] .arena-mobile-action button{min-height:44px;min-width:44px;border:1px solid var(--border-color);border-radius:12px;background:var(--card-bg);color:var(--text-color);font:inherit;font-weight:700;padding:0 13px}
+body[data-responsive-page="practice"] .arena-mobile-action .arena-mobile-run{flex:1;background:var(--accent-color);color:var(--bg);border-color:var(--accent-color)}
+body[data-responsive-page="practice"] .arena-mobile-status{display:inline-flex;align-items:center;white-space:nowrap;font-size:.7rem;color:var(--accent-color)}
+body[data-responsive-page="practice"] #ideRun{display:none!important}
+body[data-responsive-page="practice"] .ide-editor-toolbar{min-height:48px}
+}
+@media(max-width:600px){body[data-responsive-page="practice"] .pc-wrap{height:100dvh!important;max-height:100dvh!important;padding-bottom:0!important}body[data-responsive-page="practice"] .pc-layout{flex:1;min-height:0}body[data-responsive-page="practice"] .pc-detail{min-height:0!important;padding:6px!important}body[data-responsive-page="practice"] .ide-shell{min-height:0}body[data-responsive-page="practice"] .hub-topbar{padding:7px!important}body[data-responsive-page="practice"] .hub-current strong{max-width:60vw}body[data-responsive-page="practice"] .hub-dialog{height:100dvh!important;max-height:100dvh!important;padding-bottom:calc(15px + env(safe-area-inset-bottom))!important}body[data-responsive-page="practice"] .arena-sheet-body{max-height:90dvh}}
+@media(prefers-reduced-motion:reduce){body[data-responsive-page="practice"] .arena-sheet-body{animation:none!important}body[data-responsive-page="practice"] :is(button,[role="button"]){transition:none!important}}
