@@ -186,8 +186,10 @@ main{min-width:0}.topbar{position:sticky;top:0;z-index:10;padding:13px 26px;disp
 <link rel="stylesheet" href="../assets/accessibility-v23.css?v=20261022.22"/><link rel="stylesheet" href="../assets/design-system-v25.css?v=20261022.22">
 <link rel="stylesheet" href="../assets/layout-mobile-v26.css?v=20261023.26">
 <link rel="stylesheet" href="../assets/data-atmosphere-v27.css?v=20261023.27">
+<link rel="stylesheet" href="../assets/dashboard-analytics-v28.css?v=20261023.28"/>
+<link rel="stylesheet" href="../assets/course-polish-v29.css?v=20261023.29"/>
 </head>
-<body data-course="powerbi" data-responsive-page="courses/powerbi">
+<body class="dlp-course-v29" data-course="powerbi" data-responsive-page="courses/powerbi">
 <div class="app"><aside class="sidebar" id="sidebar">
 <div class="brand course-brand"><div class="course-brand-shell"><div class="brand-company-name"><strong>Data Analysis Learning Path</strong><span>Power BI Mastery Roadmap</span></div></div></div>
 <div class="searchbox"><span>⌕</span><input aria-label="Search course" id="searchInput" placeholder="Search lessons, terms or formulas..."/></div>
@@ -205,6 +207,35 @@ main{min-width:0}.topbar{position:sticky;top:0;z-index:10;padding:13px 26px;disp
 <div class="content">
 <section class="hero searchable" id="overview"><span class="eyebrow">10-week interactive Power BI path</span><h2>Learn Power BI from raw data to a professional interactive management report.</h2><p>This course teaches Power BI in a practical sequence: data connection, Power Query, modeling, DAX, time intelligence, visualization, interactivity, Power BI Service, and a complete capstone report. Every week contains guided explanations, practice, common mistakes, and a knowledge test.</p>
 <div class="stats"><div class="stat"><strong>10 Weeks</strong><span>Progressive learning path</span></div><div class="stat"><strong>30</strong><span>Guided learning sessions</span></div><div class="stat"><strong>50</strong><span>Knowledge-test questions</span></div><div class="stat"><strong>1 Final</strong><span>Capstone project</span></div></div><div class="job-ready-banner"><strong>Full learning route: lessons → practice → 5-question quiz → guided lab → career-grade assignment → capstone.</strong><p>Each week now has a practical masterclass with a concrete deliverable and an independent quality check. For optional AI assistance use the <a href="../prompt-library.html">300-prompt library</a>; do not treat AI output as evidence before testing. <a href="../downloads/WORKED_SOLUTIONS.md">View reproducible answer checks and starter code</a>.</p></div></section>
+<section class="dlp29-guide" id="course-guide-v29" aria-labelledby="dlp29-powerbi-heading" data-course="powerbi">
+  <div class="dlp29-guide-heading">
+    <div><p class="dlp29-eyebrow">POWER QUERY · MODELING · BUSINESS INTELLIGENCE</p><h2 id="dlp29-powerbi-heading">Your learning journey, mapped out.</h2><p>Connect trusted source data, model it correctly and communicate insight.</p></div>
+    <div class="dlp29-guide-actions"><a class="dlp29-button dlp29-button-primary" href="#week1">Start this course <span aria-hidden="true">↗</span></a><a class="dlp29-button dlp29-button-quiet" href="../practice.html">Open practice studio <span aria-hidden="true">↗</span></a></div>
+  </div>
+  <div class="dlp29-guide-grid">
+    <nav class="dlp29-panel dlp29-roadmap" aria-label="Power BI course milestones">
+      <div class="dlp29-panel-heading"><span class="dlp29-overline">COURSE ROADMAP</span><h3>Four milestones to mastery</h3><p>Move through the lessons in sequence, then return for hands-on practice.</p></div>
+      <div class="dlp29-milestones"><a class="dlp29-milestone" href="#week1" aria-label="Go to Load with confidence"><span class="dlp29-number" aria-hidden="true">01</span><span class="dlp29-mile-copy"><strong>Load with confidence</strong><small>Power BI interface and Power Query</small></span><span class="dlp29-arrow" aria-hidden="true">↗</span></a><a class="dlp29-milestone" href="#week4" aria-label="Go to Model and measure"><span class="dlp29-number" aria-hidden="true">02</span><span class="dlp29-mile-copy"><strong>Model and measure</strong><small>Star schema, relationships and DAX</small></span><span class="dlp29-arrow" aria-hidden="true">↗</span></a><a class="dlp29-milestone" href="#week7" aria-label="Go to Build decisions"><span class="dlp29-number" aria-hidden="true">03</span><span class="dlp29-mile-copy"><strong>Build decisions</strong><small>Visual design, drillthrough and DAX</small></span><span class="dlp29-arrow" aria-hidden="true">↗</span></a><a class="dlp29-milestone" href="#week10" aria-label="Go to Publish responsibly"><span class="dlp29-number" aria-hidden="true">04</span><span class="dlp29-mile-copy"><strong>Publish responsibly</strong><small>Refresh, governance and capstone</small></span><span class="dlp29-arrow" aria-hidden="true">↗</span></a></div>
+    </nav>
+    <div class="dlp29-panel dlp29-toolkit" aria-labelledby="dlp29-powerbi-toolkit-title">
+      <div class="dlp29-panel-heading"><span class="dlp29-overline">YOUR FIELD GUIDE</span><h3 id="dlp29-powerbi-toolkit-title">Learn, prepare, apply</h3><p>Switch between the outcomes, setup and a worked example.</p></div>
+      <div class="dlp29-tabs" data-course-tabs>
+        <div class="dlp29-tablist" aria-label="Course overview topics" data-course-tablist>
+          <button type="button" class="dlp29-tab" data-tab="outcomes" id="dlp29-powerbi-tab-outcomes">Outcomes</button>
+          <button type="button" class="dlp29-tab" data-tab="prepare" id="dlp29-powerbi-tab-prepare">Prerequisites</button>
+          <button type="button" class="dlp29-tab" data-tab="example" id="dlp29-powerbi-tab-example">Worked example</button>
+        </div>
+        <div class="dlp29-tab-panel" data-panel="outcomes" id="dlp29-powerbi-panel-outcomes"><h4>By the end of this track, you can:</h4><ul><li>Transform raw data using reproducible Power Query steps.</li><li>Design relationships around a clean star schema and explicit measures.</li><li>Create context-sensitive DAX and validate metrics under slicers.</li><li>Deliver readable, accessible reports and a documented refresh strategy.</li></ul></div>
+        <div class="dlp29-tab-panel" data-panel="prepare" id="dlp29-powerbi-panel-prepare"><h4>Before you begin</h4><ul><li>Power BI Desktop on Windows for the full authoring experience.</li><li>An example sales file containing a transaction date and numeric amount.</li><li>A working understanding of Excel Tables, data quality and unique lookup keys.</li></ul></div>
+        <div class="dlp29-tab-panel" data-panel="example" id="dlp29-powerbi-panel-example"><p class="dlp29-example-label">Example · DAX measures for interactive reports</p><pre tabindex="0"><code>Total Revenue = SUM ( Sales[Revenue] )
+
+Revenue All Regions =
+CALCULATE ( [Total Revenue], REMOVEFILTERS ( Region ) )</code></pre><h4>Walk through it</h4><ol><li>Import a Sales fact table and a unique Region dimension.</li><li>Create and verify the Region-to-Sales relationship.</li><li>Create the Total Revenue measure and compare it to source totals.</li><li>Apply a Region slicer and compare filtered revenue with Revenue All Regions.</li></ol><div class="dlp29-checkpoint"><strong>Checkpoint</strong><p>Describe why a DAX measure may change under a slicer. Confirm whether removing Region filters is appropriate for the business question.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <div class="section-head"><h3>How to use this course</h3><p>Follow the sequence. Practise every concept inside the actual tool instead of only reading.</p></div>
 <section class="overview-grid">
 <div class="card"><div class="icon">📘</div><h4>1. Learn</h4><p>Read the concept in plain language and understand why it is used.</p></div>
@@ -463,4 +494,5 @@ sections.forEach(s=>observer.observe(s));loadProgress();
 <script defer="" src="../assets/modern.js?v=20261022.16"></script><script defer="" src="../assets/course-studio-data.js?v=20261015.3"></script>
 <script defer="" src="../assets/learner-companion.js?v=20261022.20"></script><script defer="" src="../assets/course-checkpoints.js?v=20261022.17"></script><script defer="" src="../assets/responsive-v2.js?v=20261015.3"></script><script defer="" src="../assets/workspace-shell.js?v=20261022.16"></script><script defer src="../assets/weekly-workspace.js?v=20261021.3"></script><script defer src="../assets/theme-control-v14.js?v=20261022.18"></script>
 <script defer src="../assets/course-mobile-v21.js?v=20261022.22"></script>
-<script defer src="../assets/accessibility-v23.js?v=20261022.22"></script></body></html>
+<script defer src="../assets/accessibility-v23.js?v=20261022.22"></script><script defer src="../assets/course-polish-v29.js?v=20261023.29"></script>
+</body></html>

@@ -56,6 +56,46 @@
           "value": "private, no-store, max-age=0"
         }
       ]
+    },
+    {
+      "source": "/service-worker-v23.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, no-store, must-revalidate"
+        },
+        {
+          "key": "Service-Worker-Allowed",
+          "value": "/"
+        }
+      ]
+    },
+    {
+      "source": "/assets/dashboard-analytics-v28.css",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, stale-while-revalidate=86400"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/dashboard",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/studio",
+      "destination": "/studio.html"
+    },
+    {
+      "source": "/practice",
+      "destination": "/practice.html"
+    },
+    {
+      "source": "/courses/:course",
+      "destination": "/courses/:course.html"
     }
   ]
 }

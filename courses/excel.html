@@ -380,8 +380,10 @@ main{min-width:0}
 <link rel="stylesheet" href="../assets/accessibility-v23.css?v=20261022.22"/><link rel="stylesheet" href="../assets/design-system-v25.css?v=20261022.22">
 <link rel="stylesheet" href="../assets/layout-mobile-v26.css?v=20261023.26">
 <link rel="stylesheet" href="../assets/data-atmosphere-v27.css?v=20261023.27">
+<link rel="stylesheet" href="../assets/dashboard-analytics-v28.css?v=20261023.28"/>
+<link rel="stylesheet" href="../assets/course-polish-v29.css?v=20261023.29"/>
 </head>
-<body data-course="excel" data-responsive-page="courses/excel">
+<body class="dlp-course-v29" data-course="excel" data-responsive-page="courses/excel">
 <div class="app">
 <aside class="sidebar" id="sidebar">
 <div class="brand course-brand"><div class="course-brand-shell"><div class="brand-company-name"><strong>Data Analysis Learning Path</strong><span>Excel Mastery Roadmap</span></div></div></div>
@@ -428,6 +430,32 @@ main{min-width:0}
 <div class="stat"><strong>1 Final</strong><span>Interactive dashboard project</span></div>
 </div>
 <div class="job-ready-banner"><strong>Full learning route: lessons → practice → 5-question quiz → guided lab → career-grade assignment → capstone.</strong><p>Each week now has a practical masterclass with a concrete deliverable and an independent quality check. For optional AI assistance use the <a href="../prompt-library.html">300-prompt library</a>; do not treat AI output as evidence before testing. <a href="../downloads/WORKED_SOLUTIONS.md">View reproducible answer checks and starter code</a>.</p></div></section>
+<section class="dlp29-guide" id="course-guide-v29" aria-labelledby="dlp29-excel-heading" data-course="excel">
+  <div class="dlp29-guide-heading">
+    <div><p class="dlp29-eyebrow">SPREADSHEETS · ANALYSIS · REPORTING</p><h2 id="dlp29-excel-heading">Your learning journey, mapped out.</h2><p>From organized source tables to auditable calculations and a clear dashboard.</p></div>
+    <div class="dlp29-guide-actions"><a class="dlp29-button dlp29-button-primary" href="#week1">Start this course <span aria-hidden="true">↗</span></a><a class="dlp29-button dlp29-button-quiet" href="../practice.html">Open practice studio <span aria-hidden="true">↗</span></a></div>
+  </div>
+  <div class="dlp29-guide-grid">
+    <nav class="dlp29-panel dlp29-roadmap" aria-label="Excel course milestones">
+      <div class="dlp29-panel-heading"><span class="dlp29-overline">COURSE ROADMAP</span><h3>Four milestones to mastery</h3><p>Move through the lessons in sequence, then return for hands-on practice.</p></div>
+      <div class="dlp29-milestones"><a class="dlp29-milestone" href="#week1" aria-label="Go to Start with the grid"><span class="dlp29-number" aria-hidden="true">01</span><span class="dlp29-mile-copy"><strong>Start with the grid</strong><small>Navigation, clean tables and references</small></span><span class="dlp29-arrow" aria-hidden="true">↗</span></a><a class="dlp29-milestone" href="#week4" aria-label="Go to Calculate with confidence"><span class="dlp29-number" aria-hidden="true">02</span><span class="dlp29-mile-copy"><strong>Calculate with confidence</strong><small>Functions, lookup logic and validation</small></span><span class="dlp29-arrow" aria-hidden="true">↗</span></a><a class="dlp29-milestone" href="#week7" aria-label="Go to Explore patterns"><span class="dlp29-number" aria-hidden="true">03</span><span class="dlp29-mile-copy"><strong>Explore patterns</strong><small>PivotTables, charts and slicers</small></span><span class="dlp29-arrow" aria-hidden="true">↗</span></a><a class="dlp29-milestone" href="#week10" aria-label="Go to Deliver a dashboard"><span class="dlp29-number" aria-hidden="true">04</span><span class="dlp29-mile-copy"><strong>Deliver a dashboard</strong><small>Design, review and final capstone</small></span><span class="dlp29-arrow" aria-hidden="true">↗</span></a></div>
+    </nav>
+    <div class="dlp29-panel dlp29-toolkit" aria-labelledby="dlp29-excel-toolkit-title">
+      <div class="dlp29-panel-heading"><span class="dlp29-overline">YOUR FIELD GUIDE</span><h3 id="dlp29-excel-toolkit-title">Learn, prepare, apply</h3><p>Switch between the outcomes, setup and a worked example.</p></div>
+      <div class="dlp29-tabs" data-course-tabs>
+        <div class="dlp29-tablist" aria-label="Course overview topics" data-course-tablist>
+          <button type="button" class="dlp29-tab" data-tab="outcomes" id="dlp29-excel-tab-outcomes">Outcomes</button>
+          <button type="button" class="dlp29-tab" data-tab="prepare" id="dlp29-excel-tab-prepare">Prerequisites</button>
+          <button type="button" class="dlp29-tab" data-tab="example" id="dlp29-excel-tab-example">Worked example</button>
+        </div>
+        <div class="dlp29-tab-panel" data-panel="outcomes" id="dlp29-excel-panel-outcomes"><h4>By the end of this track, you can:</h4><ul><li>Structure and validate tabular data with named Excel Tables.</li><li>Build reliable formulas with absolute references, lookup and conditional aggregation.</li><li>Summarize performance using PivotTables, PivotCharts and slicers.</li><li>Present an interactive dashboard with clearly defined KPIs and tested totals.</li></ul></div>
+        <div class="dlp29-tab-panel" data-panel="prepare" id="dlp29-excel-panel-prepare"><h4>Before you begin</h4><ul><li>Excel 2016 or newer, or Microsoft 365; a desktop version is recommended for PivotTable work.</li><li>Comfort using a keyboard and opening, saving and renaming files.</li><li>A fictional sales dataset or the example table provided in the lessons.</li></ul></div>
+        <div class="dlp29-tab-panel" data-panel="example" id="dlp29-excel-panel-example"><p class="dlp29-example-label">Example · Total revenue for the region selected in H2</p><pre tabindex="0"><code>=SUMIFS(Sales[Revenue], Sales[Region], H2)</code></pre><h4>Walk through it</h4><ol><li>Convert the source range to a Table and name it Sales.</li><li>Confirm that Revenue is numeric and Region contains consistent values.</li><li>Enter a region name in H2 and use SUMIFS in an output cell.</li><li>Filter the Sales table to the same region and compare the total.</li></ol><div class="dlp29-checkpoint"><strong>Checkpoint</strong><p>Change H2 to another region. Does the formula update, and can you reconcile the result to the underlying records?</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <div class="course-intro-callout"><span class="course-intro-badge">STARTER MODULE · BEFORE WEEK 1</span><div><h3>What is data analysis, and why does it matter?</h3><p>If you are just starting, complete the introduction first. It explains everyday uses, how to ask the right questions, data quality, totals versus profit, and a full five-day lunch-kiosk case study with downloadable CSV and quiz. This optional foundation does not alter your 10-week course progress.</p><a href="introduction.html">Begin Introduction to Data Analysis →</a></div></div>
 <div class="section-head"><h3>How to learn with this page</h3><p>Use one week at a time. Do not just read — open Excel and recreate every example.</p></div>
 <section class="overview-grid">
@@ -1324,5 +1352,6 @@ loadProgress();
 <script defer="" src="../assets/modern.js?v=20261022.16"></script><script defer="" src="../assets/course-studio-data.js?v=20261015.3"></script>
 <script defer="" src="../assets/learner-companion.js?v=20261022.20"></script><script defer="" src="../assets/course-checkpoints.js?v=20261022.17"></script><script defer="" src="../assets/responsive-v2.js?v=20261015.3"></script><script defer="" src="../assets/workspace-shell.js?v=20261022.16"></script><script defer src="../assets/weekly-workspace.js?v=20261021.3"></script><script defer src="../assets/theme-control-v14.js?v=20261022.18"></script>
 <script defer src="../assets/course-mobile-v21.js?v=20261022.22"></script>
-<script defer src="../assets/accessibility-v23.js?v=20261022.22"></script></body>
+<script defer src="../assets/accessibility-v23.js?v=20261022.22"></script><script defer src="../assets/course-polish-v29.js?v=20261023.29"></script>
+</body>
 </html>

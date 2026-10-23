@@ -33,5 +33,7 @@ function init(){
  window.addEventListener('storage',e=>{if(e.key===KEY)apply(preference())});
  try{matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{if(!saved())apply(preference())})}catch{}
 }
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
+// Keep the first frame transition-free; user-initiated theme switches still animate.
+const markPainted=()=>requestAnimationFrame(()=>requestAnimationFrame(()=>document.documentElement.classList.add('dlp-theme-ready')));
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{init();markPainted()},{once:true});else{init();markPainted()};
 })();

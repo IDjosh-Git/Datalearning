@@ -35,8 +35,10 @@
 <link rel="stylesheet" href="../assets/accessibility-v23.css?v=20261022.22"/><link rel="stylesheet" href="../assets/design-system-v25.css?v=20261022.22">
 <link rel="stylesheet" href="../assets/layout-mobile-v26.css?v=20261023.26">
 <link rel="stylesheet" href="../assets/data-atmosphere-v27.css?v=20261023.27">
+<link rel="stylesheet" href="../assets/dashboard-analytics-v28.css?v=20261023.28"/>
+<link rel="stylesheet" href="../assets/course-polish-v29.css?v=20261023.29"/>
 </head>
-<body data-responsive-page="courses/introduction">
+<body class="dlp-course-v29" data-responsive-page="courses/introduction">
 <header class="nav-shell"><div class="wrap nav-inner">
 <a aria-label="Data Analysis Learning Path home" class="wordmark" href="../index.html"><img alt="" src="../assets/da-logo.svg"/><span><strong>Data Analysis</strong><small>Learning Path</small></span></a>
 <button aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation" class="nav-toggle" id="menuToggle">☰</button>
@@ -50,6 +52,37 @@
 <div class="hero-buttons"><a class="button primary" href="#lessons">Begin lesson 1 ↗</a><a class="button ghost" download="" href="../downloads/kiosk_week.csv">Download the case-study data ↓</a></div>
 <div class="intro-hero-details"><span>8 approachable lessons</span><span>1 complete case study</span><span>12-question knowledge check</span></div>
 </div><div aria-label="Illustrated sequence from a question to a decision" class="intro-visual"><div class="intro-visual-title">A real question becomes a useful answer</div><div class="process-chip"><b>?</b><span>Question</span><strong>Why is Friday more profitable?</strong></div><div class="process-arrow">↓</div><div class="process-chip"><b>▦</b><span>Evidence</span><strong>5 days of kiosk sales</strong></div><div class="process-arrow">↓</div><div class="process-chip"><b>✓</b><span>Decision</span><strong>Test what to stock next week</strong></div><p>Example data is fictional and for learning.</p></div></div></section>
+<section class="dlp29-guide" id="course-guide-v29" aria-labelledby="dlp29-introduction-heading" data-course="introduction">
+  <div class="dlp29-guide-heading">
+    <div><p class="dlp29-eyebrow">BEGINNER FOUNDATIONS · EVERYDAY DECISIONS</p><h2 id="dlp29-introduction-heading">Your learning journey, mapped out.</h2><p>Understand the evidence-to-decision process before choosing a software tool.</p></div>
+    <div class="dlp29-guide-actions"><a class="dlp29-button dlp29-button-primary" href="#lesson-1">Start this course <span aria-hidden="true">↗</span></a><a class="dlp29-button dlp29-button-quiet" href="../practice.html">Open practice studio <span aria-hidden="true">↗</span></a></div>
+  </div>
+  <div class="dlp29-guide-grid">
+    <nav class="dlp29-panel dlp29-roadmap" aria-label="Introduction to Data Analysis course milestones">
+      <div class="dlp29-panel-heading"><span class="dlp29-overline">COURSE ROADMAP</span><h3>Four milestones to mastery</h3><p>Move through the lessons in sequence, then return for hands-on practice.</p></div>
+      <div class="dlp29-milestones"><a class="dlp29-milestone" href="#lesson-1" aria-label="Go to Start with a question"><span class="dlp29-number" aria-hidden="true">01</span><span class="dlp29-mile-copy"><strong>Start with a question</strong><small>Define data, insight and an answerable goal</small></span><span class="dlp29-arrow" aria-hidden="true">↗</span></a><a class="dlp29-milestone" href="#lesson-4" aria-label="Go to Understand the records"><span class="dlp29-number" aria-hidden="true">02</span><span class="dlp29-mile-copy"><strong>Understand the records</strong><small>Data types, clean rows and trustworthy values</small></span><span class="dlp29-arrow" aria-hidden="true">↗</span></a><a class="dlp29-milestone" href="#case-study" aria-label="Go to Work a real example"><span class="dlp29-number" aria-hidden="true">03</span><span class="dlp29-mile-copy"><strong>Work a real example</strong><small>Fictional kiosk sales and break-even analysis</small></span><span class="dlp29-arrow" aria-hidden="true">↗</span></a><a class="dlp29-milestone" href="#knowledge-check" aria-label="Go to Check your understanding"><span class="dlp29-number" aria-hidden="true">04</span><span class="dlp29-mile-copy"><strong>Check your understanding</strong><small>Review the steps and take the knowledge check</small></span><span class="dlp29-arrow" aria-hidden="true">↗</span></a></div>
+    </nav>
+    <div class="dlp29-panel dlp29-toolkit" aria-labelledby="dlp29-introduction-toolkit-title">
+      <div class="dlp29-panel-heading"><span class="dlp29-overline">YOUR FIELD GUIDE</span><h3 id="dlp29-introduction-toolkit-title">Learn, prepare, apply</h3><p>Switch between the outcomes, setup and a worked example.</p></div>
+      <div class="dlp29-tabs" data-course-tabs>
+        <div class="dlp29-tablist" aria-label="Course overview topics" data-course-tablist>
+          <button type="button" class="dlp29-tab" data-tab="outcomes" id="dlp29-introduction-tab-outcomes">Outcomes</button>
+          <button type="button" class="dlp29-tab" data-tab="prepare" id="dlp29-introduction-tab-prepare">Prerequisites</button>
+          <button type="button" class="dlp29-tab" data-tab="example" id="dlp29-introduction-tab-example">Worked example</button>
+        </div>
+        <div class="dlp29-tab-panel" data-panel="outcomes" id="dlp29-introduction-panel-outcomes"><h4>By the end of this track, you can:</h4><ul><li>Explain data, insight and action in everyday language.</li><li>Distinguish data types and spot common data quality issues.</li><li>Calculate totals, averages and unit economics from a simple table.</li><li>Make a cautious recommendation that explains limitations.</li></ul></div>
+        <div class="dlp29-tab-panel" data-panel="prepare" id="dlp29-introduction-panel-prepare"><h4>Before you begin</h4><ul><li>No programming, spreadsheet or analytics experience is required.</li><li>A notebook or basic spreadsheet is helpful for the fictional kiosk example.</li><li>Bring one real-life question you would like evidence to answer.</li></ul></div>
+        <div class="dlp29-tab-panel" data-panel="example" id="dlp29-introduction-panel-example"><p class="dlp29-example-label">Example · Summarize three days of transport spending</p><pre tabindex="0"><code>Mon: ₦2,000
+Tue: ₦3,000
+Wed: ₦1,000
+
+Total = ₦6,000
+Average = ₦6,000 / 3 = ₦2,000</code></pre><h4>Walk through it</h4><ol><li>Record each day once with a consistent currency unit.</li><li>Add the values to calculate the total.</li><li>Divide the total by the number of days to calculate the mean.</li><li>Consider whether three days are representative before deciding to change behavior.</li></ol><div class="dlp29-checkpoint"><strong>Checkpoint</strong><p>Which day cost the most, and what additional information would help you decide if you should change your travel route?</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <div class="wrap intro-underhero"><div class="intro-progress-card"><div><b>Your starter progress</b><p>Tick each lesson after you can explain its idea in your own words.</p></div><div class="intro-progress-meter"><strong id="introProgressText">0 / 8 lessons</strong><small aria-live="polite" class="intro-sync-status" id="introSyncStatus">Checking saved progress…</small><div aria-label="Introduction lessons completed" aria-valuemax="8" aria-valuemin="0" aria-valuenow="0" class="intro-progress-track" id="introProgressBar" role="progressbar"><span id="introProgressFill"></span></div></div></div><p class="intro-disclosure">When you are signed in, your 8 lesson checkmarks sync to your learning account so they can follow you across devices. The Introduction remains separate from Excel, SQL and Power BI certificate eligibility.</p></div>
 <div class="wrap intro-body" id="lessons"><aside class="intro-side"><nav aria-label="Introduction lesson navigation"><p class="side-caption">YOUR LEARNING MAP</p>
 <a href="#lesson-1"><span>01</span> What is data analysis?</a><a href="#lesson-2"><span>02</span> Why it matters in daily life</a><a href="#lesson-3"><span>03</span> From question to decision</a><a href="#lesson-4"><span>04</span> Understand your data</a><a href="#lesson-5"><span>05</span> Clean, check and protect</a><a href="#lesson-6"><span>06</span> Calculate useful measures</a><a href="#case-study"><span>07</span> Full kiosk case study</a><a href="#lesson-8"><span>08</span> Tools and your first project</a><a href="#knowledge-check"><span>✓</span> Knowledge check</a></nav><div class="side-help"><b>Need an explanation?</b><p>Ask the tutor to explain a term in simple language or give another example.</p><a href="../tutor.html">Open the tutor ↗</a></div></aside>
@@ -139,4 +172,5 @@ Action: investigate affected supplier batches.</code></pre><h4>Assessment checkp
 <script defer="" src="../assets/modern.js?v=20261022.16"></script><script defer="" src="../assets/course-studio-data.js?v=20261015.3"></script>
 <script defer="" src="../assets/learner-companion.js?v=20261022.20"></script><script defer="" src="../assets/course-checkpoints.js?v=20261022.17"></script><script defer="" src="../assets/responsive-v2.js?v=20261015.3"></script><script defer="" src="../assets/workspace-shell.js?v=20261022.16"></script><script defer src="../assets/weekly-workspace.js?v=20261021.3"></script><script defer src="../assets/theme-control-v14.js?v=20261022.18"></script>
 <script defer src="../assets/course-mobile-v21.js?v=20261022.22"></script>
-<script defer src="../assets/accessibility-v23.js?v=20261022.22"></script></body></html>
+<script defer src="../assets/accessibility-v23.js?v=20261022.22"></script><script defer src="../assets/course-polish-v29.js?v=20261023.29"></script>
+</body></html>
