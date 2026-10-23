@@ -443,3 +443,5 @@ main,.content,.card,.course-card,.week,.week-body,.lesson,.mini,.session-block{m
 @media print{
   .portal-home-btn,#zah-sync-badge,.course-account-link{display:none!important}
 }
+/* v26: avoid fixed card widths forcing horizontal overflow on narrow screens */
+@media(max-width:640px){.lp-course-grid,.lp-feature-grid,.lp-quick-grid{grid-template-columns:minmax(0,1fr)}.lp-course,.lp-quick-card,.lp-feature{max-width:100%;min-width:0}}

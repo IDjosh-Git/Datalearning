@@ -96,3 +96,5 @@ body:has(#loginBtn) button.secondary,body:has(#loginBtn) .btn.secondary{backgrou
 .lp-home .lp-course[data-track="ai"]:focus-within{outline:3px solid var(--track);outline-offset:4px}
 @media(max-width:1050px){.lp-home .lp-course-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:740px){.lp-home .lp-course-grid{grid-template-columns:1fr}}
+/* v26: flexible homepage card height baseline. Final mobile overrides: layout-mobile-v26.css */
+.lp-course,.lp-quick-card,.lp-step{height:auto;min-height:0;min-width:0}.lp-course-grid,.lp-quick-grid{grid-auto-rows:auto}.lp-course-footer{margin-top:auto}

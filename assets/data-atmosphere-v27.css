@@ -1,0 +1,85 @@
+/* v27: decorative analytics atmosphere, keyed to the platform's existing data-theme engine. */
+:root {
+  --bg-main:#f3f7fc;
+  --bg-card:#ffffff;
+  --accent-glow:rgba(44,111,193,.095);
+  --grid-line-color:rgba(48,91,144,.065);
+  --data-node:rgba(45,115,191,.16);
+  --data-ink:#172238;
+  --data-shadow:0 12px 36px rgba(28,52,88,.075);
+  --data-shadow-hover:0 19px 43px rgba(28,52,88,.14);
+}
+html[data-theme="dark"] {
+  --bg-main:#0d1523;
+  --bg-card:#1a2636;
+  --accent-glow:rgba(83,162,239,.115);
+  --grid-line-color:rgba(146,196,255,.055);
+  --data-node:rgba(124,198,255,.18);
+  --data-ink:#f4f7fb;
+  --data-shadow:0 16px 42px rgba(0,0,0,.2);
+  --data-shadow-hover:0 22px 48px rgba(0,0,0,.32);
+}
+/* Grid lines + scattered analytical nodes are background paint only: no pointer overlays. */
+html { background:var(--bg-main); }
+body {
+  background-color:var(--bg-main);
+  background-image:
+    radial-gradient(circle at 82% 12%,var(--accent-glow),transparent 32rem),
+    radial-gradient(circle at 8% 64%,var(--accent-glow),transparent 28rem),
+    radial-gradient(circle at 77% 36%,var(--data-node) 0 1.5px,transparent 2.5px),
+    radial-gradient(circle at 16% 20%,var(--data-node) 0 1.5px,transparent 2.5px),
+    linear-gradient(to right,var(--grid-line-color) 1px,transparent 1px),
+    linear-gradient(to bottom,var(--grid-line-color) 1px,transparent 1px);
+  background-size:auto,auto,290px 250px,410px 320px,44px 44px,44px 44px;
+  background-attachment:scroll;
+  color:var(--ink,var(--data-ink));
+}
+/* Only transparent dashboard/workspace canvas areas reveal the pattern. Cards retain solid readable surfaces. */
+:where(.lp-dashboard-strip,.lp-course,.lp-quick-card,.lp-feature,.lp-step,.card,.ps-task,.ps-panel,.dlp-module,.dalp-account-card) {
+  background-color:var(--surface,var(--bg-card));
+  box-shadow:var(--data-shadow);
+  min-width:0;
+  min-height:0;
+  height:auto;
+  max-width:100%;
+  overflow-wrap:anywhere;
+}
+:where(.lp-course-grid,.lp-quick-grid,.lp-feature-grid,.lp-flow,.ps-layout,.pc-layout) {
+  min-width:0;
+  grid-auto-rows:auto;
+}
+:where(.lp-course,.lp-quick-card,.lp-step,.ps-task) {display:flex;flex-direction:column;}
+:where(.lp-course-footer,.continue-actions,.ps-task-actions){margin-top:auto;}
+:where(.lp-course,.lp-quick-card,.lp-feature,.lp-step,.card,.ps-task,.dlp-module) {
+  transition:transform 180ms ease,box-shadow 180ms ease,border-color 180ms ease;
+}
+@media (hover:hover) and (pointer:fine) {
+  :where(.lp-course,.lp-quick-card,.lp-feature,.lp-step,.card,.ps-task,.dlp-module):hover {
+    transform:translate3d(0,-3px,0);
+    box-shadow:var(--data-shadow-hover);
+  }
+}
+/* Motion is limited to painted theme surfaces, never layout dimensions. */
+html[data-theme] body,
+:where(.lp-course,.lp-quick-card,.lp-feature,.card,.ps-panel,.dlp-module) {
+  transition-property:background-color,color,border-color,box-shadow,transform;
+  transition-duration:180ms;
+  transition-timing-function:ease;
+}
+:where(a,button,input,select,textarea,[role="button"]):focus-visible {
+  outline:3px solid var(--focus,#0868c7);
+  outline-offset:3px;
+}
+@media (max-width:640px) {
+  body {background-size:auto,auto,220px 220px,300px 260px,36px 36px,36px 36px;}
+  :where(.lp-course-grid,.lp-quick-grid,.lp-feature-grid,.lp-flow,.ps-layout,.pc-layout) {grid-template-columns:minmax(0,1fr)!important;}
+  :where(.lp-course,.lp-quick-card,.lp-feature,.lp-step,.card,.ps-task,.dlp-module) {padding:clamp(1rem,4vw,1.375rem);}
+  :where(.lp-hero-actions,.ps-task-actions,.continue-actions) {flex-wrap:wrap;}
+  :where(.lp-course,.lp-quick-card,.lp-feature,.lp-step,.card,.ps-task,.dlp-module) {height:auto;}
+}
+@media (prefers-reduced-motion:reduce) {
+  html[data-theme] body,
+  :where(.lp-course,.lp-quick-card,.lp-feature,.lp-step,.card,.ps-task,.dlp-module) {
+    animation:none!important;transition:none!important;transform:none!important;
+  }
+}
