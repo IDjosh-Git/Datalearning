@@ -1,0 +1,35 @@
+/* Practice Arena contrast release: preserve app theme palette while restoring dimensional separation. */
+body[data-responsive-page="practice"]{
+  --arena-outline:color-mix(in srgb,var(--text-color) 29%,var(--border-color) 71%);
+  --arena-strong-outline:color-mix(in srgb,var(--accent-color) 42%,var(--text-color) 58%);
+  --arena-layer:color-mix(in srgb,var(--card-bg) 87%,var(--bg) 13%);
+  --arena-raised:color-mix(in srgb,var(--card-bg) 82%,var(--accent-color) 18%);
+  --arena-field:color-mix(in srgb,var(--bg) 44%,var(--card-bg) 56%);
+  --arena-shadow:color-mix(in srgb,var(--text-color) 19%,transparent);
+  --work-border:var(--arena-outline);
+  --work-panel:var(--arena-layer);
+  --work-raised:var(--arena-raised);
+  color:var(--text-color);
+  background:var(--bg);
+}
+body[data-responsive-page="practice"] :is(.hub-topbar,.hub-dialog,.hub-featured,.hub-cards .pc-card,.arena-task-panel,.ide-primary,.ide-secondary,.ide-panel,.ide-topline,.ide-editor-toolbar,.arena-triple-nav,.hub-mobile-featured){
+  border:1.5px solid var(--arena-outline)!important;
+  background:var(--arena-layer)!important;
+  color:var(--text-color)!important;
+  box-shadow:0 12px 30px -17px var(--arena-shadow),0 3px 9px -5px var(--arena-shadow),inset 0 1px 0 color-mix(in srgb,var(--text-color) 8%,transparent)!important;
+}
+body[data-responsive-page="practice"] :is(.hub-topbar,.hub-featured,.ide-topline,.ide-editor-toolbar){
+  background:linear-gradient(125deg,color-mix(in srgb,var(--accent-color) 10%,var(--card-bg)),var(--card-bg) 72%)!important;
+}
+body[data-responsive-page="practice"] :is(.arena-task-panel,.ide-primary,.ide-secondary){outline:1px solid color-mix(in srgb,var(--text-color) 9%,transparent);outline-offset:-4px}
+body[data-responsive-page="practice"] :is(.arena-task-panel,.ide-primary,.ide-secondary):focus-within{border-color:var(--accent-color)!important;box-shadow:0 0 0 2px color-mix(in srgb,var(--accent-color) 16%,transparent),0 15px 30px -16px var(--arena-shadow)!important}
+body[data-responsive-page="practice"] :is(.ide-panel,.arena-task-body,.arena-editor-pane,.ide-primary textarea,.ide-primary pre,.ide-secondary table,.pc-filter-row select,.hub-search-label input){background-color:var(--arena-field)!important;color:var(--text-color)!important}
+body[data-responsive-page="practice"] :is(.ide-results-tabs button,.ide-modes button,.ide-reset,.hub-close,.pc-filter-row select,.hub-search-label input,.hub-cards button){border:1px solid var(--arena-outline)!important;background:var(--arena-layer)!important;color:var(--text-color)!important}
+body[data-responsive-page="practice"] :is(.ide-results-tabs button.active,.ide-modes button.active,.hub-primary,.ide-run,.arena-triple-nav button.active){border-color:var(--accent-color)!important;box-shadow:inset 0 -2px 0 var(--accent-color),0 0 0 1px color-mix(in srgb,var(--accent-color) 20%,transparent)!important}
+body[data-responsive-page="practice"] :is(.ide-secondary th,.ide-secondary td,.ide-panel th,.ide-panel td){border-color:var(--arena-outline)!important;color:var(--text-color)!important}
+body[data-responsive-page="practice"] :is(.ide-secondary th,.ide-panel th){background:var(--arena-raised)!important}
+body[data-responsive-page="practice"] :is(.ide-secondary tbody tr:nth-child(even),.ide-panel tbody tr:nth-child(even)){background:color-mix(in srgb,var(--accent-color) 5%,var(--card-bg))!important}
+body[data-responsive-page="practice"] :is(.ide-secondary tbody tr:hover,.ide-panel tbody tr:hover){background:color-mix(in srgb,var(--accent-color) 12%,var(--card-bg))!important}
+body[data-responsive-page="practice"] :is(.ide-panel,.arena-task-body,.hub-cards,.hub-dialog){scrollbar-color:var(--arena-outline) transparent}
+@media(max-width:767px){body[data-responsive-page="practice"] :is(.hub-topbar,.arena-task-panel,.ide-primary,.ide-secondary,.hub-featured){border-width:1.5px!important}body[data-responsive-page="practice"] .hub-cards .pc-card{margin-bottom:8px!important}}
+@media(forced-colors:active){body[data-responsive-page="practice"] :is(.hub-topbar,.arena-task-panel,.ide-primary,.ide-secondary,.hub-dialog){border:2px solid CanvasText!important}}
