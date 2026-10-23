@@ -1,0 +1,87 @@
+/* Practice Arena legibility contract. Loaded last to keep all interactive text readable. */
+body[data-responsive-page="practice"] {
+  --arena-readable: var(--app-text, var(--text-color, #193144));
+  --arena-secondary-readable: var(--app-muted, #425569);
+  --arena-strong-edge: color-mix(in srgb, var(--arena-readable) 27%, var(--arena-edge));
+  --arena-control: var(--arena-surface-raised);
+  --arena-on-accent: #ffffff;
+}
+html[data-theme="dark"] body[data-responsive-page="practice"],
+html[data-mode="dark"] body[data-responsive-page="practice"],
+body[data-responsive-page="practice"][data-theme="dark"] {
+  --arena-readable: #f2f7ff;
+  --arena-secondary-readable: #c3d1e0;
+  --arena-strong-edge: #647b96;
+  --arena-control: #23354b;
+}
+html[data-theme="light"] body[data-responsive-page="practice"],
+html[data-mode="light"] body[data-responsive-page="practice"],
+body[data-responsive-page="practice"][data-theme="light"] {
+  --arena-readable: #172e40;
+  --arena-secondary-readable: #405468;
+  --arena-strong-edge: #8ba0b2;
+}
+body[data-responsive-page="practice"] :is(.pc-wrap,.pc-detail,.pc-sidebar,.hub-topbar,.hub-dialog,.ide-shell,.ide-primary,.ide-secondary,.arena-task-panel,.ide-panel,.arena-workspace,.hub-cards,.hub-featured) {
+  color: var(--arena-readable) !important;
+}
+body[data-responsive-page="practice"] :is(.pc-hero,.hub-topbar,.hub-dialog,.hub-featured,.hub-cards .pc-item,.arena-task-panel,.ide-primary,.ide-secondary,.ide-panel) {
+  border-color: var(--arena-strong-edge) !important;
+}
+body[data-responsive-page="practice"] :is(.pc-wrap,.pc-detail,.hub-dialog,.ide-shell,.ide-primary,.ide-secondary,.arena-task-panel,.ide-panel) :is(h1,h2,h3,h4,h5,h6,p,small,strong,em,span,label,li,dt,dd,code,kbd,pre,th,td) {
+  color: var(--arena-readable);
+}
+body[data-responsive-page="practice"] :is(.pc-note,.pc-subhead,.pc-kicker,.hub-eyebrow,.ide-statusline,.ide-runtime,.pc-challenge-footer,#practiceStats,.ide-line-numbers,.ide-gutter) {
+  color: var(--arena-secondary-readable) !important;
+}
+body[data-responsive-page="practice"] :is(.pc-detail,.hub-dialog,.ide-shell,.ide-primary,.ide-secondary) :is(button:not(.hub-primary):not(.ide-run):not(#ideRun):not(#practiceRun):not(#practiceCheck),select,input,textarea) {
+  color: var(--arena-readable) !important;
+}
+body[data-responsive-page="practice"] :is(input,textarea,select)::placeholder {
+  color: var(--arena-secondary-readable) !important;
+  opacity: 1 !important;
+}
+body[data-responsive-page="practice"] :is(.ide-results-tabs button,.ide-modes button,.arena-preset-bar button,.hub-cards button,.ide-reset,.hub-close) {
+  background: var(--arena-control) !important;
+  color: var(--arena-readable) !important;
+  border: 1px solid var(--arena-strong-edge) !important;
+  opacity: 1 !important;
+}
+body[data-responsive-page="practice"] :is(.hub-primary,#ideRun,.ide-run,#practiceRun,#practiceCheck,#hubFeaturedLaunch) {
+  background: var(--arena-accent) !important;
+  color: var(--arena-on-accent) !important;
+  font-weight: 750 !important;
+  opacity: 1 !important;
+  text-shadow: 0 1px 1px #0006;
+}
+body[data-responsive-page="practice"] :is(.hub-primary,#ideRun,.ide-run,#practiceRun,#practiceCheck,#hubFeaturedLaunch) * {
+  color: inherit !important;
+}
+body[data-responsive-page="practice"] :is(.hub-badge,.pc-item-badge,.ide-status-badge,.ide-type-tag) {
+  border: 1px solid var(--arena-strong-edge) !important;
+  background: var(--arena-control) !important;
+  color: var(--arena-readable) !important;
+}
+body[data-responsive-page="practice"] :is(.ide-panel,.arena-table) tbody tr:nth-child(even) {
+  background: color-mix(in srgb,var(--arena-readable) 6%,var(--arena-surface)) !important;
+}
+body[data-responsive-page="practice"] :is(.ide-panel,.arena-table) :is(th,td) {
+  color: var(--arena-readable) !important;
+  border-color: var(--arena-strong-edge) !important;
+}
+body[data-responsive-page="practice"] :is(.ide-panel,.arena-table) th {
+  background: var(--arena-surface-raised) !important;
+}
+body[data-responsive-page="practice"] :is(button,a,input,select,textarea):focus-visible {
+  outline: 3px solid var(--arena-accent) !important;
+  outline-offset: 3px !important;
+}
+body[data-responsive-page="practice"] :is(button,a):disabled {
+  opacity: .65 !important;
+  cursor: not-allowed;
+}
+@media (max-width:767px) {
+  body[data-responsive-page="practice"] :is(.hub-cards .pc-item,.ide-results-tabs button,.arena-triple-nav button) {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+}
