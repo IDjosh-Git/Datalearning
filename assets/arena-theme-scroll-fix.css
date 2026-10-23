@@ -1,0 +1,38 @@
+/* Practice Arena: final theme binding and mobile flow corrections. */
+body[data-responsive-page="practice"] {
+  --arena-page: var(--bg);
+  --arena-surface: var(--card-bg);
+  --arena-foreground: var(--text-color);
+  --arena-stroke: var(--border-color);
+  --arena-highlight: var(--accent-color);
+  color:var(--arena-foreground)!important;
+  background:var(--arena-page)!important;
+  color-scheme:normal;
+}
+body[data-responsive-page="practice"] :is(.pc-wrap,.pc-detail,.ide-shell,.ide-content,.hub-dialog,.arena-task-panel,.ide-primary,.ide-secondary,.ide-panel,.ide-editor-toolbar,.ide-results-tabs,.arena-task-body) {color:var(--arena-foreground)}
+body[data-responsive-page="practice"] :is(.hub-dialog,.arena-task-panel,.ide-primary,.ide-secondary,.ide-panel,.ide-editor-toolbar,.hub-topbar) {border-color:var(--arena-stroke)!important}
+body[data-responsive-page="practice"] :is(.hub-dialog,.arena-task-panel,.ide-primary,.ide-secondary,.ide-panel,.ide-editor-toolbar) {background-color:var(--arena-surface)!important}
+body[data-responsive-page="practice"] :is(input,select,textarea,button) {font:inherit}
+body[data-responsive-page="practice"] :is(input,select,textarea) {color:var(--arena-foreground)!important;background-color:var(--arena-surface)!important;border-color:var(--arena-stroke)!important}
+body[data-responsive-page="practice"] :is(input,textarea)::placeholder {color:color-mix(in srgb,var(--arena-foreground) 55%,transparent)}
+body[data-responsive-page="practice"] :is(.ide-panel .arena-table th,.ide-panel .arena-table td) {color:var(--arena-foreground)!important;border-color:var(--arena-stroke)!important}
+body[data-responsive-page="practice"] .ide-panel .arena-table th {background:color-mix(in srgb,var(--arena-highlight) 8%,var(--arena-surface))!important}
+body[data-responsive-page="practice"] .ide-panel .arena-table tbody tr:nth-child(even) {background:color-mix(in srgb,var(--arena-foreground) 3%,var(--arena-surface))!important}
+body[data-responsive-page="practice"] :is(.hub-dialog,.ide-primary,.ide-secondary,.arena-task-panel) :is(h1,h2,h3,h4,p,label,strong) {color:inherit}
+body[data-responsive-page="practice"] :is(.ide-results-tabs button.is-active,.arena-triple-nav button.active,.hub-eyebrow) {color:var(--arena-highlight)!important}
+body[data-responsive-page="practice"] :is(button,a,[role="tab"]):focus-visible {outline:2px solid var(--arena-highlight)!important;outline-offset:3px}
+@media (max-width:767px) {
+  html:has(body[data-responsive-page="practice"]),body[data-responsive-page="practice"] {height:auto!important;min-height:100%!important;overflow-x:hidden!important;overflow-y:auto!important;overscroll-behavior-y:auto!important}
+  body[data-responsive-page="practice"] .pc-wrap {height:auto!important;max-height:none!important;min-height:100dvh!important;overflow:visible!important;gap:10px!important;padding-bottom:calc(90px + env(safe-area-inset-bottom,0px))!important}
+  body[data-responsive-page="practice"] .pc-layout,body[data-responsive-page="practice"] .pc-detail {height:auto!important;max-height:none!important;min-height:0!important;overflow:visible!important;flex:initial!important}
+  body[data-responsive-page="practice"] .ide-shell {height:auto!important;max-height:none!important;min-height:0!important;overflow:visible!important;display:flex!important;flex-direction:column!important}
+  body[data-responsive-page="practice"] .ide-content {height:auto!important;min-height:360px!important;max-height:none!important;overflow:visible!important;flex:none!important;display:block!important}
+  body[data-responsive-page="practice"] :is(.arena-task-panel,.ide-primary,.ide-secondary) {height:auto!important;min-height:360px!important;max-height:none!important;overflow:visible!important}
+  body[data-responsive-page="practice"] .ide-shell[data-arena-view="task"] .arena-task-panel,body[data-responsive-page="practice"] .ide-shell[data-arena-view="editor"] .ide-primary,body[data-responsive-page="practice"] .ide-shell[data-arena-view="output"] .ide-secondary {display:flex!important}
+  body[data-responsive-page="practice"] :is(.arena-task-body,.ide-panel,.arena-editor-pane,.arena-table-scroll) {max-height:none!important;overflow:auto!important;-webkit-overflow-scrolling:touch}
+  body[data-responsive-page="practice"] .arena-task-body {min-height:240px!important}
+  body[data-responsive-page="practice"] .ide-panel {min-height:280px!important;max-height:70dvh!important}
+  body[data-responsive-page="practice"] :is(.hub-overlay,.hub-dialog) {overscroll-behavior:contain}
+  body[data-responsive-page="practice"] .hub-dialog {max-height:100dvh!important;overflow-y:auto!important;-webkit-overflow-scrolling:touch}
+  body[data-responsive-page="practice"] :is(.hub-primary,.ide-run,.ide-reset,.arena-triple-nav button) {min-height:44px!important}
+}

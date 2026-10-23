@@ -1,0 +1,2 @@
+/* Reuse the existing featured-launch action without duplicating exercise state logic. */
+(()=>{'use strict';const shortcut=document.getElementById('hubMobileFeatured');if(!shortcut)return;shortcut.addEventListener('click',()=>{const featured=document.getElementById('hubFeaturedLaunch');if(featured){featured.click();const workspace=document.getElementById('practiceDetail');workspace?.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});}else document.getElementById('hubOpen')?.click();});})();
