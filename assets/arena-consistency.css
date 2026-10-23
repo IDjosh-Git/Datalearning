@@ -1,0 +1,35 @@
+/* Practice Arena consolidated final layer. Uses the application tokens, not a private palette. */
+body[data-responsive-page="practice"]{
+ --work-bg:var(--bg);--work-panel:var(--card-bg);--work-raised:var(--card-bg);
+ --work-border:var(--border-color);--work-ink:var(--text-color);
+ --work-subtle:color-mix(in srgb,var(--text-color) 68%,var(--card-bg));
+ --work-accent:var(--accent-color);
+ background:var(--bg)!important;color:var(--text-color)!important;
+}
+body[data-responsive-page="practice"] :is(.pc-wrap,.pc-layout,.pc-detail,.ide-shell,.ide-content,.arena-task-panel,.ide-primary,.ide-secondary,.hub-topbar,.hub-dialog,.hub-cards,.hub-featured,.ide-panel,.ide-topline,.ide-editor-toolbar,.ide-results-tabs,.arena-task-body){box-sizing:border-box;min-width:0;max-width:100%;}
+body[data-responsive-page="practice"] :is(.arena-task-panel,.ide-primary,.ide-secondary,.hub-dialog,.hub-topbar,.ide-topline,.ide-editor-toolbar,.ide-panel,.hub-featured,.hub-cards .pc-card){background-color:var(--card-bg)!important;color:var(--text-color)!important;border-color:var(--border-color)!important;}
+body[data-responsive-page="practice"] :is(.pc-hero,.pc-note,.arena-task-body,.ide-panel,.hub-dialog,.hub-current,.hub-search-row,.hub-cards){color:var(--text-color)!important;}
+body[data-responsive-page="practice"] :is(.ide-results-tabs button,.ide-modes button,.pc-filter-row select,.hub-search-label input,.ide-reset,.hub-close){color:var(--text-color)!important;background-color:var(--card-bg)!important;border-color:var(--border-color)!important;}
+body[data-responsive-page="practice"] :is(.ide-results-tabs button.active,.ide-modes button.active,.hub-primary,.ide-run){border-color:var(--accent-color)!important;}
+body[data-responsive-page="practice"] :is(.hub-current,.arena-task-body,.ide-panel,.hub-featured,.hub-cards .pc-card){overflow-wrap:anywhere;}
+body[data-responsive-page="practice"] :is(.ide-results-tabs,.ide-modes,.hub-actions,.pc-filter-row,.ide-editor-toolbar){flex-wrap:wrap;}
+body[data-responsive-page="practice"] :is(button,input,select,textarea):focus-visible{outline:3px solid var(--accent-color)!important;outline-offset:2px;}
+body[data-responsive-page="practice"] :is(.ide-panel,.arena-task-body,.hub-dialog,.hub-cards){scrollbar-width:thin;scrollbar-color:var(--border-color) transparent;}
+body[data-responsive-page="practice"] :is(.ide-primary,.ide-secondary,.arena-task-panel){box-shadow:0 12px 28px -20px #0008,0 2px 9px -5px #0005!important;}
+@media(max-width: 1100px){body[data-responsive-page="practice"] .ide-content{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;}body[data-responsive-page="practice"] .arena-task-panel{grid-column:1/-1!important;max-height:260px!important;}}
+@media(max-width:767px){
+ html:has(body[data-responsive-page="practice"]),body[data-responsive-page="practice"]{height:auto!important;min-height:100%!important;overflow-x:clip!important;overflow-y:auto!important;}
+ body[data-responsive-page="practice"] .pc-wrap{height:auto!important;min-height:100dvh!important;max-height:none!important;overflow:visible!important;padding:clamp(10px,3vw,18px)!important;}
+ body[data-responsive-page="practice"] :is(.pc-layout,.pc-detail,.ide-shell,.ide-content){height:auto!important;max-height:none!important;min-height:0!important;overflow:visible!important;}
+ body[data-responsive-page="practice"] .ide-content{display:block!important;grid-template-columns:minmax(0,1fr)!important;}
+ body[data-responsive-page="practice"] :is(.arena-task-panel,.ide-primary,.ide-secondary){width:100%!important;max-width:100%!important;height:auto!important;max-height:none!important;min-height:230px!important;}
+ body[data-responsive-page="practice"] .ide-shell[data-arena-view="task"] .arena-task-panel,body[data-responsive-page="practice"] .ide-shell[data-arena-view="editor"] .ide-primary,body[data-responsive-page="practice"] .ide-shell[data-arena-view="output"] .ide-secondary{display:flex!important;}
+ body[data-responsive-page="practice"] :is(.arena-task-body,.ide-panel){overflow:auto!important;max-height:min(65dvh,720px)!important;}
+ body[data-responsive-page="practice"] :is(.hub-topbar,.hub-actions,.ide-topline,.ide-editor-toolbar){flex-wrap:wrap!important;}
+ body[data-responsive-page="practice"] .hub-dialog{width:100%!important;max-width:100%!important;max-height:95dvh!important;height:auto!important;overflow-y:auto!important;}
+ body[data-responsive-page="practice"] .hub-cards{max-height:none!important;height:auto!important;overflow:visible!important;display:grid!important;grid-template-columns:minmax(0,1fr)!important;}
+ body[data-responsive-page="practice"] .pc-filter-row{display:grid!important;grid-template-columns:minmax(0,1fr)!important;}
+ body[data-responsive-page="practice"] :is(.hub-primary,.ide-run,.ide-reset,.hub-close,.hub-mobile-featured,.arena-triple-nav button){min-height:44px!important;min-width:44px;}
+}
+@media(max-width:390px){body[data-responsive-page="practice"] .hub-topbar{display:flex!important;flex-direction:column!important;align-items:stretch!important}body[data-responsive-page="practice"] .hub-primary{width:100%!important;max-width:none!important}}
+@media(prefers-reduced-motion:reduce){body[data-responsive-page="practice"] *,body[data-responsive-page="practice"] *::before,body[data-responsive-page="practice"] *::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
