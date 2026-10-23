@@ -1,0 +1,20 @@
+/* Datalearningpath v23: additive inclusive interaction layer. */
+:root { --dlp-focus: #ffbf47; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 5rem; }
+body { overflow-x: clip; }
+:where(main, header, footer, section, article, nav, .wrap, .container, .grid) { min-width: 0; }
+:where(img, video, svg, canvas, iframe) { max-width: 100%; }
+:where(h1,h2,h3,p,li,a,button) { overflow-wrap: anywhere; }
+:where(button,[type="button"],[type="submit"],[type="reset"],select,summary,[role="button"],[role="tab"],[role="menuitem"],.nav-toggle,.lp-course-cta,.lp-studio-cta,.lp-primary,.lp-secondary,.lp-context-chip) { min-width: 48px; min-height: 48px; }
+:where(a[href]) { touch-action: manipulation; }
+:where(nav a[href],.footer a[href],.lp-course a[href],.lp-quick-card a[href],.lp-feature a[href],.lp-hero-actions a[href],.lp-context-nav a[href],a.btn,a.button) { display: inline-flex; align-items: center; min-height: 48px; }
+:where(input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),textarea,select) { min-height: 48px; max-width: 100%; font-size: max(16px, 1rem); }
+:where(input[type="checkbox"],input[type="radio"]) { min-width: 20px; min-height: 20px; accent-color: #157c77; }
+:where(a,button,input,select,textarea,summary,[tabindex]):focus-visible { outline: 3px solid var(--dlp-focus) !important; outline-offset: 3px !important; box-shadow: 0 0 0 5px rgba(0,0,0,.25); }
+:where(a,button,input,select,textarea,summary,[tabindex]):focus:not(:focus-visible) { outline-offset: 0; }
+.dlp-skip-link { position: fixed; z-index: 999999; top: 8px; left: 8px; transform: translateY(-160%); padding: 12px 20px; background: #111827; color: #fff; border-radius: 8px; }
+.dlp-skip-link:focus { transform: none; }
+:where(.lp-course,.lp-quick-card,.lp-feature) { transition: transform 180ms ease, box-shadow 180ms ease; }
+@media (hover:hover) and (pointer:fine) { :where(.lp-course,.lp-quick-card,.lp-feature):hover { transform: translateY(-3px); } }
+@media (max-width:767px) { :where(.wrap,.container) { max-width: 100%; } :where(.lp-course-grid,.lp-quick-grid,.lp-feature-grid) { grid-template-columns: minmax(0,1fr); } }
+@media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; } }

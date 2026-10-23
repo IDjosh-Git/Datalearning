@@ -11,7 +11,7 @@
   let allSyncPromise=null;
 
   function safeParse(value, fallback={}){ try { return JSON.parse(value || '') ?? fallback; } catch { return fallback; } }
-  function readLocal(key){ return safeParse(localStorage.getItem(key), {}); }
+  function readLocal(key){ try{return safeParse(localStorage.getItem(key), {});}catch{return {};} }
   function writeLocal(key, progress){ try{ localStorage.setItem(key,JSON.stringify(progress||{})); }catch(_){} }
   function normalizedProgress(rows,totalUnits=10){
     const result={}; for(let w=1;w<=totalUnits;w++) result[String(w)]=false;
@@ -21,7 +21,7 @@
   const pendingKey=(userId,slug)=>`zahPending:${userId}:${slug}`;
   const anonPendingKey=slug=>`zahPendingAnonymous:${slug}`;
   const migratedKey=(userId,slug)=>`zahCloudMigration:${MIGRATION_VERSION}:${userId}:${slug}`;
-  function readPending(key){ return safeParse(localStorage.getItem(key),{}); }
+  function readPending(key){ try{return safeParse(localStorage.getItem(key),{});}catch{return {};} }
   function writePending(key,value){ try{ if(value&&Object.keys(value).length)localStorage.setItem(key,JSON.stringify(value)); else localStorage.removeItem(key); }catch(_){} }
 
   async function getUser(){
@@ -60,7 +60,7 @@
     let remoteRows=await fetchCourseRows(user.id,slug);
     const remoteByWeek=new Map(remoteRows.map(r=>[String(r.week_no),r]));
     const pending=readPending(pendingKey(user.id,slug));
-    const migrated=localStorage.getItem(migratedKey(user.id,slug))==='1';
+    let migrated=false; try{migrated=localStorage.getItem(migratedKey(user.id,slug))==='1';}catch(_){}
     const rowsToPush=[];
 
     // Explicit unsynced actions always win first, including deliberate unchecks.
@@ -90,6 +90,7 @@
 
   async function saveWeek(slug,week,completed,user=null){
     const info=COURSE_MAP[slug]; if(!info) throw new Error(`Unknown course: ${slug}`);
+    if(!Number.isInteger(Number(week))||Number(week)<1||Number(week)>info.units)throw new RangeError('Invalid course unit');
     const local=readLocal(info.key); local[String(week)]=!!completed; writeLocal(info.key,local);
     if(!window.ZAH_DB?.configured||!window.ZAH_DB?.client){ queueAnonymous(slug,week,completed); return {ok:false,reason:'not_configured',progress:local}; }
     user=user||await getUser(); if(!user){ queueAnonymous(slug,week,completed); return {ok:false,reason:'signed_out',progress:local}; }
@@ -132,5 +133,6 @@
   // reimport when changing accounts on shared browsers.
   async function recoverCurrentDevice(user){ return syncAll({user:user||null}); }
 
+  window.addEventListener('dalp:online',()=>{if(window.ZAH_DB?.configured)syncAll().catch(error=>console.warn('Progress resync deferred',error));});
   window.ZAHProgressCloud={COURSE_MAP,MIGRATION_VERSION,getUser,readLocal,writeLocal,queueAnonymous,queueForUser,syncCourse,saveWeek,saveSnapshot,syncAll,recoverCurrentDevice};
 })();

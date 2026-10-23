@@ -22,7 +22,8 @@ export default async function handler(req,res){
  const token=auth.slice(7);
  const ttl=tokenSecondsLeft(token);
  if(ttl<1)return reply(res,401,{error:'Your session has expired. Please sign in again.'});
- const user=await verifyAccount(token);
+ let user;
+ try { user=await verifyAccount(token); } catch { return reply(res,503,{error:'Session verification is temporarily unavailable. Please try again.'}); }
  if(!user.ok)return reply(res,user.status===503?503:401,{error:'Unable to verify your session. Please try again.'});
  const secure=!/^localhost(?::\d+)?$|^127\.0\.0\.1(?::\d+)?$/.test(req.headers.host||'');
  res.setHeader('Set-Cookie',sessionCookie(token,ttl,secure));
