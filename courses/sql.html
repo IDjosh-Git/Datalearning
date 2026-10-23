@@ -183,7 +183,8 @@ main{min-width:0}.topbar{position:sticky;top:0;z-index:10;padding:13px 26px;disp
 <script defer src="../assets/course-utilities-v20.js?v=20261022.20"></script>
 <link rel="stylesheet" href="../assets/course-mobile-v21.css?v=20261022.22"/>
 <link rel="stylesheet" href="../assets/course-navigation-v22.css?v=20261022.22"/>
-<link rel="stylesheet" href="../assets/accessibility-v23.css?v=20261022.22"/></head>
+<link rel="stylesheet" href="../assets/accessibility-v23.css?v=20261022.22"/><link rel="stylesheet" href="../assets/design-system-v25.css?v=20261022.22">
+</head>
 <body data-course="sql" data-responsive-page="courses/sql">
 <div class="app"><aside class="sidebar" id="sidebar">
 <div class="brand course-brand"><div class="course-brand-shell"><div class="brand-company-name"><strong>Data Analysis Learning Path</strong><span>SQL Mastery Roadmap</span></div></div></div>
@@ -505,7 +506,20 @@ FROM orders WHERE status='Completed';</pre></div></div><div class="lab-task"><b>
 <div class="card"><div class="icon">🎯</div><h4>Session 3 — Review</h4><p>45–90 minutes. Complete the weekly project, take the test, and revisit weak areas.</p></div>
 </section>
 <div class="footer">SQL Mastery Roadmap • Beginner to Analytics SQL • Interactive single-file learning portal</div>
-</div></main></div><div class="toast" id="toast">Progress saved.</div>
+</div>
+<section class="dlp-mastery" id="applied-mastery" aria-labelledby="applied-mastery-title"><p class="dlp-kicker">Curriculum extension · practical proficiency</p><h2 id="applied-mastery-title">Applied mastery: SQL</h2><p class="dlp-mastery-lead">Work through the units in order. Each includes a measurable objective, realistic case, reproducible example and an evidence-based checkpoint. These supplemental exercises do not replace the existing quizzes or graded progress.</p><div class="dlp-module-grid"><article class="dlp-module"><span class="dlp-kicker">Applied unit 1</span><h3>Query trustworthy records</h3><h4>Learning objectives</h4><p>Understand keys, nulls, filters, and joins; explain why row counts change.</p><h4>Workplace use case</h4><p>Investigate orders and customers while preserving unmatched records.</p><h4>Guided practice</h4><ol><li>Profile tables</li><li>SELECT filtered columns</li><li>LEFT JOIN on customer_id</li><li>COUNT rows before and after.</li></ol><h4>Worked example</h4><pre><code>SELECT o.order_id, c.customer_name
+FROM orders AS o
+LEFT JOIN customers AS c ON c.customer_id = o.customer_id
+WHERE o.order_date &gt;= &#x27;2026-01-01&#x27;;</code></pre><h4>Assessment checkpoint</h4><p class="dlp-check">What is the difference between WHERE and ON for an outer join? Provide a row-count comparison.</p></article><article class="dlp-module"><span class="dlp-kicker">Applied unit 2</span><h3>Aggregate and validate metrics</h3><h4>Learning objectives</h4><p>Group by useful dimensions; calculate revenue; handle nulls and divide-by-zero safely.</p><h4>Workplace use case</h4><p>Find the top five product categories by realized revenue.</p><h4>Guided practice</h4><ol><li>Check order status</li><li>join order_items</li><li>aggregate with SUM</li><li>sort</li><li>compare with raw transactions.</li></ol><h4>Worked example</h4><pre><code>SELECT category, SUM(quantity * unit_price) AS revenue
+FROM order_items
+WHERE status = &#x27;completed&#x27;
+GROUP BY category
+ORDER BY revenue DESC
+LIMIT 5;</code></pre><h4>Assessment checkpoint</h4><p class="dlp-check">Explain why grouping by category does not guarantee unique transaction counts.</p></article><article class="dlp-module"><span class="dlp-kicker">Applied unit 3</span><h3>Analyze patterns with windows</h3><h4>Learning objectives</h4><p>Use CTEs, ROW_NUMBER, and running totals without collapsing detail.</p><h4>Workplace use case</h4><p>Rank monthly customer revenue and identify repeat purchasers.</p><h4>Guided practice</h4><ol><li>Create monthly CTE</li><li>sum revenue per customer</li><li>window-rank within each month</li><li>inspect ties.</li></ol><h4>Worked example</h4><pre><code>WITH monthly AS (
+ SELECT customer_id, DATE_TRUNC(&#x27;month&#x27;,order_date) AS month, SUM(total) AS revenue
+ FROM orders GROUP BY 1,2
+) SELECT *, DENSE_RANK() OVER (PARTITION BY month ORDER BY revenue DESC) AS rank_in_month FROM monthly;</code></pre><h4>Assessment checkpoint</h4><p class="dlp-check">When should you use DENSE_RANK rather than ROW_NUMBER? Provide an example with tied revenue.</p></article></div></section>
+</main></div><div class="toast" id="toast">Progress saved.</div>
 <script>
 const sidebar=document.getElementById('sidebar');
 document.getElementById('menuBtn').addEventListener('click',()=>sidebar.classList.toggle('open'));
