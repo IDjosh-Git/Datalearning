@@ -24,7 +24,11 @@ function apply(){scheduled=false;try{
  const mo=new MutationObserver(()=>{if(!scheduled){scheduled=true;queueMicrotask(apply)}});mo.observe(root,{childList:true});apply();
  root.addEventListener('click',e=>{if(e.target.closest('#ideRun,#practiceCheck,.arena-mobile-run')){const shell=root.querySelector('.ide-shell');if(shell&&matchMedia('(max-width:767px)').matches)select('output',shell);}});
  root.addEventListener('click',e=>{if(e.target.closest('#ideReset')){const name=root.querySelector('h2')?.textContent;if(name&&prefs.results)delete prefs.results[name];save();}});
- root.addEventListener('input',e=>{if(e.target.matches('#practiceAnswer,#ideFormulaBar')){prefs.lastEdited=Date.now();save()}});
- const feedbackObserver=new MutationObserver(()=>{const message=root.querySelector('#practiceFeedback')?.textContent?.trim();const name=root.querySelector('h2')?.textContent;if(!message||!name)return;prefs.results={...(prefs.results||{}),[name]:{text:message.slice(0,1800),saved:Date.now()}};save();});feedbackObserver.observe(root,{childList:true,subtree:true});
+ let editSave;root.addEventListener('input',e=>{if(e.target.matches('#practiceAnswer,#ideFormulaBar')){prefs.lastEdited=Date.now();clearTimeout(editSave);editSave=setTimeout(save,650)}});
+ // Listen to feedback changes only: syntax highlight DOM updates must not trigger storage writes.
+ let observedFeedback=null;
+ const feedbackObserver=new MutationObserver(()=>{const message=observedFeedback?.textContent?.trim();const name=root.querySelector('h2')?.textContent;if(!message||!name)return;prefs.results={...(prefs.results||{}),[name]:{text:message.slice(0,1800),saved:Date.now()}};save();});
+ function watchFeedback(){const next=root.querySelector('#practiceFeedback');if(next===observedFeedback)return;feedbackObserver.disconnect();observedFeedback=next;if(next)feedbackObserver.observe(next,{childList:true,characterData:true,subtree:true});}
+ new MutationObserver(watchFeedback).observe(root,{childList:true});watchFeedback();
  window.addEventListener('error',e=>{if(!String(e.filename||'').includes('practice')&&!String(e.filename||'').includes('arena'))return;console.error('Practice Arena:',e.message)});
 })();

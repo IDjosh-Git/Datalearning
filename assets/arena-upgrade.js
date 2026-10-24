@@ -12,10 +12,57 @@ function diagnose(query,error){const msg=String(error?.message||error||'The quer
  else if(/Unsupported SQL syntax/i.test(msg)){const tm=query.match(/\bFROM\s+(\w+)/i);if(tm&&!schema[tm[1].toLowerCase()]){let nearest=Object.keys(schema).map(n=>({n,d:distance(tm[1].toLowerCase(),n)})).sort((a,b)=>a.d-b.d)[0];hint=`Table “${tm[1]}” is unavailable. Available tables: orders and customers.`;if(nearest.d<=3){hint+=` Did you mean “${nearest.n}”?`;fix=query.replace(/\bFROM\s+\w+/i,'FROM '+nearest.n)}}}
  else if(/Only one read-only/i.test(msg))hint='Use one SELECT statement only. INSERT, UPDATE, DELETE and multi-statement queries are not permitted.';
  return {msg,hint,fix:fix!==query?fix:null};}
-function highlight(src){return esc(src).replace(/(&#39;(?:[^&]|&(?!#39;))*?&#39;)/g,'<span class="arena-string">$1</span>').replace(/\b(SELECT|FROM|WHERE|GROUP|BY|ORDER|HAVING|LIMIT|DISTINCT|AS|DESC|ASC|COUNT|SUM|AVG|MIN|MAX|IS|NOT|NULL|LIKE|BETWEEN|AND|OR)\b/gi,'<span class="arena-kw">$1</span>').replace(/\b(\d+(?:\.\d+)?)\b/g,'<span class="arena-number">$1</span>')}
-function sync(){const area=$('#practiceAnswer'),code=$('#arenaHighlight'),lines=$('#arenaLines');if(!area||!code)return;code.innerHTML=highlight(area.value)+'\n';lines.textContent=Array.from({length:Math.max(5,area.value.split('\n').length)},(_,i)=>i+1).join('\n');code.scrollTop=area.scrollTop;code.scrollLeft=area.scrollLeft;lines.scrollTop=area.scrollTop}
+/* Tokenise raw SQL before escaping it. Never apply regex replacements to HTML markup. */
+const sqlKeywords=new Set('SELECT FROM WHERE GROUP BY ORDER HAVING LIMIT DISTINCT AS DESC ASC COUNT SUM AVG MIN MAX IS NOT NULL LIKE BETWEEN AND OR JOIN LEFT RIGHT INNER OUTER FULL CROSS ON USING WITH RECURSIVE UNION ALL CASE WHEN THEN ELSE END EXISTS IN TRUE FALSE OFFSET CAST COALESCE ROUND OVER PARTITION ROW_NUMBER RANK DENSE_RANK CURRENT_DATE STRFTIME IFNULL'.split(' '));
+const sqlToken=/--[^\r\n]*|\/\*[\s\S]*?(?:\*\/|$)|'(?:''|[^'])*'|"(?:""|[^"])*"|`(?:``|[^`])*`|\[[^\]\r\n]*\]|\b\d+(?:\.\d+)?\b|\b[A-Za-z_][A-Za-z_0-9]*\b/g;
+function highlight(src){
+ const input=String(src??'');let html='',last=0;
+ sqlToken.lastIndex=0;
+ for(const match of input.matchAll(sqlToken)){
+  const token=match[0];html+=esc(input.slice(last,match.index));
+  let type='';
+  if(token.startsWith('--')||token.startsWith('/*'))type='arena-comment';
+  else if(/^[\'"`\[]/.test(token))type='arena-string';
+  else if(/^\d/.test(token))type='arena-number';
+  else if(sqlKeywords.has(token.toUpperCase()))type='arena-kw';
+  html+=type?`<span class="${type}">${esc(token)}</span>`:esc(token);
+  last=match.index+token.length;
+ }
+ return html+esc(input.slice(last));
+}
+/* Leave text insertion to the native textarea; highlight at most once per frame. */
+function attachEditor(textarea){
+ const wrapper=textarea.closest('.arena-workspace');
+ const code=wrapper?.querySelector('#arenaHighlight');
+ const lines=wrapper?.querySelector('#arenaLines');
+ if(!code||!lines)return;
+ textarea.setAttribute('spellcheck','false');
+ textarea.setAttribute('autocorrect','off');
+ textarea.setAttribute('autocapitalize','off');
+ textarea.setAttribute('autocomplete','off');
+ textarea.setAttribute('wrap','soft');
+ textarea.classList.add('sql-editor-textarea');
+ let frame=0,composing=false;
+ const alignScroll=()=>{code.scrollTop=textarea.scrollTop;code.scrollLeft=textarea.scrollLeft;lines.scrollTop=textarea.scrollTop};
+ const paint=()=>{frame=0;if(!textarea.isConnected)return;
+  code.innerHTML=highlight(textarea.value)+'\n';
+  lines.textContent=Array.from({length:Math.max(5,textarea.value.split('\n').length)},(_,i)=>i+1).join('\n');
+  alignScroll();
+ };
+ const schedule=()=>{if(!frame)frame=requestAnimationFrame(paint)};
+ textarea.addEventListener('input',schedule);
+ textarea.addEventListener('scroll',alignScroll,{passive:true});
+ textarea.addEventListener('compositionstart',()=>{composing=true});
+ textarea.addEventListener('compositionend',()=>{composing=false;schedule()});
+ textarea.addEventListener('keydown',e=>{
+  if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)&&!e.isComposing&&!composing){e.preventDefault();$('#practiceCheck')?.click()}
+  // Tab and Space are intentionally not intercepted: native typing and
+  // keyboard focus traversal are more reliable, including mobile keyboards.
+ });
+ paint();
+}
 function tab(which){document.querySelectorAll('[data-arena-tab]').forEach(b=>{let selected=b.dataset.arenaTab===which;b.classList.toggle('is-active',selected);b.setAttribute('aria-selected',String(selected))});document.querySelectorAll('[data-arena-panel]').forEach(el=>{el.hidden=el.dataset.arenaPanel!==which})}
-function decorate(task){if(task.kind!=='SQL')return;const textarea=$('#practiceAnswer');if(!textarea)return;textarea.setAttribute('aria-label','SQL editor');textarea.setAttribute('autocomplete','off');const wrapper=document.createElement('div');wrapper.className='arena-workspace';textarea.parentNode.insertBefore(wrapper,textarea);wrapper.innerHTML=`<div class="arena-heading"><span class="arena-dot"></span> SQL Playground <small>Read-only · Local sample data</small></div><div class="arena-preset-bar" aria-label="Query examples">${presets.map(([label,sql],i)=>`<button type="button" data-arena-preset="${i}" title="${esc(sql)}">${esc(label)}</button>`).join('')}</div><div class="arena-grid"><div class="arena-editor-pane"><div class="arena-pane-heading">query.sql <span>SQL</span></div><div class="arena-editor"><div class="arena-lines" id="arenaLines" aria-hidden="true"></div><div class="arena-code"><pre id="arenaHighlight" aria-hidden="true"></pre><div id="arenaInputHost"></div></div></div><div class="arena-shortcut">Ctrl / ⌘ + Enter to run</div></div><div class="arena-output-pane"><div class="arena-tabs" role="tablist" aria-label="Query output"><button role="tab" type="button" data-arena-tab="results" aria-selected="true" class="is-active">Data results</button><button role="tab" type="button" data-arena-tab="console" aria-selected="false">Execution console</button></div><div class="arena-panel" data-arena-panel="results" role="tabpanel" id="arenaResults"><div class="arena-idle">Run a SQL query to preview the results here.</div></div><div class="arena-panel" data-arena-panel="console" role="tabpanel" id="arenaConsole" hidden><div class="arena-idle">The execution log and diagnostics appear here.</div></div></div></div>`;$('#arenaInputHost').append(textarea);textarea.addEventListener('input',sync);textarea.addEventListener('scroll',sync);textarea.addEventListener('keydown',e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)){e.preventDefault();$('#practiceCheck')?.click()}if(e.key==='Tab'){e.preventDefault();const a=textarea.selectionStart,b=textarea.selectionEnd;textarea.setRangeText('  ',a,b,'end');textarea.dispatchEvent(new Event('input',{bubbles:true}))}});wrapper.addEventListener('click',e=>{const preset=e.target.closest('[data-arena-preset]');if(preset){textarea.value=presets[Number(preset.dataset.arenaPreset)][1];textarea.dispatchEvent(new Event('input',{bubbles:true}));textarea.focus();return}const b=e.target.closest('[data-arena-tab]');if(b)tab(b.dataset.arenaTab);const fix=e.target.closest('[data-arena-fix]');if(fix){textarea.value=wrapper._fix||textarea.value;textarea.dispatchEvent(new Event('input',{bubbles:true}));textarea.focus();tab('results')}});sync()}
+function decorate(task){if(task.kind!=='SQL')return;const textarea=$('#practiceAnswer');if(!textarea)return;textarea.setAttribute('aria-label','SQL editor');textarea.setAttribute('autocomplete','off');const wrapper=document.createElement('div');wrapper.className='arena-workspace';textarea.parentNode.insertBefore(wrapper,textarea);wrapper.innerHTML=`<div class="arena-heading"><span class="arena-dot"></span> SQL Playground <small>Read-only · Local sample data</small></div><div class="arena-preset-bar" aria-label="Query examples">${presets.map(([label,sql],i)=>`<button type="button" data-arena-preset="${i}" title="${esc(sql)}">${esc(label)}</button>`).join('')}</div><div class="arena-grid"><div class="arena-editor-pane"><div class="arena-pane-heading">query.sql <span>SQL</span></div><div class="arena-editor"><div class="arena-lines" id="arenaLines" aria-hidden="true"></div><div class="arena-code"><pre id="arenaHighlight" aria-hidden="true"></pre><div id="arenaInputHost"></div></div></div><div class="arena-shortcut">Ctrl / ⌘ + Enter to run</div></div><div class="arena-output-pane"><div class="arena-tabs" role="tablist" aria-label="Query output"><button role="tab" type="button" data-arena-tab="results" aria-selected="true" class="is-active">Data results</button><button role="tab" type="button" data-arena-tab="console" aria-selected="false">Execution console</button></div><div class="arena-panel" data-arena-panel="results" role="tabpanel" id="arenaResults"><div class="arena-idle">Run a SQL query to preview the results here.</div></div><div class="arena-panel" data-arena-panel="console" role="tabpanel" id="arenaConsole" hidden><div class="arena-idle">The execution log and diagnostics appear here.</div></div></div></div>`;$('#arenaInputHost').append(textarea);attachEditor(textarea);wrapper.addEventListener('click',e=>{const preset=e.target.closest('[data-arena-preset]');if(preset){textarea.value=presets[Number(preset.dataset.arenaPreset)][1];textarea.dispatchEvent(new Event('input',{bubbles:true}));textarea.focus();return}const b=e.target.closest('[data-arena-tab]');if(b)tab(b.dataset.arenaTab);const fix=e.target.closest('[data-arena-fix]');if(fix){textarea.value=wrapper._fix||textarea.value;textarea.dispatchEvent(new Event('input',{bubbles:true}));textarea.focus();tab('results')}});}
 function report({query,rows,error,duration,passed}){const wrapper=$('.arena-workspace');if(!wrapper)return;const results=$('#arenaResults'),consoleEl=$('#arenaConsole'),time=Math.max(0,Number(duration)||0).toFixed(1);if(error){const d=diagnose(query,error);wrapper._fix=d.fix;results.innerHTML=`<div class="arena-error" role="alert"><strong>Query could not execute</strong><p>${esc(d.msg)}</p><p>${esc(d.hint)}</p>${d.fix?'<button type="button" data-arena-fix>Apply suggested correction</button>':''}</div>`;consoleEl.innerHTML=`<div class="arena-log arena-log-error">ERROR · ${esc(time)} ms<br>${esc(d.msg)}<br>${esc(d.hint)}</div>`;tab('results');return}
  const data=Array.isArray(rows)?rows:[];const from=query.match(/\bFROM\s+(orders|customers|products|order_items)\b/i)?.[1]?.toLowerCase();const cols=data.length?Object.keys(data[0]):from&&/^\s*SELECT\s+\*\s+FROM\b/i.test(query)?schema[from]:[];const badge=`⚡ ${data.length} row${data.length===1?'':'s'} returned in ${time}ms`;
  results.innerHTML=`<div class="arena-summary"><span>${badge}</span><span>${passed?'Challenge passed':'Query executed'}</span></div>${data.length?`<div class="arena-table-scroll"><table class="arena-table"><thead><tr>${cols.map(c=>`<th scope="col">${esc(c)}</th>`).join('')}</tr></thead><tbody>${data.map((row,i)=>`<tr>${cols.map(k=>`<td>${row[k]===null?'<span class="arena-null">NULL</span>':esc(row[k])}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`:'<div class="arena-empty"><strong>Query executed successfully</strong><p>No matching records were found for this query. Try adjusting your filter conditions.</p></div>'}`;
