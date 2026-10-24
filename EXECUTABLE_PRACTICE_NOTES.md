@@ -1,3 +1,5 @@
+> **Latest implementation (October 24, 2026):** See [PRACTICE_ARENA_RELEASE_V31.md](PRACTICE_ARENA_RELEASE_V31.md) for the new 95-challenge Excel/SQLite implementation and supported scope. The historical notes below describe earlier versions.
+
 # Offline executable practice upgrade
 
 ## Added

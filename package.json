@@ -23,7 +23,8 @@
     "test:course-navigation:v22": "node tests/course-navigation-v22.mjs",
     "verify:vercel": "node tests/vercel-static-v28.mjs && node tests/course-redesign-v29.mjs",
     "test:course-redesign:v29": "node tests/course-redesign-v29.mjs",
-    "verify:deployment": "npm run verify:vercel && node tests/practice-deploy-audit.mjs"
+    "verify:deployment": "npm run verify:vercel && node tests/practice-deploy-audit.mjs",
+    "test:arena:v31": "node tests/offline-engines.mjs && node tests/practice-arena-v31.mjs && node tests/practice-deploy-audit.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.57.0",
