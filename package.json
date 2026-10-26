@@ -1,6 +1,6 @@
 {
   "name": "data-analysis-learning-path",
-  "version": "29.0.0",
+  "version": "33.0.0",
   "private": true,
   "type": "module",
   "description": "Adaptive learning platform with responsive design system and cross-device theme controls",
@@ -24,7 +24,8 @@
     "verify:vercel": "node tests/vercel-static-v28.mjs && node tests/course-redesign-v29.mjs",
     "test:course-redesign:v29": "node tests/course-redesign-v29.mjs",
     "verify:deployment": "npm run verify:vercel && node tests/practice-deploy-audit.mjs",
-    "test:arena:v31": "node tests/offline-engines.mjs && node tests/practice-arena-v31.mjs && node tests/practice-deploy-audit.mjs"
+    "test:arena:v31": "node tests/offline-engines.mjs && node tests/practice-arena-v31.mjs && node tests/practice-deploy-audit.mjs",
+    "test:mastery:v33": "node tests/mastery-v33.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.57.0",

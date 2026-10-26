@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head><link crossorigin="anonymous" href="https://cdn.jsdelivr.net" rel="preconnect"/>
+<script>document.documentElement.classList.add('dalp-auth-checking')</script>
+<link href="../assets/auth-gate.css?v=20261021.2" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0"></script>
+<script src="../assets/supabase-config.js?v=20261021"></script>
+<script src="../assets/supabase-client.js?v=20261021"></script><script defer="" src="../assets/server-session.js?v=20261022"></script>
+<script src="../assets/auth-gate.js?v=20261021.3"></script>
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+<title>Python for Data Analytics | 10-Module Mastery Course</title><script>try{const t=localStorage.getItem('dalp-theme');document.documentElement.dataset.theme=(t==='dark'||t==='light')?t:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch(e){document.documentElement.dataset.theme='light'}</script><meta content="An applied ten-module Python analytics course with pandas, SQL-reconciled examples, statistics and capstone practice." name="description"/>
+<style>
+:root{
+  --bg:#f4f7f9;--surface:#fff;--surface-soft:#eef5f9;--surface-warm:#fff7e7;
+  --text:#18202a;--muted:#66727e;--brand:#2563eb;--brand-dark:#1747a6;
+  --brand-deep:#102d6b;--brand-light:#e8f0ff;--gold:#f0ad21;--red:#c84c4c;
+  --border:#dfe6ec;--shadow:0 14px 40px rgba(28,52,78,.09);--radius:20px
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);background:var(--bg);line-height:1.62}
+button,input{font:inherit}a{text-decoration:none;color:inherit}
+.app{display:grid;grid-template-columns:305px minmax(0,1fr);min-height:100vh}
+.sidebar{position:sticky;top:0;height:100vh;overflow-y:auto;background:linear-gradient(180deg,var(--brand-deep),#152849 58%,#101d35);color:#fff;padding:22px 18px;border-right:1px solid rgba(255,255,255,.08);z-index:20}
+.brand{display:flex;align-items:center;gap:12px;margin-bottom:22px}.logo{width:50px;height:50px;display:grid;place-items:center;border-radius:14px;background:linear-gradient(135deg,var(--brand),var(--brand-dark));font-weight:900;font-size:19px;box-shadow:0 12px 30px rgba(0,0,0,.2)}
+.brand h1{font-size:16px;line-height:1.15;margin:0}.brand p{font-size:12px;color:#c2cee1;margin:4px 0 0}
+.searchbox{display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.11);margin-bottom:18px}
+.searchbox input{width:100%;border:0;outline:0;background:transparent;color:#fff}.searchbox input::placeholder{color:#aebbd0}
+.nav-title{margin:18px 10px 8px;font-size:10px;color:#93a4c0;text-transform:uppercase;letter-spacing:.13em;font-weight:800}
+.nav-link{display:flex;align-items:center;gap:10px;padding:10px 11px;margin:3px 0;border-radius:11px;color:#e1e8f3;font-size:13px;transition:.18s ease}
+.nav-link:hover,.nav-link.active{background:rgba(255,255,255,.10);color:#fff}
+.nav-num{min-width:26px;height:26px;border-radius:8px;display:grid;place-items:center;background:rgba(255,255,255,.08);font-size:11px;font-weight:800}
+.sidebar-progress{margin-top:20px;padding:14px;border-radius:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08)}
+.progress-meta{display:flex;justify-content:space-between;font-size:12px;color:#d2dbea}.track{height:8px;background:rgba(255,255,255,.13);border-radius:999px;margin-top:9px;overflow:hidden}.fill{height:100%;width:0;background:#7fc4ff;border-radius:999px;transition:.3s ease}
+main{min-width:0}.topbar{position:sticky;top:0;z-index:10;padding:13px 26px;display:flex;justify-content:space-between;align-items:center;gap:12px;background:rgba(244,247,249,.93);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.topbar-title{display:flex;align-items:center;gap:10px}.topbar strong{font-size:14px}.topbar small{color:var(--muted)}
+.menu-btn,.btn{border:1px solid var(--border);background:var(--surface);color:var(--text);padding:9px 13px;border-radius:10px;cursor:pointer;font-weight:700}.menu-btn{display:none}.btn.primary{background:var(--brand);color:#fff;border-color:var(--brand)}.btn:hover{filter:brightness(.98)}
+.content{max-width:1260px;margin:0 auto;padding:30px 30px 70px}
+.hero{border-radius:28px;padding:44px;color:#fff;overflow:hidden;background:radial-gradient(circle at 82% 16%,rgba(255,255,255,.15),transparent 25%),radial-gradient(circle at 92% 85%,rgba(240,173,33,.16),transparent 25%),linear-gradient(135deg,var(--brand-deep),var(--brand) 68%,#4a83ed);box-shadow:0 24px 60px rgba(24,68,140,.20)}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border-radius:999px;background:rgba(255,255,255,.13);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+.hero h2{font-size:clamp(36px,5.5vw,68px);line-height:1.02;margin:18px 0 15px;max-width:980px}.hero p{max-width:840px;color:#edf4ff;font-size:17px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px}.stat{padding:15px;border-radius:15px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.14)}.stat strong{display:block;font-size:22px}.stat span{font-size:12px;color:#d8e5fa}
+.section-head{margin:42px 0 16px}.section-head h3{margin:0 0 5px;font-size:28px}.section-head p{margin:0;color:var(--muted)}
+.overview-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:0 8px 25px rgba(31,59,88,.05)}
+.icon{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--brand-light);font-size:20px;margin-bottom:13px}.card h4{margin:0 0 7px}.card p{margin:0;color:var(--muted)}
+.course-map{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.map-card{padding:14px;background:#fff;border:1px solid var(--border);border-radius:14px;transition:.2s ease}.map-card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}.map-card b{display:block;color:var(--brand-dark);margin-bottom:3px}.map-card span{font-size:12px;color:var(--muted)}
+.week{margin-top:24px;background:#fff;border:1px solid var(--border);border-radius:22px;overflow:hidden;box-shadow:0 9px 30px rgba(28,55,80,.06)}
+.week-header{display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;padding:23px 25px;background:linear-gradient(180deg,#fff,#fbfdff);border-bottom:1px solid var(--border)}
+.week-num{width:56px;height:56px;border-radius:17px;background:var(--brand);color:#fff;display:grid;place-items:center;font-size:20px;font-weight:900}.week-title h3{margin:0 0 4px;font-size:24px}.week-title p{margin:0;color:var(--muted);font-size:14px}.badge{padding:7px 10px;border-radius:999px;background:var(--surface-warm);color:#8c5b00;font-size:12px;font-weight:800}
+.week-body{padding:24px}.learning-grid{display:grid;grid-template-columns:1.18fr .82fr;gap:20px}.lesson-list{display:grid;gap:12px}.lesson{padding:17px;border:1px solid var(--border);border-radius:15px;background:#fcfdff}.lesson h4{margin:0 0 8px;font-size:17px}.lesson p{margin:0;color:var(--muted)}.lesson ul{margin:9px 0 0;padding-left:20px}.lesson li{margin:5px 0}
+.side-stack{display:grid;gap:13px;align-content:start}.mini{padding:16px;border-radius:14px;border:1px solid var(--border);background:var(--surface-soft)}.mini.practice{background:#f7faff;border-color:#dbe6ff}.mini.tip{background:#fff9ed;border-color:#f2dfb7}.mini h4{margin:0 0 7px}.mini p{margin:0;color:#46515e}.mini ol,.mini ul{margin:8px 0 0;padding-left:20px}.mini li{margin:6px 0}
+.complete-label{display:flex;align-items:center;gap:9px;font-weight:750;color:var(--brand-dark);padding:5px}.complete-label input{width:18px;height:18px;accent-color:var(--brand)}
+.session-guide{margin-top:24px;border-top:1px solid var(--border);padding-top:22px}.session-guide>h4{font-size:22px;margin:0 0 6px}.session-guide>.intro{color:var(--muted);margin:0 0 16px}
+.session-block{margin:14px 0;padding:20px;border:1px solid var(--border);border-radius:17px;background:#fcfdff}.session-block h5{margin:0 0 8px;font-size:18px;color:var(--brand-dark)}.session-block h6{margin:16px 0 6px;font-size:14px;color:var(--brand-deep);text-transform:uppercase;letter-spacing:.04em}.session-block p{margin:6px 0;color:#42505d}.session-block ul,.session-block ol{margin:7px 0 0;padding-left:21px}.session-block li{margin:6px 0}
+.explain{margin:12px 0;padding:13px 14px;border-left:4px solid var(--brand);background:var(--brand-light);border-radius:0 11px 11px 0}.example-box{margin:12px 0;padding:14px;border:1px solid #dbe6ff;background:#f7faff;border-radius:12px}.example-box b{color:#244a91}.try-box{margin:12px 0;padding:14px;border:1px solid #f0d9a6;background:#fff8e8;border-radius:12px}.mistake-box{margin:12px 0;padding:14px;border:1px solid #f0c6c6;background:#fff7f7;border-radius:12px}.recap-box{margin:12px 0;padding:14px;border:1px solid var(--border);background:#f8fafb;border-radius:12px}
+.session-time{display:inline-flex;gap:6px;align-items:center;padding:5px 9px;border-radius:999px;background:#eef3f8;color:#526170;font-size:12px;font-weight:800;margin-bottom:8px}
+.code{display:block;white-space:pre-wrap;background:#111827;color:#f8fafc;border-radius:11px;padding:13px 14px;margin:10px 0;font-family:Consolas,"Courier New",monospace;font-size:13px;overflow:auto}
+.inline-code{display:inline-block;background:#edf3ff;color:#244a91;border:1px solid #d7e2fb;padding:2px 7px;border-radius:7px;font-family:Consolas,monospace;font-size:13px}
+.lesson-table{width:100%;border-collapse:collapse;margin-top:12px;font-size:14px}.lesson-table th,.lesson-table td{border:1px solid var(--border);padding:10px;text-align:left;vertical-align:top}.lesson-table th{background:#eef4ff;color:var(--brand-deep)}
+.quiz{margin-top:22px;padding-top:20px;border-top:1px dashed var(--border)}.quiz h4{font-size:20px;margin:0 0 12px}.question{padding:15px;border:1px solid var(--border);border-radius:14px;margin:10px 0;background:#fff}.question p{margin:0 0 10px;font-weight:700}.option{display:block;margin:6px 0;color:#45515c}.answer-note{display:none;margin-top:9px;background:#f4f7f9;padding:9px 11px;border-radius:9px;font-size:13px;color:#47535d}.quiz-actions{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:13px}.score{display:none;padding:8px 11px;border-radius:10px;background:var(--brand-light);font-weight:900;color:var(--brand-dark)}
+.project{margin-top:20px;padding:22px;border-radius:18px;color:#fff;background:linear-gradient(135deg,var(--brand-deep),var(--brand-dark))}.project h4{margin:0 0 7px}.project p{margin:0;color:#dce8f9}.project ul{padding-left:20px}
+.capstone{margin-top:30px;padding:27px;border-radius:22px;background:linear-gradient(135deg,#fff8e8,#fff1cb);border:1px solid #ecd59b}.capstone h3{margin-top:0}.check-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.check-item{display:flex;gap:10px;background:rgba(255,255,255,.78);padding:12px;border-radius:12px}
+.resources{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.kbd{font-family:Consolas,monospace;background:#eef1f4;border:1px solid #d9e1e7;border-bottom-width:2px;padding:2px 6px;border-radius:6px}
+.toast{position:fixed;right:22px;bottom:22px;z-index:100;background:#172a47;color:#fff;padding:12px 16px;border-radius:12px;box-shadow:var(--shadow);opacity:0;transform:translateY(12px);pointer-events:none;transition:.25s}.toast.show{opacity:1;transform:translateY(0)}.search-hidden{display:none!important}.footer{text-align:center;color:var(--muted);padding:28px 0 0;font-size:13px}
+@media(max-width:1050px){.app{grid-template-columns:1fr}.sidebar{position:fixed;left:-320px;width:305px;transition:.25s ease}.sidebar.open{left:0}.menu-btn{display:inline-block}.overview-grid{grid-template-columns:repeat(2,1fr)}.course-map{grid-template-columns:repeat(2,1fr)}.learning-grid{grid-template-columns:1fr}}
+@media(max-width:680px){.content{padding:18px 14px 55px}.topbar{padding:11px 14px}.hero{padding:30px 22px;border-radius:21px}.stats,.overview-grid,.course-map,.resources,.check-grid{grid-template-columns:1fr}.week-header{grid-template-columns:auto 1fr;padding:18px}.badge{grid-column:2}.week-body{padding:17px}.week-title h3{font-size:20px}.topbar .secondary-action{display:none}}
+@media print{.sidebar,.topbar,.quiz-actions,.complete-label{display:none!important}.app{display:block}.content{max-width:none;padding:0}.week{break-inside:avoid}body{background:#fff}}
+:root{--brand:#2f6fed;--brand-dark:#1b4fae;--brand-deep:#102b55;--brand-light:#eaf2ff}.hero{background:radial-gradient(circle at 82% 16%,rgba(255,255,255,.15),transparent 25%),radial-gradient(circle at 92% 85%,rgba(83,174,255,.18),transparent 25%),linear-gradient(135deg,#0f294e,#2465c5 68%,#3993dd)}</style>
+<style>
+.portal-home-btn{
+  position:fixed;left:18px;bottom:18px;z-index:9999;
+  display:inline-flex;align-items:center;gap:8px;
+  padding:10px 13px;border-radius:12px;
+  background:#254559;color:#fff;text-decoration:none;
+  font:700 13px Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 12px 28px rgba(20,45,58,.22);
+}
+.portal-home-btn:hover{background:#18313f}
+@media(max-width:680px){.portal-home-btn{left:12px;bottom:12px;padding:9px 11px}}
+@media print{.portal-home-btn{display:none!important}}
+</style>
+<style>
+.certificate-section{
+  margin-top:32px;padding:28px;border:1px solid var(--border);border-radius:22px;
+  background:linear-gradient(135deg,#ffffff,#f7fafb);box-shadow:0 10px 30px rgba(24,54,72,.06)
+}
+.certificate-section h3{margin:0 0 6px;font-size:28px}
+.certificate-section>p{margin:0 0 18px;color:var(--muted)}
+.cert-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:20px;align-items:start}
+.cert-controls{padding:20px;border:1px solid var(--border);border-radius:16px;background:#fff}
+.cert-controls label{display:block;font-weight:800;margin-bottom:7px}
+.cert-controls input{
+  width:100%;padding:12px 13px;border-radius:11px;border:1px solid var(--border);
+  outline:0;background:#fff;color:var(--text);margin-bottom:12px
+}
+.cert-controls input:focus{border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-light)}
+.cert-status{padding:11px 12px;border-radius:11px;background:#fff8e8;border:1px solid #ecd59b;color:#77520a;font-size:13px;margin-bottom:12px}
+.cert-status.ready{background:#eef8f1;border-color:#c9e6d1;color:#21603a}
+.cert-buttons{display:flex;gap:9px;flex-wrap:wrap}
+.cert-buttons .btn[disabled]{opacity:.45;cursor:not-allowed;filter:none}
+.cert-preview{
+  position:relative;aspect-ratio:1.414/1;border:10px solid #254559;background:#fff;
+  box-shadow:0 14px 30px rgba(25,55,72,.12);overflow:hidden
+}
+.cert-preview::before,.cert-preview::after{
+  content:"";position:absolute;width:180px;height:180px;border-radius:50%;
+  background:rgba(242,115,41,.10);z-index:0
+}
+.cert-preview::before{right:-70px;top:-70px}
+.cert-preview::after{left:-80px;bottom:-80px}
+.cert-inner{
+  position:absolute;inset:12px;border:2px solid #F27329;padding:5.5% 7%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;z-index:1
+}
+.cert-brand{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:900;color:#254559}
+.cert-title{font-family:Georgia,serif;font-size:clamp(25px,4vw,44px);line-height:1.1;margin:9px 0 5px;color:#18313f}
+.cert-sub{font-size:13px;color:#69777f}
+.cert-name{font-family:Georgia,serif;font-size:clamp(22px,3.2vw,36px);margin:14px 0 7px;color:#254559;border-bottom:1px solid #c8d3d9;padding:0 20px 5px;min-width:60%}
+.cert-course{font-size:clamp(16px,2.1vw,24px);font-weight:900;color:#F27329;margin-top:5px}
+.cert-meta{margin-top:12px;font-size:11px;color:#69777f}
+.cert-signatures{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:18px}
+.cert-sign{border-top:1px solid #8b9aa2;padding-top:5px;font-size:10px;color:#607079}
+.cert-seal{
+  position:absolute;right:6%;bottom:7%;width:64px;height:64px;border-radius:50%;
+  display:grid;place-items:center;border:4px double #F27329;color:#254559;font-weight:900;font-size:10px;
+  transform:rotate(-8deg);background:#fff
+}
+@media(max-width:850px){.cert-grid{grid-template-columns:1fr}.cert-preview{max-width:720px;width:100%}}
+@media print{.certificate-section{break-inside:avoid}.cert-controls{display:none}.cert-grid{display:block}.cert-preview{width:100%;box-shadow:none}}
+</style>
+<style>
+.cert-qr{width:72px;height:72px;margin:9px auto 0;padding:4px;background:#fff;border:1px solid #d8e1e6;border-radius:8px}
+.cert-qr canvas,.cert-qr img{width:100%!important;height:100%!important;display:block}
+.cert-id-line{margin-top:6px;font-size:10px;color:#53656f;letter-spacing:.03em}
+.cert-verify-note{font-size:9px;color:#7b8a92;margin-top:2px}
+.cert-brand-lockup{display:flex;align-items:center;justify-content:center;gap:8px}
+.cert-brand-mark{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;background:#254559;color:#fff;font-weight:900}
+.cert-signature-name{font-family:"Segoe Script","Brush Script MT",cursive;font-size:21px;line-height:1;color:#254559}
+.cert-signature-role{font-size:9px;color:#607079;margin-top:3px}
+.cert-verification-info{margin-top:14px;padding:12px;border:1px solid #dce5e9;border-radius:11px;background:#f7fafb;font-size:12px;color:#5e6d75}
+@media(max-width:680px){.cert-qr{width:58px;height:58px}.cert-signature-name{font-size:17px}}
+</style>
+<link href="../assets/brand-overrides.css?v=20261015.3" rel="stylesheet"/>
+<style>
+.learner-account-btn{
+  position:fixed;
+  right:18px;
+  bottom:66px;
+  z-index:9998;
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  padding:10px 13px;
+  border-radius:12px;
+  background:#F27329;
+  color:#fff;
+  text-decoration:none;
+  font:800 12px Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  box-shadow:0 10px 25px rgba(20,45,58,.18);
+}
+.learner-account-btn:hover{filter:brightness(.95)}
+@media(max-width:680px){
+  .learner-account-btn{right:12px;bottom:62px;padding:9px 11px}
+}
+@media print{.learner-account-btn{display:none!important}}
+</style>
+<link href="../assets/responsive-polish.css?v=20261015.3" rel="stylesheet"/>
+<link href="../assets/da-logo.svg" rel="icon" type="image/svg+xml"/><link href="../assets/course-refresh.css?v=20261015.3" rel="stylesheet"/><link href="../assets/modern.css?v=20261015.3" rel="stylesheet"><link href="../assets/course-modern.css?v=20261015.3" rel="stylesheet"/><link href="../assets/theme-polish.css?v=20261015.3" rel="stylesheet"/><link href="../assets/theme-consistency.css?v=20261015.3" rel="stylesheet"/>
+<link href="../assets/unified-finish.css?v=20261015.3" rel="stylesheet"/><link href="../assets/device-responsive.css?v=20261015.3" rel="stylesheet"/><link href="../assets/responsive-v2.css?v=20261015.3" rel="stylesheet"/><link href="../assets/workspace-shell.css?v=20261021.3" rel="stylesheet"/><link href="../assets/course-experience.css?v=20261021.3" rel="stylesheet"/>
+<link href="../assets/weekly-workspace.css?v=20261021.3" rel="stylesheet"/><link href="../assets/learner-companion.css?v=20261015.3" rel="stylesheet"/>
+<link href="../assets/theme-unified-v10.css?v=20261022" rel="stylesheet"/>
+<link href="../assets/mobile-experience-v13.css?v=20261022" rel="stylesheet">
+<link href="../assets/mobile-finish-v14.css?v=20261022.14" rel="stylesheet"/>
+<link href="../assets/responsive-system-v15.css?v=20261022.15" rel="stylesheet"/>
+<link href="../assets/theme-navigation-v16.css?v=20261022.16" rel="stylesheet"/>
+<link href="../assets/course-system-v17.css?v=20261022.17" rel="stylesheet"/>
+<link href="../assets/theme-speed-brand-v18.css?v=20261022.18" rel="stylesheet"/>
+<link href="../assets/course-branding-v19.css?v=20261022.19" rel="stylesheet"/>
+<link href="../assets/course-utilities-v20.css?v=20261022.20" rel="stylesheet"/>
+<script defer="" src="../assets/course-utilities-v20.js?v=20261022.20"></script>
+<link href="../assets/course-mobile-v21.css?v=20261022.22" rel="stylesheet"/>
+<link href="../assets/course-navigation-v22.css?v=20261022.22" rel="stylesheet"/>
+<link href="../assets/accessibility-v23.css?v=20261022.22" rel="stylesheet"/><link href="../assets/design-system-v25.css?v=20261022.22" rel="stylesheet"/>
+<link href="../assets/layout-mobile-v26.css?v=20261023.26" rel="stylesheet"/>
+<link href="../assets/data-atmosphere-v27.css?v=20261023.27" rel="stylesheet"/>
+<link href="../assets/dashboard-analytics-v28.css?v=20261023.28" rel="stylesheet"/>
+<link href="../assets/course-polish-v29.css?v=20261023.29" rel="stylesheet"/>
+<link href="../assets/controls-refresh-v30.css?v=20261023.30" rel="stylesheet"/></link></link><link href="../assets/mastery-accessibility-v33.css?v=33" rel="stylesheet"/></head>
+<body class="dlp-course-v29" data-course="python" data-responsive-page="courses/python">
+<div class="app"><aside class="sidebar" id="sidebar">
+<div class="brand course-brand"><div class="course-brand-shell"><div class="brand-company-name"><strong>Data Analysis Learning Path</strong><span>Python for Data Analytics</span></div></div></div>
+<div class="searchbox"><span>⌕</span><input aria-label="Search course" id="searchInput" placeholder="Search lessons, terms or formulas..."/></div>
+<div class="nav-title">Course</div><a class="nav-link active" href="#overview"><span class="nav-num">⌂</span>Overview</a><a class="nav-link intro-primer-link" href="introduction.html"><span class="nav-num">00</span>Introduction to Data Analysis ↗</a><div class="sidebar-tools"><a href="../reference.html">⌕ Formula &amp; query library</a><a href="../tutor.html">✦ Ask the tutor</a><a download="" href="../downloads/START_HERE.md">↓ Practice data &amp; guide</a></div><div class="nav-title">Weekly Sessions</div><a class="nav-link" href="#week1"><span class="nav-num">1</span> Python setup, files and analyst mindset</a><a class="nav-link" href="#week2"><span class="nav-num">2</span> Variables, types and control flow</a><a class="nav-link" href="#week3"><span class="nav-num">3</span> Functions, collections and reusable scripts</a><a class="nav-link" href="#week4"><span class="nav-num">4</span> pandas selection and filtering</a><a class="nav-link" href="#week5"><span class="nav-num">5</span> Cleaning, nulls, typing and joins</a><a class="nav-link" href="#week6"><span class="nav-num">6</span> groupby, pivot and business KPI reporting</a><a class="nav-link" href="#week7"><span class="nav-num">7</span> Statistics and uncertainty</a><a class="nav-link" href="#week8"><span class="nav-num">8</span> NumPy vectors and matrix intuition</a><a class="nav-link" href="#week9"><span class="nav-num">9</span> Time series, charts and testable forecasts</a><a class="nav-link" href="#week10"><span class="nav-num">10</span> Python analytics capstone</a>
+<div class="sidebar-progress"><div class="progress-meta"><span>Course progress</span><strong id="progressText">0%</strong></div><div class="track"><div class="fill" id="progressFill"></div></div></div>
+</aside><main>
+<div class="topbar">
+<div class="topbar-title"><button class="menu-btn" id="menuBtn">☰</button><div><img alt="Python icon" class="lp-icon small" src="../assets/icon-python.svg?v=33" style="vertical-align:middle;margin-right:7px"/><strong>Python for Data Analytics</strong><br/><small>Ten-module applied Python pathway</small></div></div>
+<div class="course-top-actions">
+<a class="btn course-account-link" href="../auth.html" id="learnerAccountBtn">Sign In</a>
+<button class="btn secondary-action" onclick="window.print()">Print / Save PDF</button>
+<button class="btn primary" id="resetBtn">Reset Progress</button>
+</div>
+</div>
+<div class="content"><section class="hero searchable" id="overview"><span class="eyebrow">PYTHON · 10 MODULES · BEGINNER TO JOB-READY</span><h2>Python for Data Analytics</h2><p>From Python fundamentals and pandas through statistics, NumPy, forecasting discipline and an auditable portfolio project.</p><div class="stats"><div class="stat"><strong>10</strong><span>Mastery modules</span></div><div class="stat"><strong>20</strong><span>Solved knowledge checks</span></div><div class="stat"><strong>1</strong><span>Shared retail dataset</span></div><div class="stat"><strong>1</strong><span>End-to-end capstone</span></div></div></section><section aria-label="Course exercise data" class="mastery-data-guide" id="mastery-data-python">
+<div><span class="mastery-eyebrow">REAL-WORLD WORKFLOW · PRACTICE RESOURCES</span><h3>One dataset, five analytical perspectives</h3><p>Lessons use a clearly labelled fictional six-order retail dataset. Compare SQL, Excel, DAX, Python and AI outputs against the same independent checks. The SQL Practice Arena uses its own separate challenge database.</p></div>
+<div class="mastery-data-links"><a download="" href="../downloads/mastery_orders.csv">Download retail CSV</a><a download="" href="../downloads/mastery_orders.sqlite">Download SQLite database</a><a href="../downloads/MASTERY_DATA_DICTIONARY.md" rel="noopener" target="_blank">Schema &amp; expected totals</a></div>
+<div class="mastery-controls"><span><b>6</b> orders</span><span><b>5</b> completed</span><span><b>578,000</b> completed revenue</span><span><b>135,000</b> completed profit</span></div></section><section class="week searchable" id="week1"><div class="week-header"><div class="week-num">1</div><div class="week-title"><h3>Python setup, files and analyst mindset</h3><p>Load a dataset reproducibly and inspect its structure.</p></div><span class="badge">Python mastery</span></div><div class="week-body"><div aria-label="Mastery lesson 1" class="course-mastery" data-lesson="1" data-mastered-course="python">
+<div class="mastery-eyebrow">MASTERCLASS / MODULE 01 · Python for Data Analytics</div>
+<h4 class="mastery-title">Python setup, files and analyst mindset</h4>
+<p class="mastery-objective"><strong>By the end, you can:</strong> Load a dataset reproducibly and inspect its structure.</p>
+<div class="mastery-body">
+<section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>Analysts use Python when work must be repeatable, combine multiple files, or scale beyond manual clicking. The first objective is a clean, runnable environment.</p></section>
+<section class="mastery-section"><h5>02 · How it actually works</h5><p>Python executes statements in order, stores objects in variables, and imports reusable packages. Use a virtual environment, pin dependencies, keep raw files separate, and confirm the working directory before reading CSV data.</p></section>
+<section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>from pathlib import Path
+import pandas as pd
+path = Path('mastery_orders.csv')
+orders = pd.read_csv(path, parse_dates=['order_date'])
+print(orders.shape)
+print(orders['status'].value_counts().to_dict())</code></pre>
+<div class="mastery-output"><h6>Expected result / verification</h6><pre tabindex="0">(6, 12)
+{'Completed': 5, 'Returned': 1}</pre></div></section>
+<div class="mastery-callout mastery-tip"><strong>💡 Industry pro tip</strong><p>Use python -m venv .venv and a requirements file. Do not embed credentials in notebooks.</p></div>
+<div class="mastery-callout mastery-trap"><strong>⚠️ Common beginner trap</strong><p>FileNotFoundError often means the working directory is wrong; inspect Path.cwd() and the path first.</p></div>
+<section class="mastery-section"><h5>04 · 🚀 Hands-on knowledge check</h5><p class="mastery-helper">Try each question before opening the worked solution.</p><details class="mastery-check"><summary>Challenge 1: What does orders.shape report?</summary><div class="mastery-check-answer"><strong>Worked solution</strong><p>The number of rows and columns as a tuple: (6,12) for the supplied file.</p></div></details><details class="mastery-check"><summary>Challenge 2: How can you avoid treating dates as arbitrary strings?</summary><div class="mastery-check-answer"><strong>Worked solution</strong><p>Pass parse_dates=['order_date'] in read_csv or validate with pd.to_datetime.</p></div></details></section>
+<section class="mastery-summary"><h5>📌 Key takeaways / cheat sheet</h5><ul><li>Create environment → read input → inspect rows/types → validate before transforming.</li></ul></section>
+</div></div><div class="mastery-completion"><label class="complete-label"><input class="completeBox" data-week="1" type="checkbox"/> Mark module 1 complete after attempting both knowledge checks</label></div></div></section><section class="week searchable" id="week2"><div class="week-header"><div class="week-num">2</div><div class="week-title"><h3>Variables, types and control flow</h3><p>Translate a calculation rule into correct Python logic.</p></div><span class="badge">Python mastery</span></div><div class="week-body"><div aria-label="Mastery lesson 2" class="course-mastery" data-lesson="2" data-mastered-course="python">
+<div class="mastery-eyebrow">MASTERCLASS / MODULE 02 · Python for Data Analytics</div>
+<h4 class="mastery-title">Variables, types and control flow</h4>
+<p class="mastery-objective"><strong>By the end, you can:</strong> Translate a calculation rule into correct Python logic.</p>
+<div class="mastery-body">
+<section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>Reporting calculations rely on precise numeric types and conditions; errors can turn a returned order into recognized sales.</p></section>
+<section class="mastery-section"><h5>02 · How it actually works</h5><p>int, float, str, bool and None model different values. Conditions are evaluated before a result is added. Use Decimal when exact decimal-currency arithmetic is required; floats can produce rounding surprises.</p></section>
+<section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>orders = [
+ {'id': 1001, 'qty': 2, 'price': 150000, 'status':'Completed'},
+ {'id': 1003, 'qty': 3, 'price': 8000, 'status':'Returned'}
+]
+value = sum(o['qty'] * o['price']
+  for o in orders if o['status']=='Completed')
+print(value)</code></pre>
+<div class="mastery-output"><h6>Expected result / verification</h6><pre tabindex="0">300000 (returned order 1003 is excluded).</pre></div></section>
+<div class="mastery-callout mastery-tip"><strong>💡 Industry pro tip</strong><p>Prefer descriptive variable names and assertions for assumptions, e.g., assert amount &gt;= 0.</p></div>
+<div class="mastery-callout mastery-trap"><strong>⚠️ Common beginner trap</strong><p>Using = inside a condition is a syntax error; use == for equality. Avoid comparing text values to numbers.</p></div>
+<section class="mastery-section"><h5>04 · 🚀 Hands-on knowledge check</h5><p class="mastery-helper">Try each question before opening the worked solution.</p><details class="mastery-check"><summary>Challenge 1: What is the value of 3 * 8000?</summary><div class="mastery-check-answer"><strong>Worked solution</strong><p>24000, but that returned order does not contribute to completed revenue.</p></div></details><details class="mastery-check"><summary>Challenge 2: How would you protect against a missing status value?</summary><div class="mastery-check-answer"><strong>Worked solution</strong><p>Use o.get('status')=='Completed'; absent status fails the inclusion test.</p></div></details></section>
+<section class="mastery-summary"><h5>📌 Key takeaways / cheat sheet</h5><ul><li>Types determine valid operations</li><li>test conditions explicitly</li><li>keep business rules readable.</li></ul></section>
+</div></div><div class="mastery-completion"><label class="complete-label"><input class="completeBox" data-week="2" type="checkbox"/> Mark module 2 complete after attempting both knowledge checks</label></div></div></section><section class="week searchable" id="week3"><div class="week-header"><div class="week-num">3</div><div class="week-title"><h3>Functions, collections and reusable scripts</h3><p>Write one calculation once and reuse it safely.</p></div><span class="badge">Python mastery</span></div><div class="week-body"><div aria-label="Mastery lesson 3" class="course-mastery" data-lesson="3" data-mastered-course="python">
+<div class="mastery-eyebrow">MASTERCLASS / MODULE 03 · Python for Data Analytics</div>
+<h4 class="mastery-title">Functions, collections and reusable scripts</h4>
+<p class="mastery-objective"><strong>By the end, you can:</strong> Write one calculation once and reuse it safely.</p>
+<div class="mastery-body">
+<section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>Analysts often repeat net-sales and margin logic across reports; functions prevent inconsistent copies.</p></section>
+<section class="mastery-section"><h5>02 · How it actually works</h5><p>A function receives parameters, evaluates a body, and returns a value. A list keeps ordered records; a dictionary maps named attributes. Type hints communicate contracts but do not validate values at runtime.</p></section>
+<section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>def revenue(quantity: int, unit_price: float) -&gt; float:
+    if quantity &lt; 0 or unit_price &lt; 0:
+        raise ValueError('Negative input is not expected')
+    return quantity * unit_price
+print(revenue(2, 150000))
+print(revenue(5, 8000))</code></pre>
+<div class="mastery-output"><h6>Expected result / verification</h6><pre tabindex="0">300000
+40000</pre></div></section>
+<div class="mastery-callout mastery-tip"><strong>💡 Industry pro tip</strong><p>Keep business rules in tested functions; keep file input/output at the edges of the script.</p></div>
+<div class="mastery-callout mastery-trap"><strong>⚠️ Common beginner trap</strong><p>Mutable default arguments such as def f(items=[]) can leak state between calls.</p></div>
+<section class="mastery-section"><h5>04 · 🚀 Hands-on knowledge check</h5><p class="mastery-helper">Try each question before opening the worked solution.</p><details class="mastery-check"><summary>Challenge 1: Why return instead of only print?</summary><div class="mastery-check-answer"><strong>Worked solution</strong><p>Returned values can be reused in calculations, unit tests and reports.</p></div></details><details class="mastery-check"><summary>Challenge 2: What happens with revenue(-1,8000)?</summary><div class="mastery-check-answer"><strong>Worked solution</strong><p>It raises ValueError because the function rejects unexpected negative quantities.</p></div></details></section>
+<section class="mastery-summary"><h5>📌 Key takeaways / cheat sheet</h5><ul><li>Small functions are easier to test</li><li>keep inputs explicit and outputs predictable.</li></ul></section>
+</div></div><div class="mastery-completion"><label class="complete-label"><input class="completeBox" data-week="3" type="checkbox"/> Mark module 3 complete after attempting both knowledge checks</label></div></div></section><section class="week searchable" id="week4"><div class="week-header"><div class="week-num">4</div><div class="week-title"><h3>pandas selection and filtering</h3><p>Filter the correct transactions before aggregation.</p></div><span class="badge">Python mastery</span></div><div class="week-body"><div aria-label="Mastery lesson 4" class="course-mastery" data-lesson="4" data-mastered-course="python">
+<div class="mastery-eyebrow">MASTERCLASS / MODULE 04 · Python for Data Analytics</div>
+<h4 class="mastery-title">pandas selection and filtering</h4>
+<p class="mastery-objective"><strong>By the end, you can:</strong> Filter the correct transactions before aggregation.</p>
+<div class="mastery-body">
+<section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>A pandas DataFrame brings SQL-like filtering to CSV data, allowing consistent calculations in automated pipelines.</p></section>
+<section class="mastery-section"><h5>02 · How it actually works</h5><p>A DataFrame is a two-dimensional labelled table. A Boolean mask marks eligible rows; .loc selects rows and columns by labels. Vectorised operations generally avoid slow Python-level iteration.</p></section>
+<section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>import pandas as pd
+df = pd.read_csv('mastery_orders.csv')
+completed = df.loc[df['status'].eq('Completed')].copy()
+completed['revenue'] = completed['quantity'] * completed['unit_price']
+print(len(completed), int(completed['revenue'].sum()))</code></pre>
+<div class="mastery-output"><h6>Expected result / verification</h6><pre tabindex="0">5 578000</pre></div></section>
+<div class="mastery-callout mastery-tip"><strong>💡 Industry pro tip</strong><p>Use .loc and .copy() when creating a filtered DataFrame to make intent explicit.</p></div>
+<div class="mastery-callout mastery-trap"><strong>⚠️ Common beginner trap</strong><p>Do not use `and` between pandas Series masks; use `&amp;` with parentheses: (a) &amp; (b).</p></div>
+<section class="mastery-section"><h5>04 · 🚀 Hands-on knowledge check</h5><p class="mastery-helper">Try each question before opening the worked solution.</p><details class="mastery-check"><summary>Challenge 1: How many rows qualify as Completed?</summary><div class="mastery-check-answer"><strong>Worked solution</strong><p>5; returned order 1003 is excluded by the Boolean mask.</p></div></details><details class="mastery-check"><summary>Challenge 2: How do you select just East completed orders?</summary><div class="mastery-check-answer"><strong>Worked solution</strong><p>df.loc[df['status'].eq('Completed') &amp; df['region'].eq('East')] returns orders 1001 and 1006.</p></div></details></section>
+<section class="mastery-summary"><h5>📌 Key takeaways / cheat sheet</h5><ul><li>Filter using Boolean masks</li><li>vectorize arithmetic</li><li>validate row counts.</li></ul></section>
+</div></div><div class="mastery-completion"><label class="complete-label"><input class="completeBox" data-week="4" type="checkbox"/> Mark module 4 complete after attempting both knowledge checks</label></div></div></section><section class="week searchable" id="week5"><div class="week-header"><div class="week-num">5</div><div class="week-title"><h3>Cleaning, nulls, typing and joins</h3><p>Protect an analytics pipeline against faulty imports.</p></div><span class="badge">Python mastery</span></div><div class="week-body"><div aria-label="Mastery lesson 5" class="course-mastery" data-lesson="5" data-mastered-course="python">
+<div class="mastery-eyebrow">MASTERCLASS / MODULE 05 · Python for Data Analytics</div>
+<h4 class="mastery-title">Cleaning, nulls, typing and joins</h4>
+<p class="mastery-objective"><strong>By the end, you can:</strong> Protect an analytics pipeline against faulty imports.</p>
+<div class="mastery-body">
+<section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>Noisy files often carry blank customer IDs, mixed formats and duplicate keys. Failures should be reported, not silently discarded.</p></section>
+<section class="mastery-section"><h5>02 · How it actually works</h5><p>Use .isna() for NULL checks, .duplicated() for repeated keys and .merge(validate=...) to enforce join cardinality. Convert types deliberately with pd.to_numeric and pd.to_datetime; coerce errors only when you keep an exception count.</p></section>
+<section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>import pandas as pd
+df = pd.read_csv('mastery_orders.csv')
+print(int(df['order_id'].duplicated().sum()))
+print(int(df['customer_id'].isna().sum()))
+assert df['order_id'].is_unique
+assert df['quantity'].ge(0).all()</code></pre>
+<div class="mastery-output"><h6>Expected result / verification</h6><pre tabindex="0">0 duplicate OrderIDs
+0 missing customer IDs
+Assertions pass for the training file.</pre></div></section>
+<div class="mastery-callout mastery-tip"><strong>💡 Industry pro tip</strong><p>Check duplicates and missing IDs both before and after merges; use validate="many_to_one" for fact→dimension lookups.</p></div>
+<div class="mastery-callout mastery-trap"><strong>⚠️ Common beginner trap</strong><p>A merge on duplicate lookup keys can multiply transaction rows and inflate sales.</p></div>
+<section class="mastery-section"><h5>04 · 🚀 Hands-on knowledge check</h5><p class="mastery-helper">Try each question before opening the worked solution.</p><details class="mastery-check"><summary>Challenge 1: What does validate="many_to_one" mean?</summary><div class="mastery-check-answer"><strong>Worked solution</strong><p>Many fact rows can match one dimension key, but the dimension key must be unique.</p></div></details><details class="mastery-check"><summary>Challenge 2: When should to_numeric(errors="coerce") be used?</summary><div class="mastery-check-answer"><strong>Worked solution</strong><p>Only alongside a review of rows converted to NaN, not as a silent data-loss shortcut.</p></div></details></section>
+<section class="mastery-summary"><h5>📌 Key takeaways / cheat sheet</h5><ul><li>Validate keys, types and joins</li><li>produce an exception report alongside cleaned data.</li></ul></section>
+</div></div><div class="mastery-completion"><label class="complete-label"><input class="completeBox" data-week="5" type="checkbox"/> Mark module 5 complete after attempting both knowledge checks</label></div></div></section><section class="week searchable" id="week6"><div class="week-header"><div class="week-num">6</div><div class="week-title"><h3>groupby, pivot and business KPI reporting</h3><p>Generate a clear, reproducible regional summary.</p></div><span class="badge">Python mastery</span></div><div class="week-body"><div aria-label="Mastery lesson 6" class="course-mastery" data-lesson="6" data-mastered-course="python">
+<div class="mastery-eyebrow">MASTERCLASS / MODULE 06 · Python for Data Analytics</div>
+<h4 class="mastery-title">groupby, pivot and business KPI reporting</h4>
+<p class="mastery-objective"><strong>By the end, you can:</strong> Generate a clear, reproducible regional summary.</p>
+<div class="mastery-body">
+<section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>An automated weekly report needs the same measure definitions as the SQL and Power BI versions.</p></section>
+<section class="mastery-section"><h5>02 · How it actually works</h5><p>groupby creates category partitions and reduces each to aggregations. Avoid adding percentages as if they were additive measures; compute a ratio from aggregated numerator and denominator.</p></section>
+<section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>import pandas as pd
+df = pd.read_csv('mastery_orders.csv')
+x = df.loc[df.status.eq('Completed')].copy()
+x['revenue'] = x.quantity * x.unit_price
+print(x.groupby('region')['revenue'].sum().sort_values(ascending=False).to_dict())</code></pre>
+<div class="mastery-output"><h6>Expected result / verification</h6><pre tabindex="0">{'East': 316000, 'West': 190000, 'North': 72000}</pre></div></section>
+<div class="mastery-callout mastery-tip"><strong>💡 Industry pro tip</strong><p>Use named aggregation and unit-tested metric functions in production reporting code.</p></div>
+<div class="mastery-callout mastery-trap"><strong>⚠️ Common beginner trap</strong><p>groupby drops NULL grouping keys by default in pandas unless dropna=False is specified.</p></div>
+<section class="mastery-section"><h5>04 · 🚀 Hands-on knowledge check</h5><p class="mastery-helper">Try each question before opening the worked solution.</p><details class="mastery-check"><summary>Challenge 1: How do you calculate completed profit?</summary><div class="mastery-check-answer"><strong>Worked solution</strong><p>Create x['profit']=x.quantity*(x.unit_price-x.unit_cost), then sum: 135000.</p></div></details><details class="mastery-check"><summary>Challenge 2: How do you confirm the regional totals?</summary><div class="mastery-check-answer"><strong>Worked solution</strong><p>Sum regional revenue totals; the result must equal 578000.</p></div></details></section>
+<section class="mastery-summary"><h5>📌 Key takeaways / cheat sheet</h5><ul><li>Filter correctly</li><li>group at the business grain</li><li>reconcile grouped sums.</li></ul></section>
+</div></div><div class="mastery-completion"><label class="complete-label"><input class="completeBox" data-week="6" type="checkbox"/> Mark module 6 complete after attempting both knowledge checks</label></div></div></section><section class="week searchable" id="week7"><div class="week-header"><div class="week-num">7</div><div class="week-title"><h3>Statistics and uncertainty</h3><p>Interpret metrics without making unsupported causal claims.</p></div><span class="badge">Python mastery</span></div><div class="week-body"><div aria-label="Mastery lesson 7" class="course-mastery" data-lesson="7" data-mastered-course="python">
+<div class="mastery-eyebrow">MASTERCLASS / MODULE 07 · Python for Data Analytics</div>
+<h4 class="mastery-title">Statistics and uncertainty</h4>
+<p class="mastery-objective"><strong>By the end, you can:</strong> Interpret metrics without making unsupported causal claims.</p>
+<div class="mastery-body">
+<section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>Executives often ask whether an apparent change reflects a durable pattern or random variation; statistics clarify what data can and cannot establish.</p></section>
+<section class="mastery-section"><h5>02 · How it actually works</h5><p>Mean is sum/count, median is the middle observation after sorting, standard deviation measures variation, and sampling affects uncertainty. Correlation describes association, not proof of causation. Six fabricated rows are useful for learning syntax, not inference.</p></section>
+<section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>values = [300000,40000,72000,150000,16000]
+import statistics as stats
+print(stats.mean(values))
+print(stats.median(values))
+print(min(values), max(values))</code></pre>
+<div class="mastery-output"><h6>Expected result / verification</h6><pre tabindex="0">115600
+72000
+16000 300000</pre></div></section>
+<div class="mastery-callout mastery-tip"><strong>💡 Industry pro tip</strong><p>Communicate sample size, metric definition and any selection bias alongside a summary.</p></div>
+<div class="mastery-callout mastery-trap"><strong>⚠️ Common beginner trap</strong><p>Using the mean as a typical order is misleading when there is a large 300000 order; compare median.</p></div>
+<section class="mastery-section"><h5>04 · 🚀 Hands-on knowledge check</h5><p class="mastery-helper">Try each question before opening the worked solution.</p><details class="mastery-check"><summary>Challenge 1: Which statistic is more resistant to outliers?</summary><div class="mastery-check-answer"><strong>Worked solution</strong><p>Median: 72000 in this five-order completed sample.</p></div></details><details class="mastery-check"><summary>Challenge 2: Can you infer nationwide sales growth from these six rows?</summary><div class="mastery-check-answer"><strong>Worked solution</strong><p>No. The dataset is intentionally illustrative and not a representative population sample.</p></div></details></section>
+<section class="mastery-summary"><h5>📌 Key takeaways / cheat sheet</h5><ul><li>Describe distributions and limitations</li><li>avoid unsupported causal or population claims.</li></ul></section>
+</div></div><div class="mastery-completion"><label class="complete-label"><input class="completeBox" data-week="7" type="checkbox"/> Mark module 7 complete after attempting both knowledge checks</label></div></div></section><section class="week searchable" id="week8"><div class="week-header"><div class="week-num">8</div><div class="week-title"><h3>NumPy vectors and matrix intuition</h3><p>Recognize vectorized calculations and matrix dimensions.</p></div><span class="badge">Python mastery</span></div><div class="week-body"><div aria-label="Mastery lesson 8" class="course-mastery" data-lesson="8" data-mastered-course="python">
+<div class="mastery-eyebrow">MASTERCLASS / MODULE 08 · Python for Data Analytics</div>
+<h4 class="mastery-title">NumPy vectors and matrix intuition</h4>
+<p class="mastery-objective"><strong>By the end, you can:</strong> Recognize vectorized calculations and matrix dimensions.</p>
+<div class="mastery-body">
+<section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>Forecasting and machine learning depend on efficient numeric arrays; matrix dimensions explain common shape errors.</p></section>
+<section class="mastery-section"><h5>02 · How it actually works</h5><p>A vector is an ordered numeric array; a matrix has rows and columns. Elementwise multiplication pairs corresponding positions; dot products sum pairwise products. A feature matrix X commonly has rows=observations and columns=features.</p></section>
+<section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>import numpy as np
+qty = np.array([2,5,4])
+price = np.array([150000,8000,18000])
+print((qty*price).tolist())
+print(int(qty @ price))
+print(np.column_stack([qty,price]).shape)</code></pre>
+<div class="mastery-output"><h6>Expected result / verification</h6><pre tabindex="0">[300000, 40000, 72000]
+412000
+(3, 2)</pre></div></section>
+<div class="mastery-callout mastery-tip"><strong>💡 Industry pro tip</strong><p>Vectorise calculations where possible, but confirm array alignment and units before trusting speed gains.</p></div>
+<div class="mastery-callout mastery-trap"><strong>⚠️ Common beginner trap</strong><p>Broadcasting may silently stretch arrays; use shape checks instead of relying on assumptions.</p></div>
+<section class="mastery-section"><h5>04 · 🚀 Hands-on knowledge check</h5><p class="mastery-helper">Try each question before opening the worked solution.</p><details class="mastery-check"><summary>Challenge 1: What does an array shape of (3,2) mean?</summary><div class="mastery-check-answer"><strong>Worked solution</strong><p>Three observations and two numeric features per observation.</p></div></details><details class="mastery-check"><summary>Challenge 2: What is the dot product of qty and price?</summary><div class="mastery-check-answer"><strong>Worked solution</strong><p>412000, the sum of the three example line revenues.</p></div></details></section>
+<section class="mastery-summary"><h5>📌 Key takeaways / cheat sheet</h5><ul><li>Array shape matters</li><li>multiply elementwise for row totals</li><li>dot product sums them.</li></ul></section>
+</div></div><div class="mastery-completion"><label class="complete-label"><input class="completeBox" data-week="8" type="checkbox"/> Mark module 8 complete after attempting both knowledge checks</label></div></div></section><section class="week searchable" id="week9"><div class="week-header"><div class="week-num">9</div><div class="week-title"><h3>Time series, charts and testable forecasts</h3><p>Create a baseline with transparent limitations.</p></div><span class="badge">Python mastery</span></div><div class="week-body"><div aria-label="Mastery lesson 9" class="course-mastery" data-lesson="9" data-mastered-course="python">
+<div class="mastery-eyebrow">MASTERCLASS / MODULE 09 · Python for Data Analytics</div>
+<h4 class="mastery-title">Time series, charts and testable forecasts</h4>
+<p class="mastery-objective"><strong>By the end, you can:</strong> Create a baseline with transparent limitations.</p>
+<div class="mastery-body">
+<section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>Forecasting decisions require a benchmark and careful time-aware validation, rather than presenting a clever model as automatically accurate.</p></section>
+<section class="mastery-section"><h5>02 · How it actually works</h5><p>Group by chronological month, create a baseline such as previous-month value, and compare predicted vs actual on later unseen periods. Data leakage occurs when future observations enter training features or preprocessing.</p></section>
+<section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>import pandas as pd
+df = pd.read_csv('mastery_orders.csv',parse_dates=['order_date'])
+x = df[df.status.eq('Completed')].copy()
+x['revenue'] = x.quantity*x.unit_price
+monthly = x.groupby(x.order_date.dt.to_period('M'))['revenue'].sum()
+print(monthly.to_dict())</code></pre>
+<div class="mastery-output"><h6>Expected result / verification</h6><pre tabindex="0">{Period('2026-01', 'M'): 340000, Period('2026-02', 'M'): 238000}</pre></div></section>
+<div class="mastery-callout mastery-tip"><strong>💡 Industry pro tip</strong><p>For a real forecast, gather many more periods, define a holdout window and compare against a naive baseline.</p></div>
+<div class="mastery-callout mastery-trap"><strong>⚠️ Common beginner trap</strong><p>Two months cannot support a reliable seasonal forecast; never advertise predictive accuracy from this demo.</p></div>
+<section class="mastery-section"><h5>04 · 🚀 Hands-on knowledge check</h5><p class="mastery-helper">Try each question before opening the worked solution.</p><details class="mastery-check"><summary>Challenge 1: What is the naive forecast for February based on January?</summary><div class="mastery-check-answer"><strong>Worked solution</strong><p>340000, the previous-month completed revenue.</p></div></details><details class="mastery-check"><summary>Challenge 2: What is the February absolute forecast error for that baseline?</summary><div class="mastery-check-answer"><strong>Worked solution</strong><p>abs(238000-340000)=102000.</p></div></details></section>
+<section class="mastery-summary"><h5>📌 Key takeaways / cheat sheet</h5><ul><li>Time-aware splits prevent leakage</li><li>compare with a baseline</li><li>disclose uncertainty.</li></ul></section>
+</div></div><div class="mastery-completion"><label class="complete-label"><input class="completeBox" data-week="9" type="checkbox"/> Mark module 9 complete after attempting both knowledge checks</label></div></div></section><section class="week searchable" id="week10"><div class="week-header"><div class="week-num">10</div><div class="week-title"><h3>Python analytics capstone</h3><p>Package a repeatable, independently verified report.</p></div><span class="badge">Python mastery</span></div><div class="week-body"><div aria-label="Mastery lesson 10" class="course-mastery" data-lesson="10" data-mastered-course="python">
+<div class="mastery-eyebrow">MASTERCLASS / MODULE 10 · Python for Data Analytics</div>
+<h4 class="mastery-title">Python analytics capstone</h4>
+<p class="mastery-objective"><strong>By the end, you can:</strong> Package a repeatable, independently verified report.</p>
+<div class="mastery-body">
+<section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>Professional scripts deliver a consistent output and clear failure messages when inputs change.</p></section>
+<section class="mastery-section"><h5>02 · How it actually works</h5><p>Use functions for load, validate, transform, aggregate and export. Include small unit tests, fixed dependency versions, a README and documented schema. Reconcile totals against the SQL workbook control.</p></section>
+<section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>import pandas as pd
+df = pd.read_csv('mastery_orders.csv')
+assert df.order_id.is_unique
+x = df[df.status.eq('Completed')].copy()
+x['revenue']=x.quantity*x.unit_price
+x['profit']=x.quantity*(x.unit_price-x.unit_cost)
+summary = x.groupby('region')[['revenue','profit']].sum()
+assert x.revenue.sum()==578000
+assert x.profit.sum()==135000
+print(summary.loc['East'].to_dict())</code></pre>
+<div class="mastery-output"><h6>Expected result / verification</h6><pre tabindex="0">{'revenue': 316000, 'profit': 66000}</pre></div></section>
+<div class="mastery-callout mastery-tip"><strong>💡 Industry pro tip</strong><p>Add automated test cases for empty data, missing required fields and duplicate identifiers.</p></div>
+<div class="mastery-callout mastery-trap"><strong>⚠️ Common beginner trap</strong><p>Notebook outputs saved after a different execution order are not proof of reproducibility; run from a clean kernel.</p></div>
+<section class="mastery-section"><h5>04 · 🚀 Hands-on knowledge check</h5><p class="mastery-helper">Try each question before opening the worked solution.</p><details class="mastery-check"><summary>Challenge 1: What should fail the capstone build?</summary><div class="mastery-check-answer"><strong>Worked solution</strong><p>Missing required columns, duplicated order IDs or totals that violate reconciliation controls.</p></div></details><details class="mastery-check"><summary>Challenge 2: What should the README specify?</summary><div class="mastery-check-answer"><strong>Worked solution</strong><p>How to install, where to place input files, expected schema, run command, metric definitions and known limitations.</p></div></details></section>
+<section class="mastery-summary"><h5>📌 Key takeaways / cheat sheet</h5><ul><li>Package source + tests + readme + validated outputs, not only notebook screenshots.</li></ul></section>
+</div></div><div class="mastery-completion"><label class="complete-label"><input class="completeBox" data-week="10" type="checkbox"/> Mark module 10 complete after attempting both knowledge checks</label></div></div></section><section class="capstone searchable" id="certificate"><h3>Python learning milestone</h3><p>Complete all ten lessons, reproduce the dataset control totals, and submit your independently tested source code and README to your instructor. The built-in Practice Arena currently executes SQL and Excel only; Python snippets run in your local Python environment or an approved notebook.</p><a class="btn primary" download="" href="../downloads/mastery_orders.csv">Download practice CSV</a></section></div>
+
+</main></div><div class="toast" id="toast">Progress saved.</div>
+<script>
+const sidebar=document.getElementById('sidebar');
+document.getElementById('menuBtn').addEventListener('click',()=>sidebar.classList.toggle('open'));
+document.querySelectorAll('.nav-link').forEach(a=>a.addEventListener('click',()=>sidebar.classList.remove('open')));
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.classList.remove('show'),1800);}
+const courseKey=document.body.dataset.course+'RoadmapProgress';
+const completeBoxes=[...document.querySelectorAll('.completeBox')];
+function loadProgress(){const saved=JSON.parse(localStorage.getItem(courseKey)||'{}');completeBoxes.forEach(cb=>cb.checked=!!saved[cb.dataset.week]);updateProgress(false);}
+function updateProgress(showToast=true){const saved={};completeBoxes.forEach(cb=>saved[cb.dataset.week]=cb.checked);localStorage.setItem(courseKey,JSON.stringify(saved));const done=completeBoxes.filter(cb=>cb.checked).length;const pct=Math.round(done/completeBoxes.length*100);document.getElementById('progressFill').style.width=pct+'%';document.getElementById('progressText').textContent=pct+'%';if(showToast)toast('Progress saved.');}
+completeBoxes.forEach(cb=>cb.addEventListener('change',()=>updateProgress(true)));
+document.getElementById('resetBtn').addEventListener('click',()=>{if(confirm('Reset all saved course progress and quiz selections?')){localStorage.removeItem(courseKey);completeBoxes.forEach(cb=>cb.checked=false);document.querySelectorAll('input[type=radio]').forEach(r=>r.checked=false);document.querySelectorAll('.score,.answer-note').forEach(el=>el.style.display='none');updateProgress(false);toast('Course progress reset.');}});
+document.querySelectorAll('.quiz').forEach(quiz=>{
+  quiz.querySelector('.gradeBtn').addEventListener('click',()=>{const qs=[...quiz.querySelectorAll('.question')];let correct=0,answered=0;qs.forEach(q=>{const chosen=q.querySelector('input[type=radio]:checked');if(chosen){answered++;if(chosen.value===q.dataset.answer)correct++;}});const score=quiz.querySelector('.score');score.style.display='inline-block';score.textContent=`Score: ${correct}/${qs.length} (${Math.round(correct/qs.length*100)}%)`;if(answered<qs.length)toast(`You answered ${answered} of ${qs.length} questions.`);});
+  quiz.querySelector('.revealBtn').addEventListener('click',e=>{const notes=quiz.querySelectorAll('.answer-note');const opening=[...notes].some(n=>n.style.display!=='block');notes.forEach(n=>n.style.display=opening?'block':'none');e.currentTarget.textContent=opening?'Hide Answers':'Show Answers';});
+});
+const search=document.getElementById('searchInput');search.addEventListener('input',()=>{const term=search.value.trim().toLowerCase();document.querySelectorAll('.searchable').forEach(section=>{const match=!term||section.innerText.toLowerCase().includes(term);section.classList.toggle('search-hidden',!match);});});
+const sections=[...document.querySelectorAll('section[id]')];const navLinks=[...document.querySelectorAll('.nav-link')];
+const observer=new IntersectionObserver(entries=>{entries.filter(e=>e.isIntersecting).forEach(entry=>{navLinks.forEach(n=>n.classList.remove('active'));const link=document.querySelector(`.nav-link[href="#${entry.target.id}"]`);if(link)link.classList.add('active');});},{rootMargin:'-20% 0px -70% 0px',threshold:0});
+sections.forEach(s=>observer.observe(s));loadProgress();
+</script><a aria-label="Back to learning portal" class="portal-home-btn" href="../index.html">← Learning Portal</a>
+<script>window.ZAH_COURSE_SLUG='python';window.ZAH_COURSE_TITLE='Python for Data Analytics';window.ZAH_PROGRESS_KEY='pythonRoadmapProgress';</script>
+<script defer="" src="../assets/progress-cloud.js?v=20261021.3"></script>
+<script defer="" src="../assets/course-sync.js?v=20261022.20"></script>
+<script defer="" src="../assets/course-account.js?v=20261021.3"></script>
+<script defer="" src="../assets/modern.js?v=20261022.16"></script><script defer="" src="../assets/course-studio-data.js?v=20261015.3"></script>
+<script defer="" src="../assets/learner-companion.js?v=20261022.20"></script><script defer="" src="../assets/course-checkpoints.js?v=20261022.17"></script><script defer="" src="../assets/responsive-v2.js?v=20261015.3"></script><script defer="" src="../assets/workspace-shell.js?v=20261022.16"></script><script defer="" src="../assets/weekly-workspace.js?v=20261023.30"></script><script defer="" src="../assets/theme-control-v14.js?v=20261022.18"></script>
+<script defer="" src="../assets/course-mobile-v21.js?v=20261022.22"></script>
+<script defer="" src="../assets/accessibility-v23.js?v=20261022.22"></script><script defer="" src="../assets/course-polish-v29.js?v=20261023.29"></script>
+</body></html>

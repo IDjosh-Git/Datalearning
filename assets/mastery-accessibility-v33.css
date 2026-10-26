@@ -1,0 +1,116 @@
+/* Mastery v33 — shared semantic color tokens and responsive lesson content.
+   WCAG contrast audited against declared surface colors. Theme follows html[data-theme]
+   managed by the existing single appearance controller; no per-page shadow state. */
+:root,html[data-theme="light"] {
+ color-scheme:light;
+ --bg-primary:#f5f8fc;--bg-secondary:#edf3fa;--surface-primary:#ffffff;
+ --surface-secondary:#eff4fa;--text-primary:#17253d;--text-secondary:#43566c;
+ --border-primary:#c6d4e3;--link-primary:#1d438b;--focus-ring:#1f62ca;
+ --editor-bg:#ffffff;--editor-text-color:#17253d;--syntax-keyword:#1d3f89;
+ --syntax-string:#155a37;--syntax-number:#7a3a11;--syntax-comment:#4b5b6d;
+ --syntax-function:#68318b;--syntax-operator:#30485f;
+ --callout-tip-bg:#eaf4ed;--callout-tip-border:#2d7050;
+ --callout-trap-bg:#fff1e9;--callout-trap-border:#a44619;
+ --selection-bg:#c3dbfd;--selection-fg:#17253d;
+}
+html[data-theme="dark"] {
+ color-scheme:dark;
+ --bg-primary:#0c1524;--bg-secondary:#142238;--surface-primary:#17263b;
+ --surface-secondary:#1e3048;--text-primary:#f1f5fc;--text-secondary:#c4d2e4;
+ --border-primary:#536780;--link-primary:#bbd4ff;--focus-ring:#88bfff;
+ --editor-bg:#0f1b2d;--editor-text-color:#f1f5fc;--syntax-keyword:#bed4ff;
+ --syntax-string:#a3edbe;--syntax-number:#ffd6a2;--syntax-comment:#c5d1e2;
+ --syntax-function:#e1c6ff;--syntax-operator:#d4e2f6;
+ --callout-tip-bg:#162f2a;--callout-tip-border:#8ed9ab;
+ --callout-trap-bg:#3b261f;--callout-trap-border:#ffd0ae;
+ --selection-bg:#4a6c9b;--selection-fg:#ffffff;
+}
+body.dlp-course-v29 {
+ --bg:var(--bg-primary);--surface:var(--surface-primary);--surface-soft:var(--surface-secondary);
+ --border:var(--border-primary);--text:var(--text-primary);--muted:var(--text-secondary);
+ --brand-light:var(--surface-secondary);--brand-dark:var(--link-primary);
+ background:var(--bg-primary);color:var(--text-primary);
+}
+body.dlp-course-v29 :is(.week,.card,.map-card,.lesson,.session-block,.capstone,.project,.quiz,.unit,.tool-deep-dive,.tool-case,.expanded-lessons) {
+ color:var(--text-primary);background-color:var(--surface-primary);border-color:var(--border-primary);
+}
+body.dlp-course-v29 :is(.week-header,.mini,.example-box,.try-box,.recap-box,.lesson-resource,.unit-grid>article,.unit-grid>aside) {
+ background:var(--surface-secondary);color:var(--text-primary);border-color:var(--border-primary);
+}
+body.dlp-course-v29 :is(.lesson p,.week-title p,.mini p,.session-block p,.card p,.goal,.course-mastery p) {color:var(--text-secondary)}
+body.dlp-course-v29 :is(.week-title h3,.session-block h5,.section-head h3,.unit-head h2,.unit h3) {color:var(--text-primary)}
+body.dlp-course-v29 .week-num {color:#fff}
+body.dlp-course-v29 .sidebar {color:#fff}
+body.dlp-course-v29 .sidebar .nav-link,body.dlp-course-v29 .sidebar .brand {color:#e9f1ff}
+body.dlp-course-v29 .sidebar .nav-link:hover,body.dlp-course-v29 .sidebar .nav-link.active {color:#fff}
+body.dlp-course-v29 .topbar {background:var(--surface-primary);border-color:var(--border-primary);color:var(--text-primary)}
+body.dlp-course-v29 :is(.btn,.menu-btn) {color:var(--text-primary);background:var(--surface-primary);border-color:var(--border-primary)}
+body.dlp-course-v29 .btn.primary {background:#2051a0;color:#fff;border-color:#2051a0}
+body.dlp-course-v29 a:not(.btn):not(.nav-link):not(.lp-course-link):not(.dlp-theme-control) {text-underline-offset:.2em}
+body.dlp-course-v29 :is(.complete-label,.inline-code) {color:var(--link-primary)}
+body.dlp-course-v29 .searchbox input {color:#fff}
+body.dlp-course-v29 .code {color:#f4f7ff;background:#111c30}
+body.dlp-course-v29 :is(.question,.option,.answer-note) {color:var(--text-primary)}
+body.dlp-course-v29 .option {background:var(--surface-primary);border-color:var(--border-primary)}
+body.dlp-course-v29 :is(.badge,.session-time) {background:var(--surface-secondary);color:var(--text-primary)}
+body.dlp-course-v29 .hero,body.dlp-course-v29 .hero h2,body.dlp-course-v29 .hero p {color:#fff}
+/* Course lesson typography: readable and steady on desktop, tablet and small phones. */
+.course-mastery,.mastery-data-guide {min-width:0;box-sizing:border-box;font-size:clamp(.9375rem,.18vw + .92rem,1rem)}
+.course-mastery {border:1px solid var(--border-primary);border-radius:18px;background:var(--surface-primary);color:var(--text-primary);padding:clamp(16px,2.6vw,30px);margin:10px 0 24px;box-shadow:0 3px 18px rgb(0 0 0 / .04);overflow:hidden}
+.mastery-eyebrow {font-size:.74rem;letter-spacing:.08em;font-weight:800;text-transform:uppercase;color:var(--link-primary)}
+.course-mastery .mastery-title {font-size:clamp(1.3rem,2.4vw,1.65rem);line-height:1.24;margin:8px 0;color:var(--text-primary)}
+.course-mastery .mastery-objective {background:var(--surface-secondary);border-inline-start:4px solid var(--focus-ring);border-radius:5px;padding:10px 15px;color:var(--text-primary);margin:12px 0 22px}
+.course-mastery .mastery-objective strong {color:var(--text-primary)}
+.course-mastery .mastery-section {padding:10px 0 15px;border-bottom:1px solid var(--border-primary);min-width:0}
+.course-mastery h5 {font-size:1.04rem;margin:5px 0 9px;color:var(--text-primary);font-weight:800}
+.course-mastery p {line-height:1.72;margin:6px 0 10px;color:var(--text-secondary)}
+.course-mastery .mastery-helper {font-size:.9rem}
+.course-mastery pre,.course-mastery code {font:400 14px/1.55 'Fira Code',Consolas,'Courier New',monospace;letter-spacing:normal;word-spacing:normal;tab-size:2}
+.course-mastery .mastery-code {background:var(--editor-bg);color:var(--editor-text-color);border:1px solid var(--border-primary);padding:16px;border-radius:12px;margin:10px 0;white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal;overflow:auto;max-width:100%;box-sizing:border-box}
+.course-mastery .mastery-code code {color:inherit;white-space:inherit}
+.course-mastery .mastery-output {border:1px solid var(--border-primary);border-radius:12px;overflow:hidden;background:var(--surface-secondary);margin-top:14px;min-width:0}
+.course-mastery .mastery-output h6 {font-size:.8rem;text-transform:uppercase;letter-spacing:.045em;color:var(--text-primary);margin:0;padding:10px 14px;border-bottom:1px solid var(--border-primary)}
+.course-mastery .mastery-output pre {color:var(--text-primary);margin:0;padding:13px 15px;white-space:pre-wrap;overflow-wrap:anywhere;max-width:100%;overflow:auto}
+.course-mastery .mastery-callout {margin:14px 0;padding:13px 15px;border:1px solid;border-inline-start-width:4px;border-radius:9px;color:var(--text-primary)}
+.course-mastery .mastery-callout p {color:var(--text-primary);margin:4px 0}
+.course-mastery .mastery-tip {background:var(--callout-tip-bg);border-color:var(--callout-tip-border)}
+.course-mastery .mastery-trap {background:var(--callout-trap-bg);border-color:var(--callout-trap-border)}
+.course-mastery .mastery-check {border:1px solid var(--border-primary);border-radius:10px;background:var(--surface-primary);margin:10px 0;overflow:hidden}
+.course-mastery .mastery-check summary {color:var(--text-primary);padding:14px 14px;cursor:pointer;font-weight:650;line-height:1.5;list-style-position:inside}
+.course-mastery .mastery-check[open] summary {border-bottom:1px solid var(--border-primary);background:var(--surface-secondary)}
+.course-mastery .mastery-check-answer {padding:12px 16px;color:var(--text-primary)}
+.course-mastery .mastery-check-answer p {color:var(--text-secondary)}
+.course-mastery .mastery-summary {background:var(--surface-secondary);padding:12px 18px;border:1px solid var(--border-primary);border-radius:12px;margin-top:15px}
+.course-mastery .mastery-summary h5 {margin:4px 0}
+.course-mastery .mastery-summary ul {color:var(--text-primary);margin:7px 0;padding-inline-start:22px}
+.course-mastery .mastery-summary li {margin:5px 0}
+.mastery-data-guide {background:var(--surface-primary);border:1px solid var(--border-primary);padding:clamp(18px,3vw,28px);border-radius:20px;margin:22px 0 28px;color:var(--text-primary)}
+.mastery-data-guide h3 {font-size:clamp(1.25rem,2.6vw,1.65rem);margin:5px 0;color:var(--text-primary)}
+.mastery-data-guide p {max-width:850px;color:var(--text-secondary);line-height:1.65}
+.mastery-data-links {display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.mastery-data-links a {display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:8px 13px;border:1px solid var(--border-primary);border-radius:9px;color:var(--link-primary);font-weight:750;text-decoration:underline;background:var(--surface-secondary)}
+.mastery-controls {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:14px}
+.mastery-controls span {background:var(--surface-secondary);border:1px solid var(--border-primary);border-radius:10px;padding:11px;font-size:.84rem;color:var(--text-secondary);min-width:0}
+.mastery-controls b {color:var(--text-primary);font-size:1.13rem;display:block;font-variant-numeric:tabular-nums}
+.mastery-completion {margin:12px 0;padding:11px;background:var(--surface-secondary);border-radius:10px}
+:is(.course-mastery,.mastery-data-guide,.ide-shell) :focus-visible {outline:3px solid var(--focus-ring);outline-offset:3px}
+@media(max-width:900px){.mastery-controls{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){.course-mastery {padding:14px 12px;border-radius:13px}.mastery-data-guide{padding:16px 12px}.mastery-controls{grid-template-columns:repeat(2,minmax(0,1fr))}.mastery-data-links a{width:100%;justify-content:flex-start}.course-mastery .mastery-code {padding:12px;font-size:13px}.course-mastery .mastery-output pre {padding:12px;font-size:13px}}
+@media(prefers-reduced-motion:reduce){.course-mastery *{scroll-behavior:auto!important;transition:none!important}}
+@media print {.course-mastery {break-inside:avoid;box-shadow:none}.mastery-data-links{display:none}.course-mastery .mastery-check-answer{display:block}}
+/* Existing module sub-panels whose old palettes used hard-coded text colors. */
+body.dlp-course-v29 .project p,body.dlp-course-v29 .project h4,
+body.dlp-course-v29 :is(.tool-deep-dive,.tool-case,.tool-assignment,.expanded-lessons) p,
+body.dlp-course-v29 :is(.tool-deep-dive,.tool-case,.tool-assignment,.expanded-lessons) li {color:var(--text-primary)}
+body.dlp-course-v29 :is(.tool-deep-dive,.tool-case,.tool-assignment,.lesson-resource,.ai-orientation,.ai-tool-directory) {
+ background:var(--surface-primary);color:var(--text-primary);border-color:var(--border-primary)
+}
+body.dlp-course-v29 :is(.tool-deep-dive,.tool-case,.tool-assignment,.ai-orientation,.ai-tool-directory) :is(h2,h3,h4,h5) {color:var(--text-primary)}
+body.dlp-course-v29 :is(.tool-deep-dive,.tool-case,.tool-assignment,.ai-orientation,.ai-tool-directory) :is(p,small) {color:var(--text-secondary)}
+html[data-theme="dark"] body.dlp-course-v29 :is(.week-header,.session-block,.unit-head,.unit-grid,.expanded-lessons) {background:var(--surface-primary);color:var(--text-primary)}
+html[data-theme="dark"] body.dlp-course-v29 :is(.job-ready-extension,.guided-lab,.answer-note,.mistake-box,.recap-box,.example-box,.try-box) {background:var(--surface-secondary);color:var(--text-primary);border-color:var(--border-primary)}
+html[data-theme="dark"] body.dlp-course-v29 :is(.job-ready-extension,.guided-lab,.answer-note,.mistake-box,.recap-box,.example-box,.try-box) :is(p,li,strong,b) {color:var(--text-primary)}
+html[data-theme="dark"] body.dlp-course-v29 .capstone p {color:var(--text-secondary)}
+
+/* Do not cover educational text with floating return navigation on small devices. */
+@media(max-width:680px){body.dlp-course-v29 .portal-home-btn{position:relative;left:auto;right:auto;bottom:auto;top:auto;margin:14px 16px 20px;z-index:1}}

@@ -1,0 +1,38 @@
+/* Final theme/accessibility layer; loaded after existing Arena v32/editor styles. */
+/* Global design tokens are shared with course pages through mastery-accessibility-v33.css. */
+body[data-responsive-page="practice"] {background:var(--bg-primary);color:var(--text-primary)}
+body[data-responsive-page="practice"] :is(.ide-shell,.ide-primary,.ide-secondary,.arena-task-panel,.arena-workspace,.ide-panel,.arena-editor-pane,.arena-output-pane) {
+ color:var(--text-primary);border-color:var(--border-primary);
+}
+body[data-responsive-page="practice"] :is(.ide-primary,.ide-secondary,.ide-panel,.arena-task-panel,.arena-editor-pane) {background-color:var(--surface-primary)}
+body[data-responsive-page="practice"] :is(.arena-task-body,.arena-inspector,.ide-inspector,.ide-console,.arena-table-scroll,.arena-summary,.arena-empty,.ide-welcome) {color:var(--text-primary)}
+body[data-responsive-page="practice"] :is(.arena-table,.ide-sheet) {color:var(--text-primary);background:var(--surface-primary)}
+body[data-responsive-page="practice"] :is(.arena-table th,.ide-sheet th) {color:var(--text-primary);background:var(--surface-secondary)}
+body[data-responsive-page="practice"] :is(.arena-table td,.ide-sheet td) {color:var(--text-primary);border-color:var(--border-primary)}
+body[data-responsive-page="practice"] :is(.ide-results-tabs button,.ide-editor-toolbar button,.arena-triple-nav button,.arena-task-toggle) {color:var(--text-primary);border-color:var(--border-primary)}
+body[data-responsive-page="practice"] .ide-editor-toolbar {background:var(--surface-primary);border-color:var(--border-primary)}
+body[data-responsive-page="practice"] .arena-editor {--sql-bg:var(--editor-bg);--sql-fg:var(--editor-text-color);--sql-keyword:var(--syntax-keyword);--sql-string:var(--syntax-string);--sql-number:var(--syntax-number);--sql-comment:var(--syntax-comment);--sql-gutter:var(--text-secondary);--sql-selection:var(--selection-bg);background:var(--editor-bg)!important}
+/* Native editor contract: only textarea receives typing. PRE remains presentation-only. */
+body[data-responsive-page="practice"] :is(.arena-code textarea.sql-editor-textarea,.arena-code pre#arenaHighlight) {font-family:'Fira Code',Consolas,'Courier New',monospace!important;font-size:14px!important;line-height:1.5!important;letter-spacing:normal!important;word-spacing:normal!important;white-space:pre-wrap!important;overflow-wrap:break-word!important;word-break:break-word!important;box-sizing:border-box!important;padding:12px!important;margin:0!important}
+body[data-responsive-page="practice"] .arena-code textarea.sql-editor-textarea {resize:none!important;caret-color:var(--editor-text-color)!important}
+body[data-responsive-page="practice"] .arena-code pre#arenaHighlight {background:transparent!important;color:var(--editor-text-color)!important;pointer-events:none!important}
+/* Theme tokens for CodeMirror 6 and Monaco, if those engines are enabled later.
+   Do not resize/override Monaco's internal virtual scrolling view. */
+.cm-editor,.monaco-editor {min-width:0;color:var(--editor-text-color);background:var(--editor-bg)}
+.cm-editor .cm-content,.monaco-editor .view-lines {font-family:'Fira Code',Consolas,'Courier New',monospace;letter-spacing:normal;word-spacing:normal;line-height:1.5}
+.cm-editor .cm-keyword {color:var(--syntax-keyword)!important}
+.cm-editor .cm-string {color:var(--syntax-string)!important}
+.cm-editor .cm-number {color:var(--syntax-number)!important}
+.cm-editor .cm-comment {color:var(--syntax-comment)!important}
+.cm-editor .cm-variableName {color:var(--editor-text-color)!important}
+.cm-editor .cm-function {color:var(--syntax-function)!important}
+.cm-editor .cm-scroller {overflow:auto;min-width:0}
+.cm-editor .cm-content {white-space:pre-wrap;overflow-wrap:anywhere}
+/* Standard input-assistant-disabled visible fallback on mobile/IME devices. */
+@media(pointer:coarse),(max-width:767px){
+ body[data-responsive-page="practice"] .arena-code pre#arenaHighlight {display:none!important}
+ body[data-responsive-page="practice"] .arena-code textarea.sql-editor-textarea {font-size:16px!important;color:var(--editor-text-color)!important;-webkit-text-fill-color:var(--editor-text-color)!important;white-space:pre-wrap!important;overflow-wrap:break-word!important}
+ body[data-responsive-page="practice"] :is(.ide-primary,.ide-secondary,.arena-grid,.ide-content,.arena-workspace) {min-width:0;max-width:100%}
+}
+@media(max-width:480px) {body[data-responsive-page="practice"] .ide-editor-toolbar{flex-wrap:wrap;gap:10px}}
+@media(forced-colors:active){body[data-responsive-page="practice"] .arena-code textarea.sql-editor-textarea{background:Canvas!important;color:CanvasText!important;-webkit-text-fill-color:CanvasText!important}body[data-responsive-page="practice"] .arena-code pre#arenaHighlight{display:none!important}}

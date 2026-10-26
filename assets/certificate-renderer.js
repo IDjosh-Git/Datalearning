@@ -1,6 +1,6 @@
 /* One accessible SVG certificate for screen, print and high-resolution export. No remote assets. */
 (function(g){'use strict';
- const COLORS={excel:'#087b6d',sql:'#3d669f',powerbi:'#a17121',ai:'#7755a5'};
+ const COLORS={excel:'#087b6d',sql:'#3d669f',powerbi:'#a17121',python:'#235b9a',ai:'#7755a5'};
  const XML=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c]));
  const clean=s=>String(s??'').replace(/[\u0000-\u001f\u007f]/g,' ').replace(/\s+/g,' ').trim();
  const fmt=v=>{if(!v)return '—';const d=new Date(String(v).length===10?v+'T12:00:00':v);return Number.isNaN(d.getTime())?'—':d.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})};

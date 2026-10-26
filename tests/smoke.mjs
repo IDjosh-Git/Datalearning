@@ -26,12 +26,12 @@ console.log('PASS Data Analysis Learning Path rebrand | 9 pages | 30 labs | 150 
 console.log('PASS Vercel AI GET/POST: unconfigured, configured/mock response, privacy, input validation, origin check');
 
 for (const c of ['excel','sql','powerbi','ai']){ const t=read(`courses/${c}.html`); assert(t.includes(`../capstone.html?course=${c}`),'Capstone route '+c); assert(!t.includes("localStorage.setItem(store"),'No self-issued certificate '+c); assert(t.includes(c==='ai'?'ai-course.css':'modern.css'),'Course theme '+c); }
-assert(read('supabase_setup.sql').includes('DALP-(EXL|PBI|SQL|AIA)'),'Four certificate code formats supported');
+assert(read('supabase_setup.sql').includes('DALP-(EXL|PBI|SQL|AIA|PYT)'),'Five certificate code formats supported');
 assert(read('supabase_setup.sql').includes('learning_private.publish_capstone_review'),'Owner-only manual publishing');
 assert(!read('vercel.json').includes('crons'),'No automated assessment schedule');
 console.log('PASS manually reviewed capstone flow | 4 courses | verified completion database');
 
-// Beginner course must remain separate from the three certificate-bearing tracks.
+// Beginner introduction remains separate from certificate-bearing tracks.
 const intro=read('courses/introduction.html');
 assert(intro.includes('Introduction to <em>Data Analysis</em>'));
 for(let i=1;i<=8;i++){
@@ -47,7 +47,7 @@ for(const course of ['excel','sql','powerbi']){
 const introJs=read('assets/introduction.js');
 assert.equal((introJs.match(/\{q:'/g)||[]).length,12,'Twelve introductory questions');
 assert(introJs.includes('ZAHProgressCloud')&&introJs.includes("const slug = 'introduction'"), 'Intro syncs through the shared cloud progress engine');
-assert(read('supabase_setup.sql').includes("('introduction','excel','sql','powerbi','ai')"),'Introduction and AI allowed in course progress');
+assert(read('supabase_setup.sql').includes("('introduction','excel','sql','powerbi','python','ai')"),'Introduction and AI allowed in course progress');
 assert(read('index.html').includes('courses/introduction.html'));
 const kiosk=read('downloads/kiosk_week.csv').trim().split(/\r?\n/);
 assert.equal(kiosk.length,6,'five-row fictional kiosk CSV + header');

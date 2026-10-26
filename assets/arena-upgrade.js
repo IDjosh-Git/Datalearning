@@ -50,7 +50,7 @@ function attachEditor(textarea){
   alignScroll();
  };
  const schedule=()=>{if(!frame)frame=requestAnimationFrame(paint)};
- textarea.addEventListener('input',schedule);
+ textarea.addEventListener('input',()=>{if(!composing)schedule()});
  textarea.addEventListener('scroll',alignScroll,{passive:true});
  textarea.addEventListener('compositionstart',()=>{composing=true});
  textarea.addEventListener('compositionend',()=>{composing=false;schedule()});

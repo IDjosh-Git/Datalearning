@@ -84,6 +84,7 @@ table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px;bor
 <a class="btn" href="courses/excel.html">Excel Course</a>
 <a class="btn" href="courses/sql.html">SQL Course</a>
 <a class="btn" href="courses/powerbi.html">Power BI Course</a>
+<a class="btn" href="courses/python.html">Python Course</a>
 <a class="btn ai-course-action" href="courses/ai.html">AI Integration Course ↗</a>
 <a class="btn" href="capstone.html" style="background:#713a55">Capstone Studio &amp; Certificates ↗</a>
 </div>
@@ -92,6 +93,7 @@ table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px;bor
 <div class="card"><h3>Excel</h3><p id="excelText">0 of 10 weeks</p><div class="bar"><div class="fill" id="excelBar" style="width:0%"></div></div></div>
 <div class="card"><h3>SQL</h3><p id="sqlText">0 of 10 weeks</p><div class="bar"><div class="fill" id="sqlBar" style="width:0%"></div></div></div>
 <div class="card"><h3>Power BI</h3><p id="powerbiText">0 of 10 weeks</p><div class="bar"><div class="fill" id="powerbiBar" style="width:0%"></div></div></div>
+<a class="card" href="courses/python.html" aria-label="Open Python for Data Analytics course"><h3>Python for Data Analytics ↗</h3><p>Python, pandas, NumPy, statistics and a validated retail analytics capstone.</p><p id="pythonText">0 of 10 weeks</p><div class="bar"><div class="fill" id="pythonBar" style="width:0%"></div></div></a>
 <a class="card ai-account-course-card" href="courses/ai.html" aria-label="Open AI Integration in Data Analysis course">
 <span class="ai-account-badge">AI &amp; AUTOMATION · 10 WEEKS</span>
 <h3>AI Integration in Data Analysis <span aria-hidden="true">↗</span></h3>
@@ -134,9 +136,9 @@ table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px;bor
  const syncResult=await window.ZAHProgressCloud.syncAll();
  const successful=Object.values(syncResult.courses||{}).filter(c=>c?.ok).length;
  if(syncStatus){
-   syncStatus.textContent=successful===5
+   syncStatus.textContent=successful===6
      ? 'Your progress is up to date. You can pick up your lessons on any device.'
-     : `Your progress was updated for ${successful} of 5 courses. Open any remaining course and try again.`;
+     : `Your progress was updated for ${successful} of 6 courses. Open any remaining course and try again.`;
  }
 
  const {data:p,error:pErr}=await window.ZAH_DB.client
@@ -145,7 +147,7 @@ table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px;bor
    .eq('user_id',user.id);
  if(pErr && syncStatus) syncStatus.textContent='We couldn’t load your latest progress. Please refresh this page or try again later.';
 
- const trackUnits={introduction:8,excel:10,sql:10,powerbi:10,ai:10};
+ const trackUnits={introduction:8,excel:10,sql:10,powerbi:10,python:10,ai:10};
  Object.entries(trackUnits).forEach(([c,total])=>{
    const done=(p||[]).filter(r=>r.course_slug===c&&r.completed).length,pct=Math.round(done/total*100);
    document.getElementById(c+'Text').textContent=`${done} of ${total} ${c==='introduction'?'lessons':'weeks'}`;

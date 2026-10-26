@@ -11,7 +11,7 @@
  let gate,working=false,authenticated=false;
  const page=location.pathname.split('/').pop().toLowerCase()||'index.html';
  function loginDestination(){const u=toPage('auth.html');u.searchParams.set('return',location.pathname+location.search+location.hash);return u.href;}
- function clearLocalCourseCache(){try{courseKeys.forEach(k=>localStorage.removeItem(k));['introduction','excel','sql','powerbi','ai'].forEach(k=>localStorage.removeItem('zahPendingAnonymous:'+k));}catch(_){}}
+ function clearLocalCourseCache(){try{courseKeys.forEach(k=>localStorage.removeItem(k));['introduction','excel','sql','powerbi','python','ai'].forEach(k=>localStorage.removeItem('zahPendingAnonymous:'+k));}catch(_){}}
  function prepareWorkspace(user){if(!user?.id)return;try{const owner=localStorage.getItem(ownerKey);if(owner&&owner!==user.id)clearLocalCourseCache();localStorage.setItem(ownerKey,user.id);}catch(_){}}
  function exit(clearCache=true){if(clearCache)clearLocalCourseCache();try{sessionStorage.removeItem('dalpGateUser')}catch(_){}location.replace(loginDestination());}
  function paint(kind='loading'){

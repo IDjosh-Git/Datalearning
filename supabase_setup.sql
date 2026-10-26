@@ -6,7 +6,7 @@
 -- Safe to rerun after reviewing and backing up your existing project.
 create table if not exists public.course_progress (
  user_id uuid not null references auth.users(id) on delete cascade,
- course_slug text not null check(course_slug in ('introduction','excel','sql','powerbi','ai')),
+ course_slug text not null check(course_slug in ('introduction','excel','sql','powerbi','python','ai')),
  week_no integer not null check(week_no between 1 and 10),
  completed boolean not null default false,
  completed_at timestamptz,
@@ -15,7 +15,7 @@ create table if not exists public.course_progress (
 );
 create table if not exists public.quiz_results (
  user_id uuid not null references auth.users(id) on delete cascade,
- course_slug text not null check(course_slug in ('excel','sql','powerbi','ai')),
+ course_slug text not null check(course_slug in ('excel','sql','powerbi','python','ai')),
  week_no integer not null check(week_no between 1 and 10),
  score integer not null check(score>=0),
  answered integer not null check(answered>=0),
@@ -25,10 +25,10 @@ create table if not exists public.quiz_results (
  primary key(user_id,course_slug,week_no)
 );
 create table if not exists public.certificates (
- certificate_id text primary key check(certificate_id ~ '^(IJL-(EXL|PBI|SQL)-[0-9]{8}-[A-F0-9]{6}|DALP-(EXL|PBI|SQL|AIA)-[0-9]{8}-[A-F0-9]{12})$'),
+ certificate_id text primary key check(certificate_id ~ '^(IJL-(EXL|PBI|SQL)-[0-9]{8}-[A-F0-9]{6}|DALP-(EXL|PBI|SQL|AIA|PYT)-[0-9]{8}-[A-F0-9]{12})$'),
  user_id uuid not null references auth.users(id) on delete cascade,
  learner_name text not null,
- course_slug text not null check(course_slug in ('excel','sql','powerbi','ai')),
+ course_slug text not null check(course_slug in ('excel','sql','powerbi','python','ai')),
  course_title text not null,
  completion_date date not null default current_date,
  issued_at timestamptz not null default now(),
@@ -47,7 +47,7 @@ DO $$ DECLARE c record; BEGIN
  IF NOT EXISTS (SELECT 1 FROM pg_constraint
     WHERE conrelid='public.certificates'::regclass AND conname='certificates_certificate_id_valid') THEN
   ALTER TABLE public.certificates ADD CONSTRAINT certificates_certificate_id_valid
-  CHECK (certificate_id ~ '^(IJL-(EXL|PBI|SQL)-[0-9]{8}-[A-F0-9]{6}|DALP-(EXL|PBI|SQL|AIA)-[0-9]{8}-[A-F0-9]{12})$');
+  CHECK (certificate_id ~ '^(IJL-(EXL|PBI|SQL)-[0-9]{8}-[A-F0-9]{6}|DALP-(EXL|PBI|SQL|AIA|PYT)-[0-9]{8}-[A-F0-9]{12})$');
  END IF;
 END $$;
 
@@ -125,7 +125,7 @@ create policy capstone_reviewers_select_own on public.capstone_reviewers
 create table if not exists public.capstone_submissions (
  id uuid primary key default gen_random_uuid(),
  user_id uuid not null references auth.users(id) on delete cascade,
- course_slug text not null check(course_slug in ('excel','sql','powerbi','ai')),
+ course_slug text not null check(course_slug in ('excel','sql','powerbi','python','ai')),
  learner_name text not null check(length(btrim(learner_name)) between 3 and 90),
  project_title text not null check(length(btrim(project_title)) between 5 and 110),
  project_summary text not null check(length(btrim(project_summary)) between 80 and 4000),
@@ -288,8 +288,8 @@ begin
   order by c.issued_at desc limit 1;
   if v_id is null then
    v_course_title := case s.course_slug when 'excel' then 'Excel Data Analysis'
-    when 'sql' then 'SQL for Data Analytics' when 'ai' then 'AI Integration in Data Analysis' else 'Power BI' end;
-   v_code := case s.course_slug when 'excel' then 'EXL' when 'sql' then 'SQL' when 'ai' then 'AIA' else 'PBI' end;
+    when 'sql' then 'SQL for Data Analytics' when 'python' then 'Python for Data Analytics' when 'ai' then 'AI Integration in Data Analysis' else 'Power BI' end;
+   v_code := case s.course_slug when 'excel' then 'EXL' when 'sql' then 'SQL' when 'python' then 'PYT' when 'ai' then 'AIA' else 'PBI' end;
    v_id := 'DALP-'||v_code||'-'||to_char(current_date,'YYYYMMDD')||'-'||upper(substr(md5(gen_random_uuid()::text),1,12));
    insert into public.certificates(certificate_id,user_id,learner_name,course_slug,course_title,completion_date,issued_at,status,capstone_submission_id)
    values (v_id,s.user_id,s.learner_name,s.course_slug,v_course_title,current_date,now(),'active',s.id);
@@ -345,7 +345,7 @@ begin
   alter table public.course_progress drop constraint course_progress_course_slug_check;
  end if;
  alter table public.course_progress add constraint course_progress_course_slug_check
-  check(course_slug in ('introduction','excel','sql','powerbi','ai'));
+  check(course_slug in ('introduction','excel','sql','powerbi','python','ai'));
 exception when duplicate_object then null;
 end $$;
 
@@ -476,7 +476,7 @@ begin
  ) then
   raise exception 'Only the authorised instructor can view learner progress' using errcode='42501';
  end if;
- if p_user_id is null or p_course_slug is null or p_course_slug not in ('introduction','excel','sql','powerbi','ai') then
+ if p_user_id is null or p_course_slug is null or p_course_slug not in ('introduction','excel','sql','powerbi','python','ai') then
   raise exception 'Invalid learner or course';
  end if;
  if not exists(
