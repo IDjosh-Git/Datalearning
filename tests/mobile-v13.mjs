@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 const root=path.resolve(new URL('..',import.meta.url).pathname);
 const htmls=[...fs.readdirSync(root).filter(x=>x.endsWith('.html')), ...fs.readdirSync(path.join(root,'courses')).filter(x=>x.endsWith('.html')).map(x=>'courses/'+x)];
-assert.equal(htmls.length,22);
+assert.equal(htmls.length,23);
 for(const name of htmls){
  const txt=fs.readFileSync(path.join(root,name),'utf8');
  const expected=(name.startsWith('courses/')?'../':'')+'assets/mobile-experience-v13.css?v=20261022';
@@ -18,4 +18,4 @@ const shell=fs.readFileSync(path.join(root,'assets/workspace-shell.js'),'utf8');
 assert(shell.includes('aria-label\',\'Mobile learning navigation'));assert(shell.includes('dl-course-actions-toggle'));assert(shell.includes('More learning destinations'));
 const admin=fs.readFileSync(path.join(root,'assets/admin-console.js'),'utf8');
 assert(admin.includes('Mobile administration navigation'));assert(admin.includes('selectMobile'));
-console.log('PASS v13 responsive coverage: 22 pages, five-course week workspace, learner/admin adaptive nav, light/dark touch surfaces and all special pages');
+console.log('PASS v13 responsive coverage: 23 pages, five-course week workspace, learner/admin adaptive nav, light/dark touch surfaces and all special pages');

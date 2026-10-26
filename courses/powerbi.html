@@ -186,7 +186,7 @@ main{min-width:0}.topbar{position:sticky;top:0;z-index:10;padding:13px 26px;disp
 <link href="../assets/data-atmosphere-v27.css?v=20261023.27" rel="stylesheet"/>
 <link href="../assets/dashboard-analytics-v28.css?v=20261023.28" rel="stylesheet">
 <link href="../assets/course-polish-v29.css?v=20261023.29" rel="stylesheet">
-<link href="../assets/controls-refresh-v30.css?v=20261023.30" rel="stylesheet"/></link></link></link></link></link></link></link></link></link><link href="../assets/mastery-accessibility-v33.css?v=33" rel="stylesheet"/></head>
+<link href="../assets/controls-refresh-v30.css?v=20261023.30" rel="stylesheet"/></link></link></link></link></link></link></link></link></link><link href="../assets/mastery-accessibility-v33.css?v=33" rel="stylesheet"/><link href="../assets/weekly-mastery-v34.css?v=34" rel="stylesheet"/></head>
 <body class="dlp-course-v29" data-course="powerbi" data-responsive-page="courses/powerbi">
 <div class="app"><aside class="sidebar" id="sidebar">
 <div class="brand course-brand"><div class="course-brand-shell"><div class="brand-company-name"><strong>Data Analysis Learning Path</strong><span>Power BI Mastery Roadmap</span></div></div></div>
@@ -264,6 +264,14 @@ CALCULATE ( [Total Revenue], REMOVEFILTERS ( Region ) )</code></pre><h4>Walk thr
 <div class="mastery-body">
 <section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>Power BI is valuable when stakeholders need governed measures, reusable relationships, and interactive slicing beyond a static spreadsheet.</p></section>
 <section class="mastery-section"><h5>02 · How it actually works</h5><p>Power Query ingests/transforms, the semantic model stores tables and relationships, DAX evaluates measures, and report visuals query the model. Identify fact grain, dimensions, data refresh cadence and who can access the result before creating charts.</p></section>
+<section class="mastery-deep-dive" aria-label="Beginner explanation and walkthrough for week 1">
+  <h5>Learn it step by step — simple explanation</h5>
+  <p class="v34-mental-model"><strong>Picture it this way:</strong> Power BI has four layers: source files, Power Query preparation, the semantic model, and reports. Errors introduced in an earlier layer can appear as surprising visuals later.</p>
+  <h6>Follow the logic in three small steps</h6>
+  <ol class="v34-action-steps"><li>Write the audience&#x27;s business question</li><li>Define one row of FactSales and its grain</li><li>Draft a measure list before choosing visuals</li></ol>
+  <div class="v34-interpretation"><strong>Read the expected result:</strong> Six raw orders include one return. The completed revenue card should show 578000, which gives the model a simple acceptance test.</div>
+  <div class="v34-independence"><strong>Now try it without copying:</strong> Sketch one executive report page with three KPIs, a month trend and regional breakdown; state the questions each answers.</div>
+ </section>
 <section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-table" tabindex="0"><code>Model design brief:
 FactSales: one row per order (six training rows)
 Dimensions: DimDate, DimCustomer, DimProduct, DimRegion
@@ -296,6 +304,14 @@ Completed net sales = sum(quantity × unit_price × (1 − discount_pct)) for Co
 <div class="mastery-body">
 <section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>Repeated CSV imports arrive with text-typed numbers, inconsistent columns and malformed dates. The refresh process should apply the same transformations reliably.</p></section>
 <section class="mastery-section"><h5>02 · How it actually works</h5><p>Power Query records ordered Applied Steps. Set explicit types, trim controlled dimensions, reject duplicate order IDs only after investigating source truth, and use transformations instead of manually editing a few preview rows.</p></section>
+<section class="mastery-deep-dive" aria-label="Beginner explanation and walkthrough for week 2">
+  <h5>Learn it step by step — simple explanation</h5>
+  <p class="v34-mental-model"><strong>Picture it this way:</strong> Power Query is a repeatable recipe, not a one-off cleanup. Each Applied Step transforms the table during refresh.</p>
+  <h6>Follow the logic in three small steps</h6>
+  <ol class="v34-action-steps"><li>Import source CSV without altering it</li><li>Set Date, whole-number and numeric column types explicitly</li><li>Filter or flag statuses only where the business model requires it</li></ol>
+  <div class="v34-interpretation"><strong>Read the expected result:</strong> The preview should contain six orders, including the returned one. Losing that record in preparation removes your ability to analyze returns later.</div>
+  <div class="v34-independence"><strong>Now try it without copying:</strong> Add a custom Revenue column in Power Query, then explain why it must not double count when DAX measures are used.</div>
+ </section>
 <section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>let
  Source = Csv.Document(File.Contents("mastery_orders.csv"),
    [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
@@ -332,6 +348,14 @@ if [status] = "Completed" then [quantity]*[unit_price]*(1-[discount_pct]) else 0
 <div class="mastery-body">
 <section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>Business slicers for customers, regions and time should filter a consistent fact table without causing duplicated totals.</p></section>
 <section class="mastery-section"><h5>02 · How it actually works</h5><p>Keep transaction columns in FactSales, attributes in dimensions. Make one-to-many relationships from dimension unique key to fact foreign key; default to single-direction filtering. A calendar dimension provides contiguous dates and accurate time intelligence.</p></section>
+<section class="mastery-deep-dive" aria-label="Beginner explanation and walkthrough for week 3">
+  <h5>Learn it step by step — simple explanation</h5>
+  <p class="v34-mental-model"><strong>Picture it this way:</strong> A star schema places transactions in the center and descriptive lookup tables around them. A relationship carries a filter from a dimension to a fact table.</p>
+  <h6>Follow the logic in three small steps</h6>
+  <ol class="v34-action-steps"><li>Confirm FactSales has unique order IDs at the fact grain</li><li>Confirm DimCustomer has one row per customer_id</li><li>Create one-to-many relationships and test filter direction</li></ol>
+  <div class="v34-interpretation"><strong>Read the expected result:</strong> Selecting Region=East and Status=Completed should leave only orders 1001 and 1006, producing revenue 316000.</div>
+  <div class="v34-independence"><strong>Now try it without copying:</strong> Count unique customer IDs in the customer dimension; explain why duplicate dimension keys are dangerous.</div>
+ </section>
 <section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-table" tabindex="0"><code>DimCustomer[customer_id] (1) → (*) FactSales[customer_id]
 DimDate[Date] (1) → (*) FactSales[order_date]
 DimProduct[product_id] (1) → (*) FactSales[product_id]
@@ -363,6 +387,14 @@ FactSales has 6 unique order IDs in the sample.</code></pre>
 <div class="mastery-body">
 <section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>A table visual and a KPI card must use the same revenue definition while respecting each report selection.</p></section>
 <section class="mastery-section"><h5>02 · How it actually works</h5><p>Measures are evaluated at query time in filter context (slicers, rows, filters). SUMX iterates rows to compute quantity × price; CALCULATE modifies filter context. A calculated column computes per row at refresh; a measure responds to current selections.</p></section>
+<section class="mastery-deep-dive" aria-label="Beginner explanation and walkthrough for week 4">
+  <h5>Learn it step by step — simple explanation</h5>
+  <p class="v34-mental-model"><strong>Picture it this way:</strong> A DAX measure is a question answered again for the current filter context. Its value can change when a visual&#x27;s region or date selection changes.</p>
+  <h6>Follow the logic in three small steps</h6>
+  <ol class="v34-action-steps"><li>Define row revenue with SUMX over qualifying orders</li><li>Create a separate Profit measure using unit cost</li><li>Compare totals on a card versus inside a region visual</li></ol>
+  <div class="v34-interpretation"><strong>Read the expected result:</strong> No slicer: revenue 578000 and profit 135000. East slicer: revenue 316000. The formula stays the same; the filter context changes.</div>
+  <div class="v34-independence"><strong>Now try it without copying:</strong> Explain why SUM(FactSales[unit_price]) does not calculate revenue when quantity varies.</div>
+ </section>
 <section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>Revenue :=
 CALCULATE(
  SUMX(FactSales, FactSales[quantity]*FactSales[unit_price]),
@@ -402,6 +434,14 @@ Region slicer East: Revenue=316000; Profit=66000.</pre></div></section>
 <div class="mastery-body">
 <section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>Managers compare this month with previous months; string dates and missing calendar rows make time-intelligence results unreliable.</p></section>
 <section class="mastery-section"><h5>02 · How it actually works</h5><p>A marked Date table has a contiguous unique date column, related actively to fact dates. CALCULATE can shift filter contexts through date tables. Close month logic and partial periods require explicit business definitions.</p></section>
+<section class="mastery-deep-dive" aria-label="Beginner explanation and walkthrough for week 5">
+  <h5>Learn it step by step — simple explanation</h5>
+  <p class="v34-mental-model"><strong>Picture it this way:</strong> A date table is a complete calendar, not merely the dates where an order happened. Time intelligence depends on that consistent time axis.</p>
+  <h6>Follow the logic in three small steps</h6>
+  <ol class="v34-action-steps"><li>Generate a date table with all dates in the reporting period</li><li>Mark it as the Date table and relate it to order_date</li><li>Create month-to-month measures only after validating the relationship</li></ol>
+  <div class="v34-interpretation"><strong>Read the expected result:</strong> January shows 340000 and February 238000. February&#x27;s decrease is 30%; distinguish monthly revenue from a cumulative total.</div>
+  <div class="v34-independence"><strong>Now try it without copying:</strong> Test the Date table by showing February dates with no orders and explaining why the calendar still includes them.</div>
+ </section>
 <section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>DimDate = CALENDAR(DATE(2026,1,1),DATE(2026,12,31))
 
 Revenue PM :=
@@ -436,6 +476,14 @@ February MoM change=(238000-340000)/340000=-30.00%.</pre></div></section>
 <div class="mastery-body">
 <section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>Report readers need to spot variance and drill into drivers, not decode twelve disconnected charts.</p></section>
 <section class="mastery-section"><h5>02 · How it actually works</h5><p>Use a few KPI cards, one monthly trend, one region comparison, a clear slicer zone, and short definitions. Use conditional formatting only for defined thresholds. Verify accessibility (contrast, titles, keyboard use, and alt text where supported).</p></section>
+<section class="mastery-deep-dive" aria-label="Beginner explanation and walkthrough for week 6">
+  <h5>Learn it step by step — simple explanation</h5>
+  <p class="v34-mental-model"><strong>Picture it this way:</strong> Good visual design reduces the amount of mental arithmetic a manager must do. Labels, scales, reading order and color all carry meaning.</p>
+  <h6>Follow the logic in three small steps</h6>
+  <ol class="v34-action-steps"><li>Place headline KPIs first</li><li>Use a monthly line chart and sorted regional bars</li><li>Add purposeful titles and tooltips that define each metric</li></ol>
+  <div class="v34-interpretation"><strong>Read the expected result:</strong> The month trend goes from 340000 to 238000. Label it as a small training-data comparison, not proof of business deterioration.</div>
+  <div class="v34-independence"><strong>Now try it without copying:</strong> Replace a crowded multi-color chart with a restrained palette and descriptive data labels, then explain your design choice.</div>
+ </section>
 <section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-table" tabindex="0"><code>Executive page wireframe:
 [Completed Revenue 578000] [Profit 135000] [Margin 23.36%]
 [Monthly line: Jan 340000 → Feb 238000]
@@ -468,6 +516,14 @@ Sales YTD = TOTALYTD([Net Sales],'Date'[Date])</pre></div></div><div class="lab-
 <div class="mastery-body">
 <section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>Operational managers often need to click a region, inspect customer-level drivers and return to the same overview.</p></section>
 <section class="mastery-section"><h5>02 · How it actually works</h5><p>Slicers apply filter context to connected visuals; Edit Interactions overrides defaults. Drillthrough passes categorical filters into a detail page. Bookmarks can capture data state, display state or both, so reset controls must be tested.</p></section>
+<section class="mastery-deep-dive" aria-label="Beginner explanation and walkthrough for week 7">
+  <h5>Learn it step by step — simple explanation</h5>
+  <p class="v34-mental-model"><strong>Picture it this way:</strong> A slicer changes filter context; drillthrough moves the reader from summary to details while carrying selected fields.</p>
+  <h6>Follow the logic in three small steps</h6>
+  <ol class="v34-action-steps"><li>Create a Region slicer</li><li>Configure a drillthrough page filtered by Region</li><li>Test select, drill through and reset in a repeatable sequence</li></ol>
+  <div class="v34-interpretation"><strong>Read the expected result:</strong> When West is selected, order-level details should include 1002 and 1005 and the headline should read 190000.</div>
+  <div class="v34-independence"><strong>Now try it without copying:</strong> Add a visible Reset Filters action and confirm that returning to all regions restores 578000.</div>
+ </section>
 <section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>Suggested interaction test:
 1. Select Region = West.
 2. Revenue KPI must show 190000.
@@ -500,6 +556,14 @@ Sales YTD = TOTALYTD([Net Sales],'Date'[Date])</pre></div></div><div class="lab-
 <div class="mastery-body">
 <section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>Leaders ask which region contributes the most and what a customer’s share is within selected periods.</p></section>
 <section class="mastery-section"><h5>02 · How it actually works</h5><p>CALCULATE can remove specific filter columns; ALL/REMOVEFILTERS affect denominator context. RANKX compares row measures over a defined dimension set. Keep date filters when calculating region shares if you want period-relative shares.</p></section>
+<section class="mastery-deep-dive" aria-label="Beginner explanation and walkthrough for week 8">
+  <h5>Learn it step by step — simple explanation</h5>
+  <p class="v34-mental-model"><strong>Picture it this way:</strong> CALCULATE modifies the filters used by a measure. ALL and REMOVEFILTERS can deliberately remove a filter; you must document which denominator you intend.</p>
+  <h6>Follow the logic in three small steps</h6>
+  <ol class="v34-action-steps"><li>Start with [Revenue] in current region context</li><li>Build a denominator over all selected regions or all regions, deliberately</li><li>Divide using DIVIDE to handle a zero denominator</li></ol>
+  <div class="v34-interpretation"><strong>Read the expected result:</strong> East share of all completed regional revenue is 316000/578000=54.67%. ALLSELECTED and ALL are not interchangeable when slicers are present.</div>
+  <div class="v34-independence"><strong>Now try it without copying:</strong> Show how Region Share changes under a West-only selection for an all-regions versus selected-regions denominator.</div>
+ </section>
 <section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>Region Share % :=
 DIVIDE(
  [Revenue],
@@ -537,6 +601,14 @@ What happened? · Where? · Compared with when? · So what?</pre></div></div><di
 <div class="mastery-body">
 <section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>Publishing is not complete if users lack access, the data stays stale, or confidential rows leak between teams.</p></section>
 <section class="mastery-section"><h5>02 · How it actually works</h5><p>Publish the semantic model and report to a managed workspace. Set refresh credentials or gateway as needed, review licensing/workspace policies, configure row-level security where required, and test as a viewer. A successful refresh does not guarantee correct metrics.</p></section>
+<section class="mastery-deep-dive" aria-label="Beginner explanation and walkthrough for week 9">
+  <h5>Learn it step by step — simple explanation</h5>
+  <p class="v34-mental-model"><strong>Picture it this way:</strong> Publishing is a controlled release: permissions, refresh credentials, data sensitivity and business ownership matter as much as correct charts.</p>
+  <h6>Follow the logic in three small steps</h6>
+  <ol class="v34-action-steps"><li>Choose the workspace and owners</li><li>Verify sources, schedule and refresh history</li><li>Test a view-only user and inspect row-level security where required</li></ol>
+  <div class="v34-interpretation"><strong>Read the expected result:</strong> Refreshing should preserve the baseline KPI checks on the unchanged practice files. Permissions should not expose confidential records.</div>
+  <div class="v34-independence"><strong>Now try it without copying:</strong> Write a deployment checklist with role, refresh timestamp, owner, access test and rollback action.</div>
+ </section>
 <section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>Deployment checklist:
 □ Credentials and refresh schedule documented
 □ Role-based access tested
@@ -572,6 +644,14 @@ Completed Net Sales 14,248,255.00</pre></div></div><div class="lab-task"><b>Try 
 <div class="mastery-body">
 <section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>A reusable semantic model and a concise insight narrative demonstrate job-ready analytical judgment.</p></section>
 <section class="mastery-section"><h5>02 · How it actually works</h5><p>Import CSV through Power Query, model dimensions and dates, create explicit DAX measures, design overview/detail pages, test slicers, and write a short QA note. Separate demonstration values from real-world claims.</p></section>
+<section class="mastery-deep-dive" aria-label="Beginner explanation and walkthrough for week 10">
+  <h5>Learn it step by step — simple explanation</h5>
+  <p class="v34-mental-model"><strong>Picture it this way:</strong> The capstone tests analysis, modelling, usability and governance as one continuous chain. Success means a stakeholder can trace an insight to source records.</p>
+  <h6>Follow the logic in three small steps</h6>
+  <ol class="v34-action-steps"><li>Create an explicit metric contract</li><li>Build and validate the star schema and measures</li><li>Present a dashboard, drillthrough and documented refresh/access plan</li></ol>
+  <div class="v34-interpretation"><strong>Read the expected result:</strong> Acceptance baseline: five completed orders, 578000 revenue and 135000 profit, with returned order 1003 excluded from those totals.</div>
+  <div class="v34-independence"><strong>Now try it without copying:</strong> Prepare a handover containing a model diagram, measure dictionary, QA evidence and three business observations.</div>
+ </section>
 <section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>Required measures and controls:
 [Revenue] = 578000
 [Profit] = 135000
@@ -632,7 +712,7 @@ sections.forEach(s=>observer.observe(s));loadProgress();
 <script defer="" src="../assets/course-sync.js?v=20261022.20"></script>
 <script defer="" src="../assets/course-account.js?v=20261021.3"></script>
 <script defer="" src="../assets/modern.js?v=20261022.16"></script><script defer="" src="../assets/course-studio-data.js?v=20261015.3"></script>
-<script defer="" src="../assets/learner-companion.js?v=20261022.20"></script><script defer="" src="../assets/course-checkpoints.js?v=20261022.17"></script><script defer="" src="../assets/responsive-v2.js?v=20261015.3"></script><script defer="" src="../assets/workspace-shell.js?v=20261022.16"></script><script defer="" src="../assets/weekly-workspace.js?v=20261023.30"></script><script defer="" src="../assets/theme-control-v14.js?v=20261022.18"></script>
+<script defer="" src="../assets/learner-companion.js?v=20261022.20"></script><script defer="" src="../assets/course-checkpoints.js?v=20261022.17"></script><script defer="" src="../assets/responsive-v2.js?v=20261015.3"></script><script defer="" src="../assets/workspace-shell.js?v=20261022.16"></script><script defer="" src="../assets/weekly-workspace.js?v=34"></script><script defer="" src="../assets/theme-control-v14.js?v=20261022.18"></script>
 <script defer="" src="../assets/course-mobile-v21.js?v=20261022.22"></script>
 <script defer="" src="../assets/accessibility-v23.js?v=20261022.22"></script><script defer="" src="../assets/course-polish-v29.js?v=20261023.29"></script>
 </body></html>

@@ -186,7 +186,7 @@ main{min-width:0}.topbar{position:sticky;top:0;z-index:10;padding:13px 26px;disp
 <link href="../assets/data-atmosphere-v27.css?v=20261023.27" rel="stylesheet"/>
 <link href="../assets/dashboard-analytics-v28.css?v=20261023.28" rel="stylesheet">
 <link href="../assets/course-polish-v29.css?v=20261023.29" rel="stylesheet">
-<link href="../assets/controls-refresh-v30.css?v=20261023.30" rel="stylesheet"/></link></link></link></link></link></link></link></link></link><link href="../assets/mastery-accessibility-v33.css?v=33" rel="stylesheet"/></head>
+<link href="../assets/controls-refresh-v30.css?v=20261023.30" rel="stylesheet"/></link></link></link></link></link></link></link></link></link><link href="../assets/mastery-accessibility-v33.css?v=33" rel="stylesheet"/><link href="../assets/weekly-mastery-v34.css?v=34" rel="stylesheet"/></head>
 <body class="dlp-course-v29" data-course="sql" data-responsive-page="courses/sql">
 <div class="app"><aside class="sidebar" id="sidebar">
 <div class="brand course-brand"><div class="course-brand-shell"><div class="brand-company-name"><strong>Data Analysis Learning Path</strong><span>SQL Mastery Roadmap</span></div></div></div>
@@ -265,6 +265,14 @@ ORDER BY total_revenue DESC;</code></pre><h4>Walk through it</h4><ol><li>Confirm
 <div class="mastery-body">
 <section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>A retail manager asks which orders were completed. A database stores repeated transactions consistently, and SQL retrieves the precise rows required for the decision.</p></section>
 <section class="mastery-section"><h5>02 · How it actually works</h5><p>A table has a row grain (one order here), typed columns, and an identifying key. SELECT chooses columns, FROM chooses the table, WHERE restricts rows, and ORDER BY makes presentation deterministic. The engine parses SQL, builds a query plan, and evaluates it on stored rows.</p></section>
+<section class="mastery-deep-dive" aria-label="Beginner explanation and walkthrough for week 1">
+  <h5>Learn it step by step — simple explanation</h5>
+  <p class="v34-mental-model"><strong>Picture it this way:</strong> Think of a database table as a register: each row is one order, and each column answers one fixed question about that order. The order ID identifies a record; it is not a calculation.</p>
+  <h6>Follow the logic in three small steps</h6>
+  <ol class="v34-action-steps"><li>Open the orders table and inspect column names</li><li>Ask what one row represents before doing any sums</li><li>Choose only the columns needed, restrict the completed orders, then sort by order_id</li></ol>
+  <div class="v34-interpretation"><strong>Read the expected result:</strong> In the first displayed record, quantity 2 and unit price 150000 describe order 1001; the query has not yet multiplied them. LIMIT 3 limits the display, not the actual database.</div>
+  <div class="v34-independence"><strong>Now try it without copying:</strong> Change LIMIT 3 to LIMIT 5 and explain why five rows qualify even though the input has six.</div>
+ </section>
 <section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>SELECT order_id, customer, quantity, unit_price
 FROM orders
 WHERE status = 'Completed'
@@ -302,6 +310,14 @@ SELECT COUNT(*) AS target_rows FROM targets;</pre></div></div><div class="lab-ta
 <div class="mastery-body">
 <section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>Teams often ask for one region, one status, and a minimum transaction size; incorrect AND/OR logic quietly changes reported sales.</p></section>
 <section class="mastery-section"><h5>02 · How it actually works</h5><p>WHERE evaluates a Boolean condition per row, before grouping. AND binds more tightly than OR, so brackets communicate the intended condition. Text equality and numeric comparisons differ; NULL requires IS NULL, not = NULL.</p></section>
+<section class="mastery-deep-dive" aria-label="Beginner explanation and walkthrough for week 2">
+  <h5>Learn it step by step — simple explanation</h5>
+  <p class="v34-mental-model"><strong>Picture it this way:</strong> A WHERE filter is a set of admission rules for individual rows. The database checks those rules before performing any totals; ORDER BY decides how the surviving rows are displayed.</p>
+  <h6>Follow the logic in three small steps</h6>
+  <ol class="v34-action-steps"><li>State each condition in plain language</li><li>Add parentheses around combined AND/OR tests</li><li>Sort the filtered result by a meaningful column and then a stable tie-break</li></ol>
+  <div class="v34-interpretation"><strong>Read the expected result:</strong> Compare the order IDs returned, not just the count. The same five completed transactions can appear in different display orders without changing the business answer.</div>
+  <div class="v34-independence"><strong>Now try it without copying:</strong> Show completed orders from East or West; then change the logic to East AND West and describe why no single-region order qualifies.</div>
+ </section>
 <section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>SELECT order_id, region, quantity * unit_price AS gross_value
 FROM orders
 WHERE status='Completed' AND region IN ('East','West')
@@ -341,6 +357,14 @@ LIMIT 10;</pre></div></div><div class="lab-task"><b>Try it independently</b><p>C
 <div class="mastery-body">
 <section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>A performance dashboard must reconcile to finance: one returned order must not inflate completed-order revenue.</p></section>
 <section class="mastery-section"><h5>02 · How it actually works</h5><p>GROUP BY forms one group per region; SUM reduces rows to a metric. WHERE removes unqualified transactions before aggregation; HAVING filters completed groups. Financial reporting must define whether revenue includes tax, discounts, refunds and returns.</p></section>
+<section class="mastery-deep-dive" aria-label="Beginner explanation and walkthrough for week 3">
+  <h5>Learn it step by step — simple explanation</h5>
+  <p class="v34-mental-model"><strong>Picture it this way:</strong> An aggregate compresses many qualifying orders into a summary. Decide the group (region) and the unit (currency value) before writing SUM, AVG or COUNT.</p>
+  <h6>Follow the logic in three small steps</h6>
+  <ol class="v34-action-steps"><li>Filter to completed sales so returns are not treated as positive revenue</li><li>Calculate revenue per order as quantity × unit_price</li><li>Group by region and reconcile region totals back to 578000</li></ol>
+  <div class="v34-interpretation"><strong>Read the expected result:</strong> East 316000 + West 190000 + North 72000 = 578000. These are gross order values; profit uses a different formula: quantity × (unit_price − unit_cost).</div>
+  <div class="v34-independence"><strong>Now try it without copying:</strong> Add profit per region, reconcile to 135000, and explain the difference between gross revenue and profit.</div>
+ </section>
 <section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>SELECT region, COUNT(*) AS completed_orders,
        SUM(quantity*unit_price) AS revenue
 FROM orders
@@ -380,6 +404,14 @@ LIMIT 10;</pre></div></div><div class="lab-task"><b>Try it independently</b><p>C
 <div class="mastery-body">
 <section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>Order records may hold a customer_id while the customer segment sits in a separate table; analyses need reliable dimension joins.</p></section>
 <section class="mastery-section"><h5>02 · How it actually works</h5><p>JOIN matches related keys. One-to-many means a customer can have many orders; many-to-many or duplicate dimension keys can multiply rows. An INNER JOIN keeps matches, while LEFT JOIN keeps all rows on the left and flags unmatched reference data.</p></section>
+<section class="mastery-deep-dive" aria-label="Beginner explanation and walkthrough for week 4">
+  <h5>Learn it step by step — simple explanation</h5>
+  <p class="v34-mental-model"><strong>Picture it this way:</strong> A JOIN is like looking up a customer’s segment using a customer ID. The danger is that matching two or more customer rows to one order can copy its revenue multiple times.</p>
+  <h6>Follow the logic in three small steps</h6>
+  <ol class="v34-action-steps"><li>Write down the unique key on each side of the join</li><li>Check customer IDs for duplicates before joining</li><li>Compare order count and revenue before and after the join</li></ol>
+  <div class="v34-interpretation"><strong>Read the expected result:</strong> A LEFT JOIN preserves orders even when no customer record matches. The segment is extra context; the order amount must not change because of the lookup.</div>
+  <div class="v34-independence"><strong>Now try it without copying:</strong> Create an unmatched-customer report using LEFT JOIN and WHERE c.customer_id IS NULL; state what zero means.</div>
+ </section>
 <section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>SELECT o.order_id, c.segment, o.quantity*o.unit_price AS revenue
 FROM orders AS o
 LEFT JOIN customers AS c ON o.customer_id=c.customer_id
@@ -419,6 +451,14 @@ HAVING COUNT(*)&gt;=50;</pre></div></div><div class="lab-task"><b>Try it indepen
 <div class="mastery-body">
 <section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>Reports routinely distinguish completed, returned and pending transactions, plus unknown values that must not silently fall into a valid bucket.</p></section>
 <section class="mastery-section"><h5>02 · How it actually works</h5><p>NULL means unknown or missing, not zero or blank text. CASE evaluates WHEN branches in order; COALESCE chooses the first non-NULL input. A quality label should be mutually exclusive and include an ELSE branch.</p></section>
+<section class="mastery-deep-dive" aria-label="Beginner explanation and walkthrough for week 5">
+  <h5>Learn it step by step — simple explanation</h5>
+  <p class="v34-mental-model"><strong>Picture it this way:</strong> NULL means &#x27;not recorded&#x27; rather than zero or a blank string. A CASE expression is a decision tree: the first true condition wins, and ELSE handles everything else.</p>
+  <h6>Follow the logic in three small steps</h6>
+  <ol class="v34-action-steps"><li>Count the raw status values</li><li>Specify business labels for Completed and Returned</li><li>Keep an ELSE category so new or missing statuses are visible</li></ol>
+  <div class="v34-interpretation"><strong>Read the expected result:</strong> The example classifies orders 1001 and 1002 as Recognised, and order 1003 as Reversal. This describes the rule; it does not modify stored statuses.</div>
+  <div class="v34-independence"><strong>Now try it without copying:</strong> Add an AuditFlag label for NULL status using IS NULL, then describe why &#x27;= NULL&#x27; does not work.</div>
+ </section>
 <section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>SELECT order_id, status,
  CASE WHEN status='Completed' THEN 'Recognised'
       WHEN status='Returned' THEN 'Reversal'
@@ -457,6 +497,14 @@ ON o.customer_id=c.customer_id;</pre></div></div><div class="lab-task"><b>Try it
 <div class="mastery-body">
 <section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>Auditors and colleagues should be able to trace a KPI back to its qualifying transactions instead of interpreting a single oversized query.</p></section>
 <section class="mastery-section"><h5>02 · How it actually works</h5><p>A Common Table Expression (WITH) names an intermediate result within a single statement. Build detail-level calculated columns in one step, aggregate in another; most databases decide whether to inline or materialize CTEs based on the optimizer.</p></section>
+<section class="mastery-deep-dive" aria-label="Beginner explanation and walkthrough for week 6">
+  <h5>Learn it step by step — simple explanation</h5>
+  <p class="v34-mental-model"><strong>Picture it this way:</strong> A CTE is a named, temporary query result used within one SQL statement. Think of it as a worksheet tab that you can refer to later in the same calculation.</p>
+  <h6>Follow the logic in three small steps</h6>
+  <ol class="v34-action-steps"><li>Create completed_sales as transaction-level rows</li><li>Check that the CTE contains five orders</li><li>Aggregate those rows by region in the outer query</li></ol>
+  <div class="v34-interpretation"><strong>Read the expected result:</strong> The final regional numbers must equal the earlier grouped query. A CTE improves readability, but it does not automatically make the engine faster.</div>
+  <div class="v34-independence"><strong>Now try it without copying:</strong> Add a second CTE for regional totals, then retrieve only regions whose completed revenue exceeds 100000.</div>
+ </section>
 <section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>WITH completed_sales AS (
  SELECT region, quantity*unit_price AS revenue
  FROM orders WHERE status='Completed'
@@ -498,6 +546,14 @@ FROM completed GROUP BY region;</pre></div></div><div class="lab-task"><b>Try it
 <div class="mastery-body">
 <section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>Top-customer reporting and monthly running totals need calculations that do not collapse the original records.</p></section>
 <section class="mastery-section"><h5>02 · How it actually works</h5><p>Unlike GROUP BY, OVER computes within a window of rows while returning each selected row. PARTITION BY creates independent groups; ORDER BY defines sequence. ROW_NUMBER chooses one row per partition only when the sort has a reliable tie-break.</p></section>
+<section class="mastery-deep-dive" aria-label="Beginner explanation and walkthrough for week 7">
+  <h5>Learn it step by step — simple explanation</h5>
+  <p class="v34-mental-model"><strong>Picture it this way:</strong> GROUP BY reduces rows to one summary per group; a window function adds context without removing the original rows. Picture a ranking column written beside each order.</p>
+  <h6>Follow the logic in three small steps</h6>
+  <ol class="v34-action-steps"><li>Partition by customer so each customer has a separate sequence</li><li>Order by date descending and add order_id to break ties</li><li>Assign ROW_NUMBER and keep rank 1 only when you need the latest order</li></ol>
+  <div class="v34-interpretation"><strong>Read the expected result:</strong> Ngozi has two completed orders. Her February 18 order ranks ahead of her February 9 order, yet both appear in the unfiltered window result.</div>
+  <div class="v34-independence"><strong>Now try it without copying:</strong> Use DENSE_RANK on a regional revenue summary and explain what happens if two regions tie.</div>
+ </section>
 <section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>SELECT customer, order_id, order_date,
  ROW_NUMBER() OVER(
  PARTITION BY customer ORDER BY order_date DESC, order_id DESC
@@ -539,6 +595,14 @@ SELECT month,revenue,LAG(revenue) OVER(ORDER BY month) AS prior_revenue FROM m;<
 <div class="mastery-body">
 <section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>Leadership needs January and February comparisons; grouping only by month name mixes years and creates misleading trends.</p></section>
 <section class="mastery-section"><h5>02 · How it actually works</h5><p>SQLite strftime returns a sortable YYYY-MM month key. Filter timestamps at the desired grain, group by year-month, and use LAG for a prior period. The dialect matters: use DATE_TRUNC in other systems, not SQLite.</p></section>
+<section class="mastery-deep-dive" aria-label="Beginner explanation and walkthrough for week 8">
+  <h5>Learn it step by step — simple explanation</h5>
+  <p class="v34-mental-model"><strong>Picture it this way:</strong> Time analysis starts by placing each order in an accurate calendar bucket. A month is not just &#x27;January&#x27;: the year matters, and partial months cannot always be compared fairly.</p>
+  <h6>Follow the logic in three small steps</h6>
+  <ol class="v34-action-steps"><li>Extract YYYY-MM from the transaction date</li><li>Exclude returned orders consistently</li><li>Group revenue by month and compare complete periods</li></ol>
+  <div class="v34-interpretation"><strong>Read the expected result:</strong> January contributes 340000 and February 238000. The February change is −102000, or −30% of January; the tiny fictional sample cannot justify a trend forecast.</div>
+  <div class="v34-independence"><strong>Now try it without copying:</strong> Add a previous_month column with LAG and explain why the first row has no previous comparison.</div>
+ </section>
 <section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>SELECT strftime('%Y-%m',order_date) AS month,
  SUM(quantity*unit_price) AS revenue
 FROM orders WHERE status='Completed'
@@ -575,6 +639,14 @@ SELECT * FROM ranked WHERE rn=1;</pre></div></div><div class="lab-task"><b>Try i
 <div class="mastery-body">
 <section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>A fast incorrect report is worse than a slower audited one; reliability comes before indexing and speed work.</p></section>
 <section class="mastery-section"><h5>02 · How it actually works</h5><p>Start with expected row counts, distinct keys, nulls and reconciliations. EXPLAIN QUERY PLAN describes access paths and joins. Indexes can improve selective lookups but add storage and write overhead; on small training datasets a full scan may be optimal.</p></section>
+<section class="mastery-deep-dive" aria-label="Beginner explanation and walkthrough for week 9">
+  <h5>Learn it step by step — simple explanation</h5>
+  <p class="v34-mental-model"><strong>Picture it this way:</strong> Validation is the safety check before optimization. A query that returns quickly but duplicates transactions is still incorrect.</p>
+  <h6>Follow the logic in three small steps</h6>
+  <ol class="v34-action-steps"><li>Check total row count and distinct order IDs</li><li>Check the five qualifying completed records and their combined revenue</li><li>Only then inspect EXPLAIN QUERY PLAN or try an index</li></ol>
+  <div class="v34-interpretation"><strong>Read the expected result:</strong> The input has six order rows, six distinct order IDs and 578000 in completed revenue. Keep these numbers as independent controls after any rewrite.</div>
+  <div class="v34-independence"><strong>Now try it without copying:</strong> Intentionally join orders to a duplicate reference table, then use row counts to diagnose inflated totals.</div>
+ </section>
 <section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>SELECT COUNT(*) AS row_count,
  COUNT(DISTINCT order_id) AS unique_orders,
  SUM(CASE WHEN status='Completed'
@@ -610,6 +682,14 @@ EXPLAIN QUERY PLAN SELECT * FROM orders WHERE customer_id='C007';</pre></div></d
 <div class="mastery-body">
 <section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>An analyst must supply business context, definitions, reproducible queries and evidence—not only a screenshot of a chart.</p></section>
 <section class="mastery-section"><h5>02 · How it actually works</h5><p>Begin with a metric contract (completed gross revenue, completed orders, profit). Build a validated fact extract, create group and time views, reconcile them, and document caveats such as the tiny illustrative dataset.</p></section>
+<section class="mastery-deep-dive" aria-label="Beginner explanation and walkthrough for week 10">
+  <h5>Learn it step by step — simple explanation</h5>
+  <p class="v34-mental-model"><strong>Picture it this way:</strong> A production analytics deliverable is more than SQL syntax: it connects a business question, an agreed metric definition, verifiable output and a handoff note.</p>
+  <h6>Follow the logic in three small steps</h6>
+  <ol class="v34-action-steps"><li>Record the question and inclusion rule</li><li>Run detail, regional and monthly views that reuse the same completed-sales definition</li><li>Reconcile regional revenue 578000 and profit 135000 to the source</li></ol>
+  <div class="v34-interpretation"><strong>Read the expected result:</strong> The region summary accounts for all five completed orders. Document limitations: six invented orders are suitable for practice, not real market conclusions.</div>
+  <div class="v34-independence"><strong>Now try it without copying:</strong> Deliver three SQL files plus a one-page README defining revenue, profit, returned-order treatment and control totals.</div>
+ </section>
 <section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>WITH fact AS (
  SELECT order_id,region,quantity*unit_price AS revenue,
         quantity*(unit_price-unit_cost) AS profit
@@ -686,7 +766,7 @@ sections.forEach(s=>observer.observe(s));loadProgress();
 <script defer="" src="../assets/course-sync.js?v=20261022.20"></script>
 <script defer="" src="../assets/course-account.js?v=20261021.3"></script>
 <script defer="" src="../assets/modern.js?v=20261022.16"></script><script defer="" src="../assets/course-studio-data.js?v=20261015.3"></script>
-<script defer="" src="../assets/learner-companion.js?v=20261022.20"></script><script defer="" src="../assets/course-checkpoints.js?v=20261022.17"></script><script defer="" src="../assets/responsive-v2.js?v=20261015.3"></script><script defer="" src="../assets/workspace-shell.js?v=20261022.16"></script><script defer="" src="../assets/weekly-workspace.js?v=20261023.30"></script><script defer="" src="../assets/theme-control-v14.js?v=20261022.18"></script>
+<script defer="" src="../assets/learner-companion.js?v=20261022.20"></script><script defer="" src="../assets/course-checkpoints.js?v=20261022.17"></script><script defer="" src="../assets/responsive-v2.js?v=20261015.3"></script><script defer="" src="../assets/workspace-shell.js?v=20261022.16"></script><script defer="" src="../assets/weekly-workspace.js?v=34"></script><script defer="" src="../assets/theme-control-v14.js?v=20261022.18"></script>
 <script defer="" src="../assets/course-mobile-v21.js?v=20261022.22"></script>
 <script defer="" src="../assets/accessibility-v23.js?v=20261022.22"></script><script defer="" src="../assets/course-polish-v29.js?v=20261023.29"></script>
 </body></html>

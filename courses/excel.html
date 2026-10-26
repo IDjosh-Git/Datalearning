@@ -380,7 +380,7 @@ main{min-width:0}
 <link href="../assets/data-atmosphere-v27.css?v=20261023.27" rel="stylesheet"/>
 <link href="../assets/dashboard-analytics-v28.css?v=20261023.28" rel="stylesheet">
 <link href="../assets/course-polish-v29.css?v=20261023.29" rel="stylesheet">
-<link href="../assets/controls-refresh-v30.css?v=20261023.30" rel="stylesheet"/></link></link></link></link></link></link></link></link></link><link href="../assets/mastery-accessibility-v33.css?v=33" rel="stylesheet"/></head>
+<link href="../assets/controls-refresh-v30.css?v=20261023.30" rel="stylesheet"/></link></link></link></link></link></link></link></link></link><link href="../assets/mastery-accessibility-v33.css?v=33" rel="stylesheet"/><link href="../assets/weekly-mastery-v34.css?v=34" rel="stylesheet"/></head>
 <body class="dlp-course-v29" data-course="excel" data-responsive-page="courses/excel">
 <div class="app">
 <aside class="sidebar" id="sidebar">
@@ -520,6 +520,14 @@ main{min-width:0}
 <div class="mastery-body">
 <section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>An operations analyst receives daily order exports. A clear workbook structure reduces formula mistakes and lets a colleague audit the numbers.</p></section>
 <section class="mastery-section"><h5>02 · How it actually works</h5><p>Rows hold records, columns hold attributes, and cells hold values or formulas. Separate RawData, Calculations and Dashboard sheets; use one row per order, true dates, no merged data headers, and a clear source/date note.</p></section>
+<section class="mastery-deep-dive" aria-label="Beginner explanation and walkthrough for week 1">
+  <h5>Learn it step by step — simple explanation</h5>
+  <p class="v34-mental-model"><strong>Picture it this way:</strong> A well-designed workbook is a small information system: source rows enter in one place, calculations happen separately, and a dashboard displays the conclusion.</p>
+  <h6>Follow the logic in three small steps</h6>
+  <ol class="v34-action-steps"><li>Open the CSV without changing the original file</li><li>Confirm each column contains one type of information and dates are true dates</li><li>Separate RawData, Calculations and Dashboard tabs</li></ol>
+  <div class="v34-interpretation"><strong>Read the expected result:</strong> Order 1001 is one row for a laptop sale: two units at 150000 each. Do not insert a subtotal row between transactions because PivotTables will count it as another record.</div>
+  <div class="v34-independence"><strong>Now try it without copying:</strong> Create a 12-column data dictionary: field name, what it means and expected data type.</div>
+ </section>
 <section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-table" tabindex="0"><code>RawData!A1:J3
 OrderID | Date       | Customer | Region | Product | Qty | Price | Cost  | Status
 1001    | 2026-01-05 | Amina    | East   | Laptop  | 2   | 150000| 120000| Completed
@@ -565,6 +573,14 @@ OrderID | Date       | Customer | Region | Product | Qty | Price | Cost  | Statu
 <div class="mastery-body">
 <section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>Order logs grow daily. A manual formula range stops at yesterday’s last row, whereas a Table can extend calculated columns and references.</p></section>
 <section class="mastery-section"><h5>02 · How it actually works</h5><p>Ctrl+T creates an Excel Table with headers, filters, and structured references. Add a Revenue column with =[@Qty]*[@Price]; Excel fills it down the Table. Data Validation can restrict Status to permitted values.</p></section>
+<section class="mastery-deep-dive" aria-label="Beginner explanation and walkthrough for week 2">
+  <h5>Learn it step by step — simple explanation</h5>
+  <p class="v34-mental-model"><strong>Picture it this way:</strong> An Excel Table behaves like an expanding dataset, not a fixed rectangle of cells. Structured references name columns and stay readable when new orders arrive.</p>
+  <h6>Follow the logic in three small steps</h6>
+  <ol class="v34-action-steps"><li>Select any cell in the data and press Ctrl+T with headers</li><li>Rename the table Sales</li><li>Add a Revenue column using =[@Quantity]*[@Unit_Price] with the actual header names</li></ol>
+  <div class="v34-interpretation"><strong>Read the expected result:</strong> Excel calculates 300000 for order 1001 and 40000 for order 1002. Status Data Validation helps manual entry but does not guarantee that imported rows are clean.</div>
+  <div class="v34-independence"><strong>Now try it without copying:</strong> Add a new practice order and verify that the Revenue formula auto-fills; compare with a fixed A2:A6 range.</div>
+ </section>
 <section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>Name the table: Sales
 Revenue column formula: =[@Qty]*[@Price]
 Status validation list: Completed,Returned
@@ -611,6 +627,14 @@ Data Validation list: Completed,Returned,Cancelled</pre></div></div><div class="
 <div class="mastery-body">
 <section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>Finance often asks for tax, targets and profit; formulas must handle fill-down correctly and preserve fixed assumptions.</p></section>
 <section class="mastery-section"><h5>02 · How it actually works</h5><p>Relative references move when copied. An absolute reference such as $M$2 never moves. SUM aggregates, ROUND controls display precision, and IFERROR handles anticipated calculation errors without hiding all source defects.</p></section>
+<section class="mastery-deep-dive" aria-label="Beginner explanation and walkthrough for week 3">
+  <h5>Learn it step by step — simple explanation</h5>
+  <p class="v34-mental-model"><strong>Picture it this way:</strong> A relative reference is a moving instruction; an absolute reference is an anchor. In sales work you often multiply different quantities by one shared VAT rate.</p>
+  <h6>Follow the logic in three small steps</h6>
+  <ol class="v34-action-steps"><li>Enter a rate in one labelled cell</li><li>Use $ to lock that reference when copying a formula</li><li>Validate copied formulas with one hand-calculated order</li></ol>
+  <div class="v34-interpretation"><strong>Read the expected result:</strong> If VAT is 7.5% and an order has revenue 300000, tax would be 22500; the net sale treatment depends on whether prices already include VAT.</div>
+  <div class="v34-independence"><strong>Now try it without copying:</strong> Write the formulas for quantity×price, quantity×unit cost and their difference; test with order 1001.</div>
+ </section>
 <section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>Assume Sales[Revenue] has six gross order values.
 =SUM(Sales[Revenue])                 → 602000
 =SUMIFS(Sales[Revenue],Sales[Status],"Completed") → 578000
@@ -657,6 +681,14 @@ Completed gross sales   | 578000
 <div class="mastery-body">
 <section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>Order reviews require statuses, thresholds and product categories from a lookup table.</p></section>
 <section class="mastery-section"><h5>02 · How it actually works</h5><p>IF returns a branch; SUMIFS calculates numeric totals with multiple criteria. XLOOKUP matches a key and returns a related value in newer Excel; for Excel 2016 use INDEX/MATCH or VLOOKUP with exact-match FALSE. Guard against missing keys.</p></section>
+<section class="mastery-deep-dive" aria-label="Beginner explanation and walkthrough for week 4">
+  <h5>Learn it step by step — simple explanation</h5>
+  <p class="v34-mental-model"><strong>Picture it this way:</strong> IF is a fork in the road. SUMIFS groups only values meeting explicit rules. XLOOKUP or VLOOKUP attaches information from a reliable reference list.</p>
+  <h6>Follow the logic in three small steps</h6>
+  <ol class="v34-action-steps"><li>Use IF to set returned orders&#x27; recognized revenue to zero</li><li>Use SUMIFS to add completed East revenue</li><li>Inspect lookup keys before pulling segment or region from a separate table</li></ol>
+  <div class="v34-interpretation"><strong>Read the expected result:</strong> East completed revenue equals 300000 + 16000 = 316000; the East returned order worth 24000 is excluded. Excel 2016 users may need INDEX/MATCH or VLOOKUP instead of XLOOKUP.</div>
+  <div class="v34-independence"><strong>Now try it without copying:</strong> Make a missing-lookup flag with IFERROR or ISNA; do not silently display zero for unknown customers.</div>
+ </section>
 <section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>=IF([@Status]="Completed",[@Revenue],0)
 =SUMIFS(Sales[Revenue],Sales[Status],"Completed",Sales[Region],"East")
 Excel 2016: =IFERROR(INDEX(Category[Group],MATCH([@Product],Category[Product],0)),"Unmapped")</code></pre>
@@ -701,6 +733,14 @@ Unknown product → Unmapped (not a fabricated category).</pre></div></section>
 <div class="mastery-body">
 <section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>In real feeds, spaces, duplicates, invalid dates and inconsistent capitalization can fragment business categories.</p></section>
 <section class="mastery-section"><h5>02 · How it actually works</h5><p>TRIM removes surplus spaces, CLEAN removes nonprinting characters, PROPER standardizes names when appropriate, and COUNTIF can identify repeat IDs. Power Query preserves a replayable sequence of transformations.</p></section>
+<section class="mastery-deep-dive" aria-label="Beginner explanation and walkthrough for week 5">
+  <h5>Learn it step by step — simple explanation</h5>
+  <p class="v34-mental-model"><strong>Picture it this way:</strong> Cleaning is not deleting anything that looks inconvenient. You preserve raw evidence, fix documented issues in a copy and test whether the change affected KPIs.</p>
+  <h6>Follow the logic in three small steps</h6>
+  <ol class="v34-action-steps"><li>List the field-level quality rules</li><li>Trim extra spaces, validate numeric and date types, and inspect duplicates</li><li>Compare record counts and completed revenue before/after the cleaned view</li></ol>
+  <div class="v34-interpretation"><strong>Read the expected result:</strong> Returned order 1003 must remain in the dataset for audit; it is simply excluded by the completed-sales business rule.</div>
+  <div class="v34-independence"><strong>Now try it without copying:</strong> Create a small issue log showing field, original value, correction, reason and validation result.</div>
+ </section>
 <section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>=TRIM(A2)                  // "  East  " → "East"
 =COUNTIF(Sales[OrderID],[@OrderID])  // expected 1 per sample row
 =IF([@Status]="Returned","Excluded from completed revenue","Include")</code></pre>
@@ -745,6 +785,14 @@ Duplicates in mastery data: 0.</pre></div></section>
 <div class="mastery-body">
 <section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>Sales managers filter geography and status during daily reviews; accidental partial-range sorting can detach quantities from the wrong orders.</p></section>
 <section class="mastery-section"><h5>02 · How it actually works</h5><p>Table filtering hides unrelated rows without deleting them. SUMIFS respects explicit logical criteria, while SUBTOTAL can aggregate visible rows only. Keep source filters separate from final KPI definitions.</p></section>
+<section class="mastery-deep-dive" aria-label="Beginner explanation and walkthrough for week 6">
+  <h5>Learn it step by step — simple explanation</h5>
+  <p class="v34-mental-model"><strong>Picture it this way:</strong> Filtering is a viewing decision; deleting is a data change. Excel&#x27;s SUBTOTAL reacts to filtered rows while plain SUM may include all rows.</p>
+  <h6>Follow the logic in three small steps</h6>
+  <ol class="v34-action-steps"><li>Convert the range to a Table</li><li>Filter Status to Completed and Region to West</li><li>Apply SUBTOTAL to visible revenue and cross-check order IDs</li></ol>
+  <div class="v34-interpretation"><strong>Read the expected result:</strong> The visible West completed orders are 1002 and 1005, worth 40000 and 150000, for a total of 190000.</div>
+  <div class="v34-independence"><strong>Now try it without copying:</strong> Sort by revenue descending, then restore original order by OrderID and explain why the totals remain unchanged.</div>
+ </section>
 <section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>=SUBTOTAL(109,Sales[Revenue])
 After filtering Status=Completed and Region=West:
 Visible OrderIDs: 1002 and 1005</code></pre>
@@ -789,6 +837,14 @@ The unfiltered all-status gross remains 602000.</pre></div></section>
 <div class="mastery-body">
 <section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>A 1,000-row sales log is difficult to interpret row-by-row. A PivotTable groups regions, months and products without manual SUMIFS for every combination.</p></section>
 <section class="mastery-section"><h5>02 · How it actually works</h5><p>Insert a PivotTable from Sales, set Rows=Region, Values=Sum of Revenue, and Filters=Status. Refresh when the source changes. Show Values As % of Grand Total uses the current Pivot context, not an all-time static denominator.</p></section>
+<section class="mastery-deep-dive" aria-label="Beginner explanation and walkthrough for week 7">
+  <h5>Learn it step by step — simple explanation</h5>
+  <p class="v34-mental-model"><strong>Picture it this way:</strong> A PivotTable answers &#x27;how much by what category?&#x27; without editing each source row. The choice between % of Grand Total and % of Row Total changes the meaning.</p>
+  <h6>Follow the logic in three small steps</h6>
+  <ol class="v34-action-steps"><li>Insert a PivotTable from Sales</li><li>Place Region in Rows and completed Revenue in Values</li><li>Use Show Values As → % of Grand Total and label it clearly</li></ol>
+  <div class="v34-interpretation"><strong>Read the expected result:</strong> East&#x27;s share is 316000 ÷ 578000 ≈ 54.67%. The percentages should add to 100% across the three regions when the same filter applies.</div>
+  <div class="v34-independence"><strong>Now try it without copying:</strong> Build a second PivotTable showing channel shares and explain why adding percentages directly can mislead.</div>
+ </section>
 <section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>Pivot configuration:
 Rows: Region
 Values: Sum of Revenue
@@ -836,6 +892,14 @@ North  | 72000   | 12.46%</pre></div></section>
 <div class="mastery-body">
 <section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>Stakeholders should identify what changed and where to act within seconds.</p></section>
 <section class="mastery-section"><h5>02 · How it actually works</h5><p>Bars compare discrete regions; a line displays time order; scatterplots explain relationships. Use direct labels, consistent units and zero-based axes for magnitude comparisons. Separate a revenue line from a percentage-margin line unless clearly dual-labelled.</p></section>
+<section class="mastery-deep-dive" aria-label="Beginner explanation and walkthrough for week 8">
+  <h5>Learn it step by step — simple explanation</h5>
+  <p class="v34-mental-model"><strong>Picture it this way:</strong> A chart is a comparison tool: bars compare categories, lines show time order, and a KPI card communicates one number.</p>
+  <h6>Follow the logic in three small steps</h6>
+  <ol class="v34-action-steps"><li>State what decision the chart supports</li><li>Choose the visual based on category, trend or target</li><li>Check the title, units, zero baseline and accessibility contrast</li></ol>
+  <div class="v34-interpretation"><strong>Read the expected result:</strong> The region bar chart should visibly place East above West above North. A pie chart may hide the size difference when categories are numerous.</div>
+  <div class="v34-independence"><strong>Now try it without copying:</strong> Redesign an unlabeled revenue chart with a descriptive title, currency units and a note that only Completed orders are counted.</div>
+ </section>
 <section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-table" tabindex="0"><code>Build two charts from completed sales:
 Chart A: horizontal bars — East 316000, West 190000, North 72000
 Chart B: month line — Jan 340000, Feb 238000</code></pre>
@@ -881,6 +945,14 @@ Measure: Sum of Orders[net_sales], Completed orders only</pre></div></div><div c
 <div class="mastery-body">
 <section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>A dashboard needs a defined audience, a small set of critical KPIs and clear interactions rather than a wall of charts.</p></section>
 <section class="mastery-section"><h5>02 · How it actually works</h5><p>Use a header with the reporting period, KPI row, trend and breakdown visuals, and source/refresh notes. If slicers affect only some visuals, make this explicit. Keep raw data and calculations out of the presentation layer.</p></section>
+<section class="mastery-deep-dive" aria-label="Beginner explanation and walkthrough for week 9">
+  <h5>Learn it step by step — simple explanation</h5>
+  <p class="v34-mental-model"><strong>Picture it this way:</strong> A dashboard is a decision path, not a collage. Put the headline outcome first, drivers beneath it, then details for verification.</p>
+  <h6>Follow the logic in three small steps</h6>
+  <ol class="v34-action-steps"><li>Define three top KPIs and their exact filters</li><li>Arrange trend and category drivers below KPI cards</li><li>Connect slicers and test that each interactive view reconciles</li></ol>
+  <div class="v34-interpretation"><strong>Read the expected result:</strong> The default training view shows 578000 completed revenue, 135000 profit and 23.36% gross margin. Every slicer state should retain a meaningful title.</div>
+  <div class="v34-independence"><strong>Now try it without copying:</strong> Write a two-sentence manager&#x27;s summary of February&#x27;s revenue decrease without claiming a cause.</div>
+ </section>
 <section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>Suggested layout (completed orders only):
 [Revenue 578000] [Profit 135000] [Orders 5] [Margin 23.36%]
 [Monthly revenue trend] [Revenue by region]
@@ -931,6 +1003,14 @@ Gross profit = net sales − completed quantity × unit_cost</pre></div></div><d
 <div class="mastery-body">
 <section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>A finished analytical workbook should survive a new batch of rows and allow another analyst to reproduce every figure.</p></section>
 <section class="mastery-section"><h5>02 · How it actually works</h5><p>Build Sales as a Table, add revenue/profit calculations, write source checks, create monthly and regional Pivots, then a restrained dashboard. Record assumptions and verify month totals against the transaction data.</p></section>
+<section class="mastery-deep-dive" aria-label="Beginner explanation and walkthrough for week 10">
+  <h5>Learn it step by step — simple explanation</h5>
+  <p class="v34-mental-model"><strong>Picture it this way:</strong> Portfolio work demonstrates repeatability: another analyst should be able to replace the CSV and understand the formulas without a guided tour.</p>
+  <h6>Follow the logic in three small steps</h6>
+  <ol class="v34-action-steps"><li>Provide a raw-data sheet, transformation notes and calculation sheet</li><li>Build a clean one-page dashboard with filters</li><li>Audit totals, broken formulas, blank keys and refresh behavior</li></ol>
+  <div class="v34-interpretation"><strong>Read the expected result:</strong> Acceptance checks: five Completed orders; 578000 recognized revenue; 135000 profit. Your evidence should include at least one failed-data scenario.</div>
+  <div class="v34-independence"><strong>Now try it without copying:</strong> Hand over an Excel workbook and a short QA checklist explaining what you verified and how.</div>
+ </section>
 <section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>Acceptance controls:
 Completed Order Count: =COUNTIF(Sales[Status],"Completed")
 Completed Revenue: =SUMIFS(Sales[Revenue],Sales[Status],"Completed")
@@ -1078,7 +1158,7 @@ loadProgress();
 <script defer="" src="../assets/course-sync.js?v=20261022.20"></script>
 <script defer="" src="../assets/course-account.js?v=20261021.3"></script>
 <script defer="" src="../assets/modern.js?v=20261022.16"></script><script defer="" src="../assets/course-studio-data.js?v=20261015.3"></script>
-<script defer="" src="../assets/learner-companion.js?v=20261022.20"></script><script defer="" src="../assets/course-checkpoints.js?v=20261022.17"></script><script defer="" src="../assets/responsive-v2.js?v=20261015.3"></script><script defer="" src="../assets/workspace-shell.js?v=20261022.16"></script><script defer="" src="../assets/weekly-workspace.js?v=20261023.30"></script><script defer="" src="../assets/theme-control-v14.js?v=20261022.18"></script>
+<script defer="" src="../assets/learner-companion.js?v=20261022.20"></script><script defer="" src="../assets/course-checkpoints.js?v=20261022.17"></script><script defer="" src="../assets/responsive-v2.js?v=20261015.3"></script><script defer="" src="../assets/workspace-shell.js?v=20261022.16"></script><script defer="" src="../assets/weekly-workspace.js?v=34"></script><script defer="" src="../assets/theme-control-v14.js?v=20261022.18"></script>
 <script defer="" src="../assets/course-mobile-v21.js?v=20261022.22"></script>
 <script defer="" src="../assets/accessibility-v23.js?v=20261022.22"></script><script defer="" src="../assets/course-polish-v29.js?v=20261023.29"></script>
 </body>
