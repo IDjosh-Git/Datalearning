@@ -7,6 +7,12 @@ const read=p=>readFileSync(join(root,p),'utf8');
 const courses=['sql','excel','powerbi','python','ai'];
 const json=JSON.parse(read('curriculum/mastery_content_v34.json'));
 const workspace=read('assets/weekly-workspace.js');
+const curriculum=read('MASTER_CURRICULUM_V34.md');
+const curriculumSource=read('curriculum/MASTER_CURRICULUM_V34.md');
+assert.equal(curriculum,curriculumSource,'Root and curriculum teaching guides stay in sync');
+assert.equal((curriculum.match(/\*\*Solved checks:\*\*/g)||[]).length,50,'One solved-check section per week');
+assert.doesNotMatch(curriculum,/^\s*\d+\. question\s*$/m,'Solved checks are not placeholders');
+assert.doesNotMatch(curriculum,/\*\*Solution:\*\* solution/i,'Solved answers are not placeholders');
 assert.match(workspace,/python:'Python for Data Analytics'/);
 assert.match(workspace,/python:\{main:\['Download Python practice CSV'/);
 for(const c of courses){
@@ -20,6 +26,11 @@ for(const c of courses){
  for(const entry of json[c]){
   assert.equal(entry.guided_steps.length,3,`${c}: ordered three-step walkthrough`);
   for(const f of ['simple_explanation','how_to_read_the_result','independent_practice'])assert.ok(entry[f].length>40,`${c} ${entry.title}: ${f}`);
+  assert.equal(entry.checks.length,2,`${c} ${entry.title}: two worked checks`);
+  for(const check of entry.checks){
+   assert.ok(check.question.trim().length>0&&!/^(question|placeholder)$/i.test(check.question.trim()),`${c} ${entry.title}: check question`);
+   assert.ok(check.solution.trim().length>20,`${c} ${entry.title}: worked solution`);
+  }
  }
 }
 const py=read('courses/python.html');

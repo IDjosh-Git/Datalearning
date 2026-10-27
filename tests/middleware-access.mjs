@@ -3,7 +3,7 @@ import fs from 'node:fs/promises';
 import {pathToFileURL} from 'node:url';
 const base=new URL('../',import.meta.url);
 let source=await fs.readFile(new URL('../middleware.js',import.meta.url),'utf8');
-const modPath=pathToFileURL(new URL('../lib/server-auth.js',import.meta.url).pathname).href;
+const modPath=new URL('../lib/server-auth.js',import.meta.url).href;
 source=source.replace("import { next } from '@vercel/functions';", "const next=({headers}={}) => new Response(null,{status:204,headers:{...headers,'x-middleware-next':'true'}});")
  .replace("from './lib/server-auth.js'","from '"+modPath+"'");
 const {default:middleware,config}=await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));

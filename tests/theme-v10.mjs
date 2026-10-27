@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import {fileURLToPath} from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const pages=[...fs.readdirSync(root).filter(f=>f.endsWith('.html')).map(f=>path.join(root,f)),...fs.readdirSync(path.join(root,'courses')).filter(f=>f.endsWith('.html')).map(f=>path.join(root,'courses',f))];
-assert.equal(pages.length,22,'Expected 22 existing HTML pages');
+assert.equal(pages.length,23,'Expected 23 existing HTML pages');
 for(const file of pages){
  const html=fs.readFileSync(file,'utf8');
  const cssName='theme-unified-v10.css';
@@ -23,4 +23,4 @@ for(const file of ['excel','sql','powerbi','ai','introduction']){
  const text=fs.readFileSync(path.join(root,'courses',file+'.html'),'utf8');
  assert.ok(text.includes('weekly-workspace.css'),`Missing course navigator: ${file}`);
 }
-console.log('PASS V10 semantic theme and large-screen layout: 22 HTML pages, 5 courses, shared styles, dataset panels and print-safe asset references');
+console.log('PASS V10 semantic theme and large-screen layout: 23 HTML pages, 5 courses, shared styles, dataset panels and print-safe asset references');

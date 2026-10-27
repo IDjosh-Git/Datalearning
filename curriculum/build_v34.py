@@ -6,10 +6,12 @@ from pathlib import Path
 from html import escape
 from datetime import date
 import json,re
+import sys
 from expand_lessons_v34 import LESSONS,validate
 validate()
 root=Path(__file__).parent.parent
 content=json.loads((root/'curriculum/mastery_content.json').read_text())
+curriculum_only='--curriculum-only' in sys.argv
 
 PYTHON_QUIZZES=[
  [('What does DataFrame.shape describe?','Number of rows and columns','Names of the Python packages','Last three lines of the CSV'),('Which action helps diagnose FileNotFoundError?','Inspect the working directory and path','Divide prices by quantities','Change all column names'),('What should happen before calculating sales KPIs?','Check data types and business grain','Delete any unusual order','Start with chart colours')],
@@ -63,6 +65,8 @@ def lab_markup(week,entry,fields):
   </div>'''
 
 for course, rows in LESSONS.items():
+ if curriculum_only:
+  continue
  path=root/f'courses/{course}.html'; s=path.read_text()
  tag='<section class="mastery-section"><h5>03 · Worked example</h5>'
  assert s.count(tag)==10,(course,s.count(tag))
