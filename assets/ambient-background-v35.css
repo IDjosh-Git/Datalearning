@@ -1,0 +1,62 @@
+/* Ambient theme v35: pattern-free viewport lighting. Loaded last. */
+:root {
+  color-scheme: light;
+  --ambient-base: #F8FAFC;
+  --ambient-ink: #0F172A;
+  --ambient-sky: rgba(56, 189, 248, .14);
+  --ambient-indigo: rgba(99, 102, 241, .11);
+  --ambient-bottom: rgba(125, 211, 252, .08);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not(.light):not(.dark):not([data-theme]) {
+    color-scheme: dark;
+    --ambient-base: #0F172A;
+    --ambient-ink: #F8FAFC;
+    --ambient-sky: rgba(34, 211, 238, .10);
+    --ambient-indigo: rgba(139, 92, 246, .13);
+    --ambient-bottom: rgba(99, 102, 241, .07);
+  }
+}
+:root:is(.dark, [data-theme="dark"]) {
+  color-scheme: dark;
+  --ambient-base: #0F172A;
+  --ambient-ink: #F8FAFC;
+  --ambient-sky: rgba(34, 211, 238, .10);
+  --ambient-indigo: rgba(139, 92, 246, .13);
+  --ambient-bottom: rgba(99, 102, 241, .07);
+}
+:root:is(.light, [data-theme="light"]) {
+  color-scheme: light;
+  --ambient-base: #F8FAFC;
+  --ambient-ink: #0F172A;
+  --ambient-sky: rgba(56, 189, 248, .14);
+  --ambient-indigo: rgba(99, 102, 241, .11);
+  --ambient-bottom: rgba(125, 211, 252, .08);
+}
+html { min-height: 100%; background-color: var(--ambient-base) !important; }
+/* Specificity and final load order override legacy grid/dot backgrounds. */
+html body,
+html body.lp-home,
+html body.dlp-course-v29,
+html[data-theme="dark"] body,
+html[data-theme="dark"] body.lp-home.dl-workspace {
+  background-color: var(--ambient-base) !important;
+  background-image:
+    radial-gradient(ellipse 75% 55% at 10% 5%, var(--ambient-sky), transparent 75%),
+    radial-gradient(ellipse 65% 60% at 95% 15%, var(--ambient-indigo), transparent 75%),
+    radial-gradient(ellipse 75% 55% at 50% 100%, var(--ambient-bottom), transparent 80%) !important;
+  background-size: auto !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
+}
+/* Remove additional grid-pattern paint from transparent content workspaces. */
+html body.ps-page .ps-main,
+html body:has(.sidebar) .content {
+  background-image: none !important;
+}
+html.dlp-theme-ready body {
+  transition: background-color 300ms ease, color 300ms ease !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  html.dlp-theme-ready body { transition: none !important; }
+}
