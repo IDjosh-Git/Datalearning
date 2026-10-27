@@ -98,3 +98,10 @@ body:has(#loginBtn) button.secondary,body:has(#loginBtn) .btn.secondary{backgrou
 @media(max-width:740px){.lp-home .lp-course-grid{grid-template-columns:1fr}}
 /* v26: flexible homepage card height baseline. Final mobile overrides: layout-mobile-v26.css */
 .lp-course,.lp-quick-card,.lp-step{height:auto;min-height:0;min-width:0}.lp-course-grid,.lp-quick-grid{grid-auto-rows:auto}.lp-course-footer{margin-top:auto}
+
+/* Python course: entire card opens the course, while footer links remain independent. */
+.lp-home .lp-course[data-track="python"] {position:relative;isolation:isolate;--track:#356fa7;}
+.lp-home .lp-course[data-track="python"] .lp-course-cover-link {position:absolute;inset:0;z-index:1;border-radius:inherit;cursor:pointer;}
+.lp-home .lp-course[data-track="python"] .lp-course-footer a {position:relative;z-index:2;}
+.lp-home .lp-course[data-track="python"]:focus-within {outline:3px solid var(--track);outline-offset:3px;}
+.lp-home .lp-course[data-track="python"] .lp-course-cover-link:focus-visible {outline:3px solid var(--track);outline-offset:3px;}
