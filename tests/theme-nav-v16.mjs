@@ -1,8 +1,8 @@
 import fs from 'node:fs';import path from 'node:path';import assert from 'node:assert/strict';
 const root=process.cwd();const all=[...fs.readdirSync(root).filter(n=>n.endsWith('.html')).map(n=>path.join(root,n)),...fs.readdirSync(path.join(root,'courses')).filter(n=>n.endsWith('.html')).map(n=>path.join(root,'courses',n))];
-assert.equal(all.length,23,'all 23 pages present');
+assert.equal(all.length,22,'all 22 pages present');
 for(const p of all){const h=fs.readFileSync(p,'utf8');assert.match(h,/theme-navigation-v16\.css\?v=20261022\.16/,p);assert.equal((h.match(/theme-control-v14\.js/g)||[]).length,1,p);assert.match(h,/theme-control-v14\.js\?v=20261022\.18/,p)}
 const theme=fs.readFileSync(path.join(root,'assets/theme-control-v14.js'),'utf8');assert.match(theme,/id='dalpThemeToggle'/);assert.match(theme,/localStorage\.setItem\(KEY,mode\)/);assert.doesNotMatch(theme,/className=['"]dlp-theme-floating/);assert.match(theme,/\.auth-top-actions/);assert.match(theme,/\.ac-top-actions/);assert.match(theme,/\.dl-shell-actions/);
 const shell=fs.readFileSync(path.join(root,'assets/workspace-shell.js'),'utf8');assert.match(shell,/Explore learning/);assert.match(shell,/More tools/);assert.match(shell,/dalp:auth-ready/);assert.match(shell,/\.dl-drawer-close/);
 const admin=fs.readFileSync(path.join(root,'assets/admin-console.js'),'utf8');assert.match(admin,/ac-drawer-close/);assert.match(admin,/ac-menu-open/);
-const css=fs.readFileSync(path.join(root,'assets/theme-navigation-v16.css'),'utf8');assert.match(css,/@media\(max-width:950px\)/);assert.match(css,/body\.dl-workspace \.dl-shell-nav/);assert.match(css,/html\[data-theme="dark"\]/);assert.match(css,/dlp-appearance-brand/);console.log('PASS v16: shared theme controller and compact/side navigation assets across all 23 pages');
+const css=fs.readFileSync(path.join(root,'assets/theme-navigation-v16.css'),'utf8');assert.match(css,/@media\(max-width:950px\)/);assert.match(css,/body\.dl-workspace \.dl-shell-nav/);assert.match(css,/html\[data-theme="dark"\]/);assert.match(css,/dlp-appearance-brand/);console.log('PASS v16: shared theme controller and compact/side navigation assets across all 22 pages');

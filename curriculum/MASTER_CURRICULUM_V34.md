@@ -63,10 +63,10 @@ order_id | customer | quantity | unit_price
 **🚀 Independent exercise:** Change LIMIT 3 to LIMIT 5 and explain why five rows qualify even though the input has six.
 
 **Solved checks:**
-1. Why is order_id a more reliable identifier than customer?  
-   **Solution:** Several orders can belong to one customer; order_id uniquely identifies each transaction.
-2. Change the query to return the two newest completed orders.  
-   **Solution:** Keep the same SELECT and WHERE; replace ORDER BY with order_date DESC, order_id DESC and LIMIT 2. Expected IDs: 1006, 1005.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Identify table grain; SELECT specific columns; WHERE filters; ORDER BY makes results stable.
 
@@ -115,10 +115,10 @@ order_id | region | gross_value
 **🚀 Independent exercise:** Show completed orders from East or West; then change the logic to East AND West and describe why no single-region order qualifies.
 
 **Solved checks:**
-1. Which operator handles several acceptable regions?  
-   **Solution:** IN ('East','West') is clearer than repeated OR expressions.
-2. Find completed orders whose quantity is less than 3.  
-   **Solution:** Use WHERE status='Completed' AND quantity < 3. Expected order IDs: 1001, 1005, 1006.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Filter before aggregation; parenthesize mixed conditions; sort using an explicit tie-break.
 
@@ -169,10 +169,10 @@ TOTAL  | 5                | 578000
 **🚀 Independent exercise:** Add profit per region, reconcile to 135000, and explain the difference between gross revenue and profit.
 
 **Solved checks:**
-1. How is profit calculated in this example?  
-   **Solution:** SUM(quantity*(unit_price-unit_cost)) on completed orders = 135000.
-2. Return only regions with completed revenue above 180000.  
-   **Solution:** Append HAVING SUM(quantity*unit_price)>180000: East and West remain.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Know each KPI definition; group at the requested grain; reconcile aggregates to source totals.
 
@@ -221,10 +221,10 @@ order_id | segment  | revenue
 **🚀 Independent exercise:** Create an unmatched-customer report using LEFT JOIN and WHERE c.customer_id IS NULL; state what zero means.
 
 **Solved checks:**
-1. Why prefer LEFT JOIN when auditing master data?  
-   **Solution:** It retains unmatched orders so bad or missing customer IDs remain visible.
-2. Write a missing-reference check.  
-   **Solution:** SELECT COUNT(*) FROM orders o LEFT JOIN customers c ON o.customer_id=c.customer_id WHERE c.customer_id IS NULL; returns 0 for the training data.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Join on stable keys; know cardinality; test unmatched keys and duplicated totals.
 
@@ -274,10 +274,10 @@ order_id | status    | status_group
 **🚀 Independent exercise:** Add an AuditFlag label for NULL status using IS NULL, then describe why '= NULL' does not work.
 
 **Solved checks:**
-1. How many Returned rows are in the training dataset?  
-   **Solution:** One. Filter with WHERE status='Returned', and order 1003 is returned.
-2. Flag an unexpected status without discarding it.  
-   **Solution:** CASE WHEN status IN ('Completed','Returned') THEN 'Known' ELSE 'Investigate' END handles other and NULL values.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Distinguish NULL from zero; define category mappings; inspect unmapped exceptions.
 
@@ -327,10 +327,10 @@ North  | 72000
 **🚀 Independent exercise:** Add a second CTE for regional totals, then retrieve only regions whose completed revenue exceeds 100000.
 
 **Solved checks:**
-1. Where should the Completed status restriction be placed?  
-   **Solution:** Inside completed_sales, so downstream consumers inherit the same business rule.
-2. How can you inspect the intermediate detail?  
-   **Solution:** Temporarily replace the final aggregate with SELECT * FROM completed_sales and review its five rows.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** One CTE per logical transformation; readable aliases; verify intermediates before final sums.
 
@@ -382,10 +382,10 @@ Ngozi    | 1004     | 2
 **🚀 Independent exercise:** Use DENSE_RANK on a regional revenue summary and explain what happens if two regions tie.
 
 **Solved checks:**
-1. What is the latest Completed order for Ngozi?  
-   **Solution:** Order 1006; 2026-02-18 sorts after 2026-02-09.
-2. Write the rule to return only the latest row per customer.  
-   **Solution:** Wrap the query in a CTE named ranked, then SELECT * FROM ranked WHERE recency_rank=1.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** WINDOW = partition + ordering + optional frame; row counts remain unchanged.
 
@@ -432,10 +432,10 @@ month   | revenue
 **🚀 Independent exercise:** Add a previous_month column with LAG and explain why the first row has no previous comparison.
 
 **Solved checks:**
-1. Calculate February month-on-month change.  
-   **Solution:** (238000-340000)/340000 = -30%. LAG returns NULL for January without a prior row.
-2. Why is YYYY-MM safer than grouping by MonthName?  
-   **Solution:** It preserves both year context and sort order across Dec/Jan.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Use year-aware period keys; compare complete, like-for-like periods; document date boundaries.
 
@@ -482,10 +482,10 @@ row_count | unique_orders | revenue
 **🚀 Independent exercise:** Intentionally join orders to a duplicate reference table, then use row counts to diagnose inflated totals.
 
 **Solved checks:**
-1. Which measure exposes duplicate order keys?  
-   **Solution:** COUNT(*) minus COUNT(DISTINCT order_id); expected 0.
-2. How do you verify a rewrite was correct?  
-   **Solution:** Compare row grain, null counts, distinct keys and revenue before and after; both must reconcile to 578000.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** First correctness, then plan inspection, then selective optimization, then revalidation.
 
@@ -537,10 +537,10 @@ North  | 1      | 72000   | 24000
 **🚀 Independent exercise:** Deliver three SQL files plus a one-page README defining revenue, profit, returned-order treatment and control totals.
 
 **Solved checks:**
-1. Which two totals must reconcile across all regions?  
-   **Solution:** Revenue = 578000 and profit = 135000 on completed orders.
-2. What should you hand off to the dashboard developer?  
-   **Solution:** Named queries, column dictionary, join keys, KPI definitions, validation outputs and a refresh assumption.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Define → transform → calculate → validate → communicate; keep the script versioned.
 
@@ -587,10 +587,10 @@ One header row; each order occupies one row; do not use subtotals inside the sou
 **🚀 Independent exercise:** Create a 12-column data dictionary: field name, what it means and expected data type.
 
 **Solved checks:**
-1. What is the grain of this input?  
-   **Solution:** One row represents one order; OrderID is a unique key in this sample.
-2. How should the workbook be separated?  
-   **Solution:** RawData for source rows, Calculations for validated measures, Dashboard for user-facing visuals.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Use clean tabular source data; label units and grain; avoid mixing input with presentation.
 
@@ -637,10 +637,10 @@ OrderID | Qty | Price  | Revenue
 **🚀 Independent exercise:** Add a new practice order and verify that the Revenue formula auto-fills; compare with a fixed A2:A6 range.
 
 **Solved checks:**
-1. What happens after a seventh row is entered in Sales?  
-   **Solution:** Structured calculated columns generally extend automatically to the new Table row.
-2. How should you calculate cost per order?  
-   **Solution:** Add =[@Qty]*[@Cost] in a LineCost calculated column.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Tables scale; structured references reduce broken formulas; validation is preventive, not sufficient.
 
@@ -688,10 +688,10 @@ Completed gross sales   | 578000
 **🚀 Independent exercise:** Write the formulas for quantity×price, quantity×unit cost and their difference; test with order 1001.
 
 **Solved checks:**
-1. Which formula computes profit on a Table row?  
-   **Solution:** =[@Qty]*([@Price]-[@Cost]); OrderID 1001 returns 60000.
-2. Why is 602000 not the completed-sales KPI?  
-   **Solution:** It includes the returned order 1003 (24000); filter status to Completed to obtain 578000.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Choose relative vs absolute carefully; clarify included records; reconcile derived measures.
 
@@ -737,10 +737,10 @@ Unknown product → Unmapped (not a fabricated category).
 **🚀 Independent exercise:** Make a missing-lookup flag with IFERROR or ISNA; do not silently display zero for unknown customers.
 
 **Solved checks:**
-1. What result should an East+Completed SUMIFS produce?  
-   **Solution:** 316000: orders 1001 and 1006.
-2. What should an unmatched product map to?  
-   **Solution:** Explicit Unmapped or an error review list, never a guessed category.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Define criteria precisely; prefer explicit exact-match lookups; surface missing mappings.
 
@@ -785,10 +785,10 @@ Duplicates in mastery data: 0.
 **🚀 Independent exercise:** Create a small issue log showing field, original value, correction, reason and validation result.
 
 **Solved checks:**
-1. Why preserve original source data?  
-   **Solution:** To trace and reverse changes if a transformation produces a wrong figure.
-2. Name a duplicate-control formula.  
-   **Solution:** =COUNTIF(Sales[OrderID],[@OrderID])>1 returns FALSE for all six training orders.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Clean systematically; keep audit trails; assess source quality before reporting.
 
@@ -833,10 +833,10 @@ The unfiltered all-status gross remains 602000.
 **🚀 Independent exercise:** Sort by revenue descending, then restore original order by OrderID and explain why the totals remain unchanged.
 
 **Solved checks:**
-1. Which West orders qualify?  
-   **Solution:** OrderIDs 1002 and 1005; both are Completed.
-2. What is the difference between SUM and SUBTOTAL(109)?  
-   **Solution:** SUM includes filtered-out values; SUBTOTAL function 109 excludes manually hidden and filtered-out rows.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Sort entire Tables; distinguish filtered view from business eligibility; use SUBTOTAL for visible-row summaries.
 
@@ -885,10 +885,10 @@ North  | 72000   | 12.46%
 **🚀 Independent exercise:** Build a second PivotTable showing channel shares and explain why adding percentages directly can mislead.
 
 **Solved checks:**
-1. Which region has the highest share?  
-   **Solution:** East at about 54.67% of the 578000 completed-sales total.
-2. Why might the Pivot total not reflect a newly added row?  
-   **Solution:** The PivotTable may need refreshing; check source Table coverage and Refresh.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Pivots aggregate by dimensions; always verify filters, denominators and refresh behavior.
 
@@ -933,10 +933,10 @@ The monthly line falls from 340k to 238k (-30%).
 **🚀 Independent exercise:** Redesign an unlabeled revenue chart with a descriptive title, currency units and a note that only Completed orders are counted.
 
 **Solved checks:**
-1. What chart shows the relative size of three regions?  
-   **Solution:** A horizontal bar chart with the axis starting at zero.
-2. What is the right chart for revenue over months?  
-   **Solution:** A chronologically sorted line chart with a year-month key.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Chart by purpose, not novelty; label measures and periods; avoid visual distortion.
 
@@ -981,10 +981,10 @@ Completed revenue 578000; profit 135000; gross margin 135000/578000 = 23.36%.
 **🚀 Independent exercise:** Write a two-sentence manager's summary of February's revenue decrease without claiming a cause.
 
 **Solved checks:**
-1. What should appear next to a gross-margin KPI?  
-   **Solution:** The calculation definition and the current reporting period; profit divided by completed revenue.
-2. How can an end user reset interactions?  
-   **Solution:** Provide clear slicer reset instructions or a documented reset control, and test it.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Put decisions before visuals; preserve metric consistency; test interactions and refresh notes.
 
@@ -1029,10 +1029,10 @@ Expected: Orders=5; Revenue=578000; Profit=135000; Returned order excluded.
 **🚀 Independent exercise:** Hand over an Excel workbook and a short QA checklist explaining what you verified and how.
 
 **Solved checks:**
-1. What must update when a seventh order arrives?  
-   **Solution:** The Table, formulas, Pivot sources/refresh and dashboards should reflect the new row.
-2. Which three checks should always reconcile?  
-   **Solution:** Completed order count=5, completed revenue=578000, and profit=135000 for the sample.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Build once, refresh repeatedly, audit with an independent control.
 
@@ -1079,10 +1079,10 @@ Accepted source controls: six total rows; five Completed; completed revenue 5780
 **🚀 Independent exercise:** Sketch one executive report page with three KPIs, a month trend and regional breakdown; state the questions each answers.
 
 **Solved checks:**
-1. What is the report’s fact grain?  
-   **Solution:** One order in the example; production systems may require an order-line grain.
-2. What is the business definition of revenue here?  
-   **Solution:** SUM of quantity × unit price for records with Status = Completed.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Business question → grain → model → measure → visual → validation.
 
@@ -1131,10 +1131,10 @@ Power Query preview: 6 rows; quantity is Whole Number; unit_price is Decimal Num
 **🚀 Independent exercise:** Add a custom Revenue column in Power Query, then explain why it must not double count when DAX measures are used.
 
 **Solved checks:**
-1. Why does changing column type matter?  
-   **Solution:** DAX aggregation and relationship logic need proper numeric/date types, not text.
-2. How do you surface bad input rows?  
-   **Solution:** Use column quality/error filters and separate exception outputs rather than quietly deleting errors.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Applied Steps are repeatable; set types deliberately; preserve error evidence.
 
@@ -1179,10 +1179,10 @@ Cross-filter Region=East and Status=Completed → revenue 316000.
 **🚀 Independent exercise:** Count unique customer IDs in the customer dimension; explain why duplicate dimension keys are dangerous.
 
 **Solved checks:**
-1. Why must DimCustomer key be unique?  
-   **Solution:** To guarantee a predictable one-to-many relationship and stable filter propagation.
-2. How can you check the model after relationships?  
-   **Solution:** Compare FactSales row counts and a completed-sales measure against independent source totals.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Facts hold events; dimensions describe them; relationship direction governs filters.
 
@@ -1235,10 +1235,10 @@ Region slicer East: Revenue=316000; Profit=66000.
 **🚀 Independent exercise:** Explain why SUM(FactSales[unit_price]) does not calculate revenue when quantity varies.
 
 **Solved checks:**
-1. What does CALCULATE change?  
-   **Solution:** Filter context, here limiting the measure to Completed records.
-2. What is the revenue when filtering East?  
-   **Solution:** 316000, the sum of East completed orders 1001 and 1006.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Row vs filter context; CALCULATE modifies filters; iterators evaluate row expressions.
 
@@ -1286,10 +1286,10 @@ February MoM change=(238000-340000)/340000=-30.00%.
 **🚀 Independent exercise:** Test the Date table by showing February dates with no orders and explaining why the calendar still includes them.
 
 **Solved checks:**
-1. What is the January prior-month value in this two-month sample?  
-   **Solution:** BLANK unless a prior December context and matching data are provided.
-2. Why use DIVIDE instead of /?  
-   **Solution:** DIVIDE handles zero or blank denominators safely and returns BLANK by default.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Date model first; shifted filter context next; compare like-for-like complete periods.
 
@@ -1334,10 +1334,10 @@ Sample output communicates a -30% month-over-month decline, not a growth claim.
 **🚀 Independent exercise:** Replace a crowded multi-color chart with a restrained palette and descriptive data labels, then explain your design choice.
 
 **Solved checks:**
-1. Which chart best compares three regions?  
-   **Solution:** A sorted horizontal bar chart with values starting at zero.
-2. Which supporting metadata should appear?  
-   **Solution:** Reporting period, source system, refresh time, units and metric definitions.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Build page narrative from KPI → trend → drivers → action.
 
@@ -1383,10 +1383,10 @@ West revenue=190000 (orders 1002 and 1005). Reset revenue=578000.
 **🚀 Independent exercise:** Add a visible Reset Filters action and confirm that returning to all regions restores 578000.
 
 **Solved checks:**
-1. What does a drillthrough filter convey?  
-   **Solution:** The selected region/customer category to the destination detail page.
-2. How do you validate Reset?  
-   **Solution:** Change two slicers, click Reset, verify every intended visual and KPI matches default state.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Interactions modify filter context; navigation must preserve clear user expectations.
 
@@ -1436,10 +1436,10 @@ Ranks: East 1, West 2, North 3.
 **🚀 Independent exercise:** Show how Region Share changes under a West-only selection for an all-regions versus selected-regions denominator.
 
 **Solved checks:**
-1. Why use REMOVEFILTERS on only the region column?  
-   **Solution:** To preserve the selected date and other compatible filters while computing regional share.
-2. What rank does North receive?  
-   **Solution:** 3 under descending revenue ranking.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Write explicit denominators; constrain filter removal; validate measure behavior under slicers.
 
@@ -1486,10 +1486,10 @@ QA acceptance: authorized viewer can open the report; sample KPI values remain c
 **🚀 Independent exercise:** Write a deployment checklist with role, refresh timestamp, owner, access test and rollback action.
 
 **Solved checks:**
-1. When is a gateway relevant?  
-   **Solution:** When Power BI Service must access a supported on-premises data source that is not directly cloud accessible.
-2. What should be tested after publication?  
-   **Solution:** Data refresh, viewer permissions, RLS roles (if configured), navigation, filters and KPIs.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Secure the model; schedule refresh; test viewer experience; preserve metric integrity.
 
@@ -1536,10 +1536,10 @@ Accepted training-model totals: Revenue 578000; Profit 135000; Completed orders 
 **🚀 Independent exercise:** Prepare a handover containing a model diagram, measure dictionary, QA evidence and three business observations.
 
 **Solved checks:**
-1. Which measures reconcile to source detail?  
-   **Solution:** Revenue=578000; profit=135000; count=5.
-2. What constitutes adequate handover?  
-   **Solution:** Model diagram, measure dictionary, slicer QA, refresh/security notes and a concise business narrative.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Source → Power Query → star model → DAX → visuals → secure deployment → QA.
 
@@ -1589,10 +1589,10 @@ print(orders['status'].value_counts().to_dict())
 **🚀 Independent exercise:** Run print(orders.head(2).to_string(index=False)) and explain what each displayed column means.
 
 **Solved checks:**
-1. What does orders.shape report?  
-   **Solution:** The number of rows and columns as a tuple: (6,12) for the supplied file.
-2. How can you avoid treating dates as arbitrary strings?  
-   **Solution:** Pass parse_dates=['order_date'] in read_csv or validate with pd.to_datetime.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Create environment → read input → inspect rows/types → validate before transforming.
 
@@ -1640,10 +1640,10 @@ print(value)
 **🚀 Independent exercise:** Modify the example to print both completed order count and revenue, and verify the original two-record list gives count 1.
 
 **Solved checks:**
-1. What is the value of 3 * 8000?  
-   **Solution:** 24000, but that returned order does not contribute to completed revenue.
-2. How would you protect against a missing status value?  
-   **Solution:** Use o.get('status')=='Completed'; absent status fails the inclusion test.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Types determine valid operations; test conditions explicitly; keep business rules readable.
 
@@ -1691,10 +1691,10 @@ print(revenue(5, 8000))
 **🚀 Independent exercise:** Write a profit(quantity, unit_price, unit_cost) function and check order 1001 produces 60000.
 
 **Solved checks:**
-1. Why return instead of only print?  
-   **Solution:** Returned values can be reused in calculations, unit tests and reports.
-2. What happens with revenue(-1,8000)?  
-   **Solution:** It raises ValueError because the function rejects unexpected negative quantities.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Small functions are easier to test; keep inputs explicit and outputs predictable.
 
@@ -1740,10 +1740,10 @@ print(len(completed), int(completed['revenue'].sum()))
 **🚀 Independent exercise:** Filter East completed orders, display order_id and revenue, and check the total is 316000.
 
 **Solved checks:**
-1. How many rows qualify as Completed?  
-   **Solution:** 5; returned order 1003 is excluded by the Boolean mask.
-2. How do you select just East completed orders?  
-   **Solution:** df.loc[df['status'].eq('Completed') & df['region'].eq('East')] returns orders 1001 and 1006.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Filter using Boolean masks; vectorize arithmetic; validate row counts.
 
@@ -1792,10 +1792,10 @@ Assertions pass for the training file.
 **🚀 Independent exercise:** Create a validation function that raises ValueError if duplicate order IDs are present; try it on a deliberately duplicated row.
 
 **Solved checks:**
-1. What does validate="many_to_one" mean?  
-   **Solution:** Many fact rows can match one dimension key, but the dimension key must be unique.
-2. When should to_numeric(errors="coerce") be used?  
-   **Solution:** Only alongside a review of rows converted to NaN, not as a silent data-loss shortcut.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Validate keys, types and joins; produce an exception report alongside cleaned data.
 
@@ -1841,10 +1841,10 @@ print(x.groupby('region')['revenue'].sum().sort_values(ascending=False).to_dict(
 **🚀 Independent exercise:** Return both revenue and profit by region, sort from highest revenue to lowest, and verify the profit total is 135000.
 
 **Solved checks:**
-1. How do you calculate completed profit?  
-   **Solution:** Create x['profit']=x.quantity*(x.unit_price-x.unit_cost), then sum: 135000.
-2. How do you confirm the regional totals?  
-   **Solution:** Sum regional revenue totals; the result must equal 578000.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Filter correctly; group at the business grain; reconcile grouped sums.
 
@@ -1892,10 +1892,10 @@ print(min(values), max(values))
 **🚀 Independent exercise:** Find the median completed-order revenue and explain which value better represents a typical small order.
 
 **Solved checks:**
-1. Which statistic is more resistant to outliers?  
-   **Solution:** Median: 72000 in this five-order completed sample.
-2. Can you infer nationwide sales growth from these six rows?  
-   **Solution:** No. The dataset is intentionally illustrative and not a representative population sample.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Describe distributions and limitations; avoid unsupported causal or population claims.
 
@@ -1944,10 +1944,10 @@ print(np.column_stack([qty,price]).shape)
 **🚀 Independent exercise:** Create a parallel cost array and compute unit profits and total profit for the same three orders.
 
 **Solved checks:**
-1. What does an array shape of (3,2) mean?  
-   **Solution:** Three observations and two numeric features per observation.
-2. What is the dot product of qty and price?  
-   **Solution:** 412000, the sum of the three example line revenues.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Array shape matters; multiply elementwise for row totals; dot product sums them.
 
@@ -1994,10 +1994,10 @@ print(monthly.to_dict())
 **🚀 Independent exercise:** Create a monthly bar chart with values labeled and add a note explaining the data limitation.
 
 **Solved checks:**
-1. What is the naive forecast for February based on January?  
-   **Solution:** 340000, the previous-month completed revenue.
-2. What is the February absolute forecast error for that baseline?  
-   **Solution:** abs(238000-340000)=102000.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Time-aware splits prevent leakage; compare with a baseline; disclose uncertainty.
 
@@ -2048,10 +2048,10 @@ print(summary.loc['East'].to_dict())
 **🚀 Independent exercise:** Deliver a .py file, requirements.txt, README and report CSV, with one deliberately failing test case.
 
 **Solved checks:**
-1. What should fail the capstone build?  
-   **Solution:** Missing required columns, duplicated order IDs or totals that violate reconciliation controls.
-2. What should the README specify?  
-   **Solution:** How to install, where to place input files, expected schema, run command, metric definitions and known limitations.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Package source + tests + readme + validated outputs, not only notebook screenshots.
 
@@ -2097,10 +2097,10 @@ Expected response outline: business question → columns → inclusion rule → 
 **🚀 Independent exercise:** Write one prompt asking for an analysis plan and another asking for a calculated answer; label which claims need execution.
 
 **Solved checks:**
-1. What is the difference between a plan and a computed KPI?  
-   **Solution:** A plan describes steps; a computed KPI comes from executing the defined calculation on actual rows.
-2. What source control validates a claimed 578000?  
-   **Solution:** Re-run a Completed-only sum in SQL/Excel/Python and inspect six input records.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** AI drafts; engines calculate; analysts validate.
 
@@ -2146,10 +2146,10 @@ Expected SQL structure: WHERE status='Completed'; SUM(quantity*unit_price); GROU
 **🚀 Independent exercise:** Rewrite a vague 'show me sales' prompt into a testable specification for regional completed revenue.
 
 **Solved checks:**
-1. What should be stated about the data schema?  
-   **Solution:** Exact column names, types, grain and available tables.
-2. What is an appropriate independent check?  
-   **Solution:** An ungrouped Completed-only revenue query must equal the sum of grouped regions.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Specify input + rules + expected format + verification; iterate on reproducible errors.
 
@@ -2196,10 +2196,10 @@ Expected: an AI-ready aggregated summary with no personal identifiers. Sample va
 **🚀 Independent exercise:** Produce a safe three-column aggregate (region, completed_orders, revenue) without customer names.
 
 **Solved checks:**
-1. Can a raw customer export be pasted into a public assistant?  
-   **Solution:** Not unless the organization permits it and privacy/security requirements are satisfied.
-2. What should happen if a prompt requests an access token?  
-   **Solution:** Never expose secrets; use approved secret-management processes and redesign the workflow.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Minimize data; obey policies; verify bias and security risks before sharing.
 
@@ -2245,10 +2245,10 @@ When Sales[Revenue]=[@Quantity]*[@Price], expected East completed revenue=316000
 **🚀 Independent exercise:** Ask AI to propose a SUMIFS formula, then audit it against the order IDs 1001 and 1006.
 
 **Solved checks:**
-1. How do you validate the AI formula?  
-   **Solution:** Filter completed East orders 1001 and 1006 and manually sum 300000+16000.
-2. How should a formula treat Returned orders?  
-   **Solution:** Exclude them from the defined completed-revenue calculation.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** AI proposes formulas; your workbook and independent checks establish correctness.
 
@@ -2298,10 +2298,10 @@ Expected months: 2026-01 = 340000; 2026-02 = 238000.
 **🚀 Independent exercise:** Request a query that detects duplicate order IDs and compare its expected result to the included SQLite file.
 
 **Solved checks:**
-1. What makes a query schema-grounded?  
-   **Solution:** Only columns and tables present in the documented dataset are used.
-2. What separate validation detects excluded-status mistakes?  
-   **Solution:** Run a Completed-only total check (578000) and compare monthly sum.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Ground prompts in schema; run generated code; reconcile independently.
 
@@ -2348,10 +2348,10 @@ Expected row count = 2. East completed revenue = 316000.
 **🚀 Independent exercise:** Create an intentionally broken pandas filter and request a diagnosis that explains why parentheses are needed.
 
 **Solved checks:**
-1. Why did `and` fail?  
-   **Solution:** The truth value of an entire pandas Series is ambiguous.
-2. How would you assert the result?  
-   **Solution:** assert df.loc[mask].shape[0] == 2 after loading the known training dataset.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Debug with minimal examples; prefer smallest fixes; add regression tests.
 
@@ -2399,10 +2399,10 @@ All regions = 578000; Region East = 316000; West = 190000.
 **🚀 Independent exercise:** Ask AI to review one CALCULATE denominator choice and design a slicer test that would expose an error.
 
 **Solved checks:**
-1. What does SUMX evaluate?  
-   **Solution:** An expression row-by-row over the table in the current filter context.
-2. How do you prove the measure responds to a slicer?  
-   **Solution:** East must yield 316000, then clearing the slicer returns 578000.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Specify model context; explain filters; test measures under actual interactions.
 
@@ -2448,10 +2448,10 @@ This demonstrates an error computation, not valid forecasting performance or exp
 **🚀 Independent exercise:** Ask the assistant to critique a forecast trained and tested on the same two monthly observations.
 
 **Solved checks:**
-1. Can this two-month sample establish a seasonal trend?  
-   **Solution:** No, it cannot support seasonality or a defensible generalized forecast.
-2. What baseline can be used for a time series?  
-   **Solution:** Previous period value, evaluated on chronologically held-out periods.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Baseline first; chronological holdout; bias/leakage review; uncertainty disclosures.
 
@@ -2497,10 +2497,10 @@ Expected controls on training data: 0 duplicate IDs; completed revenue 578000; w
 **🚀 Independent exercise:** Design an approval gate that rejects missing columns, duplicate IDs or unverified totals.
 
 **Solved checks:**
-1. What does idempotent mean in this workflow?  
-   **Solution:** Rerunning a task should not duplicate deliveries or mutate results repeatedly.
-2. What triggers a stop?  
-   **Solution:** Unresolved source defects, failed reconciliations, unavailable authorization, or unapproved sensitive action.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Automate deterministic checks; gate risky actions; retain logs and rollback options.
 
@@ -2547,10 +2547,10 @@ Accepted sample controls: Completed orders 5, revenue 578000, profit 135000. All
 **🚀 Independent exercise:** Prepare an evidence pack with one prompt, corrected script, test result, privacy note and executive summary.
 
 **Solved checks:**
-1. How should a generated but unexecuted query be labelled?  
-   **Solution:** Draft / unverified, never an actual measured output.
-2. What justifies sign-off?  
-   **Solution:** Correct computations, documented sources, tested assumptions, appropriate data handling, reproducibility and human review.
+1. question  
+   **Solution:** solution
+2. question  
+   **Solution:** solution
 
 **📌 Takeaways:** Prompt → draft → verify → document → communicate, under explicit privacy controls.
 

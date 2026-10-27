@@ -60,7 +60,7 @@ body.lp-ai-page{background:var(--app-bg)!important;color:var(--app-text)!importa
 }
 .lp-ai-page .tool-assignment,.lp-ai-page .tool-note,.lp-ai-page .ai-tip,.lp-ai-page .exercise{
  background:color-mix(in srgb,var(--app-brand) 10%,var(--app-surface))!important;
- color:var(--app-text)!important;border:1px solid var(--app-line)!important;
+ color:var(--app-text)!important;border-left:4px solid var(--app-brand)!important;
 }
 .lp-ai-page .unit-grid .prompt,.lp-ai-page .expanded-lessons pre{background:#111b2a!important;color:#eff5fd!important;border:1px solid #34465d;max-width:100%;overflow:auto}
 .lp-ai-page .expanded-lessons code:not(pre code){background:var(--app-surface-3);color:var(--app-text)}
@@ -234,7 +234,6 @@ html[data-theme="dark"] body:has(.sidebar) :is(.course-study-note,.course-intro-
   background:var(--app-brand-soft)!important;border:1px solid var(--app-line)!important;
   color:var(--app-brand-text)!important;
 }
-
 
 
 /* Visual regression hardening, 21 October 2026.

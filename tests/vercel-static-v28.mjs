@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const filenames=[...fs.readdirSync(root).filter(x=>x.endsWith('.html')), ...fs.readdirSync(path.join(root,'courses')).filter(x=>x.endsWith('.html')).map(x=>`courses/${x}`)];
-assert.equal(filenames.length,23,'Review route count before changing the rollout scope');
+assert.equal(filenames.length,22,'Review route count before changing the rollout scope');
 const config=JSON.parse(fs.readFileSync(path.join(root,'vercel.json'),'utf8'));
 assert.equal(config.framework,null,'Vercel framework must remain Other/static');
 assert.equal(config.cleanUrls,false,'Existing .html links require non-clean URLs');

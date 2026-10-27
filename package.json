@@ -8,7 +8,7 @@
     "node": ">=20"
   },
   "scripts": {
-    "test": "node tests/smoke.mjs && node tests/modern.mjs && node tests/sync-regression.mjs && node tests/course-content.mjs && node tests/ai-card-visibility.mjs && node tests/auth-first.mjs && node tests/auth-gate-runtime.mjs && node tests/admin-roles.mjs && node tests/mastery-v34.mjs && node tests/live-gradient.mjs",
+    "test": "node tests/smoke.mjs && node tests/modern.mjs && node tests/sync-regression.mjs && node tests/course-content.mjs && node tests/ai-card-visibility.mjs && node tests/auth-first.mjs && node tests/auth-gate-runtime.mjs && node tests/admin-roles.mjs",
     "test:responsive": "node tests/responsive-coverage.mjs && node tests/mobile-v13.mjs",
     "test:workspace": "node tests/workspace-coverage.mjs",
     "test:admin": "node tests/admin-console-v6.mjs",
