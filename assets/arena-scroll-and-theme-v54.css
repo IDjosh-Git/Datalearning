@@ -194,3 +194,41 @@ body[data-responsive-page="practice"] #challengeModal .hub-cards {
     padding: 12px 14px calc(12px + env(safe-area-inset-bottom,0px)) !important;
   }
 }
+
+/* v55 mobile touch fix: allow the browser to own drag gestures in the
+   SQL/Excel/Python editors. No non-passive touch/pointer interception is needed. */
+body[data-responsive-page="practice"] #practiceDetail :is(
+  .ide-shell,.ide-content,.ide-primary,.ide-secondary,#ideEditorSlot,
+  .arena-workspace,.arena-editor,.arena-code,.ide-sheet-editor,
+  .python-in-challenge,.python-lab
+) {
+  touch-action: auto !important;
+  overscroll-behavior-y: auto !important;
+}
+/* Editable code must permit both horizontal navigation of long lines and
+   vertical swipes; zoom remains available for accessibility. */
+body[data-responsive-page="practice"] #practiceDetail :is(
+  #practiceAnswer,#pythonCode,#ideFormulaBar,
+  .arena-code textarea,.sql-editor-textarea,.cm-scroller,.cm-content,
+  .monaco-editor,.monaco-scrollable-element
+) {
+  touch-action: pan-x pan-y pinch-zoom !important;
+  overscroll-behavior-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+}
+/* Let edge gestures chain to the document rather than get stuck in nested
+   results, spreadsheet or code scrollports. Keep horizontal pan available. */
+body[data-responsive-page="practice"] #practiceDetail :is(
+  .ide-panel,.ide-grid-scroll,.arena-table-scroll,.ide-sheet-editor,
+  .arena-editor textarea,.arena-code pre,#pythonOutput
+) {
+  touch-action: pan-x pan-y pinch-zoom !important;
+  overscroll-behavior-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+}
+/* v53's Python detail selector has stronger specificity than the generic
+   page rule; explicitly permit boundary chaining there too. */
+body[data-responsive-page="practice"] #practiceDetail.pc-detail[data-active-editor="Python"] {
+  overscroll-behavior-y: auto !important;
+  touch-action: auto !important;
+}
