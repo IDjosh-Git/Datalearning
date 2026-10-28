@@ -1,0 +1,40 @@
+/* v48: Explicit Python editor palette; prevent Arena textarea rules bleeding in. */
+body[data-responsive-page="practice"] #practiceDetail .python-lab {
+  --python-paper:#fff;--python-ink:#0f172a;--python-muted:#475569;
+  --python-edge:#b7c5d7;--python-input:#f8fafc;
+  --python-editor:#f1f5f9;--python-editor-ink:#0f172a;
+  --python-selection:#bfdbfe;--python-caret:#1d4ed8;
+  background:var(--python-paper)!important;
+  color:var(--python-ink)!important;
+  color-scheme:light;
+}
+:root:is(.dark,[data-theme="dark"],[data-theme-mode="dark"]) body[data-responsive-page="practice"] #practiceDetail .python-lab,
+body[data-responsive-page="practice"].dark #practiceDetail .python-lab {
+  --python-paper:#172337;--python-ink:#f8fafc;--python-muted:#cbd5e1;
+  --python-edge:#526781;--python-input:#26364e;
+  --python-editor:#091321;--python-editor-ink:#f8fafc;
+  --python-selection:#1e40af;--python-caret:#7dd3fc;
+  background:var(--python-paper)!important;
+  color:var(--python-ink)!important;
+  color-scheme:dark;
+}
+body[data-responsive-page="practice"] #practiceDetail .python-lab :is(h2,h3,label,p,small,.python-runtime-state){color:var(--python-ink)!important}
+body[data-responsive-page="practice"] #practiceDetail .python-lab :is(.python-lab-help,.python-editor-label small,.python-lab-title p){color:var(--python-muted)!important;opacity:1!important}
+body[data-responsive-page="practice"] #practiceDetail .python-lab :is(#pythonExample,#pythonReset,#pythonStop,#pythonClear){background:var(--python-input)!important;color:var(--python-ink)!important;border:1px solid var(--python-edge)!important;-webkit-text-fill-color:var(--python-ink)!important}
+body[data-responsive-page="practice"] #practiceDetail .python-lab #pythonExample option{background:var(--python-input)!important;color:var(--python-ink)!important}
+body[data-responsive-page="practice"] #practiceDetail .python-lab #pythonRun{background:#1d4ed8!important;color:#fff!important;-webkit-text-fill-color:#fff!important;border-color:#1d4ed8!important}
+body[data-responsive-page="practice"] #practiceDetail .python-lab #pythonCode,
+body[data-responsive-page="practice"] #practiceDetail .python-lab #pythonOutput {
+  background:var(--python-editor)!important;
+  color:var(--python-editor-ink)!important;
+  -webkit-text-fill-color:var(--python-editor-ink)!important;
+  caret-color:var(--python-caret)!important;
+  border:1px solid var(--python-edge)!important;
+  opacity:1!important;
+  text-shadow:none!important;
+  filter:none!important;
+}
+body[data-responsive-page="practice"] #practiceDetail .python-lab #pythonCode::selection,
+body[data-responsive-page="practice"] #practiceDetail .python-lab #pythonOutput::selection{background:var(--python-selection)!important;color:var(--python-editor-ink)!important;-webkit-text-fill-color:var(--python-editor-ink)!important}
+body[data-responsive-page="practice"] #practiceDetail .python-lab #pythonCode::placeholder{color:var(--python-muted)!important;-webkit-text-fill-color:var(--python-muted)!important;opacity:1}
+body[data-responsive-page="practice"] #practiceDetail .python-lab :is(button,select,#pythonCode):focus-visible{outline:3px solid var(--python-caret)!important;outline-offset:2px}
