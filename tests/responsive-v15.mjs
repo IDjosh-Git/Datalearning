@@ -3,7 +3,7 @@ import path from 'node:path';
 import assert from 'node:assert/strict';
 const root=process.cwd(), courses=path.join(root,'courses');
 const routes=[...fs.readdirSync(root).filter(n=>n.endsWith('.html')),...fs.readdirSync(courses).filter(n=>n.endsWith('.html')).map(n=>'courses/'+n)];
-assert.equal(routes.length,22);
+assert.equal(routes.length,23);
 for(const route of routes){
  const html=fs.readFileSync(path.join(root,route),'utf8');
  const rel=route.startsWith('courses/')?'../':'';

@@ -28,7 +28,7 @@ assert(db.includes("s.status not in ('submitted','processing','review_error','ne
 assert(db.includes("total>=70")&&db.includes('insert into public.certificates'),'Passing certificate issued atomically');
 assert(db.includes('revoke insert,update,delete on public.certificates from authenticated'),'No browser certificate forgery');
 assert(db.includes('learning_private.publish_capstone_review')&&db.includes('public.submit_capstone_review'),'Protected grading RPC');
-assert(db.includes("not exists(\n  select 1 from public.capstone_reviewers"),'Database checks owner at grading time');
+assert( /not exists\s*\(\s*select 1 from public\.capstone_reviewers/i.test(db),'Database checks owner at grading time');
 assert(!db.includes('if now() < s.review_due_at'),'Five-day wait does not delay publication');
 assert(!fs.existsSync(path.join(root,'api/review-capstones.js')),'AI grading endpoint removed');
 assert(!read('vercel.json').includes('crons'),'No scheduled grader');

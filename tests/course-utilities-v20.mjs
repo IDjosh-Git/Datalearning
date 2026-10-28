@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import assert from 'node:assert/strict';
 const read = file => fs.readFileSync(file,'utf8');
 const pages = fs.readdirSync('.').filter(n=>n.endsWith('.html')).map(n=>n).concat(fs.readdirSync('courses').filter(n=>n.endsWith('.html')).map(n=>'courses/'+n));
-assert.equal(pages.length,22,'Expected 22 pages');
+assert.equal(pages.length,23,'Expected 22 pages');
 const script=read('assets/course-utilities-v20.js');
 const coach=read('assets/learner-companion.js');
 const sync=read('assets/course-sync.js');

@@ -14,7 +14,7 @@ assert(studio.includes('this is not a downloadable offline course'),'offline lim
 for(const name of ['excel','sql','powerbi','ai','introduction']){
  const course=read(`courses/${name}.html`);
  assert(!course.includes('assets/course-studio.js'),`inline studio must be absent: ${name}`);
- assert(read('assets/weekly-workspace.js').includes('studio.html?course=${course}'),`standalone practice entry in weekly bar for ${name}`);
+ assert(read('assets/weekly-workspace.js').includes("'../studio.html?course='+course"),`standalone practice entry in weekly bar for ${name}`);
  assert(read('index.html').includes(`studio.html?course=${name}`),`dashboard links to ${name} practice`);
 }
 assert(read('account.html').includes('href="studio.html"'),'practice easily found from account');

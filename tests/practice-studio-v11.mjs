@@ -12,7 +12,7 @@ for(const course of ['introduction','excel','sql','powerbi','ai']){
  assert(src.includes(`course:'${course}'`)===false,'Navigation must not use an unverified generated course array');
 }
 const weekly=read('assets/weekly-workspace.js');
-assert(weekly.includes('cw-studio-promo')&&weekly.includes('studio.html?course=${course}'));
+assert(weekly.includes('cw-studio-promo')&&weekly.includes("'../studio.html?course='+course"));
 assert(read('assets/workspace-shell.js').includes("['Practice Studio','studio.html','studio']"));
 for(const id of ['ps-course-nav','ps-skill-list','ps-skill-title','ps-answer','ps-complete','ps-reveal','ps-prev','ps-next','ps-search','ps-filter'])assert(page.includes(`id="${id}"`));
 assert(src.includes('data-learning-studio-v3:')&&src.includes('data-learning-studio-v2'));

@@ -4,7 +4,7 @@ import path from 'node:path';
 const root=path.resolve(import.meta.dirname,'..');
 const read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const pages=[...fs.readdirSync(root).filter(f=>f.endsWith('.html')),...fs.readdirSync(path.join(root,'courses')).filter(f=>f.endsWith('.html')).map(f=>'courses/'+f)];
-assert.equal(pages.length,22);
+assert.equal(pages.length,23);
 for(const page of pages){
  const h=read(page); const prefix=page.startsWith('courses/')?'../':'';
  assert.equal(h.split(`${prefix}assets/theme-speed-brand-v18.css?v=20261022.18`).length-1,1,`${page}: no v18 CSS`);

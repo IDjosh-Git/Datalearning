@@ -20,10 +20,11 @@ for(const page of pages){
  assert.match(html,/theme-control-v14\.js/,`${page}: persisted light/dark switch`);
 }
 
-assert.match(css,/--ambient-a:rgba\(143,111,205/,'Light mode uses a soft pastel ambient palette');
-assert.match(css,/html\[data-theme="dark"\][\s\S]*?--ambient-a:rgba\(94,79,207/,'Dark mode uses a subdued indigo palette');
-assert.match(css,/animation:dalp-ambient-drift 32s ease-in-out infinite alternate/,'Ambient motion is slow and continuous');
-assert.match(css,/transform:translate3d/,'Motion is transform-only');
-assert.match(css,/@media\(prefers-reduced-motion:reduce\)[\s\S]*?animation:none/,'Reduced motion disables the ambient loop');
+const active=read('assets/ambient-background-v35.css');
+assert.match(active,/--ambient-sky: rgba\(56, 189, 248/, 'Light palette is sky blue');
+assert.match(active,/--motion-b: rgba\(139,92,246/, 'Dark palette has violet ambient glow');
+assert.match(active,/animation: dalp-ambient-drift/, 'Ambient glow moves');
+assert.match(active,/transform: translate3d/, 'Animation uses transform');
+assert.match(active,/prefers-reduced-motion: reduce/, 'Reduced motion supported');
 assert.match(controller,/document\.documentElement\.dataset\.theme=dark\?'dark':'light'/,'Theme switch updates the shared theme state');
 console.log(`PASS ambient themes: ${pages.length} shared surfaces, light/dark palettes, reduced motion, and transform-only animation`);

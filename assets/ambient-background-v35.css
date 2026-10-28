@@ -60,3 +60,60 @@ html.dlp-theme-ready body {
 @media (prefers-reduced-motion: reduce) {
   html.dlp-theme-ready body { transition: none !important; }
 }
+
+/* v36: animated ambient lighting; composited decorations stay non-interactive. */
+:root {
+  --motion-a: rgba(14,165,233,.22);
+  --motion-b: rgba(99,102,241,.19);
+  --motion-c: rgba(45,212,191,.13);
+}
+:root:is(.dark,[data-theme="dark"],[data-theme-mode="dark"]) {
+  --motion-a: rgba(34,211,238,.24);
+  --motion-b: rgba(139,92,246,.24);
+  --motion-c: rgba(59,130,246,.17);
+}
+/* Separate glow layer uses transforms, not repaint-heavy animated filters. */
+html body::before {
+  content: "";
+  position: fixed;
+  inset: -18vh -15vw;
+  z-index: 0;
+  pointer-events: none;
+  opacity: .78;
+  background:
+    radial-gradient(ellipse 31% 33% at 21% 26%,var(--motion-a),transparent 80%),
+    radial-gradient(ellipse 32% 40% at 78% 30%,var(--motion-b),transparent 80%),
+    radial-gradient(ellipse 35% 33% at 52% 82%,var(--motion-c),transparent 78%);
+  will-change: transform;
+  animation: dalp-ambient-drift 17s ease-in-out infinite alternate;
+  transition: opacity 300ms ease, background-color 300ms ease;
+}
+/* Structural wrappers paint above the non-interactive glow, while preserving scroll behavior. */
+html body > :is(header,main,footer,nav,section,article,.app,.page,.shell,.layout,.workspace,.container,.lp-shell,.dl-workspace,.site-shell,.dashboard-shell) {
+  position: relative;
+  z-index: 1;
+}
+/* Allow the glow to be visible through main workspace surfaces. */
+html body > main, html body > .content, html body > .workspace, html body > .dl-workspace {
+  background-color: transparent;
+}
+@keyframes dalp-ambient-drift {
+  0% { transform: translate3d(-3.5%, -2%, 0) scale(1); }
+  50% { transform: translate3d(3.5%, 3%, 0) scale(1.06); }
+  100% { transform: translate3d(-1.5%, 5%, 0) scale(1.13); }
+}
+/* Animated hero light can be seen even when the hero has an opaque base. */
+html body .hero { position: relative; isolation: isolate; }
+html body .hero::before {
+  content: "";
+  position: absolute;
+  inset: -30%;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(circle at 20% 40%,rgba(71,184,255,.20),transparent 38%),
+              radial-gradient(circle at 80% 60%,rgba(122,102,245,.22),transparent 40%);
+  animation: dalp-ambient-drift 14s ease-in-out infinite alternate;
+}
+@media (prefers-reduced-motion: reduce) {
+  html body::before, html body .hero::before { animation: none !important; will-change: auto; }
+}
