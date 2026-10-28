@@ -1,0 +1,46 @@
+/* v51: cross-device hardening; final cascade, minimal layout intervention. */
+html { -webkit-text-size-adjust:100%; }
+body { min-width:0; }
+:is(main,section,article,aside,nav,header,footer) { min-width:0; }
+:is(img,video,svg,canvas) { max-width:100%; }
+img,video { height:auto; }
+:is(pre,code) { overflow-wrap:anywhere; }
+:where(input,textarea,select,button) { max-width:100%; }
+@media (max-width:767px) {
+  :where(input,textarea,select) { font-size:max(16px,1rem); }
+  :where(button,[role="button"],input[type="submit"],input[type="button"]) { touch-action:manipulation; }
+  :where(main,.container,.page-container,.content,.workspace,.course-content) { min-width:0; }
+  :where(.table-scroll,.table-container,.data-table-wrapper,.responsive-table) { max-width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+}
+@media (max-width:480px) {
+  :where(.modal,.dialog,[role="dialog"]) { max-width:100vw; }
+  :where(.modal-body,.dialog-body) { overflow-wrap:anywhere; }
+}
+/* Practice Arena: editors and toolbars must never force viewport overflow. */
+body[data-responsive-page="practice"] :is(.pc-wrap,.pc-layout,.pc-detail,#practiceDetail,.python-lab,.python-lab-tools,.python-lab-actions,.arena-subject-launcher,.arena-subject-options,.hub-topbar,.hub-actions,.hub-dialog,.pc-filter-row,.hub-search-row) { min-width:0; max-width:100%; box-sizing:border-box; }
+body[data-responsive-page="practice"] #practiceDetail :is(textarea,pre,select,input,.python-output-heading,#pythonOutput,#pythonCode,#practiceAnswer) { max-width:100%; box-sizing:border-box; }
+body[data-responsive-page="practice"] #practiceDetail :is(#pythonCode,#practiceAnswer) { width:100%; min-width:0; resize:vertical; }
+body[data-responsive-page="practice"] #practiceDetail :is(#pythonOutput,pre) { white-space:pre-wrap; overflow-wrap:anywhere; overflow-x:auto; }
+body[data-responsive-page="practice"] :is(.hub-dialog,.pc-detail,.hub-cards,.pc-item) { overflow-wrap:break-word; }
+body[data-responsive-page="practice"] .arena-subject-options button { min-width:0; overflow-wrap:anywhere; }
+@media (max-width:767px) {
+  body[data-responsive-page="practice"] :is(.pc-wrap,.pc-hero,.hub-topbar,.arena-subject-launcher,.pc-detail) { width:100%; max-width:100%; box-sizing:border-box; }
+  body[data-responsive-page="practice"] .arena-subject-options { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
+  body[data-responsive-page="practice"] .arena-subject-options button { min-height:56px; padding:10px 7px; display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:5px; line-height:1.25; }
+  body[data-responsive-page="practice"] .arena-subject-options .arena-count { font-size:.69rem; width:100%; text-align:center; }
+  body[data-responsive-page="practice"] .python-lab-tools { display:flex; flex-wrap:wrap; align-items:stretch; gap:12px; }
+  body[data-responsive-page="practice"] .python-lab-tools > * { min-width:0; max-width:100%; }
+  body[data-responsive-page="practice"] .python-lab-actions { display:flex; flex-wrap:wrap; gap:8px; }
+  body[data-responsive-page="practice"] .python-lab-actions button { flex:1 1 auto; min-height:44px; }
+  body[data-responsive-page="practice"] .hub-dialog { padding-bottom:calc(24px + env(safe-area-inset-bottom,0px))!important; }
+  body[data-responsive-page="practice"] .hub-dialog :is(input,select) { min-height:44px; }
+  body[data-responsive-page="practice"] :is(.pc-sheet,.pc-schema,table) { max-width:100%; }
+  body[data-responsive-page="practice"] :is(.pc-sheet,.pc-schema) { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+}
+@media (max-width:380px) {
+  body[data-responsive-page="practice"] .arena-subject-options { grid-template-columns:repeat(3,minmax(0,1fr)); gap:6px; }
+  body[data-responsive-page="practice"] .arena-subject-options button { font-size:.82rem; padding:8px 4px; }
+  body[data-responsive-page="practice"] .hub-search-row .pc-filter-row { grid-template-columns:minmax(0,1fr)!important; }
+  body[data-responsive-page="practice"] .hub-actions { min-width:0; }
+}
+@media (prefers-reduced-motion:reduce) { body[data-responsive-page="practice"] .arena-subject-options button { scroll-behavior:auto; } }

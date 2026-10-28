@@ -1,0 +1,94 @@
+/* Arena v50: final design tokens and editor surfaces. Deliberately scoped to Practice Arena. */
+body[data-responsive-page="practice"] {
+  --ed-surface:#ffffff; --ed-surface-alt:#f8fafc; --ed-ink:#0f172a;
+  --ed-muted:#475569; --ed-border:#b8c7d9; --ed-code:#f1f5f9;
+  --ed-code-ink:#0f172a; --ed-focus:#2563eb; --ed-selection:#bfdbfe;
+  --ed-primary:#1d4ed8; --ed-primary-ink:#ffffff; color-scheme:light;
+}
+:is(html.dark,html[data-theme="dark"],html[data-theme-mode="dark"]) body[data-responsive-page="practice"],
+body[data-responsive-page="practice"]:is(.dark,[data-theme="dark"],[data-theme-mode="dark"]) {
+  --ed-surface:#18263b; --ed-surface-alt:#24354b; --ed-ink:#f8fafc;
+  --ed-muted:#cbd5e1; --ed-border:#526781; --ed-code:#0b1626;
+  --ed-code-ink:#f8fafc; --ed-focus:#7dd3fc; --ed-selection:#1d4ed8;
+  --ed-primary:#2563eb; --ed-primary-ink:#ffffff; color-scheme:dark;
+}
+/* Workspace content and consistent form controls for all three subject editors. */
+body[data-responsive-page="practice"] :is(#practiceDetail,.hub-dialog) {
+  color:var(--ed-ink);
+}
+body[data-responsive-page="practice"] #practiceDetail :is(.pc-question,.pc-overline,label,.pc-schema,.pc-schema p,.pc-schema small),
+body[data-responsive-page="practice"] .hub-dialog :is(label,.pc-subhead,.pc-challenge-footer) {
+  color:var(--ed-ink)!important;
+  opacity:1!important;
+}
+body[data-responsive-page="practice"] #practiceDetail :is(.pc-schema,.pc-sheet),
+body[data-responsive-page="practice"] .hub-dialog :is(.hub-search-row,.pc-filter-row) {
+  color:var(--ed-ink)!important;
+  border-color:var(--ed-border)!important;
+}
+body[data-responsive-page="practice"] #practiceDetail #practiceAnswer,
+body[data-responsive-page="practice"] #practiceDetail #pythonCode,
+body[data-responsive-page="practice"] #practiceDetail #pythonOutput {
+  background:var(--ed-code)!important;
+  color:var(--ed-code-ink)!important;
+  -webkit-text-fill-color:var(--ed-code-ink)!important;
+  caret-color:var(--ed-focus)!important;
+  border:1px solid var(--ed-border)!important;
+  border-radius:12px;
+  text-shadow:none!important;
+  opacity:1!important;
+  filter:none!important;
+}
+body[data-responsive-page="practice"] #practiceDetail :is(#practiceAnswer,#pythonCode,#pythonOutput)::selection {
+  background:var(--ed-selection)!important;
+  color:var(--ed-code-ink)!important;
+}
+body[data-responsive-page="practice"] #practiceDetail :is(#practiceAnswer,#pythonCode)::placeholder {
+  color:var(--ed-muted)!important;
+  -webkit-text-fill-color:var(--ed-muted)!important;
+  opacity:1;
+}
+body[data-responsive-page="practice"] :is(.hub-dialog,#practiceDetail) :is(select,input:not([type="checkbox"])),
+body[data-responsive-page="practice"] #practiceDetail .python-lab :is(#pythonExample,#pythonReset,#pythonStop,#pythonClear) {
+  background:var(--ed-surface-alt)!important;
+  color:var(--ed-ink)!important;
+  -webkit-text-fill-color:var(--ed-ink)!important;
+  border:1px solid var(--ed-border)!important;
+}
+body[data-responsive-page="practice"] :is(.hub-dialog,#practiceDetail) select option {
+  background:var(--ed-surface)!important;
+  color:var(--ed-ink)!important;
+}
+body[data-responsive-page="practice"] #practiceDetail .python-lab {
+  background:var(--ed-surface)!important;
+  color:var(--ed-ink)!important;
+  border-color:var(--ed-border)!important;
+  color-scheme:inherit;
+}
+body[data-responsive-page="practice"] #practiceDetail .python-lab :is(h2,h3,label,p,.python-runtime-state) {
+  color:var(--ed-ink)!important;
+}
+body[data-responsive-page="practice"] #practiceDetail .python-lab :is(.python-lab-help,.python-editor-label small,.python-lab-title p) {
+  color:var(--ed-muted)!important;
+}
+body[data-responsive-page="practice"] #practiceDetail :is(#practiceCheck,#pythonRun) {
+  background:var(--ed-primary)!important;
+  color:var(--ed-primary-ink)!important;
+  -webkit-text-fill-color:var(--ed-primary-ink)!important;
+  border-color:var(--ed-primary)!important;
+}
+body[data-responsive-page="practice"] :is(.arena-subject-options button,#practiceDetail button,.hub-dialog button,#practiceDetail textarea,.hub-dialog input,.hub-dialog select):focus-visible {
+  outline:3px solid var(--ed-focus)!important;
+  outline-offset:3px;
+}
+/* Keep the established v49 active card: make the indicator reliably readable. */
+body[data-responsive-page="practice"] .arena-subject-options button[aria-pressed="true"]::after {
+  display:inline-block;
+  font-weight:700;
+}
+body[data-responsive-page="practice"] .arena-subject-options button:not([aria-pressed="true"]):focus-visible {
+  border-color:var(--ed-focus)!important;
+}
+@media (prefers-reduced-motion: reduce) {
+  body[data-responsive-page="practice"] :is(.arena-subject-options button,#practiceDetail button) {transition:none!important;animation:none!important}
+}
