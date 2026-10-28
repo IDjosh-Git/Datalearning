@@ -1,0 +1,39 @@
+/* Practice Arena editor isolation: only the selected subject is rendered. */
+body[data-responsive-page="practice"] #practiceDetail[data-active-editor="Python"] :is(.ide-shell,.arena-workspace,.ide-modes,.ide-content) {
+  display: none !important;
+}
+/* SQL and Excel share the IDE implementation, not an on-screen mode switch. */
+body[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] #ideExcelMode,
+body[data-responsive-page="practice"] #practiceDetail[data-active-editor="Excel"] #ideSqlMode {
+  display: none !important;
+}
+body[data-responsive-page="practice"] #practiceDetail[data-active-editor="Python"] #practiceAnswer.python-grade-source {
+  display: none !important;
+}
+body[data-responsive-page="practice"] #practiceDetail[data-active-editor="Python"] .python-lab-actions #practiceCheck {
+  background: #2563eb !important;
+  border-color: #2563eb !important;
+  color: #fff !important;
+  font-weight: 750;
+}
+body[data-responsive-page="practice"] #practiceDetail[data-active-editor="Python"] .python-lab-actions {
+  flex-wrap: wrap;
+}
+body[data-responsive-page="practice"] #practiceDetail[data-active-editor="Python"] #practiceFeedback {
+  margin-top: .9rem;
+}
+body[data-responsive-page="practice"] #practiceDetail[data-active-editor="Python"] .python-in-challenge {
+  display: block;
+  min-width: 0;
+  width: 100%;
+}
+body[data-responsive-page="practice"] #practiceDetail[data-active-editor="Python"] .python-in-challenge .python-lab {
+  width: 100%;
+}
+
+body[data-responsive-page="practice"] #practiceDetail[data-active-editor="Python"] label[for="practiceAnswer"] {
+  display: none !important;
+}
+body[data-responsive-page="practice"] #practiceDetail[data-active-editor="Python"] .pc-buttons {
+  margin-top: 1rem;
+}

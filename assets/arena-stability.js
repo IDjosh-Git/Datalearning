@@ -17,7 +17,9 @@ function apply(){scheduled=false;try{
  const prompt=document.createElement('p');prompt.textContent=root.querySelector('.pc-question')?.textContent||'Select a challenge to see its instructions.';body.append(prompt);
  const meta=document.createElement('p');meta.className='arena-task-context';meta.textContent='Queries execute against bundled sample data. The SQL and formula engines support documented subsets, not full SQLite, DAX, or Python execution.';body.append(meta);
  let nav=shell.querySelector('.arena-triple-nav');if(!nav){nav=document.createElement('nav');nav.className='arena-triple-nav';nav.setAttribute('aria-label','Practice workspace');nav.innerHTML='<button type="button" data-arena-view="task">Task Info</button><button type="button" data-arena-view="editor">Editor</button><button type="button" data-arena-view="output">Output / Results</button>';shell.querySelector('.ide-content')?.before(nav);nav.addEventListener('click',e=>{const b=e.target.closest('[data-arena-view]');if(b)select(b.dataset.arenaView,shell)});}
- select(prefs.view||'editor',shell);
+ // A newly selected challenge always opens the relevant editor, rather than
+ // inheriting the previous subject's Task/Output tab on mobile.
+ select('editor',shell);
  const saved=prefs.results?.[challenge];if(saved){const target=shell.querySelector('#ideConsoleMount,#arenaConsole');if(target&&(!target.textContent.trim()||target.textContent.includes('Ready.')))target.textContent=saved.text;}
  }catch(err){console.error('Arena layout enhancement:',err);}}
  function select(view,shell){if(!['task','editor','output'].includes(view))view='editor';shell.dataset.arenaView=view;prefs.view=view;save();shell.querySelectorAll('.arena-triple-nav button').forEach(b=>{const selected=b.dataset.arenaView===view;b.setAttribute('aria-current',selected?'page':'false');b.classList.toggle('active',selected)})}

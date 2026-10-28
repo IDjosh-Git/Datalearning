@@ -7,10 +7,11 @@ let worker=null,job=0,busy=false;
 function status(message){state.textContent=message;}
 function setBusy(value){busy=value;run.disabled=value;stop.disabled=!value;}
 function createWorker(){const w=new Worker('assets/python-worker-v41.js?v=20261028.41');w.onmessage=({data})=>{if(data.id!==job)return;if(data.type==='status'){status(data.message);return;}output.textContent=data.type==='result'?data.output:'Python error: '+data.message;status(data.type==='result'?'Ready':'Error');setBusy(false);};w.onerror=e=>{output.textContent='Unable to load Python. Check your connection and browser console. '+(e.message||'');status('Runtime unavailable');setBusy(false);};return w;}
-function reset(){editor.value=samples[examples.value]||samples.hello;}
+function reset(){editor.value=samples[examples.value]||samples.hello;editor.dispatchEvent(new Event('input',{bubbles:true}));}
 function execute(){if(busy)return;if(!editor.value.trim()){output.textContent='Enter Python code first.';return;}if(!worker)worker=createWorker();job++;setBusy(true);status('Starting…');output.textContent='Running Python…';worker.postMessage({type:'run',id:job,code:editor.value});}
 run.addEventListener('click',execute);
 stop.addEventListener('click',()=>{if(worker){worker.terminate();worker=null;}job++;setBusy(false);status('Stopped — runtime resets on next run');output.textContent='Execution stopped.';});
 el('pythonReset').addEventListener('click',reset);examples.addEventListener('change',reset);el('pythonClear').addEventListener('click',()=>{output.textContent='';});editor.addEventListener('keydown',e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)){e.preventDefault();execute();}});
-reset();
+// Preserve the currently selected challenge starter/draft if it is already loaded.
+if(!editor.value.trim())reset();
 })();

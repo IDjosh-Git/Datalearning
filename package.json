@@ -26,7 +26,8 @@
     "verify:deployment": "npm run verify:vercel && node tests/practice-deploy-audit.mjs",
     "test:arena:v31": "node tests/offline-engines.mjs && node tests/practice-arena-v31.mjs && node tests/practice-deploy-audit.mjs",
     "test:mastery:v33": "node tests/mastery-v33.mjs",
-    "test:mastery:v34": "node tests/mastery-v34.mjs"
+    "test:mastery:v34": "node tests/mastery-v34.mjs",
+    "test:editor:v53": "node tests/arena-editor-isolation-v53.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.57.0",

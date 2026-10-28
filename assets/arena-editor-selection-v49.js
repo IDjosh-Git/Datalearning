@@ -18,7 +18,9 @@ function init(){
     // Update immediately; the existing launcher controls actual challenge navigation.
     sync(b.dataset.arenaSubject);
   }));
-  sync(filter.value);
+  document.addEventListener('dalp:arena-editor-selected',event=>sync(event.detail?.subject));
+  const current=document.getElementById('practiceDetail')?.dataset.activeEditor;
+  sync(current||filter.value);
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
