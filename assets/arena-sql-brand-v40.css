@@ -1,0 +1,44 @@
+/* SQLite's actual brand glyph, from Simple Icons, shown in a consistent badge. */
+.pc-brand-pill:has(img[src*="sqlite"]),
+.ide-modes button:has(img[src*="sqlite"]) {
+  --sqlite-blue: #0f80cc;
+}
+.pc-brand-pill:has(img[src*="sqlite"]) {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border-color: rgba(15,128,204,.27);
+  background: linear-gradient(115deg,rgba(15,128,204,.11),rgba(15,128,204,.025));
+  color: var(--text-primary,inherit);
+}
+.pc-brand-pill img[src*="sqlite"] {
+  box-sizing: content-box;
+  width: 26px;
+  height: 26px;
+  padding: 7px;
+  border-radius: 11px;
+  background: #e6f5ff;
+  box-shadow: inset 0 0 0 1px rgba(15,128,204,.13);
+  filter: none !important;
+  opacity: 1 !important;
+}
+.ide-modes button img[src*="sqlite"] {
+  box-sizing: content-box;
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+  border-radius: 8px;
+  background: #e6f5ff;
+  filter: none !important;
+  opacity: 1 !important;
+}
+:root.dark .pc-brand-pill:has(img[src*="sqlite"]),
+:root[data-theme="dark"] .pc-brand-pill:has(img[src*="sqlite"]),
+:root[data-theme-mode="dark"] .pc-brand-pill:has(img[src*="sqlite"]) {
+  border-color: rgba(90,190,255,.35);
+  background: linear-gradient(110deg,rgba(15,128,204,.18),rgba(90,190,255,.04));
+}
+@media(max-width:650px) {
+  .pc-brand-pill img[src*="sqlite"] {width:21px;height:21px;padding:5px}
+  .ide-modes button img[src*="sqlite"] {width:17px;height:17px;padding:4px}
+}
