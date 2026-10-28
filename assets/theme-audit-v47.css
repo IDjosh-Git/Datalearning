@@ -1,0 +1,21 @@
+/* Theme Audit v47: unified accessible foreground surfaces. Loaded last. */
+:root{--audit-surface:#ffffff;--audit-surface-soft:#f1f5f9;--audit-ink:#0f172a;--audit-muted:#475569;--audit-line:#cbd5e1;--audit-focus:#2563eb;--audit-input:#ffffff;--audit-code:#0b1220;--audit-code-ink:#f8fafc;color-scheme:light}
+:root.dark,:root[data-theme="dark"],:root[data-theme-mode="dark"]{--audit-surface:#18263b;--audit-surface-soft:#25354a;--audit-ink:#f8fafc;--audit-muted:#cbd5e1;--audit-line:#526781;--audit-focus:#7dd3fc;--audit-input:#17263a;--audit-code:#091321;--audit-code-ink:#f8fafc;color-scheme:dark}
+/* Scope to workspace and challenge controls; leave page background and ambient animation untouched. */
+body[data-responsive-page="practice"] :is(.arena-subject-launcher,.hub-dialog,.pc-detail .python-lab,.pc-detail .python-in-challenge,.hub-cards .hub-card){color:var(--audit-ink)}
+body[data-responsive-page="practice"] .arena-subject-launcher{background:var(--audit-surface)!important;border:1px solid var(--audit-line)!important;border-radius:1.1rem}
+body[data-responsive-page="practice"] :is(.arena-subject-caption,.arena-subject-help,.pc-subhead,.pc-kicker,.python-lab-help,.python-editor-label small){color:var(--audit-muted)!important;opacity:1!important}
+body[data-responsive-page="practice"] .arena-subject-options button{background:var(--audit-surface-soft)!important;color:var(--audit-ink)!important;border:1px solid var(--audit-line)!important;opacity:1!important;min-height:52px}
+body[data-responsive-page="practice"] .arena-subject-options button:hover{border-color:var(--audit-focus)!important;transform:translateY(-1px)}
+body[data-responsive-page="practice"] .arena-subject-options .arena-python-launch{background:#1d4ed8!important;color:#fff!important;border-color:#60a5fa!important}
+body[data-responsive-page="practice"] .arena-subject-options .arena-python-launch .arena-count{background:rgba(255,255,255,.2)!important;color:#fff!important}
+body[data-responsive-page="practice"] :is(.hub-dialog,.hub-cards .hub-card){background:var(--audit-surface)!important;color:var(--audit-ink)!important;border-color:var(--audit-line)!important}
+body[data-responsive-page="practice"] :is(.hub-dialog,.pc-detail) :is(input,select,textarea){background:var(--audit-input);color:var(--audit-ink);border-color:var(--audit-line)}
+body[data-responsive-page="practice"] :is(.hub-dialog,.pc-detail) :is(input,select,textarea)::placeholder{color:var(--audit-muted);opacity:1}
+body[data-responsive-page="practice"] :is(.hub-dialog,.pc-detail) option{background:var(--audit-surface);color:var(--audit-ink)}
+body[data-responsive-page="practice"] :is(.hub-dialog,.pc-detail,.arena-subject-launcher) :is(button,input,select,textarea):focus-visible{outline:3px solid var(--audit-focus)!important;outline-offset:2px}
+body[data-responsive-page="practice"] #practiceDetail .python-lab{--py-surface:var(--audit-surface);--py-text:var(--audit-ink);--py-muted:var(--audit-muted);--py-border:var(--audit-line);--py-control:var(--audit-surface-soft);--py-code:var(--audit-code);--py-code-text:var(--audit-code-ink)}
+body[data-responsive-page="practice"] #practiceDetail .python-lab :is(#pythonCode,#pythonOutput){background:var(--audit-code)!important;color:var(--audit-code-ink)!important;border:1px solid var(--audit-line)!important}
+body[data-responsive-page="practice"] #practiceDetail .python-lab :is(.python-run,#pythonRun){background:#1d4ed8!important;color:#fff!important}
+body[data-responsive-page="practice"] #practiceDetail .python-lab :is(button,select){min-height:40px}
+@media(prefers-reduced-motion:reduce){body[data-responsive-page="practice"] .arena-subject-options button{transition:none!important;transform:none!important}}
