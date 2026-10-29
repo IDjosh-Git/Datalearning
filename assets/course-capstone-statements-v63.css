@@ -1,0 +1,14 @@
+/* v63: Explicit foreground/surface pairing for all course capstone statements.
+   Loaded last to win against legacy inline and versioned styles. */
+html[data-theme="light"]{--cap63-ink:#17253b;--cap63-muted:#41536b;--cap63-surface:#ffffff;--cap63-soft:#f1f5f9;--cap63-border:#cbd5e1;--cap63-link:#1d4ed8;--cap63-code:#132238;--cap63-code-bg:#e9eff7}
+html[data-theme="dark"]{--cap63-ink:#f1f5fb;--cap63-muted:#cbd5e1;--cap63-surface:#172238;--cap63-soft:#25334a;--cap63-border:#53657d;--cap63-link:#a8c5ff;--cap63-code:#eaf2ff;--cap63-code-bg:#111b2e}
+html[data-theme] body :is(.course-mastery,.capstone,.capstone-challenge,.capstone-route-panel,.mastery-check,.mastery-summary,.mastery-objective,.mastery-deep-dive,.mastery-section,.mastery-check-answer){color:var(--cap63-ink)!important;border-color:var(--cap63-border)}
+html[data-theme] body :is(.course-mastery,.capstone,.capstone-challenge,.capstone-route-panel){background:var(--cap63-surface)!important}
+html[data-theme] body :is(.mastery-objective,.mastery-check,.mastery-check-answer,.mastery-summary,.mastery-deep-dive){background:var(--cap63-soft)!important}
+html[data-theme] body :is(.course-mastery,.capstone,.capstone-challenge,.capstone-route-panel) :is(.mastery-title,.mastery-objective,.mastery-objective strong,.mastery-eyebrow,.mastery-section h5,.mastery-deep-dive h5,.mastery-summary h5,.mastery-check summary,.mastery-check-answer,.mastery-check-answer p,h3,h4,p,li,dt,dd):not(.badge){color:var(--cap63-ink)!important;opacity:1!important;visibility:visible!important}
+html[data-theme] body .course-mastery :is(.mastery-helper,.v34-mental-model,.v34-interpretation,.v34-independence){color:var(--cap63-muted)!important;opacity:1!important}
+html[data-theme] body :is(.course-mastery,.capstone,.capstone-challenge) a:not(.btn){color:var(--cap63-link)!important}
+html[data-theme] body .course-mastery :is(.mastery-code,.mastery-code code,.mastery-output pre){background:var(--cap63-code-bg)!important;color:var(--cap63-code)!important}
+html[data-theme] body .course-mastery :is(.mastery-check summary,.mastery-check-answer){color:var(--cap63-ink)!important}
+/* Keep interactive theme state readable, including an opened disclosure. */
+html[data-theme] body .course-mastery details[open] > summary{background:var(--cap63-soft)!important;color:var(--cap63-ink)!important}
