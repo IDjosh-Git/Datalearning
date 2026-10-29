@@ -8,6 +8,7 @@
  function qrSvg(url){if(!g.DALP_QR)return '';try{const qr=new g.DALP_QR(0,1);qr.addData(url);qr.make();const n=qr.getModuleCount(),size=134,cell=size/(n+8);let blocks='';for(let y=0;y<n;y++)for(let x=0;x<n;x++)if(qr.isDark(y,x))blocks+=`M${((x+4)*cell).toFixed(2)} ${((y+4)*cell).toFixed(2)}h${(cell+.05).toFixed(2)}v${(cell+.05).toFixed(2)}h-${(cell+.05).toFixed(2)}Z`;return `<rect x="0" y="0" width="${size}" height="${size}" rx="6" fill="#fff"/><path d="${blocks}" fill="#172e42"/>`}catch(e){console.warn('QR unavailable',e);return ''}}
  function split(s,max=34){const words=clean(s).split(' '),lines=[];let line='';for(const word of words){const pieces=word.match(new RegExp('.{1,'+max+'}','g'))||[word];for(const piece of pieces){if((line+' '+piece).trim().length>max&&line){lines.push(line);line=piece}else line=(line+' '+piece).trim()}}if(line)lines.push(line);return lines}
  const lineText=(lines,x,y,size,height,fill,weight='600',family='Arial, sans-serif')=>lines.map((line,i)=>`<text x="${x}" y="${y+i*height}" font-family="${family}" font-weight="${weight}" text-anchor="middle" font-size="${size}" fill="${fill}">${XML(line)}</text>`).join('');
+ function grade(score){const n=Number(score);if(score===null||score===undefined||score===''||!Number.isFinite(n)||n<0||n>100)return null;return n>=90?'A+ — Excellent':n>=80?'A — Very Good':n>=70?'B — Good':n>=60?'C — Satisfactory':n>=50?'D — Fair':'F — Fail'}
  function svg(cert){
    if(!cert||!clean(cert.certificate_id)||!clean(cert.learner_name)||!clean(cert.course_title))throw Error('Certificate is missing required verified details');
    const accent=COLORS[cert.course_slug]||'#087b6d',url=verifyUrl(cert),name=clean(cert.learner_name),course=clean(cert.course_title);
@@ -17,6 +18,7 @@
    const nameY=nameLines.length===1?580:nameLines.length===2?552:500;
    const courseY=courseLines.length===1?790:772;
    const issued=fmt(cert.issued_at||cert.completion_date),completed=fmt(cert.completion_date||cert.issued_at);
+   const assessmentGrade=grade(cert.score);
    const desc=`10 learning modules · practical activities · instructor-assessed capstone`;
    let qr=qrSvg(url);
    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1684 1191" width="1684" height="1191" role="img" aria-label="Certificate of completion issued to ${XML(name)} for ${XML(course)}" preserveAspectRatio="xMidYMid meet">
@@ -38,7 +40,7 @@
    <text x="842" y="719" font-family="Arial,sans-serif" font-size="25" fill="#5a6b74" text-anchor="middle">For successfully completing the learning programme in</text>
    ${lineText(courseLines,842,courseY,courseSize,55,accent,'700','Arial, sans-serif')}
    <text x="842" y="871" text-anchor="middle" font-family="Arial,sans-serif" font-size="23" fill="#4f6471">${XML(desc)}</text>
-   <text x="842" y="905" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" fill="#73848a">Capstone assessed and passed · Minimum passing mark: 70/100</text>
+   <text x="842" y="905" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" fill="#73848a">Capstone assessed and passed · Grade: ${XML(assessmentGrade||'Not available')}</text>
    <path d="M132 942h1418" stroke="#d8d6c9" stroke-width="2"/>
    <text x="150" y="994" font-size="17" font-weight="700" letter-spacing="2" font-family="Arial,sans-serif" fill="#a0783e">DATE OF ISSUE</text><text x="150" y="1030" font-size="26" font-weight="700" font-family="Arial,sans-serif" fill="#223b4c">${XML(issued)}</text>
    <text x="485" y="994" font-size="17" font-weight="700" letter-spacing="2" font-family="Arial,sans-serif" fill="#a0783e">ASSESSMENT</text><text x="485" y="1030" font-size="26" font-weight="700" font-family="Arial,sans-serif" fill="#223b4c">PASSED</text>
@@ -51,5 +53,5 @@
  }
  function mount(node,cert){node.innerHTML=svg(cert);node.dataset.course=cert.course_slug||'';return node.querySelector('svg')}
  async function downloadPNG(node,cert){const source=node.querySelector('svg');if(!source)throw Error('Certificate is not ready');const clone=source.cloneNode(true);clone.setAttribute('xmlns','http://www.w3.org/2000/svg');const blob=new Blob([new XMLSerializer().serializeToString(clone)],{type:'image/svg+xml;charset=utf-8'});const url=URL.createObjectURL(blob);try{const img=new Image();img.src=url;await img.decode();const canvas=document.createElement('canvas');canvas.width=3508;canvas.height=2480;const ctx=canvas.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.drawImage(img,0,0,canvas.width,canvas.height);const file=await new Promise(resolve=>canvas.toBlob(resolve,'image/png'));if(!file)throw Error('Unable to create image');const fileUrl=URL.createObjectURL(file);const a=document.createElement('a');a.href=fileUrl;a.download='Data-Learning-Path-'+clean(cert.course_slug||'course')+'-'+clean(cert.certificate_id).replace(/[^a-z\d_-]/gi,'')+'.png';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(fileUrl),1500)}finally{URL.revokeObjectURL(url)}}
- g.DALP_CERT={mount,svg,verifyUrl,downloadPNG,fmt};
+ g.DALP_CERT={mount,svg,verifyUrl,downloadPNG,fmt,grade};
 })(window);
