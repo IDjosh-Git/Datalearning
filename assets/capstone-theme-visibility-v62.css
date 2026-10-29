@@ -1,0 +1,17 @@
+/* v62 — capstone foreground/background pairing in light and dark themes. */
+html[data-theme="light"] {--cap62-surface:#ffffff;--cap62-soft:#f3f6fc;--cap62-text:#182438;--cap62-muted:#40516b;--cap62-border:#cbd5e1;--cap62-link:#1d4ed8;}
+html[data-theme="dark"] {--cap62-surface:#182338;--cap62-soft:#202e47;--cap62-text:#f2f6fd;--cap62-muted:#ced9ec;--cap62-border:#485a76;--cap62-link:#9cbdff;}
+/* Course-end capstone blocks and challenge questions. Keep button colors intact. */
+html[data-theme] body :is(.capstone,.capstone-route-panel,.capstone-challenge,.capstone-challenge-card,.capstone-question,.capstone-task){background:var(--cap62-surface)!important;color:var(--cap62-text)!important;border-color:var(--cap62-border)!important;}
+html[data-theme] body :is(.capstone,.capstone-route-panel,.capstone-challenge,.capstone-challenge-card,.capstone-question,.capstone-task) :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,label,small,strong,em,span):not(.badge):not(.btn):not(.lp-primary){color:var(--cap62-text)!important;opacity:1!important;visibility:visible!important;}
+html[data-theme] body :is(.capstone,.capstone-route-panel,.capstone-challenge,.capstone-challenge-card,.capstone-question,.capstone-task) :is(input:not([type="checkbox"]),textarea,select){background:var(--cap62-soft)!important;color:var(--cap62-text)!important;border-color:var(--cap62-border)!important;}
+html[data-theme] body :is(.capstone,.capstone-route-panel,.capstone-challenge) a:not(.btn):not(.lp-primary){color:var(--cap62-link)!important;}
+/* Separate capstone studio uses its own components, not the course workspace class. */
+html[data-theme] body[data-responsive-page="capstone"] :is(.cap-panel,.cap-side-panel,.cap-course-status,.cap-drop,.cap-empty,.cap-feedback-card,.cap-track:not(.active),.cap-file,.cap-outline){background:var(--cap62-surface)!important;color:var(--cap62-text)!important;border-color:var(--cap62-border)!important;}
+html[data-theme] body[data-responsive-page="capstone"] :is(.cap-panel,.cap-side-panel,.cap-course-status,.cap-drop,.cap-empty,.cap-feedback-card,.cap-track,.cap-file) :is(h2,h3,h4,p,li,small,strong,label,span):not(.cap-kicker):not(.cap-pill):not(.cap-upload-icon){color:var(--cap62-text)!important;}
+html[data-theme] body[data-responsive-page="capstone"] :is(.cap-panel-title p,.cap-checklist li,.cap-side-panel p,.cap-helper,.cap-disclaimer,.cap-course-status small,.cap-drop p){color:var(--cap62-muted)!important;}
+html[data-theme] body[data-responsive-page="capstone"] :is(.cap-input,.cap-choose){background:var(--cap62-soft)!important;color:var(--cap62-text)!important;border-color:var(--cap62-border)!important;}
+html[data-theme] body[data-responsive-page="capstone"] .cap-input::placeholder{color:var(--cap62-muted)!important;opacity:1;}
+/* Maintain intentionally dark hero and fixed-color certificate artwork. */
+html[data-theme] body[data-responsive-page="capstone"] .cap-hero :is(h1,p,span){color:#f8fafc!important;}
+
