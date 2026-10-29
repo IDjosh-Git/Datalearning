@@ -1,0 +1,49 @@
+/* v60: immediate palette swaps and compact accessible course assessments */
+html[data-theme] body.dl-workspace,
+html[data-theme] body.dl-workspace :is(.app,.content,.course-wrap,.week,.lesson,.card,.quiz,.question,.capstone,.course-mastery,.course-mastery-wrap,.course-mastery-question,.course-mastery-option,.topbar,.sidebar,.study-studio,.guided-lab,.lab-task,.lab-check) {
+  transition-property: none !important;
+  transition-duration: 0s !important;
+  transition-delay: 0s !important;
+}
+/* Enforce paired foreground/background colors for capstone descendants in both palettes. */
+html[data-theme] body.dl-workspace :is(.capstone,.capstone-route-panel,.capstone-challenge) {
+  color: var(--course-ink,var(--app-text)) !important;
+  background: var(--course-panel,var(--app-surface)) !important;
+  border-color: var(--course-border,var(--app-line)) !important;
+}
+html[data-theme] body.dl-workspace :is(.capstone,.capstone-route-panel,.capstone-challenge) :is(h1,h2,h3,h4,h5,h6,p,li,strong,span,small,label) {
+  color: var(--course-ink,var(--app-text)) !important;
+}
+html[data-theme] body.dl-workspace :is(.capstone,.capstone-route-panel,.capstone-challenge) :is(input,textarea,select) {
+  color: var(--course-ink,var(--app-text)) !important;
+  background: var(--course-soft,var(--app-surface-2)) !important;
+  border-color: var(--course-border,var(--app-line)) !important;
+}
+html[data-theme] body.dl-workspace :is(.capstone,.capstone-route-panel,.capstone-challenge) a:not(.btn) {color:var(--course-accent,#2563eb)!important;text-decoration:underline;}
+/* Previous checkpoint shell reached 900px, with multiple large margins and nested panels. */
+html[data-theme] body.dl-workspace .course-mastery-wrap {
+  width:min(100%,760px)!important;max-width:760px!important;margin:16px auto!important;
+}
+html[data-theme] body.dl-workspace .course-mastery {
+  padding:clamp(12px,2vw,18px)!important;border-radius:14px!important;
+}
+html[data-theme] body.dl-workspace .course-mastery-head h2 {margin:3px 0 5px!important;font-size:clamp(19px,2vw,25px)!important;}
+html[data-theme] body.dl-workspace .course-mastery-head p {font-size:13px!important;line-height:1.45!important;max-width:none;}
+html[data-theme] body.dl-workspace .course-mastery-meta {margin-top:9px!important;padding:7px 0!important;}
+html[data-theme] body.dl-workspace .course-mastery-questions {gap:9px!important;margin:10px 0!important;}
+html[data-theme] body.dl-workspace .course-mastery-question {padding:10px 12px!important;border-radius:10px!important;}
+html[data-theme] body.dl-workspace .course-mastery-question legend {gap:7px!important;padding:0 3px!important;line-height:1.35!important;}
+html[data-theme] body.dl-workspace .course-mastery-number {flex-basis:25px!important;height:25px!important;}
+html[data-theme] body.dl-workspace .course-mastery-options {gap:5px!important;margin-top:5px!important;}
+html[data-theme] body.dl-workspace .course-mastery-option {padding:8px 10px!important;min-height:40px;gap:9px!important;line-height:1.38!important;}
+html[data-theme] body.dl-workspace .course-mastery-result {padding:11px!important;margin-top:10px!important;}
+html[data-theme] body.dl-workspace .course-mastery-review {gap:7px!important;margin-top:8px!important;}
+html[data-theme] body.dl-workspace .course-mastery-foot {margin:10px 0 0!important;line-height:1.45!important;}
+@media(max-width:640px){
+ html[data-theme] body.dl-workspace .course-mastery-wrap,
+ html[data-theme] body.dl-workspace .course-mastery-wrap.course-mastery-intro {width:100%!important;max-width:100%!important;margin:12px auto!important;}
+ html[data-theme] body.dl-workspace .course-mastery {padding:12px!important;}
+ html[data-theme] body.dl-workspace .course-mastery-question {padding:9px!important;}
+ html[data-theme] body.dl-workspace .course-mastery-option {min-height:44px!important;}
+ html[data-theme] body.dl-workspace .course-mastery-actions button{flex:1 1 145px;}
+}
