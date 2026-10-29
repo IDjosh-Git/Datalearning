@@ -46,7 +46,7 @@
    <text x="485" y="994" font-size="17" font-weight="700" letter-spacing="2" font-family="Arial,sans-serif" fill="#a0783e">ASSESSMENT</text><text x="485" y="1030" font-size="26" font-weight="700" font-family="Arial,sans-serif" fill="#223b4c">PASSED</text>
    <text x="815" y="994" font-size="17" font-weight="700" letter-spacing="2" font-family="Arial,sans-serif" fill="#a0783e">ISSUED BY</text><text x="815" y="1030" font-size="24" font-weight="700" font-family="Arial,sans-serif" fill="#223b4c">Data Analysis Learning Path</text>
    <text x="150" y="1079" font-family="Arial,sans-serif" font-size="18" fill="#64737b">Certificate ID: <tspan fill="#18354b" font-weight="700">${XML(cert.certificate_id)}</tspan></text>
-   <text x="150" y="1106" font-family="Arial,sans-serif" font-size="15" fill="#78868c">Verification confirms completion, not professional accreditation.</text>
+   <text x="150" y="1106" font-family="Arial,sans-serif" font-size="15" fill="#78868c">Verify this certificate using its unique certificate ID.</text>
    <g transform="translate(1375 954)">${qr||'<rect width="134" height="134" fill="white" stroke="#b6c6cb"/>'}</g>
    <text x="1442" y="1107" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#40596a">SCAN TO VERIFY</text>
    </svg>`;
