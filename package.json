@@ -28,7 +28,8 @@
     "test:mastery:v33": "node tests/mastery-v33.mjs",
     "test:mastery:v34": "node tests/mastery-v34.mjs",
     "test:editor:v53": "node tests/arena-editor-isolation-v53.mjs",
-    "test:arena:v54": "node tests/arena-scroll-and-theme-v54.mjs && node tests/arena-editor-isolation-v53.mjs"
+    "test:arena:v54": "node tests/arena-scroll-and-theme-v54.mjs && node tests/arena-editor-isolation-v53.mjs",
+    "test:theme:contrast": "node tests/theme-semantic-contrast-v67.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.57.0",
