@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 const root=process.cwd();
 const read=x=>fs.readFileSync(path.join(root,x),'utf8');
-const paths=dir=>fs.readdirSync(dir,{withFileTypes:true}).flatMap(x=>x.isDirectory()?paths(path.join(dir,x.name)):x.name.endsWith('.html')?[path.join(dir,x.name)]:[]);
+const paths=dir=>fs.readdirSync(dir,{withFileTypes:true}).flatMap(x=>x.isDirectory()&&x.name!=='node_modules'?paths(path.join(dir,x.name)):x.name.endsWith('.html')?[path.join(dir,x.name)]:[]);
 const htmlFiles=paths(root);
 assert.equal(htmlFiles.length,23,'Expected all 23 app pages including Python');
 const publicPage=read('auth.html');
