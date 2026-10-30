@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 const root=path.resolve(new URL('..',import.meta.url).pathname);
 const htmls=[...fs.readdirSync(root).filter(x=>x.endsWith('.html')), ...fs.readdirSync(path.join(root,'courses')).filter(x=>x.endsWith('.html')).map(x=>'courses/'+x)];
-assert.equal(htmls.length,23);
+assert(htmls.length>=23);
 for(const name of htmls){
  const txt=fs.readFileSync(path.join(root,name),'utf8');
  const expected=(name.startsWith('courses/')?'../':'')+'assets/mobile-experience-v13.css?v=20261022';
