@@ -10,7 +10,7 @@
   root.dataset.theme=dark?'dark':'light';root.dataset.themePreference=pref;
   root.classList.toggle('dark',dark);root.classList.toggle('light',!dark);
   root.style.colorScheme=dark?'dark':'light';
-  document.querySelector('meta[name="theme-color"]')?.setAttribute('content',dark?'#09090b':'#f8fafc');
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content',dark?'#0e1724':'#f8f9f6');
   document.querySelectorAll('.dlp-theme-select').forEach(select=>{if(select.value!==pref)select.value=pref;});
   if(persist){try{localStorage.setItem(KEY,pref);}catch{}}
  }

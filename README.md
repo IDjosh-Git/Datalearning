@@ -1,3 +1,11 @@
+# Data Analysis Learning Path — v86 Colour System
+
+The latest release adds a calm warm-white / deep-ink design system with teal actions, six track accents, consistent semantic states, and system-aware light/dark preference across all 25 HTML routes. See `COLOUR_SYSTEM_V86_QA.md` for the palette, implementation notes, regression results and staging limitations.
+
+To validate: `npm test && npm run test:colour:v86 && npm run test:arena:v85 && npm run test:responsive && npm run test:experience && npm run verify:deployment`.
+
+---
+
 > **v85 Practice Arena update:** See [PRACTICE_ARENA_PRODUCT_V85_QA.md](PRACTICE_ARENA_PRODUCT_V85_QA.md) for the challenge-browser, grading-feedback, course-linking and test changes.
 
 # Data Analysis Learning Path

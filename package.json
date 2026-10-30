@@ -31,7 +31,8 @@
     "test:arena:v54": "node tests/arena-scroll-and-theme-v54.mjs && node tests/arena-editor-isolation-v53.mjs",
     "test:theme:contrast": "node tests/theme-semantic-contrast-v67.mjs",
     "test:experience": "node tests/learning-v84.mjs",
-    "test:arena:v85": "node tests/arena-product-v85.mjs && npm run test:arena:v31 && npm run test:arena:v54"
+    "test:arena:v85": "node tests/arena-product-v85.mjs && npm run test:arena:v31 && npm run test:arena:v54",
+    "test:colour:v86": "node tests/color-system-v86.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.57.0",
