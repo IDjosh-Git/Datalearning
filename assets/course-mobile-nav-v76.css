@@ -1,0 +1,11 @@
+/* v76: predictable mobile course navigation, last-loaded overrides */
+@media(max-width:1050px){
+ body.dlp-course-v29 .app>.sidebar{display:block!important;position:fixed!important;top:0!important;left:0!important;bottom:0!important;width:min(310px,88vw)!important;height:100dvh!important;z-index:1101!important;transform:translateX(-105%)!important;visibility:hidden!important;pointer-events:none!important;overflow-y:auto!important;overscroll-behavior:contain!important;background:var(--surface,var(--card,#fff))!important;box-shadow:0 12px 40px rgba(0,0,0,.2)!important}
+ body.dlp-course-v29 .app>.sidebar.open{transform:translateX(0)!important;visibility:visible!important;pointer-events:auto!important}
+ body.dlp-course-v29 .app .topbar .menu-btn{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-width:44px!important;min-height:44px!important;cursor:pointer!important;touch-action:manipulation!important;flex-shrink:0!important;z-index:2!important}
+ body.dlp-course-v29 .course-drawer-backdrop.is-visible{display:block!important;z-index:1100!important}
+ body.dlp-course-v29 .app>.sidebar .nav-link{min-height:42px!important;display:flex!important;align-items:center!important;visibility:visible!important;pointer-events:auto!important}
+}
+@media(min-width:1051px){body.dlp-course-v29 .app>.sidebar{visibility:visible!important;pointer-events:auto!important;transform:none!important}}
+.ai-mobile-week-nav{display:none}
+@media(max-width:1050px){.ai-mobile-week-nav{display:block;position:sticky;top:0;z-index:60;background:var(--surface,#fff);color:var(--text,#152536);padding:10px 12px;border-bottom:1px solid var(--border,#cbd5e1)}.ai-mobile-week-nav>span{display:block;font-size:12px;font-weight:800;margin-bottom:7px}.ai-mobile-week-links{display:flex;gap:8px;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin}.ai-mobile-week-links a{flex:0 0 auto;display:inline-flex;align-items:center;min-height:44px;padding:9px 13px;border:1px solid var(--border,#cbd5e1);border-radius:9px;color:var(--text,#152536);background:var(--surface,#fff);font-weight:700;text-decoration:none}.ai-mobile-week-links a:focus-visible{outline:3px solid #f27329;outline-offset:2px}.lp-ai-page section[id^=week]{scroll-margin-top:110px}}
