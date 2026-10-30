@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="en">
-<head><script id="dalp-theme-prepaint">(()=>{try{const k="dalp-theme",v=localStorage.getItem(k),d=v==="dark"||(false);document.documentElement.dataset.theme=d?"dark":"light";document.documentElement.classList.toggle("dark",d);document.documentElement.classList.toggle("light",!d);document.documentElement.style.colorScheme=d?"dark":"light";}catch{document.documentElement.dataset.theme="light";document.documentElement.style.colorScheme="light"}})();</script><link crossorigin="anonymous" href="https://cdn.jsdelivr.net" rel="preconnect"/>
+<head><script id="dalp-theme-prepaint">(()=>{try{const k="dalp-theme",p=localStorage.getItem(k),pref=p==="dark"||p==="light"?p:"system",dark=pref==="dark"||(pref==="system"&&window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches),root=document.documentElement;root.dataset.theme=dark?"dark":"light";root.dataset.themePreference=pref;root.classList.toggle("dark",dark);root.classList.toggle("light",!dark);root.style.colorScheme=dark?"dark":"light"}catch{document.documentElement.dataset.theme="light";document.documentElement.dataset.themePreference="system"}})();</script><link crossorigin="anonymous" href="https://cdn.jsdelivr.net" rel="preconnect"/>
 <script>document.documentElement.classList.add('dalp-auth-checking')</script>
 <link href="assets/auth-gate.css?v=20261021.2" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0"></script>
@@ -10,7 +10,7 @@
 <script src="assets/auth-gate.js?v=20261021.3"></script>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<title>Account Connection Check | Data Analysis Learning Path</title><script>try{const t=localStorage.getItem('dalp-theme');document.documentElement.dataset.theme=(t==='dark'||t==='light')?t:'light'}catch(e){document.documentElement.dataset.theme='light'}</script>
+<title>Account Connection Check | Data Analysis Learning Path</title>
 <style>
 body{font-family:system-ui;background:#f5f8fa;color:#1d2930;margin:0;padding:24px}
 .card{max-width:720px;margin:auto;background:#fff;border:1px solid #dce5e9;border-radius:18px;padding:24px}
@@ -35,7 +35,7 @@ code{background:#eef3f6;padding:2px 6px;border-radius:6px}
 <link rel="stylesheet" href="assets/layout-mobile-v26.css?v=20261023.26">
 <link rel="stylesheet" href="assets/data-atmosphere-v27.css?v=20261023.27">
 <link rel="stylesheet" href="assets/dashboard-analytics-v28.css?v=20261023.28"/>
-<link rel="stylesheet" href="assets/ambient-background-v35.css?v=20261028.36"/><link rel="stylesheet" href="assets/page-background-unified-v38.css?v=20261028.38"/><link rel="stylesheet" href="assets/theme-audit-v47.css?v=20261028.47"/><link rel="stylesheet" href="assets/device-responsive-audit-v51.css?v=20261028.51"/><link rel="stylesheet" href="assets/theme-foundation-v65.css?v=65"/><link rel="stylesheet" href="assets/atelier-ui-v82.css?v=65" data-design-system="atelier-v82"/></head>
+<link rel="stylesheet" href="assets/ambient-background-v35.css?v=20261028.36"/><link rel="stylesheet" href="assets/page-background-unified-v38.css?v=20261028.38"/><link rel="stylesheet" href="assets/theme-audit-v47.css?v=20261028.47"/><link rel="stylesheet" href="assets/device-responsive-audit-v51.css?v=20261028.51"/><link rel="stylesheet" href="assets/theme-foundation-v65.css?v=65"/><link rel="stylesheet" href="assets/atelier-ui-v82.css?v=65" data-design-system="atelier-v82"/><link rel="stylesheet" href="assets/learning-experience-v84.css?v=84" data-design-system="learning-experience-v84"/></head>
 <body data-responsive-page="connection-test">
 <div class="card">
 <div class="auth-brand-shell"><img alt="Data Analysis Learning Path logo" class="auth-brand-logo" src="assets/da-logo.svg"/><div class="brand-company-name"><strong>Data Analysis Learning Path</strong><span>Connection Test</span></div></div><h1>Check your account connection</h1>
@@ -59,5 +59,5 @@ code{background:#eef3f6;padding:2px 6px;border-radius:6px}
 })();
 </script>
 <script defer="" src="assets/modern.js?v=20261022.16"></script><script defer="" src="assets/course-studio-data.js?v=20261015.3"></script><script defer="" src="assets/learner-companion.js?v=20261022.20"></script><script defer="" src="assets/responsive-v2.js?v=20261015.3"></script><script defer src="assets/theme-control-v14.js?v=20261022.18"></script>
-<script defer src="assets/accessibility-v23.js?v=20261022.22"></script><script defer src="assets/theme-bridge-v65.js?v=65"></script></body>
+<script defer src="assets/accessibility-v23.js?v=20261022.22"></script><script defer src="assets/theme-bridge-v65.js?v=65"></script><script defer src="assets/learning-experience-v84.js?v=84"></script></body>
 </html>

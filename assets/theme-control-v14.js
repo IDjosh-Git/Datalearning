@@ -1,39 +1,44 @@
-/* v16 consolidated appearance controller; unique in-flow control on every page. */
+/* Accessible three-way appearance control, retaining the project's existing storage key. */
 (()=>{'use strict';
-const KEY='dalp-theme';
-let lastMode=null,writeHandle=0;
-const moon='<svg class="theme-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.9 13A9 9 0 0 1 11 3.1 9 9 0 1 0 20.9 13Z"/></svg>';
-const sun='<svg class="theme-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>';
-const saved=()=>{try{return localStorage.getItem(KEY)}catch{return null}};
-const preference=()=>{const value=saved();return value==='light'||value==='dark'?value:'light'};
-function apply(mode){if(mode===lastMode)return;lastMode=mode;const dark=mode==='dark';document.documentElement.dataset.theme=dark?'dark':'light';document.documentElement.classList.toggle('dark',dark);document.documentElement.classList.toggle('light',!dark);document.documentElement.style.colorScheme=dark?'dark':'light';document.querySelector('meta[name="theme-color"]')?.setAttribute('content',dark?'#0F172A':'#F8FAFC');document.querySelectorAll('.dlp-theme-control').forEach(b=>{b.setAttribute('aria-label',dark?'Switch to light mode':'Switch to dark mode');b.title=dark?'Switch to light mode':'Switch to dark mode';b.setAttribute('aria-pressed',String(dark));const label=b.querySelector('.dlp-theme-caption');if(label)label.textContent=dark?'Light mode':'Dark mode'})}
-// Paint the correct palette before DOMContentLoaded; never show a floating theme button.
-apply(preference());
-function init(){
- document.querySelectorAll('.lp-theme-btn,.dlp-theme-control').forEach(n=>n.remove());
- const b=document.createElement('button');b.type='button';b.id='dalpThemeToggle';b.className='dlp-theme-control dlp-theme-in-header';b.innerHTML=moon+sun+'<span class="dlp-theme-caption">Appearance</span>';
- b.addEventListener('click',()=>{
-  const mode=document.documentElement.dataset.theme==='dark'?'light':'dark';
-  // Switch in this event turn; writing storage in a later task avoids delaying the paint.
-  apply(mode);
-  if(writeHandle)clearTimeout(writeHandle);
-  writeHandle=setTimeout(()=>{writeHandle=0;try{localStorage.setItem(KEY,mode)}catch{}},0);
- });
- let home=document.querySelector('.dl-shell-actions');let before=home?.querySelector('.dl-shell-avatar')||null;
- if(!home){home=document.querySelector('.ac-top-actions');before=home?.querySelector('.ac-top-user')||null}
- if(!home){home=document.querySelector('.auth-top-actions');before=null}
- if(home){home.insertBefore(b,before)}
- else{
-  // For independent utility screens use a real layout row, not absolute/fixed positioning.
-  const row=document.createElement('div');row.className='dlp-appearance-row';row.setAttribute('aria-label','Application toolbar');
-  const brand=document.createElement('a');brand.className='dlp-appearance-brand';brand.href=location.pathname.includes('/courses/')?'../index.html':'index.html';brand.innerHTML='<span class="dlp-appearance-mark" aria-hidden="true">◈</span><span>Data Analysis <strong>Learning Path</strong></span>';
-  row.append(brand,b);document.body.prepend(row);b.classList.remove('dlp-theme-in-header');b.classList.add('dlp-theme-in-row');
+ const KEY='dalp-theme';
+ const media=window.matchMedia?.('(prefers-color-scheme: dark)');
+ const read=()=>{try{const x=localStorage.getItem(KEY);return ['light','dark','system'].includes(x)?x:'system';}catch{return 'system';}};
+ function setTheme(preference,persist=false){
+  const pref=['light','dark','system'].includes(preference)?preference:'system';
+  const dark=pref==='dark'||(pref==='system'&&!!media?.matches);
+  const root=document.documentElement;
+  root.dataset.theme=dark?'dark':'light';root.dataset.themePreference=pref;
+  root.classList.toggle('dark',dark);root.classList.toggle('light',!dark);
+  root.style.colorScheme=dark?'dark':'light';
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content',dark?'#09090b':'#f8fafc');
+  document.querySelectorAll('.dlp-theme-select').forEach(select=>{if(select.value!==pref)select.value=pref;});
+  if(persist){try{localStorage.setItem(KEY,pref);}catch{}}
  }
- lastMode=null;apply(preference());
- window.addEventListener('storage',e=>{if(e.key===KEY)apply(preference())});
- try{matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{if(!saved())apply(preference())})}catch{}
-}
-// Keep the first frame transition-free; user-initiated theme switches still animate.
-const markPainted=()=>requestAnimationFrame(()=>requestAnimationFrame(()=>document.documentElement.classList.add('dlp-theme-ready')));
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{init();markPainted()},{once:true});else{init();markPainted()};
+ // Reapply after legacy theme scripts have loaded; the prepaint script already handles the first frame.
+ setTheme(read());
+ function init(){
+  document.querySelectorAll('.lp-theme-btn,.dlp-theme-control,.dlp-theme-wrap,.dlp-appearance-row').forEach(el=>el.remove());
+  const group=document.createElement('div');group.className='dlp-theme-wrap';group.setAttribute('role','group');group.setAttribute('aria-label','Appearance');
+  const label=document.createElement('label');label.htmlFor='dalpThemeSelect';label.className='dlp-theme-label';label.textContent='Theme';
+  const select=document.createElement('select');select.id='dalpThemeSelect';select.className='dlp-theme-select';select.name='dalp-theme-choice';select.title='Choose light, dark or system appearance';
+  [['system','System'],['light','Light'],['dark','Dark']].forEach(([value,text])=>select.add(new Option(text,value)));
+  select.addEventListener('change',()=>setTheme(select.value,true));
+  group.append(label,select);
+  let host=document.querySelector('.dl-shell-actions')||document.querySelector('.ac-top-actions')||document.querySelector('.auth-top-actions');
+  const before=host?.querySelector('.dl-shell-avatar,.ac-top-user')||null;
+  if(host)host.insertBefore(group,before);
+  else{
+   host=document.createElement('div');host.className='dlp-appearance-row';host.setAttribute('aria-label','Appearance toolbar');
+   const brand=document.createElement('a');brand.className='dlp-appearance-brand';brand.href=location.pathname.includes('/courses/')?'../index.html':'index.html';brand.textContent='Data Analysis Learning Path';
+   host.append(brand,group);
+   const nav=document.querySelector('.nav-shell .nav-inner,.course-top,.top,.ps-heading,.auth-topbar');
+   if(nav)nav.append(group); // Avoid fixed-position controls that obscure content.
+   else document.body.prepend(host);
+  }
+  setTheme(read());
+  window.addEventListener('storage',e=>{if(e.key===KEY)setTheme(read());});
+  media?.addEventListener?.('change',()=>{if(read()==='system')setTheme('system');});
+  requestAnimationFrame(()=>requestAnimationFrame(()=>document.documentElement.classList.add('dlp-theme-ready')));
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();

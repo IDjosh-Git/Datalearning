@@ -1,3 +1,5 @@
+> **v85 Practice Arena update:** See [PRACTICE_ARENA_PRODUCT_V85_QA.md](PRACTICE_ARENA_PRODUCT_V85_QA.md) for the challenge-browser, grading-feedback, course-linking and test changes.
+
 # Data Analysis Learning Path
 
 A practical learning experience designed to help you build confidence in Excel, SQL, Power BI and AI-assisted data analysis. Learn at your own pace, use the included practice files and pick up where you left off.

@@ -7,7 +7,7 @@
  const toPage=name=>new URL(name,root);
  const restricted=new Set(['admin.html','progress.html','reviewer.html','connection-test.html','sync-test.html']);
  const ownerKey='dalpLastLearnerId';
- const courseKeys=['dalpIntroductionProgressV1','excelRoadmapProgress','sqlRoadmapProgress','powerbiRoadmapProgress','aiRoadmapProgress'];
+ const courseKeys=['dalpIntroductionProgressV1','excelRoadmapProgress','sqlRoadmapProgress','powerbiRoadmapProgress','pythonRoadmapProgress','aiRoadmapProgress'];
  let gate,working=false,authenticated=false;
  const page=location.pathname.split('/').pop().toLowerCase()||'index.html';
  function loginDestination(){const u=toPage('auth.html');u.searchParams.set('return',location.pathname+location.search+location.hash);return u.href;}

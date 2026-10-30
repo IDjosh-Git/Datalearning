@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 
 <html lang="en">
-<head><script id="dalp-theme-prepaint">(()=>{try{const k="dalp-theme",v=localStorage.getItem(k),d=v==="dark"||(false);document.documentElement.dataset.theme=d?"dark":"light";document.documentElement.classList.toggle("dark",d);document.documentElement.classList.toggle("light",!d);document.documentElement.style.colorScheme=d?"dark":"light";}catch{document.documentElement.dataset.theme="light";document.documentElement.style.colorScheme="light"}})();</script><link crossorigin="anonymous" href="https://cdn.jsdelivr.net" rel="preconnect"/>
+<head><script id="dalp-theme-prepaint">(()=>{try{const k="dalp-theme",p=localStorage.getItem(k),pref=p==="dark"||p==="light"?p:"system",dark=pref==="dark"||(pref==="system"&&window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches),root=document.documentElement;root.dataset.theme=dark?"dark":"light";root.dataset.themePreference=pref;root.classList.toggle("dark",dark);root.classList.toggle("light",!dark);root.style.colorScheme=dark?"dark":"light"}catch{document.documentElement.dataset.theme="light";document.documentElement.dataset.themePreference="system"}})();</script><link crossorigin="anonymous" href="https://cdn.jsdelivr.net" rel="preconnect"/>
 <meta charset="utf-8"/><meta content="width=device-width,initial-scale=1.0" name="viewport"/><meta content="#192537" name="theme-color"/>
 <title>Sign in or create account | Data Analysis Learning Path</title>
 <meta content="Sign in or create a learner account to access your data analysis courses, practice projects, tutor, and saved progress." name="description"/>
-<script>try{const t=localStorage.getItem('dalp-theme');document.documentElement.dataset.theme=(t==='dark'||t==='light')?t:'light'}catch(e){document.documentElement.dataset.theme='light'}</script>
+
 <link href="assets/da-logo.svg" rel="icon" type="image/svg+xml"/>
 <link href="assets/modern.css?v=20261015.3" rel="stylesheet"/>
 <link href="assets/responsive-polish.css?v=20261015.3" rel="stylesheet"/><link href="assets/theme-polish.css?v=20261015.3" rel="stylesheet"/>
@@ -27,7 +27,7 @@
 <link rel="stylesheet" href="assets/layout-mobile-v26.css?v=20261023.26">
 <link rel="stylesheet" href="assets/data-atmosphere-v27.css?v=20261023.27">
 <link rel="stylesheet" href="assets/dashboard-analytics-v28.css?v=20261023.28"/>
-<link rel="stylesheet" href="assets/ambient-background-v35.css?v=20261028.36"/><link rel="stylesheet" href="assets/page-background-unified-v38.css?v=20261028.38"/><link rel="stylesheet" href="assets/theme-audit-v47.css?v=20261028.47"/><link rel="stylesheet" href="assets/device-responsive-audit-v51.css?v=20261028.51"/><link rel="stylesheet" href="assets/theme-foundation-v65.css?v=65"/><link rel="stylesheet" href="assets/atelier-ui-v82.css?v=65" data-design-system="atelier-v82"/></head>
+<link rel="stylesheet" href="assets/ambient-background-v35.css?v=20261028.36"/><link rel="stylesheet" href="assets/page-background-unified-v38.css?v=20261028.38"/><link rel="stylesheet" href="assets/theme-audit-v47.css?v=20261028.47"/><link rel="stylesheet" href="assets/device-responsive-audit-v51.css?v=20261028.51"/><link rel="stylesheet" href="assets/theme-foundation-v65.css?v=65"/><link rel="stylesheet" href="assets/atelier-ui-v82.css?v=65" data-design-system="atelier-v82"/><link rel="stylesheet" href="assets/learning-experience-v84.css?v=84" data-design-system="learning-experience-v84"/></head>
 <body class="auth-page" data-auth-mode="login" data-responsive-page="auth">
 <div class="auth-shell">
 <header class="auth-topbar">
@@ -40,7 +40,7 @@
 <span class="auth-kicker">YOUR LEARNING SPACE</span>
 <h1>Build your data skills.<br/>Keep every milestone.</h1>
 <p>Learn by doing. Follow practical learning paths in Excel, SQL, Power BI and AI—then continue seamlessly from your last lesson.</p>
-<div class="auth-course-chips"><span>Excel</span><span>SQL</span><span>Power BI</span><span>AI Analytics</span></div>
+<p class="dalp-preview-invite"><a href="preview.html">Read the first lesson free →</a><span>No registration needed to preview the material.</span></p><div class="auth-course-chips"><span>Excel</span><span>SQL</span><span>Power BI</span><span>AI Analytics</span></div>
 <div class="auth-benefits">
 <div class="auth-benefit"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.3-5.7L4 8.6"></path><path d="M4 4v4.6h4.6"></path></svg><div><b>Pick up where you left off</b><span>Course and quiz progress stays with your account.</span></div></div>
 <div class="auth-benefit"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><rect height="16" rx="3" width="18" x="3" y="4"></rect><path d="M8 9h8M8 13h5"></path></svg><div><b>One path, every device</b><span>Continue on your phone, tablet or laptop.</span></div></div>
@@ -110,4 +110,4 @@
 <script defer="" src="assets/auth-flow.js?v=20261021"></script>
 <script defer="" src="assets/responsive-v2.js?v=20261015.3"></script>
 <script defer src="assets/theme-control-v14.js?v=20261022.18"></script>
-<script defer src="assets/accessibility-v23.js?v=20261022.22"></script><script defer src="assets/theme-bridge-v65.js?v=65"></script></body></html>
+<script defer src="assets/accessibility-v23.js?v=20261022.22"></script><script defer src="assets/theme-bridge-v65.js?v=65"></script><script defer src="assets/learning-experience-v84.js?v=84"></script></body></html>

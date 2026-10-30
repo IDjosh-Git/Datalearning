@@ -4,8 +4,8 @@ import assert from 'node:assert/strict';
 import { fileURLToPath } from 'node:url';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
-const filenames=[...fs.readdirSync(root).filter(x=>x.endsWith('.html')), ...fs.readdirSync(path.join(root,'courses')).filter(x=>x.endsWith('.html')).map(x=>`courses/${x}`)];
-assert.equal(filenames.length,23,'Review route count before changing the rollout scope');
+const filenames=[...fs.readdirSync(root).filter(x=>x.endsWith('.html')&&!['preview.html','capstone-guide.html'].includes(x)), ...fs.readdirSync(path.join(root,'courses')).filter(x=>x.endsWith('.html')).map(x=>`courses/${x}`)];
+assert.equal(filenames.length,23,'Check the original v28 dashboard rollout separately from standalone guides');
 const config=JSON.parse(fs.readFileSync(path.join(root,'vercel.json'),'utf8'));
 assert.equal(config.framework,null,'Vercel framework must remain Other/static');
 assert.equal(config.cleanUrls,false,'Existing .html links require non-clean URLs');

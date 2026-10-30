@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="en">
-<head><script id="dalp-theme-prepaint">(()=>{try{const k="dalp-theme",v=localStorage.getItem(k),d=v==="dark"||(false);document.documentElement.dataset.theme=d?"dark":"light";document.documentElement.classList.toggle("dark",d);document.documentElement.classList.toggle("light",!d);document.documentElement.style.colorScheme=d?"dark":"light";}catch{document.documentElement.dataset.theme="light";document.documentElement.style.colorScheme="light"}})();</script><link crossorigin="anonymous" href="https://cdn.jsdelivr.net" rel="preconnect"/>
+<head><script id="dalp-theme-prepaint">(()=>{try{const k="dalp-theme",p=localStorage.getItem(k),pref=p==="dark"||p==="light"?p:"system",dark=pref==="dark"||(pref==="system"&&window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches),root=document.documentElement;root.dataset.theme=dark?"dark":"light";root.dataset.themePreference=pref;root.classList.toggle("dark",dark);root.classList.toggle("light",!dark);root.style.colorScheme=dark?"dark":"light"}catch{document.documentElement.dataset.theme="light";document.documentElement.dataset.themePreference="system"}})();</script><link crossorigin="anonymous" href="https://cdn.jsdelivr.net" rel="preconnect"/>
 <script>document.documentElement.classList.add('dalp-auth-checking')</script>
 <link href="../assets/auth-gate.css?v=20261021.2" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0"></script>
@@ -10,7 +10,7 @@
 <script src="../assets/auth-gate.js?v=20261021.3"></script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Excel Mastery Roadmap | Basic to Dashboard Building</title><script>try{const t=localStorage.getItem('dalp-theme');document.documentElement.dataset.theme=(t==='dark'||t==='light')?t:'light'}catch(e){document.documentElement.dataset.theme='light'}</script>
+<title>Excel Mastery Roadmap | Basic to Dashboard Building</title>
 <meta content="A 10-week interactive Excel learning roadmap from beginner foundations to dashboard building." name="description"/>
 <style>
 :root{
@@ -390,7 +390,7 @@ main{min-width:0}
 }
 </style>
 <link rel="stylesheet" href="../assets/course-mobile-v80.css?v=80"/>
-<link rel="stylesheet" href="../assets/week-nav-light-contrast-v81.css?v=81"/><link rel="stylesheet" href="../assets/atelier-ui-v82.css?v=65" data-design-system="atelier-v82"/></head>
+<link rel="stylesheet" href="../assets/week-nav-light-contrast-v81.css?v=81"/><link rel="stylesheet" href="../assets/atelier-ui-v82.css?v=65" data-design-system="atelier-v82"/><link rel="stylesheet" href="../assets/learning-experience-v84.css?v=84" data-design-system="learning-experience-v84"/><link rel="stylesheet" href="../assets/arena-course-links-v85.css?v=85"></head>
 <body class="dlp-course-v29" data-course="excel" data-responsive-page="courses/excel">
 <div class="app">
 <aside class="sidebar" id="sidebar">
@@ -429,7 +429,7 @@ main{min-width:0}
 <div class="content">
 <section class="hero searchable" id="overview">
 <span class="eyebrow">10-week interactive learning path</span>
-<h2>Learn Excel from zero to building your first professional dashboard.</h2>
+<h1>Learn Excel from zero to building your first professional dashboard.</h1>
 <p>This course is structured for beginners who want practical Excel skills for work, analysis, reporting, and dashboard creation. Each week now includes guided teaching sessions, plain-English explanations, worked examples, practical exercises, common mistakes, recap points, and a knowledge test.</p>
 <div class="stats">
 <div class="stat"><strong>10 Weeks</strong><span>Progressive learning plan</span></div>
@@ -1181,5 +1181,5 @@ loadProgress();
 <link rel="stylesheet" href="../assets/course-sidebar-alignment-v61.css?v=61"/>
 <link rel="stylesheet" href="../assets/course-capstone-statements-v63.css?v=63"/>
 <link rel="stylesheet" href="../assets/course-capstone-statement-root-fix-v64.css?v=64"/>
-<script defer src="../assets/theme-bridge-v65.js?v=65"></script><script defer src="../assets/week10-capstone-v75-excel.js?v=75"></script></body>
+<script defer src="../assets/theme-bridge-v65.js?v=65"></script><script defer src="../assets/week10-capstone-v75-excel.js?v=75"></script><script defer src="../assets/learning-experience-v84.js?v=84"></script></body>
 </html>

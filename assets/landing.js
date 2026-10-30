@@ -5,6 +5,7 @@
     excel:       { key:'excelRoadmapProgress', title:'Excel for Data Analysis', units:10, route:'courses/excel.html' },
     powerbi:     { key:'powerbiRoadmapProgress', title:'Power BI & DAX', units:10, route:'courses/powerbi.html' },
     sql:         { key:'sqlRoadmapProgress', title:'SQL for Data Analysis', units:10, route:'courses/sql.html' },
+    python:      { key:'pythonRoadmapProgress', title:'Python for Data Analytics', units:10, route:'courses/python.html' },
     ai:          { key:'aiRoadmapProgress', title:'AI Integration in Data Analysis', units:10, route:'courses/ai.html' }
   };
 
@@ -17,12 +18,12 @@
     }
   }
 
-  function countCompleted(progress){
-    return Object.values(progress || {}).filter(Boolean).length;
+  function countCompleted(progress, units = 10){
+    return Array.from({length:units}, (_,i) => progress?.[String(i+1)] === true).filter(Boolean).length;
   }
 
   function paintCourse(slug, progress){
-    const completed = countCompleted(progress);
+    const completed = countCompleted(progress, COURSE_MAP[slug]?.units || 10);
     const units = COURSE_MAP[slug]?.units || 10;
     const pct = Math.max(0, Math.min(100, Math.round((completed / units) * 100)));
 
@@ -44,7 +45,7 @@
     const sourceProgress = progressMap || {};
     const candidates = Object.entries(COURSE_MAP).map(([slug, info]) => {
       const progress = sourceProgress[slug] || safeLocalProgress(info.key);
-      const completed = countCompleted(progress);
+      const completed = countCompleted(progress, COURSE_MAP[slug]?.units || 10);
       return { slug, completed, title: info.title, route: info.route, progress };
     });
 
@@ -65,12 +66,17 @@
       }
     }
     if(linkEl){
-      linkEl.href = best.route;
-      linkEl.textContent = 'Resume course →';
+      const done=best.progress || {};
+      const total=COURSE_MAP[best.slug]?.units || 10;
+      const upcoming=Array.from({length:total},(_,i)=>i+1).find(i=>done[String(i)]!==true);
+      const introAnchors=['lesson-1','lesson-2','lesson-3','lesson-4','lesson-5','lesson-6','case-study','lesson-8'];
+      const anchor=upcoming?(best.slug==='introduction'?introAnchors[upcoming-1]:'week'+upcoming):'';
+      linkEl.href=best.route+(anchor?'#'+anchor:'');
+      linkEl.textContent=best.completed>0?(upcoming?'Continue next lesson →':'Review completed course →'):'Start the first lesson →';
     }
     if(countEl) countEl.textContent = String(best.completed);
     if(focusEl) focusEl.textContent = best.title.startsWith('Introduction') ? 'Introduction' : best.title.split(' ').slice(0,2).join(' ');
-    if(syncEl) syncEl.textContent = signedIn ? 'Up to date' : 'On this device';
+    if(syncEl) syncEl.textContent = signedIn ? 'Account connected' : 'On this device';
   }
 
   function setAccountState(signedIn){

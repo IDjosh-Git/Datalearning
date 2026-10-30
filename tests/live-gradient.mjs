@@ -26,5 +26,5 @@ assert.match(active,/--motion-b: rgba\(139,92,246/, 'Dark palette has violet amb
 assert.match(active,/animation: dalp-ambient-drift/, 'Ambient glow moves');
 assert.match(active,/transform: translate3d/, 'Animation uses transform');
 assert.match(active,/prefers-reduced-motion: reduce/, 'Reduced motion supported');
-assert.match(controller,/document\.documentElement\.dataset\.theme=dark\?'dark':'light'/,'Theme switch updates the shared theme state');
+assert.match(controller,/root\.dataset\.theme=dark\?'dark':'light'/,'Theme switch updates the shared theme state');
 console.log(`PASS ambient themes: ${pages.length} shared surfaces, light/dark palettes, reduced motion, and transform-only animation`);
