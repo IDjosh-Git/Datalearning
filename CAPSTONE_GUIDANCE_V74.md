@@ -1,0 +1,1 @@
+Version 74: Adds learner-facing capstone requirements and roadmap to all five specialist courses, home dashboard, submission studio, and new capstone-guide.html. Does not modify submission permissions, scoring or certificate logic.
