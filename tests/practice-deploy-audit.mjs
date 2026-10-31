@@ -14,7 +14,7 @@ assert(!config.rewrites.some(r=>['/(.*)','/:path*','/:path(.*)'].includes(r.sour
 assert(fs.existsSync(path.join(root,'api/auth/session.js')));
 assert(fs.existsSync(path.join(root,'api/tutor.js')));
 assert(fs.existsSync(path.join(root,'lib/server-auth.js')));
-assert(pkg.scripts['verify:vercel'],'Missing deployment verification command');
+assert(pkg.scripts['verify:deployment'],'Missing deployment verification command');
 let count=0;
 for (const page of ['practice.html','index.html','studio.html']) {
  const html=read(page);
@@ -26,7 +26,7 @@ for (const page of ['practice.html','index.html','studio.html']) {
   assert(fs.existsSync(resolved),`Missing asset in ${page}: ${uri}`);count++;
  }
 }
-for(const name of ['assets/practice.js','assets/execution-engine.js','assets/formula-engine.js','assets/arena-ide.js','assets/arena-stability.js']) assert(fs.existsSync(path.join(root,name)),`Missing runtime: ${name}`);
+for(const name of ['assets/scripts/practice.js','assets/scripts/execution-engine.js','assets/scripts/formula-engine.js','assets/scripts/arena-ide.js','assets/scripts/arena-stability.js']) assert(fs.existsSync(path.join(root,name)),`Missing runtime: ${name}`);
 for(const name of ['downloads/retail_orders.csv','downloads/retail_customers.csv','downloads/retail_sqlite_setup.sql']) assert(fs.existsSync(path.join(root,name)),`Missing downloadable dataset: ${name}`);
 for (const r of config.rewrites){if(r.destination?.endsWith('.html')&&!r.destination.includes(':'))assert(fs.existsSync(path.join(root,r.destination.replace(/^\//,''))),`Unresolved route: ${r.source}`)}
 console.log(`PASS Practice Arena deployment audit: ${count} HTML resource references, API functions, datasets, scoped routes and runtime assets`);

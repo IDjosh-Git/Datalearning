@@ -48,21 +48,30 @@ export function discoverPages(){
     return {route,file,html,links,scripts,viewport,body};
   });
 }
+// Logical names are deliberately stable in older regression tests; the directory and
+// a handful of renamed files are resolved here rather than scattered across tests.
+function resolvedAssetName(asset){
+  const name={'premium-design-v99.css':'layout-polish.css',
+    'learning-catalog-v97.css':'learning-navigation.css',
+    'theme-foundation-v65.css':'palette-foundation.css',
+    'theme-bridge-v65.js':'embedded-palette-sync.js'}[asset]??asset;
+  return `assets/${name.endsWith('.css')?'styles':name.endsWith('.svg')?'icons':'scripts'}/${name}`;
+}
 export function occurrences(page,asset,kind='links'){
-  return page[kind].filter(ref=>ref.local && ref.path===`assets/${asset}`);
+  return page[kind].filter(ref=>ref.local && ref.path===resolvedAssetName(asset));
 }
 export function has(page,asset,kind='links'){
   return occurrences(page,asset,kind).length>0;
 }
 export function requireAsset(assert,page,asset,kind='links'){
   assert.equal(occurrences(page,asset,kind).length,1,
-    `${page.route}: expected exactly one ${kind==='links'?'stylesheet':'script'} for assets/${asset}`);
+    `${page.route}: expected exactly one ${kind==='links'?'stylesheet':'script'} for ${resolvedAssetName(asset)}`);
 }
 export function requireOrder(assert,page,before,after){
-  const a=page.links.findIndex(ref=>ref.path===`assets/${before}`);
-  const b=page.links.findIndex(ref=>ref.path===`assets/${after}`);
+  const a=page.links.findIndex(ref=>ref.path===resolvedAssetName(before));
+  const b=page.links.findIndex(ref=>ref.path===resolvedAssetName(after));
   assert(a!==-1 && b!==-1 && a<b,
-    `${page.route}: assets/${before} must be loaded before assets/${after}`);
+    `${page.route}: ${resolvedAssetName(before)} must be loaded before ${resolvedAssetName(after)}`);
 }
 export function assertReferences(assert,pages){
   for(const page of pages){

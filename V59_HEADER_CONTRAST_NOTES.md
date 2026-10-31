@@ -1,1 +1,0 @@
-v59: Restores sticky headers across all six courses including mobile v22 conflict; adds semantic surface and typography colors for light/dark themes. Browser screenshots/actual-device validation still recommended.

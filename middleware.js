@@ -6,10 +6,11 @@ export const config = {
  matcher: [
   '/admin.html','/admin','/progress.html','/progress','/reviewer.html','/reviewer',
   '/connection-test.html','/connection-test','/sync-test.html','/sync-test',
-  '/assets/admin-dashboard.js','/assets/admin-console.js','/assets/progress-admin.js','/assets/reviewer.js',
-  '/assets/admin-dashboard.css','/assets/admin-console.css','/assets/progress-admin.css','/assets/reviewer.css',
+  '/assets/scripts/admin-dashboard.js','/assets/scripts/admin-console.js','/assets/scripts/progress-admin.js','/assets/scripts/reviewer.js',
+  '/assets/styles/admin.css','/assets/styles/progress.css','/assets/styles/reviewer.css',
+  '/assets/styles/connection-test-layout.css','/assets/styles/sync-test-layout.css',
   '/OWNER_SETUP.sql','/ADMIN_LEARNER_MIGRATION.sql','/supabase_setup.sql',
-  '/AI_COURSE_DATABASE_MIGRATION.sql','/SUPABASE_SETUP.txt','/tests/:path*','/lib/:path*'
+  '/AI_COURSE_DATABASE_MIGRATION.sql','/SUPABASE_SETUP.txt','/tests/:path*','/lib/:path*','/database/:path*','/docs/:path*','/tools/:path*'
  ]
 };
 function fail(status,message){return new Response(message,{status,headers:{...PRIVATE_HEADERS,'Content-Type':'text/plain; charset=utf-8'}})}

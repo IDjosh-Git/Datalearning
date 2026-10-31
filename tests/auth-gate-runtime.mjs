@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import vm from 'node:vm';
 import assert from 'node:assert/strict';
-const source=fs.readFileSync('assets/auth-gate.js','utf8');
+const source=fs.readFileSync('assets/scripts/auth-gate.js','utf8');
 function make(authStatus,previousOwner,{page="courses/sql.html",admin=false,roleError=false}={}){
  const url=new URL('https://learn.example/'+page+(page==='courses/sql.html'?'?week=5':''));
  const store=new Map();
@@ -10,7 +10,7 @@ function make(authStatus,previousOwner,{page="courses/sql.html",admin=false,role
  let redirect=null,ready=false,user=null;
  const classes=new Set(['dalp-auth-checking']);
  const listeners={};
- const doc={currentScript:{src:'https://learn.example/assets/auth-gate.js'},readyState:'loading',body:null,
+ const doc={currentScript:{src:'https://learn.example/assets/scripts/auth-gate.js'},readyState:'loading',body:null,
  documentElement:{classList:{add:k=>classes.add(k),remove:k=>classes.delete(k)}},
  addEventListener:(event,cb)=>{listeners[event]=cb},getElementById:()=>null,querySelector:()=>null};
  const auth={

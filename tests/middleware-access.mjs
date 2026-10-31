@@ -22,15 +22,15 @@ try{
  const routes=['/admin.html','/progress.html','/reviewer.html','/sync-test.html','/connection-test.html'];
  for(const route of routes)assert.ok(config.matcher.includes(route));
  let r=await middleware(req('/admin.html?view=learners'));assert.equal(r.status,302);assert.equal(new URL(r.headers.get('location')).pathname,'/auth.html');assert.ok(r.headers.get('location').includes('return='));
- r=await middleware(req('/assets/admin-dashboard.js'));assert.equal(r.status,403);
+ r=await middleware(req('/assets/scripts/admin-dashboard.js'));assert.equal(r.status,403);
  r=await middleware(req('/OWNER_SETUP.sql'));assert.equal(r.status,404);
  global.fetch=mock(false);
  r=await middleware(req('/admin.html',sessionCookie(token,300)));assert.equal(r.status,403);assert.equal(await r.text(),'This area is for administrators.');
- r=await middleware(req('/assets/admin-dashboard.js',sessionCookie(token,300)));assert.equal(r.status,403);
+ r=await middleware(req('/assets/scripts/admin-dashboard.js',sessionCookie(token,300)));assert.equal(r.status,403);
  global.fetch=mock(true);
  r=await middleware(req('/admin.html',sessionCookie(token,300)));assert.equal(r.status,204);assert.equal(r.headers.get('x-middleware-next'),'true');assert.match(r.headers.get('Cache-Control'),/no-store/);
  r=await middleware(req('/progress.html',sessionCookie(token,300)));assert.equal(r.status,204);
- r=await middleware(req('/assets/reviewer.js',sessionCookie(token,300)));assert.equal(r.status,204);
+ r=await middleware(req('/assets/scripts/reviewer.js',sessionCookie(token,300)));assert.equal(r.status,204);
  global.fetch=mock(true,true);
  r=await middleware(req('/admin.html',sessionCookie(token,300)));assert.equal(r.status,503);
  global.fetch=mock(true,false,true);

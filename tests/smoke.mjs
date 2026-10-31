@@ -7,12 +7,12 @@ const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=x=>fs.readFileSync(path.join(root,x),'utf8');
 const pages=['index.html','reference.html','tutor.html','auth.html','account.html','verify.html','progress.html','courses/excel.html','courses/sql.html','courses/powerbi.html','courses/ai.html','prompt-library.html'];
 for(const p of pages){assert(read(p).includes('Data Analysis Learning Path'),'Missing rebrand '+p);assert(!read(p).includes('assets/retired-logo.png'),'Old missing logo '+p)}
-for(const p of ['courses/excel.html','courses/sql.html','courses/powerbi.html']){const s=read(p);assert.equal((s.match(/class="guided-lab"/g)||[]).length,10,`${p} labs`);assert.equal((s.match(/class="question"/g)||[]).length,50,`${p} quizzes`);assert.equal((s.match(/class="week searchable"/g)||[]).length,10,`${p} weeks`);assert(s.includes('course-refresh.css'));}
-const refs=JSON.parse(read('assets/reference-data.js').replace(/^window.IJ_REFERENCE=/,'').replace(/;\s*$/,''));assert.equal(refs.length,603);for(const r of refs){assert(r.title&&r.code&&r.watch&&r.meaning)}
-for(const item of ['assets/da-logo.svg','assets/site.css','assets/tutor.js','assets/reference.js','api/tutor.js','lib/tutor-context.js','downloads/retail_orders.csv','downloads/retail_practice.sqlite'])assert(fs.existsSync(path.join(root,item)),item);
+for(const p of ['courses/excel.html','courses/sql.html','courses/powerbi.html']){const s=read(p);assert.equal((s.match(/class="guided-lab"/g)||[]).length,10,`${p} labs`);assert.equal((s.match(/class="question"/g)||[]).length,50,`${p} quizzes`);assert.equal((s.match(/class="week searchable"/g)||[]).length,10,`${p} weeks`);assert(s.includes('assets/styles/course-')); }
+const refs=JSON.parse(read('assets/scripts/reference-data.js').replace(/^window.IJ_REFERENCE=/,'').replace(/;\s*$/,''));assert.equal(refs.length,603);for(const r of refs){assert(r.title&&r.code&&r.watch&&r.meaning)}
+for(const item of ['assets/icons/da-logo.svg','assets/styles/home.css','assets/scripts/tutor.js','assets/scripts/reference.js','api/tutor.js','lib/tutor-context.js','downloads/retail_orders.csv','downloads/retail_practice.sqlite'])assert(fs.existsSync(path.join(root,item)),item);
 assert.equal(read('downloads/retail_orders.csv').trim().split(/\r?\n/).length,361);
 assert(read('index.html').includes('esoterikjoshua@gmail.com'));
-assert(!read('assets/tutor.js').includes('process.env.OPENAI_API_KEY'));assert(!read('assets/supabase-config.js').includes('service_role'));
+assert(!read('assets/scripts/tutor.js').includes('process.env.OPENAI_API_KEY'));assert(!read('assets/scripts/supabase-config.js').includes('service_role'));
 const req=(method,body)=>({method,body,headers:{host:'example.vercel.app',origin:'https://example.vercel.app','x-forwarded-for':'203.0.113.45'}});
 async function run(r){return await new Promise((resolve,reject)=>{let output='',code,headers={};const res={set statusCode(v){code=v},get statusCode(){return code},setHeader(k,v){headers[k]=v},end(x){output=x;resolve({code,headers,body:JSON.parse(output)})}};Promise.resolve(handler(r,res)).catch(reject)})}
 delete process.env.OPENAI_API_KEY; delete process.env.GROQ_API_KEY; delete process.env.TUTOR_PROVIDER;
@@ -36,9 +36,9 @@ try{
 console.log('PASS Data Analysis Learning Path rebrand | courses | references | practice CSV 360 orders');
 console.log('PASS Vercel AI GET/POST: unconfigured, account-gated/mock OpenAI response, input validation, origin check');
 
-for (const c of ['excel','sql','powerbi','ai']){ const t=read(`courses/${c}.html`); assert(t.includes(`../capstone.html?course=${c}`),'Capstone route '+c); assert(!t.includes("localStorage.setItem(store"),'No self-issued certificate '+c); assert(t.includes(c==='ai'?'ai-course.css':'modern.css'),'Course theme '+c); }
-assert(read('supabase_setup.sql').includes('DALP-(EXL|PBI|SQL|AIA|PYT)'),'Five certificate code formats supported');
-assert(read('supabase_setup.sql').includes('learning_private.publish_capstone_review'),'Owner-only manual publishing');
+for (const c of ['excel','sql','powerbi','ai']){ const t=read(`courses/${c}.html`); assert(t.includes(`../capstone.html?course=${c}`),'Capstone route '+c); assert(!t.includes("localStorage.setItem(store"),'No self-issued certificate '+c); assert(t.includes('assets/styles/course-'),'Course styles '+c); }
+assert(read('database/migrations/supabase_setup.sql').includes('DALP-(EXL|PBI|SQL|AIA|PYT)'),'Five certificate code formats supported');
+assert(read('database/migrations/supabase_setup.sql').includes('learning_private.publish_capstone_review'),'Owner-only manual publishing');
 assert(!read('vercel.json').includes('crons'),'No automated assessment schedule');
 console.log('PASS manually reviewed capstone flow | 4 courses | verified completion database');
 
@@ -55,10 +55,10 @@ for(const course of ['excel','sql','powerbi']){
   assert(html.includes('href="introduction.html"'),`Missing foundation link from ${course}`);
   assert(html.includes('course-intro-callout'),`Missing foundation explanation in ${course}`);
 }
-const introJs=read('assets/introduction.js');
+const introJs=read('assets/scripts/introduction.js');
 assert.equal((introJs.match(/\{q:'/g)||[]).length,12,'Twelve introductory questions');
 assert(introJs.includes('ZAHProgressCloud')&&introJs.includes("const slug = 'introduction'"), 'Intro syncs through the shared cloud progress engine');
-assert(read('supabase_setup.sql').includes("('introduction','excel','sql','powerbi','python','ai')"),'Introduction and AI allowed in course progress');
+assert(read('database/migrations/supabase_setup.sql').includes("('introduction','excel','sql','powerbi','python','ai')"),'Introduction and AI allowed in course progress');
 assert(read('index.html').includes('courses/introduction.html'));
 const kiosk=read('downloads/kiosk_week.csv').trim().split(/\r?\n/);
 assert.equal(kiosk.length,6,'five-row fictional kiosk CSV + header');

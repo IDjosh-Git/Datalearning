@@ -20,7 +20,15 @@
         }
       ],
       "recap": "Identify table grain; SELECT specific columns; WHERE filters; ORDER BY makes results stable.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "Think of a database table as a register: each row is one order, and each column answers one fixed question about that order. The order ID identifies a record; it is not a calculation.",
+      "guided_steps": [
+        "Open the orders table and inspect column names",
+        "Ask what one row represents before doing any sums",
+        "Choose only the columns needed, restrict the completed orders, then sort by order_id"
+      ],
+      "how_to_read_the_result": "In the first displayed record, quantity 2 and unit price 150000 describe order 1001; the query has not yet multiplied them. LIMIT 3 limits the display, not the actual database.",
+      "independent_practice": "Change LIMIT 3 to LIMIT 5 and explain why five rows qualify even though the input has six."
     },
     {
       "title": "Filtering, Boolean logic and sorting",
@@ -42,16 +50,24 @@
         }
       ],
       "recap": "Filter before aggregation; parenthesize mixed conditions; sort using an explicit tie-break.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "A WHERE filter is a set of admission rules for individual rows. The database checks those rules before performing any totals; ORDER BY decides how the surviving rows are displayed.",
+      "guided_steps": [
+        "State each condition in plain language",
+        "Add parentheses around combined AND/OR tests",
+        "Sort the filtered result by a meaningful column and then a stable tie-break"
+      ],
+      "how_to_read_the_result": "Compare the order IDs returned, not just the count. The same five completed transactions can appear in different display orders without changing the business answer.",
+      "independent_practice": "Show completed orders from East or West; then change the logic to East AND West and describe why no single-region order qualifies."
     },
     {
       "title": "Aggregations and KPI definitions",
-      "objective": "Calculate net sales with a clear numerator and denominator.",
+      "objective": "Calculate completed gross sales with a stated numerator and denominator.",
       "why": "A performance dashboard must reconcile to finance: one returned order must not inflate completed-order revenue.",
-      "how": "GROUP BY forms one group per region; SUM reduces rows to a metric. WHERE removes unqualified transactions before aggregation; HAVING filters completed groups. Financial reporting must define whether revenue includes tax, discounts, refunds and returns.",
+      "how": "GROUP BY forms one group per region; SUM reduces rows to a metric. WHERE removes unqualified transactions before aggregation; HAVING filters completed groups. Here completed gross revenue is quantity × unit price for Completed rows; this is not net revenue. Real reporting must also define taxes, discounts, refunds and returns.",
       "example": "SELECT region, COUNT(*) AS completed_orders,\n       SUM(quantity*unit_price) AS revenue\nFROM orders\nWHERE status='Completed'\nGROUP BY region\nORDER BY revenue DESC;",
-      "result": "region | completed_orders | revenue\nEast   | 2                | 316000\nWest   | 2                | 190000\nNorth  | 1                | 72000\nTOTAL  | 5                | 578000",
-      "tip": "Validate the total with an independent ungrouped SUM query (should be 578000).",
+      "result": "region | completed_orders | revenue\nEast   | 2                | 316000\nWest   | 2                | 190000\nNorth  | 1                | 72000\nValidation query (not a row returned above): 5 completed orders, grand total 578000",
+      "tip": "Validate the gross revenue independently with an ungrouped SUM (578000); the grouped query itself has only 3 rows.",
       "trap": "COUNT(*) counts rows; COUNT(column) ignores NULLs. Also never SUM a rate such as margin percentage.",
       "checks": [
         {
@@ -64,7 +80,15 @@
         }
       ],
       "recap": "Know each KPI definition; group at the requested grain; reconcile aggregates to source totals.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "An aggregate compresses many qualifying orders into a summary. Decide the group (region) and the unit (currency value) before writing SUM, AVG or COUNT.",
+      "guided_steps": [
+        "Filter to completed sales so returns are not treated as positive revenue",
+        "Calculate revenue per order as quantity × unit_price",
+        "Group by region and reconcile region totals back to 578000"
+      ],
+      "how_to_read_the_result": "East 316000 + West 190000 + North 72000 = 578000. These are gross order values; profit uses a different formula: quantity × (unit_price − unit_cost).",
+      "independent_practice": "Add profit per region, reconcile to 135000, and explain the difference between gross revenue and profit."
     },
     {
       "title": "Joins and relationship cardinality",
@@ -86,7 +110,15 @@
         }
       ],
       "recap": "Join on stable keys; know cardinality; test unmatched keys and duplicated totals.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "A JOIN is like looking up a customer’s segment using a customer ID. The danger is that matching two or more customer rows to one order can copy its revenue multiple times.",
+      "guided_steps": [
+        "Write down the unique key on each side of the join",
+        "Check customer IDs for duplicates before joining",
+        "Compare order count and revenue before and after the join"
+      ],
+      "how_to_read_the_result": "A LEFT JOIN preserves orders even when no customer record matches. The segment is extra context; the order amount must not change because of the lookup.",
+      "independent_practice": "Create an unmatched-customer report using LEFT JOIN and WHERE c.customer_id IS NULL; state what zero means."
     },
     {
       "title": "NULLs, CASE and data quality",
@@ -108,7 +140,15 @@
         }
       ],
       "recap": "Distinguish NULL from zero; define category mappings; inspect unmapped exceptions.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "NULL means 'not recorded' rather than zero or a blank string. A CASE expression is a decision tree: the first true condition wins, and ELSE handles everything else.",
+      "guided_steps": [
+        "Count the raw status values",
+        "Specify business labels for Completed and Returned",
+        "Keep an ELSE category so new or missing statuses are visible"
+      ],
+      "how_to_read_the_result": "The example classifies orders 1001 and 1002 as Recognised, and order 1003 as Reversal. This describes the rule; it does not modify stored statuses.",
+      "independent_practice": "Add an AuditFlag label for NULL status using IS NULL, then describe why '= NULL' does not work."
     },
     {
       "title": "CTEs and layered SQL",
@@ -130,7 +170,15 @@
         }
       ],
       "recap": "One CTE per logical transformation; readable aliases; verify intermediates before final sums.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "A CTE is a named, temporary query result used within one SQL statement. Think of it as a worksheet tab that you can refer to later in the same calculation.",
+      "guided_steps": [
+        "Create completed_sales as transaction-level rows",
+        "Check that the CTE contains five orders",
+        "Aggregate those rows by region in the outer query"
+      ],
+      "how_to_read_the_result": "The final regional numbers must equal the earlier grouped query. A CTE improves readability, but it does not automatically make the engine faster.",
+      "independent_practice": "Add a second CTE for regional totals, then retrieve only regions whose completed revenue exceeds 100000."
     },
     {
       "title": "Window functions and ranking",
@@ -138,7 +186,7 @@
       "why": "Top-customer reporting and monthly running totals need calculations that do not collapse the original records.",
       "how": "Unlike GROUP BY, OVER computes within a window of rows while returning each selected row. PARTITION BY creates independent groups; ORDER BY defines sequence. ROW_NUMBER chooses one row per partition only when the sort has a reliable tie-break.",
       "example": "SELECT customer, order_id, order_date,\n ROW_NUMBER() OVER(\n PARTITION BY customer ORDER BY order_date DESC, order_id DESC\n ) AS recency_rank\nFROM orders WHERE status='Completed'\nORDER BY customer, recency_rank;",
-      "result": "customer | order_id | recency_rank\nAmina    | 1001     | 1\nIdris    | 1005     | 1\nKola     | 1002     | 1\nNgozi    | 1006     | 1\nNgozi    | 1004     | 2",
+      "result": "customer | order_id | order_date | recency_rank\nAmina    | 1001     | 2026-01-05 | 1\nIdris    | 1005     | 2026-02-11 | 1\nKola     | 1002     | 2026-01-08 | 1\nNgozi    | 1006     | 2026-02-18 | 1\nNgozi    | 1004     | 2026-02-09 | 2",
       "tip": "Use ROW_NUMBER for deterministic latest-row selection; use RANK/DENSE_RANK only when ties carry meaning.",
       "trap": "Window ORDER BY and final output ORDER BY serve different purposes. Missing tie-breaks make latest-row logic unstable.",
       "checks": [
@@ -152,7 +200,15 @@
         }
       ],
       "recap": "WINDOW = partition + ordering + optional frame; row counts remain unchanged.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "GROUP BY reduces rows to one summary per group; a window function adds context without removing the original rows. Picture a ranking column written beside each order.",
+      "guided_steps": [
+        "Partition by customer so each customer has a separate sequence",
+        "Order by date descending and add order_id to break ties",
+        "Assign ROW_NUMBER and keep rank 1 only when you need the latest order"
+      ],
+      "how_to_read_the_result": "Ngozi has two completed orders. Her February 18 order ranks ahead of her February 9 order, yet both appear in the unfiltered window result.",
+      "independent_practice": "Use DENSE_RANK on a regional revenue summary and explain what happens if two regions tie."
     },
     {
       "title": "Date analysis and period-over-period metrics",
@@ -174,7 +230,15 @@
         }
       ],
       "recap": "Use year-aware period keys; compare complete, like-for-like periods; document date boundaries.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "Time analysis starts by placing each order in an accurate calendar bucket. A month is not just 'January': the year matters, and partial months cannot always be compared fairly.",
+      "guided_steps": [
+        "Extract YYYY-MM from the transaction date",
+        "Exclude returned orders consistently",
+        "Group revenue by month and compare complete periods"
+      ],
+      "how_to_read_the_result": "January contributes 340000 and February 238000. The February change is −102000, or −30% of January; the tiny fictional sample cannot justify a trend forecast.",
+      "independent_practice": "Add a previous_month column with LAG and explain why the first row has no previous comparison."
     },
     {
       "title": "Performance and validation",
@@ -196,7 +260,15 @@
         }
       ],
       "recap": "First correctness, then plan inspection, then selective optimization, then revalidation.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "Validation is the safety check before optimization. A query that returns quickly but duplicates transactions is still incorrect.",
+      "guided_steps": [
+        "Check total row count and distinct order IDs",
+        "Check the five qualifying completed records and their combined revenue",
+        "Only then inspect EXPLAIN QUERY PLAN or try an index"
+      ],
+      "how_to_read_the_result": "The input has six order rows, six distinct order IDs and 578000 in completed revenue. Keep these numbers as independent controls after any rewrite.",
+      "independent_practice": "Intentionally join orders to a duplicate reference table, then use row counts to diagnose inflated totals."
     },
     {
       "title": "SQL analytics capstone",
@@ -218,7 +290,15 @@
         }
       ],
       "recap": "Define → transform → calculate → validate → communicate; keep the script versioned.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "A production analytics deliverable is more than SQL syntax: it connects a business question, an agreed metric definition, verifiable output and a handoff note.",
+      "guided_steps": [
+        "Record the question and inclusion rule",
+        "Run detail, regional and monthly views that reuse the same completed-sales definition",
+        "Reconcile regional revenue 578000 and profit 135000 to the source"
+      ],
+      "how_to_read_the_result": "The region summary accounts for all five completed orders. Document limitations: six invented orders are suitable for practice, not real market conclusions.",
+      "independent_practice": "Deliver three SQL files plus a one-page README defining revenue, profit, returned-order treatment and control totals."
     }
   ],
   "excel": [
@@ -227,7 +307,7 @@
       "objective": "Navigate and structure a reproducible workbook.",
       "why": "An operations analyst receives daily order exports. A clear workbook structure reduces formula mistakes and lets a colleague audit the numbers.",
       "how": "Rows hold records, columns hold attributes, and cells hold values or formulas. Separate RawData, Calculations and Dashboard sheets; use one row per order, true dates, no merged data headers, and a clear source/date note.",
-      "example": "RawData!A1:J3\nOrderID | Date       | Customer | Region | Product | Qty | Price | Cost  | Status\n1001    | 2026-01-05 | Amina    | East   | Laptop  | 2   | 150000| 120000| Completed\n1002    | 2026-01-08 | Kola     | West   | Mouse   | 5   | 8000  | 5000  | Completed",
+      "example": "RawData!A1:I3\nOrderID | Date       | Customer | Region | Product | Qty | Price | Cost  | Status\n1001    | 2026-01-05 | Amina    | East   | Laptop  | 2   | 150000| 120000| Completed\n1002    | 2026-01-08 | Kola     | West   | Mouse   | 5   | 8000  | 5000  | Completed",
       "result": "One header row; each order occupies one row; do not use subtotals inside the source table.",
       "tip": "Name raw input tabs and preserve original file versions; do not edit imported records invisibly.",
       "trap": "Merged headers, blank separator rows, and numbers stored as text break filters and PivotTables.",
@@ -242,7 +322,15 @@
         }
       ],
       "recap": "Use clean tabular source data; label units and grain; avoid mixing input with presentation.",
-      "kind": "table"
+      "kind": "table",
+      "simple_explanation": "A well-designed workbook is a small information system: source rows enter in one place, calculations happen separately, and a dashboard displays the conclusion.",
+      "guided_steps": [
+        "Open the CSV without changing the original file",
+        "Confirm each column contains one type of information and dates are true dates",
+        "Separate RawData, Calculations and Dashboard tabs"
+      ],
+      "how_to_read_the_result": "Order 1001 is one row for a laptop sale: two units at 150000 each. Do not insert a subtotal row between transactions because PivotTables will count it as another record.",
+      "independent_practice": "Create a 12-column data dictionary: field name, what it means and expected data type."
     },
     {
       "title": "Excel Tables and validation",
@@ -264,7 +352,15 @@
         }
       ],
       "recap": "Tables scale; structured references reduce broken formulas; validation is preventive, not sufficient.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "An Excel Table behaves like an expanding dataset, not a fixed rectangle of cells. Structured references name columns and stay readable when new orders arrive.",
+      "guided_steps": [
+        "Select any cell in the data and press Ctrl+T with headers",
+        "Rename the table Sales",
+        "Add a Revenue column using =[@Quantity]*[@Unit_Price] with the actual header names"
+      ],
+      "how_to_read_the_result": "Excel calculates 300000 for order 1001 and 40000 for order 1002. Status Data Validation helps manual entry but does not guarantee that imported rows are clean.",
+      "independent_practice": "Add a new practice order and verify that the Revenue formula auto-fills; compare with a fixed A2:A6 range."
     },
     {
       "title": "References and core formulas",
@@ -286,7 +382,15 @@
         }
       ],
       "recap": "Choose relative vs absolute carefully; clarify included records; reconcile derived measures.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "A relative reference is a moving instruction; an absolute reference is an anchor. In sales work you often multiply different quantities by one shared VAT rate.",
+      "guided_steps": [
+        "Enter a rate in one labelled cell",
+        "Use $ to lock that reference when copying a formula",
+        "Validate copied formulas with one hand-calculated order"
+      ],
+      "how_to_read_the_result": "If VAT is 7.5% and an order has revenue 300000, tax would be 22500; the net sale treatment depends on whether prices already include VAT.",
+      "independent_practice": "Write the formulas for quantity×price, quantity×unit cost and their difference; test with order 1001."
     },
     {
       "title": "IF, SUMIFS, XLOOKUP and legacy lookups",
@@ -308,7 +412,15 @@
         }
       ],
       "recap": "Define criteria precisely; prefer explicit exact-match lookups; surface missing mappings.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "IF is a fork in the road. SUMIFS groups only values meeting explicit rules. XLOOKUP or VLOOKUP attaches information from a reliable reference list.",
+      "guided_steps": [
+        "Use IF to set returned orders' recognized revenue to zero",
+        "Use SUMIFS to add completed East revenue",
+        "Inspect lookup keys before pulling segment or region from a separate table"
+      ],
+      "how_to_read_the_result": "East completed revenue equals 300000 + 16000 = 316000; the East returned order worth 24000 is excluded. Excel 2016 users may need INDEX/MATCH or VLOOKUP instead of XLOOKUP.",
+      "independent_practice": "Make a missing-lookup flag with IFERROR or ISNA; do not silently display zero for unknown customers."
     },
     {
       "title": "Cleaning and data preparation",
@@ -330,7 +442,15 @@
         }
       ],
       "recap": "Clean systematically; keep audit trails; assess source quality before reporting.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "Cleaning is not deleting anything that looks inconvenient. You preserve raw evidence, fix documented issues in a copy and test whether the change affected KPIs.",
+      "guided_steps": [
+        "List the field-level quality rules",
+        "Trim extra spaces, validate numeric and date types, and inspect duplicates",
+        "Compare record counts and completed revenue before/after the cleaned view"
+      ],
+      "how_to_read_the_result": "Returned order 1003 must remain in the dataset for audit; it is simply excluded by the completed-sales business rule.",
+      "independent_practice": "Create a small issue log showing field, original value, correction, reason and validation result."
     },
     {
       "title": "Sorting, filters and quick analysis",
@@ -352,7 +472,15 @@
         }
       ],
       "recap": "Sort entire Tables; distinguish filtered view from business eligibility; use SUBTOTAL for visible-row summaries.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "Filtering is a viewing decision; deleting is a data change. Excel's SUBTOTAL reacts to filtered rows while plain SUM may include all rows.",
+      "guided_steps": [
+        "Convert the range to a Table",
+        "Filter Status to Completed and Region to West",
+        "Apply SUBTOTAL to visible revenue and cross-check order IDs"
+      ],
+      "how_to_read_the_result": "The visible West completed orders are 1002 and 1005, worth 40000 and 150000, for a total of 190000.",
+      "independent_practice": "Sort by revenue descending, then restore original order by OrderID and explain why the totals remain unchanged."
     },
     {
       "title": "PivotTables, PivotCharts and percentage views",
@@ -374,7 +502,15 @@
         }
       ],
       "recap": "Pivots aggregate by dimensions; always verify filters, denominators and refresh behavior.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "A PivotTable answers 'how much by what category?' without editing each source row. The choice between % of Grand Total and % of Row Total changes the meaning.",
+      "guided_steps": [
+        "Insert a PivotTable from Sales",
+        "Place Region in Rows and completed Revenue in Values",
+        "Use Show Values As → % of Grand Total and label it clearly"
+      ],
+      "how_to_read_the_result": "East's share is 316000 ÷ 578000 ≈ 54.67%. The percentages should add to 100% across the three regions when the same filter applies.",
+      "independent_practice": "Build a second PivotTable showing channel shares and explain why adding percentages directly can mislead."
     },
     {
       "title": "Charts and visual communication",
@@ -396,7 +532,15 @@
         }
       ],
       "recap": "Chart by purpose, not novelty; label measures and periods; avoid visual distortion.",
-      "kind": "table"
+      "kind": "table",
+      "simple_explanation": "A chart is a comparison tool: bars compare categories, lines show time order, and a KPI card communicates one number.",
+      "guided_steps": [
+        "State what decision the chart supports",
+        "Choose the visual based on category, trend or target",
+        "Check the title, units, zero baseline and accessibility contrast"
+      ],
+      "how_to_read_the_result": "The region bar chart should visibly place East above West above North. A pie chart may hide the size difference when categories are numerous.",
+      "independent_practice": "Redesign an unlabeled revenue chart with a descriptive title, currency units and a note that only Completed orders are counted."
     },
     {
       "title": "Dashboard engineering and interaction",
@@ -418,7 +562,15 @@
         }
       ],
       "recap": "Put decisions before visuals; preserve metric consistency; test interactions and refresh notes.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "A dashboard is a decision path, not a collage. Put the headline outcome first, drivers beneath it, then details for verification.",
+      "guided_steps": [
+        "Define three top KPIs and their exact filters",
+        "Arrange trend and category drivers below KPI cards",
+        "Connect slicers and test that each interactive view reconciles"
+      ],
+      "how_to_read_the_result": "The default training view shows 578000 completed revenue, 135000 profit and 23.36% gross margin. Every slicer state should retain a meaningful title.",
+      "independent_practice": "Write a two-sentence manager's summary of February's revenue decrease without claiming a cause."
     },
     {
       "title": "Excel portfolio capstone",
@@ -440,7 +592,15 @@
         }
       ],
       "recap": "Build once, refresh repeatedly, audit with an independent control.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "Portfolio work demonstrates repeatability: another analyst should be able to replace the CSV and understand the formulas without a guided tour.",
+      "guided_steps": [
+        "Provide a raw-data sheet, transformation notes and calculation sheet",
+        "Build a clean one-page dashboard with filters",
+        "Audit totals, broken formulas, blank keys and refresh behavior"
+      ],
+      "how_to_read_the_result": "Acceptance checks: five Completed orders; 578000 recognized revenue; 135000 profit. Your evidence should include at least one failed-data scenario.",
+      "independent_practice": "Hand over an Excel workbook and a short QA checklist explaining what you verified and how."
     }
   ],
   "powerbi": [
@@ -464,7 +624,15 @@
         }
       ],
       "recap": "Business question → grain → model → measure → visual → validation.",
-      "kind": "table"
+      "kind": "table",
+      "simple_explanation": "Power BI has four layers: source files, Power Query preparation, the semantic model, and reports. Errors introduced in an earlier layer can appear as surprising visuals later.",
+      "guided_steps": [
+        "Write the audience's business question",
+        "Define one row of FactSales and its grain",
+        "Draft a measure list before choosing visuals"
+      ],
+      "how_to_read_the_result": "Six raw orders include one return. The completed revenue card should show 578000, which gives the model a simple acceptance test.",
+      "independent_practice": "Sketch one executive report page with three KPIs, a month trend and regional breakdown; state the questions each answers."
     },
     {
       "title": "Power Query M and repeatable cleanup",
@@ -486,7 +654,15 @@
         }
       ],
       "recap": "Applied Steps are repeatable; set types deliberately; preserve error evidence.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "Power Query is a repeatable recipe, not a one-off cleanup. Each Applied Step transforms the table during refresh.",
+      "guided_steps": [
+        "Import source CSV without altering it",
+        "Set Date, whole-number and numeric column types explicitly",
+        "Filter or flag statuses only where the business model requires it"
+      ],
+      "how_to_read_the_result": "The preview should contain six orders, including the returned one. Losing that record in preparation removes your ability to analyze returns later.",
+      "independent_practice": "Add a custom Revenue column in Power Query, then explain why it must not double count when DAX measures are used."
     },
     {
       "title": "Star schema and relationships",
@@ -508,7 +684,15 @@
         }
       ],
       "recap": "Facts hold events; dimensions describe them; relationship direction governs filters.",
-      "kind": "table"
+      "kind": "table",
+      "simple_explanation": "A star schema places transactions in the center and descriptive lookup tables around them. A relationship carries a filter from a dimension to a fact table.",
+      "guided_steps": [
+        "Confirm FactSales has unique order IDs at the fact grain",
+        "Confirm DimCustomer has one row per customer_id",
+        "Create one-to-many relationships and test filter direction"
+      ],
+      "how_to_read_the_result": "Selecting Region=East and Status=Completed should leave only orders 1001 and 1006, producing revenue 316000.",
+      "independent_practice": "Count unique customer IDs in the customer dimension; explain why duplicate dimension keys are dangerous."
     },
     {
       "title": "DAX measures and evaluation context",
@@ -530,7 +714,15 @@
         }
       ],
       "recap": "Row vs filter context; CALCULATE modifies filters; iterators evaluate row expressions.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "A DAX measure is a question answered again for the current filter context. Its value can change when a visual's region or date selection changes.",
+      "guided_steps": [
+        "Define row revenue with SUMX over qualifying orders",
+        "Create a separate Profit measure using unit cost",
+        "Compare totals on a card versus inside a region visual"
+      ],
+      "how_to_read_the_result": "No slicer: revenue 578000 and profit 135000. East slicer: revenue 316000. The formula stays the same; the filter context changes.",
+      "independent_practice": "Explain why SUM(FactSales[unit_price]) does not calculate revenue when quantity varies."
     },
     {
       "title": "Date tables and time intelligence",
@@ -552,7 +744,15 @@
         }
       ],
       "recap": "Date model first; shifted filter context next; compare like-for-like complete periods.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "A date table is a complete calendar, not merely the dates where an order happened. Time intelligence depends on that consistent time axis.",
+      "guided_steps": [
+        "Generate a date table with all dates in the reporting period",
+        "Mark it as the Date table and relate it to order_date",
+        "Create month-to-month measures only after validating the relationship"
+      ],
+      "how_to_read_the_result": "January shows 340000 and February 238000. February's decrease is 30%; distinguish monthly revenue from a cumulative total.",
+      "independent_practice": "Test the Date table by showing February dates with no orders and explaining why the calendar still includes them."
     },
     {
       "title": "Visualization and report UX",
@@ -574,7 +774,15 @@
         }
       ],
       "recap": "Build page narrative from KPI → trend → drivers → action.",
-      "kind": "table"
+      "kind": "table",
+      "simple_explanation": "Good visual design reduces the amount of mental arithmetic a manager must do. Labels, scales, reading order and color all carry meaning.",
+      "guided_steps": [
+        "Place headline KPIs first",
+        "Use a monthly line chart and sorted regional bars",
+        "Add purposeful titles and tooltips that define each metric"
+      ],
+      "how_to_read_the_result": "The month trend goes from 340000 to 238000. Label it as a small training-data comparison, not proof of business deterioration.",
+      "independent_practice": "Replace a crowded multi-color chart with a restrained palette and descriptive data labels, then explain your design choice."
     },
     {
       "title": "Slicers, drillthrough and navigation",
@@ -596,7 +804,15 @@
         }
       ],
       "recap": "Interactions modify filter context; navigation must preserve clear user expectations.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "A slicer changes filter context; drillthrough moves the reader from summary to details while carrying selected fields.",
+      "guided_steps": [
+        "Create a Region slicer",
+        "Configure a drillthrough page filtered by Region",
+        "Test select, drill through and reset in a repeatable sequence"
+      ],
+      "how_to_read_the_result": "When West is selected, order-level details should include 1002 and 1005 and the headline should read 190000.",
+      "independent_practice": "Add a visible Reset Filters action and confirm that returning to all regions restores 578000."
     },
     {
       "title": "Intermediate DAX and context control",
@@ -618,7 +834,15 @@
         }
       ],
       "recap": "Write explicit denominators; constrain filter removal; validate measure behavior under slicers.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "CALCULATE modifies the filters used by a measure. ALL and REMOVEFILTERS can deliberately remove a filter; you must document which denominator you intend.",
+      "guided_steps": [
+        "Start with [Revenue] in current region context",
+        "Build a denominator over all selected regions or all regions, deliberately",
+        "Divide using DIVIDE to handle a zero denominator"
+      ],
+      "how_to_read_the_result": "East share of all completed regional revenue is 316000/578000=54.67%. ALLSELECTED and ALL are not interchangeable when slicers are present.",
+      "independent_practice": "Show how Region Share changes under a West-only selection for an all-regions versus selected-regions denominator."
     },
     {
       "title": "Power BI Service, sharing and refresh",
@@ -640,7 +864,15 @@
         }
       ],
       "recap": "Secure the model; schedule refresh; test viewer experience; preserve metric integrity.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "Publishing is a controlled release: permissions, refresh credentials, data sensitivity and business ownership matter as much as correct charts.",
+      "guided_steps": [
+        "Choose the workspace and owners",
+        "Verify sources, schedule and refresh history",
+        "Test a view-only user and inspect row-level security where required"
+      ],
+      "how_to_read_the_result": "Refreshing should preserve the baseline KPI checks on the unchanged practice files. Permissions should not expose confidential records.",
+      "independent_practice": "Write a deployment checklist with role, refresh timestamp, owner, access test and rollback action."
     },
     {
       "title": "Power BI portfolio capstone",
@@ -662,7 +894,15 @@
         }
       ],
       "recap": "Source → Power Query → star model → DAX → visuals → secure deployment → QA.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "The capstone tests analysis, modelling, usability and governance as one continuous chain. Success means a stakeholder can trace an insight to source records.",
+      "guided_steps": [
+        "Create an explicit metric contract",
+        "Build and validate the star schema and measures",
+        "Present a dashboard, drillthrough and documented refresh/access plan"
+      ],
+      "how_to_read_the_result": "Acceptance baseline: five completed orders, 578000 revenue and 135000 profit, with returned order 1003 excluded from those totals.",
+      "independent_practice": "Prepare a handover containing a model diagram, measure dictionary, QA evidence and three business observations."
     }
   ],
   "python": [
@@ -686,7 +926,15 @@
         }
       ],
       "recap": "Create environment → read input → inspect rows/types → validate before transforming.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "A Python project is a repeatable recipe for data. The interpreter runs your code, pandas holds data in a DataFrame, and a file path tells Python where to find the CSV.",
+      "guided_steps": [
+        "Create a project folder with data and scripts subfolders",
+        "Create an environment and install pandas only inside it",
+        "Run the sample from the project directory and inspect shape, columns and dtypes"
+      ],
+      "how_to_read_the_result": "A shape of (6, 12) means six rows and twelve columns—not 6 columns and 12 rows. If you see FileNotFoundError, print Path.cwd() and inspect the filename before changing code.",
+      "independent_practice": "Run print(orders.head(2).to_string(index=False)) and explain what each displayed column means."
     },
     {
       "title": "Variables, types and control flow",
@@ -708,7 +956,15 @@
         }
       ],
       "recap": "Types determine valid operations; test conditions explicitly; keep business rules readable.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "A variable is a labeled container for a value; a condition is a checkpoint that decides whether a row contributes. Numbers and text behave differently when added.",
+      "guided_steps": [
+        "Start with a single order and calculate quantity × unit_price",
+        "Add a condition to keep only Completed orders",
+        "Apply the same rule across a collection with a generator expression"
+      ],
+      "how_to_read_the_result": "For order 1001, 2 × 150000 = 300000. Returned order 1003 is ignored. Numeric strings such as '150000' must be converted before multiplication.",
+      "independent_practice": "Modify the example to print both completed order count and revenue, and verify the original two-record list gives count 1."
     },
     {
       "title": "Functions, collections and reusable scripts",
@@ -730,7 +986,15 @@
         }
       ],
       "recap": "Small functions are easier to test; keep inputs explicit and outputs predictable.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "A function turns one business rule into a reusable tool: inputs go in, calculations happen once, and an output comes back. A return value is different from printing.",
+      "guided_steps": [
+        "Give the function meaningful parameters and a docstring",
+        "Check that quantity and price are valid numbers",
+        "Call the function on one order and test a second order independently"
+      ],
+      "how_to_read_the_result": "revenue(2, 150000) returns 300000 for order 1001. A unit test should catch incorrect types, negative quantities and unexpected rounding conventions.",
+      "independent_practice": "Write a profit(quantity, unit_price, unit_cost) function and check order 1001 produces 60000."
     },
     {
       "title": "pandas selection and filtering",
@@ -752,7 +1016,15 @@
         }
       ],
       "recap": "Filter using Boolean masks; vectorize arithmetic; validate row counts.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "A DataFrame is a spreadsheet-like table, but pandas operations explicitly create filtered views and grouped summaries. Boolean masks are row-selection rules.",
+      "guided_steps": [
+        "Read the CSV and inspect the Status values",
+        "Create a completed-only DataFrame using a Boolean expression",
+        "Create a revenue column on a copy, then sum it"
+      ],
+      "how_to_read_the_result": "Five rows satisfy status=='Completed', yielding 578000. Use .copy() before adding columns to a sliced DataFrame to avoid ambiguous chained assignments.",
+      "independent_practice": "Filter East completed orders, display order_id and revenue, and check the total is 316000."
     },
     {
       "title": "Cleaning, nulls, typing and joins",
@@ -774,7 +1046,15 @@
         }
       ],
       "recap": "Validate keys, types and joins; produce an exception report alongside cleaned data.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "Data cleaning is a sequence of quality checks, not a command to delete missing rows. Missing values, wrong types and duplicate keys each need different treatment.",
+      "guided_steps": [
+        "Check dtypes, missing counts and duplicate order IDs",
+        "Convert date and numeric fields using explicit rules",
+        "Validate join cardinality before merging customers with orders"
+      ],
+      "how_to_read_the_result": "The training data has zero duplicate order IDs. An unchecked many-to-many merge can still multiply order rows and inflate reported revenue.",
+      "independent_practice": "Create a validation function that raises ValueError if duplicate order IDs are present; try it on a deliberately duplicated row."
     },
     {
       "title": "groupby, pivot and business KPI reporting",
@@ -796,7 +1076,15 @@
         }
       ],
       "recap": "Filter correctly; group at the business grain; reconcile grouped sums.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "groupby splits data into categories, computes a summary for each category, and combines the results. It is Python's equivalent of an SQL GROUP BY or an Excel PivotTable.",
+      "guided_steps": [
+        "Filter to Completed first",
+        "Calculate row revenue and profit correctly",
+        "Group by region and aggregate to a labeled output table"
+      ],
+      "how_to_read_the_result": "Expected revenue: East 316000, West 190000, North 72000. The sum of groups must reconcile to overall completed revenue 578000.",
+      "independent_practice": "Return both revenue and profit by region, sort from highest revenue to lowest, and verify the profit total is 135000."
     },
     {
       "title": "Statistics and uncertainty",
@@ -818,7 +1106,15 @@
         }
       ],
       "recap": "Describe distributions and limitations; avoid unsupported causal or population claims.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "Statistics summarizes variation; it does not automatically prove causation. Mean uses all values, median is the middle ordered value, and uncertainty limits what you can claim.",
+      "guided_steps": [
+        "Inspect distribution and sample size",
+        "Compute both mean and median instead of relying on one average",
+        "Say explicitly whether the data is a sample or a complete population"
+      ],
+      "how_to_read_the_result": "Five completed orders average 115600 each in revenue. One laptop order worth 300000 makes the distribution uneven; the mean alone can hide that skew.",
+      "independent_practice": "Find the median completed-order revenue and explain which value better represents a typical small order."
     },
     {
       "title": "NumPy vectors and matrix intuition",
@@ -840,7 +1136,15 @@
         }
       ],
       "recap": "Array shape matters; multiply elementwise for row totals; dot product sums them.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "NumPy performs the same operation over many numbers at once. A vector is a one-dimensional array; a matrix is a two-dimensional grid with row and column counts.",
+      "guided_steps": [
+        "Build matching quantity and price arrays",
+        "Multiply elementwise to obtain order revenues",
+        "Check array shapes before matrix multiplication or broadcasting"
+      ],
+      "how_to_read_the_result": "Quantities [2,5,4] times prices [150000,8000,18000] yield [300000,40000,72000]. Shape mismatches are dimension errors, not rounding errors.",
+      "independent_practice": "Create a parallel cost array and compute unit profits and total profit for the same three orders."
     },
     {
       "title": "Time series, charts and testable forecasts",
@@ -862,7 +1166,15 @@
         }
       ],
       "recap": "Time-aware splits prevent leakage; compare with a baseline; disclose uncertainty.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "Time-series analysis respects order and time. A forecasting method must be tested on later periods; evaluating on the same points used for fitting makes error look too small.",
+      "guided_steps": [
+        "Convert order_date to a date type",
+        "Group Completed revenue into monthly periods",
+        "Build a naive baseline before discussing more complex forecasting models"
+      ],
+      "how_to_read_the_result": "January totals 340000 and February 238000. Two months of invented data are insufficient to establish seasonality or forecast quality.",
+      "independent_practice": "Create a monthly bar chart with values labeled and add a note explaining the data limitation."
     },
     {
       "title": "Python analytics capstone",
@@ -884,7 +1196,15 @@
         }
       ],
       "recap": "Package source + tests + readme + validated outputs, not only notebook screenshots.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "A script is reproducible when someone can run it on the supplied CSV and obtain the documented result in a clean environment.",
+      "guided_steps": [
+        "Write functions for load, validate, transform and report",
+        "Add assertions for schema, duplicate keys and totals",
+        "Export the regional KPI table and document how to rerun it"
+      ],
+      "how_to_read_the_result": "East revenue is 316000 and profit 66000; all completed regions must total 578000 and 135000. Saved notebook cells are not enough—rerun from a fresh process.",
+      "independent_practice": "Deliver a .py file, requirements.txt, README and report CSV, with one deliberately failing test case."
     }
   ],
   "ai": [
@@ -908,7 +1228,15 @@
         }
       ],
       "recap": "AI drafts; engines calculate; analysts validate.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "An AI assistant predicts useful language, not the truth of a calculation. Think of it as a drafting partner whose output needs a separate evidence trail.",
+      "guided_steps": [
+        "State the analytics task and available data",
+        "Ask the assistant to describe a reproducible method",
+        "Run that method in Excel, SQL or Python before trusting the number"
+      ],
+      "how_to_read_the_result": "578000 completed revenue is verified by the supplied data and scripts; it is not verified merely because an AI response mentions it.",
+      "independent_practice": "Write one prompt asking for an analysis plan and another asking for a calculated answer; label which claims need execution."
     },
     {
       "title": "Prompt engineering as a mini specification",
@@ -930,7 +1258,15 @@
         }
       ],
       "recap": "Specify input + rules + expected format + verification; iterate on reproducible errors.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "A good prompt functions like a mini requirements document. Without table names, business definitions and output constraints, the assistant must guess.",
+      "guided_steps": [
+        "Give the exact schema and grain",
+        "Define which statuses count as sales",
+        "Request the output format plus independent tests and edge cases"
+      ],
+      "how_to_read_the_result": "A correct SQL draft filters Completed before grouping by region. AI-generated code that invents nonexistent columns must be rejected rather than silently adapted.",
+      "independent_practice": "Rewrite a vague 'show me sales' prompt into a testable specification for regional completed revenue."
     },
     {
       "title": "Privacy, safety and responsible AI",
@@ -952,7 +1288,15 @@
         }
       ],
       "recap": "Minimize data; obey policies; verify bias and security risks before sharing.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "Data minimization means sharing only what is necessary. Synthetic practice records are safe for exercises; real people, credentials or protected records require authorization and controls.",
+      "guided_steps": [
+        "Classify each field by sensitivity",
+        "Replace personal identifiers with approved aggregates when possible",
+        "Review vendor retention, sharing permissions and organization policy"
+      ],
+      "how_to_read_the_result": "The fictional dataset can be used for demonstrations; a real customer list or patient record cannot automatically be uploaded to external AI tools.",
+      "independent_practice": "Produce a safe three-column aggregate (region, completed_orders, revenue) without customer names."
     },
     {
       "title": "AI-supported Excel and Power Query",
@@ -974,7 +1318,15 @@
         }
       ],
       "recap": "AI proposes formulas; your workbook and independent checks establish correctness.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "AI can suggest Excel formulas, but the spreadsheet engine and business rules still determine the answer. A formula can be syntactically correct while counting returns.",
+      "guided_steps": [
+        "Specify Excel version and actual Table column names",
+        "Request the formula with an explanation for each part",
+        "Test returned-order and completed-order scenarios"
+      ],
+      "how_to_read_the_result": "East completed revenue must equal 316000. XLOOKUP is not available in all Excel 2016 builds; ask for compatible alternatives where needed.",
+      "independent_practice": "Ask AI to propose a SUMIFS formula, then audit it against the order IDs 1001 and 1006."
     },
     {
       "title": "AI-assisted SQL with schema-grounded output",
@@ -996,7 +1348,15 @@
         }
       ],
       "recap": "Ground prompts in schema; run generated code; reconcile independently.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "Schema-grounded prompting prevents the assistant from making up a customers table or fictional fields. SQL must match the actual database dialect.",
+      "guided_steps": [
+        "Supply table DDL and a sample of representative values",
+        "Ask for a read-only SQLite query",
+        "Execute it, inspect intermediate rows and reconcile totals"
+      ],
+      "how_to_read_the_result": "The validated monthly result is January 340000 and February 238000. Any query returning a third month has used a different filter or input.",
+      "independent_practice": "Request a query that detects duplicate order IDs and compare its expected result to the included SQLite file."
     },
     {
       "title": "AI-assisted Python and debugging",
@@ -1018,7 +1378,15 @@
         }
       ],
       "recap": "Debug with minimal examples; prefer smallest fixes; add regression tests.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "AI is often most helpful at explaining a traceable error message. It should not remove validation checks or change a metric definition just to make code run.",
+      "guided_steps": [
+        "Provide a minimal failing code snippet and traceback",
+        "Ask for the root cause and smallest safe fix",
+        "Run the fixed version and compare against a known expected result"
+      ],
+      "how_to_read_the_result": "East has two completed order rows. A common pandas error is using Python 'and' rather than '&' between Boolean Series conditions.",
+      "independent_practice": "Create an intentionally broken pandas filter and request a diagnosis that explains why parentheses are needed."
     },
     {
       "title": "AI-assisted DAX and semantic models",
@@ -1040,7 +1408,15 @@
         }
       ],
       "recap": "Specify model context; explain filters; test measures under actual interactions.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "DAX questions depend on relationships and current filter context, which are often invisible in a pasted formula. Prompting without model metadata can produce plausible wrong answers.",
+      "guided_steps": [
+        "Describe model tables and relationship directions",
+        "Supply the exact measure and slicer situation",
+        "Require a card-versus-region validation case"
+      ],
+      "how_to_read_the_result": "[Revenue] should show 578000 overall and 316000 for East. A formula using SUM(unit_price) ignores quantity and fails even if it parses.",
+      "independent_practice": "Ask AI to review one CALCULATE denominator choice and design a slicer test that would expose an error."
     },
     {
       "title": "Statistical reasoning, ML and forecast critique",
@@ -1062,7 +1438,15 @@
         }
       ],
       "recap": "Baseline first; chronological holdout; bias/leakage review; uncertainty disclosures.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "Predictive claims need out-of-sample evidence. An attractive chart or confident paragraph cannot compensate for data leakage or a tiny sample.",
+      "guided_steps": [
+        "Establish a naive baseline",
+        "Separate training from later test observations",
+        "Review suitable metrics and intervals without claiming causality"
+      ],
+      "how_to_read_the_result": "The six-order training sample is for explaining workflow, not a credible production forecasting experiment. MAE is the average absolute distance between predicted and actual values.",
+      "independent_practice": "Ask the assistant to critique a forecast trained and tested on the same two monthly observations."
     },
     {
       "title": "Automation, agents and human approval",
@@ -1084,7 +1468,15 @@
         }
       ],
       "recap": "Automate deterministic checks; gate risky actions; retain logs and rollback options.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "An automated agent can draft, transform and route work, but approvals must remain explicit where outputs affect money, records or external systems.",
+      "guided_steps": [
+        "Validate source schema before every run",
+        "Log data version, prompts, outputs and control totals",
+        "Route anomalies to a human before publication or a write action"
+      ],
+      "how_to_read_the_result": "If completed revenue changes unexpectedly from 578000 on the unchanged sample, the workflow should stop and request investigation rather than publish.",
+      "independent_practice": "Design an approval gate that rejects missing columns, duplicate IDs or unverified totals."
     },
     {
       "title": "Governed AI analytics capstone",
@@ -1106,7 +1498,15 @@
         }
       ],
       "recap": "Prompt → draft → verify → document → communicate, under explicit privacy controls.",
-      "kind": "code"
+      "kind": "code",
+      "simple_explanation": "A responsible AI analytics project makes a clear distinction between assistance, computation and human judgment. Its audit trail matters as much as the final slide.",
+      "guided_steps": [
+        "Record prompts and AI-generated drafts",
+        "Execute trusted calculations and reconcile figures",
+        "Document who approved the narrative and any deployment decision"
+      ],
+      "how_to_read_the_result": "Accepted baseline is five completed orders, revenue 578000 and profit 135000. AI-generated business claims must be checked against those executed facts.",
+      "independent_practice": "Prepare an evidence pack with one prompt, corrected script, test result, privacy note and executive summary."
     }
   ]
 }

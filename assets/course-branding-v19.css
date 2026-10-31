@@ -1,7 +1,0 @@
-/* v19: subject identities and product marks. Product icons identify the courses, never the platform itself. */
-.lp-icon, .course-identity-mark img, .lp-course-top img { object-fit: contain; }
-.lp-course-top .lp-icon { display:block; flex:0 0 auto; width:48px; height:48px; padding:3px; border-radius:10px; background:rgba(255,255,255,.95); }
-.course-identity-mark { display:flex; align-items:center; justify-content:center; width:66px; height:66px; margin-bottom:16px; background:rgba(255,255,255,.96); border:1px solid rgba(120,120,140,.12); border-radius:18px; box-shadow:0 8px 24px rgba(0,0,0,.08); }
-.course-identity-mark img { display:block; width:54px; height:54px; }
-html[data-theme="dark"] .lp-course-top .lp-icon, html[data-theme="dark"] .course-identity-mark { background:#f7f9fb; }
-@media(max-width:480px){.lp-course-top .lp-icon{width:43px;height:43px}.course-identity-mark{width:58px;height:58px;margin-bottom:12px;border-radius:15px}.course-identity-mark img{width:48px;height:48px}}

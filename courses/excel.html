@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html lang="en">
-<head><script id="dalp-theme-prepaint">(()=>{try{const k="dalp-theme",p=localStorage.getItem(k),pref=p==="dark"||p==="light"?p:"system",dark=pref==="dark"||(pref==="system"&&window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches),root=document.documentElement;root.dataset.theme=dark?"dark":"light";root.dataset.themePreference=pref;root.classList.toggle("dark",dark);root.classList.toggle("light",!dark);root.style.colorScheme=dark?"dark":"light"}catch{const os=!!window.matchMedia?.("(prefers-color-scheme: dark)")?.matches,root=document.documentElement;root.dataset.theme=os?"dark":"light";root.dataset.themePreference="system";root.classList.toggle("dark",os);root.classList.toggle("light",!os);root.style.colorScheme=os?"dark":"light"}})();</script><link crossorigin="anonymous" href="https://cdn.jsdelivr.net" rel="preconnect"/>
+<html lang="en" data-theme="light" class="light" style="color-scheme: light">
+<head><link crossorigin="anonymous" href="https://cdn.jsdelivr.net" rel="preconnect"/>
 
-<link href="../assets/auth-gate.css?v=20261031.91" rel="stylesheet"/>
+<link rel="stylesheet" href="../assets/styles/access-guard.css" />
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0"></script>
-<script src="../assets/supabase-config.js?v=20261021"></script>
-<script src="../assets/supabase-client.js?v=20261021"></script><script defer="" src="../assets/server-session.js?v=20261031.92"></script>
+<script src="../assets/scripts/supabase-config.js"></script>
+<script src="../assets/scripts/supabase-client.js"></script><script defer="" src="../assets/scripts/server-session.js"></script>
 
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -335,7 +335,7 @@ main{min-width:0}
 .cert-verification-info{margin-top:14px;padding:12px;border:1px solid #dce5e9;border-radius:11px;background:#f7fafb;font-size:12px;color:#5e6d75}
 @media(max-width:680px){.cert-qr{width:58px;height:58px}.cert-signature-name{font-size:17px}}
 </style>
-<link href="../assets/brand-overrides.css?v=20261015.3" rel="stylesheet"/>
+<link rel="stylesheet" href="../assets/styles/course-brand.css" />
 <style>
 .learner-account-btn{
   position:fixed;
@@ -359,29 +359,29 @@ main{min-width:0}
 }
 @media print{.learner-account-btn{display:none!important}}
 </style>
-<link href="../assets/responsive-polish.css?v=20261015.3" rel="stylesheet">
-<link href="../assets/da-logo.svg" rel="icon" type="image/svg+xml"/><link href="../assets/course-refresh.css?v=20261015.3" rel="stylesheet"/><link href="../assets/modern.css?v=20261015.3" rel="stylesheet"/><link href="../assets/course-modern.css?v=20261015.3" rel="stylesheet"/><link href="../assets/theme-polish.css?v=20261015.3" rel="stylesheet"/><link href="../assets/theme-consistency.css?v=20261015.3" rel="stylesheet"/>
-<link href="../assets/unified-finish.css?v=20261015.3" rel="stylesheet"/><link href="../assets/device-responsive.css?v=20261015.3" rel="stylesheet"/><link href="../assets/responsive-v2.css?v=20261015.3" rel="stylesheet"/><link href="../assets/workspace-shell.css?v=20261021.3" rel="stylesheet"/><link href="../assets/course-experience.css?v=20261021.3" rel="stylesheet"/>
-<link href="../assets/weekly-workspace.css?v=20261021.3" rel="stylesheet"><link href="../assets/learner-companion.css?v=20261015.3" rel="stylesheet"/>
-<link href="../assets/theme-unified-v10.css?v=20261022" rel="stylesheet"/>
-<link href="../assets/mobile-experience-v13.css?v=20261022" rel="stylesheet"/>
-<link href="../assets/mobile-finish-v14.css?v=20261022.14" rel="stylesheet"/>
-<link href="../assets/responsive-system-v15.css?v=20261022.15" rel="stylesheet"/>
-<link href="../assets/theme-navigation-v16.css?v=20261022.16" rel="stylesheet"/>
-<link href="../assets/course-system-v17.css?v=20261022.17" rel="stylesheet"/>
-<link href="../assets/theme-speed-brand-v18.css?v=20261022.18" rel="stylesheet"/>
-<link href="../assets/course-branding-v19.css?v=20261022.19" rel="stylesheet">
-<link href="../assets/course-utilities-v20.css?v=20261022.20" rel="stylesheet">
-<script defer="" src="../assets/course-utilities-v20.js?v=20261031.90"></script>
-<link href="../assets/course-mobile-v21.css?v=20261022.22" rel="stylesheet">
-<link href="../assets/course-navigation-v22.css?v=20261022.22" rel="stylesheet">
-<link href="../assets/accessibility-v23.css?v=20261022.22" rel="stylesheet"><link href="../assets/design-system-v25.css?v=20261022.22" rel="stylesheet"/>
-<link href="../assets/layout-mobile-v26.css?v=20261023.26" rel="stylesheet"/>
-<link href="../assets/data-atmosphere-v27.css?v=20261023.27" rel="stylesheet"/>
-<link href="../assets/dashboard-analytics-v28.css?v=20261023.28" rel="stylesheet">
-<link href="../assets/course-polish-v29.css?v=20261023.29" rel="stylesheet">
-<link href="../assets/controls-refresh-v30.css?v=20261023.30" rel="stylesheet"/><link href="../assets/mastery-accessibility-v33.css?v=33" rel="stylesheet"/><link href="../assets/weekly-mastery-v34.css?v=34" rel="stylesheet"/><link rel="stylesheet" href="../assets/ambient-background-v35.css?v=20261028.36"/><link rel="stylesheet" href="../assets/page-background-unified-v38.css?v=20261028.38"/><link rel="stylesheet" href="../assets/theme-audit-v47.css?v=20261028.47"/><link rel="stylesheet" href="../assets/device-responsive-audit-v51.css?v=20261028.51"/><link rel="stylesheet" href="../assets/course-experience-v56.css?v=20261022.22"/>
-<link rel="stylesheet" href="../assets/capstone-theme-visibility-v62.css?v=62"/><link rel="stylesheet" href="../assets/theme-foundation-v65.css?v=65"/><style id="capstone-path-v74">.capstone-path-v74{margin:22px 0;padding:22px;border:1px solid var(--border,#b9c9d9);border-radius:16px;background:var(--surface,#f5f9ff);color:var(--text,#152536)}.capstone-path-v74 h2,.capstone-path-v74 h3{margin:6px 0 12px;color:inherit}.capstone-path-v74 p,.capstone-path-v74 li{line-height:1.65}.capstone-path-v74 .capstone-path-label{font-weight:800;letter-spacing:.05em;font-size:.78rem}.capstone-path-v74 .capstone-path-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}.capstone-path-v74 .capstone-path-actions a{display:inline-block;background:#174e9a;color:white;padding:11px 16px;border-radius:9px;font-weight:700;text-decoration:none}.capstone-path-v74 .capstone-path-actions a:focus-visible{outline:3px solid #f59e0b;outline-offset:3px}.capstone-path-v74 ol{padding-left:1.5rem}.capstone-path-v74 details{margin-top:12px}.capstone-path-v74 summary{cursor:pointer;font-weight:700}</style><link rel="stylesheet" href="../assets/week10-capstone-v75.css?v=75"/><link rel="stylesheet" href="../assets/course-mobile-nav-v76.css?v=78"/>
+<link rel="stylesheet" href="../assets/styles/course-framework.css" />
+<link href="../assets/icons/da-logo.svg" rel="icon" type="image/svg+xml"/>
+
+
+
+
+
+
+
+
+
+
+
+<script defer="" src="../assets/scripts/course-utilities.js"></script>
+
+
+
+
+
+
+
+
+<style id="capstone-path-v74">.capstone-path-v74{margin:22px 0;padding:22px;border:1px solid var(--border,#b9c9d9);border-radius:16px;background:var(--surface,#f5f9ff);color:var(--text,#152536)}.capstone-path-v74 h2,.capstone-path-v74 h3{margin:6px 0 12px;color:inherit}.capstone-path-v74 p,.capstone-path-v74 li{line-height:1.65}.capstone-path-v74 .capstone-path-label{font-weight:800;letter-spacing:.05em;font-size:.78rem}.capstone-path-v74 .capstone-path-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}.capstone-path-v74 .capstone-path-actions a{display:inline-block;background:#174e9a;color:white;padding:11px 16px;border-radius:9px;font-weight:700;text-decoration:none}.capstone-path-v74 .capstone-path-actions a:focus-visible{outline:3px solid #f59e0b;outline-offset:3px}.capstone-path-v74 ol{padding-left:1.5rem}.capstone-path-v74 details{margin-top:12px}.capstone-path-v74 summary{cursor:pointer;font-weight:700}</style><link rel="stylesheet" href="../assets/styles/course-capstones.css" />
 <style id="v77-mobile-course-header">
 @media (max-width: 1024px) {
   .topbar-title {display:flex; flex-wrap:wrap; align-items:center; gap:10px; min-width:0;}
@@ -389,20 +389,21 @@ main{min-width:0}
   .topbar-title > #menuBtn {order:2; margin-left:auto; white-space:nowrap; flex-shrink:0;}
 }
 </style>
-<link rel="stylesheet" href="../assets/course-mobile-v80.css?v=80"/>
-<link rel="stylesheet" href="../assets/week-nav-light-contrast-v81.css?v=81"/><link rel="stylesheet" href="../assets/atelier-ui-v82.css?v=65" data-design-system="atelier-v82"/><link rel="stylesheet" href="../assets/learning-experience-v84.css?v=84" data-design-system="learning-experience-v84"/><link rel="stylesheet" href="../assets/arena-course-links-v85.css?v=85"><link rel="stylesheet" href="../assets/curriculum-v88.css?v=88"/>
+<link rel="stylesheet" href="../assets/styles/course-navigation.css" />
 
-<link rel="stylesheet" href="../assets/course-layout-theme-v57.css?v=57"/>
-<link rel="stylesheet" href="../assets/course-density-v58.css?v=58"/>
-<link rel="stylesheet" href="../assets/course-header-contrast-v59.css?v=59"/>
-<link rel="stylesheet" href="../assets/course-theme-checkpoint-v60.css?v=60"/>
-<link rel="stylesheet" href="../assets/course-sidebar-alignment-v61.css?v=61"/>
-<link rel="stylesheet" href="../assets/course-capstone-statements-v63.css?v=63"/>
-<link rel="stylesheet" href="../assets/course-capstone-statement-root-fix-v64.css?v=64"/>
-<link rel="stylesheet" href="../assets/color-system-v86.css?v=86" data-design-system="dalp-colour-v86"/>
-<link rel="stylesheet" href="../assets/color-consistency-v89.css?v=89" data-design-system="dalp-colour-consistency-v89"/>
-<link rel="stylesheet" href="../assets/visual-refinement-v95.css?v=95" data-design-system="dalp-v95"/>
-<link rel="stylesheet" href="../assets/learning-polish-v96.css?v=96" data-design-system="dalp-v96"/><link href="../assets/learning-catalog-v97.css?v=ea14425fbe45" rel="stylesheet"><link rel="stylesheet" href="../assets/premium-design-v99.css?v=3c9b7d8be5df" data-design-system="dalp-premium-v99"/><link rel="stylesheet" href="../assets/text-contrast-v98.css?v=98" data-design-system="dalp-v98-contrast"/></head>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="../assets/styles/site-refresh.css"/><link rel="stylesheet" href="../assets/styles/experience.css" />
+</head>
 <body class="dlp-course-v29" data-course="excel" data-responsive-page="courses/excel">
 <div class="app">
 <aside class="sidebar" id="sidebar">
@@ -429,7 +430,7 @@ main{min-width:0}
 <main>
 <div class="topbar">
 <div class="topbar-title">
-<div><img alt="Excel icon" class="lp-icon small" src="../assets/icon-excel.svg?v=20261022.19" style="vertical-align:middle;margin-right:7px"/><strong>Excel Learning Portal</strong><br/><small>Learn → Practise → Test → Build</small></div>
+<div><img alt="Excel icon" class="lp-icon small" src="../assets/icons/icon-excel.svg" style="vertical-align:middle;margin-right:7px"/><strong>Excel Learning Portal</strong><br/><small>Learn → Practise → Test → Build</small></div>
 <button class="menu-btn" id="menuBtn" type="button" aria-label="Open course week navigation" aria-controls="sidebar" aria-expanded="false">☰</button>
 </div>
 <div class="course-top-actions">
@@ -505,7 +506,7 @@ main{min-width:0}
 <p class="cv88-kicker">COURSE BRIEF · Excel for Data Analysis</p><h2 id="cv88-excel-heading">Learn it, verify it, use it</h2>
 <p><strong>Who it is for:</strong> New analysts who want to clean records, audit calculations and deliver a usable workbook.</p><p><strong>Before you begin:</strong> Introduction to Data Analysis (recommended); ability to open and save files. No coding required.</p>
 <p><strong>Setup and limitations:</strong> Excel for Microsoft 365, Excel 2024 or Excel 2021 recommended. XLOOKUP is unavailable in Excel 2016/2019; use INDEX/MATCH as provided. Desktop Excel is preferable for full PivotTable and dashboard work. The offline Arena evaluator supports only a subset of formulas.</p><p><strong>Suggested commitment:</strong> Suggested study plan: 2–4 hours each week for 10 modules; actual time depends on prior Excel experience. This is a study plan, not timed platform tracking.</p><p><strong>By the end:</strong> Build an auditable multi-sheet workbook: validated source table, repeatable KPI formulas, PivotTables, chart, dashboard and a short decision note.</p>
-<div class="cv88-map-actions"><a href="../downloads/mastery_orders.csv" download>Download the six-order training dataset</a><a href="../downloads/MASTERY_DATA_DICTIONARY.md" download>Dataset fields and calculations</a><a href="../downloads/mastery_orders_validation_v88.csv" download>Verified row-by-row calculations</a><a href="../downloads/CURRICULUM_VALIDATION_V88.md" download>Verified examples and rubric</a><a href="../capstone-guide.html">Capstone guidance</a></div>
+<div class="cv88-map-actions"><a href="../downloads/mastery_orders.csv" download>Download the six-order training dataset</a><a href="../downloads/MASTERY_DATA_DICTIONARY.md" download>Dataset fields and calculations</a><a href="../downloads/mastery_orders_validation.csv" download>Verified row-by-row calculations</a><a href="../downloads/CURRICULUM_VALIDATION.md" download>Verified examples and rubric</a><a href="../capstone-guide.html">Capstone guidance</a></div>
 <p class="cv88-source-note">The six-order <code>mastery_orders.csv</code> is synthetic and different from the Practice Arena datasets. The examples use hypothetical currency units, not actual revenue or customer evidence. Weekly checkmarks are self-reported and are separate from quiz scores or instructor review.</p>
 <h3>Prerequisite-aware module map</h3><p>Complete the previous module's evidence before advancing. You can navigate freely to review earlier material.</p>
 <ol class="cv88-roadmap"><li><a href="#week1"><small>MODULE 01</small><strong>Workbook fundamentals and analyst workflow</strong></a><span>Save a raw import and a separate working table; record the row grain and source filename.</span></li><li><a href="#week2"><small>MODULE 02</small><strong>Excel Tables and validation</strong></a><span>Create a named Sales table with 6 order keys and a revenue column; check it expands.</span></li><li><a href="#week3"><small>MODULE 03</small><strong>References and core formulas</strong></a><span>Reconcile gross source value 602,000 with completed value 578,000; explain the 24,000 returned order.</span></li><li><a href="#week4"><small>MODULE 04</small><strong>IF, SUMIFS, XLOOKUP and legacy lookups</strong></a><span>Build a conditional completed-sales formula and validate East = 316,000 using a second method.</span></li><li><a href="#week5"><small>MODULE 05</small><strong>Cleaning and data preparation</strong></a><span>Produce a cleaning log recording duplicated keys, missing values, typing issues and decisions.</span></li><li><a href="#week6"><small>MODULE 06</small><strong>Sorting, filters and quick analysis</strong></a><span>Save a filtered view for West completed orders: IDs 1002 and 1005; restore the full table.</span></li><li><a href="#week7"><small>MODULE 07</small><strong>PivotTables, PivotCharts and percentage views</strong></a><span>Create a pivot showing East 316,000; West 190,000; North 72,000; confirm grand total 578,000.</span></li><li><a href="#week8"><small>MODULE 08</small><strong>Charts and visual communication</strong></a><span>Make a labelled region comparison chart and a two-month trend; explain the tiny sample limitation.</span></li><li><a href="#week9"><small>MODULE 09</small><strong>Dashboard engineering and interaction</strong></a><span>Assemble a dashboard with definitions for completed revenue, profit and five orders; test filters.</span></li><li><a href="#week10"><small>MODULE 10</small><strong>Excel portfolio capstone</strong></a><span>Submit an auditable workbook plus README and a short management recommendation with caveats.</span></li></ol></section><section class="week searchable" id="week1">
@@ -552,7 +553,7 @@ main{min-width:0}
 <p><strong>Apply independently:</strong> Create a 12-column data dictionary: field name, what it means and expected data type.</p>
 <p><strong>What to produce:</strong> Save a raw import and a separate working table; record the row grain and source filename.</p>
 <p><strong>How to check:</strong> Compare with the worked result shown below, test one changed input or filter, and explain a possible failure or misleading interpretation. A checked lesson is your own declaration of practice—not an automatically graded project.</p>
-<div class="cv88-contract-actions"><a href="../practice.html?challenge=excel021" class="cv88-practice-link">Try related Excel Arena challenge ↗</a><a href="../downloads/CURRICULUM_VALIDATION_V88.md">Validation and project rubric ↗</a></div></aside>
+<div class="cv88-contract-actions"><a href="../practice.html?challenge=excel021" class="cv88-practice-link">Try related Excel Arena challenge ↗</a><a href="../downloads/CURRICULUM_VALIDATION.md">Validation and project rubric ↗</a></div></aside>
 <section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>An operations analyst receives daily order exports. A clear workbook structure reduces formula mistakes and lets a colleague audit the numbers.</p></section>
 <section class="mastery-section"><h5>02 · How it actually works</h5><p>Rows hold records, columns hold attributes, and cells hold values or formulas. Separate RawData, Calculations and Dashboard sheets; use one row per order, true dates, no merged data headers, and a clear source/date note.</p></section>
 <section class="mastery-deep-dive" aria-label="Beginner explanation and walkthrough for week 1">
@@ -563,6 +564,8 @@ main{min-width:0}
   <div class="v34-interpretation"><strong>Read the expected result:</strong> Order 1001 is one row for a laptop sale: two units at 150000 each. Do not insert a subtotal row between transactions because PivotTables will count it as another record.</div>
   <div class="v34-independence"><strong>Now try it without copying:</strong> Create a 12-column data dictionary: field name, what it means and expected data type.</div>
  </section>
+<section aria-label="Guided concept notes and knowledge checks for module 1" class="learning-clarity"><div class="learning-clarity-head"><span class="learning-clarity-kicker">CONCEPTS IN CONTEXT · MODULE 01</span><h5>Understand the idea before using the tool</h5><p>Read each concept, connect it to the fictional retail dataset, then explain it in your own words before moving on.</p></div><div aria-label="EXCEL module 1: key concepts and worked context; scroll horizontally if needed" class="learning-table-scroll" role="region" tabindex="0"><table class="learning-table"><caption>EXCEL module 1: key concepts and worked context</caption><thead><tr><th scope="col">Concept</th><th scope="col">Plain-language explanation</th><th scope="col">Practical sales example</th></tr></thead><tbody><tr><th scope="row">Workbook</th><td>A workbook is one Excel file; sheets are separate tabs inside it. Keep imported records separate from calculations so errors can be traced.</td><td>A sales file can contain RawData, Calculations and Dashboard sheets.</td></tr><tr><th scope="row">Row grain</th><td>Decide what one row represents before sorting, removing duplicates or calculating totals.</td><td>One row = one order, identified by order_id; not one customer.</td></tr><tr><th scope="row">Data type</th><td>Treat quantities and prices as numbers, dates as actual Excel dates and IDs as labels, even when they look numeric.</td><td>Order 1001 has quantity 2 and unit price ₦150,000.</td></tr></tbody></table></div><div class="learning-scenario"><div><h6>Try it on your own</h6><p class="learning-scenario-task">Create a 12-column data dictionary: field name, what it means and expected data type.</p></div><details class="learning-answer"><summary>Reveal the verification guide</summary><p class="learning-result">Order 1001 is one row for a laptop sale: two units at 150000 each. Do not insert a subtotal row between transactions because PivotTables will count it as another record.</p><p class="learning-caution">Common mistake to avoid: Merged headers, blank separator rows, and numbers stored as text break filters and PivotTables.</p></details></div></section>
+
 <section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-table" tabindex="0"><code>RawData!A1:I3
 OrderID | Date       | Customer | Region | Product | Qty | Price | Cost  | Status
 1001    | 2026-01-05 | Amina    | East   | Laptop  | 2   | 150000| 120000| Completed
@@ -610,7 +613,7 @@ OrderID | Date       | Customer | Region | Product | Qty | Price | Cost  | Statu
 <p><strong>Apply independently:</strong> Add a new practice order and verify that the Revenue formula auto-fills; compare with a fixed A2:A6 range.</p>
 <p><strong>What to produce:</strong> Create a named Sales table with 6 order keys and a revenue column; check it expands.</p>
 <p><strong>How to check:</strong> Compare with the worked result shown below, test one changed input or filter, and explain a possible failure or misleading interpretation. A checked lesson is your own declaration of practice—not an automatically graded project.</p>
-<div class="cv88-contract-actions"><a href="../practice.html?challenge=excel030" class="cv88-practice-link">Try related Excel Arena challenge ↗</a><a href="../downloads/CURRICULUM_VALIDATION_V88.md">Validation and project rubric ↗</a></div></aside>
+<div class="cv88-contract-actions"><a href="../practice.html?challenge=excel030" class="cv88-practice-link">Try related Excel Arena challenge ↗</a><a href="../downloads/CURRICULUM_VALIDATION.md">Validation and project rubric ↗</a></div></aside>
 <section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>Order logs grow daily. A manual formula range stops at yesterday’s last row, whereas a Table can extend calculated columns and references.</p></section>
 <section class="mastery-section"><h5>02 · How it actually works</h5><p>Ctrl+T creates an Excel Table with headers, filters, and structured references. Add a Revenue column with =[@Qty]*[@Price]; Excel fills it down the Table. Data Validation can restrict Status to permitted values.</p></section>
 <section class="mastery-deep-dive" aria-label="Beginner explanation and walkthrough for week 2">
@@ -621,6 +624,8 @@ OrderID | Date       | Customer | Region | Product | Qty | Price | Cost  | Statu
   <div class="v34-interpretation"><strong>Read the expected result:</strong> Excel calculates 300000 for order 1001 and 40000 for order 1002. Status Data Validation helps manual entry but does not guarantee that imported rows are clean.</div>
   <div class="v34-independence"><strong>Now try it without copying:</strong> Add a new practice order and verify that the Revenue formula auto-fills; compare with a fixed A2:A6 range.</div>
  </section>
+<section aria-label="Guided concept notes and knowledge checks for module 2" class="learning-clarity"><div class="learning-clarity-head"><span class="learning-clarity-kicker">CONCEPTS IN CONTEXT · MODULE 02</span><h5>Understand the idea before using the tool</h5><p>Read each concept, connect it to the fictional retail dataset, then explain it in your own words before moving on.</p></div><div aria-label="EXCEL module 2: key concepts and worked context; scroll horizontally if needed" class="learning-table-scroll" role="region" tabindex="0"><table class="learning-table"><caption>EXCEL module 2: key concepts and worked context</caption><thead><tr><th scope="col">Concept</th><th scope="col">Plain-language explanation</th><th scope="col">Practical sales example</th></tr></thead><tbody><tr><th scope="row">Excel Table</th><td>Convert the data range with Ctrl+T and confirm that the first row contains headers. Tables expand as records are added.</td><td>Name it Sales so formulas read Sales[quantity] instead of A2:A7.</td></tr><tr><th scope="row">Structured reference</th><td>Table formulas can refer to a whole named column or the current row.</td><td>=[@quantity]*[@unit_price] returns ₦300,000 for order 1001.</td></tr><tr><th scope="row">Validation rule</th><td>Use a dropdown for fields with limited accepted values; validation reduces entry mistakes but cannot guarantee clean imports.</td><td>Accept Completed or Returned in the status column.</td></tr></tbody></table></div><div class="learning-scenario"><div><h6>Try it on your own</h6><p class="learning-scenario-task">Add a new practice order and verify that the Revenue formula auto-fills; compare with a fixed A2:A6 range.</p></div><details class="learning-answer"><summary>Reveal the verification guide</summary><p class="learning-result">Excel calculates 300000 for order 1001 and 40000 for order 1002. Status Data Validation helps manual entry but does not guarantee that imported rows are clean.</p><p class="learning-caution">Common mistake to avoid: Data Validation improves entry quality, but imported data can still violate rules; audit it too.</p></details></div></section>
+
 <section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>Name the table: Sales
 Revenue column formula: =[@Qty]*[@Price]
 Status validation list: Completed,Returned
@@ -669,7 +674,7 @@ Data Validation list: Completed,Returned,Cancelled</pre></div></div><div class="
 <p><strong>Apply independently:</strong> Write the formulas for quantity×price, quantity×unit cost and their difference; test with order 1001.</p>
 <p><strong>What to produce:</strong> Reconcile gross source value 602,000 with completed value 578,000; explain the 24,000 returned order.</p>
 <p><strong>How to check:</strong> Compare with the worked result shown below, test one changed input or filter, and explain a possible failure or misleading interpretation. A checked lesson is your own declaration of practice—not an automatically graded project.</p>
-<div class="cv88-contract-actions"><a href="../practice.html?challenge=excel027" class="cv88-practice-link">Try related Excel Arena challenge ↗</a><a href="../downloads/CURRICULUM_VALIDATION_V88.md">Validation and project rubric ↗</a></div></aside>
+<div class="cv88-contract-actions"><a href="../practice.html?challenge=excel027" class="cv88-practice-link">Try related Excel Arena challenge ↗</a><a href="../downloads/CURRICULUM_VALIDATION.md">Validation and project rubric ↗</a></div></aside>
 <section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>Finance often asks for tax, targets and profit; formulas must handle fill-down correctly and preserve fixed assumptions.</p></section>
 <section class="mastery-section"><h5>02 · How it actually works</h5><p>Relative references move when copied. An absolute reference such as $M$2 never moves. SUM aggregates, ROUND controls display precision, and IFERROR handles anticipated calculation errors without hiding all source defects.</p></section>
 <section class="mastery-deep-dive" aria-label="Beginner explanation and walkthrough for week 3">
@@ -680,6 +685,8 @@ Data Validation list: Completed,Returned,Cancelled</pre></div></div><div class="
   <div class="v34-interpretation"><strong>Read the expected result:</strong> If VAT is 7.5% and an order has revenue 300000, tax would be 22500; the net sale treatment depends on whether prices already include VAT.</div>
   <div class="v34-independence"><strong>Now try it without copying:</strong> Write the formulas for quantity×price, quantity×unit cost and their difference; test with order 1001.</div>
  </section>
+<section aria-label="Guided concept notes and knowledge checks for module 3" class="learning-clarity"><div class="learning-clarity-head"><span class="learning-clarity-kicker">CONCEPTS IN CONTEXT · MODULE 03</span><h5>Understand the idea before using the tool</h5><p>Read each concept, connect it to the fictional retail dataset, then explain it in your own words before moving on.</p></div><div aria-label="EXCEL module 3: key concepts and worked context; scroll horizontally if needed" class="learning-table-scroll" role="region" tabindex="0"><table class="learning-table"><caption>EXCEL module 3: key concepts and worked context</caption><thead><tr><th scope="col">Concept</th><th scope="col">Plain-language explanation</th><th scope="col">Practical sales example</th></tr></thead><tbody><tr><th scope="row">Relative reference</th><td>A copied formula changes row references to follow the next record.</td><td>=F2*G2 copied down becomes =F3*G3.</td></tr><tr><th scope="row">Absolute reference</th><td>Dollar signs lock a cell reference for stable parameters, such as a tax rate.</td><td>=H2*$M$2 keeps the rate in M2 fixed.</td></tr><tr><th scope="row">Metric definition</th><td>Write down which transactions belong in the total before summing.</td><td>Completed gross revenue is ₦578,000; returned order 1003 is excluded.</td></tr></tbody></table></div><div class="learning-scenario"><div><h6>Try it on your own</h6><p class="learning-scenario-task">Write the formulas for quantity×price, quantity×unit cost and their difference; test with order 1001.</p></div><details class="learning-answer"><summary>Reveal the verification guide</summary><p class="learning-result">If VAT is 7.5% and an order has revenue 300000, tax would be 22500; the net sale treatment depends on whether prices already include VAT.</p><p class="learning-caution">Common mistake to avoid: Using A2 instead of $A$2 for a single global rate changes the rate as the formula is copied.</p></details></div></section>
+
 <section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>Assume Sales[Revenue] has six gross order values.
 =SUM(Sales[Revenue])                 → 602000
 =SUMIFS(Sales[Revenue],Sales[Status],"Completed") → 578000
@@ -728,7 +735,7 @@ Completed gross sales   | 578000
 <p><strong>Apply independently:</strong> Make a missing-lookup flag with IFERROR or ISNA; do not silently display zero for unknown customers.</p>
 <p><strong>What to produce:</strong> Build a conditional completed-sales formula and validate East = 316,000 using a second method.</p>
 <p><strong>How to check:</strong> Compare with the worked result shown below, test one changed input or filter, and explain a possible failure or misleading interpretation. A checked lesson is your own declaration of practice—not an automatically graded project.</p>
-<div class="cv88-contract-actions"><a href="../practice.html?challenge=excel029" class="cv88-practice-link">Try related Excel Arena challenge ↗</a><a href="../downloads/CURRICULUM_VALIDATION_V88.md">Validation and project rubric ↗</a></div></aside>
+<div class="cv88-contract-actions"><a href="../practice.html?challenge=excel029" class="cv88-practice-link">Try related Excel Arena challenge ↗</a><a href="../downloads/CURRICULUM_VALIDATION.md">Validation and project rubric ↗</a></div></aside>
 <section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>Order reviews require statuses, thresholds and product categories from a lookup table.</p></section>
 <section class="mastery-section"><h5>02 · How it actually works</h5><p>IF returns a branch; SUMIFS calculates numeric totals with multiple criteria. XLOOKUP matches a key and returns a related value in newer Excel; for Excel 2016 use INDEX/MATCH or VLOOKUP with exact-match FALSE. Guard against missing keys.</p></section>
 <section class="mastery-deep-dive" aria-label="Beginner explanation and walkthrough for week 4">
@@ -739,6 +746,8 @@ Completed gross sales   | 578000
   <div class="v34-interpretation"><strong>Read the expected result:</strong> East completed revenue equals 300000 + 16000 = 316000; the East returned order worth 24000 is excluded. Excel 2016 users may need INDEX/MATCH or VLOOKUP instead of XLOOKUP.</div>
   <div class="v34-independence"><strong>Now try it without copying:</strong> Make a missing-lookup flag with IFERROR or ISNA; do not silently display zero for unknown customers.</div>
  </section>
+<section aria-label="Guided concept notes and knowledge checks for module 4" class="learning-clarity"><div class="learning-clarity-head"><span class="learning-clarity-kicker">CONCEPTS IN CONTEXT · MODULE 04</span><h5>Understand the idea before using the tool</h5><p>Read each concept, connect it to the fictional retail dataset, then explain it in your own words before moving on.</p></div><div aria-label="EXCEL module 4: key concepts and worked context; scroll horizontally if needed" class="learning-table-scroll" role="region" tabindex="0"><table class="learning-table"><caption>EXCEL module 4: key concepts and worked context</caption><thead><tr><th scope="col">Concept</th><th scope="col">Plain-language explanation</th><th scope="col">Practical sales example</th></tr></thead><tbody><tr><th scope="row">IF</th><td>Test a condition and return different outputs for true and false.</td><td>=IF([@status]="Completed",[@revenue],0) excludes returns.</td></tr><tr><th scope="row">SUMIFS</th><td>Add only rows that satisfy one or more explicit business conditions.</td><td>Filter status to Completed and region to West: ₦190,000.</td></tr><tr><th scope="row">XLOOKUP</th><td>Match a key to a lookup table; confirm the key is unique.</td><td>Look up product_id P02 to return Mouse; check for missing products.</td></tr></tbody></table></div><div class="learning-scenario"><div><h6>Try it on your own</h6><p class="learning-scenario-task">Make a missing-lookup flag with IFERROR or ISNA; do not silently display zero for unknown customers.</p></div><details class="learning-answer"><summary>Reveal the verification guide</summary><p class="learning-result">East completed revenue equals 300000 + 16000 = 316000; the East returned order worth 24000 is excluded. Excel 2016 users may need INDEX/MATCH or VLOOKUP instead of XLOOKUP.</p><p class="learning-caution">Common mistake to avoid: VLOOKUP without FALSE can return approximate matches and silently misclassify products.</p></details></div></section>
+
 <section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>=IF([@Status]="Completed",[@Revenue],0)
 =SUMIFS(Sales[Revenue],Sales[Status],"Completed",Sales[Region],"East")
 Excel 2016: =IFERROR(INDEX(Category[Group],MATCH([@Product],Category[Product],0)),"Unmapped")</code></pre>
@@ -785,7 +794,7 @@ Unknown product → Unmapped (not a fabricated category).</pre></div></section>
 <p><strong>Apply independently:</strong> Create a small issue log showing field, original value, correction, reason and validation result.</p>
 <p><strong>What to produce:</strong> Produce a cleaning log recording duplicated keys, missing values, typing issues and decisions.</p>
 <p><strong>How to check:</strong> Compare with the worked result shown below, test one changed input or filter, and explain a possible failure or misleading interpretation. A checked lesson is your own declaration of practice—not an automatically graded project.</p>
-<div class="cv88-contract-actions"><a href="../practice.html?challenge=excel032" class="cv88-practice-link">Try related Excel Arena challenge ↗</a><a href="../downloads/CURRICULUM_VALIDATION_V88.md">Validation and project rubric ↗</a></div></aside>
+<div class="cv88-contract-actions"><a href="../practice.html?challenge=excel032" class="cv88-practice-link">Try related Excel Arena challenge ↗</a><a href="../downloads/CURRICULUM_VALIDATION.md">Validation and project rubric ↗</a></div></aside>
 <section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>In real feeds, spaces, duplicates, invalid dates and inconsistent capitalization can fragment business categories.</p></section>
 <section class="mastery-section"><h5>02 · How it actually works</h5><p>TRIM removes surplus spaces, CLEAN removes nonprinting characters, PROPER standardizes names when appropriate, and COUNTIF can identify repeat IDs. Power Query preserves a replayable sequence of transformations.</p></section>
 <section class="mastery-deep-dive" aria-label="Beginner explanation and walkthrough for week 5">
@@ -796,6 +805,8 @@ Unknown product → Unmapped (not a fabricated category).</pre></div></section>
   <div class="v34-interpretation"><strong>Read the expected result:</strong> Returned order 1003 must remain in the dataset for audit; it is simply excluded by the completed-sales business rule.</div>
   <div class="v34-independence"><strong>Now try it without copying:</strong> Create a small issue log showing field, original value, correction, reason and validation result.</div>
  </section>
+<section aria-label="Guided concept notes and knowledge checks for module 5" class="learning-clarity"><div class="learning-clarity-head"><span class="learning-clarity-kicker">CONCEPTS IN CONTEXT · MODULE 05</span><h5>Understand the idea before using the tool</h5><p>Read each concept, connect it to the fictional retail dataset, then explain it in your own words before moving on.</p></div><div aria-label="EXCEL module 5: key concepts and worked context; scroll horizontally if needed" class="learning-table-scroll" role="region" tabindex="0"><table class="learning-table"><caption>EXCEL module 5: key concepts and worked context</caption><thead><tr><th scope="col">Concept</th><th scope="col">Plain-language explanation</th><th scope="col">Practical sales example</th></tr></thead><tbody><tr><th scope="row">TRIM and CLEAN</th><td>Remove extra spaces and nonprinting characters, but retain a copy of the original input.</td><td>"  East  " becomes "East" after TRIM.</td></tr><tr><th scope="row">Duplicate key</th><td>A repeated order identifier needs investigation; do not automatically delete repeated customer names.</td><td>Two rows with order_id 1001 may indicate an accidental duplicate.</td></tr><tr><th scope="row">Null versus zero</th><td>Missing cost is unknown, not the same as cost of ₦0.</td><td>Flag an empty unit_cost before calculating profit.</td></tr></tbody></table></div><div class="learning-scenario"><div><h6>Try it on your own</h6><p class="learning-scenario-task">Create a small issue log showing field, original value, correction, reason and validation result.</p></div><details class="learning-answer"><summary>Reveal the verification guide</summary><p class="learning-result">Returned order 1003 must remain in the dataset for audit; it is simply excluded by the completed-sales business rule.</p><p class="learning-caution">Common mistake to avoid: PROPER should not automatically change company acronyms or official names; get a business rule first.</p></details></div></section>
+
 <section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>=TRIM(A2)                  // "  East  " → "East"
 =COUNTIF(Sales[OrderID],[@OrderID])  // expected 1 per sample row
 =IF([@Status]="Returned","Excluded from completed revenue","Include")</code></pre>
@@ -842,7 +853,7 @@ Duplicates in mastery data: 0.</pre></div></section>
 <p><strong>Apply independently:</strong> Sort by revenue descending, then restore original order by OrderID and explain why the totals remain unchanged.</p>
 <p><strong>What to produce:</strong> Save a filtered view for West completed orders: IDs 1002 and 1005; restore the full table.</p>
 <p><strong>How to check:</strong> Compare with the worked result shown below, test one changed input or filter, and explain a possible failure or misleading interpretation. A checked lesson is your own declaration of practice—not an automatically graded project.</p>
-<div class="cv88-contract-actions"><a href="../practice.html?challenge=excel028" class="cv88-practice-link">Try related Excel Arena challenge ↗</a><a href="../downloads/CURRICULUM_VALIDATION_V88.md">Validation and project rubric ↗</a></div></aside>
+<div class="cv88-contract-actions"><a href="../practice.html?challenge=excel028" class="cv88-practice-link">Try related Excel Arena challenge ↗</a><a href="../downloads/CURRICULUM_VALIDATION.md">Validation and project rubric ↗</a></div></aside>
 <section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>Sales managers filter geography and status during daily reviews; accidental partial-range sorting can detach quantities from the wrong orders.</p></section>
 <section class="mastery-section"><h5>02 · How it actually works</h5><p>Table filtering hides unrelated rows without deleting them. SUMIFS respects explicit logical criteria, while SUBTOTAL can aggregate visible rows only. Keep source filters separate from final KPI definitions.</p></section>
 <section class="mastery-deep-dive" aria-label="Beginner explanation and walkthrough for week 6">
@@ -853,6 +864,8 @@ Duplicates in mastery data: 0.</pre></div></section>
   <div class="v34-interpretation"><strong>Read the expected result:</strong> The visible West completed orders are 1002 and 1005, worth 40000 and 150000, for a total of 190000.</div>
   <div class="v34-independence"><strong>Now try it without copying:</strong> Sort by revenue descending, then restore original order by OrderID and explain why the totals remain unchanged.</div>
  </section>
+<section aria-label="Guided concept notes and knowledge checks for module 6" class="learning-clarity"><div class="learning-clarity-head"><span class="learning-clarity-kicker">CONCEPTS IN CONTEXT · MODULE 06</span><h5>Understand the idea before using the tool</h5><p>Read each concept, connect it to the fictional retail dataset, then explain it in your own words before moving on.</p></div><div aria-label="EXCEL module 6: key concepts and worked context; scroll horizontally if needed" class="learning-table-scroll" role="region" tabindex="0"><table class="learning-table"><caption>EXCEL module 6: key concepts and worked context</caption><thead><tr><th scope="col">Concept</th><th scope="col">Plain-language explanation</th><th scope="col">Practical sales example</th></tr></thead><tbody><tr><th scope="row">Sorting</th><td>Sort the entire table rather than only one column, preserving relationships between fields.</td><td>Sort orders by unit_price descending; order 1001 is near the top.</td></tr><tr><th scope="row">Filtering</th><td>Filtering hides nonmatching rows but does not delete the source data.</td><td>Show Completed orders: five of the six original records.</td></tr><tr><th scope="row">SUBTOTAL</th><td>For filter-aware totals, use function 109 to sum only visible numeric cells.</td><td>=SUBTOTAL(109,Sales[revenue]) responds when the status filter changes.</td></tr></tbody></table></div><div class="learning-scenario"><div><h6>Try it on your own</h6><p class="learning-scenario-task">Sort by revenue descending, then restore original order by OrderID and explain why the totals remain unchanged.</p></div><details class="learning-answer"><summary>Reveal the verification guide</summary><p class="learning-result">The visible West completed orders are 1002 and 1005, worth 40000 and 150000, for a total of 190000.</p><p class="learning-caution">Common mistake to avoid: Sorting a single column independently of the rest of a record destroys row integrity.</p></details></div></section>
+
 <section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>=SUBTOTAL(109,Sales[Revenue])
 After filtering Status=Completed and Region=West:
 Visible OrderIDs: 1002 and 1005</code></pre>
@@ -899,7 +912,7 @@ The unfiltered all-status gross remains 602000.</pre></div></section>
 <p><strong>Apply independently:</strong> Build a second PivotTable showing channel shares and explain why adding percentages directly can mislead.</p>
 <p><strong>What to produce:</strong> Create a pivot showing East 316,000; West 190,000; North 72,000; confirm grand total 578,000.</p>
 <p><strong>How to check:</strong> Compare with the worked result shown below, test one changed input or filter, and explain a possible failure or misleading interpretation. A checked lesson is your own declaration of practice—not an automatically graded project.</p>
-<div class="cv88-contract-actions"><a href="../practice.html?challenge=excel031" class="cv88-practice-link">Try related Excel Arena challenge ↗</a><a href="../downloads/CURRICULUM_VALIDATION_V88.md">Validation and project rubric ↗</a></div></aside>
+<div class="cv88-contract-actions"><a href="../practice.html?challenge=excel031" class="cv88-practice-link">Try related Excel Arena challenge ↗</a><a href="../downloads/CURRICULUM_VALIDATION.md">Validation and project rubric ↗</a></div></aside>
 <section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>A 1,000-row sales log is difficult to interpret row-by-row. A PivotTable groups regions, months and products without manual SUMIFS for every combination.</p></section>
 <section class="mastery-section"><h5>02 · How it actually works</h5><p>Insert a PivotTable from Sales, set Rows=Region, Values=Sum of Revenue, and Filters=Status. Refresh when the source changes. Show Values As % of Grand Total uses the current Pivot context, not an all-time static denominator.</p></section>
 <section class="mastery-deep-dive" aria-label="Beginner explanation and walkthrough for week 7">
@@ -910,6 +923,8 @@ The unfiltered all-status gross remains 602000.</pre></div></section>
   <div class="v34-interpretation"><strong>Read the expected result:</strong> East&#x27;s share is 316000 ÷ 578000 ≈ 54.67%. The percentages should add to 100% across the three regions when the same filter applies.</div>
   <div class="v34-independence"><strong>Now try it without copying:</strong> Build a second PivotTable showing channel shares and explain why adding percentages directly can mislead.</div>
  </section>
+<section aria-label="Guided concept notes and knowledge checks for module 7" class="learning-clarity"><div class="learning-clarity-head"><span class="learning-clarity-kicker">CONCEPTS IN CONTEXT · MODULE 07</span><h5>Understand the idea before using the tool</h5><p>Read each concept, connect it to the fictional retail dataset, then explain it in your own words before moving on.</p></div><div aria-label="EXCEL module 7: key concepts and worked context; scroll horizontally if needed" class="learning-table-scroll" role="region" tabindex="0"><table class="learning-table"><caption>EXCEL module 7: key concepts and worked context</caption><thead><tr><th scope="col">Concept</th><th scope="col">Plain-language explanation</th><th scope="col">Practical sales example</th></tr></thead><tbody><tr><th scope="row">PivotTable grain</th><td>A PivotTable groups source records into categories and calculates summaries.</td><td>Rows: region; Values: sum of completed order revenue.</td></tr><tr><th scope="row">Show Values As</th><td>Percentage of grand total answers share, not total value. Verify the denominator.</td><td>West ₦190,000 / ₦578,000 ≈ 32.9% of completed revenue.</td></tr><tr><th scope="row">Slicer</th><td>A slicer is a visible filter; connect it to the intended PivotTables and charts.</td><td>Choose Web to explore sales by channel.</td></tr></tbody></table></div><div class="learning-scenario"><div><h6>Try it on your own</h6><p class="learning-scenario-task">Build a second PivotTable showing channel shares and explain why adding percentages directly can mislead.</p></div><details class="learning-answer"><summary>Reveal the verification guide</summary><p class="learning-result">East's share is 316000 ÷ 578000 ≈ 54.67%. The percentages should add to 100% across the three regions when the same filter applies.</p><p class="learning-caution">Common mistake to avoid: Sum of a percentage column is usually not a weighted rate; PivotTables require a correct denominator.</p></details></div></section>
+
 <section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>Pivot configuration:
 Rows: Region
 Values: Sum of Revenue
@@ -959,7 +974,7 @@ North  | 72000   | 12.46%</pre></div></section>
 <p><strong>Apply independently:</strong> Redesign an unlabeled revenue chart with a descriptive title, currency units and a note that only Completed orders are counted.</p>
 <p><strong>What to produce:</strong> Make a labelled region comparison chart and a two-month trend; explain the tiny sample limitation.</p>
 <p><strong>How to check:</strong> Compare with the worked result shown below, test one changed input or filter, and explain a possible failure or misleading interpretation. A checked lesson is your own declaration of practice—not an automatically graded project.</p>
-<div class="cv88-contract-actions"><a href="../practice.html?challenge=excel022" class="cv88-practice-link">Try related Excel Arena challenge ↗</a><a href="../downloads/CURRICULUM_VALIDATION_V88.md">Validation and project rubric ↗</a></div></aside>
+<div class="cv88-contract-actions"><a href="../practice.html?challenge=excel022" class="cv88-practice-link">Try related Excel Arena challenge ↗</a><a href="../downloads/CURRICULUM_VALIDATION.md">Validation and project rubric ↗</a></div></aside>
 <section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>Stakeholders should identify what changed and where to act within seconds.</p></section>
 <section class="mastery-section"><h5>02 · How it actually works</h5><p>Bars compare discrete regions; a line displays time order; scatterplots explain relationships. Use direct labels, consistent units and zero-based axes for magnitude comparisons. Separate a revenue line from a percentage-margin line unless clearly dual-labelled.</p></section>
 <section class="mastery-deep-dive" aria-label="Beginner explanation and walkthrough for week 8">
@@ -970,6 +985,8 @@ North  | 72000   | 12.46%</pre></div></section>
   <div class="v34-interpretation"><strong>Read the expected result:</strong> The region bar chart should visibly place East above West above North. A pie chart may hide the size difference when categories are numerous.</div>
   <div class="v34-independence"><strong>Now try it without copying:</strong> Redesign an unlabeled revenue chart with a descriptive title, currency units and a note that only Completed orders are counted.</div>
  </section>
+<section aria-label="Guided concept notes and knowledge checks for module 8" class="learning-clarity"><div class="learning-clarity-head"><span class="learning-clarity-kicker">CONCEPTS IN CONTEXT · MODULE 08</span><h5>Understand the idea before using the tool</h5><p>Read each concept, connect it to the fictional retail dataset, then explain it in your own words before moving on.</p></div><div aria-label="EXCEL module 8: key concepts and worked context; scroll horizontally if needed" class="learning-table-scroll" role="region" tabindex="0"><table class="learning-table"><caption>EXCEL module 8: key concepts and worked context</caption><thead><tr><th scope="col">Concept</th><th scope="col">Plain-language explanation</th><th scope="col">Practical sales example</th></tr></thead><tbody><tr><th scope="row">Chart choice</th><td>Use bars for categories and lines for genuine time trends; avoid a line for arbitrary unordered regions.</td><td>Compare East, West and North with a bar chart.</td></tr><tr><th scope="row">Zero baseline</th><td>Start bar-chart value axes at zero to avoid exaggerating differences.</td><td>₦190,000 versus ₦316,000 should not look ten times different.</td></tr><tr><th scope="row">Insight annotation</th><td>State the key pattern and business context in words alongside the visual.</td><td>East leads completed sales, but examine order count and product mix.</td></tr></tbody></table></div><div class="learning-scenario"><div><h6>Try it on your own</h6><p class="learning-scenario-task">Redesign an unlabeled revenue chart with a descriptive title, currency units and a note that only Completed orders are counted.</p></div><details class="learning-answer"><summary>Reveal the verification guide</summary><p class="learning-result">The region bar chart should visibly place East above West above North. A pie chart may hide the size difference when categories are numerous.</p><p class="learning-caution">Common mistake to avoid: Truncated bar axes visually exaggerate differences; charts without denominator labels mislead.</p></details></div></section>
+
 <section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-table" tabindex="0"><code>Build two charts from completed sales:
 Chart A: horizontal bars — East 316000, West 190000, North 72000
 Chart B: month line — Jan 340000, Feb 238000</code></pre>
@@ -1017,7 +1034,7 @@ Measure: Sum of Orders[net_sales], Completed orders only</pre></div></div><div c
 <p><strong>Apply independently:</strong> Write a two-sentence manager&#x27;s summary of February&#x27;s revenue decrease without claiming a cause.</p>
 <p><strong>What to produce:</strong> Assemble a dashboard with definitions for completed revenue, profit and five orders; test filters.</p>
 <p><strong>How to check:</strong> Compare with the worked result shown below, test one changed input or filter, and explain a possible failure or misleading interpretation. A checked lesson is your own declaration of practice—not an automatically graded project.</p>
-<div class="cv88-contract-actions"><a href="../practice.html?challenge=excel027" class="cv88-practice-link">Try related Excel Arena challenge ↗</a><a href="../downloads/CURRICULUM_VALIDATION_V88.md">Validation and project rubric ↗</a></div></aside>
+<div class="cv88-contract-actions"><a href="../practice.html?challenge=excel027" class="cv88-practice-link">Try related Excel Arena challenge ↗</a><a href="../downloads/CURRICULUM_VALIDATION.md">Validation and project rubric ↗</a></div></aside>
 <section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>A dashboard needs a defined audience, a small set of critical KPIs and clear interactions rather than a wall of charts.</p></section>
 <section class="mastery-section"><h5>02 · How it actually works</h5><p>Use a header with the reporting period, KPI row, trend and breakdown visuals, and source/refresh notes. If slicers affect only some visuals, make this explicit. Keep raw data and calculations out of the presentation layer.</p></section>
 <section class="mastery-deep-dive" aria-label="Beginner explanation and walkthrough for week 9">
@@ -1028,6 +1045,8 @@ Measure: Sum of Orders[net_sales], Completed orders only</pre></div></div><div c
   <div class="v34-interpretation"><strong>Read the expected result:</strong> The default training view shows 578000 completed revenue, 135000 profit and 23.36% gross margin. Every slicer state should retain a meaningful title.</div>
   <div class="v34-independence"><strong>Now try it without copying:</strong> Write a two-sentence manager&#x27;s summary of February&#x27;s revenue decrease without claiming a cause.</div>
  </section>
+<section aria-label="Guided concept notes and knowledge checks for module 9" class="learning-clarity"><div class="learning-clarity-head"><span class="learning-clarity-kicker">CONCEPTS IN CONTEXT · MODULE 09</span><h5>Understand the idea before using the tool</h5><p>Read each concept, connect it to the fictional retail dataset, then explain it in your own words before moving on.</p></div><div aria-label="EXCEL module 9: key concepts and worked context; scroll horizontally if needed" class="learning-table-scroll" role="region" tabindex="0"><table class="learning-table"><caption>EXCEL module 9: key concepts and worked context</caption><thead><tr><th scope="col">Concept</th><th scope="col">Plain-language explanation</th><th scope="col">Practical sales example</th></tr></thead><tbody><tr><th scope="row">KPI card</th><td>Give each key metric an explicit name, unit, period and inclusion rule.</td><td>Completed Revenue · Jan–Feb 2026 · ₦578,000.</td></tr><tr><th scope="row">Interactive filter</th><td>Make the filter state obvious so users know which records feed a card.</td><td>A region slicer must update both charts and KPI totals.</td></tr><tr><th scope="row">Reconciliation</th><td>Check dashboard totals against an independently calculated control before sharing.</td><td>Completed revenue ₦578,000; completed profit ₦135,000.</td></tr></tbody></table></div><div class="learning-scenario"><div><h6>Try it on your own</h6><p class="learning-scenario-task">Write a two-sentence manager's summary of February's revenue decrease without claiming a cause.</p></div><details class="learning-answer"><summary>Reveal the verification guide</summary><p class="learning-result">The default training view shows 578000 completed revenue, 135000 profit and 23.36% gross margin. Every slicer state should retain a meaningful title.</p><p class="learning-caution">Common mistake to avoid: Dashboard KPIs may disagree if one uses all orders and another excludes returned orders.</p></details></div></section>
+
 <section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>Suggested layout (completed orders only):
 [Revenue 578000] [Profit 135000] [Orders 5] [Margin 23.36%]
 [Monthly revenue trend] [Revenue by region]
@@ -1080,7 +1099,7 @@ Gross profit = net sales − completed quantity × unit_cost</pre></div></div><d
 <p><strong>Apply independently:</strong> Hand over an Excel workbook and a short QA checklist explaining what you verified and how.</p>
 <p><strong>What to produce:</strong> Submit an auditable workbook plus README and a short management recommendation with caveats.</p>
 <p><strong>How to check:</strong> Compare with the worked result shown below, test one changed input or filter, and explain a possible failure or misleading interpretation. A checked lesson is your own declaration of practice—not an automatically graded project.</p>
-<div class="cv88-contract-actions"><a href="../practice.html?challenge=excel030" class="cv88-practice-link">Try related Excel Arena challenge ↗</a><a href="../downloads/CURRICULUM_VALIDATION_V88.md">Validation and project rubric ↗</a></div></aside><aside class="cv88-capstone-criteria"><h4>Excel for Data Analysis: final project evidence</h4><p><strong>Assessment criteria (self-review; not automatically instructor graded):</strong> Working workbook; definitions and reconciled totals; appropriate PivotTables and charts; clear limitations and reproducible refresh steps.</p><p>Submit your own files and validation notes only through the existing capstone process, where permitted. The website does not automatically certify job readiness or instructor approval.</p><a href="../capstone-guide.html">Read the project workflow and evidence checklist ↗</a></aside>
+<div class="cv88-contract-actions"><a href="../practice.html?challenge=excel030" class="cv88-practice-link">Try related Excel Arena challenge ↗</a><a href="../downloads/CURRICULUM_VALIDATION.md">Validation and project rubric ↗</a></div></aside><aside class="cv88-capstone-criteria"><h4>Excel for Data Analysis: final project evidence</h4><p><strong>Assessment criteria (self-review; not automatically instructor graded):</strong> Working workbook; definitions and reconciled totals; appropriate PivotTables and charts; clear limitations and reproducible refresh steps.</p><p>Submit your own files and validation notes only through the existing capstone process, where permitted. The website does not automatically certify job readiness or instructor approval.</p><a href="../capstone-guide.html">Read the project workflow and evidence checklist ↗</a></aside>
 <section class="mastery-section"><h5>01 · The business reason — why this matters</h5><p>A finished analytical workbook should survive a new batch of rows and allow another analyst to reproduce every figure.</p></section>
 <section class="mastery-section"><h5>02 · How it actually works</h5><p>Build Sales as a Table, add revenue/profit calculations, write source checks, create monthly and regional Pivots, then a restrained dashboard. Record assumptions and verify month totals against the transaction data.</p></section>
 <section class="mastery-deep-dive" aria-label="Beginner explanation and walkthrough for week 10">
@@ -1091,6 +1110,8 @@ Gross profit = net sales − completed quantity × unit_cost</pre></div></div><d
   <div class="v34-interpretation"><strong>Read the expected result:</strong> Acceptance checks: five Completed orders; 578000 recognized revenue; 135000 profit. Your evidence should include at least one failed-data scenario.</div>
   <div class="v34-independence"><strong>Now try it without copying:</strong> Hand over an Excel workbook and a short QA checklist explaining what you verified and how.</div>
  </section>
+<section aria-label="Guided concept notes and knowledge checks for module 10" class="learning-clarity"><div class="learning-clarity-head"><span class="learning-clarity-kicker">CONCEPTS IN CONTEXT · MODULE 10</span><h5>Understand the idea before using the tool</h5><p>Read each concept, connect it to the fictional retail dataset, then explain it in your own words before moving on.</p></div><div aria-label="EXCEL module 10: key concepts and worked context; scroll horizontally if needed" class="learning-table-scroll" role="region" tabindex="0"><table class="learning-table"><caption>EXCEL module 10: key concepts and worked context</caption><thead><tr><th scope="col">Concept</th><th scope="col">Plain-language explanation</th><th scope="col">Practical sales example</th></tr></thead><tbody><tr><th scope="row">Evidence package</th><td>Submit the workbook and a short data dictionary, assumptions and source information.</td><td>Include RawData, Analysis, Dashboard and ReadMe sheets.</td></tr><tr><th scope="row">Quality control</th><td>Record checks for missing IDs, returned orders, row counts and calculated totals.</td><td>Six original orders; five Completed; one Returned.</td></tr><tr><th scope="row">Recommendation</th><td>Connect the finding to a decision, but distinguish evidence from causal claims.</td><td>East has the most completed revenue; explore why before changing inventory.</td></tr></tbody></table></div><div class="learning-scenario"><div><h6>Try it on your own</h6><p class="learning-scenario-task">Hand over an Excel workbook and a short QA checklist explaining what you verified and how.</p></div><details class="learning-answer"><summary>Reveal the verification guide</summary><p class="learning-result">Acceptance checks: five Completed orders; 578000 recognized revenue; 135000 profit. Your evidence should include at least one failed-data scenario.</p><p class="learning-caution">Common mistake to avoid: Do not submit an attractive dashboard with broken structured references or unrefreshed Pivots.</p></details></div></section>
+
 <section class="mastery-section"><h5>03 · Worked example</h5><pre class="mastery-code is-code" tabindex="0"><code>Acceptance controls:
 Completed Order Count: =COUNTIF(Sales[Status],"Completed")
 Completed Revenue: =SUMIFS(Sales[Revenue],Sales[Status],"Completed")
@@ -1130,7 +1151,7 @@ Completed Profit: SUMIFS over a calculated Profit column</code></pre>
 </div>
 </section>
 <section class="certificate-section searchable" id="certificate">
-<div class="capstone-route-panel"><div class="capstone-route-top"><img alt="Capstone project icon" height="57" src="../assets/icon-capstone.svg" width="57"/><div><span class="capstone-eyebrow">FINAL MILESTONE · ASSESSED PROJECT</span><h3>Finish your course with a capstone</h3></div></div>
+<div class="capstone-route-panel"><div class="capstone-route-top"><img alt="Capstone project icon" height="57" src="../assets/icons/icon-capstone.svg" width="57"/><div><span class="capstone-eyebrow">FINAL MILESTONE · ASSESSED PROJECT</span><h3>Finish your course with a capstone</h3></div></div>
 <p>Complete all ten weeks, submit your Excel Data Analysis project with screenshots and original files, then receive a score and written feedback directly from your instructor when your assessment is published. A passing result (70/100 or above) qualifies for a database-registered course-completion certificate.</p>
 <div class="capstone-route-actions"><a class="btn primary" href="../capstone.html?course=excel">Submit Excel capstone →</a><a class="btn" href="../account.html">My learning dashboard ↗</a></div>
 <p class="capstone-route-small">Files are private to your account. The score and certificate require your instructor’s published assessment; checking off lessons alone no longer generates a new certificate.</p>
@@ -1150,7 +1171,7 @@ Completed Profit: SUMIFS over a calculated Profit column</code></pre>
 <div class="toast" id="toast">Progress saved.</div>
 <script>
 const sidebar = document.getElementById('sidebar');
-// Mobile drawer is controlled by course-layout-theme-v57.js.
+// Mobile drawer is controlled by course-layout-theme.js.
 document.querySelectorAll('.nav-link').forEach(a=>a.addEventListener('click',()=>sidebar.classList.remove('open')));
 
 function toast(msg){
@@ -1234,21 +1255,22 @@ loadProgress();
 </script>
 <a aria-label="Back to learning portal" class="portal-home-btn" href="../index.html">← Learning Portal</a>
 <script>window.ZAH_COURSE_SLUG='excel';window.ZAH_COURSE_TITLE='Excel Data Analysis';window.ZAH_PROGRESS_KEY='excelRoadmapProgress';</script>
-<script defer="" src="../assets/progress-cloud.js?v=20261021.3"></script>
-<script defer="" src="../assets/course-sync.js?v=20261022.20"></script>
-<script defer="" src="../assets/course-account.js?v=20261021.3"></script>
-<script defer="" src="../assets/modern.js?v=20261022.16"></script><script defer="" src="../assets/course-studio-data.js?v=20261015.3"></script>
-<script defer="" src="../assets/learner-companion.js?v=20261022.20"></script><script defer="" src="../assets/course-checkpoints.js?v=20261022.17"></script><script defer="" src="../assets/responsive-v2.js?v=20261015.3"></script><script defer="" src="../assets/workspace-shell.js?v=20261031.90"></script><script defer="" src="../assets/weekly-workspace.js?v=34"></script><script defer="" src="../assets/theme-control-v14.js?v=20261022.18"></script>
-<script defer="" src="../assets/course-mobile-v21.js?v=20261022.22"></script>
-<script defer="" src="../assets/accessibility-v23.js?v=20261031.91"></script><script defer="" src="../assets/course-polish-v29.js?v=20261023.29"></script>
-<script defer src="../assets/course-experience-v56.js?v=20261022.22"></script>
+<script defer="" src="../assets/scripts/progress-cloud.js"></script>
+<script defer="" src="../assets/scripts/course-sync.js"></script>
+<script defer="" src="../assets/scripts/course-account.js"></script>
+<script defer="" src="../assets/scripts/modern.js"></script><script defer="" src="../assets/scripts/course-studio-data.js"></script>
+<script defer="" src="../assets/scripts/learner-companion.js"></script><script defer="" src="../assets/scripts/course-checkpoints.js"></script><script defer="" src="../assets/scripts/responsive.js"></script><script defer="" src="../assets/scripts/workspace-shell.js"></script><script defer="" src="../assets/scripts/weekly-workspace.js"></script>
+<script defer="" src="../assets/scripts/course-mobile.js"></script>
+<script defer="" src="../assets/scripts/accessibility.js"></script><script defer="" src="../assets/scripts/course-polish.js"></script>
+<script defer src="../assets/scripts/course-experience.js"></script>
 
 
-<script defer src="../assets/course-mobile-drawer-v80.js?v=80"></script>
+<script defer src="../assets/scripts/course-mobile-drawer.js"></script>
 
 
 
 
 
-<script defer src="../assets/theme-bridge-v65.js?v=65"></script><script defer src="../assets/week10-capstone-v75-excel.js?v=75"></script><script defer src="../assets/learning-experience-v84.js?v=20261031.90"></script><script defer src="../assets/catalog-data-v97.js?v=97"></script><script defer src="../assets/learning-catalog-v97.js?v=97"></script></body>
+<script defer src="../assets/scripts/embedded-palette-sync.js"></script><script defer src="../assets/scripts/week10-capstone-excel.js"></script><script defer src="../assets/scripts/learning-experience.js"></script><script defer src="../assets/scripts/catalog-data.js"></script><script defer src="../assets/scripts/learning-catalog.js"></script><script defer src="../assets/scripts/experience.js"></script>
+</body>
 </html>

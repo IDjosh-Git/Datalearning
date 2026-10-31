@@ -4,11 +4,11 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=x=>fs.readFileSync(path.join(root,x),'utf8');
-const page=read('index.html'),learner=read('capstone.html'),owner=read('reviewer.html'),db=read('supabase_setup.sql');
+const page=read('index.html'),learner=read('capstone.html'),owner=read('reviewer.html'),db=read('database/migrations/supabase_setup.sql');
 for(const slug of ['excel','sql','powerbi','ai']){
  assert(page.includes(`data-track="${slug}"`));
  assert(learner.includes(`data-course="${slug}"`));
- assert(fs.existsSync(path.join(root,`assets/icon-${slug}.svg`)));
+ assert(fs.existsSync(path.join(root,`assets/icons/icon-${slug}.svg`)));
  assert(read(`courses/${slug}.html`).includes(`../capstone.html?course=${slug}`));
 }
 for(const id of ['learnerName','projectTitle','projectSummary','evidenceInput','reviewStatus','certificatePaper','downloadCertificate'])assert(learner.includes(`id="${id}"`),id);
@@ -16,7 +16,7 @@ for(const id of ['reviewGate','reviewApp','reviewSearch','reviewCourse','reviewF
 assert(learner.includes('Photos or screenshots preferred'),'Photo preference is visible');
 assert(learner.includes('capstone-evidence')===false,'Storage references remain in JS, not markup');
 assert(owner.includes('exceljs@4.4.0'),'XLSX in-page preview');
-const ownerJs=read('assets/reviewer.js');
+const ownerJs=read('assets/scripts/reviewer.js');
 for(const term of ['createSignedUrl','download(f.path)','new window.ExcelJS.Workbook',"db().rpc('submit_capstone_review'",'window.confirm','published_score'])assert(ownerJs.includes(term),term);
 assert(ownerJs.includes(".from('capstone_reviewers')"),'Owner login allowlist enforced');
 assert(ownerJs.includes('PENDING'),'Only pending submissions may be scored');
@@ -33,11 +33,11 @@ assert(!db.includes('if now() < s.review_due_at'),'Five-day wait does not delay 
 assert(!fs.existsSync(path.join(root,'api/review-capstones.js')),'AI grading endpoint removed');
 assert(!read('vercel.json').includes('crons'),'No scheduled grader');
 assert(!learner.toLowerCase().includes('ai review provider'),'Learners are not sent to an AI grader');
-assert(read('OWNER_SETUP.sql').includes('00000000-0000-0000-0000-000000000000'),'Owner UID setup instructions');
+assert(read('database/migrations/OWNER_SETUP.sql').includes('00000000-0000-0000-0000-000000000000'),'Owner UID setup instructions');
 console.log('PASS manual grading: private reviewer gate, searchable inbox, photo/PDF/text/XLSX previews, protected score publication, no AI grader or cron');
 
 // Instructor-only learner progress monitor.
-const progressPage=read('progress.html'),progressJs=read('assets/progress-admin.js');
+const progressPage=read('progress.html'),progressJs=read('assets/scripts/progress-admin.js');
 for(const id of ['progressGate','progressApp','statLearners','statTracks','statCompleted','statReview','progressLearner','progressCourse','progressStatus','progressBody','learnerDetail','weekGrid'])assert(progressPage.includes(`id="${id}"`),id);
 assert(read('account.html').includes('href="progress.html"'),'Instructor workspace links to learner progress');
 assert(owner.includes('href="progress.html"'),'Review desk links to learner progress');
@@ -56,6 +56,6 @@ assert(!progressJs.includes("schema('api')"),'No custom API schema dependency re
 assert(progressJs.includes("introduction:'Introduction'")&&progressJs.includes('introduction:8'),'Instructor dashboard understands 8-lesson Introduction');
 assert(progressJs.includes("return 'not_started'")&&progressPage.includes('value="not_started"'),'Instructor dashboard labels zero-activity learners Not Started');
 assert(db.includes("p_course_slug not in ('introduction','excel','sql','powerbi','python','ai')"),'Instructor detail accepts Introduction and AI');
-for(const p of ['index.html','account.html','auth.html','capstone.html','progress.html','reviewer.html','reference.html','tutor.html','verify.html','courses/introduction.html','courses/excel.html','courses/sql.html','courses/powerbi.html']){const html=read(p);assert(html.includes('theme-polish.css'),`Unified theme CSS ${p}`);assert(html.includes('dalp-theme'),`Early theme init ${p}`)}
+for(const p of ['index.html','account.html','auth.html','capstone.html','progress.html','reviewer.html','reference.html','tutor.html','verify.html','courses/introduction.html','courses/excel.html','courses/sql.html','courses/powerbi.html']){const html=read(p);assert(html.includes('site-refresh.css'),`Unified theme CSS ${p}`);assert(html.includes('data-theme="light"'),`Light-only page setup ${p}`)}
 console.log('PASS instructor progress: public RPC wrapper, private allowlist, learner-name dropdown, aggregate progress, lesson/week drill-down');
-console.log('PASS unified light/dark theme layer across learner, instructor, course and utility pages');
+console.log('PASS shared light-only presentation across learner, instructor, course and utility pages');

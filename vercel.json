@@ -40,7 +40,7 @@
       ]
     },
     {
-      "source": "/assets/(admin-dashboard|admin-console|progress-admin|reviewer)\\.(js|css)",
+      "source": "/assets/(scripts|styles)/(admin-dashboard|admin-console|progress-admin|reviewer)\\.(js|css)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -58,7 +58,7 @@
       ]
     },
     {
-      "source": "/service-worker-v23.js",
+      "source": "/service-worker.js",
       "headers": [
         {
           "key": "Cache-Control",
@@ -67,28 +67,6 @@
         {
           "key": "Service-Worker-Allowed",
           "value": "/"
-        }
-      ]
-    },
-    {
-      "source": "/service-worker-v24.js",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "no-cache, no-store, must-revalidate"
-        },
-        {
-          "key": "Service-Worker-Allowed",
-          "value": "/"
-        }
-      ]
-    },
-    {
-      "source": "/assets/dashboard-analytics-v28.css",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=3600, stale-while-revalidate=86400"
         }
       ]
     }

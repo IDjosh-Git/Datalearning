@@ -1,4 +1,0 @@
-/* Progressive reference list avoids initial rendering of hundreds of cards. */
-.dl-ref-more{display:block;margin:22px auto 12px;padding:13px 27px;min-height:46px;border:1px solid #d3dfe9;border-radius:11px;background:#254559;color:white;font:800 13px system-ui;cursor:pointer}
-.dl-ref-more:hover{background:#19384c}.dl-ref-more[hidden]{display:none!important}
-.dl-ref-more:focus-visible{outline:3px solid #f27329;outline-offset:3px}

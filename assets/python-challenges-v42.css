@@ -1,4 +1,0 @@
-/* Python challenge styling, harmonized with Practice Arena */
-.pc-brand-pill img[src$="icon-python.svg"]{width:22px;height:22px;object-fit:contain}
-#practiceDetail:has(.pc-overline:first-child) #practiceAnswer{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;tab-size:4}
-#practiceCheck:disabled{opacity:.55;cursor:progress}

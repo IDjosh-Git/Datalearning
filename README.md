@@ -1,49 +1,52 @@
-> **Tutor Studio v87:** See [TUTOR_STUDIO_V87_QA.md](TUTOR_STUDIO_V87_QA.md) for optional Groq/OpenAI setup, privacy, test results, and staging limitations. No AI API key is bundled.
-
-# Data Analysis Learning Path — v86 Colour System
-
-The latest release adds a calm warm-white / deep-ink design system with teal actions, six track accents, consistent semantic states, and system-aware light/dark preference across all 25 HTML routes. See `COLOUR_SYSTEM_V86_QA.md` for the palette, implementation notes, regression results and staging limitations.
-
-To validate: `npm test && npm run test:colour:v86 && npm run test:arena:v85 && npm run test:responsive && npm run test:experience && npm run verify:deployment`.
-
----
-
-> **v85 Practice Arena update:** See [PRACTICE_ARENA_PRODUCT_V85_QA.md](PRACTICE_ARENA_PRODUCT_V85_QA.md) for the challenge-browser, grading-feedback, course-linking and test changes.
-
 # Data Analysis Learning Path
 
-A practical learning experience designed to help you build confidence in Excel, SQL, Power BI and AI-assisted data analysis. Learn at your own pace, use the included practice files and pick up where you left off.
+A light-only, responsive learning platform for data analysis, Excel, SQL, Power BI, Python and AI-assisted analytics. Includes self-paced courses, practical exercises, downloadable datasets, learner progress, quizzes, certificates, a Practice Arena, an AI learning tutor, and administrator tools.
 
 ## Getting started
 
-1. Open the learning website. If you are new, create an account, verify your email if prompted, and sign in.
-2. Begin with **Introduction to Data Analysis** if you are just getting started.
-3. Choose a course and open the next week in your learning journey.
-4. Each week includes explanations, guided practice and a knowledge check.
-5. Find the accompanying dataset in the **Practice resources** area near the top of the course.
-6. Check **My account** whenever you want to see your progress, quiz results or project feedback.
+1. Review `.env.example` and `docs/SUPABASE_SETUP.txt` for authentication and API setup. Never put service-role credentials or other secret keys into browser JavaScript.
+2. Install Node.js 24 and run `npm install`.
+3. Run `npm run verify:deployment` before deploying to Vercel.
+4. Deploy using the existing `vercel.json` configuration and configure environment variables on the hosting platform.
 
-## Your learning tools
+This is a multi-page static application with serverless API routes. Its `build` command verifies project integrity; it is **not** a compilation step. For authentication and remote services, test via an HTTP server or a configured staging deployment rather than opening pages with `file://`.
 
-- **Weekly courses:** Study one week at a time, with easy Previous and Next controls.
-- **Practice resources:** Download sample datasets and follow worked examples.
-- **Practice Arena:** Strengthen your skills with hands-on challenges.
-- **Learning Tutor:** Get additional explanations as you study.
-- **Capstone Studio:** Submit your project when you finish a course.
-- **My account:** Review your completed weeks, assessments and certificates.
+## Project layout
 
-## For administrators
+| Path | Contents |
+| --- | --- |
+| `index.html`, root `*.html` | Public and authenticated website pages |
+| `courses/` | Six teaching tracks and their routes |
+| `assets/styles/` | Compiled page-specific styling, shared access CSS and final `site-refresh.css` plus the new `experience.css` learning and accessibility layer |
+| `assets/scripts/` | Browser code, local exercises, progress, and navigation |
+| `assets/icons/` | Brand and learning-track icons |
+| `downloads/` | Learner downloads and practice datasets |
+| `curriculum/` | Current curriculum source data and regeneration utilities |
+| `api/`, `lib/`, `middleware.js` | Serverless tutor, session verification, and access controls |
+| `database/migrations/` | Database setup and migrations (server-side only) |
+| `docs/` | Current setup guidance and cleanup report |
+| `tests/` | Active automated checks; no retired release test scripts |
 
-Administrators use the same sign-in screen as learners. After signing in with an authorised account, open the **Admin dashboard** to manage learners, view course reports, review submissions and publish feedback.
+The 39 CSS files are page-oriented compatibility bundles. They replace over 120 individually loaded, version-suffixed stylesheets and preserve their cascade order, including splits at embedded page styles. The final shared light-only base is in `assets/styles/site-refresh.css`; `assets/styles/experience.css` is the **last loaded** stylesheet for motion, card geometry, responsive reading layouts and semantic learning tables. Make new presentation changes in `experience.css`, and avoid restoring versioned CSS bundles.
 
-## Your progress and privacy
+## Learning and interface improvements
 
-Your learning activity is linked to your account. You may continue on another device after your latest changes have been saved. If the connection is interrupted, completed activities may remain on your device until you reconnect. Learner records are private and accessible to authorised staff where necessary.
+All 26 HTML routes now load the shared `experience.css` and `experience.js` enhancement layer. The six course routes include 58 accessible concept tables (three examples per unit) and all 50 specialist modules now have guided practice prompts with learner-revealed verification and pitfall explanations. The original quizzes, project grading and progress logic remain unchanged. Motion honours reduced-motion preferences and the course tables support horizontal scrolling and keyboard focus on smaller viewports.
 
-These courses provide records of completion. They do not replace an accredited professional certification.
+## Verification commands
 
-## Help
+```sh
+npm run build
+npm run lint
+npm test
+npm run test:responsive
+npm run test:security
+npm run test:learning
+npm run test:arena
+npm run test:tutor
+npm run verify:deployment
+```
 
-If sign-in, progress saving or project submission does not work, refresh the page, check your connection and try again. Contact your course administrator if the issue continues.
+**Validation limit:** The automatic tests check local URLs, source syntax, course and interactive logic with mocks, offline exercises, authorization and layout rules. Real sign-in, database synchronization, AI provider requests and browser interaction must be tested in a configured staging environment with test accounts.
 
-*For site maintainers: the separate technical setup reference contains deployment and maintenance instructions.*
+Further details: [`docs/CLEANUP_REPORT.md`](docs/CLEANUP_REPORT.md) and [`docs/FRONTEND_AND_CURRICULUM_HANDOFF.md`](docs/FRONTEND_AND_CURRICULUM_HANDOFF.md).

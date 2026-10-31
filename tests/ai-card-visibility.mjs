@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 const read=x=>fs.readFileSync(x,'utf8');
-const home=read('index.html'), account=read('account.html'), css=read('assets/modern.css');
+const home=read('index.html'), account=read('account.html'), css=read('assets/styles/home.css');
 assert.equal((home.match(/data-track="ai"/g)||[]).length,1,'AI course must appear exactly once on homepage');
 assert(home.indexOf('data-track="ai"')>home.indexOf('data-track="intro"'),'AI must follow Introduction');
 assert(home.indexOf('data-track="ai"')>home.indexOf('data-track="powerbi"'),'AI must be the last course');

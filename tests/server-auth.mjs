@@ -15,8 +15,8 @@ function fakeRes(){return {headers:{},statusCode:0,setHeader(k,v){this.headers[k
 assert.equal(restrictedKind('/admin.html'),'adminPage');
 assert.equal(restrictedKind('/reviewer'),'adminPage');
 assert.equal(restrictedKind('/progress.html'),'adminPage');
-assert.equal(restrictedKind('/assets/admin-dashboard.js'),'adminAsset');
-assert.equal(restrictedKind('/assets/admin-console.css'),'adminAsset');
+assert.equal(restrictedKind('/assets/scripts/admin-dashboard.js'),'adminAsset');
+assert.equal(restrictedKind('/assets/styles/admin.css'),'adminAsset');
 assert.equal(restrictedKind('/OWNER_SETUP.sql'),'deny');
 assert.equal(restrictedKind('/lib/server-auth.js'),'deny');
 assert.equal(restrictedKind('/courses/sql.html'),null);
