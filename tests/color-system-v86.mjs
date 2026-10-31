@@ -33,7 +33,7 @@ const luminance=hex=>{
  return values[0]*.2126+values[1]*.7152+values[2]*.0722;
 };
 const ratio=(a,b)=>{const x=luminance(a),y=luminance(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05)};
-const pairs=[['--text-main','--background'],['--text-main','--surface'],['--text-muted','--surface'],['--text-muted','--surface-alt'],['--primary','--background'],['--on-primary','--primary'],['--on-primary','--primary-hover'],['--focus-ring','--background'],['--positive','--surface'],['--warning-text','--surface'],['--danger','--surface'],['--info','--surface'],...['foundations','excel','sql','powerbi','python','ai'].map(k=>[`--track-${k}`,'--surface'])];
+const pairs=[['--text-main','--background'],['--text-main','--surface'],['--text-muted','--surface'],['--text-muted','--surface-alt'],['--learning-accent','--background'],['--on-primary','--primary'],['--on-primary','--primary-hover'],['--focus-ring','--background'],['--positive','--surface'],['--warning-text','--surface'],['--danger','--surface'],['--info','--surface'],...['foundations','excel','sql','powerbi','python','ai'].map(k=>[`--track-${k}`,'--surface'])];
 for(const [theme,colors] of Object.entries(sets))for(const [a,b] of pairs){
  assert(colors[a]&&colors[b],`${theme}: missing ${a} or ${b}`);
  assert(ratio(colors[a],colors[b])>=4.5,`${theme} ${a} on ${b} ${ratio(colors[a],colors[b]).toFixed(2)}:1 below AA`);
@@ -47,7 +47,7 @@ for(const segment of ['.lp-course[data-track="excel"]','body[data-responsive-pag
 const themeScript=read('assets/theme-control-v14.js');
 assert(themeScript.includes("['system','System']"),'No System preference');
 assert(themeScript.includes('media?.addEventListener'),'No OS preference change observer');
-assert(themeScript.includes("'#0e1724':'#f8f9f6'"),'Browser theme-colour must track canvas');
+assert(themeScript.includes("'#0e1b28':'#f7f8f5'"),'Browser theme-colour must track canvas');
 const prepaint=read('index.html').match(/<script id="dalp-theme-prepaint">([\s\S]*?)<\/script>/)[1];
 for(const [value,osDark,expected] of [[null,false,'light'],[null,true,'dark'],['light',true,'light'],['dark',false,'dark'],['system',true,'dark']]){
  const rootElement={dataset:{},style:{},classList:{toggle(){}}};

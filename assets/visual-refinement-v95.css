@@ -1,0 +1,319 @@
+/* Data Analysis Learning Path — visual refinement v95.
+   This is a presentation-only layer. Semantic source: color-system-v86.css.
+   Loaded last on every route. No learning logic, navigation or authentication changes. */
+
+/* Accessible consistent foundation, with calm reading surfaces. */
+html[data-theme] {
+  background: var(--background);
+  color:var(--text-main);
+  scrollbar-color:var(--border-strong) var(--background);
+}
+html[data-theme] body {
+  color:var(--text-main);
+  background:var(--background)!important;
+  font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+html[data-theme] :is(h1,h2,h3,h4,h5,h6) {
+  color:var(--text-main);
+  letter-spacing:-.022em;
+  text-wrap:balance;
+}
+html[data-theme] :is(p,li,dd) {line-height:1.62}
+html[data-theme] :is(main,article,section,aside) {border-color:var(--border-subtle)}
+html[data-theme] ::selection {background:var(--learning-soft);color:var(--text-main)}
+html[data-theme] :is(a,button,input,select,textarea,summary,[role="button"]):focus-visible {
+  outline:3px solid var(--focus-ring)!important;outline-offset:3px!important;
+  box-shadow:0 0 0 6px var(--background)!important;
+}
+/* Header is an intentional navy brand anchor in both themes. */
+html[data-theme] :is(.nav-shell,.dl-shell-header,.ac-topbar){
+  background:var(--nav-background)!important;
+  color:var(--nav-text)!important;
+  border-bottom:1px solid rgb(255 255 255 / .14)!important;
+  box-shadow:0 3px 18px rgb(8 28 41 / .075);
+}
+html[data-theme] :is(.nav-shell,.dl-shell-header,.ac-topbar)
+  :is(.wordmark,.wordmark strong,.wordmark small,.brand,.logo,.nav-links a,.dl-shell-actions a,.dl-shell-nav a,.ac-nav a){
+  color:var(--nav-text)!important;
+  -webkit-text-fill-color:currentColor!important;
+}
+html[data-theme] :is(.nav-shell,.dl-shell-header,.ac-topbar)
+  :is(.nav-links a,.dl-shell-nav a,.ac-nav a):hover {
+  color:#c8eee5!important;
+  background:rgb(255 255 255 / .09)!important;
+}
+html[data-theme] :is(.nav-shell,.dl-shell-header,.ac-topbar)
+  :is(a.active,a[aria-current="page"]){
+  background:rgb(122 210 190 / .18)!important;
+  color:#c4f3e6!important;
+  border-color:rgb(122 210 190 / .35)!important;
+}
+html[data-theme] .nav-shell :is(.nav-toggle,.account-link){
+  color:var(--nav-text)!important;
+  border-color:rgb(255 255 255 / .28)!important;
+}
+html[data-theme] .nav-shell .account-link{background:rgb(255 255 255 / .10)!important}
+html[data-theme] .nav-shell .account-link:hover{background:rgb(255 255 255 / .17)!important}
+html[data-theme] :is(.lp-context-bar,.lp-context-nav,.dl-shell-tabs){
+  background:var(--background)!important;color:var(--text-muted);
+  border-color:var(--border-subtle)!important;
+}
+html[data-theme] :is(.lp-context-chip.active,.lp-context-chip[aria-current="page"],
+  .dl-shell-tabs a.active){
+  background:var(--learning-soft)!important;
+  border-color:var(--learning-accent)!important;
+  color:var(--link)!important;
+}
+/* Controls: navy action, teal selection/progress, course colour only for identity. */
+html[data-theme] :is(.lp-primary,.lp-studio-cta,.lp-course-cta,.lp-pathfinder-submit,
+  .dl-resume-cta,.dlp-next-primary,.btn.primary,.button.primary,
+  .tutor-send,.tutor-submit,.cap-primary,.ac-primary,.ps-primary,.hub-primary,
+  button.primary,a.primary,#hubOpen,.auth-submit){
+  background:var(--primary)!important;
+  border:1px solid var(--primary)!important;
+  color:var(--on-primary)!important;
+  -webkit-text-fill-color:var(--on-primary)!important;
+  font-weight:700;
+  border-radius:var(--radius-md);
+  box-shadow:none!important;
+  transition:background-color .18s var(--motion-ease),border-color .18s var(--motion-ease),
+    box-shadow .18s var(--motion-ease),transform .18s var(--motion-ease);
+}
+html[data-theme] :is(.lp-primary,.lp-studio-cta,.lp-course-cta,.lp-pathfinder-submit,
+  .dl-resume-cta,.dlp-next-primary,.btn.primary,.button.primary,
+  .tutor-send,.tutor-submit,.cap-primary,.ac-primary,.ps-primary,.hub-primary,
+  button.primary,a.primary,#hubOpen,.auth-submit):hover:not(:disabled):not([aria-disabled="true"]){
+  background:var(--primary-hover)!important;border-color:var(--primary-hover)!important;
+  box-shadow:0 5px 15px rgb(10 36 51 / .12)!important;
+  transform:translateY(-1px);
+}
+html[data-theme] :is(.lp-primary,.btn.primary,.button.primary,.hub-primary):active{transform:translateY(0)}
+html[data-theme] :is(.lp-secondary,.ps-secondary,.btn.secondary,.button.outline,
+  .cap-outline,.tutor-toolbar-btn,.hub-close,.ac-outline){
+  color:var(--text-main)!important;
+  background:var(--surface)!important;
+  border:1px solid var(--border-strong)!important;
+  border-radius:var(--radius-md);
+  box-shadow:none!important;
+  transition:background-color .18s var(--motion-ease),border-color .18s var(--motion-ease);
+}
+html[data-theme] :is(.lp-secondary,.ps-secondary,.btn.secondary,.button.outline,
+  .cap-outline,.tutor-toolbar-btn,.hub-close,.ac-outline):hover{
+  background:var(--surface-alt)!important;border-color:var(--learning-accent)!important;
+}
+html[data-theme] :is(.lp-filter.active,.lp-context-chip.active,.tutor-mode-button.active,
+  .tutor-mode-button[aria-pressed="true"],.pc-item.selected,.cap-track.active,
+  .dlp29-tab[aria-selected="true"],.arena-subject-options [aria-pressed="true"],
+  .arena-subject-options .active){
+  background:var(--learning-soft)!important;
+  color:var(--link)!important;
+  border-color:var(--learning-accent)!important;
+}
+html[data-theme] :is(button:disabled,.btn:disabled,[aria-disabled="true"]){
+  opacity:.62!important;filter:saturate(.72);cursor:not-allowed!important;
+  box-shadow:none!important;transform:none!important;
+}
+html[data-theme] :is(input,select,textarea,[role="textbox"]){accent-color:var(--learning-accent)}
+html[data-theme] :is(.auth-field input,.cap-input,.ip-filters input,.ip-filters select,
+  .tutor-chat textarea,.tutor-context-select,.ref-controls input,.lp-search input,
+  .filter-bar input,.filter-bar select){
+  background:var(--field-background)!important;
+  color:var(--text-main)!important;
+  border-color:var(--border-subtle)!important;
+  border-radius:var(--radius-sm);
+}
+html[data-theme] :is(.auth-field input,.cap-input,.tutor-chat textarea,
+  .ref-controls input,.lp-search input):focus{border-color:var(--learning-accent)!important}
+html[data-theme] a:not(.lp-primary):not(.lp-course-cta):not(.wordmark):not(.hub-primary){text-underline-offset:3px}
+/* Cards: restrained edge treatment, no gratuitous gradients or huge shadows. */
+html[data-theme] :is(.lp-course,.lp-feature,.lp-step,.lp-quick-card,.lp-smart-panel,
+  .lp-pathfinder,.lp-trust-strip,.ip-panel,.ac-section,.cap-panel,.cap-side-panel,
+  .ref-card,.prompt-card,.tutor-sidebar,.chat-panel,.arena-learning-brief,
+  .arena-support-card,.cv88-map,.cv88-lesson-contract,.dl-track,.dl-tool,
+  .week,.lesson,.mastery-section,.ps-card,.ps-focus,.pc-hero,.pc-detail,.pc-sidebar){
+  background-color:var(--surface)!important;
+  border:1px solid var(--border-subtle)!important;
+  border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-soft);
+}
+html[data-theme] :is(.lp-course,.lp-quick-card,.dl-tool,.ref-card,.prompt-card){
+  transition:transform .2s var(--motion-ease),box-shadow .2s var(--motion-ease),border-color .2s var(--motion-ease);
+}
+html[data-theme] :is(.lp-course,.lp-quick-card,.dl-tool,.ref-card,.prompt-card):hover{
+  border-color:var(--border-strong)!important;
+  box-shadow:var(--shadow-raised);
+  transform:translateY(-2px);
+}
+html[data-theme] :is(.lp-course,.lp-quick-card,.dl-tool,.ref-card,.prompt-card):focus-within{
+  border-color:var(--learning-accent)!important;
+}
+html[data-theme] :is(.lp-course,.lp-feature,.lp-step,.dl-track) :is(p,small,.muted){color:var(--text-muted)}
+html[data-theme] :is(.lp-course,.lp-feature,.lp-step,.dl-track) :is(h2,h3,h4){color:var(--text-main)}
+html[data-theme] :is(.lp-hero,.lp-hero::before,.lp-hero::after,.lp-pathfinder){
+  /* Ambient styles from earlier versions should not overpower long-form reading. */
+  background-image:none!important;
+}
+html[data-theme] .lp-hero{background:var(--background)!important}
+html[data-theme] .lp-hero :is(h1,h2){color:var(--text-main)!important}
+html[data-theme] .lp-hero h1 em{color:var(--link)!important;font-style:normal}
+html[data-theme] .lp-eyebrow,
+html[data-theme] :is(.section-tag,.tutor-kicker,.cap-kicker,.pc-kicker){
+  color:var(--link);letter-spacing:.07em;
+}
+html[data-theme] .lp-demo-inner{background:var(--surface)!important;border-color:var(--border-subtle)!important;color:var(--text-main)}
+html[data-theme] .lp-demo-metric{background:var(--surface-alt)!important;color:var(--text-main)}
+html[data-theme] .lp-demo-chart .lp-demo-bar{background:var(--chart-1)!important}
+html[data-theme] .lp-demo-chart .lp-demo-bar:nth-child(2n){background:var(--chart-2)!important}
+html[data-theme] .lp-demo-chart .lp-demo-bar:nth-child(3n){background:var(--chart-4)!important}
+html[data-theme] .lp-dashboard-strip{background:var(--surface)!important;border-color:var(--border-subtle)!important;color:var(--text-main)}
+html[data-theme] .lp-dashboard-strip :is(small,p){color:var(--text-muted)}
+html[data-theme] .capstone-path-v74{background:var(--surface)!important;border:1px solid var(--border-subtle)!important;border-radius:var(--radius-lg)}
+html[data-theme] .capstone-path-v74 .capstone-path-actions a{background:var(--primary)!important;color:var(--on-primary)!important;border-radius:var(--radius-md)}
+/* Tracking, achievement and other meaningful emphasis. */
+html[data-theme] :is(.progress-fill,.progress-bar>div,.bar>.fill,.ac-course-bar>span,
+  .dl-track-meter>span,.dl-home-meter>span,.ip-progress-fill,.cap-score-row>div>span,
+  .lp-progress-line>span,.cap-progress-track>span){background:var(--learning-accent)!important}
+html[data-theme] :is(.progress-bar,.bar,.dl-track-meter,.dl-home-meter,.ac-course-bar,
+  .cap-progress-track){background:var(--surface-alt)!important}
+html[data-theme] :is(.lp-pill,.lp-course-tag,.badge,.pc-brand-pill){
+  border-color:var(--border-subtle);
+  box-shadow:none!important;
+}
+html[data-theme] :is(.lp-demo-chip,.achievement,.achievement-badge){
+  color:var(--achievement)!important;background:var(--achievement-soft)!important;
+  border-color:var(--achievement)!important;
+}
+html[data-theme] :is(.alert.success,.status-success,.is-success){color:var(--positive)}
+html[data-theme] :is(.alert.warning,.status-warning,.is-warning){color:var(--warning-text)}
+html[data-theme] :is(.alert.error,.status-error,.is-error){color:var(--danger)}
+/* Learning content: warm, quiet and highly readable. */
+html[data-theme] body.dlp-course-v29 :is(.week,.lesson,.mastery-section,.cv88-map,.cv88-lesson-contract){
+  background:var(--surface)!important;color:var(--text-main)!important;
+  border-color:var(--border-subtle)!important;
+}
+html[data-theme] body.dlp-course-v29 :is(.week-header,.mini,.example-box,.try-box,
+  .mistake-box,.answer-note,.recap-box,.session-guide){
+  background:var(--surface-alt)!important;border-color:var(--border-subtle)!important;
+  color:var(--text-main)!important;
+}
+html[data-theme] body.dlp-course-v29 :is(.course-mastery,.mastery-section,.lesson) p{max-width:78ch}
+html[data-theme] :is(.mastery-code,.lesson-code,pre,.arena-worked-code){
+  background:var(--code-background)!important;color:var(--code-text)!important;
+  border:1px solid var(--border-subtle)!important;
+  border-radius:var(--radius-md);
+  max-width:100%;overflow-x:auto;
+}
+html[data-theme] :is(.mastery-code,.lesson-code,pre) code{color:var(--code-text)}
+html[data-theme] :is(.ip-table,.lesson-table,.arena-table,.ide-sheet,.ref-table,.quiz-table,
+  .cv88-map table,table.data-table){border-color:var(--border-subtle);max-width:100%}
+html[data-theme] :is(.ip-table,.lesson-table,.arena-table,.ide-sheet,.ref-table,.quiz-table,
+  .cv88-map table,table.data-table) th{background:var(--surface-alt)!important;color:var(--text-main)!important}
+html[data-theme] :is(.ip-table,.lesson-table,.arena-table,.ide-sheet,.ref-table,.quiz-table,
+  .cv88-map table,table.data-table) td{color:var(--text-main)!important}
+/* Practice Arena: visual consistency, no changes to editors or their events. */
+html[data-theme] body[data-responsive-page="practice"]
+  :is(.pc-hero,.pc-detail,.pc-sidebar,.arena-learning-brief,.arena-support-card,
+  .arena-entry-list,.arena-subject-launcher,.arena-start-guide){
+  background:var(--surface)!important;color:var(--text-main)!important;
+  border-color:var(--border-subtle)!important;
+}
+html[data-theme] body[data-responsive-page="practice"]
+  :is(.arena-subject-options button,.arena-entry-items button){
+  background:var(--surface)!important;color:var(--text-main)!important;
+  border-color:var(--border-subtle)!important;border-radius:var(--radius-md);
+}
+html[data-theme] body[data-responsive-page="practice"]
+  :is(.arena-subject-options button,.arena-entry-items button):hover{
+  background:var(--surface-alt)!important;border-color:var(--learning-accent)!important;
+}
+html[data-theme] body[data-responsive-page="practice"]
+  :is(.ide-panel,.ide-editor,.arena-editor-pane,textarea.sql-editor-textarea,#pythonCode){
+  background:var(--editor-background)!important;color:var(--editor-text)!important;
+  border-color:var(--border-subtle)!important;caret-color:var(--learning-accent);
+}
+html[data-theme] body[data-responsive-page="practice"] :is(.arena-grade.good){border-inline-start-color:var(--positive)!important}
+html[data-theme] body[data-responsive-page="practice"] :is(.arena-grade.needs){border-inline-start-color:var(--warning-text)!important}
+/* Tutor, assessment and reference overlays read as belonging to the same app. */
+html[data-theme] :is(.hub-dialog,.modal-dialog,[role="dialog"],.popover,.dropdown-menu){
+  background:var(--surface-overlay)!important;color:var(--text-main)!important;
+  border-color:var(--border-subtle)!important;border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-raised);
+}
+html[data-theme] :is(.tutor-bubble,.chat-bubble,.tutor-message,.review-stat,.verify-panel){
+  background:var(--surface)!important;color:var(--text-main)!important;border-color:var(--border-subtle)!important;
+}
+html[data-theme] :is(.hub-overlay,.modal-overlay){background:var(--overlay-scrim)}
+/* Charts: avoid chromatically competitive bars and keep contrast with the grid. */
+html[data-theme] :is(.chart-grid,.chart-axis,.chart-label){color:var(--chart-axis);border-color:var(--chart-grid)}
+html[data-theme] :is(.chart-bar,.dashboard-bar){background:var(--chart-1)}
+html[data-theme] :is(.chart-bar:nth-child(2n),.dashboard-bar:nth-child(2n)){background:var(--chart-2)}
+/* Responsive: preserve existing grids but give dense controls safe overflow and finger room. */
+html[data-theme] :is(.lp-context-nav,.nav-links,.dl-shell-nav,.arena-subject-options){overscroll-behavior-x:contain}
+html[data-theme] :is(.ip-table-wrap,.table-scroll,.data-table-wrap,.ide-grid-scroll,
+  .arena-table-scroll,.ide-sheet-wrap){max-width:100%;overflow-x:auto}
+@media (max-width:720px){
+  html[data-theme] :is(.lp-context-nav,.dl-shell-tabs){overflow-x:auto;scrollbar-width:thin}
+  html[data-theme] :is(.lp-course,.lp-feature,.lp-step,.pc-detail,.pc-sidebar){border-radius:14px}
+  html[data-theme] :is(.lp-hero,.lp-pathfinder){background-image:none!important}
+}
+@media (prefers-reduced-motion:reduce){
+  html[data-theme] :is(.lp-course,.lp-quick-card,.dl-tool,.ref-card,.prompt-card,
+    .lp-primary,.btn,.button,.auth-submit,.hub-primary){
+    transition:none!important;animation:none!important;transform:none!important;
+  }
+  html[data-theme] *{scroll-behavior:auto!important}
+}
+@media (forced-colors:active){
+  html[data-theme] :is(a,button,input,select,textarea):focus-visible{outline:3px solid Highlight!important}
+}
+
+/* Explicit specificity for legacy navigation styles that set text colors !important.
+   This keeps links readable on the dark brand header in both modes. */
+html[data-theme] body .nav-shell .nav-links a,
+html[data-theme] body .nav-shell .nav-links a:link,
+html[data-theme] body .nav-shell .nav-links a:visited {
+  color:var(--nav-text)!important;-webkit-text-fill-color:var(--nav-text)!important;
+}
+html[data-theme] body .nav-shell .nav-links a:hover,
+html[data-theme] body .nav-shell .nav-links a:focus-visible {
+  color:#c8eee5!important;-webkit-text-fill-color:#c8eee5!important;
+}
+html[data-theme] body .nav-shell .nav-links a[aria-current="page"] {
+  color:#c8eee5!important;
+}
+@media (max-width:820px) {
+  html[data-theme] body .nav-shell .nav-links:not([hidden]) {
+    background:var(--nav-background)!important;color:var(--nav-text)!important;
+    border-color:rgb(255 255 255 / .18)!important;
+  }
+}
+/* Hero copy remains legible if the app displays the new-learner state. */
+html[data-theme] .lp-hero :is(p,.lp-hero-proof span,.lp-demo-footer){color:var(--text-muted)!important}
+html[data-theme] .lp-hero .lp-hero-proof b{color:var(--text-main)!important}
+html[data-theme] .lp-hero .lp-demo-inner :is(small,.lp-demo-top){color:var(--text-muted)!important}
+
+/* The original login design uses an older orange !important CTA rule. Keep
+   orange only as a small heritage/achievement accent, not the primary action. */
+html[data-theme] body.auth-page :is(.auth-submit,.auth-submit:enabled,
+  .auth-form button[type="submit"],.auth-forms button[type="submit"]){
+  background:var(--primary)!important;
+  border-color:var(--primary)!important;
+  color:var(--on-primary)!important;
+  -webkit-text-fill-color:var(--on-primary)!important;
+  box-shadow:none!important;
+}
+html[data-theme] body.auth-page :is(.auth-submit,.auth-form button[type="submit"]):hover:not(:disabled){
+  background:var(--primary-hover)!important;
+  border-color:var(--primary-hover)!important;
+}
+/* Override the legacy :has(#loginBtn) orange rule at equal/higher specificity. */
+html[data-theme] body.auth-page:has(#loginBtn) button.auth-submit {
+  background:var(--primary)!important;border:1px solid var(--primary)!important;
+  color:var(--on-primary)!important;-webkit-text-fill-color:var(--on-primary)!important;
+  box-shadow:none!important;
+}
+html[data-theme] body.auth-page:has(#loginBtn) button.auth-submit:hover:not(:disabled){
+  background:var(--primary-hover)!important;border-color:var(--primary-hover)!important;
+}

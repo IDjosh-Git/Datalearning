@@ -7,7 +7,7 @@ for(const route of routes){
  const one=html.lastIndexOf(base+'color-system-v86.css'),two=html.lastIndexOf(base+'color-consistency-v89.css');
  assert(one>=0 && two>one,route+': missing or wrongly ordered token/bridge');
  const cssLinks=[...html.matchAll(/<link\b[^>]*?href=["']([^"']+\.css[^"']*)["'][^>]*>/gi)];
- assert.equal(cssLinks[cssLinks.length-1][1].split('?')[0],base+'color-consistency-v89.css',route+': another CSS file can override v89');
+ assert.equal(cssLinks[cssLinks.length-1][1].split('?')[0],base+'visual-refinement-v95.css',route+': visual layer must be last');
  assert(html.includes('dalp-theme-prepaint')&&html.includes('theme-control-v14.js'),route+': system/theme missing');
  if(route.startsWith('courses/')){
    const headEnd=html.toLowerCase().indexOf('</head>');
@@ -25,11 +25,11 @@ function lum(h){const c=[1,3,5].map(i=>parseInt(h.slice(i,i+2),16)/255).map(x=>x
 function ratio(a,b){const x=lum(a),y=lum(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05)}
 let checks=0;
 for(const [mode,p] of Object.entries(themes))for(const [a,b,min] of [
- ['--text-main','--surface',4.5],['--text-muted','--surface',4.5],['--primary','--surface',4.5],['--on-primary','--primary',4.5],['--on-primary','--primary-hover',4.5],
+ ['--text-main','--surface',4.5],['--text-muted','--surface',4.5],['--learning-accent','--surface',4.5],['--on-primary','--primary',4.5],['--on-primary','--primary-hover',4.5],
  ['--focus-ring','--background',3],['--positive','--surface',4.5],['--danger','--surface',4.5],['--warning-text','--surface',4.5],['--info','--surface',4.5],
  ...Array.from({length:6},(_,i)=>['--chart-'+(i+1),'--surface',3])]){
  assert(p[a]&&p[b],mode+' '+a+'/'+b);assert(ratio(p[a],p[b])>=min,`${mode} ${a} ${b}: ${ratio(p[a],p[b]).toFixed(2)}`);checks++;
 }
 assert.match(read('assets/admin-dashboard.js'),/classList\.toggle\('is-error'/);
 assert(!read('assets/admin-dashboard.js').includes("'#fff0eb'"));
-console.log(`PASS v89: ${routes.length} HTML routes, shared theme source last, legacy collisions removed, ${checks} AA/graphical contrast checks, semantic component coverage`);
+console.log(`PASS v89: ${routes.length} HTML routes, shared v95 visual layer last, legacy collisions removed, ${checks} AA/graphical contrast checks, semantic component coverage`);
