@@ -3,8 +3,8 @@
 if(document.body.hasAttribute('data-admin-console')||document.body.classList.contains('auth-page')||/^(verify|connection-test|sync-test)\.html$/.test(location.pathname.split('/').pop()))return;
 const onCourse=location.pathname.includes('/courses/'),root=onCourse?'../':'';
 const page=location.pathname.split('/').pop()||'index.html';
-const links=[['Dashboard','index.html','index'],['Courses','index.html#courses','course'],['Practice Studio','studio.html','studio'],['AI Tutor','tutor.html','tutor'],['Lab','learning-lab.html','learning-lab'],['Library','reference.html','reference'],['Progress','account.html','account']];
-const extra=[['Practice Arena','practice.html'],['Practice Studio','studio.html'],['Learning Lab','learning-lab.html'],['Prompt library','prompt-library.html'],['Capstone studio','capstone.html'],['Study notes & references','reference.html'],['Introduction course','courses/introduction.html'],['Excel course','courses/excel.html'],['SQL course','courses/sql.html'],['Power BI course','courses/powerbi.html'],['AI Integration course','courses/ai.html']];
+const links=[['Dashboard','index.html','index'],['Courses','index.html#courses','course'],['Practice Arena','practice.html','practice'],['AI Tutor','tutor.html','tutor'],['Lab','learning-lab.html','learning-lab'],['Library','reference.html','reference'],['Progress','account.html','account']];
+const extra=[['Practice Arena','practice.html'],['Practice Studio','studio.html'],['Learning Lab','learning-lab.html'],['Prompt library','prompt-library.html'],['Capstone studio','capstone.html'],['Study notes & references','reference.html'],['Introduction course','courses/introduction.html'],['Excel course','courses/excel.html'],['SQL course','courses/sql.html'],['Power BI course','courses/powerbi.html'],['Python course','courses/python.html'],['AI Integration course','courses/ai.html']];
 const active=onCourse?'course':page==='index.html'?'index':page==='admin.html'?'admin':page.replace('.html','');
 const iconSearch='<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg>';
 const bar=document.createElement('header');bar.className='dl-shell';bar.setAttribute('aria-label','Global learning workspace');
@@ -20,8 +20,8 @@ function renderNav(){
  const section=text=>{const p=document.createElement('p');p.className='dl-nav-section';p.textContent=text;nav.append(p)};
  const link=(label,url,id,extra=false)=>{const a=document.createElement('a');a.href=root+url;a.textContent=label;if(extra)a.classList.add('dl-nav-extra');if(id===active)a.setAttribute('aria-current','page');nav.append(a)};
  section('Main navigation');for(const [label,url,id] of links)link(label,url,id);
- section('Courses');for(const [label,url] of [['Introduction','courses/introduction.html'],['Excel','courses/excel.html'],['SQL','courses/sql.html'],['Power BI','courses/powerbi.html'],['AI Integration','courses/ai.html']])link(label,url,null,true);
- section('More tools');for(const [label,url] of [['Practice Arena','practice.html'],['Prompt library','prompt-library.html'],['Capstone studio','capstone.html']])link(label,url,null,true);
+ section('Courses');for(const [label,url] of [['Introduction','courses/introduction.html'],['Excel','courses/excel.html'],['SQL','courses/sql.html'],['Power BI','courses/powerbi.html'],['Python','courses/python.html'],['AI Integration','courses/ai.html']])link(label,url,null,true);
+ section('More tools');for(const [label,url] of [['Practice Studio','studio.html'],['Prompt library','prompt-library.html'],['Capstone studio','capstone.html']])link(label,url,null,true);
  if(window.DALP_ROLE==='admin'){section('Administrator');link('Admin dashboard','admin.html',null,true);link('Progress reports','progress.html',null,true);link('Assessment desk','reviewer.html',null,true)}
 } 
 let drawerPreviousFocus=null;
@@ -53,11 +53,11 @@ tabBar.setAttribute('aria-label','Mobile learning navigation');
 const tabItems=[
  ['Home',root+'index.html','home','<path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/>'],
  ['Courses',root+'index.html#courses','courses','<path d="M3 5.5c4.4-1.2 6.6-.8 9 1v14c-2.4-1.8-4.6-2.2-9-1zM21 5.5c-4.4-1.2-6.6-.8-9 1v14c2.4-1.8 4.6-2.2 9-1z"/>'],
- ['Practice',root+'studio.html','practice','<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h5M8 16h3"/>'],
+ ['Practice',root+'practice.html','practice','<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h5M8 16h3"/>'],
  ['Tutor',root+'tutor.html','tutor','<path d="M4 5h16v12H9l-5 4z"/><path d="M8 10h8M8 13h5"/>']
 ];
 const svgPath=d=>'<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+d+'</svg>';
-const mobileActive=onCourse||page==='index.html'&&location.hash==='#courses'?'courses':page==='index.html'?'home':page==='studio.html'||page==='practice.html'?'practice':page==='tutor.html'?'tutor':'more';
+const mobileActive=onCourse||page==='index.html'&&location.hash==='#courses'?'courses':page==='index.html'?'home':page==='practice.html'?'practice':page==='tutor.html'?'tutor':'more';
 for(const [label,url,key,path] of tabItems){const link=document.createElement('a');link.href=url;link.className='dl-tab'+(mobileActive===key?' is-active':'');if(mobileActive===key)link.setAttribute('aria-current','page');link.innerHTML=svgPath(path)+'<span>'+label+'</span>';tabBar.append(link)}
 const more=document.createElement('button');more.type='button';more.className='dl-tab'+(mobileActive==='more'?' is-active':'');more.setAttribute('aria-label','More learning destinations');more.setAttribute('aria-controls','dlPrimaryNav');more.setAttribute('aria-expanded','false');more.innerHTML=svgPath('<circle cx="5" cy="12" r="1.3"/><circle cx="12" cy="12" r="1.3"/><circle cx="19" cy="12" r="1.3"/>')+'<span>More</span>';tabBar.append(more);
 more.addEventListener('click',()=>{toggleMenu();more.setAttribute('aria-expanded',menu.getAttribute('aria-expanded'))});

@@ -26,7 +26,7 @@ assert.match(css,/data-theme="dark"/);
 assert.match(html,/offline evaluator/);
 assert.match(html,/status are stored locally on this device/);
 assert.match(html,/Execution is not the same as passing/i);
-assert.match(html,/script defer="" src="assets\/practice.js\?v=20261030\.85"/);
+assert.match(html,/script defer="" src="assets\/practice.js\?v=(?:20261030\.85|20261031\.90)"/);
 assert.match(html,/assets\/arena-product-v85.css\?v=85/);
 assert.match(html,/assets\/arena-product-v85.js\?v=85/);
 for(const [f,track] of [['index.html',''],['courses/excel.html','excel'],['courses/sql.html','sql'],['courses/python.html','python']]){

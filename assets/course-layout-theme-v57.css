@@ -1,6 +1,5 @@
 /* v57 semantic course palette, compact quizzes and safe nested scrolling */
-html[data-theme="light"]{--course-bg:#f3f6fa;--course-surface:#fff;--course-subtle:#f4f7fc;--course-text:#172335;--course-muted:#495a6d;--course-edge:#cad5e2;--course-code-bg:#142338;--course-code-text:#f3f7ff;--course-accent:#2053a5;--course-note:#eaf2ff;--course-warm:#fff6e1}
-html[data-theme="dark"]{--course-bg:#0d1625;--course-surface:#162337;--course-subtle:#1c2c43;--course-text:#edf4ff;--course-muted:#c0cee0;--course-edge:#465b76;--course-code-bg:#0a1020;--course-code-text:#f1f5ff;--course-accent:#a5c9ff;--course-note:#243d60;--course-warm:#46391f}
+html[data-theme]{--course-bg:var(--background);--course-surface:var(--surface);--course-subtle:var(--surface-alt);--course-text:var(--text-main);--course-muted:var(--text-muted);--course-edge:var(--border-subtle);--course-code-bg:var(--code-background);--course-code-text:var(--code-text);--course-accent:var(--primary);--course-note:var(--surface-alt);--course-warm:var(--warning-soft)}
 html[data-theme]{--bg:var(--course-bg);--surface:var(--course-surface);--surface-soft:var(--course-subtle);--text:var(--course-text);--muted:var(--course-muted);--border:var(--course-edge);--brand-light:var(--course-note);color-scheme:light}
 html[data-theme="dark"]{color-scheme:dark}
 html,body{width:100%;min-height:100%;overflow-x:clip}

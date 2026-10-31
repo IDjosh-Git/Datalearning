@@ -13,23 +13,14 @@
 
 /* Normalize course-theme variables to Data Analysis Learning Path branding */
 :root{
-  --bg:#F2F2F2 !important;
-  --surface:#ffffff !important;
-  --surface-soft:#e7eef2 !important;
-  --surface-warm:#fff0e7 !important;
-  --text:#1c2830 !important;
-  --muted:#667681 !important;
-  --green:#254559 !important;
-  --green-dark:#18313f !important;
-  --green-deep:#102832 !important;
-  --green-light:#e7eef2 !important;
-  --brand:#254559 !important;
-  --brand-dark:#18313f !important;
-  --brand-deep:#102832 !important;
-  --brand-light:#e7eef2 !important;
-  --gold:#F27329 !important;
-  --blue:#254559 !important;
-  --border:#dce5e9 !important;
+  /* Course-specific visual branding remains navy/orange; semantic UI comes from v86. */
+  --bg:var(--background);--surface-soft:var(--surface-alt);
+  --surface-warm:var(--warning-soft);--text:var(--text-main);
+  --muted:var(--text-muted);--brand:var(--primary);
+  --brand-dark:var(--primary-hover);--brand-light:var(--primary-soft);
+  --border:var(--border-subtle);
+  --green:var(--track-excel);--gold:var(--track-powerbi);
+  --blue:var(--track-sql);
 }
 
 body{background:var(--zah-offwhite) !important;color:var(--zah-text)}
@@ -46,12 +37,12 @@ body{background:var(--zah-offwhite) !important;color:var(--zah-text)}
 .project{
   background:linear-gradient(135deg,var(--zah-navy-dark),var(--zah-navy)) !important;
 }
-.fill{background:var(--zah-orange) !important}
+.fill{background:var(--primary) !important}
 .btn.primary,.week-num{background:var(--zah-navy) !important;border-color:var(--zah-navy) !important}
 .badge{background:var(--zah-soft-orange) !important;color:#a84913 !important}
 .icon,.score{background:var(--zah-soft-blue) !important;color:var(--zah-navy) !important}
 .complete-label{color:var(--zah-navy) !important}
-.complete-label input{accent-color:var(--zah-orange) !important}
+.complete-label input{accent-color:var(--primary) !important}
 .map-card b{color:var(--zah-navy) !important}
 .toast{background:var(--zah-navy) !important}
 .capstone{

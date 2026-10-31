@@ -11,7 +11,7 @@
  const date=v=>v?new Date(v).toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'}):'—';
  const time=v=>v?new Date(v).toLocaleString(undefined,{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}):'—';
  const latest=dates=>dates.filter(Boolean).sort().at(-1)||null;
- function notice(message,isError=false){const n=$('adminNotice');n.textContent=message;n.style.background=isError?'#fff0eb':'#f0f9f5';n.style.color=isError?'#9e3323':'#1d624c';n.hidden=false}
+ function notice(message,isError=false){const n=$('adminNotice');n.textContent=message;n.classList.toggle('is-error',isError);n.classList.toggle('is-success',!isError);n.hidden=false}
  const group=(items,key)=>{const map=new Map();for(const r of items){const k=r[key];if(!map.has(k))map.set(k,[]);map.get(k).push(r)}return map};
  function rowsFor(uid){return progressByUser.get(uid)||[]}
  function profileStats(user){

@@ -58,7 +58,7 @@
   const banner=document.createElement('aside');banner.className='dalp-lesson-next';banner.setAttribute('aria-label','Your next learning action');
   const heading=document.createElement('div');heading.className='dalp-lesson-next-copy';const label=document.createElement('span');label.className='dalp-next-label';label.textContent='YOUR NEXT STEP';
   const title=document.createElement('strong'),meta=document.createElement('p');heading.append(label,title,meta);
-  const actions=document.createElement('div');actions.className='dalp-next-actions';const next=document.createElement('a');next.className='dalp-next-primary';const practice=document.createElement('a');practice.href='../studio.html?course='+id;practice.textContent='Practise this skill ↗';practice.className='dalp-next-secondary';
+  const actions=document.createElement('div');actions.className='dalp-next-actions';const next=document.createElement('a');next.className='dalp-next-primary';const practice=document.createElement('a');practice.href=['excel','sql','python'].includes(id)?'../practice.html?tool='+({excel:'Excel',sql:'SQL',python:'Python'}[id]):'../studio.html?course='+id;practice.textContent=['excel','sql','python'].includes(id)?'Open Practice Arena ↗':'Open Practice Studio ↗';practice.className='dalp-next-secondary';
   const project=document.createElement('a');project.href='../capstone-guide.html';project.textContent='Project guidelines ↗';project.className='dalp-next-secondary';
   actions.append(next,practice,project);banner.append(heading,actions);
   function update(){const n=nextUnit(c),done=n===0?c.units:n-1;title.textContent=n?`${id==='introduction'?'Lesson':id==='python'?'Module':'Week'} ${n} is next`:'Your learning units are complete';meta.textContent=`${done} of ${c.units} ${c.kind} marked complete on this device. ${n?'Study the next unit, practise, then mark it complete when you understand it.':'Review your work, quizzes and project requirements before submitting.'}`;next.href='../'+nextHref(id);next.textContent=n?`Go to ${id==='introduction'?'lesson':id==='python'?'module':'week'} ${n} →`:'Review course →';}
@@ -86,7 +86,7 @@
    python:[['week2','py_sales_total','Calculate total sales'],['week3','py_group','Revenue by region'],['week4','py_filter','Filter high-value transactions'],['week7','py_average','Average order value']]
   };
   if(onHome){
-   const home=document.querySelector('.ps-home-promo');if(home){
+   const home=document.querySelector('.ps-home-promo');if(home&&!document.querySelector('.dlp90-arena-cta')){
     const section=document.createElement('section');section.className='dalp-arena-home';section.setAttribute('aria-labelledby','dalpArenaHomeTitle');
     section.innerHTML='<div class="dalp-arena-home-copy"><span>TRY IT YOURSELF</span><h2 id="dalpArenaHomeTitle">Practice Arena: learn by doing</h2><p>Choose from 45 SQL, 50 Excel and 54 Python challenges. Run an attempt, check the result and try again. Your progress is stored in this browser.</p></div><div class="dalp-arena-home-links"><a href="practice.html?tool=Excel">Excel formula practice ↗</a><a href="practice.html?tool=SQL">SQL query practice ↗</a><a href="practice.html?tool=Python">Python coding practice ↗</a></div>';
     home.after(section);

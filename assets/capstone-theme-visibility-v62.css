@@ -1,6 +1,5 @@
 /* v62 — capstone foreground/background pairing in light and dark themes. */
-html[data-theme="light"] {--cap62-surface:#ffffff;--cap62-soft:#f3f6fc;--cap62-text:#182438;--cap62-muted:#40516b;--cap62-border:#cbd5e1;--cap62-link:#1d4ed8;}
-html[data-theme="dark"] {--cap62-surface:#182338;--cap62-soft:#202e47;--cap62-text:#f2f6fd;--cap62-muted:#ced9ec;--cap62-border:#485a76;--cap62-link:#9cbdff;}
+html[data-theme] {--cap62-surface:var(--surface);--cap62-soft:var(--surface-alt);--cap62-text:var(--text-main);--cap62-muted:var(--text-muted);--cap62-border:var(--border-subtle);--cap62-link:var(--link)}
 /* Course-end capstone blocks and challenge questions. Keep button colors intact. */
 html[data-theme] body :is(.capstone,.capstone-route-panel,.capstone-challenge,.capstone-challenge-card,.capstone-question,.capstone-task){background:var(--cap62-surface)!important;color:var(--cap62-text)!important;border-color:var(--cap62-border)!important;}
 html[data-theme] body :is(.capstone,.capstone-route-panel,.capstone-challenge,.capstone-challenge-card,.capstone-question,.capstone-task) :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,label,small,strong,em,span):not(.badge):not(.btn):not(.lp-primary){color:var(--cap62-text)!important;opacity:1!important;visibility:visible!important;}

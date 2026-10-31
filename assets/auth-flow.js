@@ -18,6 +18,25 @@
       return u.href;
     }catch(_){return landing.href}
   }
+  // Make account-gated deep links transparent while retaining their full path and query.
+  function explainReturnDestination(){
+    const raw=new URLSearchParams(location.search).get('return');
+    if(!raw)return;
+    const intended=new URL(destination());
+    const labels={
+      'practice.html':'Practice Arena', 'studio.html':'Practice Studio',
+      'tutor.html':'Tutor Studio', 'capstone.html':'Capstone Studio',
+      'account.html':'your learning dashboard', 'reference.html':'Reference Library'
+    };
+    const filename=intended.pathname.split('/').pop();
+    const route=labels[filename]||(/\/courses\/.+\.html$/.test(intended.pathname)?'your selected course':null);
+    if(!route)return;
+    const note=document.createElement('p');
+    note.id='dalp90-return-notice';note.setAttribute('role','status');
+    note.textContent='Sign in to continue to '+route+'. After a successful sign-in, you will return to your requested page'+(filename==='practice.html'&&intended.searchParams.has('challenge')?' and selected challenge':'')+'.';
+    const head=$('authTitle')?.closest('.auth-heading')||$('authTitle')?.parentElement;
+    if(head)head.append(note);
+  }
   function nextAuthUrl(mode){
     const url=new URL('auth.html',location.href);
     const dest=new URL(destination());
@@ -167,6 +186,7 @@
       if(error){message(document.body.dataset.authMode==='create'?'signupMsg':'loginMsg',errorText(error));button.disabled=false}
     });
   });
+  explainReturnDestination();
   const mode=new URLSearchParams(location.search).get('mode');
   const resetCallback=mode==='reset' || /(?:^|[&#])type=recovery(?:&|$)/.test(location.hash);
   setMode(resetCallback?'reset':mode==='create'?'create':'login');

@@ -49,6 +49,12 @@
   --surface-secondary:var(--surface-alt);--text-primary:var(--text-main);
   --text-secondary:var(--text-muted);--border-primary:var(--border-subtle);
   --editor-bg:var(--editor-background);--editor-text-color:var(--editor-text);
+  --chart-grid:var(--border-subtle);--chart-axis:var(--text-muted);
+  --chart-1:#096b64;--chart-2:#295d91;--chart-3:#8456a5;
+  --chart-4:#a1681d;--chart-5:#24684b;--chart-6:#a34358;
+  --field-background:var(--surface);--field-border:var(--border-subtle);
+  --field-placeholder:var(--text-muted);--inline-code-bg:var(--surface-alt);
+  --overlay-background:var(--surface-overlay);--overlay-scrim:rgb(9 23 36 / .56);
   --selection-bg:rgb(12 113 104 / .16);--syntax-keyword:#305c9b;
   --syntax-string:#166443;--syntax-number:#81521d;
   --syntax-comment:#5b6f7f;--syntax-function:#74468d;
@@ -100,6 +106,12 @@ html[data-theme="dark"]{
   --surface-secondary:var(--surface-alt);--text-primary:var(--text-main);
   --text-secondary:var(--text-muted);--border-primary:var(--border-subtle);
   --editor-bg:var(--editor-background);--editor-text-color:var(--editor-text);
+  --chart-grid:var(--border-subtle);--chart-axis:var(--text-muted);
+  --chart-1:#72c8bc;--chart-2:#9dccfc;--chart-3:#d2b5f1;
+  --chart-4:#f2d48b;--chart-5:#8bdcb3;--chart-6:#f6a2b7;
+  --field-background:var(--surface-raised);--field-border:var(--border-subtle);
+  --field-placeholder:var(--text-muted);--inline-code-bg:var(--surface-alt);
+  --overlay-background:var(--surface-overlay);--overlay-scrim:rgb(3 10 20 / .72);
   --selection-bg:rgb(88 196 180 / .22);--syntax-keyword:#9dd8ff;
   --syntax-string:#a9e4bf;--syntax-number:#ffd290;
   --syntax-comment:#afc0d0;--syntax-function:#d6aeef;
