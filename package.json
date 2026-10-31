@@ -5,11 +5,11 @@
   "type": "module",
   "description": "Adaptive learning platform with responsive design system and cross-device theme controls",
   "engines": {
-    "node": ">=20"
+    "node": "24.x"
   },
   "scripts": {
-    "test": "node tests/smoke.mjs && node tests/modern.mjs && node tests/sync-regression.mjs && node tests/course-content.mjs && node tests/ai-card-visibility.mjs && node tests/auth-first.mjs && node tests/auth-gate-runtime.mjs && node tests/admin-roles.mjs",
-    "test:responsive": "node tests/responsive-coverage.mjs && node tests/mobile-v13.mjs && node tests/mobile-v14.mjs && node tests/responsive-v15.mjs && node tests/theme-navigation-v16.mjs && node tests/accessibility-v23.mjs",
+    "test": "node tests/smoke.mjs && node tests/modern.mjs && node tests/sync-regression.mjs && node tests/course-content.mjs && node tests/ai-card-visibility.mjs && node tests/auth-first.mjs && node tests/auth-gate-runtime.mjs && node tests/admin-roles.mjs && node tests/cache-revisions-v101.mjs",
+    "test:responsive": "node tests/responsive-coverage.mjs && node tests/mobile-v13.mjs && node tests/mobile-v14.mjs && node tests/responsive-v15.mjs && node tests/theme-navigation-v16.mjs && node tests/accessibility-v23.mjs && node tests/learning-navigation-v102.mjs",
     "test:workspace": "node tests/workspace-coverage.mjs",
     "test:admin": "node tests/admin-console-v6.mjs",
     "test:server-auth": "node tests/server-auth.mjs && node tests/middleware-access.mjs",
@@ -41,7 +41,12 @@
     "test:visual:v96": "node tests/visual-v96.mjs && node tests/visual-v95.mjs && node tests/color-system-v86.mjs && node tests/color-consistency-v89.mjs",
     "test:catalog:v97": "node tests/catalog-navigation-v97.mjs",
     "test:contrast:v98": "node tests/text-contrast-v98.mjs",
-    "test:design:v99": "node tests/premium-design-v99.mjs"
+    "test:design:v99": "node tests/premium-design-v99.mjs",
+    "test:cache:v101": "node tests/cache-revisions-v101.mjs",
+    "test:responsive:v100": "node tests/responsive-v100.mjs",
+    "test:browser:v100": "python3 tests/responsive-render-v100.py && python3 tests/navigation-render-v100.py",
+    "test:navigation:v102": "node tests/learning-navigation-v102.mjs",
+    "test:navigation:browser:v102": "python3 tests/learning-navigation-v102.py"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.57.0",

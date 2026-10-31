@@ -117,14 +117,3 @@ body[data-responsive-page="practice"] .arena-course-bridge a{font-size:.81rem;fo
 body[data-responsive-page="practice"] .pc-brand-pill img{width:19px!important;height:19px!important;max-width:19px!important;max-height:19px!important;object-fit:contain!important;display:inline-block!important}
 body[data-responsive-page="practice"] .arena-subject-options button img{width:23px!important;height:23px!important;max-width:23px!important;max-height:23px!important;object-fit:contain!important;flex:none!important}
 body[data-responsive-page="practice"] #practiceDetail > #practiceFeedback,body[data-responsive-page="practice"] #practiceDetail > #practiceSupport{position:relative;z-index:1;margin-block:14px!important;max-width:100%;min-width:0}
-
-/* Keep the three technology pills readable without escaping a very narrow hero. */
-body[data-responsive-page="practice"] .pc-brand-strip{min-width:0;max-width:100%}
-body[data-responsive-page="practice"] .pc-brand-pill{min-width:0;max-width:100%;white-space:normal;overflow-wrap:anywhere}
-@media(max-width:700px){
- body[data-responsive-page="practice"] .pc-hero{flex-wrap:wrap!important;row-gap:4px!important;padding:14px!important}
- body[data-responsive-page="practice"] .pc-hero h1{min-width:0;max-width:100%;margin:0!important;overflow-wrap:anywhere}
- body[data-responsive-page="practice"] .pc-brand-strip{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));flex:1 0 100%;justify-content:stretch;align-items:stretch;gap:6px;margin:4px 0 0}
- body[data-responsive-page="practice"] .pc-brand-pill{box-sizing:border-box;display:flex!important;flex-direction:row;align-items:center;justify-content:center;width:100%;max-width:100%;min-height:32px;gap:4px!important;padding:3px 2px!important;font-size:.62rem!important;line-height:1.12;text-align:center}
- body[data-responsive-page="practice"] .pc-brand-pill img{width:16px!important;height:16px!important;max-width:16px!important;max-height:16px!important;flex:none!important}
-}

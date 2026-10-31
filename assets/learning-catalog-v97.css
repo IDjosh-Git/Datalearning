@@ -10,6 +10,11 @@ html.dark body.dlp97-learning-page{
  --dlp97-page:#101b25;--dlp97-ink:#e6edf0;--dlp97-subtle:#b0c4cc;--dlp97-surface:#1a2a37;--dlp97-soft:#243c44;
  --dlp97-border:#3c5261;--dlp97-teal:#77dad4;--dlp97-focus:#f0bd72;--dlp97-panel:#1c303b;
 }
+/* The dashboard needs v97's account/progress sync, but already has its own
+   responsive workspace navigation. Suppress only the redundant v97 sidebar;
+   keep its auth and progress lifecycle intact. */
+body.lp-home.dlp97-learning-page{padding-left:0!important}
+body.lp-home.dlp97-learning-page .dlp97-navigation{display:none}
 body.dlp97-catalog-page{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:var(--dlp97-ink);background:var(--dlp97-page);line-height:1.55}
 .dlp97-navigation{isolation:isolate}
 .dlp97-side{box-sizing:border-box;position:fixed;inset:0 auto 0 0;width:248px;z-index:9000;overflow-y:auto;overscroll-behavior:contain;padding:22px 12px;background:#172f42;color:#edf7f8;border-right:1px solid #2d4b5c;font:inherit;font-size:14px;line-height:1.45}
@@ -116,6 +121,10 @@ body.dlp97-learning-page .completeBox:disabled,body.dlp97-learning-page [data-in
 .dlp97-catalog-footer{display:flex;justify-content:space-between;align-items:center;gap:18px;padding-top:35px;color:var(--dlp97-subtle);font-size:13px}
 .dlp97-catalog-footer a{color:var(--dlp97-teal);font-weight:800}
 @media(max-width:1100px){
+ /* Course pages already have the workspace header, bottom tabs and a complete
+    course list in its More drawer. Keep the v97 sidebar on desktop and on
+    the standalone catalog, but avoid a second mobile navigation bar/drawer. */
+ body.dl-workspace.dlp97-learning-page .dlp97-navigation{display:none}
  body.dlp97-learning-page{padding-left:0!important}
  .dlp97-mobile-bar{position:relative;z-index:8990;display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:59px;padding:8px 17px;background:#172f42;color:white;font-size:14px}
  .dlp97-mobile-bar a{color:#ecf7f8;text-decoration:none;font-weight:800}
@@ -140,3 +149,11 @@ body.dlp97-learning-page .dlp97-table-scroll table{margin-bottom:0}
 .dlp97-activity-tags em{font-style:normal;font-weight:700;font-size:10px;padding:4px 7px;border:1px solid var(--dlp97-border);border-radius:999px;color:var(--dlp97-subtle);background:var(--dlp97-panel)}
 .dlp97-intro-check{margin-top:16px;padding:12px 16px;border:1px solid var(--dlp97-border);border-radius:9px;background:var(--dlp97-panel)}
 .dlp97-intro-check a{font-size:13px;font-weight:800;color:var(--dlp97-teal);text-decoration:underline}
+
+/* v100: on phones keep the Subject label below the search input. Prevent the
+   default flex wrap from leaving a stray label alongside a nearly full input. */
+@media(max-width:600px){
+ .dlp97-catalog-page .dlp97-search-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:end;gap:9px}
+ .dlp97-catalog-page .dlp97-search-row>input,.dlp97-catalog-page .dlp97-search-row>label{grid-column:1/-1;width:100%;min-width:0}
+ .dlp97-catalog-page .dlp97-search-row>select,.dlp97-catalog-page .dlp97-search-row>button{width:100%;min-width:0}
+}
