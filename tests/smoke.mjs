@@ -15,15 +15,26 @@ assert(read('index.html').includes('esoterikjoshua@gmail.com'));
 assert(!read('assets/tutor.js').includes('process.env.OPENAI_API_KEY'));assert(!read('assets/supabase-config.js').includes('service_role'));
 const req=(method,body)=>({method,body,headers:{host:'example.vercel.app',origin:'https://example.vercel.app','x-forwarded-for':'203.0.113.45'}});
 async function run(r){return await new Promise((resolve,reject)=>{let output='',code,headers={};const res={set statusCode(v){code=v},get statusCode(){return code},setHeader(k,v){headers[k]=v},end(x){output=x;resolve({code,headers,body:JSON.parse(output)})}};Promise.resolve(handler(r,res)).catch(reject)})}
-delete process.env.OPENAI_API_KEY;
+delete process.env.OPENAI_API_KEY; delete process.env.GROQ_API_KEY; delete process.env.TUTOR_PROVIDER;
 let r=await run(req('GET'));assert.equal(r.code,200);assert.equal(r.body.aiEnabled,false);
 r=await run(req('POST',{question:'Explain SUMIFS'}));assert.equal(r.code,503);
-process.env.OPENAI_API_KEY='test-only-do-not-use';
+process.env.TUTOR_PROVIDER='openai';process.env.OPENAI_API_KEY='test-only-do-not-use';
 const originalFetch=globalThis.fetch;let sent;
-globalThis.fetch=async(_url,options)=>{sent=JSON.parse(options.body);assert.match(options.headers.Authorization,/test-only-do-not-use/);return {ok:true,status:200,json:async()=>({output:[{content:[{type:'output_text',text:'SUMIFS adds values matching several conditions.'}]}]})}};
-try{r=await run(req('GET'));assert.equal(r.body.aiEnabled,true);r=await run(req('POST',{question:'Explain SUMIFS',history:[{role:'user',content:'I use Excel'}]}));assert.equal(r.code,200);assert.match(r.body.answer,/SUMIFS/);assert.equal(sent.store,false);assert(sent.instructions.includes('Data Analysis Learning Path'));assert.equal(sent.input.length,2);r=await run(req('POST',{question:''}));assert.equal(r.code,400);const wrong=req('POST',{question:'hello'});wrong.headers.origin='https://external.invalid';r=await run(wrong);assert.equal(r.code,403);}finally{globalThis.fetch=originalFetch;delete process.env.OPENAI_API_KEY;}
-console.log('PASS Data Analysis Learning Path rebrand | 9 pages | 30 labs | 150 quiz questions | 603 references | practice CSV 360 orders');
-console.log('PASS Vercel AI GET/POST: unconfigured, configured/mock response, privacy, input validation, origin check');
+globalThis.fetch=async(url,options)=>{
+ if(String(url).endsWith('/auth/v1/user'))return {ok:true,status:200,json:async()=>({id:'11111111-1111-4111-8111-111111111111'})};
+ sent=JSON.parse(options.body);assert.match(options.headers.Authorization,/test-only-do-not-use/);
+ return {ok:true,status:200,json:async()=>({output:[{content:[{type:'output_text',text:'SUMIFS adds values matching several conditions.'}]}]})};
+};
+try{
+ r=await run(req('GET'));assert.equal(r.body.aiEnabled,true);
+ const unauth=await run(req('POST',{question:'Explain SUMIFS'}));assert.equal(unauth.code,401);
+ const loggedIn=req('POST',{question:'Explain SUMIFS',history:[{role:'user',content:'I use Excel'}]});loggedIn.headers.cookie='__Host-dalp_session=test-token';
+ r=await run(loggedIn);assert.equal(r.code,200);assert.match(r.body.answer,/SUMIFS/);assert.equal(sent.store,false);assert(sent.instructions.includes('Data Analysis Learning Path'));assert.equal(sent.input.length,2);
+ const invalid=req('POST',{question:''});invalid.headers.cookie='__Host-dalp_session=test-token';r=await run(invalid);assert.equal(r.code,400);
+ const wrong=req('POST',{question:'hello'});wrong.headers.cookie='__Host-dalp_session=test-token';wrong.headers.origin='https://external.invalid';r=await run(wrong);assert.equal(r.code,403);
+}finally{globalThis.fetch=originalFetch;delete process.env.OPENAI_API_KEY;delete process.env.TUTOR_PROVIDER;}
+console.log('PASS Data Analysis Learning Path rebrand | courses | references | practice CSV 360 orders');
+console.log('PASS Vercel AI GET/POST: unconfigured, account-gated/mock OpenAI response, input validation, origin check');
 
 for (const c of ['excel','sql','powerbi','ai']){ const t=read(`courses/${c}.html`); assert(t.includes(`../capstone.html?course=${c}`),'Capstone route '+c); assert(!t.includes("localStorage.setItem(store"),'No self-issued certificate '+c); assert(t.includes(c==='ai'?'ai-course.css':'modern.css'),'Course theme '+c); }
 assert(read('supabase_setup.sql').includes('DALP-(EXL|PBI|SQL|AIA|PYT)'),'Five certificate code formats supported');

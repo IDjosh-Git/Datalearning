@@ -1,3 +1,5 @@
+> **Tutor Studio v87:** See [TUTOR_STUDIO_V87_QA.md](TUTOR_STUDIO_V87_QA.md) for optional Groq/OpenAI setup, privacy, test results, and staging limitations. No AI API key is bundled.
+
 # Data Analysis Learning Path — v86 Colour System
 
 The latest release adds a calm warm-white / deep-ink design system with teal actions, six track accents, consistent semantic states, and system-aware light/dark preference across all 25 HTML routes. See `COLOUR_SYSTEM_V86_QA.md` for the palette, implementation notes, regression results and staging limitations.

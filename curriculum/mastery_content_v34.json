@@ -62,12 +62,12 @@
     },
     {
       "title": "Aggregations and KPI definitions",
-      "objective": "Calculate net sales with a clear numerator and denominator.",
+      "objective": "Calculate completed gross sales with a stated numerator and denominator.",
       "why": "A performance dashboard must reconcile to finance: one returned order must not inflate completed-order revenue.",
-      "how": "GROUP BY forms one group per region; SUM reduces rows to a metric. WHERE removes unqualified transactions before aggregation; HAVING filters completed groups. Financial reporting must define whether revenue includes tax, discounts, refunds and returns.",
+      "how": "GROUP BY forms one group per region; SUM reduces rows to a metric. WHERE removes unqualified transactions before aggregation; HAVING filters completed groups. Here completed gross revenue is quantity × unit price for Completed rows; this is not net revenue. Real reporting must also define taxes, discounts, refunds and returns.",
       "example": "SELECT region, COUNT(*) AS completed_orders,\n       SUM(quantity*unit_price) AS revenue\nFROM orders\nWHERE status='Completed'\nGROUP BY region\nORDER BY revenue DESC;",
-      "result": "region | completed_orders | revenue\nEast   | 2                | 316000\nWest   | 2                | 190000\nNorth  | 1                | 72000\nTOTAL  | 5                | 578000",
-      "tip": "Validate the total with an independent ungrouped SUM query (should be 578000).",
+      "result": "region | completed_orders | revenue\nEast   | 2                | 316000\nWest   | 2                | 190000\nNorth  | 1                | 72000\nValidation query (not a row returned above): 5 completed orders, grand total 578000",
+      "tip": "Validate the gross revenue independently with an ungrouped SUM (578000); the grouped query itself has only 3 rows.",
       "trap": "COUNT(*) counts rows; COUNT(column) ignores NULLs. Also never SUM a rate such as margin percentage.",
       "checks": [
         {
@@ -186,7 +186,7 @@
       "why": "Top-customer reporting and monthly running totals need calculations that do not collapse the original records.",
       "how": "Unlike GROUP BY, OVER computes within a window of rows while returning each selected row. PARTITION BY creates independent groups; ORDER BY defines sequence. ROW_NUMBER chooses one row per partition only when the sort has a reliable tie-break.",
       "example": "SELECT customer, order_id, order_date,\n ROW_NUMBER() OVER(\n PARTITION BY customer ORDER BY order_date DESC, order_id DESC\n ) AS recency_rank\nFROM orders WHERE status='Completed'\nORDER BY customer, recency_rank;",
-      "result": "customer | order_id | recency_rank\nAmina    | 1001     | 1\nIdris    | 1005     | 1\nKola     | 1002     | 1\nNgozi    | 1006     | 1\nNgozi    | 1004     | 2",
+      "result": "customer | order_id | order_date | recency_rank\nAmina    | 1001     | 2026-01-05 | 1\nIdris    | 1005     | 2026-02-11 | 1\nKola     | 1002     | 2026-01-08 | 1\nNgozi    | 1006     | 2026-02-18 | 1\nNgozi    | 1004     | 2026-02-09 | 2",
       "tip": "Use ROW_NUMBER for deterministic latest-row selection; use RANK/DENSE_RANK only when ties carry meaning.",
       "trap": "Window ORDER BY and final output ORDER BY serve different purposes. Missing tie-breaks make latest-row logic unstable.",
       "checks": [
@@ -307,7 +307,7 @@
       "objective": "Navigate and structure a reproducible workbook.",
       "why": "An operations analyst receives daily order exports. A clear workbook structure reduces formula mistakes and lets a colleague audit the numbers.",
       "how": "Rows hold records, columns hold attributes, and cells hold values or formulas. Separate RawData, Calculations and Dashboard sheets; use one row per order, true dates, no merged data headers, and a clear source/date note.",
-      "example": "RawData!A1:J3\nOrderID | Date       | Customer | Region | Product | Qty | Price | Cost  | Status\n1001    | 2026-01-05 | Amina    | East   | Laptop  | 2   | 150000| 120000| Completed\n1002    | 2026-01-08 | Kola     | West   | Mouse   | 5   | 8000  | 5000  | Completed",
+      "example": "RawData!A1:I3\nOrderID | Date       | Customer | Region | Product | Qty | Price | Cost  | Status\n1001    | 2026-01-05 | Amina    | East   | Laptop  | 2   | 150000| 120000| Completed\n1002    | 2026-01-08 | Kola     | West   | Mouse   | 5   | 8000  | 5000  | Completed",
       "result": "One header row; each order occupies one row; do not use subtotals inside the source table.",
       "tip": "Name raw input tabs and preserve original file versions; do not edit imported records invisibly.",
       "trap": "Merged headers, blank separator rows, and numbers stored as text break filters and PivotTables.",

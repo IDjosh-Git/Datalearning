@@ -4,4 +4,4 @@ Manual capstone grading setup:
 3. Sign into your website with your instructor account. In Supabase Auth > Users copy that account's User UID.
 4. Replace the zero UID placeholder in OWNER_SETUP.sql with your own User UID. Run it once.
 5. Redeploy your site. Sign in, open My learning > Instructor review desk, inspect photos/files, enter rubric scores and publish.
-No AI grader, service-role key or CRON_SECRET is needed for manual assessment. OPENAI_API_KEY remains optional for the separate tutor.
+No AI grader, service-role key or CRON_SECRET is needed for manual assessment. GROQ_API_KEY (default provider) or OPENAI_API_KEY (explicit alternative) is optional for the separate live tutor; all provider keys must stay server-side.
