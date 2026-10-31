@@ -51,6 +51,7 @@
     ['signInTab','createTab'].forEach((id,i)=>{$(id).classList.toggle('active',(i===0?mode==='login':mode==='create'));$(id).setAttribute('aria-selected',String(i===0?mode==='login':mode==='create'))});
     $('authTitle').textContent=text[mode][0];$('authSubtitle').textContent=text[mode][1];
     document.body.dataset.authMode=mode;
+    ['signInTab','createTab'].forEach(id=>{$(id).tabIndex=$(id).getAttribute('aria-selected')==='true'?0:-1;});
   }
   function message(id,text,kind='warn'){
     const el=$(id);el.hidden=false;el.textContent=text;el.className='auth-msg '+kind;el.style.display='block';
@@ -134,6 +135,22 @@
   };
   $('signInTab').addEventListener('click',()=>setMode('login'));
   $('createTab').addEventListener('click',()=>setMode('create'));
+  // WAI-ARIA tabs: left/right and Home/End work without a pointing device.
+  const authTabButtons=[$('signInTab'),$('createTab')];
+  $('authTabs').addEventListener('keydown',event=>{
+    const key=event.key;
+    if(!['ArrowLeft','ArrowRight','Home','End'].includes(key))return;
+    event.preventDefault();
+    const current=Math.max(0,authTabButtons.indexOf(document.activeElement));
+    const next=key==='Home'?0:key==='End'?authTabButtons.length-1:
+      (current+(key==='ArrowRight'?1:-1)+authTabButtons.length)%authTabButtons.length;
+    authTabButtons[next].focus();authTabButtons[next].click();
+  });
+  // A visible error message is accompanied by a field-level cue and focus.
+  const flagInvalid=id=>{const input=$(id);if(!input)return;input.setAttribute('aria-invalid','true');input.focus();};
+  document.querySelectorAll('.auth-field input').forEach(input=>
+    input.addEventListener('input',()=>input.removeAttribute('aria-invalid')));
+
   document.querySelectorAll('button[data-auth-mode]').forEach(btn=>btn.addEventListener('click',()=>setMode(btn.dataset.authMode)));
   document.querySelectorAll('[data-password-toggle]').forEach(btn=>btn.addEventListener('click',()=>{
     const input=$(btn.dataset.passwordToggle),visible=input.type==='text';input.type=visible?'password':'text';btn.textContent=visible?'Show':'Hide';btn.setAttribute('aria-label',(visible?'Show':'Hide')+' password');
@@ -141,7 +158,7 @@
   $('loginForm').addEventListener('submit',async e=>{
     e.preventDefault();clearMessage('loginMsg');if(!dbReady())return;
     const email=$('loginEmail').value.trim(),password=$('loginPassword').value;
-    if(!emailOk(email)||!password){message('loginMsg','Enter a valid email address and password.');return;}
+    if(!emailOk(email)||!password){flagInvalid(!emailOk(email)?'loginEmail':'loginPassword');message('loginMsg','Enter a valid email address and password.');return;}
     const button=$('loginBtn');busy(button,true,'Sign in');
     try{
       const {data,error}=await db().auth.signInWithPassword({email,password});
@@ -153,10 +170,10 @@
   $('signupForm').addEventListener('submit',async e=>{
     e.preventDefault();clearMessage('signupMsg');if(!dbReady())return;
     const full_name=$('fullName').value.trim(),email=$('signupEmail').value.trim(),password=$('signupPassword').value,confirmation=$('signupConfirm').value;
-    if(full_name.length<2){message('signupMsg','Enter your full name to create an account.');return;}
-    if(!emailOk(email)){message('signupMsg','Enter a valid email address.');return;}
-    if(password.length<8){message('signupMsg','Choose a password with at least 8 characters.');return;}
-    if(password!==confirmation){message('signupMsg','The passwords do not match.');return;}
+    if(full_name.length<2){flagInvalid('fullName');message('signupMsg','Enter your full name to create an account.');return;}
+    if(!emailOk(email)){flagInvalid('signupEmail');message('signupMsg','Enter a valid email address.');return;}
+    if(password.length<8){flagInvalid('signupPassword');message('signupMsg','Choose a password with at least 8 characters.');return;}
+    if(password!==confirmation){flagInvalid('signupConfirm');message('signupMsg','The passwords do not match.');return;}
     const button=$('signupBtn');busy(button,true,'Create account');
     try{
       const {data,error}=await db().auth.signUp({email,password,options:{data:{full_name},emailRedirectTo:nextAuthUrl()}});
@@ -174,7 +191,7 @@
   $('forgotForm').addEventListener('submit',async e=>{
     e.preventDefault();clearMessage('forgotMsg');if(!dbReady())return;
     const email=$('forgotEmail').value.trim();
-    if(!emailOk(email)){message('forgotMsg','Enter the email address linked to your account.');return;}
+    if(!emailOk(email)){flagInvalid('forgotEmail');message('forgotMsg','Enter the email address linked to your account.');return;}
     const button=$('forgotBtn');busy(button,true,'Send reset link');
     try{
       const {error}=await db().auth.resetPasswordForEmail(email,{redirectTo:nextAuthUrl('reset')});
@@ -186,8 +203,8 @@
   $('resetForm').addEventListener('submit',async e=>{
     e.preventDefault();clearMessage('resetMsg');if(!dbReady())return;
     const password=$('newPassword').value,confirm=$('confirmNewPassword').value;
-    if(password.length<8){message('resetMsg','Use at least 8 characters.');return;}
-    if(password!==confirm){message('resetMsg','The passwords do not match.');return;}
+    if(password.length<8){flagInvalid('newPassword');message('resetMsg','Use at least 8 characters.');return;}
+    if(password!==confirm){flagInvalid('confirmNewPassword');message('resetMsg','The passwords do not match.');return;}
     const button=$('resetBtn');busy(button,true,'Update password');
     try{
       const {data,error:sErr}=await db().auth.getSession();

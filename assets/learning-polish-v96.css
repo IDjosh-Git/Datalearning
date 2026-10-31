@@ -1,0 +1,321 @@
+/* Data Analysis Learning Path — v96 contrast, learning hierarchy and responsive polish.
+   Additive presentation layer: preserves course copy, routes, data, and JS behaviour.
+   Semantic tokens are defined in color-system-v86.css. */
+
+/* Bring historical component aliases onto one accessible colour scale. */
+html[data-theme] body.dlp-course-v29 {
+  --dlp29-canvas:var(--background);--dlp29-surface:var(--surface);
+  --dlp29-surface-soft:var(--surface-alt);--dlp29-ink:var(--text-main);
+  --dlp29-muted:var(--text-muted);--dlp29-line:var(--border-subtle);
+  --dlp29-primary:var(--link);--dlp29-primary-on:var(--on-primary);
+  --dlp29-glow:var(--subtle-glow);--dlp29-grid:transparent;
+  --dlp29-shadow:var(--shadow-soft);--dlp29-shadow-hover:var(--shadow-raised);
+}
+html[data-theme] body,
+html[data-theme] body.auth-page:has(#loginBtn),
+html[data-theme] body.dlp-course-v29 {
+  background:var(--background)!important;
+  background-image:none!important;
+  color:var(--text-main);
+}
+html[data-theme] :is(.dlp29-guide,.dlp29-panel,.dlp29-milestone,.dlp29-tablist,
+  .dlp29-tabpanel,.lp-context-bar,.lp-smart-panel,.dl-tool,.dl-track,
+  .ac-section,.ip-panel,.lesson,.week) {color:var(--text-main)}
+html[data-theme] :is(.dlp29-guide,.dlp29-panel,.dlp29-milestone,
+  .dlp29-tablist,.dlp29-tabpanel){border-color:var(--border-subtle)!important}
+html[data-theme] body.dlp-course-v29 .dlp29-guide {background:var(--surface)!important}
+html[data-theme] body.dlp-course-v29 :is(.dlp29-panel,.dlp29-tablist){background:var(--surface-alt)!important}
+html[data-theme] body.dlp-course-v29 :is(.dlp29-milestone,.dlp29-tabpanel){background:var(--surface)!important}
+html[data-theme] body.dlp-course-v29 :is(.dlp29-button-primary,.dlp29-guide a.dlp29-button-primary){
+  background:var(--primary)!important;color:var(--on-primary)!important;
+  border-color:var(--primary)!important;
+}
+html[data-theme] body.dlp-course-v29 :is(.dlp29-button-primary,.dlp29-guide a.dlp29-button-primary):hover {
+  background:var(--primary-hover)!important;border-color:var(--primary-hover)!important;
+}
+/* Track colours are identity markers, not replacements for readable main text. */
+html[data-theme] body.dlp-course-v29 :is(.hero,.intro-hero,.ai-hero){
+  background:#17344a!important;
+  background-image:linear-gradient(125deg,#122b40 0%,#193e52 70%,#195449 125%)!important;
+  border-color:rgb(193 231 224 / .26)!important;
+  box-shadow:var(--shadow-soft)!important;
+}
+html[data-theme="dark"] body.dlp-course-v29 :is(.hero,.intro-hero,.ai-hero){
+  background:#102737!important;
+  background-image:linear-gradient(125deg,#102636 0%,#163648 70%,#19483f 125%)!important;
+}
+html[data-theme] body.dlp-course-v29 :is(.hero,.intro-hero,.ai-hero)
+  :is(h1,h2,h3,p,small,.muted){color:#f0f8f8!important;-webkit-text-fill-color:currentColor!important}
+html[data-theme] body.dlp-course-v29 :is(.hero,.intro-hero,.ai-hero)
+  :is(.stat,.metrics span){border-color:rgb(220 244 240 / .25)!important}
+
+/* Free sample: establish a tangible reading surface and distinguish examples/actions. */
+html[data-theme] body[data-responsive-page="preview"] .sample-shell{
+  width:min(100%,960px);max-width:960px;padding:clamp(24px,4vw,48px) clamp(16px,3vw,28px) 80px;
+}
+html[data-theme] body[data-responsive-page="preview"] .sample-hero{
+  padding:0 0 clamp(23px,3vw,32px);margin-bottom:24px;
+  border-bottom:2px solid var(--border-subtle);
+}
+html[data-theme] body[data-responsive-page="preview"] .sample-pill{
+  color:var(--link)!important;font-size:.77rem;letter-spacing:.065em;line-height:1.5;
+}
+html[data-theme] body[data-responsive-page="preview"] .sample-hero p{
+  color:var(--text-muted)!important;font-size:clamp(.98rem,1.25vw,1.0625rem);line-height:1.7;
+}
+html[data-theme] body[data-responsive-page="preview"] .sample-lesson{
+  padding:clamp(22px,4vw,40px);margin:0 0 24px;
+  background:var(--surface)!important;color:var(--text-main)!important;
+  border:1px solid var(--border-subtle)!important;border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-soft);
+}
+html[data-theme] body[data-responsive-page="preview"] .sample-lesson .lesson-heading{
+  align-items:flex-start;gap:15px;margin-bottom:22px;padding-bottom:17px;
+  border-bottom:1px solid var(--border-subtle);
+}
+html[data-theme] body[data-responsive-page="preview"] .sample-lesson .lesson-number{
+  min-width:52px;min-height:52px;display:grid;place-items:center;
+  background:var(--learning-soft);border:1px solid var(--border-subtle);
+  color:var(--link)!important;border-radius:var(--radius-md);font-size:1.14rem;
+}
+html[data-theme] body[data-responsive-page="preview"] .sample-lesson .lesson-heading p{
+  font-size:.76rem;color:var(--text-muted)!important;margin:0 0 6px;
+}
+html[data-theme] body[data-responsive-page="preview"] .sample-lesson h2{margin:0;font-size:clamp(1.5rem,3vw,2.05rem);line-height:1.2}
+html[data-theme] body[data-responsive-page="preview"] .sample-lesson h3{
+  font-size:clamp(1.13rem,2vw,1.4rem);margin:30px 0 14px;
+}
+html[data-theme] body[data-responsive-page="preview"] .sample-lesson :is(p,li){
+  color:var(--text-main)!important;font-size:1rem;line-height:1.76;
+}
+html[data-theme] body[data-responsive-page="preview"] .sample-lesson :is(.idea-card,.try-card){
+  border:1px solid var(--border-strong)!important;
+  border-inline-start:4px solid var(--learning-accent)!important;
+  background:var(--surface-alt)!important;color:var(--text-main)!important;
+  margin-block:26px;padding:clamp(17px,2.6vw,23px);
+}
+html[data-theme] body[data-responsive-page="preview"] .sample-lesson .try-card{
+  background:var(--learning-soft)!important;
+}
+html[data-theme] body[data-responsive-page="preview"] .sample-lesson :is(.idea-card,.try-card)>b{
+  display:block;font-size:1.025rem;color:var(--text-main)!important;margin-bottom:9px;
+}
+html[data-theme] body[data-responsive-page="preview"] .sample-lesson :is(.idea-card,.try-card)>p{margin:0}
+html[data-theme] body[data-responsive-page="preview"] .sample-lesson .three-points{gap:14px}
+html[data-theme] body[data-responsive-page="preview"] .sample-lesson .three-points>div{
+  background:var(--surface)!important;border:1px solid var(--border-strong)!important;
+  border-top:3px solid var(--learning-accent)!important;padding:clamp(15px,2vw,20px);
+}
+html[data-theme] body[data-responsive-page="preview"] .sample-lesson .three-points b{font-size:1rem;color:var(--text-main)!important}
+html[data-theme] body[data-responsive-page="preview"] .sample-lesson .three-points span{
+  color:var(--text-muted)!important;font-size:.875rem;line-height:1.5;margin:5px 0;
+}
+html[data-theme] body[data-responsive-page="preview"] .sample-lesson .three-points p{
+  font-size:.935rem;line-height:1.6;margin:7px 0 0;
+}
+html[data-theme] body[data-responsive-page="preview"] .sample-action{
+  background:var(--surface-alt)!important;color:var(--text-main)!important;
+  border-color:var(--border-strong)!important;padding:clamp(20px,3vw,30px);
+}
+html[data-theme] body[data-responsive-page="preview"] .sample-action strong{font-size:1.25rem;color:var(--text-main)}
+html[data-theme] body[data-responsive-page="preview"] .sample-action p{margin:0;color:var(--text-muted);line-height:1.7}
+html[data-theme] body[data-responsive-page="preview"] .sample-links a{
+  min-height:46px;justify-content:center;text-align:center;
+}
+html[data-theme] body[data-responsive-page="preview"] .sample-links a:first-child{
+  background:var(--primary)!important;border:1px solid var(--primary)!important;
+  color:var(--on-primary)!important;
+}
+html[data-theme] body[data-responsive-page="preview"] .sample-links a:first-child:hover{
+  background:var(--primary-hover)!important;
+}
+html[data-theme] body[data-responsive-page="preview"] .sample-links a:last-child{
+  background:var(--surface)!important;border-color:var(--border-strong)!important;
+  color:var(--text-main)!important;
+}
+html[data-theme] body[data-responsive-page="preview"] .sample-links a:last-child:hover{background:var(--surface-hover)!important}
+html[data-theme] body[data-responsive-page="preview"] .sample-footer{color:var(--text-muted)!important}
+
+/* Sign in: old orange/white forced colours violated dark mode and muted supporting copy. */
+html[data-theme] body.auth-page:has(#loginBtn) .auth-layout{
+  background:var(--surface)!important;border:1px solid var(--border-subtle)!important;
+  box-shadow:var(--shadow-raised);overflow:hidden;
+}
+html[data-theme] body.auth-page:has(#loginBtn) .auth-forms{
+  background:var(--surface)!important;color:var(--text-main)!important;
+}
+html[data-theme] body.auth-page:has(#loginBtn) .auth-story{
+  background:#163448!important;
+  background-image:linear-gradient(145deg,#122b40 0%,#1c4656 74%,#176158 138%)!important;
+  color:#f5faf9!important;
+}
+html[data-theme] body.auth-page:has(#loginBtn) .auth-story :is(h1,.auth-benefit b){color:#fff!important}
+html[data-theme] body.auth-page:has(#loginBtn) .auth-story :is(p,.auth-story-foot){
+  color:#e1edef!important;font-size:clamp(.93rem,1.1vw,1rem)!important;line-height:1.7;
+}
+html[data-theme] body.auth-page:has(#loginBtn) .auth-story .dalp-preview-invite span{
+  color:#d1e5e5!important;font-size:.84rem!important;
+}
+html[data-theme] body.auth-page:has(#loginBtn) .auth-kicker{
+  color:#d5f2ec!important;border-color:rgb(220 246 239 / .32)!important;
+  background:rgb(255 255 255 / .10)!important;font-size:.72rem;
+}
+html[data-theme] body.auth-page:has(#loginBtn) .auth-benefit{
+  background:rgb(255 255 255 / .075)!important;border-color:rgb(240 255 251 / .24)!important;
+}
+html[data-theme] body.auth-page:has(#loginBtn) .auth-benefit span{
+  color:#dcebed!important;font-size:.82rem!important;line-height:1.55!important;
+}
+html[data-theme] body.auth-page:has(#loginBtn) .auth-benefit b{font-size:.85rem!important;line-height:1.4}
+html[data-theme] body.auth-page:has(#loginBtn) .auth-benefit svg{color:#a5e0d1!important}
+html[data-theme] body.auth-page:has(#loginBtn) .auth-course-chips span{
+  font-size:.77rem!important;border-color:rgb(240 255 251 / .32)!important;
+}
+html[data-theme] body.auth-page:has(#loginBtn) .auth-heading small{
+  color:var(--link)!important;font-size:.73rem!important;
+}
+html[data-theme] body.auth-page:has(#loginBtn) .auth-heading h2{color:var(--text-main)!important}
+html[data-theme] body.auth-page:has(#loginBtn) .auth-heading p{
+  color:var(--text-muted)!important;font-size:.93rem!important;
+}
+html[data-theme] body.auth-page:has(#loginBtn) .auth-secure-chip{
+  background:var(--surface)!important;color:var(--text-muted)!important;
+  border-color:var(--border-subtle)!important;
+}
+html[data-theme] body.auth-page:has(#loginBtn) .auth-tabs{
+  background:var(--surface-alt)!important;border:1px solid var(--border-subtle)!important;
+}
+html[data-theme] body.auth-page:has(#loginBtn) button.auth-tab{
+  background:transparent!important;color:var(--text-muted)!important;
+}
+html[data-theme] body.auth-page:has(#loginBtn) button.auth-tab.active,
+html[data-theme] body.auth-page:has(#loginBtn) button.auth-tab[aria-selected="true"]{
+  background:var(--primary)!important;color:var(--on-primary)!important;
+  box-shadow:none!important;
+}
+html[data-theme] body.auth-page:has(#loginBtn) .auth-field label{
+  color:var(--text-main)!important;font-size:.87rem!important;
+}
+html[data-theme] body.auth-page:has(#loginBtn) .auth-field input{
+  background:var(--field-background)!important;
+  border:1px solid var(--border-strong)!important;color:var(--text-main)!important;
+  -webkit-text-fill-color:var(--text-main)!important;
+  font-size:1rem!important;
+}
+html[data-theme] body.auth-page:has(#loginBtn) .auth-field input::placeholder{
+  color:var(--text-muted)!important;opacity:1;
+}
+html[data-theme] body.auth-page:has(#loginBtn) .auth-field input:focus{
+  border-color:var(--learning-accent)!important;
+  box-shadow:0 0 0 3px var(--learning-soft)!important;
+}
+html[data-theme] body.auth-page:has(#loginBtn) .auth-eye{
+  color:var(--link)!important;background:transparent!important;
+}
+html[data-theme] body.auth-page:has(#loginBtn) .auth-eye:hover{background:var(--surface-alt)!important}
+html[data-theme] body.auth-page:has(#loginBtn) :is(.auth-inline-link,.auth-switch button){
+  color:var(--link)!important;
+}
+html[data-theme] body.auth-page:has(#loginBtn) :is(.auth-switch,.auth-footer-note,.auth-site-foot,
+  .auth-field-hint){color:var(--text-muted)!important;font-size:.82rem!important}
+html[data-theme] body.auth-page:has(#loginBtn) .auth-account-note,
+html[data-theme] body.auth-page:has(#loginBtn) .auth-info-note{
+  background:var(--surface-alt)!important;
+  border:1px solid var(--border-strong)!important;color:var(--text-main)!important;
+}
+html[data-theme] body.auth-page:has(#loginBtn) .auth-account-note p,
+html[data-theme] body.auth-page:has(#loginBtn) .auth-info-note :is(p,span,small){
+  color:var(--text-main)!important;font-size:.84rem!important;line-height:1.65;
+}
+html[data-theme] body.auth-page:has(#loginBtn) .auth-account-note>span{color:var(--link)!important}
+html[data-theme] body.auth-page:has(#loginBtn) .auth-msg{
+  color:var(--text-main)!important;background:var(--info-soft)!important;
+  border:1px solid var(--border-strong)!important;
+}
+html[data-theme] body.auth-page:has(#loginBtn) .auth-msg.warn{
+  background:var(--warning-soft)!important;color:var(--warning-text)!important;
+}
+html[data-theme] body.auth-page:has(#loginBtn) .auth-msg.success{
+  background:var(--positive-soft)!important;color:var(--positive)!important;
+}
+html[data-theme] body.auth-page:has(#loginBtn) .auth-field input[aria-invalid="true"]{
+  border-color:var(--danger)!important;
+}
+
+/* Shared form/touch affordances across the course, learner and admin pages. */
+html[data-theme] :is(button,input,select,textarea,[role="tab"],a){
+  transition-property:background-color,border-color,color,box-shadow;
+  transition-duration:.18s;transition-timing-function:var(--motion-ease);
+}
+html[data-theme] :is(input,textarea,select){font-size:max(16px,1rem)}
+html[data-theme] :is(.dlp29-tab,.dlp29-button,.auth-tab,.auth-eye,.lp-filter,
+  .lp-context-chip,.dlp-theme-select){min-height:44px}
+html[data-theme] :is(.auth-msg,.alert,.notice,.info-note,[role="alert"]){overflow-wrap:anywhere}
+html[data-theme] :is(.auth-field-hint,.help-text,.form-hint){color:var(--text-muted)}
+html[data-theme] [aria-invalid="true"]:not([type="checkbox"]):not([type="radio"]){border:2px solid var(--danger)!important}
+html[data-theme] :is(.dlp29-button,.sample-links a,.lp-context-chip):active:not(:disabled){transform:translateY(0)}
+@media(max-width:720px){
+  html[data-theme] body[data-responsive-page="preview"] .sample-shell{padding-inline:14px}
+  html[data-theme] body[data-responsive-page="preview"] .sample-lesson{padding:20px 17px}
+  html[data-theme] body[data-responsive-page="preview"] .sample-lesson .lesson-number{min-width:43px;min-height:43px}
+  html[data-theme] body[data-responsive-page="preview"] .sample-lesson .lesson-heading{gap:10px}
+  html[data-theme] body[data-responsive-page="preview"] .sample-lesson .three-points{grid-template-columns:1fr;gap:11px}
+  html[data-theme] body[data-responsive-page="preview"] .sample-links{flex-direction:column}
+  html[data-theme] body[data-responsive-page="preview"] .sample-links a{width:100%}
+  html[data-theme] body.auth-page:has(#loginBtn) .auth-forms{padding:clamp(21px,4vw,30px)!important}
+  html[data-theme] body.auth-page:has(#loginBtn) .auth-layout{box-shadow:var(--shadow-soft)}
+}
+@media(prefers-reduced-motion:reduce){
+  html[data-theme] :is(button,input,select,textarea,[role="tab"],a){
+    transition:none!important;animation:none!important;
+  }
+  html[data-theme] :is(.dlp29-button,.sample-links a){transform:none!important}
+}
+
+/* The administrator landing panel is intentionally ink-blue: its original h1
+   was recoloured dark by a generic heading rule. Keep it legible in both modes. */
+html[data-theme] body.dalp-admin-page .ac-welcome{
+  background:#17384a!important;
+  background-image:linear-gradient(110deg,#173649,#255266)!important;
+  color:#f2f8f8!important;
+  border:1px solid rgb(214 241 236 / .2)!important;
+}
+html[data-theme] body.dalp-admin-page .ac-welcome :is(h1,p,.ac-illustration-note,.ac-illustration-kicker){
+  color:#f2f8f8!important;-webkit-text-fill-color:currentColor!important;
+}
+html[data-theme] body.dalp-admin-page .ac-welcome .ac-overline{color:#c6eee4!important}
+html[data-theme] body.dalp-admin-page .ac-welcome .ac-button-primary{
+  background:#e2f2ee!important;color:#17384a!important;
+  border:1px solid #e2f2ee!important;
+}
+html[data-theme] body.dalp-admin-page .ac-welcome .ac-button-muted{
+  color:#f2f8f8!important;border-color:rgb(220 244 240 / .48)!important;
+}
+html[data-theme] body.dalp-admin-page .ac-illustration-bars i{
+  background:linear-gradient(#8fd8ca,#4ca494)!important;opacity:1;
+}
+html[data-theme] body.dalp-admin-page .ac-illustration-bars i:nth-child(6){
+  background:linear-gradient(#f2d69d,#b38c49)!important;
+}
+html[data-theme] body.dalp-admin-page :is(.ac-section,.ac-surface,.dalp-admin-stats article){
+  background:var(--surface)!important;color:var(--text-main)!important;
+  border-color:var(--border-subtle)!important;
+}
+html[data-theme] body.dalp-admin-page :is(.dalp-admin-table th,.dalp-admin-track){
+  background:var(--surface-alt)!important;color:var(--text-main)!important;
+}
+html[data-theme] body.dalp-admin-page :is(.dalp-admin-table td,.dalp-admin-track p,
+  .dalp-admin-stats article small,.dalp-admin-stats article strong){color:var(--text-main)!important}
+html[data-theme] body.dalp-admin-page .dalp-admin-notice{
+  background:var(--warning-soft)!important;color:var(--warning-text)!important;
+  border-color:var(--border-strong)!important;
+}
+/* White-on-navy headings for panels that retain an intentional dark hero. */
+html[data-theme] body :is(.cap-hero,.ip-hero,.review-hero,.dalp-admin-hero) h1{
+  color:#f3f9f9!important;-webkit-text-fill-color:#f3f9f9!important;
+}
+html[data-theme] body.dlp-course-v29 .intro-hero h1 em{
+  background:none!important; -webkit-background-clip:initial!important;
+  color:#a7e9d9!important;-webkit-text-fill-color:#a7e9d9!important;
+  font-style:normal;
+}
