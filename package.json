@@ -9,7 +9,7 @@
   },
   "scripts": {
     "test": "node tests/smoke.mjs && node tests/modern.mjs && node tests/sync-regression.mjs && node tests/course-content.mjs && node tests/ai-card-visibility.mjs && node tests/auth-first.mjs && node tests/auth-gate-runtime.mjs && node tests/admin-roles.mjs",
-    "test:responsive": "node tests/responsive-coverage.mjs && node tests/mobile-v13.mjs",
+    "test:responsive": "node tests/responsive-coverage.mjs && node tests/mobile-v13.mjs && node tests/mobile-v14.mjs && node tests/responsive-v15.mjs && node tests/theme-navigation-v16.mjs && node tests/accessibility-v23.mjs",
     "test:workspace": "node tests/workspace-coverage.mjs",
     "test:admin": "node tests/admin-console-v6.mjs",
     "test:server-auth": "node tests/server-auth.mjs && node tests/middleware-access.mjs",
@@ -38,7 +38,10 @@
     "test:navigation:v90": "python3 tests/navigation-v90.py",
     "test:navigation:interaction:v90": "python3 tests/navigation-interactions-v90.py",
     "test:page-load:v91": "node tests/page-load-recovery-v91.mjs",
-    "test:visual:v96": "node tests/visual-v96.mjs && node tests/visual-v95.mjs && node tests/color-system-v86.mjs && node tests/color-consistency-v89.mjs"
+    "test:visual:v96": "node tests/visual-v96.mjs && node tests/visual-v95.mjs && node tests/color-system-v86.mjs && node tests/color-consistency-v89.mjs",
+    "test:catalog:v97": "node tests/catalog-navigation-v97.mjs",
+    "test:contrast:v98": "node tests/text-contrast-v98.mjs",
+    "test:design:v99": "node tests/premium-design-v99.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.57.0",

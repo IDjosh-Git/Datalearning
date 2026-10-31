@@ -2,10 +2,13 @@ import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
 import { fileURLToPath } from 'node:url';
+import {discoverPages,pageLayout,requireAsset,assertReferences} from './page-assets.mjs';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
-const filenames=[...fs.readdirSync(root).filter(x=>x.endsWith('.html')&&!['preview.html','capstone-guide.html'].includes(x)), ...fs.readdirSync(path.join(root,'courses')).filter(x=>x.endsWith('.html')).map(x=>`courses/${x}`)];
-assert.equal(filenames.length,23,'Check the original v28 dashboard rollout separately from standalone guides');
+const pages=discoverPages();
+assert(pages.length>0,'No HTML pages discovered');
+assertReferences(assert,pages);
+const filenames=pages.filter(page=>pageLayout(page)==='full').map(page=>page.route);
 const config=JSON.parse(fs.readFileSync(path.join(root,'vercel.json'),'utf8'));
 assert.equal(config.framework,null,'Vercel framework must remain Other/static');
 assert.equal(config.cleanUrls,false,'Existing .html links require non-clean URLs');
@@ -25,9 +28,8 @@ for(const filename of filenames){
     assert(fs.existsSync(dest),`Missing static file: ${filename} => ${uri}`);
     internal.add(dest);
   }
-  const prefix=filename.startsWith('courses/')?'../':'';
-  const expected=`${prefix}assets/dashboard-analytics-v28.css?v=20261023.28`;
-  assert.equal(html.split(expected).length-1,1,`Expected exactly one v28 sheet in ${filename}`);
+  const page=pages.find(page=>page.route===filename);
+  requireAsset(assert,page,'dashboard-analytics-v28.css');
   assert(html.lastIndexOf('dashboard-analytics-v28.css')>html.lastIndexOf('data-atmosphere-v27.css'),`v28 sheet must win cascade in ${filename}`);
 }
 for(const cssName of ['assets/dashboard-analytics-v28.css']){
@@ -39,4 +41,4 @@ for(const cssName of ['assets/dashboard-analytics-v28.css']){
   for(const token of ['--bg-dashboard','--bg-card','--grid-line','--accent-glow','prefers-reduced-motion','max-width:560px','.dl-home-grid','.dl-track-grid'])assert(css.includes(token),`Missing v28 design safeguard: ${token}`);
 }
 assert(!fs.existsSync(path.join(root,'dist')),'No dist output should be required by this root-static project');
-console.log(`PASS Vercel static v28: ${filenames.length} pages, ${internal.size} unique linked local assets, scoped rewrites, service worker header and responsive theme CSS`);
+console.log(`PASS Vercel static v28: ${filenames.length} full-layout pages of ${pages.length} discovered,  ${internal.size} unique linked local assets, scoped rewrites, service worker header and responsive theme CSS`);

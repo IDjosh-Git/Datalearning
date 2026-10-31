@@ -1,17 +1,29 @@
 import fs from 'node:fs';import path from 'node:path';import assert from 'node:assert/strict';
 const root=path.resolve('.'),read=f=>fs.readFileSync(path.join(root,f),'utf8');
-const routes=fs.readdirSync(root).filter(f=>f.endsWith('.html')).concat(fs.readdirSync('courses').filter(f=>f.endsWith('.html')).map(f=>'courses/'+f));
-assert.equal(routes.length,25);
-for(const route of routes){
- const html=read(route),base=route.startsWith('courses/')?'../assets/':'assets/';
- const one=html.lastIndexOf(base+'color-system-v86.css'),two=html.lastIndexOf(base+'color-consistency-v89.css');
- assert(one>=0 && two>one,route+': missing or wrongly ordered token/bridge');
- const cssLinks=[...html.matchAll(/<link\b[^>]*?href=["']([^"']+\.css[^"']*)["'][^>]*>/gi)];
- assert.equal(cssLinks[cssLinks.length-1][1].split('?')[0],base+'learning-polish-v96.css',route+': visual layer must be last');
- assert(html.includes('dalp-theme-prepaint')&&html.includes('theme-control-v14.js'),route+': system/theme missing');
- if(route.startsWith('courses/')){
-   const headEnd=html.toLowerCase().indexOf('</head>');
-   assert([...html.matchAll(/<link\b[^>]*?\.css[^>]*>/gi)].every(x=>x.index<headEnd),route+': legacy CSS in body overrides palette');
+import {discoverPages,assertReferences,pageLayout,requireAsset,requireOrder} from './page-assets.mjs';
+const pages=discoverPages();
+assert(pages.length>0,'v89: no HTML pages discovered');
+assertReferences(assert,pages);
+for(const page of pages){
+ requireAsset(assert,page,'premium-design-v99.css');
+ requireAsset(assert,page,'text-contrast-v98.css');
+ requireOrder(assert,page,'premium-design-v99.css','text-contrast-v98.css');
+ assert.equal(page.links.at(-2)?.path,'assets/premium-design-v99.css',`${page.route}: premium layer must precede contrast`);
+ assert.equal(page.links.at(-1)?.path,'assets/text-contrast-v98.css',`${page.route}: contrast must be last`);
+ if(pageLayout(page)==='catalog'){
+   requireAsset(assert,page,'learning-catalog-v97.css');
+   requireOrder(assert,page,'learning-catalog-v97.css','premium-design-v99.css');
+   continue;
+ }
+ requireAsset(assert,page,'color-system-v86.css');
+ requireAsset(assert,page,'color-consistency-v89.css');
+ requireOrder(assert,page,'color-system-v86.css','color-consistency-v89.css');
+ requireAsset(assert,page,'learning-polish-v96.css');
+ requireOrder(assert,page,'learning-polish-v96.css','premium-design-v99.css');
+ assert(page.html.includes('dalp-theme-prepaint')&&page.html.includes('theme-control-v14.js'),`${page.route}: system/theme missing`);
+ if(page.route.startsWith('courses/')){
+   const headEnd=page.html.toLowerCase().indexOf('</head>');
+   assert([...page.html.matchAll(/<link\b[^>]*?\.css[^>]*>/gi)].every(x=>x.index<headEnd),`${page.route}: CSS in body overrides palette`);
  }
 }
 const css=read('assets/color-consistency-v89.css');
@@ -32,4 +44,4 @@ for(const [mode,p] of Object.entries(themes))for(const [a,b,min] of [
 }
 assert.match(read('assets/admin-dashboard.js'),/classList\.toggle\('is-error'/);
 assert(!read('assets/admin-dashboard.js').includes("'#fff0eb'"));
-console.log(`PASS v89: ${routes.length} HTML routes, shared v96 visual layer last, legacy collisions removed, ${checks} AA/graphical contrast checks, semantic component coverage`);
+console.log(`PASS v89: ${pages.length} HTML routes, v99 design before final v98 contrast, legacy collisions removed, ${checks} AA/graphical contrast checks, semantic component coverage`);

@@ -3,17 +3,26 @@ import path from 'node:path';
 import assert from 'node:assert/strict';
 const root=path.resolve(import.meta.dirname,'..');
 const get=file=>fs.readFileSync(path.join(root,file),'utf8');
-const routes=[...fs.readdirSync(root).filter(f=>f.endsWith('.html')),
-  ...fs.readdirSync(path.join(root,'courses')).filter(f=>f.endsWith('.html')).map(f=>`courses/${f}`)];
-assert.equal(routes.length,25,'Expected all published HTML routes');
-for(const route of routes){
-  const html=get(route),base=route.startsWith('courses/')?'../assets/':'assets/';
-  const cssLinks=[...html.matchAll(/<link\b[^>]*href=["']([^"']+\.css[^"']*)["'][^>]*>/gi)]
-    .map(match=>match[1].split('?')[0]);
-  assert.equal(cssLinks.at(-1),`${base}learning-polish-v96.css`,`${route}: v96 must load last`);
-  assert(cssLinks.includes(`${base}color-system-v86.css`),`${route}: missing colours`);
-  assert(cssLinks.includes(`${base}visual-refinement-v95.css`),`${route}: missing v95 baseline`);
-  assert(html.includes('theme-control-v14.js')&&html.includes('dalp-theme-prepaint'),`${route}: missing theme support`);
+import {discoverPages,assertReferences,pageLayout,requireAsset,requireOrder} from './page-assets.mjs';
+const pages=discoverPages();
+assert(pages.length>0,'No published HTML pages discovered for v96 visual checks');
+assertReferences(assert,pages);
+for(const page of pages){
+  requireAsset(assert,page,'premium-design-v99.css');
+  requireAsset(assert,page,'text-contrast-v98.css');
+  requireOrder(assert,page,'premium-design-v99.css','text-contrast-v98.css');
+  assert.equal(page.links.at(-2)?.path,'assets/premium-design-v99.css',`${page.route}: premium design layer must precede final contrast`);
+  assert.equal(page.links.at(-1)?.path,'assets/text-contrast-v98.css',`${page.route}: missing final contrast audit layer`);
+  if(pageLayout(page)==='catalog'){
+    requireAsset(assert,page,'learning-catalog-v97.css');
+    requireOrder(assert,page,'learning-catalog-v97.css','premium-design-v99.css');
+    continue;
+  }
+  requireAsset(assert,page,'learning-polish-v96.css');
+  requireAsset(assert,page,'color-system-v86.css');
+  requireAsset(assert,page,'visual-refinement-v95.css');
+  requireOrder(assert,page,'learning-polish-v96.css','premium-design-v99.css');
+  assert(page.html.includes('theme-control-v14.js')&&page.html.includes('dalp-theme-prepaint'),`${page.route}: missing theme support`);
 }
 const css=get('assets/learning-polish-v96.css');
 for(const selector of ['.sample-lesson','.idea-card','.try-card','.three-points','.auth-story',
@@ -33,4 +42,4 @@ assert.match(get('assets/auth-flow.js'),/aria-invalid/);
 assert.equal(get('preview.html').match(/class="sample-lesson"/g)?.length,1);
 for(const content of ['What is data analysis?','One-minute example','Try it (2 minutes)',
   'Ready to continue?'])assert(get('preview.html').includes(content),`Existing preview copy changed: ${content}`);
-console.log(`PASS visual-v96: ${routes.length} routes, dual-theme semantic styling, preview, auth and admin coverage`);
+console.log(`PASS visual-v96: ${pages.length} routes, dual-theme semantic styling, preview, auth and admin coverage`);

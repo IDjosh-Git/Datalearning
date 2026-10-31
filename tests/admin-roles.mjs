@@ -11,7 +11,23 @@ assert(/REVOKE ALL ON TABLE public.site_admins FROM PUBLIC, anon, authenticated/
 assert(/GRANT SELECT ON TABLE public.site_admins TO authenticated/i.test(sql),'Admin self read required');
 assert(!/GRANT (?:INSERT|ALL) ON TABLE public.site_admins TO authenticated/i.test(sql),'Never allow client promotion');
 assert(gate.includes("'admin.html'")&&gate.includes("'progress.html'")&&gate.includes("'reviewer.html'"),'Admin-only routes must be covered');
-assert(gate.includes("role!=='admin'")&&gate.includes('roleError')&&gate.includes("paint('denied')"),'Role must be verified before page access');
+// Restriction is checked synchronously before lifting the protected-page veil;
+// ordinary learner pages may perform their optional role lookup after rendering.
+const restricted=gate.match(/const restricted=new Set\(\[([^\]]+)\]\)/)?.[1]??'';
+for(const route of ['admin.html','progress.html','reviewer.html','connection-test.html','sync-test.html'])
+ assert(restricted.includes(`'${route}'`),`Protected route missing from role gate: ${route}`);
+const gateStart=gate.indexOf('const adminPage=restricted.has(page)');
+const roleLookup=gate.indexOf("client.from('site_admins').select('user_id')",gateStart);
+const denied=gate.indexOf("paint('denied');return;",roleLookup);
+const show=gate.indexOf("authenticated=true;",gateStart);
+assert(gateStart>=0&&roleLookup>gateStart&&denied>roleLookup&&show>denied,
+ 'Restricted routes must verify site_admins role and deny unapproved users before making the page visible');
+const restrictedCode=gate.slice(gateStart,gate.indexOf('prepareWorkspace(data.user)',gateStart));
+assert.match(restrictedCode,/if\(adminPage\)\s*\{/, 'Restricted pages must require role lookup');
+assert.match(restrictedCode,/if\(result\?\.error\)\s*\{[^}]*showError\(\);return;/s,
+ 'Restricted pages must fail closed on permission lookup errors');
+assert.match(restrictedCode,/if\(!result\?\.data\)\s*\{paint\('denied'\);return;\}/,
+ 'Non-administrators must be denied protected pages');
 for(const el of ['adminWorkspace','adminSearch','adminStatus','adminLearnerRows','adminLearnerDetail','adminExport','adminPending']) assert(admin.includes('id="'+el+'"'),'Admin UI missing '+el);
 for(const operation of ["fetchAll('learner_profiles'","fetchAll('course_progress'","fetchAll('quiz_results'","fetchAll('certificates'","fetchAll('capstone_submissions'",'escape','not_a_real']){
  if(operation==='escape'||operation==='not_a_real')continue;

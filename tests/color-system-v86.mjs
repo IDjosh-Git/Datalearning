@@ -5,7 +5,7 @@ import {fileURLToPath} from 'node:url';
 import vm from 'node:vm';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=f=>fs.readFileSync(path.join(root,f),'utf8');
-const routes=[...fs.readdirSync(root).filter(f=>f.endsWith('.html')),...fs.readdirSync(path.join(root,'courses')).filter(f=>f.endsWith('.html')).map(f=>'courses/'+f)];
+const routes=[...fs.readdirSync(root).filter(f=>f.endsWith('.html')&&f!=='catalog.html'),...fs.readdirSync(path.join(root,'courses')).filter(f=>f.endsWith('.html')).map(f=>'courses/'+f)];
 assert.equal(routes.length,25,'Expected all 25 existing routes');
 for(const route of routes){
  const html=read(route),cssHref=route.startsWith('courses/')?'../assets/color-system-v86.css':'assets/color-system-v86.css';

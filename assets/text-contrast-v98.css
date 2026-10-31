@@ -1,0 +1,277 @@
+/* v98: Light/dark legibility audit. Purely presentational, no route, data or
+   learning-progress changes. Keep after the existing v96 and v97 styles. */
+html[data-theme="light"] {
+  --v98-ink:#172d40;--v98-muted:#465e6d;--v98-link:#075e59;
+  --v98-control:#173e55;--v98-control-hover:#0e3043;
+  --v98-surface:#ffffff;--v98-surface-soft:#edf2f0;
+  --v98-positive:#176443;--v98-warning:#74500c;--v98-danger:#9a293a;
+}
+html[data-theme="dark"] {
+  --v98-ink:#edf5f7;--v98-muted:#bdd0d9;--v98-link:#9ce6dd;
+  --v98-control:#173e55;--v98-control-hover:#0e3043;
+  --v98-surface:#1a2a37;--v98-surface-soft:#243847;
+  --v98-positive:#a8edc7;--v98-warning:#f4ce83;--v98-danger:#ffb5be;
+}
+/* Legacy theme layers can override colour tokens on their local scopes.
+   Dedicated contrast tokens above are not reused as brand identifiers. */
+html[data-theme] body :is(input,select,textarea)::placeholder {
+  color:var(--v98-muted)!important;opacity:1!important;
+}
+html[data-theme] body :is(input,textarea,select):disabled {
+  color:var(--v98-muted)!important;-webkit-text-fill-color:var(--v98-muted)!important;
+}
+html[data-theme] body :is(a,button,input,select,textarea,[role="tab"],[role="switch"]):focus-visible {
+  outline:3px solid #eab86e!important;outline-offset:3px!important;
+}
+/* Navigation: legible brand wordmarks and light text on dark active surfaces. */
+html[data-theme] body .nav-shell .wordmark :is(strong,small),
+html[data-theme] body .nav-inner .wordmark :is(strong,small) {
+  color:#f1f8fa!important;-webkit-text-fill-color:currentColor!important;
+}
+html[data-theme] body :is(.nav-links,.course-top-actions) :is(.account-link,.course-account-link),
+html[data-theme] body .course-top-actions .secondary-action,
+html[data-theme] body .nav-links .account-link {
+  color:#ffffff!important;-webkit-text-fill-color:currentColor!important;
+  background:#173e55!important;border-color:#799ca9!important;
+}
+html[data-theme] body :is(.nav-links,.course-top-actions) :is(.account-link,.course-account-link):hover,
+html[data-theme] body .course-top-actions .secondary-action:hover {background:#0e3043!important;}
+/* Dashboard: pale prompts, progress percentages and context navigation. */
+html[data-theme="light"] body .lp-pathfinder-intro .lp-eyebrow{color:#075e59!important}
+html[data-theme="dark"] body .lp-context-bar .lp-context-chip {
+  color:#e5f2f4!important;-webkit-text-fill-color:currentColor!important;
+  border-color:#496a7b!important;background:#21394a!important;
+}
+html[data-theme="dark"] body .lp-context-bar .lp-context-chip:hover {background:#2d5062!important}
+html[data-theme="dark"] body .lp-course-footer .lp-progress-meta b {
+  color:#eaf3f6!important;-webkit-text-fill-color:currentColor!important;
+}
+html[data-theme] body :is(.lp-filter.active,.lp-pathfinder-submit) {
+  background:#173e55!important;color:#ffffff!important;
+  -webkit-text-fill-color:#ffffff!important;border-color:#173e55!important;
+}
+/* Primary actions from old templates inherited a mauve background and white
+   text (~3.2:1) in dark mode. Use a consistent navy with 11:1 white contrast. */
+html[data-theme] body :is(.continue-actions .btn,.cap-actions .lp-primary,
+  .tutor-composer #sendQuestion,.tutor-avatar,.dalp-floating-lab a) {
+  background:#173e55!important;color:#fff!important;
+  -webkit-text-fill-color:#fff!important;border-color:#173e55!important;
+}
+html[data-theme] body :is(.continue-actions .btn,.cap-actions .lp-primary,
+  .tutor-composer #sendQuestion,.dalp-floating-lab a):hover {background:#0e3043!important}
+html[data-theme="dark"] body .ai-account-badge {
+  background:#253f51!important;color:#abede4!important;
+  -webkit-text-fill-color:#abede4!important;border-color:#527f85!important;
+}
+/* Learning practice controls: old light-mint button backgrounds cannot carry
+   white text; preserve disabled semantics while keeping labels readable. */
+html[data-theme] body :is(#ps-complete,#ps-next) {
+  background:#125b5c!important;border-color:#125b5c!important;
+  color:#ffffff!important;-webkit-text-fill-color:#ffffff!important;
+}
+html[data-theme] body :is(#ps-complete,#ps-next):hover:not(:disabled){background:#0d484a!important}
+html[data-theme] body #tutorModeAi:disabled {
+  opacity:1!important;background:var(--v98-surface-soft)!important;
+  color:var(--v98-muted)!important;-webkit-text-fill-color:var(--v98-muted)!important;
+  border:1px solid var(--border-strong)!important;cursor:not-allowed;
+}
+/* Catalog and course roadmaps: ensure headings inside gradient hero do not
+   pick up the site's generic ink colour. */
+html[data-theme] body.dlp97-learning-page .dlp97-catalog-hero :is(h1,h2,h3,p) {
+  color:#f3fafb!important;-webkit-text-fill-color:currentColor!important;
+}
+html[data-theme] body.dlp97-learning-page .dlp97-catalog-hero .dlp97-eyebrow {color:#a6ebe6!important}
+html[data-theme] body.dlp97-learning-page .dlp97-side :is(.dlp97-nav-label,.dlp97-brand small,.dlp97-subject-nav>a small) {
+  color:#c7dce5!important;
+}
+html[data-theme] body.dlp97-learning-page .dlp97-side :is(a,.dlp97-brand strong),
+html[data-theme] body.dlp97-learning-page .dlp97-mobile-bar :is(a,button) {
+  -webkit-text-fill-color:currentColor!important;
+}
+html[data-theme] body.dlp97-learning-page :is(.dlp97-card,.dlp97-course-guide,.dlp97-outline-row,
+  .dlp97-filters,.dlp97-empty) :is(h1,h2,h3,strong,dt,dd,li,p,small,span) {
+  text-shadow:none;
+}
+/* Free introductory lesson: eyebrow must contrast against the dark canvas. */
+html[data-theme="dark"] body[data-responsive-page="preview"] .sample-pill {
+  color:#9ce6dd!important;-webkit-text-fill-color:currentColor!important;
+}
+/* Premium dark sign-in now uses an ink masthead and footer, so its
+   wordmark and supporting copy require light foregrounds on those surfaces. */
+html[data-theme="dark"] body.auth-page .auth-topbar .auth-wordmark :is(strong,span),
+html[data-theme="dark"] body.auth-page .auth-site-foot,
+html[data-theme="dark"] body.auth-page .auth-footer-note {
+  color:#d7e8ee!important;-webkit-text-fill-color:#d7e8ee!important;
+}
+html[data-theme="light"] body.auth-page .auth-account-note p {color:#445a67!important}
+/* Shared references, progress checks, and capstone status descriptions. */
+html[data-theme="dark"] body[data-responsive-page="reference"] .search-area label {
+  color:#e3f0f3!important;
+}
+html[data-theme="dark"] body[data-responsive-page="reference"] .inner p {
+  color:#e3f0f3!important;
+}
+html[data-theme] body[data-responsive-page="reference"] #clearSearch {
+  background:#173e55!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
+}
+html[data-theme="dark"] body[data-responsive-page="practice"] .pc-note {
+  color:#c4d8df!important;-webkit-text-fill-color:currentColor!important;
+}
+html[data-theme] body[data-responsive-page="capstone-guide"] .cap-guide>a,
+html[data-theme="dark"] body[data-responsive-page="capstone-guide"] .cap-guide a {
+  color:var(--v98-link)!important;-webkit-text-fill-color:currentColor!important;
+}
+html[data-theme="dark"] body[data-responsive-page="capstone"] .cap-label span {
+  color:#ffb5be!important;-webkit-text-fill-color:currentColor!important;
+}
+html[data-theme="light"] body[data-responsive-page="learning-lab"] .eyebrow {
+  color:#075e59!important;-webkit-text-fill-color:currentColor!important;
+}
+html[data-theme] body[data-responsive-page="sync-test"] .card {
+  background:var(--v98-surface)!important;color:var(--v98-ink)!important;
+  border-color:var(--border-subtle)!important;
+}
+html[data-theme] body[data-responsive-page="sync-test"] .card h1,
+html[data-theme] body[data-responsive-page="sync-test"] .card p {
+  color:var(--v98-ink)!important;-webkit-text-fill-color:currentColor!important;
+}
+html[data-theme] body[data-responsive-page="sync-test"] .card :is(button,a) {
+  background:#173e55!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
+}
+html[data-theme="dark"] body[data-responsive-page="sync-test"] .card .row.wait {
+  color:#f4ce83!important;
+}
+html[data-theme="dark"] body[data-responsive-page="sync-test"] .card .row.ok {color:#a8edc7!important}
+html[data-theme="dark"] body[data-responsive-page="sync-test"] .card .row.bad {color:#ffb5be!important}
+/* Module-level reading content in SQL, Power BI and Python. */
+html[data-theme="dark"] body.dlp-course-v29 .overview-grid .card p,
+html[data-theme="dark"] body.dlp-course-v29 .topbar-title small,
+html[data-theme="dark"] body.dlp-course-v29 .week-title p {
+  color:#c2d3dd!important;-webkit-text-fill-color:currentColor!important;
+}
+html[data-theme="light"] body.dlp-course-v29 .week-title p {
+  color:#465e6d!important;
+}
+html[data-theme="dark"] body.dlp-course-v29 .week-header .badge {
+  color:#f3d5e2!important;background:#41304c!important;
+  -webkit-text-fill-color:currentColor!important;
+}
+html[data-theme] body.dlp-course-v29 .sidebar .nav-link.active .nav-num {
+  background:#254c8c!important;color:#ffffff!important;
+  -webkit-text-fill-color:#ffffff!important;
+}
+@media(prefers-reduced-motion:reduce) {
+  html[data-theme] body :is(a,button,input,select,textarea) {transition:none!important}
+}
+/* Second-pass corrections for specific older pages. */
+html[data-theme="dark"] body :is(.nav-links a.active,.nav-links a.is-active,.nav-links a[aria-current="page"]) {
+  color:#ffffff!important;-webkit-text-fill-color:#ffffff!important;
+  background:#18545b!important;
+}
+html[data-theme="dark"] body :is(.lp-pathfinder-intro .lp-eyebrow,.section-head .section-tag) {
+  color:#a4e9de!important;-webkit-text-fill-color:currentColor!important;
+}
+html[data-theme="dark"] body .capstone-path-v74 :is(h2,h3,p,li) {
+  color:#e3eff2!important;-webkit-text-fill-color:currentColor!important;
+}
+html[data-theme="dark"] body :is(.cap-upload-icon,.cap-rubric b) {
+  color:#a4e9de!important;-webkit-text-fill-color:currentColor!important;
+}
+html[data-theme] body .cert-view-header h1 {
+  color:var(--v98-ink)!important;-webkit-text-fill-color:currentColor!important;
+}
+html[data-theme] body .cert-view-header p {
+  color:var(--v98-muted)!important;-webkit-text-fill-color:currentColor!important;
+}
+html[data-theme="dark"] body .tutor-tools button {
+  background:#254457!important;color:#f2f8fa!important;
+  -webkit-text-fill-color:currentColor!important;border:1px solid #648391!important;
+}
+html[data-theme="dark"] body .tutor-tools button:hover:not(:disabled){background:#315468!important}
+html[data-theme="dark"] body .verify-wrap :is(.verify-mark strong,.verify-footnote strong) {
+  color:#f0f9fa!important;-webkit-text-fill-color:currentColor!important;
+}
+html[data-theme="dark"] body .verify-wrap :is(.verify-mark small,.verify-footnote p,.verify-hero p) {
+  color:#c4d7dd!important;-webkit-text-fill-color:currentColor!important;
+}
+html[data-theme="dark"] body .verify-wrap :is(.verify-home,.verify-eyebrow) {
+  color:#9ce6dd!important;-webkit-text-fill-color:currentColor!important;
+}
+html[data-theme="light"] body .arena-python-launch .arena-count {
+  background:#173e55!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
+}
+html[data-theme="dark"] body :is(.arena-start-steps li span,.pc-hero a) {
+  color:#9ce6dd!important;-webkit-text-fill-color:currentColor!important;
+}
+html[data-theme="dark"] body #mainNav a[aria-current="page"] {
+  color:#f4fafb!important;-webkit-text-fill-color:#f4fafb!important;
+  background:#1d5660!important;
+}
+html[data-theme="light"] body .arena-subject-options button.arena-python-launch span.arena-count {
+  color:#173e55!important;-webkit-text-fill-color:#173e55!important;
+}
+/* Full-document sweep: weekly lesson copy below the opening viewport. */
+html[data-theme="dark"] body .lp-flow .lp-step b,
+html[data-theme="dark"] body .lp-feature a {
+  color:#9ce6dd!important;-webkit-text-fill-color:currentColor!important;
+}
+html[data-theme="dark"] body[data-responsive-page="capstone-guide"] .cap-guide a.button {
+  background:#173e55!important;color:#ffffff!important;
+  -webkit-text-fill-color:#ffffff!important;border-color:#789fa9!important;
+}
+html[data-theme] body.dlp-course-v29 :is(.dlp-module,.dlp-mastery) .dlp-kicker {
+  color:var(--v98-link)!important;-webkit-text-fill-color:currentColor!important;
+}
+html[data-theme="dark"] body.dlp-course-v29 .job-ready-check {
+  background:#233f4d!important;color:#f0f6f8!important;
+  border:1px solid #658390!important;
+  -webkit-text-fill-color:#f0f6f8!important;
+}
+html[data-theme="dark"] body.dlp-course-v29 .job-ready-check :is(strong,b,p,small,span,a){
+  color:#f0f6f8!important;-webkit-text-fill-color:currentColor!important;
+}
+html[data-theme="dark"] body.dlp-course-v29 .week-header .week-num {
+  color:#173e55!important;-webkit-text-fill-color:#173e55!important;
+}
+html[data-theme="dark"] body.dlp-course-v29 .guided-lab .lab-kicker {
+  color:#9ce6dd!important;-webkit-text-fill-color:currentColor!important;
+}
+/* Introduction course uses its own teaching cards. */
+html[data-theme] body[data-responsive-page="introduction"] .footer-grid p,
+html[data-theme] body.dlp-course-v29 .footer-grid p {
+  color:#cfdee5!important;-webkit-text-fill-color:currentColor!important;
+}
+html[data-theme="light"] body.dlp-course-v29 .three-points span {
+  color:#465e6d!important;-webkit-text-fill-color:currentColor!important;
+}
+html[data-theme="dark"] body.dlp-course-v29 :is(.three-points b,.three-points span,
+ .workflow b,.everyday-grid b,.intro-lesson em,.try-card summary,
+ .metric-strip span,.tools-grid a,.cv88-contract-head span,.case-toolbar span) {
+  color:#dcebf0!important;-webkit-text-fill-color:currentColor!important;
+}
+html[data-theme="dark"] body.dlp-course-v29 .tools-grid a {
+  text-decoration:underline!important;text-underline-offset:3px;
+}
+html[data-theme="dark"] body.dlp-course-v29 .job-ready-extension .job-ready-label {
+  color:#a8ebe3!important;-webkit-text-fill-color:currentColor!important;
+}
+/* Multi-layer heroes: place bright foreground on confirmed dark gradient panels.
+   Transparent decorative radial highlights are ignored for contrast accounting. */
+html[data-theme] body.auth-page .auth-story .dalp-preview-invite a {
+  color:#d9f7ef!important;-webkit-text-fill-color:currentColor!important;
+  text-decoration:underline!important;text-underline-offset:3px;
+}
+html[data-theme] body.dlp-course-v29 .intro-visual .process-chip strong {
+  color:#eef8fa!important;-webkit-text-fill-color:currentColor!important;
+}
+html[data-theme] body :is(.review-hero,.ip-hero,.cap-hero) .lp-eyebrow,
+html[data-theme] body .pl-hero .eyebrow {
+  color:#b6eee4!important;-webkit-text-fill-color:currentColor!important;
+}
+html[data-theme] body .ip-hero :is(p,.ip-secure),
+html[data-theme] body .review-hero :is(p,.review-secure) {
+  color:#e3eff3!important;-webkit-text-fill-color:currentColor!important;
+}
+html[data-theme] body .pl-hero :is(.pl-art-panel,.pl-art-panel span) {
+  color:#edf7f8!important;-webkit-text-fill-color:currentColor!important;
+}

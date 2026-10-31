@@ -43,7 +43,8 @@ for name,sc in scans.items():
         f=((ROOT/name).parent/unquote(spl.path)).resolve()
         if not f.is_relative_to(ROOT) or not f.is_file():missing.append((name,asset,'missing page asset'))
 assert not missing,'Broken targets: '+repr(missing[:25])
-assert links>=700 and downloads>=20 and len(pages)==25,(links,downloads,len(pages))
+assert pages, 'No HTML pages discovered for navigation audit'
+assert links>=700 and downloads>=20, f'Navigation coverage unexpectedly reduced: {links} authored links, {downloads} downloads across {len(pages)} HTML pages'
 # Validate the whole course catalogue and the actual Arena challenge identifiers, not just their URL shape.
 practice=(ROOT/'practice.html').read_text()
 assert 'assets/practice.js?v=20261031.90' in practice
