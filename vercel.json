@@ -31,7 +31,7 @@
       ]
     },
     {
-      "source": "/(auth|account|admin|reviewer|progress|capstone|certificate|verify).html",
+      "source": "/(auth|account|admin|reviewer|progress|capstone|certificate|verify|practice).html",
       "headers": [
         {
           "key": "Cache-Control",

@@ -8,8 +8,12 @@
   if(token===recentToken&&Date.now()-recentAt<60000)return true;
   if(pending)return pending;
   pending=(async()=>{
-   const response=await fetch(endpoint,{
-     method:'POST',headers:{Authorization:'Bearer '+token},credentials:'same-origin',cache:'no-store'});
+   const controller=new AbortController();
+   const timer=setTimeout(()=>controller.abort(),7000);
+   let response;
+   try{response=await fetch(endpoint,{
+     method:'POST',headers:{Authorization:'Bearer '+token},credentials:'same-origin',cache:'no-store',signal:controller.signal});}
+   finally{clearTimeout(timer)}
    if(!response.ok)throw new Error('We couldn’t secure your session. Please try again.');
    recentToken=token;recentAt=Date.now();return true;
   })();

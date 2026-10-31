@@ -57,23 +57,42 @@
    const {data,error}=verified;
    if(error){if(/invalid.*jwt|jwt.*expired|invalid.*refresh|session.*missing|user.*not.*found/i.test(error.message||'')){exit();return;}showError();return;}
    if(!data?.user||data.user.is_anonymous||(sessionId&&data.user.id!==sessionId)){exit();return;}
-   // Fail closed: do not assume a learner role when the role service cannot be checked.
-   // A failed optional role lookup must never block verified users from ordinary
-   // learning pages. It must still fail closed for administrator-only routes.
-   let admin=null,roleError=null;
-   try{
-     const result=await deadline(client.from('site_admins').select('user_id').eq('user_id',data.user.id).maybeSingle(),10000);
-     admin=result?.data;roleError=result?.error;
-   }catch(error){roleError=error;}
-   if(roleError && restricted.has(page)){
-     console.warn('Administrator permissions could not be verified');showError();return;
+   // Identity verification is mandatory for every protected learning page.
+   // Administrator-role lookup is NOT a prerequisite for ordinary learner content:
+   // a slow or failing permissions service previously kept Practice Arena hidden.
+   const adminPage=restricted.has(page);
+   let role='learner';
+   if(adminPage){
+     let result;
+     try{result=await deadline(client.from('site_admins').select('user_id').eq('user_id',data.user.id).maybeSingle(),8000)}
+     catch(_){console.warn('Administrator permissions timed out');showError();return;}
+     if(result?.error){console.warn('Administrator permissions unavailable');showError();return;}
+     if(!result?.data){paint('denied');return;}
+     role='admin';
    }
-   if(roleError){console.warn('Administrator links temporarily unavailable; opening verified learner workspace.');}
-   const role=admin&&!roleError?'admin':'learner';
-   prepareWorkspace(data.user);window.DALP_AUTH_USER=data.user;window.DALP_ROLE=role;window.DALP_ROLE_UNVERIFIED=Boolean(roleError);
-   if(restricted.has(page)&&role!=='admin'){paint('denied');return;}
-   // Renew the short-lived HttpOnly hosting cookie on page access and token refresh.
-   try{await window.DALP_SERVER_SESSION?.establish(session.session)}catch(err){console.warn('Session renewal will retry',err)}
+   prepareWorkspace(data.user);
+   window.DALP_AUTH_USER=data.user;window.DALP_ROLE=role;
+   window.DALP_ROLE_UNVERIFIED=!adminPage;
+   // A hosting-session refresh is best-effort for learner pages and must not
+   // block showing the Arena. Server-side functions still enforce auth.
+   if(window.DALP_SERVER_SESSION?.establish){
+     void deadline(window.DALP_SERVER_SESSION.establish(session.session),8000)
+       .catch(()=>console.warn('Hosting session will retry on the next request'));
+   }
+   if(!adminPage){
+     void (async()=>{
+       try{
+         const result=await deadline(client.from('site_admins').select('user_id').eq('user_id',data.user.id).maybeSingle(),5000);
+         if(result?.error)return;
+         window.DALP_ROLE=result?.data?'admin':'learner';
+         window.DALP_ROLE_UNVERIFIED=false;
+         if(authenticated){
+           const refresh=()=>enhanceRoleUI();
+           if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',refresh,{once:true});else refresh();
+         }
+       }catch(_){console.warn('Optional role lookup unavailable; learner page remains accessible')}
+     })();
+   }
    authenticated=true;document.documentElement.classList.remove('dalp-auth-checking');
    if(gate){gate.remove();gate=null;}
    const init=()=>{addSignOut();enhanceRoleUI();};

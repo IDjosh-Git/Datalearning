@@ -108,11 +108,17 @@
     let hostingSessionOk=false;
     try {
       const {data}=await db().auth.getSession();
-      await Promise.race([
-        window.DALP_SERVER_SESSION.establish(data?.session),
-        new Promise((_,reject)=>setTimeout(()=>reject(new Error('Hosting session timed out')),10000))
-      ]);
-      hostingSessionOk=true;
+      if(needsServerSession){
+        await Promise.race([
+          window.DALP_SERVER_SESSION.establish(data?.session),
+          new Promise((_,reject)=>setTimeout(()=>reject(new Error('Hosting session timed out')),9000))
+        ]);
+        hostingSessionOk=true;
+      }else if(window.DALP_SERVER_SESSION?.establish){
+        // Do not keep the learner on sign-in to renew a separate hosting cookie.
+        // The destination page performs its own verified, best-effort renewal.
+        void window.DALP_SERVER_SESSION.establish(data?.session).catch(()=>{});
+      }
     }catch(error){console.warn('Hosting session could not be established; learner pages remain accessible');}
     if(needsServerSession && !hostingSessionOk){
       completing=false;

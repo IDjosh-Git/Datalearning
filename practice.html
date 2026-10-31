@@ -2,11 +2,25 @@
 
 <html lang="en"><head><script id="dalp-theme-prepaint">(()=>{try{const k="dalp-theme",p=localStorage.getItem(k),pref=p==="dark"||p==="light"?p:"system",dark=pref==="dark"||(pref==="system"&&window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches),root=document.documentElement;root.dataset.theme=dark?"dark":"light";root.dataset.themePreference=pref;root.classList.toggle("dark",dark);root.classList.toggle("light",!dark);root.style.colorScheme=dark?"dark":"light"}catch{const os=!!window.matchMedia?.("(prefers-color-scheme: dark)")?.matches,root=document.documentElement;root.dataset.theme=os?"dark":"light";root.dataset.themePreference="system";root.classList.toggle("dark",os);root.classList.toggle("light",!os);root.style.colorScheme=os?"dark":"light"}})();</script><link crossorigin="anonymous" href="https://cdn.jsdelivr.net" rel="preconnect"/>
 <script>document.documentElement.classList.add('dalp-auth-checking')</script>
+<script id="dalp-arena-load-recovery">(function(){'use strict';
+  // Fail visibly if the external authentication script never starts. Never expose protected content.
+  setTimeout(function(){
+    if(!document.documentElement.classList.contains('dalp-auth-checking')||document.getElementById('dalp-auth-gate')||!document.body)return;
+    var cover=document.createElement('div');cover.id='dalp-auth-gate';cover.setAttribute('role','alert');
+    cover.style.cssText='position:fixed;inset:0;z-index:2147483600;background:#101923;color:#fff;display:grid;place-items:center;padding:20px;font:16px system-ui,sans-serif;text-align:center';
+    var panel=document.createElement('section'),heading=document.createElement('h2'),copy=document.createElement('p'),link=document.createElement('a'),retry=document.createElement('button');
+    heading.textContent='Practice Arena could not finish loading';copy.textContent='The account-check script may be unavailable. Retry the page, or sign in again to return to the Arena.';
+    var destination=new URL('auth.html',location.href);destination.searchParams.set('return',location.pathname+location.search+location.hash);
+    link.href=destination.href;link.textContent='Sign in and return to Practice Arena';link.style.cssText='display:inline-block;color:#9bdcf4;margin:10px;text-decoration:underline';
+    retry.type='button';retry.textContent='Retry';retry.style.cssText='padding:12px 18px;border:2px solid #9bdcf4;background:#192636;color:#fff;border-radius:10px;cursor:pointer';retry.onclick=function(){location.reload()};
+    panel.append(heading,copy,link,retry);cover.append(panel);document.body.prepend(cover);
+  },12000);
+})();</script>
 <link href="assets/auth-gate.css?v=20261031.91" rel="stylesheet"/>
 <script defer="" src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0"></script>
 <script defer="" src="assets/supabase-config.js?v=20261021"></script>
-<script defer="" src="assets/supabase-client.js?v=20261021"></script><script defer="" src="assets/server-session.js?v=20261022"></script>
-<script defer="" src="assets/auth-gate.js?v=20261031.91"></script>
+<script defer="" src="assets/supabase-client.js?v=20261021"></script><script defer="" src="assets/server-session.js?v=20261031.92"></script>
+<script defer="" src="assets/auth-gate.js?v=20261031.92"></script>
 <meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>Practice Arena | Data Learning Path</title><link href="assets/da-logo.svg" rel="icon" type="image/svg+xml"/><link href="assets/da-logo.svg" rel="shortcut icon" type="image/svg+xml"/><script></script><link href="assets/site.css?v=20261015.3" rel="stylesheet"/><link href="assets/modern.css?v=20261015.3" rel="stylesheet"/><link href="assets/practice.css?v=20261023.31" rel="stylesheet"/><link href="assets/unified-finish.css?v=20261015.3" rel="stylesheet"/><link href="assets/theme-consistency.css?v=20261015.3" rel="stylesheet"/><link href="assets/device-responsive.css?v=20261015.3" rel="stylesheet"/><link href="assets/responsive-v2.css?v=20261015.3" rel="stylesheet"/><link href="assets/desktop-auth-finish.css?v=20261021.2" rel="stylesheet"/>
 <link href="assets/workspace-shell.css?v=20261021.3" rel="stylesheet"/><link href="assets/learner-companion.css?v=20261015.3" rel="stylesheet"/>
 <link href="assets/theme-unified-v10.css?v=20261022" rel="stylesheet"/>
