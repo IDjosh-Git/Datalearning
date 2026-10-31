@@ -14,7 +14,7 @@ for(const slug of slugs){
  const course=read(`courses/${slug}.html`);
  assert.match(course,new RegExp(`href="${slug}-roadmap\\.html"`),`${slug}: visible roadmap link absent`);
  assert.match(course,new RegExp(`href="${slug}-extension\\.html"`),`${slug}: visible extension link absent`);
- assert(course.includes('dalp-course-resource-links'),`${slug}: resource links must appear near the course heading`);
+ assert(course.includes('class="course-portal-links"'),`${slug}: prominent course links must appear before the hero`);
  assert(!course.includes('class="cv88-roadmap"'),`${slug}: long module roadmap still occupies the course page`);
  assert(!course.includes('class="cv88-map'),`${slug}: course preparation moved to roadmap page`);
  assert(!course.includes('class="dlp29-guide'),`${slug}: legacy milestone panel remains on course page`);
