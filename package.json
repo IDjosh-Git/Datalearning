@@ -41,7 +41,9 @@
     "test:visual:v96": "node tests/visual-v96.mjs && node tests/visual-v95.mjs && node tests/color-system-v86.mjs && node tests/color-consistency-v89.mjs",
     "test:catalog:v97": "node tests/catalog-navigation-v97.mjs",
     "test:contrast:v98": "node tests/text-contrast-v98.mjs",
-    "test:design:v99": "node tests/premium-design-v99.mjs"
+    "test:design:v99": "node tests/premium-design-v99.mjs",
+    "test:responsive:v100": "node tests/responsive-v100.mjs",
+    "test:browser:v100": "python3 tests/responsive-render-v100.py && python3 tests/navigation-render-v100.py"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.57.0",
