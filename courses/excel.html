@@ -397,7 +397,18 @@ main{min-width:0}
 <main>
 <div class="topbar">
 <div class="topbar-title">
-<div><img alt="Excel icon" class="lp-icon small" src="../assets/icons/icon-excel.svg" style="vertical-align:middle;margin-right:7px"/><strong>Excel Learning Portal</strong><br/><small>Learn → Practise → Test → Build</small></div>
+<div><svg class="lp-icon small" role="img" aria-label="Excel icon" width="32" height="32"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Microsoft Excel product icon">
+<title>Microsoft Excel</title><defs>
+<linearGradient id="excel-bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#9CF06D"/><stop offset=".42" stop-color="#3FBF51"/><stop offset="1" stop-color="#10652F"/></linearGradient>
+<linearGradient id="excel-fold" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#AEFB70"/><stop offset="1" stop-color="#53D95B"/></linearGradient>
+<linearGradient id="excel-tab" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#27AD6D"/><stop offset="1" stop-color="#087044"/></linearGradient></defs>
+<rect x="14" y="3.5" width="46" height="57" rx="12" fill="url(#excel-bg)"/>
+<path d="M14 38.5c0-9 6-14.5 15-14.5h14V14.5C43 8.5 48 3.5 54 3.5h-28c-7 0-12 6-12 13Z" fill="#70D65D" opacity=".9"/>
+<rect x="39" y="3.5" width="21" height="24" rx="10" fill="url(#excel-fold)"/>
+<path d="M14 39c.5-6.9 7.1-13.4 15.1-13.4H43c-4 2.5-6.6 6.5-6.6 11.4v5c0 8-5.5 13.5-13.5 13.5h-8.9Z" fill="#38BD5D" opacity=".9"/>
+<rect x="3" y="24" width="30" height="33" rx="8" fill="url(#excel-tab)"/>
+<path d="m11.5 31.7 6.5 9-6.5 9.1h5.3l4-5.9 4.1 5.9h5.3l-6.7-9.1 6.7-9h-5.4l-4 5.8-4.1-5.8Z" fill="#FFF"/>
+</svg><strong>Excel Learning Portal</strong><br/><small>Learn → Practise → Test → Build</small></div>
 <button aria-controls="sidebar" aria-expanded="false" aria-label="Open course week navigation" class="menu-btn" id="menuBtn" type="button">☰</button>
 </div>
 <div class="course-top-actions">
@@ -418,28 +429,7 @@ main{min-width:0}
 <div class="stat"><strong>1 Final</strong><span>Interactive dashboard project</span></div>
 </div>
 <div class="job-ready-banner"><strong>Full learning route: lessons → practice → 5-question quiz → guided lab → career-grade assignment → capstone.</strong><p>Each week now has a practical masterclass with a concrete deliverable and an independent quality check. For optional AI assistance use the <a href="../prompt-library.html">300-prompt library</a>; do not treat AI output as evidence before testing. <a href="../downloads/WORKED_SOLUTIONS.md">View reproducible answer checks and starter code</a>.</p></div></section>
-<section aria-labelledby="dlp29-excel-heading" class="dlp29-guide" data-course="excel" id="course-guide-v29">
-<div class="dlp29-guide-heading">
-<div><p class="dlp29-eyebrow">SPREADSHEETS · ANALYSIS · REPORTING</p><h2 id="dlp29-excel-heading">Your learning journey, mapped out.</h2><p>From organized source tables to auditable calculations and a clear dashboard.</p></div>
-<div class="dlp29-guide-actions"><a class="dlp29-button dlp29-button-primary" href="#week1">Start this course <span aria-hidden="true">↗</span></a><a class="dlp29-button dlp29-button-quiet" href="../practice.html?tool=Excel">Open Practice Arena <span aria-hidden="true">↗</span></a></div>
-</div>
-<div class="dlp29-guide-grid">
-<div class="dlp29-panel dalp-guide-short"><span aria-hidden="true" class="dalp-short-icon">↗</span><div><strong>View your complete course roadmap</strong><p>Milestones and all modules, on a separate easy-to-follow page.</p><a href="excel-roadmap.html">Open course roadmap →</a></div></div>
-<div aria-labelledby="dlp29-excel-toolkit-title" class="dlp29-panel dlp29-toolkit">
-<div class="dlp29-panel-heading"><span class="dlp29-overline">YOUR FIELD GUIDE</span><h3 id="dlp29-excel-toolkit-title">Learn, prepare, apply</h3><p>Switch between the outcomes, setup and a worked example.</p></div>
-<div class="dlp29-tabs" data-course-tabs="">
-<div aria-label="Course overview topics" class="dlp29-tablist" data-course-tablist="">
-<button class="dlp29-tab" data-tab="outcomes" id="dlp29-excel-tab-outcomes" type="button">Outcomes</button>
-<button class="dlp29-tab" data-tab="prepare" id="dlp29-excel-tab-prepare" type="button">Prerequisites</button>
-<button class="dlp29-tab" data-tab="example" id="dlp29-excel-tab-example" type="button">Worked example</button>
-</div>
-<div class="dlp29-tab-panel" data-panel="outcomes" id="dlp29-excel-panel-outcomes"><h4>By the end of this track, you can:</h4><ul><li>Structure and validate tabular data with named Excel Tables.</li><li>Build reliable formulas with absolute references, lookup and conditional aggregation.</li><li>Summarize performance using PivotTables, PivotCharts and slicers.</li><li>Present an interactive dashboard with clearly defined KPIs and tested totals.</li></ul></div>
-<div class="dlp29-tab-panel" data-panel="prepare" id="dlp29-excel-panel-prepare"><h4>Before you begin</h4><ul><li>Excel 2016 or newer, or Microsoft 365; a desktop version is recommended for PivotTable work.</li><li>Comfort using a keyboard and opening, saving and renaming files.</li><li>A fictional sales dataset or the example table provided in the lessons.</li></ul></div>
-<div class="dlp29-tab-panel" data-panel="example" id="dlp29-excel-panel-example"><p class="dlp29-example-label">Example · Total revenue for the region selected in H2</p><pre tabindex="0"><code>=SUMIFS(Sales[Revenue], Sales[Region], H2)</code></pre><h4>Walk through it</h4><ol><li>Convert the source range to a Table and name it Sales.</li><li>Confirm that Revenue is numeric and Region contains consistent values.</li><li>Enter a region name in H2 and use SUMIFS in an output cell.</li><li>Filter the Sales table to the same region and compare the total.</li></ol><div class="dlp29-checkpoint"><strong>Checkpoint</strong><p>Change H2 to another region. Does the formula update, and can you reconcile the result to the underlying records?</p></div></div>
-</div>
-</div>
-</div>
-</section>
+
 <div class="course-intro-callout"><span class="course-intro-badge">STARTER MODULE · BEFORE WEEK 1</span><div><h3>What is data analysis, and why does it matter?</h3><p>If you are just starting, complete the introduction first. It explains everyday uses, how to ask the right questions, data quality, totals versus profit, and a full five-day lunch-kiosk case study with downloadable CSV and quiz. This optional foundation does not alter your 10-week course progress.</p><a href="introduction.html">Begin Introduction to Data Analysis →</a></div></div>
 <div class="section-head"><h3>How to learn with this page</h3><p>Use one week at a time. Do not just read — open Excel and recreate every example.</p></div>
 <section class="overview-grid">
@@ -448,32 +438,12 @@ main{min-width:0}
 <div class="card"><div class="icon">🧠</div><h4>3. Test</h4><p>Answer five questions each week and check your score immediately.</p></div>
 <div class="card"><div class="icon">📊</div><h4>4. Build</h4><p>Combine the skills into a final interactive sales dashboard.</p></div>
 </section>
-<div class="section-head"><h3>Course map</h3><p>The course moves from Excel navigation to analysis, visualization, and dashboard delivery.</p></div>
-<section class="course-map">
-<a class="map-card" href="#week1"><b>Week 1</b><span>Interface, cells, ranges, worksheets</span></a>
-<a class="map-card" href="#week2"><b>Week 2</b><span>Formatting, data types, Excel Tables</span></a>
-<a class="map-card" href="#week3"><b>Week 3</b><span>Core formulas and references</span></a>
-<a class="map-card" href="#week4"><b>Week 4</b><span>IF, SUMIFS, XLOOKUP</span></a>
-<a class="map-card" href="#week5"><b>Week 5</b><span>Cleaning messy data</span></a>
-<a class="map-card" href="#week6"><b>Week 6</b><span>Sort, filter, conditional formatting</span></a>
-<a class="map-card" href="#week7"><b>Week 7</b><span>PivotTables and slicers</span></a>
-<a class="map-card" href="#week8"><b>Week 8</b><span>Charts and storytelling</span></a>
-<a class="map-card" href="#week9"><b>Week 9</b><span>Dashboard layout and interactivity</span></a>
-<a class="map-card" href="#week10"><b>Week 10</b><span>End-to-end dashboard project</span></a>
-</section>
 <!-- WEEK 1 -->
 <div class="course-study-note"><strong>Learn → recreate → check → explain.</strong> Work through the new guided lab in each week after reading the lesson. Aim for at least 4/5 on the weekly quiz before marking a week complete. Completion records are self-reported and are not externally accredited certificates. <a href="../downloads/START_HERE.md">Get the common practice dataset ↗</a></div><section aria-label="Course exercise data" class="mastery-data-guide" id="mastery-data-excel">
 <div><span class="mastery-eyebrow">REAL-WORLD WORKFLOW · PRACTICE RESOURCES</span><h3>One dataset, five analytical perspectives</h3><p>Lessons use a clearly labelled fictional six-order retail dataset. Compare SQL, Excel, DAX, Python and AI outputs against the same independent checks. The SQL Practice Arena uses its own separate challenge database.</p></div>
 <div class="mastery-data-links"><a download="" href="../downloads/mastery_orders.csv">Download retail CSV</a><a download="" href="../downloads/mastery_orders.sqlite">Download SQLite database</a><a href="../downloads/MASTERY_DATA_DICTIONARY.md" rel="noopener" target="_blank">Schema &amp; expected totals</a></div>
 <div class="mastery-controls"><span><b>6</b> orders</span><span><b>5</b> completed</span><span><b>578,000</b> completed revenue</span><span><b>135,000</b> completed profit</span></div></section><section aria-labelledby="capstone-intro-excel" class="capstone-path-v74"><div class="capstone-path-label">IMPORTANT · COURSE COMPLETION REQUIREMENT</div><h2 id="capstone-intro-excel">Your Excel capstone project starts in Week 1</h2><p>Every learner must complete an independent, instructor-reviewed capstone project to qualify for a course certificate. You will prepare it throughout the 10 weeks, not only after finishing the lessons. <strong>Pass mark: 70/100.</strong></p><p><strong>Expected Excel deliverable:</strong> A cleaned workbook with formulas, PivotTables and a one-page dashboard (.xlsx).</p><details><summary>See your 10-week capstone roadmap</summary><ol><li><strong>Week 1:</strong> Read the project brief and scoring rubric; identify a business question.</li><li><strong>Weeks 2–3:</strong> Choose an appropriate dataset; define objectives, measures and scope.</li><li><strong>Weeks 4–5:</strong> Clean the data; record assumptions and quality checks.</li><li><strong>Weeks 6–7:</strong> Analyse results; validate calculations and identify actionable insights.</li><li><strong>Week 8:</strong> Build your report, dashboard or reproducible analysis.</li><li><strong>Week 9:</strong> Write findings, limitations and recommendations; prepare evidence.</li><li><strong>Week 10:</strong> Review your work, complete all lessons and submit through Capstone Studio.</li></ol></details><div class="capstone-path-actions"><a href="../capstone-guide.html#excel">Read Excel project guidelines →</a><a href="../capstone.html">Open submission studio →</a></div></section>
-<section aria-labelledby="cv88-excel-heading" class="cv88-map">
-<p class="cv88-kicker">COURSE BRIEF · Excel for Data Analysis</p><h2 id="cv88-excel-heading">Learn it, verify it, use it</h2>
-<p><strong>Who it is for:</strong> New analysts who want to clean records, audit calculations and deliver a usable workbook.</p><p><strong>Before you begin:</strong> Introduction to Data Analysis (recommended); ability to open and save files. No coding required.</p>
-<p><strong>Setup and limitations:</strong> Excel for Microsoft 365, Excel 2024 or Excel 2021 recommended. XLOOKUP is unavailable in Excel 2016/2019; use INDEX/MATCH as provided. Desktop Excel is preferable for full PivotTable and dashboard work. The offline Arena evaluator supports only a subset of formulas.</p><p><strong>Suggested commitment:</strong> Suggested study plan: 2–4 hours each week for 10 modules; actual time depends on prior Excel experience. This is a study plan, not timed platform tracking.</p><p><strong>By the end:</strong> Build an auditable multi-sheet workbook: validated source table, repeatable KPI formulas, PivotTables, chart, dashboard and a short decision note.</p>
-<div class="cv88-map-actions"><a download="" href="../downloads/mastery_orders.csv">Download the six-order training dataset</a><a download="" href="../downloads/MASTERY_DATA_DICTIONARY.md">Dataset fields and calculations</a><a download="" href="../downloads/mastery_orders_validation.csv">Verified row-by-row calculations</a><a download="" href="../downloads/CURRICULUM_VALIDATION.md">Verified examples and rubric</a><a href="../capstone-guide.html">Capstone guidance</a></div>
-<p class="cv88-source-note">The six-order <code>mastery_orders.csv</code> is synthetic and different from the Practice Arena datasets. The examples use hypothetical currency units, not actual revenue or customer evidence. Weekly checkmarks are self-reported and are separate from quiz scores or instructor review.</p>
-<h3>Prerequisite-aware module map</h3><p>Complete the previous module's evidence before advancing. You can navigate freely to review earlier material.</p>
-<p class="dalp-module-link"><a href="excel-roadmap.html">View the full module-by-module roadmap →</a></p></section><section class="week searchable" id="week1">
+<section class="week searchable" id="week1">
 <div class="week-header"><div class="week-num">1</div><div class="week-title"><h3>Excel Foundations &amp; Navigation</h3><p>Understand the Excel workspace and become comfortable moving around a workbook.</p></div><span class="badge">Beginner</span></div>
 <div class="week-body">
 <div class="learning-grid">
@@ -1105,7 +1075,7 @@ Completed Profit: SUMIFS over a calculated Profit column</code></pre>
 </div>
 </section>
 <section class="certificate-section searchable" id="certificate">
-<div class="capstone-route-panel"><div class="capstone-route-top"><img alt="Capstone project icon" height="57" src="../assets/icons/icon-capstone.svg" width="57"/><div><span class="capstone-eyebrow">FINAL MILESTONE · ASSESSED PROJECT</span><h3>Finish your course with a capstone</h3></div></div>
+<div class="capstone-route-panel"><div class="capstone-route-top"><svg  role="img" aria-label="Capstone project icon" width="57" height="57"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="#f9edf2"/><path d="M32 7 51 17v23L32 51 13 40V17Z" fill="#783852"/><path d="m23 30 6 6 13-14" fill="none" stroke="#fbe5d1" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"/><path d="m25 48-5 12 12-5 12 5-5-12" fill="#b67a57"/></svg><div><span class="capstone-eyebrow">FINAL MILESTONE · ASSESSED PROJECT</span><h3>Finish your course with a capstone</h3></div></div>
 <p>Complete all ten weeks, submit your Excel Data Analysis project with screenshots and original files, then receive a score and written feedback directly from your instructor when your assessment is published. A passing result (70/100 or above) qualifies for a database-registered course-completion certificate.</p>
 <div class="capstone-route-actions"><a class="btn primary" href="../capstone.html?course=excel">Submit Excel capstone →</a><a class="btn" href="../account.html">My learning dashboard ↗</a></div>
 <p class="capstone-route-small">Files are private to your account. The score and certificate require your instructor’s published assessment; checking off lessons alone no longer generates a new certificate.</p>

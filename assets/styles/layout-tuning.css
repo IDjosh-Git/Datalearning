@@ -316,3 +316,12 @@ html[data-theme="light"] .ref-meta img{
    transition:none!important;animation:none!important;
  }
 }
+
+/* Inline course-navigation icons: no external image download needed. */
+.dlp97-subject-icon svg{display:block;width:21px;height:21px;max-width:100%;max-height:100%;flex-shrink:0}
+.dlp97-course-resources{display:grid;gap:5px;margin:8px 12px 12px;padding:12px 7px;border-top:1px solid #d5e5db}
+.dlp97-course-resources a{min-height:40px;display:flex;align-items:center;padding:8px 10px;border:1px solid transparent;border-radius:9px;font-weight:700;font-size:13px;color:#175d43;text-decoration:none}
+.dlp97-course-resources a:hover,.dlp97-course-resources a:focus-visible{background:#eaf5ee;border-color:#b8d9c4}
+.dl-track>svg{display:block;height:44px;width:44px;max-width:100%;object-fit:contain;flex:none}
+.ref-group-icon{display:inline-grid;place-items:center;width:28px;height:28px;flex:0 0 28px}
+.ref-group-icon svg{height:28px;width:28px}

@@ -9,7 +9,7 @@ const sourceFiles=['assets/scripts/modern.js','assets/scripts/learning-catalog.j
 for(const name of sourceFiles){
  const code=read(name);
  assert.doesNotMatch(code,/(?:\.\.\/)?assets\/icon-(?!s\/)/,`${name}: obsolete icon directory`);
- assert.match(code,/assets\/icons\/icon-/,`${name}: expected canonical icon directory`);
+ assert(/assets\/icons\/icon-|dalpIconSvg|dalpRefIcons/.test(code),`${name}: expected local icon path or embedded vector`);
 }
 const iconSlugs=['intro','excel','sql','powerbi','python','ai','capstone'];
 for(const slug of iconSlugs){
@@ -21,12 +21,16 @@ for(const slug of iconSlugs){
 }
 for(const f of ['courses/excel.html','courses/sql.html','courses/powerbi.html','courses/python.html','courses/ai.html','courses/introduction.html']){
  const expected=f.includes('introduction')?'intro':path.basename(f,'.html');
- assert.ok(read(f).includes(`../assets/icons/icon-${expected}.svg`),`${f}: invalid course icon path`);
+ assert.match(read(f),/<svg[^>]*viewBox="0 0 64 64"/,`${f}: course icon should be an embedded SVG`);
+ assert.doesNotMatch(read(f),/src="\.\.\/assets\/icons\/icon-/,`${f}: course icon should not depend on outdated asset URLs`);
 }
 assert.doesNotMatch(read('practice.html'),/<img[^>]*src=\"https:\/\/cdn\.(?:simpleicons\.org|jsdelivr\.net)/,'Arena logos must load from local icons');
 assert.doesNotMatch(read('assets/scripts/arena-ide.js'),/<img[^>]*src=\"https:\/\/cdn\.(?:simpleicons\.org|jsdelivr\.net)/,'IDE logos must load from local icons');
 const css=read('assets/styles/layout-tuning.css');
-assert.match(css,/\.dlp97-subject-icon img/,'navigation icons need fixed sizing');
+assert.match(css,/\.dlp97-subject-icon svg/,'inline navigation icons need fixed sizing');
 assert.match(css,/\.dlp90-practice-actions > a:not\(\.dlp90-arena-cta\)/,'studio link should be unboxed');
 assert.match(css,/\.arena-task-panel\.is-collapsed/,'details panel needs a collapsed state');
-console.log('PASS local navigation icons: canonical paths, existing SVGs, size rules, and accessible links');
+const navigation=read('assets/scripts/learning-catalog.js');
+assert.match(navigation,/const navIcon=name=>dalpIconSvg/, 'Navigation icon embeds missing');
+assert.match(navigation,/dalp-quick-guide/, 'Course guide should use compact quick links');
+console.log('PASS embedded course icons, shipped SVGs, navigation sizing, and icon-safe links');

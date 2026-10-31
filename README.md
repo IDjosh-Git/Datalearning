@@ -45,6 +45,14 @@ The Course Mastery Checkpoint now has 10 explanatory multiple-choice questions p
 
 For Vercel use the project root as the configured root directory, with `vercel.json` `"outputDirectory": "."`. The build script verifies the static project; it does not emit a separate `public` folder.
 
+## Course navigation corrections
+
+The former in-page roadmap grids, lengthy milestone panels, and JavaScript-generated module-by-module navigation have been removed from each lesson page. Use the **Course roadmap** and **Curriculum extension** links near the course heading or in the shared course sidebar. The roadmap pages retain the original preparation notes, milestones, and lesson links.
+
+Navigation/course icons are embedded SVG artwork, rather than network-dependent images. The SVG assets remain under `assets/icons/` for other uses. For version-free deployed CSS/JS filenames, `vercel.json` now asks browsers to revalidate assets after deployment, and the service worker cache key has been refreshed. If an older deployment is open, reload the site after the new Vercel deployment is READY.
+
+Cards and mastery questions now size to their content rather than stretching to match the tallest adjacent card. The course quick-access panel and responsive grids are designed for desktop, tablet, and phone widths.
+
 ## Verification commands
 
 ```sh

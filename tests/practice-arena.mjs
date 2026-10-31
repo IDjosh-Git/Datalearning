@@ -11,5 +11,5 @@ for(const [expression,expected] of Object.entries({'=SUM(B2:B7)':1850,'=SUMIFS(B
 assert.equal(JSON.stringify(formula.evaluate('=FILTER(B2:B7,C2:C7="East")')),JSON.stringify([120,300,620]));
 for(const [expression,error] of [['=UNKNOWN(B2)','#NAME?'],['=1/0','#DIV/0!'],['=SUM(Q20)','#REF!']])assert.throws(()=>formula.evaluate(expression),e=>e.code===error,expression);
 assert.match(fs.readFileSync('assets/scripts/arena-ide.js','utf8'),/sheet\(false\)/,'Inspector does not create duplicate formula input');
-assert.match(fs.readFileSync('practice.html','utf8'),/sql-wasm\.js/);assert.match(fs.readFileSync('practice.html','utf8'),/assets\/icons\/icon-excel\.svg/);
+assert.match(fs.readFileSync('practice.html','utf8'),/sql-wasm\.js/);assert.match(fs.readFileSync('practice.html','utf8'),/Microsoft Excel product icon|excel-bg/);
 console.log('PASS 95 challenges registered (45 SQL, 50 Excel); 150 formula scenario runs; 20 offline SQL models; errors, nested formulas, branding and runtime wiring');

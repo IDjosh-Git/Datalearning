@@ -16,6 +16,9 @@ for(const slug of slugs){
  assert.match(course,new RegExp(`href="${slug}-extension\\.html"`),`${slug}: visible extension link absent`);
  assert(course.includes('dalp-course-resource-links'),`${slug}: resource links must appear near the course heading`);
  assert(!course.includes('class="cv88-roadmap"'),`${slug}: long module roadmap still occupies the course page`);
+ assert(!course.includes('class="cv88-map'),`${slug}: course preparation moved to roadmap page`);
+ assert(!course.includes('class="dlp29-guide'),`${slug}: legacy milestone panel remains on course page`);
+ assert(!course.includes('class="course-map'),`${slug}: inline course map remains on lesson page`);
  assert(!course.includes('id="applied-mastery"'),`${slug}: expanded applied curriculum still occupies the course page`);
  const roadmap=read(`courses/${slug}-roadmap.html`),extension=read(`courses/${slug}-extension.html`);
  for(const [name,html] of [['roadmap',roadmap],['extension',extension]]){
@@ -31,6 +34,7 @@ for(const slug of slugs){
   }
  }
  assert(roadmap.includes('guide-modules')||roadmap.includes('Learn it'),`${slug}: learning plan missing module details`);
+ assert(roadmap.includes('guide-brief-content'),`${slug}: prior course brief must be preserved on roadmap page`);
  assert(extension.includes('dlp-module'),`${slug}: extension needs practical learning activities`);
  assert.equal(bank[slug]?.length,10,`${slug}: expected ten mastery questions`);
  for(const [i,q] of bank[slug].entries()){
@@ -48,4 +52,6 @@ assert(css.includes('repeat(2,minmax(0,1fr))'),'Desktop checkpoint must use avai
 assert(css.includes('max-width:100%!important'),'Checkpoint width must not be locked to 900px');
 const pagesCSS=read('assets/styles/course-guide-pages.css');
 assert(pagesCSS.includes('prefers-reduced-motion'),'Standalone guide must respect reduced-motion preferences');
-console.log('PASS 12 linked study-guide pages; six visible course resource menus; 60 vetted mastery questions; responsive checkpoint and Arena header.');
+assert(!read('assets/scripts/learning-catalog.js').includes('dlp97-outline-row'), 'Old tall JavaScript roadmap is still injected');
+assert(read('assets/scripts/learning-catalog.js').includes('dalp-quick-guide-links'), 'Compact roadmap navigation missing');
+console.log('PASS 12 linked study-guide pages; six compact course resource menus; 60 mastery questions; responsive checkpoint and Arena header.');
