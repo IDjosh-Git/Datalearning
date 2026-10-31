@@ -19,7 +19,10 @@ for(const key of ['new URLSearchParams(location.search)','params.get(\'challenge
 for(const key of ['sampleMatched','sampleActual','sampleExpected','hiddenPassed','checked.ok','runError','JSON.stringify(expected)','JSON.stringify(actual)'])assert(core.includes(key),`Missing grading evidence ${key}`);
 assert(!core.includes('result={ok:true,errors:[]},'), 'Do not fake challenge passing');
 assert.match(ux,/after the workspace/);
-assert.match(ux,/previousElementSibling!==shell/);
+assert.match(ux,/assessment.nextElementSibling!==help/);
+assert.match(ux,/observer.disconnect\(\)/);
+assert.match(ux,/requestAnimationFrame/);
+assert(!ux.includes('queueMicrotask(update)'), 'Avoid unbounded mutation microtask loops');
 assert.match(css,/prefers-reduced-motion/);
 assert.match(css,/focus-visible/);
 assert.match(css,/data-theme="dark"/);
@@ -28,7 +31,7 @@ assert.match(html,/status are stored locally on this device/);
 assert.match(html,/Execution is not the same as passing/i);
 assert.match(html,/script defer="" src="assets\/practice.js\?v=(?:20261030\.85|20261031\.90)"/);
 assert.match(html,/assets\/arena-product-v85.css\?v=85/);
-assert.match(html,/assets\/arena-product-v85.js\?v=85/);
+assert.match(html,/assets\/arena-product-v85.js\?v=(?:85|20261031\.94)/);
 for(const [f,track] of [['index.html',''],['courses/excel.html','excel'],['courses/sql.html','sql'],['courses/python.html','python']]){
   assert.match(read(f),/arena-course-links-v85.css\?v=85/);
   assert.match(read(f),/learning-experience-v84.js/);

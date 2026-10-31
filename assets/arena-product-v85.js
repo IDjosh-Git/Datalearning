@@ -4,13 +4,18 @@
  const $=(s,r=document)=>r.querySelector(s);
  const getTask=()=>{const id=root.querySelector('[data-challenge-id]')?.dataset.challengeId;const tasks=[...(window.DALP_PRACTICE||[]),...(window.DALP_PY_CHALLENGES||[])];return tasks.find(t=>t.id===id)||tasks.find(t=>t.title===root.querySelector('h2')?.textContent)};
  let oldId='',scheduled=false;
- function update(){scheduled=false;const t=getTask();if(!t)return;
+ function update(){const t=getTask();if(!t)return;
   const subject=t.kind;
   document.querySelectorAll('[data-arena-subject]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.arenaSubject===subject)));
   // The legacy IDE places grading feedback inside its hidden Console tab.
   // Keep assessment and optional support visible after the workspace instead.
   const shell=$('.ide-shell',root),assessment=$('#practiceFeedback',root),help=$('#practiceSupport',root);
-  if(shell&&assessment&&help&&(assessment.previousElementSibling!==shell||help.previousElementSibling!==assessment))root.append(assessment,help);
+  // The IDE shell may be nested inside another wrapper. Comparing its sibling
+  // position to root-level feedback made this condition permanently true and
+  // triggered the MutationObserver indefinitely, freezing the whole page.
+  if(shell&&assessment&&help&&
+     (assessment.parentElement!==root||help.parentElement!==root||
+      assessment.nextElementSibling!==help)){root.append(assessment,help);}
   if(t.id===oldId)return;oldId=t.id;
   const bridge=$('.arena-course-bridge');bridge?.remove();
   const course={SQL:['SQL course','courses/sql.html'],Excel:['Excel course','courses/excel.html'],Python:['Python course','courses/python.html']}[subject];
@@ -21,8 +26,20 @@
   const feedback=$('#practiceFeedback');if(feedback)feedback.setAttribute('aria-label','Challenge assessment feedback');
   const support=$('#practiceSupport');if(support)support.setAttribute('aria-label','Optional hints and worked answer');
  }
- document.addEventListener('dalp:practice-ready',update);
- document.addEventListener('dalp:arena-editor-selected',()=>{if(!scheduled){scheduled=true;queueMicrotask(update)}});
- new MutationObserver(()=>{if(!scheduled){scheduled=true;queueMicrotask(update)}}).observe(root,{childList:true});
- if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',update,{once:true});else update();
+ // A DOM observer must never react to its own updates in an endless
+ // microtask chain. Suspend observation during our mutations and schedule
+ // at most once per animation frame so input and scrolling remain responsive.
+ const observer=new MutationObserver(scheduleUpdate);
+ function scheduleUpdate(){
+  if(scheduled)return;
+  scheduled=true;
+  requestAnimationFrame(()=>{
+   scheduled=false;observer.disconnect();
+   try{update();}finally{observer.observe(root,{childList:true});}
+  });
+ }
+ observer.observe(root,{childList:true});
+ document.addEventListener('dalp:practice-ready',scheduleUpdate);
+ document.addEventListener('dalp:arena-editor-selected',scheduleUpdate);
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',scheduleUpdate,{once:true});else scheduleUpdate();
 })();
