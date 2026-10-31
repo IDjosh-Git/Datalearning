@@ -8,14 +8,16 @@ import {restrictedKind} from '../lib/server-auth.js';
 
 const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const pages=discoverPages();
-assert.equal(pages.length,26,'Expect 20 root routes and six courses');
+assert.equal(pages.length,38,'Expect 20 core routes, six courses, and 12 linked resource pages');
 assertReferences(assert,pages);
 let links=0,css=0,js=0;
 for(const page of pages){
  assert.match(page.html,/<html\b[^>]*data-theme="light"/i,`${page.route}: light theme required`);
  assert(!/prefers-color-scheme:\s*dark|theme-toggle|theme-control-v\d+\.js/.test(page.html),`${page.route}: obsolete theme feature`);
- assert.equal(page.links.at(-1)?.path,'assets/styles/experience.css',`${page.route}: final light palette missing`);
- assert(page.links.length<=7,`${page.route}: redundant CSS loading; found ${page.links.length} layers`);
+ const resourcePage=/^courses\/(?:introduction|excel|sql|powerbi|python|ai)-(?:roadmap|extension)\.html$/.test(page.route);
+ const expectedCss=resourcePage?'assets/styles/course-guide-pages.css':page.route.startsWith('courses/')?'assets/styles/course-page-improvements.css':'assets/styles/layout-tuning.css';
+ assert.equal(page.links.at(-1)?.path,expectedCss,`${page.route}: expected final presentation layer ${expectedCss}`);
+ assert(page.links.length<=(resourcePage?2:page.route.startsWith('courses/')?9:8),`${page.route}: redundant CSS loading; found ${page.links.length} layers`);
  for(const m of page.html.matchAll(/<(a|img|source|iframe|video|link|script)\b[^>]*?(?:href|src)\s*=\s*(["'])(.*?)\2/gi)){
   const [_,kind,,ref]=m;
   if(/^(?:https?:|#|data:|mailto:|tel:|javascript:|\/\/)/i.test(ref))continue;

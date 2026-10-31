@@ -6,7 +6,9 @@ import path from 'node:path';
 const pages=discoverPages();
 assertReferences(assert,pages);
 for(const page of pages){
- assert.equal(page.links.at(-1)?.path,'assets/styles/experience.css',page.route+' must apply final light-only design last');
+ const guide=/-roadmap\.html$|-extension\.html$/.test(page.route);
+ const expected=guide?'assets/styles/course-guide-pages.css':page.route.startsWith('courses/')?'assets/styles/course-page-improvements.css':'assets/styles/layout-tuning.css';
+ assert.equal(page.links.at(-1)?.path,expected,page.route+' must apply its final stylesheet last');
  assert(page.links.every(x=>!/[?&]v=/.test(x.href)),page.route+' contains old cache revision links');
  assert(page.scripts.every(x=>!/[?&]v=/.test(x.href)),page.route+' contains old script revisions');
 }

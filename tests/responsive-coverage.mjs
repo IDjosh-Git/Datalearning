@@ -8,8 +8,16 @@ assertReferences(assert,pages);
 let queryCount=0;
 for(const page of pages){
  assert(page.viewport,`${page.route}: viewport meta missing`);
+ const resourcePage=/^courses\/(?:introduction|excel|sql|powerbi|python|ai)-(?:roadmap|extension)\.html$/.test(page.route);
+ if(resourcePage){
+  assert(page.html.includes('course-guide-pages.css'),`${page.route}: standalone guide styling missing`);
+  const css=fs.readFileSync(path.join(root,'assets/styles/course-guide-pages.css'),'utf8');
+  assert(/@media\s*\(/.test(css) && css.includes('prefers-reduced-motion'),`${page.route}: responsive or motion settings missing`);
+  queryCount++;
+  continue;
+ }
  assert(page.html.includes('site-refresh.css'),`${page.route}: final light styling missing`);
- const compiled=page.links.filter(l=>l.local && !['assets/styles/site-refresh.css','assets/styles/experience.css'].includes(l.path));
+ const compiled=page.links.filter(l=>l.local && !['assets/styles/site-refresh.css','assets/styles/experience.css','assets/styles/layout-tuning.css'].includes(l.path));
  assert(compiled.length>=1 && compiled.length<=6,`${page.route}: expected compact page CSS bundles`);
  const styles=compiled.map(l=>fs.readFileSync(path.join(root,l.path),'utf8')).join('\n');
  assert(/@media\s*\(/.test(styles),`${page.route}: no responsive CSS present`);

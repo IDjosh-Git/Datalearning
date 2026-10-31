@@ -9,8 +9,8 @@ function apply(){scheduled=false;try{
  const current=root.querySelector('.pc-overline')?.textContent||'';
  const challenge=root.querySelector('h2')?.textContent||'Practice challenge';
  let task=root.querySelector('.arena-task-panel');
- if(!task){task=document.createElement('section');task.className='arena-task-panel';task.id='arenaTaskPanel';task.setAttribute('aria-label','Task information');task.innerHTML='<div class="arena-task-head"><span>CHALLENGE BRIEF</span><button type="button" class="arena-task-toggle" aria-expanded="true">Hide details</button></div><div class="arena-task-body"></div>';shell.querySelector('.ide-content')?.prepend(task);
- task.querySelector('.arena-task-toggle').addEventListener('click',()=>{const collapsed=task.classList.toggle('is-collapsed');task.querySelector('button').textContent=collapsed?'Show details':'Hide details';task.querySelector('button').setAttribute('aria-expanded',String(!collapsed))});}
+ if(!task){task=document.createElement('section');task.className='arena-task-panel';task.id='arenaTaskPanel';task.setAttribute('aria-label','Task information');task.innerHTML='<div class="arena-task-head"><span>CHALLENGE BRIEF</span><button type="button" class="arena-task-toggle" aria-expanded="true" aria-controls="arenaTaskBody">Hide details</button></div><div class="arena-task-body" id="arenaTaskBody"></div>';shell.querySelector('.ide-content')?.prepend(task);
+ task.querySelector('.arena-task-toggle').addEventListener('click',()=>{const collapsed=task.classList.toggle('is-collapsed');const button=task.querySelector('.arena-task-toggle');button.textContent=collapsed?'Show details':'Hide details';button.setAttribute('aria-expanded',String(!collapsed));task.querySelector('.arena-task-body').hidden=collapsed;});}
  const body=task.querySelector('.arena-task-body');body.replaceChildren();
  const h=document.createElement('h3');h.textContent=challenge;body.append(h);
  const kicker=document.createElement('span');kicker.className='arena-task-kind';kicker.textContent=current;body.append(kicker);

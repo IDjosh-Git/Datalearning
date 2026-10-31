@@ -88,5 +88,6 @@
       "source": "/courses/:course",
       "destination": "/courses/:course.html"
     }
-  ]
+  ],
+  "outputDirectory": "."
 }

@@ -1,0 +1,318 @@
+/* Layout refinement: accessible links, compact footer and wider desktop workspaces.
+   Loaded AFTER the legacy page styles; no learning or grading logic is changed. */
+:root{--fine-page-max:1640px;--fine-ink:#19372e;--fine-green:#176b53;--fine-edge:#d6e5dc}
+
+/* Practice Studio is a genuine text link, not a second oversized CTA card. */
+html[data-theme="light"] body.lp-home .lp-course-footer a.lp-studio-cta,
+html[data-theme="light"] body.lp-home .lp-course-footer a.lp-studio-cta:visited{
+  display:inline-flex!important;align-items:center!important;justify-content:flex-start!important;
+  align-self:flex-start!important;width:fit-content!important;max-width:100%!important;
+  padding:5px 0!important;margin:10px 0 0!important;min-height:36px!important;
+  background:transparent!important;background-image:none!important;border:0!important;
+  border-radius:0!important;box-shadow:none!important;transform:none!important;
+  color:#176b53!important;-webkit-text-fill-color:#176b53!important;
+  text-decoration:underline!important;text-decoration-thickness:1px!important;text-underline-offset:4px!important;
+  font-size:.875rem!important;font-weight:700!important;line-height:1.35!important;
+}
+html[data-theme="light"] body.lp-home .lp-course-footer a.lp-studio-cta:hover{
+  color:#0a4e3b!important;-webkit-text-fill-color:#0a4e3b!important;
+  text-decoration-thickness:2px!important;box-shadow:none!important;
+}
+html[data-theme="light"] body.lp-home .lp-course-footer a.lp-studio-cta:focus-visible{
+  outline:3px solid #bc7928!important;outline-offset:4px!important;border-radius:2px!important;
+}
+
+/* Compact, dark support footer. Keep white-on-evergreen contrast throughout,
+   including colour rules inherited from older light-theme styles. */
+html[data-theme="light"] body footer.footer{
+  background:#183b35!important;background-image:linear-gradient(125deg,#17372f 0%,#244a41 100%)!important;
+  color:#e9f6ee!important;border-top:1px solid #31594e!important;
+  margin-top:clamp(20px,3vw,36px)!important;
+}
+html[data-theme="light"] body footer.footer .footer-grid{
+  display:grid!important;grid-template-columns:minmax(250px,1.35fr) repeat(2,minmax(155px,.8fr));
+  gap:clamp(18px,3.2vw,62px)!important;
+  padding:clamp(25px,3vw,38px) 0 22px!important;
+  align-items:start!important;
+}
+html[data-theme="light"] body footer.footer :is(h4,strong,.wordmark strong,.wordmark small){
+  color:#f7fff9!important;-webkit-text-fill-color:currentColor!important;
+}
+html[data-theme="light"] body footer.footer .footer-grid h4{
+  margin:1px 0 10px!important;font-size:.86rem!important;line-height:1.35!important;
+}
+html[data-theme="light"] body footer.footer .footer-grid p{
+  color:#d6e7df!important;-webkit-text-fill-color:#d6e7df!important;
+  font-size:.875rem!important;line-height:1.52!important;
+  margin:10px 0 0!important;max-width:48ch!important;
+}
+html[data-theme="light"] body footer.footer .footer-grid a:not(.wordmark){
+  display:block!important;width:fit-content!important;min-height:0!important;
+  margin:0 0 7px!important;padding:2px 0!important;
+  font-size:.875rem!important;line-height:1.35!important;
+  color:#deefe7!important;-webkit-text-fill-color:#deefe7!important;
+  text-decoration:none!important;white-space:normal!important;
+}
+html[data-theme="light"] body footer.footer a.wordmark{
+  display:inline-flex!important;min-height:0!important;gap:9px!important;margin:0!important;
+  align-items:center!important;color:#f7fff9!important;
+}
+html[data-theme="light"] body footer.footer :is(.footer-grid a,.footer-bottom a):hover{
+  color:#fff!important;-webkit-text-fill-color:#fff!important;text-decoration:underline!important;text-underline-offset:3px;
+}
+html[data-theme="light"] body footer.footer .footer-bottom{
+  border-top:1px solid #43665c!important;padding:13px 0 15px!important;
+  gap:10px 20px!important;font-size:.8rem!important;line-height:1.4!important;
+  color:#c5ded2!important;
+}
+html[data-theme="light"] body footer.footer .footer-bottom a{
+  display:inline-flex!important;align-items:center!important;min-height:36px!important;
+  padding:5px 0!important;margin:0!important;line-height:1.35!important;
+  font-size:.825rem!important;color:#f4fff8!important;-webkit-text-fill-color:#f4fff8!important;
+  text-decoration:underline!important;text-underline-offset:3px!important;
+}
+@media(max-width:740px){
+ html[data-theme="light"] body footer.footer .footer-grid{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:20px!important;
+ }
+ html[data-theme="light"] body footer.footer .footer-grid>div:first-child{grid-column:1/-1}
+ html[data-theme="light"] body footer.footer .footer-bottom{align-items:flex-start!important}
+}
+@media(max-width:410px){
+ html[data-theme="light"] body footer.footer .footer-grid{grid-template-columns:minmax(0,1fr)!important;gap:16px!important}
+ html[data-theme="light"] body footer.footer .footer-grid>div:first-child{grid-column:auto}
+}
+
+/* Use wide Windows displays intentionally without turning paragraphs into
+   unreadable full-width lines. Expand containers/grids rather than body text. */
+@media(min-width:1280px){
+ html[data-theme="light"] body.lp-home .wrap,
+ html[data-theme="light"] body .lp-trust-strip .wrap{
+   width:min(calc(100% - clamp(52px,6vw,120px)),var(--fine-page-max))!important;
+   max-width:var(--fine-page-max)!important;
+ }
+ html[data-theme="light"] body.lp-home .lp-course-grid{
+   grid-template-columns:repeat(3,minmax(0,1fr))!important;
+   gap:clamp(18px,1.6vw,28px)!important;
+ }
+ html[data-theme="light"] body.lp-home .lp-feature-grid{
+   grid-template-columns:repeat(4,minmax(0,1fr))!important;
+   gap:clamp(16px,1.5vw,24px)!important;
+ }
+ html[data-theme="light"] body.lp-home .lp-feature{
+   flex-direction:column!important;align-items:flex-start!important;gap:12px!important;
+ }
+ html[data-theme="light"] body.lp-home .lp-feature h3{font-size:1.075rem!important;line-height:1.3}
+ html[data-theme="light"] body.lp-home .lp-feature p{line-height:1.55!important}
+ html[data-theme="light"] body :is(.lab-shell,.tutor-main,.ps-main,.pl-shell,.dlp97-catalog-main){
+   max-width:var(--fine-page-max)!important;
+ }
+ html[data-theme="light"] body :is(.lab-shell,.tutor-main,.ps-main,.pl-shell,.dlp97-catalog-main){
+   width:min(calc(100% - clamp(44px,5vw,100px)),var(--fine-page-max))!important;
+   margin-inline:auto!important;
+ }
+ html[data-theme="light"] body :is(.ip-content,.cap-content,.tutor-shell){
+   max-width:var(--fine-page-max)!important;
+ }
+}
+
+/* Practice Arena: full-width workspace on a large Windows screen. */
+html[data-theme="light"] body[data-responsive-page="practice"] main.pc-wrap{
+  box-sizing:border-box!important;width:min(calc(100% - clamp(24px,3vw,90px)),1800px)!important;
+  max-width:1800px!important;margin-inline:auto!important;
+}
+html[data-theme="light"] body[data-responsive-page="practice"] :is(.arena-subject-launcher,.arena-start-guide,.hub-topbar,.arena-entry-list,.pc-layout,#practiceDetail,.ide-shell){
+  min-width:0!important;width:100%!important;max-width:none!important;box-sizing:border-box!important;
+}
+html[data-theme="light"] body[data-responsive-page="practice"] .pc-layout{
+  display:grid!important;grid-template-columns:minmax(0,1fr)!important;
+}
+html[data-theme="light"] body[data-responsive-page="practice"] .pc-hero p:last-child{
+  max-width:112ch!important;line-height:1.55!important;
+}
+html[data-theme="light"] body[data-responsive-page="practice"] .arena-start-guide{
+  grid-template-columns:minmax(260px,.8fr) minmax(0,1.4fr)!important;
+  gap:clamp(18px,3vw,48px)!important;
+}
+html[data-theme="light"] body[data-responsive-page="practice"] .arena-subject-options{
+  display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:clamp(10px,1.5vw,20px)!important;
+}
+html[data-theme="light"] body[data-responsive-page="practice"] .arena-subject-options>button{
+  min-width:0!important;justify-content:center!important;
+}
+
+/* Correct the dynamically inserted Hide Details card: the button toggles the
+   brief's content and the editor expands to reclaim its former column. */
+html[data-theme="light"] body[data-responsive-page="practice"] .arena-task-panel{
+  background:#fff!important;border:1px solid var(--fine-edge)!important;
+  border-radius:15px!important;overflow:hidden!important;min-width:0!important;
+}
+html[data-theme="light"] body[data-responsive-page="practice"] .arena-task-head{
+  min-height:50px!important;padding:10px 13px!important;
+  display:flex!important;align-items:center!important;justify-content:space-between!important;
+  flex-wrap:wrap!important;gap:8px!important;background:#f1f7f3!important;
+  border-bottom:1px solid var(--fine-edge)!important;color:var(--fine-ink)!important;
+}
+html[data-theme="light"] body[data-responsive-page="practice"] .arena-task-head>span{
+  font-size:.75rem!important;letter-spacing:.085em!important;color:#315748!important;
+}
+html[data-theme="light"] body[data-responsive-page="practice"] button.arena-task-toggle{
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;
+  white-space:nowrap!important;flex:none!important;min-height:36px!important;
+  padding:7px 11px!important;margin:0!important;border:1px solid #bad2c4!important;
+  border-radius:9px!important;background:#fff!important;color:#17614c!important;
+  font-size:.8rem!important;font-weight:700!important;line-height:1.2!important;
+  box-shadow:none!important;
+}
+html[data-theme="light"] body[data-responsive-page="practice"] button.arena-task-toggle:hover{
+  background:#e5f2ea!important;border-color:#8cb5a0!important;
+}
+html[data-theme="light"] body[data-responsive-page="practice"] .arena-task-body[hidden]{display:none!important}
+html[data-theme="light"] body[data-responsive-page="practice"] .arena-task-body{
+  padding:clamp(14px,1.4vw,23px)!important;
+}
+html[data-theme="light"] body[data-responsive-page="practice"] .arena-task-body h3{
+  margin:0 0 12px!important;font-size:clamp(1.05rem,1.3vw,1.33rem)!important;
+  line-height:1.3!important;
+}
+html[data-theme="light"] body[data-responsive-page="practice"] .arena-task-body p{
+  line-height:1.55!important;font-size:.92rem!important;opacity:1!important;
+  margin:12px 0!important;
+}
+html[data-theme="light"] body[data-responsive-page="practice"] .arena-task-context{
+  margin-top:16px!important;line-height:1.45!important;
+}
+html[data-theme="light"] body[data-responsive-page="practice"] .arena-task-panel.is-collapsed{
+  min-height:0!important;height:auto!important;max-height:none!important;
+  overflow:visible!important;border-radius:11px!important;
+}
+html[data-theme="light"] body[data-responsive-page="practice"] .arena-task-panel.is-collapsed .arena-task-head{
+  min-height:49px!important;border-bottom:0!important;
+}
+
+/* Three ergonomic panels across large screens; two panels when brief is
+   collapsed; intermediate laptops get a clear two-column layout. */
+@media(min-width:1200px){
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-content{
+   display:grid!important;grid-template-columns:minmax(240px,.78fr) minmax(370px,1.35fr) minmax(290px,1.05fr)!important;
+   grid-template-rows:minmax(0,1fr)!important;gap:12px!important;min-width:0!important;
+ }
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-content>.arena-task-panel{
+   grid-column:1!important;grid-row:1!important;min-width:0!important;
+ }
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-content>.ide-primary{
+   grid-column:2!important;grid-row:1!important;min-width:0!important;
+ }
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-content>.ide-secondary{
+   grid-column:3!important;grid-row:1!important;min-width:0!important;
+ }
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-content:has(>.arena-task-panel.is-collapsed){
+   grid-template-columns:minmax(0,1.32fr) minmax(320px,1fr)!important;
+   grid-template-rows:auto minmax(0,1fr)!important;
+ }
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-content>.arena-task-panel.is-collapsed{
+   grid-column:1/-1!important;grid-row:1!important;
+ }
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-content:has(>.arena-task-panel.is-collapsed)>.ide-primary{
+   grid-column:1!important;grid-row:2!important;
+ }
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-content:has(>.arena-task-panel.is-collapsed)>.ide-secondary{
+   grid-column:2!important;grid-row:2!important;
+ }
+}
+@media(min-width:768px) and (max-width:1199px){
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-content{
+   display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+   grid-template-rows:auto minmax(0,1fr)!important;gap:11px!important;
+ }
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-content>.arena-task-panel{
+   grid-column:1/-1!important;grid-row:1!important;min-height:0!important;max-height:250px!important;
+ }
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-content>.ide-primary{
+   grid-column:1!important;grid-row:2!important;min-width:0!important;
+ }
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-content>.ide-secondary{
+   grid-column:2!important;grid-row:2!important;min-width:0!important;
+ }
+}
+@media(max-width:767px){
+ html[data-theme="light"] body[data-responsive-page="practice"] main.pc-wrap{
+   width:100%!important;padding-inline:clamp(12px,3vw,22px)!important;
+ }
+ html[data-theme="light"] body[data-responsive-page="practice"] .arena-subject-options{
+   grid-template-columns:minmax(0,1fr)!important;
+ }
+ html[data-theme="light"] body[data-responsive-page="practice"] .arena-start-guide{
+   grid-template-columns:minmax(0,1fr)!important;
+ }
+ html[data-theme="light"] body[data-responsive-page="practice"] .arena-task-panel.is-collapsed{
+   min-height:0!important;height:auto!important;
+ }
+ html[data-theme="light"] body[data-responsive-page="practice"] .arena-task-panel.is-collapsed .arena-task-head{
+   padding:9px 12px!important;
+ }
+}
+@media(prefers-reduced-motion:reduce){
+ html[data-theme="light"] body.lp-home .lp-course-footer a.lp-studio-cta{
+   transition:none!important;animation:none!important;
+ }
+}
+
+
+/* Follow-up refinements: prevent image placeholders in all course navigation
+   variants and keep the standalone practice link as a link, not a button. */
+html[data-theme="light"] body.lp-home .dlp90-practice-actions > a:not(.dlp90-arena-cta),
+html[data-theme="light"] body.lp-home .dlp90-practice-actions > a:not(.dlp90-arena-cta):visited{
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;
+  flex:0 1 auto!important;width:auto!important;min-height:42px!important;
+  border:0!important;border-radius:0!important;padding:7px 0!important;
+  margin:0!important;background:transparent!important;box-shadow:none!important;
+  color:#176b53!important;-webkit-text-fill-color:#176b53!important;
+  text-decoration:underline!important;text-underline-offset:4px!important;
+  text-decoration-thickness:1px!important;font-size:.92rem!important;font-weight:750!important;
+}
+html[data-theme="light"] body.lp-home .dlp90-practice-actions > a:not(.dlp90-arena-cta):hover{
+  color:#0b4c3b!important;-webkit-text-fill-color:#0b4c3b!important;
+  text-decoration-thickness:2px!important;transform:none!important;
+}
+html[data-theme="light"] body.lp-home .dlp90-practice-actions > a:not(.dlp90-arena-cta):focus-visible{
+  outline:3px solid #b97c24!important;outline-offset:3px!important;
+}
+html[data-theme="light"] .dlp97-subject-icon{
+  width:36px!important;height:36px!important;flex:0 0 36px!important;
+  display:grid!important;place-items:center!important;overflow:hidden!important;
+  border:1px solid #d9e9df!important;border-radius:10px!important;
+}
+html[data-theme="light"] .dlp97-subject-icon img{
+  display:block!important;width:23px!important;height:23px!important;
+  object-fit:contain!important;flex-shrink:0!important;
+}
+html[data-theme="light"] .lp-course-link img{
+  display:inline-block!important;width:20px!important;height:20px!important;
+  object-fit:contain!important;vertical-align:middle!important;margin-right:7px!important;
+}
+html[data-theme="light"] .ref-meta img{
+  display:block!important;width:28px!important;height:28px!important;object-fit:contain!important;
+}
+
+/* Avoid clipping task instructions on laptops; a collapsed brief becomes a
+   compact toolbar, while an expanded brief can grow to accommodate its text. */
+@media(min-width:768px) and (max-width:1199px){
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-content > .arena-task-panel{
+   max-height:none!important;overflow:visible!important;align-self:start!important;
+ }
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-content > .arena-task-panel .arena-task-body{
+   max-height:none!important;overflow:visible!important;
+ }
+}
+@media(max-width:740px){
+ html[data-theme="light"] body.lp-home .dlp90-practice-actions > a:not(.dlp90-arena-cta){
+   flex:0 0 auto!important;justify-content:flex-start!important;
+ }
+}
+@media(prefers-reduced-motion:reduce){
+ html[data-theme="light"] body.lp-home .dlp90-practice-actions > a:not(.dlp90-arena-cta){
+   transition:none!important;animation:none!important;
+ }
+}

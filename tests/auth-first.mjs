@@ -6,6 +6,7 @@ const read=x=>fs.readFileSync(path.join(root,x),'utf8');
 const paths=dir=>fs.readdirSync(dir,{withFileTypes:true}).flatMap(x=>x.isDirectory()?paths(path.join(dir,x.name)):x.name.endsWith('.html')?[path.join(dir,x.name)]:[]);
 const htmlFiles=paths(root);
 const publiclyBrowsable=new Set(['catalog.html','index.html','courses/introduction.html','courses/excel.html','courses/sql.html','courses/powerbi.html','courses/python.html','courses/ai.html']);
+for(const course of ['introduction','excel','sql','powerbi','python','ai']){publiclyBrowsable.add(`courses/${course}-roadmap.html`);publiclyBrowsable.add(`courses/${course}-extension.html`);}
 for(const rel of publiclyBrowsable){assert(!read(rel).includes('assets/scripts/auth-gate.js'),`${rel} should allow course browsing without redirect`);}
 assert(htmlFiles.length>=23,'Expected at least 23 app pages');
 const publicPage=read('auth.html');

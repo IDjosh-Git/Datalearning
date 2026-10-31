@@ -8,7 +8,7 @@ const config=JSON.parse(read('vercel.json'));
 const pkg=JSON.parse(read('package.json'));
 assert.equal(config.framework,null,'Deploy as Vercel Other/Static');
 assert.equal(config.cleanUrls,false,'Preserve existing .html navigation and course link behavior');
-assert(!('outputDirectory' in config),'Static site must deploy from project root');
+assert.equal(config.outputDirectory,'.','Static HTML output must deploy from the project root, not a missing public directory');
 assert(config.rewrites.some(r=>r.source==='/practice'&&r.destination==='/practice.html'),'Missing /practice rewrite');
 assert(!config.rewrites.some(r=>['/(.*)','/:path*','/:path(.*)'].includes(r.source)),'Catch-all rewrite can shadow API/static paths');
 assert(fs.existsSync(path.join(root,'api/auth/session.js')));

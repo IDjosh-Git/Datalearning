@@ -27,11 +27,23 @@ This is a multi-page static application with serverless API routes. Its `build` 
 | `docs/` | Current setup guidance and cleanup report |
 | `tests/` | Active automated checks; no retired release test scripts |
 
-The 39 CSS files are page-oriented compatibility bundles. They replace over 120 individually loaded, version-suffixed stylesheets and preserve their cascade order, including splits at embedded page styles. The final shared light-only base is in `assets/styles/site-refresh.css`; `assets/styles/experience.css` is the **last loaded** stylesheet for motion, card geometry, responsive reading layouts and semantic learning tables. Make new presentation changes in `experience.css`, and avoid restoring versioned CSS bundles.
+The page-specific CSS files are page-oriented compatibility bundles. They replace over 120 individually loaded, version-suffixed stylesheets and preserve their cascade order, including splits at embedded page styles. The final shared light-only base is in `assets/styles/site-refresh.css`; `assets/styles/experience.css` supplies the shared learning experience; the final per-page `layout-tuning.css` and `course-page-improvements.css` layers refine individual layouts. Standalone learning guides use `course-guide-pages.css`. Avoid restoring versioned CSS bundles.
 
 ## Learning and interface improvements
 
-All 26 HTML routes now load the shared `experience.css` and `experience.js` enhancement layer. The six course routes include 58 accessible concept tables (three examples per unit) and all 50 specialist modules now have guided practice prompts with learner-revealed verification and pitfall explanations. The original quizzes, project grading and progress logic remain unchanged. Motion honours reduced-motion preferences and the course tables support horizontal scrolling and keyboard focus on smaller viewports.
+The 26 original website routes retain the shared `experience.css` and `experience.js` enhancement layer, and 12 additional linked course-resource pages have their own lightweight responsive stylesheet. The six course routes include 58 accessible concept tables (three examples per unit) and all 50 specialist modules now have guided practice prompts with learner-revealed verification and pitfall explanations. The original quizzes, project grading and progress logic remain unchanged. Motion honours reduced-motion preferences and the course tables support horizontal scrolling and keyboard focus on smaller viewports.
+
+
+## Roadmaps, curriculum extensions and mastery checkpoints
+
+Each of the six course pages now links prominently to two standalone learning resources:
+
+- `courses/<course>-roadmap.html`: milestones and a linked lesson-by-lesson study plan.
+- `courses/<course>-extension.html`: applied practice cases, worked examples and exercises.
+
+The Course Mastery Checkpoint now has 10 explanatory multiple-choice questions per track (60 total) and adapts to a two-column layout on wider Windows screens. The Practice Arena hero's redundant software badges have been removed. See [`docs/COURSE_GUIDES_AND_CHECKPOINTS.md`](docs/COURSE_GUIDES_AND_CHECKPOINTS.md).
+
+For Vercel use the project root as the configured root directory, with `vercel.json` `"outputDirectory": "."`. The build script verifies the static project; it does not emit a separate `public` folder.
 
 ## Verification commands
 

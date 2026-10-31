@@ -13,7 +13,7 @@ assert(!cloud.includes('forceLegacyMigration:true}); }'),'Shared-device migratio
 assert(read('auth.html').includes('assets/styles/auth.css'),'Login styling bundle missing');
 for(const p of discoverPages()){
  assertReferences(assert,[p]);
- assert(p.html.includes('site-refresh.css'),p.route+' missing current light-only styles');
+ assert(p.html.includes(/-roadmap\.html$|-extension\.html$/.test(p.route)?'course-guide-pages.css':'site-refresh.css'),p.route+' missing current light-only styles');
  assert(p.html.includes('data-theme="light"'),p.route+' should be light-only');
 }
 console.log('PASS progress recovery, account-scoped migration, login scripts, current page asset URLs');
