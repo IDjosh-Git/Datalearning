@@ -36,7 +36,8 @@
     "test:tutor:v87": "node tests/tutor-v87.mjs",
     "test:colour:v89": "node tests/color-consistency-v89.mjs",
     "test:navigation:v90": "python3 tests/navigation-v90.py",
-    "test:navigation:interaction:v90": "python3 tests/navigation-interactions-v90.py"
+    "test:navigation:interaction:v90": "python3 tests/navigation-interactions-v90.py",
+    "test:page-load:v91": "node tests/page-load-recovery-v91.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.57.0",

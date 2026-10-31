@@ -17,7 +17,7 @@
       // Resolve from the shared script asset so nested course pages use the root worker.
       const asset=document.querySelector('script[src*="accessibility-v23.js"]');
       if(asset){
-        const worker=new URL('../service-worker-v23.js',asset.src);
+        const worker=new URL('../service-worker-v24.js',asset.src);
         const scope=new URL('../',asset.src).pathname;
         window.addEventListener('load',()=>navigator.serviceWorker.register(worker.href,{scope}).catch(error=>console.warn('Offline caching unavailable',error)),{once:true});
       }

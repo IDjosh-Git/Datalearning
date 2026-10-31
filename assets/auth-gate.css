@@ -26,3 +26,9 @@ html[data-theme="dark"] .dalp-gate-box{background:#1b2939;border-color:#36455a}
 .dalp-admin-link{display:inline-flex;align-items:center;color:inherit;text-decoration:none;font-weight:750;padding:9px;border-radius:10px;white-space:nowrap}
 .nav-links .dalp-admin-link{color:#fbd4b3}
 @media(max-width:650px){.dalp-admin-link{font-size:13px}}
+
+/* v91: make failed-verification recovery actions visible and keyboard accessible. */
+.dalp-gate-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center}
+.dalp-gate-actions button,.dalp-gate-actions a{min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+.dalp-gate-actions :is(a,button):focus-visible{outline:3px solid #087b79;outline-offset:3px}
+html[data-theme="dark"] .dalp-gate-actions :is(a,button):focus-visible{outline-color:#9bdcf4}

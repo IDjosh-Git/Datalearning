@@ -37,5 +37,6 @@ assert(!r.store.has('zahPendingAnonymous:excel'),'Anonymous queue cleared on lea
 assert(r.store.get('dalpLastLearnerId')==='new-user','Signed-in user becomes owner');
 a=make('signed_in',null,{page:'admin.html'});r=await a.finish();assert(r.classes.has('dalp-auth-checking'),'Learner denied admin route');
 a=make('signed_in',null,{page:'admin.html',admin:true});r=await a.finish();assert(!r.classes.has('dalp-auth-checking'),'Administrator can open admin route');
-a=make('signed_in',null,{page:'index.html',roleError:true});r=await a.finish();assert(r.classes.has('dalp-auth-checking'),'Role lookup failures must fail closed');
+a=make('signed_in',null,{page:'index.html',roleError:true});r=await a.finish();assert(!r.classes.has('dalp-auth-checking'),'Role-service errors must not block verified learner pages');
+a=make('signed_in',null,{page:'admin.html',roleError:true});r=await a.finish();assert(r.classes.has('dalp-auth-checking'),'Admin access must fail closed when role service is unavailable');
 console.log('PASS runtime auth guard: signed out -> safe deep link; signed in -> visible; shared-device progress isolated');

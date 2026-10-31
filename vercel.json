@@ -71,6 +71,19 @@
       ]
     },
     {
+      "source": "/service-worker-v24.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, no-store, must-revalidate"
+        },
+        {
+          "key": "Service-Worker-Allowed",
+          "value": "/"
+        }
+      ]
+    },
+    {
       "source": "/assets/dashboard-analytics-v28.css",
       "headers": [
         {

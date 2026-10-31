@@ -9,6 +9,10 @@
  const ownerKey='dalpLastLearnerId';
  const courseKeys=['dalpIntroductionProgressV1','excelRoadmapProgress','sqlRoadmapProgress','powerbiRoadmapProgress','pythonRoadmapProgress','aiRoadmapProgress'];
  let gate,working=false,authenticated=false;
+ const deadline=(promise,ms=14000)=>new Promise((resolve,reject)=>{
+   const timer=setTimeout(()=>reject(new Error('Session verification timed out')),ms);
+   Promise.resolve(promise).then(value=>{clearTimeout(timer);resolve(value)},error=>{clearTimeout(timer);reject(error)});
+ });
  const page=location.pathname.split('/').pop().toLowerCase()||'index.html';
  function loginDestination(){const u=toPage('auth.html');u.searchParams.set('return',location.pathname+location.search+location.hash);return u.href;}
  function clearLocalCourseCache(){try{courseKeys.forEach(k=>localStorage.removeItem(k));['introduction','excel','sql','powerbi','python','ai'].forEach(k=>localStorage.removeItem('zahPendingAnonymous:'+k));}catch(_){}}
@@ -19,8 +23,8 @@
   if(!gate){gate=document.createElement('div');gate.id='dalp-auth-gate';gate.setAttribute('role','status');gate.setAttribute('aria-live','polite');document.body.prepend(gate);}
   const isError=kind==='error',denied=kind==='denied';gate.className=(isError?'dalp-gate-error':denied?'dalp-gate-denied':'');
   const h=denied?'This area is for administrators':isError?'Unable to verify your access':'Checking your learning account';
-  const desc=denied?'You are signed in as a learner. Your courses and saved progress remain available. Contact your platform administrator if you need a different role.':isError?'Your connection or role lookup failed. Access stays locked until we can verify your account.':'Validating your session and permissions before opening the page.';
-  gate.innerHTML='<section class="dalp-gate-box"><div class="dalp-gate-brand"><img src="'+toPage('assets/da-logo.svg').href+'" alt=""><span>Data Analysis Learning Path<small>Secure '+(denied?'admin':'learning')+' area</small></span></div><span class="dalp-gate-spin" aria-hidden="true"></span><h2>'+h+'</h2><p>'+desc+'</p>'+(denied?'<a class="dalp-gate-go" href="'+toPage('index.html').href+'">Return to learner dashboard →</a>':isError?'<button type="button" id="dalpGateRetry">Retry connection</button>':'')+'</section>';
+  const desc=denied?'You are signed in as a learner. Your courses and saved progress remain available. Contact your platform administrator if you need a different role.':isError?'We could not finish checking your account. Please check your connection and select Retry. You can also return to sign-in without losing your selected page.':'Validating your session and permissions before opening the page.';
+  gate.innerHTML='<section class="dalp-gate-box"><div class="dalp-gate-brand"><img src="'+toPage('assets/da-logo.svg').href+'" alt=""><span>Data Analysis Learning Path<small>Secure '+(denied?'admin':'learning')+' area</small></span></div><span class="dalp-gate-spin" aria-hidden="true"></span><h2>'+h+'</h2><p>'+desc+'</p>'+(denied?'<a class="dalp-gate-go" href="'+toPage('index.html').href+'">Return to learner dashboard →</a>':isError?'<div class="dalp-gate-actions"><button type="button" id="dalpGateRetry">Retry connection</button><a class="dalp-gate-go" href="'+loginDestination()+'">Return to sign-in</a></div>':'')+'</section>';
   if(isError)gate.querySelector('#dalpGateRetry').addEventListener('click',check);
  }
  function showError(){paint('error');}
@@ -45,19 +49,28 @@
   try{
    const client=window.ZAH_DB?.client;
    if(!window.ZAH_DB?.configured||!client){showError();return;}
-   const {data:session,error:sessionError}=await client.auth.getSession();
+   const {data:session,error:sessionError}=await deadline(client.auth.getSession());
    if(sessionError){if(/refresh|invalid|session.*missing/i.test(sessionError.message||'')){exit();return;}showError();return;}
    if(!session?.session){let owned=false;try{owned=!!localStorage.getItem(ownerKey)}catch(_){}exit(owned);return;}
    const sessionId=session.session.user?.id;
-   const [verified,roleResult]=await Promise.all([client.auth.getUser(),sessionId?client.from('site_admins').select('user_id').eq('user_id',sessionId).maybeSingle():Promise.resolve(null)]);
+   const verified=await deadline(client.auth.getUser());
    const {data,error}=verified;
    if(error){if(/invalid.*jwt|jwt.*expired|invalid.*refresh|session.*missing|user.*not.*found/i.test(error.message||'')){exit();return;}showError();return;}
    if(!data?.user||data.user.is_anonymous||(sessionId&&data.user.id!==sessionId)){exit();return;}
    // Fail closed: do not assume a learner role when the role service cannot be checked.
-   const {data:admin,error:roleError}=roleResult || await client.from('site_admins').select('user_id').eq('user_id',data.user.id).maybeSingle();
-   if(roleError){console.warn('Administrator role lookup failed',roleError);showError();return;}
-   const role=admin?'admin':'learner';
-   prepareWorkspace(data.user);window.DALP_AUTH_USER=data.user;window.DALP_ROLE=role;
+   // A failed optional role lookup must never block verified users from ordinary
+   // learning pages. It must still fail closed for administrator-only routes.
+   let admin=null,roleError=null;
+   try{
+     const result=await deadline(client.from('site_admins').select('user_id').eq('user_id',data.user.id).maybeSingle(),10000);
+     admin=result?.data;roleError=result?.error;
+   }catch(error){roleError=error;}
+   if(roleError && restricted.has(page)){
+     console.warn('Administrator permissions could not be verified');showError();return;
+   }
+   if(roleError){console.warn('Administrator links temporarily unavailable; opening verified learner workspace.');}
+   const role=admin&&!roleError?'admin':'learner';
+   prepareWorkspace(data.user);window.DALP_AUTH_USER=data.user;window.DALP_ROLE=role;window.DALP_ROLE_UNVERIFIED=Boolean(roleError);
    if(restricted.has(page)&&role!=='admin'){paint('denied');return;}
    // Renew the short-lived HttpOnly hosting cookie on page access and token refresh.
    try{await window.DALP_SERVER_SESSION?.establish(session.session)}catch(err){console.warn('Session renewal will retry',err)}

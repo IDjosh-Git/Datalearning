@@ -86,19 +86,39 @@
         ]);
       }
     }catch(e){console.warn('Post-login preparation will retry',e)}
-    // Server verifies the signed-in identity and sets an HttpOnly session for protected pages.
-    try { const {data}=await db().auth.getSession(); await window.DALP_SERVER_SESSION.establish(data?.session); }
-    catch(error){completing=false;message(msgId||'loginMsg','We couldn’t open your secure learning space. Please try signing in again.');return;}
     let target=destination();
-    // Administrators use the same credentials and form as learners.
-    // An explicit deep link always wins; otherwise land in admin workspace.
+    // Administrators use the same credentials and form as learners. An
+    // explicit requested destination always takes precedence.
     try {
       const hasExplicitReturn=new URLSearchParams(location.search).has('return');
-      if(!hasExplicitReturn&&window.ZAH_DB?.client&&user?.id){
-        const {data:admin,error:roleError}=await window.ZAH_DB.client.from('site_admins').select('user_id').eq('user_id',user.id).maybeSingle();
-        if(!roleError&&admin)target=new URL('admin.html',location.href).href;
+      if(!hasExplicitReturn && window.ZAH_DB?.client && user?.id){
+        const result=await Promise.race([
+          window.ZAH_DB.client.from('site_admins').select('user_id').eq('user_id',user.id).maybeSingle(),
+          new Promise((_,reject)=>setTimeout(()=>reject(new Error('Role check timed out')),8000))
+        ]);
+        if(!result?.error && result?.data)target=new URL('admin.html',location.href).href;
       }
-    }catch(error){console.warn('Role landing lookup deferred to page gate',error)}
+    }catch(error){console.warn('Role landing lookup deferred to page gate')}
+    // A hosting session is required for administrator-only Vercel routes,
+    // but ordinary learner pages use the independently verified Supabase
+    // session. A transient hosting-cookie failure must not strand learners
+    // on the sign-in page.
+    const filename=new URL(target).pathname.split('/').pop().toLowerCase();
+    const needsServerSession=new Set(['admin.html','progress.html','reviewer.html','connection-test.html','sync-test.html']).has(filename);
+    let hostingSessionOk=false;
+    try {
+      const {data}=await db().auth.getSession();
+      await Promise.race([
+        window.DALP_SERVER_SESSION.establish(data?.session),
+        new Promise((_,reject)=>setTimeout(()=>reject(new Error('Hosting session timed out')),10000))
+      ]);
+      hostingSessionOk=true;
+    }catch(error){console.warn('Hosting session could not be established; learner pages remain accessible');}
+    if(needsServerSession && !hostingSessionOk){
+      completing=false;
+      message(msgId||'loginMsg','Your account is signed in, but the instructor workspace could not be verified. Check your connection and try again.');
+      return;
+    }
     location.replace(target);
   }
   const dbReady=()=>{
