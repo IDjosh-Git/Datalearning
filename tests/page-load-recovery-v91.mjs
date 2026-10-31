@@ -16,8 +16,10 @@ assert(auth.includes('Hosting session could not be established'));
 const cache=read('service-worker-v24.js');
 assert(cache.indexOf('await fetch(request)') < cache.indexOf('await cache.match(request)'));
 assert(!cache.includes('cache.match(request);return'));
-const urls=['index.html','practice.html','tutor.html','courses/sql.html','courses/excel.html','courses/python.html'];
+const urls=['index.html','tutor.html','courses/sql.html','courses/excel.html','courses/python.html'];
 for(const path of urls){const html=read(path);assert(html.includes('auth-gate.js?v=20261031.92'));assert(html.includes('accessibility-v23.js?v=20261031.91'));}
+assert(!read('practice.html').includes('dalp-auth-checking'));
+assert(!read('practice.html').includes('auth-gate.js'));
 assert(read('assets/accessibility-v23.js').includes('service-worker-v24.js'));
 assert(JSON.parse(read('vercel.json')).headers.some(x=>x.source==='/service-worker-v24.js'));
 // Source syntax sanity in the same Node runtime used by the app's tests.

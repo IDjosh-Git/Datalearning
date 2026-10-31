@@ -10,7 +10,8 @@ const publicPage=read('auth.html');
 assert(!publicPage.includes('auth-gate.js'),'Sign-in page must remain public');
 assert(!read('verify.html').includes('auth-gate.js'),'Third-party certificate verification must be public');
 assert(!read('preview.html').includes('auth-gate.js'),'Sample lesson must remain public, with no save controls');
-for(const f of htmlFiles.filter(x=>!x.endsWith('auth.html')&&!x.endsWith('verify.html')&&!x.endsWith('capstone-guide.html')&&!x.endsWith('preview.html'))){
+assert(!read('practice.html').includes('auth-gate.js'),'Practice Arena selection and local execution must remain public');
+for(const f of htmlFiles.filter(x=>!x.endsWith('auth.html')&&!x.endsWith('verify.html')&&!x.endsWith('capstone-guide.html')&&!x.endsWith('preview.html')&&!x.endsWith('practice.html'))){
  const html=fs.readFileSync(f,'utf8');
  const rel=path.relative(root,f);
  const gate=html.indexOf('document.documentElement.classList.add(\'dalp-auth-checking\')');
@@ -26,4 +27,4 @@ for(const term of ['signInWithPassword','signUp','resetPasswordForEmail','update
 const gate=read('assets/auth-gate.js');
 for(const term of ['auth.getSession()','auth.getUser()','loginDestination()','prepareWorkspace','clearLocalCourseCache','SIGNED_OUT','USER_DELETED','dalp-auth-checking','showError()','onAuthStateChange'])assert(gate.includes(term),`Missing guard logic ${term}`);
 assert(read('assets/progress-cloud.js').includes('recoverCurrentDevice(user){ return syncAll({user:user||null}); }'),'No forced recovery on account switching');
-console.log(`PASS auth-first coverage: ${htmlFiles.length-4} guarded pages, verified sessions, signup, signin, recovery, account switching, signout`);
+console.log(`PASS auth-first coverage: ${htmlFiles.length-5} guarded pages, verified sessions, signup, signin, recovery, account switching, signout`);

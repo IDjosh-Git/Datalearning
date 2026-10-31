@@ -15,13 +15,13 @@ async function check(page,roleHangs=true){
  await new Promise(r=>setTimeout(r,90));
  return {classes,context,calls};
 }
-const learner=await check('practice.html');
-assert(!learner.classes.has('dalp-auth-checking'),'Practice Arena MUST reveal verified learner content without waiting for role or hosting cookie');
+const learner=await check('tutor.html');
+assert(!learner.classes.has('dalp-auth-checking'),'Ordinary learner content must reveal without waiting for role or hosting cookie');
 assert(learner.context.window.DALP_AUTH_USER?.id==='learner-1');
 assert(learner.calls.cookie,'Cookie renewal still attempted without blocking the page');
 const admin=await check('admin.html');
 assert(admin.classes.has('dalp-auth-checking'),'Unverified administrator content must remain protected');
 const practice=fs.readFileSync('practice.html','utf8');
-assert(practice.includes('dalp-arena-load-recovery'),'Page requires a visible recovery path if the auth asset fails');
-assert(practice.includes("destination.searchParams.set('return',location.pathname+location.search+location.hash)"),'Recovery preserves challenge and tool');
-console.log('PASS v92: real learner access does not await unresolved role/cookie promises; admin stays protected; Arena fallback preserves deep-link');
+assert(!practice.includes('dalp-auth-checking'),'Public Arena selection must not be hidden by account verification');
+assert(practice.includes('data-arena-subject="SQL"')&&practice.includes('data-arena-subject="Excel"')&&practice.includes('data-arena-subject="Python"'),'All three public tool choices required');
+console.log('PASS v92: real learner access does not await unresolved role/cookie promises; admin stays protected; public Arena preserves selectors and deep-link');
