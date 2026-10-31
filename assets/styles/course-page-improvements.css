@@ -60,3 +60,34 @@ body.dlp-course-v29 .dalp-course-resource-links{margin-block:12px 18px}
 @media (max-width:1000px){body.dlp-course-v29 .dalp-quick-guide-bottom{grid-template-columns:1fr}body.dlp-course-v29 .dalp-quick-guide-links{justify-content:flex-start}}
 @media (max-width:580px){body.dlp-course-v29 .dalp-quick-guide{padding:15px!important;border-radius:15px!important}body.dlp-course-v29 .dalp-quick-guide-bottom{gap:13px}body.dlp-course-v29 .dalp-quick-guide-links{display:grid;grid-template-columns:minmax(0,1fr)}body.dlp-course-v29 .dalp-quick-link{justify-content:flex-start;width:100%;min-height:44px}body.dlp-course-v29 .dalp-quick-guide-count{font-size:11px}}
 @media (prefers-reduced-motion:reduce){body.dlp-course-v29 .dalp-quick-link{transition:none!important}body.dlp-course-v29 .dalp-quick-link:hover{transform:none}}
+
+/* Standalone course destinations are unconditionally visible in HTML, before the hero. */
+body.dlp-course-v29 .course-portal-links{
+  box-sizing:border-box;display:flex!important;align-items:center;flex-wrap:wrap;
+  gap:10px 12px;position:relative;z-index:3;
+  width:100%;max-width:1200px;margin:16px auto 12px;padding:12px 15px;
+  border:1px solid #bcd7c7;border-radius:15px;background:#f0f8f2;
+  color:#173f32;box-shadow:0 3px 12px rgba(15,63,46,.06);
+}
+body.dlp-course-v29 .course-portal-kicker{margin-right:auto;color:#315c48;font-size:.77rem;letter-spacing:.05em;font-weight:800;text-transform:uppercase}
+body.dlp-course-v29 .course-portal-links a{
+  box-sizing:border-box;display:inline-flex!important;align-items:center;justify-content:center;gap:7px;
+  min-height:44px!important;padding:10px 14px!important;border-radius:10px;
+  text-decoration:none!important;line-height:1.3!important;font-size:.89rem!important;font-weight:800!important;
+  box-shadow:none!important;white-space:normal;
+}
+body.dlp-course-v29 .course-portal-links .course-portal-primary{background:#176b53!important;color:#fff!important;border:1px solid #176b53!important;-webkit-text-fill-color:#fff!important}
+body.dlp-course-v29 .course-portal-links .course-portal-secondary{background:#fff!important;color:#155940!important;border:1px solid #9fbfac!important;-webkit-text-fill-color:#155940!important}
+body.dlp-course-v29 .course-portal-links a:hover{filter:brightness(.95)}
+body.dlp-course-v29 .course-portal-links a:focus-visible{outline:3px solid #b46521!important;outline-offset:3px!important}
+body.dlp-course-v29 .capstone-route-link{margin:14px 0}
+body.dlp-course-v29 .capstone-route-link a{display:inline-block;font-weight:800;color:#145b43;text-decoration:underline;text-underline-offset:4px}
+/* Keep lesson navigation accessible, without a permanently long list of ten links. */
+body.dlp-course-v29 .sidebar .course-lesson-disclosure{margin:13px 0;border:1px solid #bed6cc;border-radius:12px;padding:0;background:#f8fbf9;overflow:clip}
+body.dlp-course-v29 .sidebar .course-lesson-disclosure>summary{display:flex;align-items:center;gap:8px;cursor:pointer;padding:12px 11px;font-size:13px;font-weight:800;color:#18533e;min-height:44px}
+body.dlp-course-v29 .sidebar .course-lesson-disclosure>summary:focus-visible{outline:3px solid #b46521;outline-offset:-3px}
+body.dlp-course-v29 .sidebar .course-lesson-count{margin-left:auto;font-size:11px;font-weight:750;color:#537667}
+body.dlp-course-v29 .sidebar .course-lesson-items{display:grid;gap:3px;padding:5px 6px 9px;border-top:1px solid #d7e6de}
+body.dlp-course-v29 .sidebar .course-lesson-items .nav-link{height:auto!important;min-height:42px!important;margin:0!important}
+@media(max-width:640px){body.dlp-course-v29 .course-portal-links{margin:10px auto 12px;padding:12px}body.dlp-course-v29 .course-portal-kicker{flex-basis:100%}body.dlp-course-v29 .course-portal-links a{flex:1 1 180px}}
+@media(prefers-reduced-motion:reduce){body.dlp-course-v29 .course-portal-links a{transition:none!important}}

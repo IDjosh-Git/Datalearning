@@ -70,3 +70,13 @@ npm run verify:deployment
 **Validation limit:** The automatic tests check local URLs, source syntax, course and interactive logic with mocks, offline exercises, authorization and layout rules. Real sign-in, database synchronization, AI provider requests and browser interaction must be tested in a configured staging environment with test accounts.
 
 Further details: [`docs/CLEANUP_REPORT.md`](docs/CLEANUP_REPORT.md) and [`docs/FRONTEND_AND_CURRICULUM_HANDOFF.md`](docs/FRONTEND_AND_CURRICULUM_HANDOFF.md).
+
+## Course roadmap navigation and live deployment
+
+Every course page displays **View full course roadmap** and **Open curriculum extension** immediately above the introduction, without requiring JavaScript. The resource files live in `courses/<course>-roadmap.html` and `courses/<course>-extension.html`.
+
+Excel, SQL, Power BI and Python keep the week navigation in an expandable **Browse course lessons** sidebar section. The course navigation uses CSS lettermark icons that do not depend on remote image URLs. The capstone route links to the standalone roadmap instead of showing a long checklist.
+
+Vercel deploys this site from the linked GitHub repository. **Replacing a ZIP in a local folder does not update production**: extract this archive at the GitHub repository root, commit and push all changed files to `main`, then confirm the new production deployment uses that new commit. Keep `index.html`, `vercel.json`, `service-worker.js`, `assets/` and `courses/` at the repository root. The Vercel output directory is `.`. Course HTML is served with `Cache-Control: no-store`.
+
+To verify the new release, open `https://datalearning.vercel.app/courses/excel.html` and look for the pale-green **Course resources** bar above the title. If it is missing after a READY deployment, confirm the deployment's commit SHA is the one containing this change.
