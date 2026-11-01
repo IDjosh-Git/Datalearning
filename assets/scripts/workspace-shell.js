@@ -1,5 +1,6 @@
 /* Consistent, role-aware learning workspace navigation. No external services required. */
 (()=>{'use strict';
+if(document.body.getAttribute('data-responsive-page')==='reference')return;
 if(document.body.hasAttribute('data-admin-console')||document.body.classList.contains('auth-page')||/^(verify|connection-test|sync-test)\.html$/.test(location.pathname.split('/').pop()))return;
 const onCourse=location.pathname.includes('/courses/'),root=onCourse?'../':'';
 const page=location.pathname.split('/').pop()||'index.html';

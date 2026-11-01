@@ -5251,3 +5251,8 @@ html[data-theme] body .review-hero :is(p,.review-secure) {
 html[data-theme] body .pl-hero :is(.pl-art-panel,.pl-art-panel span) {
   color:#edf7f8!important;-webkit-text-fill-color:currentColor!important;
 }
+
+/* Public Reference Library: visible single native header with accessible contrast. */
+body[data-responsive-page="reference"] > header.nav-shell{display:block!important;visibility:visible!important;opacity:1!important;position:relative!important;z-index:100;background:#15243a!important;color:#f9fafb!important;min-height:72px}
+body[data-responsive-page="reference"] > header.nav-shell .wordmark strong,body[data-responsive-page="reference"] > header.nav-shell .nav-links a:not(.account-link){color:#f9fafb!important}
+body[data-responsive-page="reference"] > header.nav-shell .nav-inner{min-height:72px}
