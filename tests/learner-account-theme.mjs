@@ -25,6 +25,6 @@ assert(!html.includes('class="card ai-account-course-card"'),'Old clickable AI c
 assert(!html.includes('Learning Portal</a>'),'Repeated dashboard link removed');
 assert(!/linear-gradient\(|radial-gradient\(|backdrop-filter|::before\s*\{\s*background/.test(css),'No decorative account backgrounds or gradients');
 assert(css.includes('.account-studio-link') && css.includes('background:transparent!important'),'Practice Studio remains a plain link');
-assert(shared.includes('main a[href]:not(.account-text-link)'),'White hero link protected from global indigo link rule');
+assert(shared.includes('main a[href]:not(.dalp-themed-hero a):not(.account-text-link)'),'Dark hero links must be exempt from the global indigo plain-link rule');
 assert(css.includes('@media(max-width:680px)')&&css.includes('prefers-reduced-motion'),'Mobile and reduced-motion coverage');
 console.log('PASS learner account: consolidated theme, plain course links, six accessible progress cards, guarded data and mobile layouts');

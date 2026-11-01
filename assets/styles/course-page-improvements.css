@@ -140,7 +140,7 @@ html[data-theme="light"] body.dlp-course-v29 :is(main,.app,.content,.course-wrap
   background-image: none !important;
   box-shadow: none;
 }
-html[data-theme="light"] body.dlp-course-v29 :is(.hero,.intro-hero,.ai-hero,.dalp-quick-guide,.course-portal-links,.capstone-requirement-strip) {
+html[data-theme="light"] body.dlp-course-v29 :is(.dalp-quick-guide,.course-portal-links,.capstone-requirement-strip) {
   background: var(--course-page-canvas) !important;
   background-image: none !important;
   box-shadow: none !important;
@@ -325,28 +325,27 @@ html[data-theme="light"] body.dlp-course-v29 :is(.course-mastery-head,.course-ma
   background-image: none !important;
 }
 
-/* Avoid a giant pseudo-card overlay at the very start of the learning page.
-   The hero is part of the continuous canvas; only interactive content uses
-   distinct surfaces and borders. */
+/* Match all course heroes to their dark track headers instead of inheriting a
+   pale course canvas. This fixes white-on-white titles on Introduction. */
 html[data-theme="light"] body.dlp-course-v29 :is(.hero,.intro-hero,.ai-hero) {
-  box-sizing: border-box !important;
-  width: 100%;
-  height: auto !important;
-  min-height: 0 !important;
-  padding: clamp(20px,2.5vw,36px) !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  background: var(--course-page-canvas) !important;
-  box-shadow: none !important;
+  box-sizing:border-box!important;
+  width:100%;height:auto!important;min-height:0!important;
+  padding:clamp(19px,2.3vw,30px)!important;
+  border:1px solid var(--dalp-hero-edge,#607c9b)!important;
+  border-radius:16px!important;
+  background:var(--dalp-page-hero,#263d5d)!important;
+  background-image:none!important;
+  box-shadow:none!important;
+  color:#fff!important;
 }
 html[data-theme="light"] body.dlp-course-v29 :is(.hero,.intro-hero,.ai-hero) :is(h1,h2,h3) {
-  color: #203d2e !important;
+  color:#fff!important;-webkit-text-fill-color:#fff!important;
 }
 html[data-theme="light"] body.dlp-course-v29 :is(.hero,.intro-hero,.ai-hero) :is(p,li) {
-  color: #344f42 !important;
+  color:#e0eaf6!important;-webkit-text-fill-color:#e0eaf6!important;
 }
 @media(max-width:650px){
-  html[data-theme="light"] body.dlp-course-v29 :is(.hero,.intro-hero,.ai-hero) {padding:18px 14px !important;}
+  html[data-theme="light"] body.dlp-course-v29 :is(.hero,.intro-hero,.ai-hero){padding:18px 15px!important;border-radius:13px!important;}
 }
 
 

@@ -30,7 +30,7 @@ for(const route of ['admin.html','progress.html','reviewer.html']){
  assert(html.indexOf('assets/styles/design-system.css')<html.indexOf('assets/styles/admin-workspace.css'),`${route}: light admin CSS should win over shared base`);
  assert(html.includes('assets/scripts/auth-gate.js'),`${route}: access protection must be preserved`);
 }
-assert.match(cache,/dalp-public-performance-v6/,'Offline public stylesheet cache must be refreshed');
+assert.match(cache,/dalp-public-performance-v7/,'Offline public stylesheet cache must be refreshed');
 function lum(hex){return [1,3,5].map(i=>parseInt(hex.slice(i,i+2),16)/255).map(x=>x<=.04045?x/12.92:((x+.055)/1.055)**2.4).reduce((a,x,i)=>a+[.2126,.7152,.0722][i]*x,0)}
 function contrast(a,b){const [hi,lo]=[lum(a),lum(b)].sort((a,b)=>b-a);return (hi+.05)/(lo+.05)}
 for(const [name,fg,bg] of [
