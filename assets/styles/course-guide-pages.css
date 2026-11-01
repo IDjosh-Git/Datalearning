@@ -13,3 +13,74 @@
 .guide-block :is(.cv88-roadmap,.dlp29-milestones){align-items:start;grid-auto-rows:min-content}
 .guide-block :is(.cv88-roadmap li,.dlp29-milestone){align-self:start;height:auto;min-height:0}
 .guide-brand svg{display:inline-block;width:30px;height:30px;flex:none}
+
+
+/* Unified Data Analysis Learning Path visual system — shared across learner and admin pages. */
+:root {
+  color-scheme: light;
+  --polish-canvas: #f4f7fb;
+  --polish-surface: #ffffff;
+  --polish-ink: #17233b;
+  --polish-muted: #52627a;
+  --polish-line: #dce4ef;
+  --polish-indigo: #4f46e5;
+  --polish-teal: #0f9f91;
+  --polish-coral: #e66b55;
+  --polish-gold: #e2a52b;
+  --polish-radius: 18px;
+  --polish-shadow: 0 8px 28px rgba(26, 43, 76, .075);
+}
+html, body { min-height: 100%; background: var(--polish-canvas) !important; color: var(--polish-ink); }
+html { scroll-behavior: smooth; }
+body {
+  font-family: Inter, "Plus Jakarta Sans", "Aptos", system-ui, -apple-system, "Segoe UI", sans-serif !important;
+  letter-spacing: -.012em; text-rendering: optimizeLegibility;
+}
+body::before, body::after { content: none !important; display: none !important; }
+:where(.wrap, .container, .page-wrap, .workspace, .main, .content-wrap, .admin-wrap, .ac-container) {
+  width: min(100% - 48px, 1440px); max-width: 1440px; margin-inline: auto;
+}
+:where(.section, main section) { scroll-margin-top: 92px; }
+:where(.card, .panel, .lp-course, .lp-feature, .lp-step, .ref-card, .feature-panel, .workspace-panel,
+       .ac-surface, .ac-kpi, .ac-course-card, .ac-shortcut-grid > a, .dalp-admin-panel) {
+  background: var(--polish-surface) !important; border: 1px solid var(--polish-line) !important;
+  border-radius: var(--polish-radius) !important; box-shadow: var(--polish-shadow) !important;
+}
+:where(.nav-shell, header.nav-shell, .top, .topbar, .ac-topbar) {
+  background: #fff !important; color: var(--polish-ink); border-color: var(--polish-line) !important;
+  -webkit-backdrop-filter: none !important; backdrop-filter: none !important;
+}
+:where(.lp-hero, .page-hero, .hero, .ac-hero, .admin-hero) {
+  background: #263b70 !important; color: #fff !important; background-image: none !important;
+}
+:where(.lp-hero)::before, :where(.page-hero)::before, :where(.hero)::before { content: none !important; display: none !important; }
+:where(.lp-hero h1, .page-hero h1, .hero h1, .ac-hero h1) { color: #fff !important; }
+:where(.lp-hero h1 em) { background: none !important; color: #77e4d3 !important; -webkit-text-fill-color: currentColor !important; }
+:where(.lp-hero p, .page-hero p, .hero p) { color: #e3eaf7 !important; }
+:where(.lp-primary, .lp-course-cta, .button.primary, .btn.primary, .btn-primary, .button.blue, .ac-button-primary) {
+  background: var(--polish-indigo) !important; color: #fff !important; border-color: var(--polish-indigo) !important;
+}
+:where(.lp-primary, .lp-course-cta, .button.primary, .btn.primary, .btn-primary):hover { background: #3930c6 !important; }
+:where(a, button, input, select, textarea, summary):focus-visible { outline: 3px solid #e2a52b !important; outline-offset: 3px !important; }
+:where(h1, h2, h3, h4) { color: var(--polish-ink); text-wrap: balance; }
+:where(p, li) { color: inherit; }
+:where(.lp-dashboard-strip, .lp-smart-banner, .lp-demo, .lp-context-nav, .lp-notice, .lead-band .inner) {
+  background: #fff !important; background-image: none !important; -webkit-backdrop-filter: none !important; backdrop-filter: none !important;
+}
+:where(.lp-dashboard-strip, .lp-smart-banner, .lp-context-nav) { border-color: var(--polish-line) !important; }
+:where(.lp-home .section) { padding-block: clamp(48px, 6vw, 82px); }
+:where(.lp-course-grid, .lp-quick-grid, .lp-feature-grid, .ac-course-grid, .ac-shortcut-grid) { gap: clamp(16px, 2vw, 26px); }
+:where(.footer) { background: #1d2a47 !important; color: #f5f7fc !important; background-image: none !important; }
+:where(.footer a) { color: #d7e2ff; }
+/* Admin surfaces retain the same canvas and font while using clear, high-contrast data presentation. */
+.dalp-admin-page, body[data-responsive-page="admin"] { background: var(--polish-canvas) !important; color: var(--polish-ink) !important; }
+.dalp-admin-page :where(.ac-section-header p, .ac-section-eyebrow, .ac-empty, .ac-privacy-note) { color: var(--polish-muted); }
+.dalp-admin-page :where(.ac-stat-value, .ac-kpi strong, .ac-section-header h2) { color: var(--polish-ink); }
+.dalp-admin-page :where(.ac-section-eyebrow) { color: var(--polish-indigo); }
+.dalp-admin-page :where(.dalp-admin-table th) { background: #edf1fa !important; color: #344362 !important; }
+.dalp-admin-page :where(.dalp-admin-table td, .dalp-admin-table th) { border-color: var(--polish-line) !important; }
+.dalp-admin-page :where(button, .dalp-admin-tools button, .ac-pager button) { font: inherit; border-radius: 11px; }
+@media (max-width: 720px) {
+  :where(.wrap, .container, .page-wrap, .workspace, .main, .content-wrap, .admin-wrap, .ac-container) { width: min(100% - 28px, 1440px); }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; } }
