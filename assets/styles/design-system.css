@@ -1315,3 +1315,111 @@ html[data-theme="light"] body .dalp-global-toggle{min-width:44px;min-height:44px
 
 /* Maintained page layout extracted from index.html (formerly inline). */
 .capstone-path-v74{margin:22px 0;padding:22px;border:1px solid var(--border,#b9c9d9);border-radius:16px;background:var(--surface,#f5f9ff);color:var(--text,#152536)}.capstone-path-v74 h2,.capstone-path-v74 h3{margin:6px 0 12px;color:inherit}.capstone-path-v74 p,.capstone-path-v74 li{line-height:1.65}.capstone-path-v74 .capstone-path-label{font-weight:800;letter-spacing:.05em;font-size:.78rem}.capstone-path-v74 .capstone-path-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}.capstone-path-v74 .capstone-path-actions a{display:inline-block;background:#174e9a;color:white;padding:11px 16px;border-radius:9px;font-weight:700;text-decoration:none}.capstone-path-v74 .capstone-path-actions a:focus-visible{outline:3px solid #f59e0b;outline-offset:3px}.capstone-path-v74 ol{padding-left:1.5rem}.capstone-path-v74 details{margin-top:12px}.capstone-path-v74 summary{cursor:pointer;font-weight:700}
+
+/* Course-content layout audit: week navigation uses a readable grid instead of
+   arrow-dependent horizontal scrolling. Preserve select-based week jumping. */
+html[data-theme="light"] body.dlp-course-v29.cw-workspace-ready .cw-workspace .cw-weekstrip {
+  display:grid!important;
+  grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  gap:12px!important;
+  overflow:visible!important;
+  padding:14px!important;
+  scroll-behavior:auto!important;
+  width:100%;
+}
+html[data-theme="light"] body.dlp-course-v29.cw-workspace-ready .cw-weekstrip .cw-week-chip {
+  flex:auto!important;
+  width:100%!important;
+  max-width:none!important;
+  min-width:0!important;
+  height:auto!important;
+  min-height:88px!important;
+  padding:14px!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+  text-align:left!important;
+}
+html[data-theme="light"] body.dlp-course-v29.cw-workspace-ready .cw-weekstrip .cw-week-chip strong {
+  display:block;line-height:1.4;overflow-wrap:anywhere;
+}
+@media (max-width:1100px){
+  html[data-theme="light"] body.dlp-course-v29.cw-workspace-ready .cw-workspace .cw-weekstrip{grid-template-columns:repeat(3,minmax(0,1fr))!important;}
+}
+@media (max-width:600px){
+  html[data-theme="light"] body.dlp-course-v29.cw-workspace-ready .cw-workspace .cw-weekstrip{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important;padding:10px!important;}
+  html[data-theme="light"] body.dlp-course-v29.cw-workspace-ready .cw-weekstrip .cw-week-chip{min-height:80px!important;padding:12px!important;}
+}
+/* Inner content never touches a lesson card edge, including embedded quiz and
+   exercise elements. Do not pad .week itself: its title band spans the card. */
+html[data-theme="light"] body.dlp-course-v29 :is(.cw-module .mini,.cw-module .lesson,.cw-module .question,.cw-module .quiz,.cw-module .cw-resource-primary,.cw-module .learning-scenario) {
+  padding:clamp(15px,1.8vw,20px)!important;
+  box-sizing:border-box;
+  overflow-wrap:anywhere;
+}
+html[data-theme="light"] body.dlp-course-v29 .cw-workspace :is(.cw-week-context,.cw-resource-primary,.cw-resource-side,.cw-resources) {
+  padding:clamp(15px,1.8vw,22px)!important;
+  box-sizing:border-box;
+  min-width:0;
+  overflow-wrap:anywhere;
+}
+html[data-theme="light"] body.dlp-course-v29 :is(.week-body,.cw-tab-panel,.unit-grid,.intro-lesson) {
+  min-width:0;
+  overflow-wrap:break-word;
+}
+html[data-theme="light"] body.dlp-course-v29 .cw-module :is(h2,h3,h4,p,li,small,summary,label) {
+  overflow-wrap:break-word;
+}
+
+/* Single course-jump control and clearly separated roadmap heading. */
+html[data-theme="light"] body.dlp-course-v29.cw-workspace-ready .cw-workspace .cw-week-controls {
+  display:block!important;
+  padding:16px 18px!important;
+  box-sizing:border-box;
+}
+html[data-theme="light"] body.dlp-course-v29.cw-workspace-ready .cw-workspace .cw-select-wrap {
+  width:100%;max-width:100%;display:flex;flex-direction:column;gap:8px;min-width:0;
+}
+html[data-theme="light"] body.dlp-course-v29.cw-workspace-ready .cw-workspace .cw-select-wrap select {
+  width:100%;min-width:0;max-width:100%;
+}
+html[data-theme="light"] body.dlp-course-v29.cw-workspace-ready .cw-workspace .cw-timeline-heading {
+  display:flex!important;align-items:center!important;
+  padding:16px 18px!important;
+  margin:12px 0 0!important;
+  background:#edf2fa!important;
+  border:1px solid #d7e0eb!important;
+  border-bottom:0!important;
+  border-radius:16px 16px 0 0!important;
+  color:#15243a!important;
+  min-width:0;
+}
+html[data-theme="light"] body.dlp-course-v29.cw-workspace-ready .cw-workspace .cw-timeline-heading > strong {
+  font-size:clamp(16px,1.5vw,20px);line-height:1.35;
+  font-weight:800;white-space:normal;overflow-wrap:break-word;
+}
+@media(max-width:600px){
+  html[data-theme="light"] body.dlp-course-v29.cw-workspace-ready .cw-workspace :is(.cw-timeline-heading,.cw-week-controls) {padding:14px!important;}
+}
+/* Introduction course uses the same accessible jump-only controls. */
+html[data-theme="light"] body.dlp-course-v29.cw-intro-ready .cw-intro-nav .cw-week-controls {
+  display:block!important;
+  padding:16px 18px!important;
+}
+html[data-theme="light"] body.dlp-course-v29.cw-intro-ready .cw-intro-nav .cw-timeline-heading {
+  display:block!important;
+  margin:12px 0 0!important;
+  padding:16px 18px!important;
+  background:#edf2fa!important;
+  color:#15243a!important;
+  border:1px solid #d7e0eb!important;
+  border-radius:16px 16px 0 0!important;
+}
+html[data-theme="light"] body.dlp-course-v29.cw-intro-ready .cw-intro-nav .cw-timeline-heading strong {
+  display:block;
+  font-size:clamp(16px,1.5vw,20px);
+  line-height:1.35;
+  overflow-wrap:break-word;
+}
+@media(max-width:600px){
+ html[data-theme="light"] body.dlp-course-v29.cw-intro-ready .cw-intro-nav :is(.cw-week-controls,.cw-timeline-heading){padding:14px!important;}
+}

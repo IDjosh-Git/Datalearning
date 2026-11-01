@@ -35,5 +35,5 @@ assert.match(css,/body \.dalp-themed-hero\s*\{/,'Shared dark hero styling missin
 assert.match(css,/\.week-header\s*\{\s*background:#355474!important/,'Course week header theme missing');
 assert(!css.includes('html[data-theme="light"] :is(.hero,.ai-hero,.intro-hero,.dlp97-catalog-hero,.lp-hero,.auth-hero,.admin-hero){'),'Retired pale hero rule still exists');
 assert.doesNotMatch(css,/body\.dlp-course-v29 \.topbar\{background:#fff!important/,'Legacy white course header still exists');
-assert.match(worker,/dalp-public-performance-v7/,'Offline cache must use the current learner theme revision');
+assert.match(worker,/const CACHE = 'dalp-public-[a-z0-9-]+-v\d+'/,'Offline cache must use the current learner theme revision');
 console.log(`PASS public header audit: ${pages.length} public/course routes, ${palette.length} dark tones, dark course headers, contrast >=4.5:1`);

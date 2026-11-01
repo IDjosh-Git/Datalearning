@@ -4,7 +4,7 @@ const player = fs.readFileSync('assets/scripts/weekly-workspace.js','utf8');
 const course = fs.readFileSync('assets/styles/course-page-improvements.css','utf8');
 const roadmap = fs.readFileSync('courses/introduction-roadmap.html','utf8');
 const guide = fs.readFileSync('assets/styles/course-guide-pages.css','utf8');
-assert(player.includes('FOUNDATION ROADMAP'), 'Foundation roadmap heading must remain');
+assert(player.includes('Foundation roadmap'), 'Foundation roadmap heading must remain');
 assert(!player.includes('data-ci-scroll'), 'Obsolete foundation arrow scroll controls must be removed');
 for(const token of ['data-ci-lesson','cw-intro-select','data-ci-move','cw-intro-weekstrip','cw-intro-current'])
   assert(player.includes(token),`Foundation lesson navigation remains operational: ${token}`);

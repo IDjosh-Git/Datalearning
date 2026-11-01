@@ -66,7 +66,12 @@ body.dlp97-learning-page .completeBox:disabled,body.dlp97-learning-page [data-in
 .dlp97-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(18px,2vw,28px);row-gap:clamp(24px,2.5vw,34px);align-items:stretch}
 .dlp97-card{min-width:0;display:flex;flex-direction:column;gap:10px;background:var(--dlp97-surface);border:1px solid var(--dlp97-border);border-radius:15px;padding:clamp(19px,2.5vw,27px);color:var(--dlp97-ink)}
 .dlp97-card-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
-.dlp97-card-head img{background:#eff6f4;border-radius:12px;padding:6px;box-sizing:content-box}
+/* All catalog subjects use their dedicated course identity assets. */
+.dlp97-card-head img.dlp97-course-icon{display:block;flex:0 0 56px;width:56px;height:56px;max-width:56px;object-fit:contain;box-sizing:border-box;border-radius:12px;background:transparent;padding:0}
+.dlp97-card-clickable{cursor:pointer}
+.dlp97-card-clickable:hover{border-color:#8ba7c8;box-shadow:0 12px 30px rgb(21 36 58 / .10)}
+.dlp97-card-clickable:focus-within{border-color:#3f46d9}
+@media(max-width:480px){.dlp97-card-head img.dlp97-course-icon{width:48px;height:48px;max-width:48px;flex-basis:48px}}
 .dlp97-category{background:var(--dlp97-soft);color:var(--dlp97-accent);font-size:11px;padding:5px 9px;border-radius:99px;font-weight:800}
 .dlp97-card h2{font-size:clamp(19px,2vw,24px);line-height:1.2;letter-spacing:-.025em;margin:3px 0}
 .dlp97-card p{color:var(--dlp97-subtle);margin:0;font-size:14px}

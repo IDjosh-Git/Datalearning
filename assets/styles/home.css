@@ -928,21 +928,19 @@ body .job-ready-extension{
 body .job-ready-extension a{ color:var(--app-brand-text)!important; }
 @media(max-width:500px){.lp-prompt-promo { padding:31px 18px; }
 .lp-prompt-promo-button { width:100%; max-width:350px; }}
-.lp-home .lp-smart-banner {
-  background:linear-gradient(120deg,var(--app-surface),color-mix(in srgb,var(--app-brand) 5%,var(--app-surface)))!important;
-  border:1px solid var(--app-line)!important;box-shadow:var(--app-shadow-soft)!important;
-  color:var(--app-text)!important;
+/* Unified continue-learning panels: dark ink surface, light readable labels. */
+body.lp-home .lp-smart-banner{
+  background:#203a57!important;border:1px solid #3b5473!important;
+  color:#f6f9ff!important;box-shadow:0 8px 22px rgb(15 33 55 / .10)!important;
 }
-.lp-home .lp-smart-banner .lp-smart-copy h3,.lp-home .lp-smart-banner .lp-smart-stats strong{color:var(--app-text)!important}
-.lp-home .lp-smart-banner .lp-smart-copy p,.lp-home .lp-smart-banner .lp-smart-stats span{color:var(--app-muted)!important}
-.lp-home .lp-smart-banner .lp-smart-stats>div {
-  background:var(--app-surface-2)!important;border:1px solid var(--app-line)!important;
-  color:var(--app-text)!important;
-}
-.lp-home .lp-smart-tag{
-  background:var(--app-brand-soft)!important;border:1px solid var(--app-line)!important;
-  color:var(--app-brand-text)!important;
-}
+body.lp-home .lp-smart-banner :is(.lp-smart-copy h3,.lp-smart-stats strong){color:#ffffff!important;-webkit-text-fill-color:#ffffff!important}
+body.lp-home .lp-smart-banner :is(.lp-smart-copy p,.lp-smart-stats span){color:#e0eafa!important;-webkit-text-fill-color:#e0eafa!important}
+body.lp-home .lp-smart-banner .lp-smart-stats>div{background:#29476b!important;border:1px solid #55708c!important;color:#ffffff!important}
+body.lp-home .lp-smart-banner .lp-smart-tag{background:#29476b!important;border:1px solid #55708c!important;color:#ffffff!important}
+body.lp-home .lp-smart-banner a.dalp-plain-link,
+body.lp-home .lp-smart-banner a.dalp-plain-link:visited{color:#d9e6ff!important;-webkit-text-fill-color:#d9e6ff!important}
+body.lp-home .lp-smart-banner a.dalp-plain-link:hover{color:#ffffff!important;-webkit-text-fill-color:#ffffff!important}
+
 html{max-width:100%;scroll-padding-top:84px}
 body{max-width:100%;min-width:0;overflow-x:clip}
 :where(main,section,article,aside,header,footer,nav,.container,.shell,.content,.card){min-width:0}
@@ -2803,3 +2801,14 @@ html:not(.dlp-theme-ready) *,html:not(.dlp-theme-ready) *::before,html:not(.dlp-
 @media (prefers-reduced-motion:no-preference) {:where(button,.btn,.card,.feature-panel,.lp-course) { transition:background-color .16s ease,color .16s ease,border-color .16s ease,box-shadow .16s ease,transform .16s ease; }}
 @media (prefers-reduced-motion:reduce) {*,*::before,*::after { scroll-behavior:auto !important; transition-duration:.01ms !important; animation-duration:.01ms !important; }}
 @media (max-width:640px) {:where(.table-scroll,.table-responsive,.data-table-wrap) { -webkit-overflow-scrolling:touch; }}
+
+/* Continue Learning: white course names on dark resume card (all widths). */
+html[data-theme="light"] body.lp-home .dl-home .dl-resume{background:#203a57;color:#f6f9ff}
+html[data-theme="light"] body.lp-home .dl-home .dl-resume h2{color:#ffffff!important;-webkit-text-fill-color:#ffffff!important;text-shadow:none!important}
+html[data-theme="light"] body.lp-home .dl-home .dl-resume p,
+html[data-theme="light"] body.lp-home .dl-home .dl-resume .dl-resume-percent{color:#e0eafa!important;-webkit-text-fill-color:#e0eafa!important}
+html[data-theme="light"] body.lp-home .dl-home .dl-resume .dl-resume-kicker{color:#ffcd93!important;-webkit-text-fill-color:#ffcd93!important}
+html[data-theme="light"] body.lp-home .lp-course-clickable{cursor:pointer}
+html[data-theme="light"] body.lp-home .lp-course-clickable:focus-within{border-color:#3f46d9}
+html[data-theme="light"] body.lp-home .lp-course-top img.lp-icon{display:block;width:48px;height:48px;max-width:48px;flex:0 0 48px;object-fit:contain;box-sizing:border-box;background:transparent}
+html[data-theme="light"] body.lp-home .dl-track img{width:44px;height:44px;object-fit:contain;flex:none}

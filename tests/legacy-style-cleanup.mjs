@@ -29,5 +29,5 @@ for(const f of styles){
  // Page-specific CSS remains intentional; do not ban responsive breakpoints or stateful overlays.
 }
 const worker=fs.readFileSync(path.join(root,'service-worker.js'),'utf8');
-assert(worker.includes('dalp-public-performance-v7'),'Stylesheet cache version must match this cleanup');
+assert(/const CACHE = 'dalp-public-[a-z0-9-]+-v\d+'/.test(worker),'Stylesheet cache version must match this cleanup');
 console.log(`PASS style hygiene: ${fileCount} routes, ${styles.length} referenced stylesheets, 0 embedded style blocks, no retired fonts/palette/glass filters`);

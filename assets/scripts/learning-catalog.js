@@ -45,6 +45,22 @@
   function clearAll(){search.value='';subject.value='all';apply();search.focus();}
   search.addEventListener('input',apply);subject.addEventListener('change',apply);document.getElementById('dlp97-clear').addEventListener('click',clearAll);document.getElementById('dlp97-empty-clear').addEventListener('click',clearAll);apply();
  }
+ // Clicking non-interactive card space opens the same course as the visible link.
+ // Do not intercept links, controls, selected text, or modified clicks.
+ function initCourseCardLinks(){
+  if(!onCatalog)return;
+  document.querySelectorAll('.dlp97-card').forEach(card=>{
+   const primary=card.querySelector('a.dlp97-primary[href]');
+   if(!primary)return;
+   card.classList.add('dlp97-card-clickable');
+   card.addEventListener('click',event=>{
+    if(event.defaultPrevented||event.button!==0||event.ctrlKey||event.metaKey||event.altKey||event.shiftKey)return;
+    if(event.target.closest('a,button,input,select,textarea,[role="button"],[contenteditable="true"]'))return;
+    if(window.getSelection()?.toString().trim())return;
+    window.location.assign(primary.href);
+   });
+  });
+ }
  function getSelectedBoxes(){return [...document.querySelectorAll(course==='introduction'?'[data-intro-check]':'input.completeBox')];}
  function protectExamples(){if(!course)return;document.querySelectorAll('main table').forEach(t=>{if(t.closest('.dlp97-table-scroll'))return;const wrap=document.createElement('div');wrap.className='dlp97-table-scroll';wrap.setAttribute('tabindex','0');wrap.setAttribute('role','region');wrap.setAttribute('aria-label','Scrollable course data table');t.parentNode.insertBefore(wrap,t);wrap.append(t);});}
  function guide(){
@@ -89,5 +105,5 @@
  }
  holder.querySelector('#dlp97-signout').addEventListener('click',async()=>{if(signingOut)return;signingOut=true;const b=holder.querySelector('#dlp97-signout');b.disabled=true;b.textContent='Signing out…';try{await window.DALP_SERVER_SESSION?.clear?.();await window.ZAH_DB?.client?.auth.signOut();cardOrder.forEach(x=>localStorage.removeItem(data[x].storageKey));localStorage.removeItem('dalpLastLearnerId');user=null;location.replace(uri('catalog.html'));}catch(_){b.disabled=false;b.textContent='Sign out';signingOut=false;holder.querySelector('#dlp97-auth-label').textContent='Unable to sign out. Try again.';}});
  const catalogAccountLink=document.querySelector('.dlp97-hero-actions a+a');if(onCatalog&&catalogAccountLink)catalogAccountLink.href=signin(uri('account.html'));
- initFilters();protectExamples();guide();void account();
+ initFilters();initCourseCardLinks();protectExamples();guide();void account();
 })();

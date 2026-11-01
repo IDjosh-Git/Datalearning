@@ -3978,3 +3978,180 @@ html[data-theme] body .review-hero :is(p,.review-secure) {
 html[data-theme] body .pl-hero :is(.pl-art-panel,.pl-art-panel span) {
   color:#edf7f8!important;-webkit-text-fill-color:currentColor!important;
 }
+
+/* Tutor banner: an intentional full-width ink-indigo header, never a white panel. */
+html[data-theme="light"] body[data-responsive-page="tutor"] main .tutor-intro.dalp-themed-hero {
+  width:100%!important;
+  max-width:none!important;
+  background:#303561!important;
+  background-image:none!important;
+  color:#fff!important;
+  border:1px solid #4d598b!important;
+  border-radius:18px!important;
+  padding:clamp(20px,3vw,34px)!important;
+}
+html[data-theme="light"] body[data-responsive-page="tutor"] main .tutor-intro.dalp-themed-hero :is(h1,h1 span) {
+  color:#fff!important;-webkit-text-fill-color:#fff!important;
+}
+html[data-theme="light"] body[data-responsive-page="tutor"] main .tutor-intro.dalp-themed-hero p {
+  color:#e0eaf6!important;-webkit-text-fill-color:#e0eaf6!important;
+}
+
+/* Tutor conversation UI, 2026-11: unified chat shell. */
+html[data-theme] body[data-responsive-page="tutor"] .tutor-grid {
+  display:grid!important;
+  grid-template-columns:minmax(252px,300px) minmax(0,1fr)!important;
+  align-items:start;
+  gap:20px!important;
+}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-chat {
+  display:flex;flex-direction:column;min-width:0;
+  background:#fff!important;color:#15243A!important;
+  border:1px solid #C8D5E7!important;border-radius:20px!important;
+  box-shadow:0 14px 35px rgba(21,36,58,.075)!important;
+  overflow:hidden;min-height:640px!important;
+}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-sidebar {
+  min-width:0;border:1px solid #D2DEEC!important;
+  border-radius:18px!important;background:#fff!important;
+  box-shadow:0 7px 24px rgba(21,36,58,.05)!important;
+  padding:clamp(17px,2vw,24px)!important;
+}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-chat .tutor-toolbar {
+  background:#15243A!important;color:#F7FAFF!important;border:0!important;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;
+  padding:16px 20px!important;gap:12px!important;border-radius:0!important;
+}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-toolbar h2,
+html[data-theme] body[data-responsive-page="tutor"] .tutor-toolbar .tutor-subtitle {
+  color:#F7FAFF!important;-webkit-text-fill-color:#F7FAFF!important;
+}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-toolbar .tutor-subtitle {font-size:.77rem;opacity:.85}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-toolbar .tutor-avatar {
+  background:#3F46D9!important;color:#fff!important;
+  width:42px;height:42px;border-radius:13px;display:grid;place-items:center;
+}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-toolbar-actions {display:flex;align-items:center;flex-wrap:wrap;gap:7px;min-width:0}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-toolbar .tutor-toolbar-btn {
+  background:#263C59!important;color:#FFF!important;-webkit-text-fill-color:#FFF!important;
+  border:1px solid #60738D!important;border-radius:9px!important;
+  padding:8px 11px!important;min-height:40px!important;
+  font-size:.78rem!important;font-weight:700;
+}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-toolbar .tutor-toolbar-btn:not(:disabled):hover {background:#344E70!important}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-toolbar .tutor-toolbar-btn:disabled {opacity:.48;cursor:not-allowed}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-context-bar {
+  display:flex;align-items:center;gap:9px;flex-wrap:wrap;
+  background:#EAF0F8!important;color:#29476B!important;
+  border-bottom:1px solid #CAD8E9!important;
+  padding:10px 20px!important;font-size:.79rem!important;
+}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-context-bar #aiStatus {color:#29476B!important}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-chat .messages {
+  flex:1;min-width:0;display:flex;flex-direction:column;gap:15px;
+  padding:clamp(16px,2.3vw,26px)!important;
+  min-height:340px!important;max-height:min(58vh,680px)!important;
+  overflow-y:auto!important;overflow-x:hidden;
+  background:#F7F9FD!important;scrollbar-gutter:stable;
+}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-chat .bubble {
+  width:fit-content;max-width:min(90%,770px);
+  padding:15px 17px!important;margin:0!important;
+  border-radius:15px 15px 15px 5px!important;
+  border:1px solid #D6E0EF!important;background:#FFF!important;
+  box-shadow:0 3px 12px rgba(21,36,58,.035);
+  color:#15243A!important;overflow-wrap:anywhere;
+  line-height:1.65;
+}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-chat .bubble.user {
+  align-self:flex-end;background:#343AB9!important;
+  color:#FFFFFF!important;border-color:#343AB9!important;
+  border-radius:15px 15px 5px 15px!important;
+}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-chat .bubble.user * {color:inherit!important}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-chat .tutor-welcome {
+  width:min(100%,700px);background:#EAF0FF!important;
+  border:1px solid #C4D4FD!important;color:#15243A!important;
+}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-chat .tutor-welcome b {
+  display:block;margin-bottom:7px;color:#1C3468!important;font-size:1rem;
+}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-chat .tutor-tools {
+  display:flex;flex-wrap:wrap;gap:8px;
+  padding:12px 18px!important;background:#FFF!important;
+  border-top:1px solid #E1E7F0!important;
+}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-chat .tutor-tools button,
+html[data-theme] body[data-responsive-page="tutor"] .tutor-followups button {
+  background:#F1F5FA!important;border:1px solid #C8D5E7!important;
+  color:#29476B!important;-webkit-text-fill-color:#29476B!important;
+  border-radius:9px!important;min-height:40px;padding:8px 12px!important;
+  font-size:.8rem;font-weight:700;
+}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-chat .tutor-tools button:hover:not(:disabled),
+html[data-theme] body[data-responsive-page="tutor"] .tutor-followups button:hover:not(:disabled) {
+  background:#E4EDFA!important;border-color:#718DCA!important;
+}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-chat .tutor-tools button:disabled {opacity:.6;cursor:not-allowed}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-chat .tutor-progress {
+  padding:0 18px;margin:5px 0;color:#455A75!important;
+}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-chat .tutor-composer {
+  display:flex!important;flex-wrap:nowrap!important;align-items:flex-end!important;
+  gap:12px!important;margin:0!important;padding:16px 18px!important;
+  background:#FFF!important;border-top:1px solid #E1E7F0!important;
+}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-chat .tutor-composer textarea {
+  flex:1 1 auto!important;min-width:0!important;width:auto!important;
+  min-height:64px!important;max-height:190px!important;resize:vertical;
+  font:inherit!important;font-size:16px!important;line-height:1.5!important;
+  padding:12px 14px!important;border:1px solid #A9BCD4!important;
+  border-radius:12px!important;color:#15243A!important;
+  background:#FBFCFF!important;
+}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-chat .tutor-composer textarea::placeholder {color:#526582!important;opacity:1}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-chat .tutor-composer #sendQuestion {
+  align-self:stretch;flex:0 0 auto;margin:0!important;
+  min-width:94px;min-height:50px!important;
+  background:#343AB9!important;color:#FFF!important;
+  border:1px solid #343AB9!important;border-radius:12px!important;
+  padding:11px 16px!important;font-weight:800;
+}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-chat .tutor-composer #sendQuestion:hover:not(:disabled) {background:#272D9A!important}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-chat .chat-note {
+  margin:0;padding:0 18px 14px;background:#FFF;
+  color:#51617A!important;font-size:.76rem;line-height:1.5;
+}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-chat .tutor-privacy {
+  margin:0!important;padding:12px 18px 18px!important;
+  border-top:1px solid #E1E7F0;border-radius:0!important;
+  color:#4B5E79!important;background:#FFF!important;
+}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-chat .tutor-followups {background:#FFF;border-top:1px solid #E1E7F0}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-chat :is(button,textarea):focus-visible {
+  outline:3px solid #E5A65F!important;outline-offset:2px!important;
+}
+@media(max-width:900px) {
+  html[data-theme] body[data-responsive-page="tutor"] .tutor-grid {grid-template-columns:minmax(0,1fr)!important}
+  html[data-theme] body[data-responsive-page="tutor"] .tutor-chat {order:0;min-height:0!important}
+  html[data-theme] body[data-responsive-page="tutor"] .tutor-sidebar {order:2}
+  html[data-theme] body[data-responsive-page="tutor"] .tutor-chat .messages {max-height:min(52vh,520px)!important}
+}
+@media(max-width:560px) {
+  html[data-theme] body[data-responsive-page="tutor"] .tutor-chat {border-radius:15px!important}
+  html[data-theme] body[data-responsive-page="tutor"] .tutor-chat .tutor-toolbar {padding:14px!important}
+  html[data-theme] body[data-responsive-page="tutor"] .tutor-toolbar-actions {width:100%!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important}
+  html[data-theme] body[data-responsive-page="tutor"] .tutor-toolbar .tutor-toolbar-btn {min-width:0!important;padding:7px 4px!important}
+  html[data-theme] body[data-responsive-page="tutor"] .tutor-chat .messages {min-height:270px!important;max-height:46vh!important;padding:14px!important;scrollbar-gutter:auto}
+  html[data-theme] body[data-responsive-page="tutor"] .tutor-chat .bubble {max-width:98%;padding:13px 14px!important}
+  html[data-theme] body[data-responsive-page="tutor"] .tutor-chat .tutor-composer {flex-wrap:wrap!important;padding:12px!important;gap:8px!important}
+  html[data-theme] body[data-responsive-page="tutor"] .tutor-chat .tutor-composer textarea {flex:1 0 100%!important;min-height:76px!important;width:100%!important}
+  html[data-theme] body[data-responsive-page="tutor"] .tutor-chat .tutor-composer #sendQuestion {min-height:44px!important;min-width:100px;margin-left:auto!important}
+  html[data-theme] body[data-responsive-page="tutor"] .tutor-chat .chat-note {padding:0 12px 12px}
+  html[data-theme] body[data-responsive-page="tutor"] .tutor-chat .tutor-privacy {padding:12px!important}
+}
+@media(prefers-reduced-motion:reduce) {
+  html[data-theme] body[data-responsive-page="tutor"] .tutor-chat *,
+  html[data-theme] body[data-responsive-page="tutor"] .tutor-chat *::before,
+  html[data-theme] body[data-responsive-page="tutor"] .tutor-chat *::after {animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}

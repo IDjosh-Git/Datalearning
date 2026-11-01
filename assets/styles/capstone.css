@@ -2833,3 +2833,17 @@ html:not(.dlp-theme-ready) *,html:not(.dlp-theme-ready) *::before,html:not(.dlp-
 @media (prefers-reduced-motion:no-preference) {:where(button,.btn,.card,.feature-panel,.lp-course) { transition:background-color .16s ease,color .16s ease,border-color .16s ease,box-shadow .16s ease,transform .16s ease; }}
 @media (prefers-reduced-motion:reduce) {*,*::before,*::after { scroll-behavior:auto !important; transition-duration:.01ms !important; animation-duration:.01ms !important; }}
 @media (max-width:640px) {:where(.table-scroll,.table-responsive,.data-table-wrap) { -webkit-overflow-scrolling:touch; }}
+
+/* Capstone banner stays dark across viewport sizes and old theme variations. */
+html[data-theme="light"] body[data-responsive-page="capstone"] main .cap-hero.dalp-themed-hero {
+  background:#3b365c!important;
+  background-image:none!important;
+  color:#fff!important;
+  border-color:#584f7d!important;
+}
+html[data-theme="light"] body[data-responsive-page="capstone"] main .cap-hero.dalp-themed-hero :is(h1,h2,h3) {
+  color:#fff!important;-webkit-text-fill-color:#fff!important;
+}
+html[data-theme="light"] body[data-responsive-page="capstone"] main .cap-hero.dalp-themed-hero p {
+  color:#e8e7f5!important;-webkit-text-fill-color:#e8e7f5!important;
+}

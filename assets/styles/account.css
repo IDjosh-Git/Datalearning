@@ -217,3 +217,25 @@ html[data-theme="light"] body.dalp-account-page [hidden]{display:none!important}
  html[data-theme="light"] body.dalp-account-page .bar .fill,
  html[data-theme="light"] body.dalp-account-page .account-signout{transition:none!important}
 }
+
+/* My Learning: keep skip navigation in keyboard order, never in the visual header. */
+body.dalp-account-page .dalp-skip-link:not(:focus):not(:focus-visible) {
+  position:fixed!important;
+  top:-100px!important;
+  left:12px!important;
+  transform:none!important;
+  clip-path:inset(50%)!important;
+  height:1px!important;
+  width:1px!important;
+  overflow:hidden!important;
+}
+body.dalp-account-page .dalp-skip-link:is(:focus,:focus-visible) {
+  position:fixed!important;
+  top:10px!important;
+  left:10px!important;
+  transform:none!important;
+  clip-path:none!important;
+  height:auto!important;
+  width:auto!important;
+  z-index:100000!important;
+}
