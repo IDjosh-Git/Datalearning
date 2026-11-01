@@ -3152,7 +3152,7 @@ body.dlp-course-v29 :is(.hero,.ai-hero,.intro-hero) a:not(.btn):not(.button) {co
 body.dlp-course-v29 :is(.hero,.ai-hero,.intro-hero) a:not(.btn):not(.button):hover {color:#fff;}
 body.dlp-course-v29 .hero .stats {display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,165px),1fr));gap:clamp(.5rem,1.2vw,.85rem);margin-top:clamp(1rem,2vw,1.5rem);}
 body.dlp-course-v29 .hero .stat {height:auto!important;min-height:0!important;max-width:none;min-width:0;overflow-wrap:anywhere;border:1px solid rgba(200,230,255,.24);background:rgba(235,246,255,.085);border-radius:14px;}
-body.dlp-course-v29 .hero .stat :is(strong,span) {color:#fff!important;}
+body.dlp-course-v29 .hero .stat :is(strong,span) {color:#15243a!important;-webkit-text-fill-color:#15243a!important;}
 body.dlp-course-v29 .ai-hero .metrics {gap:10px!important;}
 body.dlp-course-v29 .ai-hero .metrics span {display:flex;align-items:center;gap:6px;min-height:50px;border:1px solid #7fb4e050;border-radius:12px;background:#cce6ff12;padding:8px 14px;line-height:1.3;}
 body.dlp-course-v29 .ai-hero .metrics span b {font-size:clamp(1.1rem,2vw,1.55rem);color:#fff;}

@@ -3,7 +3,9 @@
  'use strict';
  function init(){
    const main=document.querySelector('main');
-   if(main){if(!main.id)main.id='main-content';if(!document.querySelector('.dlp-skip-link')){
+   if(main){if(!main.id)main.id='main-content';
+   // Private pages deliberately omit the skip control; public pages retain their authored link.
+   if(!document.body.matches('[data-private-workspace="true"]') && !document.querySelector('.dalp-skip-link, .dlp-skip-link')){
      const skip=document.createElement('a');skip.className='dlp-skip-link';skip.href='#'+main.id;skip.textContent='Skip to main content';document.body.prepend(skip);
    }}
    // Accessible live status for connectivity without disrupting the learner's focus.

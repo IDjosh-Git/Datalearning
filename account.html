@@ -4,57 +4,55 @@
 <head><link crossorigin="anonymous" href="https://cdn.jsdelivr.net" rel="preconnect"/>
 <script>document.documentElement.classList.add('dalp-auth-checking')</script>
 <link href="assets/styles/access-guard.css" rel="stylesheet"/>
-<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0"></script>
-<script defer src="assets/scripts/supabase-config.js"></script>
-<script defer src="assets/scripts/supabase-client.js"></script><script defer="" src="assets/scripts/server-session.js"></script>
-<script defer src="assets/scripts/auth-gate.js"></script>
+<script defer="" src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0"></script>
+<script defer="" src="assets/scripts/supabase-config.js"></script>
+<script defer="" src="assets/scripts/supabase-client.js"></script><script defer="" src="assets/scripts/server-session.js"></script>
+<script defer="" src="assets/scripts/auth-gate.js"></script>
 <meta charset="utf-8"/><meta content="width=device-width,initial-scale=1.0" name="viewport"/>
 <title>My Learning | Data Analysis Learning Path</title>
-<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml"/>
-<link rel="icon" href="assets/icons/favicon-32.png" type="image/png" sizes="32x32"/>
-<link rel="apple-touch-icon" href="assets/icons/favicon-180.png" sizes="180x180"/>
-
-
+<link href="assets/icons/favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="assets/icons/favicon-32.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="assets/icons/favicon-180.png" rel="apple-touch-icon" sizes="180x180"/>
 <link href="assets/styles/account.css" rel="stylesheet"/>
 <link href="assets/styles/design-system.css" rel="stylesheet"/>
-</head>
-<body class="dalp-account-page" data-responsive-page="account"><a class="dalp-skip-link" href="#main-content">Skip to main content</a><header class="dalp-global-header"><div class="dalp-global-inner"><a aria-label="Data Analysis Learning Path homepage" class="dalp-global-brand" href="index.html"><img class="dalp-brand-logo" src="assets/icons/da-logo.svg" alt="" width="36" height="36" decoding="async"/><span>Data Analysis <strong>Learning Path</strong></span></a><button aria-controls="dalpGlobalNav" aria-expanded="false" aria-label="Open navigation" class="dalp-global-toggle" type="button">☰</button><nav aria-label="Primary navigation" class="dalp-global-nav" id="dalpGlobalNav"><a href="index.html">Dashboard</a><a href="catalog.html">Learn</a><a href="courses/ai.html">AI Course</a><a href="prompt-library.html">AI Prompt Library</a><a href="reference.html">Reference Library</a><a href="capstone.html">Capstone Studio</a><a href="tutor.html">AI Tutor</a><a aria-current="page" class="account-link" href="account.html">My Learning</a></nav></div></header>
+<link href="assets/styles/private-workspace.css" rel="stylesheet"/></head>
+<body class="dalp-account-page" data-admin-console="account" data-private-workspace="true" data-responsive-page="account">
 <main id="main-content"><div class="wrap">
-<section class="account-overview" aria-labelledby="account-heading">
-  <div class="account-overview-content">
-    <p class="account-eyebrow">YOUR LEARNING SPACE</p>
-    <h1 id="account-heading">My learning dashboard</h1>
-    <p id="who" class="account-identity">Loading learner account…</p>
-    <p class="account-intro">Track your courses, quiz results and achievements in one place.</p>
-    <div class="account-studio-link"><a class="account-text-link" href="studio.html">Open Practice Studio ↗</a><span>Practise Excel, SQL, Power BI, AI and Foundations skills.</span></div>
-  </div>
-  <button class="account-signout" id="logout" type="button">Sign out</button>
+<section aria-labelledby="account-heading" class="account-overview">
+<div class="account-overview-content">
+<p class="account-eyebrow">YOUR LEARNING SPACE</p>
+<h1 id="account-heading">My learning dashboard</h1>
+<p class="account-identity" id="who">Loading learner account…</p>
+<p class="account-intro">Track your courses, quiz results and achievements in one place.</p>
+<div class="account-studio-link"><a class="account-text-link" href="studio.html">Open Practice Studio ↗</a><span>Practise Excel, SQL, Power BI, AI and Foundations skills.</span></div>
+</div>
+
 </section>
 <div class="grid">
 <div class="card full">
 <h2>Your saved progress</h2>
 <p id="accountSyncStatus">Checking your latest progress…</p>
 </div>
-<section class="card full" id="instructorAccess" hidden><h2>Administrator workspace</h2><p>Monitor learner progress and assess submitted capstone projects. Only authorised administrators can use these management tools.</p><nav class="account-link-list" aria-label="Administrator tools"><a href="admin.html">Admin dashboard →</a><a href="progress.html">Learner progress →</a><a href="reviewer.html">Open review desk →</a></nav></section>
-<div class="card full" id="completionGuide">
-<h2>How to complete a course</h2>
+
+<details class="card full account-guide" id="completionGuide">
+<summary>Course completion guide</summary>
 <p>Work through each week and complete the practice and quizzes. Your progress is saved to your account so you can continue on another device. Once all ten weeks are complete and your progress is up to date, submit your final project with supporting files and screenshots. Your instructor will review your work and share a score and feedback. A score of 70/100 or higher qualifies you for a course-completion certificate, which you can view in the Capstone Studio.</p>
 <p class="muted">These certificates document your completed training and assessed achievement. If your connection is interrupted, your progress stays on this device until it can be saved to your account.</p>
+</details>
+<section aria-labelledby="course-progress-heading" class="progress-collection full">
+<div class="account-section-heading"><h2 id="course-progress-heading">Your courses</h2><p>Continue where you left off.</p></div>
+<div class="course-progress-grid">
+<article class="card progress-card" data-track="introduction"><h3>Introduction</h3><p id="introductionText">0 of 8 lessons</p><div aria-label="Introduction progress" aria-valuemax="100" aria-valuemin="0" aria-valuenow="0" class="bar" role="progressbar"><div class="fill" id="introductionBar" style="width:0%"></div></div><a href="courses/introduction.html">Open Introduction →</a></article>
+<article class="card progress-card" data-track="excel"><h3>Excel</h3><p id="excelText">0 of 10 weeks</p><div aria-label="Excel progress" aria-valuemax="100" aria-valuemin="0" aria-valuenow="0" class="bar" role="progressbar"><div class="fill" id="excelBar" style="width:0%"></div></div><a href="courses/excel.html">Open Excel Course →</a></article>
+<article class="card progress-card" data-track="sql"><h3>SQL</h3><p id="sqlText">0 of 10 weeks</p><div aria-label="SQL progress" aria-valuemax="100" aria-valuemin="0" aria-valuenow="0" class="bar" role="progressbar"><div class="fill" id="sqlBar" style="width:0%"></div></div><a href="courses/sql.html">Open SQL Course →</a></article>
+<article class="card progress-card" data-track="powerbi"><h3>Power BI</h3><p id="powerbiText">0 of 10 weeks</p><div aria-label="Power BI progress" aria-valuemax="100" aria-valuemin="0" aria-valuenow="0" class="bar" role="progressbar"><div class="fill" id="powerbiBar" style="width:0%"></div></div><a href="courses/powerbi.html">Open Power BI Course →</a></article>
+<article class="card progress-card" data-track="python"><h3>Python for Data Analytics</h3><p id="pythonText">0 of 10 weeks</p><div aria-label="Python progress" aria-valuemax="100" aria-valuemin="0" aria-valuenow="0" class="bar" role="progressbar"><div class="fill" id="pythonBar" style="width:0%"></div></div><a href="courses/python.html">Open Python Course →</a></article>
+<article class="card progress-card" data-track="ai"><h3>AI Integration in Data Analysis</h3><p id="aiText">0 of 10 weeks</p><div aria-label="AI Integration progress" aria-valuemax="100" aria-valuemin="0" aria-valuenow="0" class="bar" role="progressbar"><div class="fill" id="aiBar" style="width:0%"></div></div><a href="courses/ai.html">AI Integration Course ↗</a></article>
 </div>
-<section class="progress-collection full" aria-labelledby="course-progress-heading">
-  <div class="account-section-heading"><h2 id="course-progress-heading">Your courses</h2><p>Continue where you left off.</p></div>
-  <div class="course-progress-grid">
-    <article class="card progress-card" data-track="introduction"><h3>Introduction</h3><p id="introductionText">0 of 8 lessons</p><div class="bar" role="progressbar" aria-label="Introduction progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="fill" id="introductionBar" style="width:0%"></div></div><a href="courses/introduction.html">Open Introduction →</a></article>
-    <article class="card progress-card" data-track="excel"><h3>Excel</h3><p id="excelText">0 of 10 weeks</p><div class="bar" role="progressbar" aria-label="Excel progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="fill" id="excelBar" style="width:0%"></div></div><a href="courses/excel.html">Open Excel Course →</a></article>
-    <article class="card progress-card" data-track="sql"><h3>SQL</h3><p id="sqlText">0 of 10 weeks</p><div class="bar" role="progressbar" aria-label="SQL progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="fill" id="sqlBar" style="width:0%"></div></div><a href="courses/sql.html">Open SQL Course →</a></article>
-    <article class="card progress-card" data-track="powerbi"><h3>Power BI</h3><p id="powerbiText">0 of 10 weeks</p><div class="bar" role="progressbar" aria-label="Power BI progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="fill" id="powerbiBar" style="width:0%"></div></div><a href="courses/powerbi.html">Open Power BI Course →</a></article>
-    <article class="card progress-card" data-track="python"><h3>Python for Data Analytics</h3><p id="pythonText">0 of 10 weeks</p><div class="bar" role="progressbar" aria-label="Python progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="fill" id="pythonBar" style="width:0%"></div></div><a href="courses/python.html">Open Python Course →</a></article>
-    <article class="card progress-card" data-track="ai"><h3>AI Integration in Data Analysis</h3><p id="aiText">0 of 10 weeks</p><div class="bar" role="progressbar" aria-label="AI Integration progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="fill" id="aiBar" style="width:0%"></div></div><a href="courses/ai.html">AI Integration Course ↗</a></article>
-  </div>
 </section>
 <div class="card full">
 <h2>Quiz Results</h2>
-<div class="account-table-scroll" tabindex="0" role="region" aria-label="Quiz results table"><table><thead><tr><th scope="col">Course</th><th scope="col">Week</th><th scope="col">Score</th><th scope="col">Percentage</th></tr></thead><tbody id="quizBody"></tbody></table></div>
+<p class="private-table-help">Swipe across the quiz results table to see all columns.</p><div aria-label="Quiz results table" class="account-table-scroll" role="region" tabindex="0"><table><thead><tr><th scope="col">Course</th><th scope="col">Week</th><th scope="col">Score</th><th scope="col">Percentage</th></tr></thead><tbody id="quizBody"></tbody></table></div>
 </div>
 <div class="card full">
 <h2>Capstone assessments</h2>
@@ -62,13 +60,13 @@
 <p><a href="capstone.html">Open Capstone Studio →</a></p>
 </div>
 <div class="card full">
-<h2>Certificates</h2>
-<div class="account-table-scroll" tabindex="0" role="region" aria-label="Certificates table"><table><thead><tr><th scope="col">Certificate ID</th><th scope="col">Course</th><th scope="col">Date</th><th scope="col">Status</th><th scope="col">Certificate</th></tr></thead><tbody id="certBody"></tbody></table></div>
+<h2 id="certificates">Certificates</h2>
+<p class="private-table-help">Swipe across the certificates table to see all columns.</p><div aria-label="Certificates table" class="account-table-scroll" role="region" tabindex="0"><table><thead><tr><th scope="col">Certificate ID</th><th scope="col">Course</th><th scope="col">Date</th><th scope="col">Status</th><th scope="col">Certificate</th></tr></thead><tbody id="certBody"></tbody></table></div>
 </div>
 </div>
 </div>
 </main>
-<script defer src="assets/scripts/progress-cloud.js"></script>
+<script defer="" src="assets/scripts/progress-cloud.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded',async()=>{
  const syncStatus=document.getElementById('accountSyncStatus');
@@ -90,7 +88,6 @@ document.addEventListener('DOMContentLoaded',async()=>{
    .select('course_slug,project_title,status,score,created_at,review_due_at')
    .eq('user_id',user.id).order('created_at',{ascending:false}));
 
- window.ZAH_DB.client.from('site_admins').select('user_id').eq('user_id',user.id).maybeSingle().then(({data})=>{if(data)document.getElementById('instructorAccess').hidden=false}).catch(()=>{});
 
  document.getElementById('who').textContent=user.user_metadata?.full_name?`${user.user_metadata.full_name} • ${user.email}`:user.email;
 
@@ -136,14 +133,8 @@ document.addEventListener('DOMContentLoaded',async()=>{
  document.getElementById('certBody').innerHTML=(c||[]).map(r=>`<tr><td>${escapeHTML(r.certificate_id)}</td><td>${escapeHTML(r.course_title)}</td><td>${escapeHTML(r.completion_date)}</td><td>${escapeHTML(r.status)}</td><td><a href="certificate.html?id=${encodeURIComponent(r.certificate_id)}" class="account-text-link">View &amp; download ↗</a></td></tr>`).join('')||'<tr><td colspan="5">No completion records registered yet.</td></tr>';
 },{once:true});
 
-document.getElementById('logout').onclick=async()=>{
- await window.DALP_SERVER_SESSION?.clear();
- if(window.ZAH_DB.client) await window.ZAH_DB.client.auth.signOut();
- window.DALP_AUTH_GATE?.clearLocalCourseCache();
- location.replace('auth.html');
-};
 </script>
-<script defer="" src="assets/scripts/modern.js"></script><script defer="" src="assets/scripts/learner-companion.js"></script><script defer="" src="assets/scripts/responsive.js"></script>
-<script defer="" src="assets/scripts/accessibility.js"></script><script defer="" src="assets/scripts/embedded-palette-sync.js"></script><script defer="" src="assets/scripts/learning-experience.js"></script><script defer="" src="assets/scripts/experience.js"></script>
-<script defer="" src="assets/scripts/public-navigation.js"></script><script defer src="assets/scripts/public-footer.js"></script>
-</body></html>
+
+<script defer="" src="assets/scripts/accessibility.js"></script>
+
+<script defer="" src="assets/scripts/private-navigation.js"></script></body></html>

@@ -22,8 +22,9 @@ for(const page of pages){
  }
  assert(!page.links.some(link=>['site-refresh.css','experience.css','layout-tuning.css'].some(x=>link.path.endsWith('/'+x))),`${page.route}: obsolete theme layer found`);
  const adminRoute=['admin.html','progress.html','reviewer.html'].includes(page.route);
- assert.equal(page.links.at(-1)?.path,adminRoute?'assets/styles/admin-workspace.css':'assets/styles/design-system.css',`${page.route}: current page theme should load last`);
- if(adminRoute)assert(page.links.some(x=>x.path==='assets/styles/design-system.css'),`${page.route}: shared design foundation is required`);
+ const privateRoute=['admin.html','progress.html','reviewer.html','account.html','certificate.html','connection-test.html','sync-test.html'].includes(page.route);
+ assert.equal(page.links.at(-1)?.path,adminRoute?'assets/styles/admin-workspace.css':privateRoute?'assets/styles/private-workspace.css':'assets/styles/design-system.css',`${page.route}: current page theme should load last`);
+ if(privateRoute)assert(page.links.some(x=>x.path==='assets/styles/design-system.css'),`${page.route}: shared design foundation is required`);
  assert(page.links.length<=(resourcePage?2:page.route.startsWith('courses/')?7:adminRoute?7:6),`${page.route}: redundant CSS loading; found ${page.links.length} layers`);
  for(const m of page.html.matchAll(/<(a|img|source|iframe|video|link|script)\b[^>]*?(?:href|src)\s*=\s*(["'])(.*?)\2/gi)){
   const [_,kind,,ref]=m;

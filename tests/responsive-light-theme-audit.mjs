@@ -5,7 +5,7 @@ import path from 'node:path';
 const root=path.resolve(import.meta.dirname,'..');
 const read=p=>readFileSync(path.join(root,p),'utf8');
 const shared=read('assets/styles/design-system.css');
-const admin=read('assets/styles/admin-workspace.css');
+const admin=read('assets/styles/private-workspace.css');
 const learner=read('assets/styles/account.css');
 const cache=read('service-worker.js');
 for(const width of [420,767,1199]){
@@ -20,7 +20,7 @@ assert.match(admin,/--ac-canvas:#f5f7fb/,'Admin must use the light canvas');
 assert.match(admin,/--ac-panel:#ffffff/,'Admin cards must be white');
 assert.match(admin,/--ac-text:#15243a/,'Admin default text must be dark');
 assert.match(admin,/\.ac-sidebar\{[^}]*background:var\(--ac-deep\)/,'Admin sidebar must use the light surface token');
-assert.match(admin,/\.ac-mobile-tabs\{[^}]*background:#ffffff!important/,'Admin mobile tabs must be light');
+assert(!admin.includes('.ac-mobile-tabs'),'Duplicate mobile tab bar should be removed; accessible sidebar drawer remains');
 assert.match(admin,/\.ac-detail-backdrop:not\(\[hidden\]\)/,'Authenticated learner detail backdrop must remain');
 assert.match(admin,/\.ac-nav-overlay\{[^}]*background:#080f1dc4/,'Mobile menu scrim must remain functional');
 assert.match(learner,/\.account-overview\s*\{[^}]*background:#eaf0ff/,'Account introduction panel should be light indigo');

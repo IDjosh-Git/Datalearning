@@ -1,4 +1,4 @@
-/** Regression: unified browser icon, accessible Tutor layout and keyboard-only account skip link. */
+/** Regression: unified browser icon, accessible Tutor layout and clean private-page navigation. */
 import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
@@ -21,10 +21,8 @@ for(const file of ['assets/icons/favicon.svg','assets/icons/favicon-32.png','ass
  assert(fs.existsSync(path.join(root,file)),`Browser icon not found: ${file}`);
 }
 const account=fs.readFileSync(path.join(root,'account.html'),'utf8');
-const accountStyle=fs.readFileSync(path.join(root,'assets/styles/account.css'),'utf8');
-assert(account.includes('class="dalp-skip-link" href="#main-content"'),'Account must preserve skip link for keyboard accessibility');
-assert(accountStyle.includes('.dalp-skip-link:not(:focus):not(:focus-visible)'),'Account skip link must be visually hidden when not focused');
-assert(accountStyle.includes('.dalp-skip-link:is(:focus,:focus-visible)'),'Account skip link must become visible when focused');
+assert(!account.includes('class="dalp-skip-link"'), 'Account must not render the removed private skip link');
+assert(account.includes('id="main-content"'), 'Account must retain its main-content landmark');
 const tutor=fs.readFileSync(path.join(root,'tutor.html'),'utf8');
 const tutorStyle=fs.readFileSync(path.join(root,'assets/styles/tutor.css'),'utf8');
 for(const id of ['chatForm','chatQuestion','sendQuestion','chatMessages','tutorModeAi','tutorModeOffline','clearChat','cancelTutor']){
@@ -33,4 +31,4 @@ for(const id of ['chatForm','chatQuestion','sendQuestion','chatMessages','tutorM
 for(const selector of ['.tutor-chat .messages','.tutor-chat .tutor-composer','.tutor-chat .tutor-toolbar','@media(max-width:560px)']){
  assert(tutorStyle.includes(selector),`Tutor layout missing ${selector}`);
 }
-console.log(`PASS Tutor UI, keyboard-only account skip link and consistent favicons across ${htmlFiles.length} pages`);
+console.log(`PASS Tutor UI, clean account header and consistent favicons across ${htmlFiles.length} pages`);

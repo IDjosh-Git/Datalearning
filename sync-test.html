@@ -3,22 +3,20 @@
 <html class="light" data-theme="light" lang="en">
 <head><link crossorigin="anonymous" href="https://cdn.jsdelivr.net" rel="preconnect"/>
 <script>document.documentElement.classList.add('dalp-auth-checking')</script>
-<link href="assets/styles/sync-test-foundation.css" rel="stylesheet"/>
-<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0"></script>
-<script defer src="assets/scripts/supabase-config.js"></script>
-<script defer src="assets/scripts/supabase-client.js"></script><script defer="" src="assets/scripts/server-session.js"></script>
-<script defer src="assets/scripts/auth-gate.js"></script>
+<link href="assets/styles/access-guard.css" rel="stylesheet"/>
+<script defer="" src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0"></script>
+<script defer="" src="assets/scripts/supabase-config.js"></script>
+<script defer="" src="assets/scripts/supabase-client.js"></script><script defer="" src="assets/scripts/server-session.js"></script>
+<script defer="" src="assets/scripts/auth-gate.js"></script>
 <meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
 <title>Progress Check | Data Analysis Learning Path</title>
-<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml"/>
-<link rel="icon" href="assets/icons/favicon-32.png" type="image/png" sizes="32x32"/>
-<link rel="apple-touch-icon" href="assets/icons/favicon-180.png" sizes="180x180"/>
-
+<link href="assets/icons/favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="assets/icons/favicon-32.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="assets/icons/favicon-180.png" rel="apple-touch-icon" sizes="180x180"/>
 <link href="assets/styles/sync-test-layout.css" rel="stylesheet"/>
-
 <link href="assets/styles/design-system.css" rel="stylesheet"/>
-</head>
-<body data-responsive-page="sync-test"><a class="dalp-skip-link" href="#main-content">Skip to main content</a>
+<link href="assets/styles/private-workspace.css" rel="stylesheet"/></head>
+<body class="dalp-utility-page" data-admin-console="sync" data-private-workspace="true" data-responsive-page="sync-test">
 <main id="main-content"><div class="card">
 <h1>Check saved learning progress</h1>
 <p>See whether your Excel, SQL and Power BI learning progress is up to date. If anything needs attention, you can try saving again.</p>
@@ -31,7 +29,7 @@
 <a href="index.html">Learning Portal</a>
 </div>
 </main>
-<script defer src="assets/scripts/progress-cloud.js"></script>
+<script defer="" src="assets/scripts/progress-cloud.js"></script>
 <script>
 async function run(){
  const userEl=document.getElementById('user');
@@ -56,6 +54,6 @@ async function run(){
 document.getElementById('retry').onclick=run;
 document.addEventListener('DOMContentLoaded',run,{once:true});
 </script>
-<script defer="" src="assets/scripts/modern.js"></script><script defer="" src="assets/scripts/course-studio-data.js"></script><script defer="" src="assets/scripts/learner-companion.js"></script><script defer="" src="assets/scripts/responsive.js"></script>
-<script defer="" src="assets/scripts/accessibility.js"></script><script defer="" src="assets/scripts/embedded-palette-sync.js"></script><script defer="" src="assets/scripts/learning-experience.js"></script><script defer="" src="assets/scripts/experience.js"></script>
-</body></html>
+<script defer="" src="assets/scripts/course-studio-data.js"></script>
+<script defer="" src="assets/scripts/accessibility.js"></script>
+<script defer="" src="assets/scripts/private-navigation.js"></script></body></html>

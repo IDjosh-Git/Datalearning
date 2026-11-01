@@ -5,7 +5,7 @@
  const date=s=>s?new Date(s).toLocaleString(undefined,{year:'numeric',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}):'—';
  const RULES=[['problem_and_objectives','Problem & objectives',25,'Clear question, business context and measurable objectives.'],['data_preparation_and_quality','Data preparation & quality',20,'Appropriate cleaning, reliable sources and validation.'],['technical_execution','Technical execution',20,'Correct Excel, SQL or Power BI implementation.'],['analysis_and_insights','Analysis & insights',20,'Useful findings and accurate interpretation.'],['communication_and_evidence','Communication & evidence',15,'Readable visuals, clear explanations and supporting proof.']];
  const PENDING=['submitted','processing','review_error','needs_manual_review'];
- const TRACKS={excel:'Excel',sql:'SQL',powerbi:'Power BI'};
+ const TRACKS={excel:'Excel',sql:'SQL',powerbi:'Power BI',python:'Python',ai:'AI Integration'};
  const STATUSES={submitted:'Awaiting review',processing:'Awaiting review',review_error:'Awaiting review',needs_manual_review:'Awaiting review',approved:'Passed',needs_revision:'Revision requested'};
  const PAGE_SIZE=20;
  let rows=[],chosen=null,currentPage=0,totalRows=0,loadToken=0,previewToken=0,submitting=false;

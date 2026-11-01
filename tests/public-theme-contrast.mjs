@@ -16,12 +16,12 @@ const collect=(dir='')=>{
 };
 collect();
 assert.equal(htmlPages.length,38,'All published HTML pages must participate in the shared theme');
-const globalNavPages=['index.html','catalog.html','reference.html','prompt-library.html','capstone.html','tutor.html','practice.html','studio.html','learning-lab.html','account.html',...['excel','sql','powerbi','python','introduction','ai'].flatMap(n=>[`courses/${n}.html`,`courses/${n}-roadmap.html`,`courses/${n}-extension.html`])];
+const globalNavPages=['index.html','catalog.html','reference.html','prompt-library.html','capstone.html','tutor.html','practice.html','studio.html','learning-lab.html',...['excel','sql','powerbi','python','introduction','ai'].flatMap(n=>[`courses/${n}.html`,`courses/${n}-roadmap.html`,`courses/${n}-extension.html`])];
 for(const route of htmlPages){
  const source=read(route);
  const css=[...source.matchAll(/<link\b[^>]*>/gi)].filter(x=>/\brel=["']stylesheet["']/.test(x[0])).map(x=>x[0].match(/\bhref=["']([^"']+)["']/)?.[1]).filter(Boolean);
  assert.equal(css.filter(x=>x.endsWith('/design-system.css')).length,1,`${route}: theme must load exactly once`);
- const expected=['admin.html','progress.html','reviewer.html'].includes(route)?'admin-workspace.css':'design-system.css';
+ const expected=['admin.html','progress.html','reviewer.html'].includes(route)?'admin-workspace.css':['admin.html','progress.html','reviewer.html','account.html','certificate.html','connection-test.html','sync-test.html'].includes(route)?'private-workspace.css':'design-system.css';
  assert(css.at(-1)?.endsWith('/'+expected),`${route}: maintained route theme must load after other styles`);
  const absolute=path.resolve(root,path.dirname(route),css.at(-1));
  assert.equal(absolute,path.join(root,'assets/styles',expected),`${route}: bad nested stylesheet path`);

@@ -20,7 +20,8 @@ const ownerJs=read('assets/scripts/reviewer.js');
 for(const term of ['createSignedUrl','download(f.path)','new window.ExcelJS.Workbook',"db().rpc('submit_capstone_review'",'window.confirm','published_score'])assert(ownerJs.includes(term),term);
 assert(ownerJs.includes(".from('capstone_reviewers')"),'Owner login allowlist enforced');
 assert(ownerJs.includes('PENDING'),'Only pending submissions may be scored');
-assert(read('account.html').includes('id="instructorAccess" hidden'),'Owner-only navigation hidden by default');
+assert(read('assets/scripts/private-navigation.js').includes('group.hidden=!admin'),'Admin navigation hidden unless role verified');
+assert(!read('account.html').includes('id="instructorAccess"'),'Redundant administrator notice removed from learner account');
 assert(db.includes('public.capstone_reviewers')&&db.includes('capstone_reviewers_select_own'),'Secure reviewer allowlist');
 assert(db.includes('capstone_read_reviewer')&&db.includes('capstone_evidence_read_reviewer'),'Reviewer access is RLS protected');
 assert(db.includes('user_id=(select auth.uid())'),'Learner isolation');
@@ -39,8 +40,8 @@ console.log('PASS manual grading: private reviewer gate, searchable inbox, photo
 // Instructor-only learner progress monitor.
 const progressPage=read('progress.html'),progressJs=read('assets/scripts/progress-admin.js');
 for(const id of ['progressGate','progressApp','statLearners','statTracks','statCompleted','statReview','progressLearner','progressCourse','progressStatus','progressBody','learnerDetail','weekGrid'])assert(progressPage.includes(`id="${id}"`),id);
-assert(read('account.html').includes('href="progress.html"'),'Instructor workspace links to learner progress');
-assert(read('assets/scripts/admin-console.js').includes("'Progress reports','progress.html'"),'Shared Review Desk navigation links to learner progress');
+assert(read('assets/scripts/private-navigation.js').includes("'Progress reports','progress.html'"),'Administrator-only progress link belongs to the role-aware private navigation');
+assert(read('assets/scripts/private-navigation.js').includes("'Progress reports','progress.html'"),'Shared Review Desk navigation links to learner progress');
 assert(progressJs.includes(".from('capstone_reviewers')"),'Progress page checks instructor allowlist');
 assert(progressJs.includes("db().rpc('instructor_progress_overview'"),'Progress overview uses protected public RPC');
 assert(progressJs.includes("db().rpc('instructor_progress_detail'"),'Week detail uses protected public RPC');

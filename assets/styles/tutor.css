@@ -4155,3 +4155,11 @@ html[data-theme] body[data-responsive-page="tutor"] .tutor-chat :is(button,texta
   html[data-theme] body[data-responsive-page="tutor"] .tutor-chat *::before,
   html[data-theme] body[data-responsive-page="tutor"] .tutor-chat *::after {animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
+
+/* Tutor composer 2026-11: compact single-row AI prompt, accessible full label remains off-screen. */
+html[data-theme] body:has(.tutor-main) .tutor-chat .tutor-composer{display:flex!important;align-items:center!important;flex-wrap:nowrap!important;gap:10px!important;margin:10px 12px 6px!important;padding:7px 8px 7px 12px!important;min-height:62px!important;background:#fff!important;border:1px solid #cbd8ed!important;border-radius:16px!important;box-shadow:0 3px 16px #15243a0c!important}
+html[data-theme] body:has(.tutor-main) .tutor-chat .tutor-compose-icon{flex:none;display:grid;place-items:center;width:36px;height:36px}
+html[data-theme] body:has(.tutor-main) .tutor-chat .tutor-composer textarea{flex:1 1 auto!important;min-width:0!important;width:auto!important;min-height:42px!important;height:42px!important;max-height:120px!important;padding:10px 7px!important;resize:vertical!important;font:400 15px/1.4 Inter,system-ui,sans-serif!important;color:#15243a!important;background:#fff!important;border:0!important;box-shadow:none!important;outline-offset:0!important}
+html[data-theme] body:has(.tutor-main) .tutor-chat .tutor-composer textarea:focus-visible{outline:2px solid #3f46d9!important;outline-offset:2px!important;border-radius:6px!important}
+html[data-theme] body:has(.tutor-main) .tutor-chat .tutor-composer button{flex:none!important;min-height:43px!important;min-width:75px!important;margin:0!important;padding:10px 14px!important;border-radius:11px!important}
+@media(max-width:480px){html[data-theme] body:has(.tutor-main) .tutor-chat .tutor-composer{margin:8px!important;gap:5px!important;padding:6px!important}html[data-theme] body:has(.tutor-main) .tutor-chat .tutor-compose-icon{width:31px}html[data-theme] body:has(.tutor-main) .tutor-chat .tutor-compose-icon svg{width:25px;height:25px}html[data-theme] body:has(.tutor-main) .tutor-chat .tutor-composer textarea{font-size:16px!important}html[data-theme] body:has(.tutor-main) .tutor-chat .tutor-composer button{min-width:58px!important;padding:9px!important}}

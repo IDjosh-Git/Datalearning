@@ -79,15 +79,6 @@ html[data-theme="light"] body.dalp-account-page .account-overview .account-studi
 html[data-theme="light"] body.dalp-account-page .account-overview .account-studio-link a:hover{
   text-decoration-thickness:2px!important;
 }
-html[data-theme="light"] body.dalp-account-page .account-signout{
-  flex:0 0 auto;min-height:44px;padding:10px 16px;
-  border:1px solid #879cda;border-radius:10px;
-  background:#ffffff;color:#3035b0;cursor:pointer;
-  font-size:.92rem;font-weight:750;transition:background-color .15s,border-color .15s;
-}
-html[data-theme="light"] body.dalp-account-page .account-signout:hover{
-  background:#dce5ff;border-color:#6e83c9;
-}
 html[data-theme="light"] body.dalp-account-page .grid{
   display:grid;grid-template-columns:repeat(12,minmax(0,1fr));
   gap:20px;align-items:start;
@@ -204,8 +195,7 @@ html[data-theme="light"] body.dalp-account-page [hidden]{display:none!important}
  html[data-theme="light"] body.dalp-account-page .wrap{width:min(100% - 28px,1240px);margin:16px auto 44px}
  html[data-theme="light"] body.dalp-account-page .account-overview{padding:23px 20px;flex-direction:column;gap:18px}
  html[data-theme="light"] body.dalp-account-page .account-overview h1{font-size:clamp(1.68rem,7vw,2.16rem)}
- html[data-theme="light"] body.dalp-account-page .account-signout{align-self:flex-start}
- html[data-theme="light"] body.dalp-account-page .grid{gap:14px}
+  html[data-theme="light"] body.dalp-account-page .grid{gap:14px}
  html[data-theme="light"] body.dalp-account-page .grid > .card{padding:18px}
  html[data-theme="light"] body.dalp-account-page .course-progress-grid{grid-template-columns:1fr;gap:12px}
  html[data-theme="light"] body.dalp-account-page .progress-card{padding:18px}
@@ -215,27 +205,27 @@ html[data-theme="light"] body.dalp-account-page [hidden]{display:none!important}
 }
 @media(prefers-reduced-motion:reduce){
  html[data-theme="light"] body.dalp-account-page .bar .fill,
- html[data-theme="light"] body.dalp-account-page .account-signout{transition:none!important}
-}
+ }
 
-/* My Learning: keep skip navigation in keyboard order, never in the visual header. */
-body.dalp-account-page .dalp-skip-link:not(:focus):not(:focus-visible) {
-  position:fixed!important;
-  top:-100px!important;
-  left:12px!important;
-  transform:none!important;
-  clip-path:inset(50%)!important;
-  height:1px!important;
-  width:1px!important;
-  overflow:hidden!important;
-}
-body.dalp-account-page .dalp-skip-link:is(:focus,:focus-visible) {
-  position:fixed!important;
-  top:10px!important;
-  left:10px!important;
-  transform:none!important;
-  clip-path:none!important;
-  height:auto!important;
-  width:auto!important;
-  z-index:100000!important;
-}
+
+/* Learner dashboard: compact aligned header and light data cards, accessible coloured accents. */
+html[data-theme="light"] body.dalp-account-page .account-overview{border-top:4px solid #3f46d9!important;padding:clamp(22px,3vw,32px)!important;gap:18px!important}
+html[data-theme="light"] body.dalp-account-page .account-overview h1{font-size:clamp(27px,3.2vw,39px)!important;line-height:1.17!important}
+html[data-theme="light"] body.dalp-account-page .account-overview .account-eyebrow{color:#3035b0!important}
+html[data-theme="light"] body.dalp-account-page :is(.grid>.card,.progress-card){max-width:100%;min-width:0}
+html[data-theme="light"] body.dalp-account-page .course-progress-grid{align-items:stretch}
+html[data-theme="light"] body.dalp-account-page .progress-card{height:100%}
+@media(max-width:680px){html[data-theme="light"] body.dalp-account-page .account-overview{padding:20px!important}html[data-theme="light"] body.dalp-account-page .grid>.card{padding:17px!important}}
+
+/* Learners can expand completion instructions without an oversized default-open card. */
+html[data-theme="light"] body.dalp-account-page .account-guide{display:block;min-width:0}
+html[data-theme="light"] body.dalp-account-page .account-guide summary{cursor:pointer;color:#172d4d;font-weight:750;font-size:1.08rem;line-height:1.5;min-height:44px;display:list-item;list-style:disclosure-closed inside}
+html[data-theme="light"] body.dalp-account-page .account-guide[open] summary{list-style:disclosure-open inside;margin-bottom:14px}
+html[data-theme="light"] body.dalp-account-page .account-guide summary:focus-visible{outline:3px solid #3f46d9;outline-offset:3px}
+/* Independent progress cards must never stretch into the grid row gap. */
+html[data-theme="light"] body.dalp-account-page .course-progress-grid{gap:16px;align-items:stretch}
+html[data-theme="light"] body.dalp-account-page .course-progress-grid>.progress-card{height:auto;box-sizing:border-box}
+@media(max-width:680px){html[data-theme="light"] body.dalp-account-page .course-progress-grid{gap:14px}}
+
+/* Use the same outer gutters as other private pages on small phones. */
+@media(max-width:480px){html[data-theme="light"] body.dalp-account-page .wrap{width:100%;margin:14px auto 36px}html[data-theme="light"] body.dalp-account-page .account-overview{padding:18px!important}html[data-theme="light"] body.dalp-account-page .grid>.card{padding:16px!important}}

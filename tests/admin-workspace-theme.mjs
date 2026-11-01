@@ -2,8 +2,8 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {restrictedKind} from '../lib/server-auth.js';
 const read=x=>fs.readFileSync(x,'utf8');
-const css=read('assets/styles/admin-workspace.css');
-const consoleJs=read('assets/scripts/admin-console.js');
+const css=read('assets/styles/private-workspace.css');
+const consoleJs=read('assets/scripts/private-navigation.js');
 const pages=['admin.html','progress.html','reviewer.html'];
 for(const route of pages){
  const html=read(route);
@@ -12,11 +12,12 @@ for(const route of pages){
  assert(!/<header[^>]*class="nav-shell"/i.test(html),`${route}: obsolete duplicate header must be physically removed`);
  assert(!/<footer[^>]*class="footer"/i.test(html),`${route}: obsolete hidden footer must be physically removed`);
  assert(html.includes('assets/scripts/auth-gate.js'),`${route}: existing sign-in gate must remain`);
- assert(html.includes('assets/scripts/admin-console.js'),`${route}: single protected workspace navigation required`);
+ assert(html.includes('assets/scripts/private-navigation.js'),`${route}: single private workspace navigation required`);
 }
 assert.equal(restrictedKind('/assets/styles/admin-workspace.css'),'adminAsset','Admin theme must not be publicly accessible through protected middleware');
-for(const selector of ['body.ac-ready .ac-sidebar','body.ac-ready .ac-topbar','body.ac-ready .ac-mobile-tab','body.ac-ready .ac-shortcut-list','body.ac-ready .ac-detail-backdrop','body.ac-ready .ac-nav-overlay','.review-inbox','.ip-panel'])assert(css.includes(selector),`Missing active admin skin: ${selector}`);
+for(const selector of ['body.ac-ready .ac-sidebar','body.ac-ready .ac-topbar','body.ac-ready .ac-mobile-menu','body.ac-ready .ac-shortcut-list','body.ac-ready .ac-detail-backdrop','body.ac-ready .ac-nav-overlay','.review-inbox','.ip-panel'])assert(css.includes(selector),`Missing active admin skin: ${selector}`);
 assert(!css.includes('linear-gradient(')&&!css.includes('radial-gradient('),'Admin theme must be flat and gradient-free');
+assert(!consoleJs.includes('ac-mobile-tabs'),'Do not generate a second mobile navigation');
 assert(!consoleJs.includes('ac-support-symbol'),'Decorative sidebar marketing panel must be physically deleted');
 assert(!read('admin.html').includes('ac-welcome-illustration'),'Decorative hero bar overlay must be physically deleted');
 assert(!read('admin.html').includes('ac-shortcut-grid'),'Shortcut link cards must be converted to plain links');

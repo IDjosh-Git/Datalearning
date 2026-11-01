@@ -3,23 +3,21 @@
 <html class="light" data-theme="light" lang="en"><head><link crossorigin="anonymous" href="https://cdn.jsdelivr.net" rel="preconnect"/>
 <meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#f5f7fb" name="theme-color"/>
 <title>Administrator dashboard | Data Analysis Learning Path</title>
-<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml"/>
-<link rel="icon" href="assets/icons/favicon-32.png" type="image/png" sizes="32x32"/>
-<link rel="apple-touch-icon" href="assets/icons/favicon-180.png" sizes="180x180"/><meta content="noindex,nofollow" name="robots"/>
+<link href="assets/icons/favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="assets/icons/favicon-32.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="assets/icons/favicon-180.png" rel="apple-touch-icon" sizes="180x180"/><meta content="noindex,nofollow" name="robots"/>
 <script>document.documentElement.classList.add('dalp-auth-checking');</script>
-
+<link href="assets/styles/access-guard.css" rel="stylesheet"/>
 <link href="assets/styles/admin.css" rel="stylesheet"/>
 <script defer="" src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0"></script>
 <script defer="" src="assets/scripts/supabase-config.js"></script>
 <script defer="" src="assets/scripts/supabase-client.js"></script><script defer="" src="assets/scripts/server-session.js"></script>
 <script defer="" src="assets/scripts/auth-gate.js"></script>
-<link href="assets/styles/design-system.css" rel="stylesheet"/><link href="assets/styles/admin-workspace.css" rel="stylesheet"/>
-</head><body class="dalp-admin-page" data-admin-console="overview" data-responsive-page="admin"><a class="dalp-skip-link" href="#main-content">Skip to main content</a>
-
+<link href="assets/styles/design-system.css" rel="stylesheet"/>
+<link href="assets/styles/admin-workspace.css" rel="stylesheet"/></head><body class="dalp-admin-page" data-admin-console="overview" data-private-workspace="true" data-responsive-page="admin">
 <main class="dalp-admin-main" id="main-content">
 <section class="ac-welcome" id="admin-overview">
-<div class="ac-welcome-copy"><div class="ac-overline"> DATA ANALYSIS LEARNING PATH / OPERATIONS</div><h1>Academy overview</h1><p>Manage your learners, monitor course engagement, and keep assessments moving—all from one workspace.</p><div class="ac-welcome-actions"><a class="ac-text-link" href="reviewer.html">Review submissions </a><a class="ac-text-link" href="progress.html">Open progress reports </a></div></div>
-
+<div class="ac-welcome-copy"><div class="ac-overline">ACADEMY ADMINISTRATION</div><h1>Academy overview</h1><p>Monitor learner activity, course progress and assessments in one place.</p></div>
 </section>
 <div aria-live="polite" class="dalp-admin-notice ac-alert" id="adminNotice" role="status">Checking administrator permissions…</div>
 <section hidden="" id="adminWorkspace">
@@ -40,15 +38,14 @@
 <div class="ac-section-header"><div><span class="ac-section-eyebrow">STUDENT MANAGEMENT</span><h2 id="acRosterHeading">Learner directory</h2><p>Search accounts, filter by course or learning status, and inspect individual outcomes.</p></div><div class="dalp-admin-tools"><button aria-label="Refresh dashboard" id="adminReload" type="button">↻ Refresh</button><button id="adminExport" type="button">↓ Export visible results</button></div></div>
 <div class="ac-surface ac-roster-panel">
 <div class="dalp-admin-filters ac-roster-filters"><label for="adminSearch">Find a learner<input autocomplete="off" id="adminSearch" placeholder="Search name or email…" type="search"/></label><label for="adminCourse">Course path<select id="adminCourse"><option value="all">All pathways</option><option value="introduction">Introduction</option><option value="excel">Excel</option><option value="sql">SQL</option><option value="powerbi">Power BI</option><option value="ai">AI Integration</option><option value="python">Python</option></select></label><label for="adminStatus">Progress<select id="adminStatus"><option value="all">Any status</option><option value="active">Learning started</option><option value="new">Not started</option><option value="completed">Completed a course</option></select></label></div>
-<div class="dalp-admin-table-wrap"><table class="dalp-admin-table"><thead><tr><th scope="col">Learner</th><th scope="col">Courses started</th><th scope="col">Units complete</th><th scope="col">Last activity</th><th scope="col">Record</th></tr></thead><tbody id="adminLearnerRows"><tr><td colspan="5">Loading learner records…</td></tr></tbody></table></div>
+<p class="private-table-help">Swipe across the learner table to see additional columns.</p><div class="dalp-admin-table-wrap" role="region" tabindex="0" aria-label="Learner directory table; scroll horizontally for more columns"><table class="dalp-admin-table"><thead><tr><th scope="col">Learner</th><th scope="col">Courses started</th><th scope="col">Units complete</th><th scope="col">Last activity</th><th scope="col">Record</th></tr></thead><tbody id="adminLearnerRows"><tr><td colspan="5">Loading learner records…</td></tr></tbody></table></div>
 <div class="ac-table-bottom"><p aria-live="polite" class="dalp-admin-count" id="adminRowCount"></p><div class="ac-pager"><button id="adminPrevPage" type="button">← Previous</button><span id="adminPageInfo">Page 1</span><button id="adminNextPage" type="button">Next →</button></div></div>
 </div>
 </section>
 <section aria-labelledby="adminDetailName" aria-modal="true" class="dalp-admin-panel dalp-admin-detail ac-detail-sheet" hidden="" id="adminLearnerDetail" role="dialog" tabindex="-1"><div class="dalp-admin-panel-title"><div><span class="ac-section-eyebrow">LEARNER RECORD</span><h2 id="adminDetailName">Learner</h2><p id="adminDetailEmail"></p></div><button aria-label="Close learner record" id="adminCloseDetail" type="button">✕</button></div><div id="adminDetailContent"></div></section><div class="ac-detail-backdrop" hidden="" id="adminDetailBackdrop"></div>
-<section aria-label="Admin quick links" class="ac-section ac-shortcuts"><div class="ac-section-header"><div><span class="ac-section-eyebrow">WORKSPACE SHORTCUTS</span><h2>Everything one click away</h2></div></div><ul class="ac-shortcut-list"><li><a class="ac-text-link" href="progress.html">Progress reports</a><p>Explore course milestones and engagement.</p></li><li><a class="ac-text-link" href="reviewer.html">Assessment desk</a><p>Score capstone projects and publish feedback.</p></li><li><a class="ac-text-link" href="index.html">Learner view</a><p>Open the learning experience.</p></li><li><a class="ac-text-link" href="account.html">My account</a><p>Manage your own administrator account.</p></li></ul></section>
 <p class="ac-privacy-note">🔒 Every learner's information is private. Only authorised administrators can view academy-wide records.</p>
 </section></main>
-<script defer="" src="assets/scripts/site.js"></script><script defer="" src="assets/scripts/modern.js"></script><script defer="" src="assets/scripts/admin-dashboard.js"></script><script defer="" src="assets/scripts/responsive.js"></script>
-<script defer="" src="assets/scripts/admin-console.js"></script>
-<script defer="" src="assets/scripts/accessibility.js"></script><script defer="" src="assets/scripts/embedded-palette-sync.js"></script><script defer="" src="assets/scripts/learning-experience.js"></script><script defer="" src="assets/scripts/experience.js"></script>
-</body></html>
+<script defer="" src="assets/scripts/admin-dashboard.js"></script>
+
+<script defer="" src="assets/scripts/accessibility.js"></script>
+<script defer="" src="assets/scripts/private-navigation.js"></script><script defer="" src="assets/scripts/admin-console.js"></script></body></html>

@@ -8,7 +8,7 @@ const obsolete=['site-refresh.css','experience.css','layout-tuning.css'];
 for(const name of obsolete)assert(!fs.existsSync(path.join(root,'assets/styles',name)),`Obsolete stylesheet should be deleted: ${name}`);
 for(const page of discoverPages()){
  const styles=page.links.filter(l=>l.local).map(l=>l.path);
- assert.equal(styles.at(-1),['admin.html','progress.html','reviewer.html'].includes(page.route)?'assets/styles/admin-workspace.css':'assets/styles/design-system.css',`${page.route}: latest maintained theme must be last`);
+ assert.equal(styles.at(-1),['admin.html','progress.html','reviewer.html'].includes(page.route)?'assets/styles/admin-workspace.css':['admin.html','progress.html','reviewer.html','account.html','certificate.html','connection-test.html','sync-test.html'].includes(page.route)?'assets/styles/private-workspace.css':'assets/styles/design-system.css',`${page.route}: latest maintained theme must be last`);
  assert.equal(styles.filter(x=>x==='assets/styles/design-system.css').length,1,`${page.route}: duplicate shared theme`);
  for(const name of obsolete)assert(!styles.some(x=>x.endsWith('/'+name)),`${page.route}: obsolete stylesheet reference ${name}`);
  const unique=new Set(styles);
