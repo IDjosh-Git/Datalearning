@@ -10,3 +10,9 @@ assert.match(js,/window\.DALP_ROLE!=='admin'/);
 assert.match(js,/from\('site_admins'\)/);
 assert.match(js,/const safe=v=>/);
 console.log('PASS admin analytics filters, data source, access gates and CSV sanitization');
+
+// Dashboard failures must be bounded and offer an accessible retry.
+import fs from "node:fs";
+const dashboard=fs.readFileSync(new URL("../assets/scripts/admin-dashboard.js",import.meta.url),"utf8");
+if(!dashboard.includes("Retry dashboard")||!dashboard.includes("timed out after")||!dashboard.includes("window.addEventListener('dalp:auth-ready',once)")) throw new Error("Dashboard recovery controls missing");
+console.log("PASS dashboard recovery and retry checks");

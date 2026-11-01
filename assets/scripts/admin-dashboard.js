@@ -5,6 +5,7 @@
  const COURSE={introduction:['Introduction',8,'01'],excel:['Excel',10,'XL'],sql:['SQL',10,'SQL'],powerbi:['Power BI',10,'BI'],ai:['AI Integration',10,'AI'],python:['Python',10,'PY']};
  const PENDING=new Set(['submitted','processing','review_error','needs_manual_review']);
  let profiles=[],progress=[],quizzes=[],submissions=[],certificates=[],filtered=[],page=0,busy=false;
+ const timeout=(promise,ms,label)=>new Promise((resolve,reject)=>{const timer=setTimeout(()=>reject(new Error(label+' timed out after '+Math.round(ms/1000)+' seconds')),ms);Promise.resolve(promise).then(value=>{clearTimeout(timer);resolve(value)},error=>{clearTimeout(timer);reject(error)});});
  let progressByUser=new Map(),quizByUser=new Map(),subByUser=new Map(),certByUser=new Map(),profilesById=new Map();
  const isWithin=(value)=>{if(!value)return false;const v=String(value).slice(0,10),from=$('adminFrom')?.value,to=$('adminTo')?.value;return (!from||v>=from)&&(!to||v<=to)};
  const selectedPeriod=()=>!!($('adminFrom')?.value||$('adminTo')?.value);
@@ -18,7 +19,7 @@
  const date=v=>v?new Date(v).toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'}):'—';
  const time=v=>v?new Date(v).toLocaleString(undefined,{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}):'—';
  const latest=dates=>dates.filter(Boolean).sort().at(-1)||null;
- function notice(message,isError=false){const n=$('adminNotice');n.textContent=message;n.classList.toggle('is-error',isError);n.classList.toggle('is-success',!isError);n.hidden=false}
+ function notice(message,isError=false){const n=$('adminNotice');if(!n)return;n.replaceChildren(document.createTextNode(message));n.classList.toggle('is-error',isError);n.classList.toggle('is-success',!isError);n.hidden=false;if(isError){const retry=document.createElement('button');retry.type='button';retry.textContent='Retry dashboard';retry.className='ac-button ac-button-primary';retry.style.marginInlineStart='12px';retry.addEventListener('click',()=>{if(window.DALP_ROLE==='admin')void load();});n.append(retry)}}
  const group=(items,key)=>{const map=new Map();for(const r of items){const k=r[key];if(!map.has(k))map.set(k,[]);map.get(k).push(r)}return map};
  function rowsFor(uid){return progressByUser.get(uid)||[]}
  function profileStats(user){
@@ -32,7 +33,7 @@
  async function fetchAll(table,fields){
   const all=[],pageSize=500;
   for(let start=0;start<10000;start+=pageSize){
-   const {data,error}=await db().from(table).select(fields).range(start,start+pageSize-1);
+   const {data,error}=await timeout(db().from(table).select(fields).range(start,start+pageSize-1),12000,'Loading '+table);
    if(error)throw new Error(table+': '+error.message);
    all.push(...(data||[]));if(!data||data.length<pageSize)return all;
   }
@@ -137,14 +138,15 @@
    profiles=p;progress=c;quizzes=q;submissions=s;certificates=cert;
    progressByUser=group(progress,'user_id');quizByUser=group(quizzes,'user_id');subByUser=group(submissions,'user_id');certByUser=group(certificates,'user_id');profilesById=new Map(profiles.map(p=>[p.user_id,p]));
    page=0;paintStats();paintInsights();render();$('adminNotice').hidden=true;
-  }catch(e){console.error('Admin reports could not be loaded',e);notice('We couldn’t load your dashboard. Please try again in a moment.',true)}
+  }catch(e){console.error('Admin reports could not be loaded',e);notice('Dashboard reports could not load: '+(e?.message||'Unknown connection problem')+'. Your account and records have not been changed.',true)}
   finally{busy=false;$('adminReload').disabled=false}
  }
  async function init(){
   if(window.DALP_ROLE!=='admin')return;
+  try{
   if(!db()){notice('The administrator dashboard is unavailable right now. Please refresh the page or try again later.',true);return;}
-  const {data,error}=await db().auth.getUser();if(error||!data?.user){notice('Administrator session could not be verified. Please sign in again.',true);return;}
-  const {data:admin,error:roleError}=await db().from('site_admins').select('user_id').eq('user_id',data.user.id).maybeSingle();
+  const {data,error}=await timeout(db().auth.getUser(),12000,'Administrator session verification');if(error||!data?.user){notice('Administrator session could not be verified. Please sign in again.',true);return;}
+  const {data:admin,error:roleError}=await timeout(db().from('site_admins').select('user_id').eq('user_id',data.user.id).maybeSingle(),12000,'Administrator permissions verification');
   if(roleError||!admin){notice('Administrator authorisation failed. Learner details will not be shown.',true);return;}
   $('adminWorkspace').hidden=false;
   const refreshDates=()=>{const from=$('adminFrom').value,to=$('adminTo').value;if(from&&to&&from>to){notice('Start date must be before end date.',true);return;}$('adminNotice').hidden=true;page=0;paintInsights();render()};
@@ -155,7 +157,9 @@
   $('adminCloseDetail').addEventListener('click',()=>{$('adminLearnerDetail').hidden=true});
   document.addEventListener('keydown',e=>{if(e.key==='/'&&!/input|textarea|select/i.test(document.activeElement?.tagName)&&!e.ctrlKey&&!e.metaKey&&!e.altKey){e.preventDefault();$('adminSearch').focus()}});
   await load();
+  }catch(e){console.error('Administrator dashboard initialization failed',e);notice('Unable to initialise dashboard: '+(e?.message||'Connection failed')+'. Please retry or refresh.',true)}
  }
  let started=false;const once=()=>{if(started||window.DALP_ROLE!=='admin')return;started=true;init()};
- if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{once();window.addEventListener('dalp:auth-ready',once)},{once:true});else{once();window.addEventListener('dalp:auth-ready',once)}
+ window.addEventListener('dalp:auth-ready',once);
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',once,{once:true});else once();
 })();
