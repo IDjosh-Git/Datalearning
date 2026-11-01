@@ -119,3 +119,232 @@ body.dlp-course-v29 .course-mastery-question{align-self:start!important;height:a
 @media(max-width:900px){body.dlp-course-v29 .dalp-quick-guide-bottom{grid-template-columns:1fr!important}body.dlp-course-v29 .dalp-quick-guide-links{justify-content:flex-start}}
 @media(max-width:650px){body.dlp-course-v29 .course-portal-links a{flex:1 1 100%;justify-content:flex-start}body.dlp-course-v29 .capstone-requirement-strip{align-items:flex-start;gap:6px;padding:12px}body.dlp-course-v29 .capstone-requirement-strip p{flex-basis:100%}body.dlp-course-v29 .content{padding-inline:15px!important}}
 @media(prefers-reduced-motion:reduce){body.dlp-course-v29 *,body.dlp-course-v29 *::before,body.dlp-course-v29 *::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* Unified course canvas and full-width, space-efficient question cards.
+   This stylesheet is the last course stylesheet, so these rules intentionally
+   supersede earlier multi-colour and gradient page treatments. */
+html[data-theme="light"] body.dlp-course-v29 {
+  --course-page-canvas: #f6f8f6;
+  --course-page-surface: #ffffff;
+  --course-page-outline: #cbdcd1;
+  --course-page-ink: #183b2c;
+  --course-page-muted: #3d594b;
+  background: var(--course-page-canvas) !important;
+  background-image: none !important;
+  color: var(--course-page-ink) !important;
+}
+/* Structural elements share ONE continuous page background. Cards remain
+   independently readable surfaces, not coloured page-sized overlays. */
+html[data-theme="light"] body.dlp-course-v29 :is(main,.app,.content,.course-wrap,.intro-body,.intro-lessons) {
+  background: var(--course-page-canvas) !important;
+  background-image: none !important;
+  box-shadow: none;
+}
+html[data-theme="light"] body.dlp-course-v29 :is(.hero,.intro-hero,.ai-hero,.dalp-quick-guide,.course-portal-links,.capstone-requirement-strip) {
+  background: var(--course-page-canvas) !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+html[data-theme="light"] body.dlp-course-v29 :is(.hero,.intro-hero,.ai-hero)::before,
+html[data-theme="light"] body.dlp-course-v29 :is(.hero,.intro-hero,.ai-hero)::after {
+  background-image: none !important;
+}
+html[data-theme="light"] body.dlp-course-v29 :is(.learning-clarity,.experience-study-map,.week-header,.ai-orientation) {
+  background-image: none !important;
+  box-shadow: none !important;
+}
+html[data-theme="light"] body.dlp-course-v29 :is(.week-header,.learning-clarity,.experience-study-map) {
+  background-color: var(--course-page-surface) !important;
+}
+/* A checkpoint is a semantic section of the page, not a large coloured panel
+   containing yet another differently coloured set of cards. */
+html[data-theme="light"] body.dlp-course-v29 .course-mastery-wrap,
+html[data-theme="light"] body.dlp-course-v29 .course-mastery-wrap.course-mastery-intro {
+  box-sizing: border-box;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: clamp(22px,3vw,38px) auto !important;
+}
+html[data-theme="light"] body.dlp-course-v29 .course-mastery-wrap.course-mastery-intro {
+  width: min(calc(100% - 32px),var(--course-content-max)) !important;
+}
+html[data-theme="light"] body.dlp-course-v29 .course-mastery {
+  background: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: clamp(12px,1.5vw,22px) 0 !important;
+  color: var(--course-page-ink) !important;
+}
+html[data-theme="light"] body.dlp-course-v29 .course-mastery-head {
+  max-width: none !important;
+  width: 100%;
+  margin: 0 0 18px;
+}
+html[data-theme="light"] body.dlp-course-v29 .course-mastery-head :is(h2,p,strong,span) {
+  color: var(--course-page-ink) !important;
+}
+/* Balanced natural-height columns put the next question into available space
+   rather than leaving a blank block beneath a shorter neighbour. DOM/keyboard
+   order stays Q1, Q2, ...; small screens keep one readable column. */
+html[data-theme="light"] body.dlp-course-v29 .course-mastery-questions {
+  display: block !important;
+  columns: 2 480px;
+  column-gap: clamp(14px,1.5vw,22px);
+  column-fill: balance;
+  margin: 20px 0 24px !important;
+  width: 100%;
+  min-width: 0;
+}
+html[data-theme="light"] body.dlp-course-v29 .course-mastery-question {
+  display: inline-block !important;
+  box-sizing: border-box;
+  break-inside: avoid-column;
+  -webkit-column-break-inside: avoid;
+  width: 100% !important;
+  max-width: none !important;
+  min-height: 0 !important;
+  height: auto !important;
+  margin: 0 0 clamp(14px,1.5vw,22px) !important;
+  padding: clamp(16px,1.7vw,23px) !important;
+  vertical-align: top;
+  background: var(--course-page-surface) !important;
+  background-image: none !important;
+  border: 1px solid var(--course-page-outline) !important;
+  border-radius: 15px !important;
+  box-shadow: 0 2px 9px rgb(18 66 39 / 4%) !important;
+  color: var(--course-page-ink) !important;
+}
+html[data-theme="light"] body.dlp-course-v29 .course-mastery-question legend {
+  max-width: 100% !important;
+  padding-inline: 4px !important;
+  color: var(--course-page-ink) !important;
+  font-size: clamp(14px,1.07vw,16px) !important;
+  line-height: 1.5 !important;
+}
+html[data-theme="light"] body.dlp-course-v29 .course-mastery-options {
+  display: grid !important;
+  grid-template-columns: minmax(0,1fr) !important;
+  align-items: stretch;
+  gap: 9px !important;
+  margin-top: 12px !important;
+}
+html[data-theme="light"] body.dlp-course-v29 .course-mastery-option {
+  min-width: 0;
+  min-height: 46px !important;
+  height: auto !important;
+  padding: 11px 13px !important;
+  background: #f7faf8 !important;
+  background-image: none !important;
+  border: 1px solid #cdded3 !important;
+  color: var(--course-page-ink) !important;
+  line-height: 1.48 !important;
+}
+html[data-theme="light"] body.dlp-course-v29 .course-mastery-option :is(span,label) {
+  color: var(--course-page-ink) !important;
+}
+html[data-theme="light"] body.dlp-course-v29 .course-mastery-option:hover {
+  background: #edf5ef !important;
+  border-color: #70a88a !important;
+}
+html[data-theme="light"] body.dlp-course-v29 .course-mastery-option:has(input:checked) {
+  background: #e5f4e9 !important;
+  border-color: #25805e !important;
+}
+html[data-theme="light"] body.dlp-course-v29 .course-mastery-option:focus-within {
+  outline: 3px solid #98501b !important;
+  outline-offset: 2px;
+}
+/* At intermediate desktop widths the assessment uses the full row and offers
+   two answer choices side-by-side, rather than forcing tall narrow cards. */
+@media (min-width:760px) and (max-width:1060px) {
+  html[data-theme="light"] body.dlp-course-v29 .course-mastery-questions {columns: 1 !important;}
+  html[data-theme="light"] body.dlp-course-v29 .course-mastery-options {
+    grid-template-columns: repeat(2,minmax(0,1fr)) !important;
+  }
+}
+@media (max-width:759px) {
+  html[data-theme="light"] body.dlp-course-v29 .course-mastery-questions {columns: 1 !important;column-gap: 0;}
+  html[data-theme="light"] body.dlp-course-v29 .course-mastery-question {padding: 15px !important;margin-bottom: 14px !important;}
+  html[data-theme="light"] body.dlp-course-v29 .course-mastery-options {grid-template-columns: 1fr !important;}
+}
+@media (prefers-reduced-motion:reduce) {
+  html[data-theme="light"] body.dlp-course-v29 .course-mastery-option {transition: none !important;}
+}
+/* Large desktop monitors: reduce unused gutters consistently for every track. */
+@media (min-width:1660px) {
+  html[data-theme="light"] body.dlp-course-v29 {--course-content-max:1560px;}
+  html[data-theme="light"] body.dlp-course-v29 .content {max-width:var(--course-content-max)!important;}
+}
+
+/* Put each question's legend inside its own bordered card. Fieldset legends
+   otherwise sit on the upper border and can appear detached in CSS columns. */
+html[data-theme="light"] body.dlp-course-v29 .course-mastery-question > legend {
+  display: block !important;
+  float: left !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 0 0 12px !important;
+  font-size: clamp(15px,1.05vw,17px) !important;
+  line-height: 1.45 !important;
+  color: #173d2d !important;
+}
+html[data-theme="light"] body.dlp-course-v29 .course-mastery-question > .course-mastery-options {
+  clear: both;
+}
+
+/* The progress preview is one compact part of the course canvas, not a second
+   roadmap-style box with its own tinted panel and oversized whitespace. */
+html[data-theme="light"] body.dlp-course-v29 .dalp-quick-guide {
+  background: var(--course-page-canvas) !important;
+  border: 0 !important;
+  border-top: 1px solid var(--course-page-outline) !important;
+  border-bottom: 1px solid var(--course-page-outline) !important;
+  border-radius: 0 !important;
+  padding: clamp(13px,1.6vw,20px) 0 !important;
+  margin-block: 14px 22px !important;
+  box-shadow: none !important;
+}
+html[data-theme="light"] body.dlp-course-v29 .dalp-quick-guide-intro h2 {
+  font-size: clamp(18px,1.7vw,24px) !important;
+  margin-block: 3px !important;
+}
+html[data-theme="light"] body.dlp-course-v29 .dalp-quick-guide-bottom {
+  margin-top: 12px !important;
+}
+/* Distinguish content cards with neutral borders, not competing section-wide
+   background overlays. */
+html[data-theme="light"] body.dlp-course-v29 .course-portal-links {
+  background: var(--course-page-canvas) !important;
+  border: 1px solid var(--course-page-outline) !important;
+  box-shadow: none !important;
+}
+html[data-theme="light"] body.dlp-course-v29 :is(.course-mastery-head,.course-mastery-foot,.course-mastery-actions) {
+  background: transparent !important;
+  background-image: none !important;
+}
+
+/* Avoid a giant pseudo-card overlay at the very start of the learning page.
+   The hero is part of the continuous canvas; only interactive content uses
+   distinct surfaces and borders. */
+html[data-theme="light"] body.dlp-course-v29 :is(.hero,.intro-hero,.ai-hero) {
+  box-sizing: border-box !important;
+  width: 100%;
+  height: auto !important;
+  min-height: 0 !important;
+  padding: clamp(20px,2.5vw,36px) !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: var(--course-page-canvas) !important;
+  box-shadow: none !important;
+}
+html[data-theme="light"] body.dlp-course-v29 :is(.hero,.intro-hero,.ai-hero) :is(h1,h2,h3) {
+  color: #203d2e !important;
+}
+html[data-theme="light"] body.dlp-course-v29 :is(.hero,.intro-hero,.ai-hero) :is(p,li) {
+  color: #344f42 !important;
+}
+@media(max-width:650px){
+  html[data-theme="light"] body.dlp-course-v29 :is(.hero,.intro-hero,.ai-hero) {padding:18px 14px !important;}
+}
