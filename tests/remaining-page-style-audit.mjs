@@ -14,7 +14,7 @@ const routes={
  'capstone.html':['capstone.css','capstone-layout.css'],
  'capstone-guide.html':['capstone-guide.css','capstone-guide-layout.css'],
  'preview.html':['preview-foundation.css','preview-layout.css'],
- 'account.html':['account-foundation.css','account-layout.css'],
+ 'account.html':['account.css'],
  'auth.html':['auth.css'],
  'admin.html':['admin.css'],
  'progress.html':['progress.css'],
@@ -44,7 +44,7 @@ for(const [page,selector] of Object.entries({
  'preview.html':'.sample-shell',
  'account.html':'.account-studio-link',
  'auth.html':'.auth-layout',
- 'admin.html':'.ac-welcome',
+ 'admin.html':'.dalp-admin-',
  'progress.html':'.ip-panel',
  'reviewer.html':'.review-shell',
  'certificate.html':'.certificate-paper',
@@ -60,4 +60,4 @@ const theme=read('assets/styles/design-system.css');
 for(const token of ['--ui-primary:#3f46d9','--ui-accent:#29476b','--ui-radius:14px']){
  assert(theme.includes(token),`Shared theme is missing ${token}`);
 }
-console.log(`PASS remaining-page theme audit: ${Object.keys(routes).length} routes, 20 updated layout stylesheets, current shared theme and protected-page integration preserved`);
+console.log(`PASS remaining-page theme audit: ${Object.keys(routes).length} routes, 19 maintained layout stylesheets, current shared theme and protected-page integration preserved`);

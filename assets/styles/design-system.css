@@ -38,24 +38,13 @@ html[data-theme="light"] a{ text-underline-offset:3px }
 html[data-theme="light"] :is(a,button,input,select,textarea,summary,[role="button"]):focus-visible{
  outline:3px solid var(--ui-focus)!important;outline-offset:3px!important;
 }
-html[data-theme="light"] :is(.nav-shell,.topbar,.ac-topbar,header.nav-shell){
+html[data-theme="light"] :is(.nav-shell,.ac-topbar,header.nav-shell){
  backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
  background:var(--ui-paper)!important;background-image:none!important;
  border-color:var(--ui-stroke)!important;box-shadow:0 1px 0 var(--ui-stroke)!important;
 }
-/* Restrained, flat surfaces instead of competing decorative washes. */
-html[data-theme="light"] :is(.hero,.ai-hero,.intro-hero,.dlp97-catalog-hero,.lp-hero,.auth-hero,.admin-hero){
- background:#edf1ff!important;background-image:none!important;
- color:var(--ui-ink)!important;border:1px solid var(--ui-stroke)!important;
- box-shadow:none!important;
-}
-html[data-theme="light"] :is(.hero,.ai-hero,.intro-hero,.dlp97-catalog-hero,.lp-hero,.auth-hero,.admin-hero) :is(h1,h2,h3,h4,p){
- color:var(--ui-ink)!important;-webkit-text-fill-color:var(--ui-ink)!important;text-shadow:none!important;
-}
-html[data-theme="light"] :is(.hero,.ai-hero,.intro-hero,.dlp97-catalog-hero,.lp-hero,.auth-hero,.admin-hero)::before,
-html[data-theme="light"] :is(.hero,.ai-hero,.intro-hero,.dlp97-catalog-hero,.lp-hero,.auth-hero,.admin-hero)::after{
- background:none!important;background-image:none!important;box-shadow:none!important;border:0!important;opacity:0!important;
-}
+
+/* Header surface and contrast are defined once in the maintained header-theme section. */
 html[data-theme="light"] :is(.card,.lp-course,.lp-feature,.lp-step,.lp-quick-card,.dlp97-card,.week,.lesson,.mini,.unit,.dlp-module,.intro-lesson,.ref-card,.ps-card,.pc-item,.tool-case,.cap-panel,.mastery-section,.mastery-deep-dive,.sample-card,.stat-card,.kpi-card,.admin-card,.auth-card,.panel,.tile){
  background:var(--ui-paper)!important;background-image:none!important;
  border:1px solid var(--ui-stroke)!important;border-radius:var(--ui-radius)!important;
@@ -275,19 +264,8 @@ html[data-theme="light"] body .dalp-global-header .dalp-global-toggle{
  background:#243855!important;border-color:#7083a6!important;color:#fff!important;
  -webkit-text-fill-color:#fff!important;
 }
-/* Include the former outlier page heroes in the flat, light visual language. */
-html[data-theme="light"] body :is(.page-hero,.pl-hero,.cap-hero,.pc-hero,.sample-hero,.ip-hero,.review-hero,.verify-hero,.guide-hero,.ac-hero){
- background:#edf1ff!important;background-image:none!important;
- color:var(--ui-ink)!important;border-color:var(--ui-stroke)!important;
- text-shadow:none!important;
-}
-html[data-theme="light"] body :is(.page-hero,.pl-hero,.cap-hero,.pc-hero,.sample-hero,.ip-hero,.review-hero,.verify-hero,.guide-hero,.ac-hero) :is(h1,h2,h3,h4,p){
- color:var(--ui-ink)!important;-webkit-text-fill-color:var(--ui-ink)!important;
- text-shadow:none!important;
-}
-html[data-theme="light"] body :is(.hero,.ai-hero,.intro-hero,.dlp97-catalog-hero,.lp-hero,.auth-hero,.admin-hero,.page-hero,.pl-hero,.cap-hero,.pc-hero,.sample-hero,.ip-hero,.review-hero,.verify-hero,.guide-hero,.ac-hero) :is(h1,h2) :is(em,span){
- color:#3035b0!important;-webkit-text-fill-color:#3035b0!important;
-}
+
+/* Header surface and contrast are defined once in the maintained header-theme section. */
 /* Ensure text within real primary controls remains white, even inside pale hero/cards. */
 html[data-theme="light"] body :is(a,button).guide-primary,
 html[data-theme="light"] body :is(a,button).ac-button-primary,
@@ -967,7 +945,7 @@ html[data-theme="light"] body.dlp-course-v29 .topbar-title {
   overflow-wrap:anywhere;line-height:1.3!important;
 }
 html[data-theme="light"] body.dlp-course-v29 :is(.topbar,.week-header,.course-hero,.course-header){min-width:0;overflow-wrap:anywhere}
-html[data-theme="light"] body.dlp-course-v29 .topbar{background:#fff!important;border-bottom:1px solid #d6e0ec!important}
+/* Course topbar uses the dark header surface defined below. */
 html[data-theme="light"] body.dlp-course-v29 :is(.week,.lesson) :is(p,li,td,th){line-height:1.65}
 /* Information links are plain, not blue-filled call-to-action cards.
    Exclude actual controls and primary/site/lesson navigation. */
@@ -1011,17 +989,17 @@ html[data-theme="light"] body.lp-home .footer .footer-bottom a[href^="mailto:"] 
 
 /* Final public-content link audit: turn inherited filled anchors into text links.
    Preserve meaningful clickable course cards and semantic action/tab controls. */
-html[data-theme="light"] body:has(> .dalp-global-header) main a[href]:not(.card):not([role="button"]):not([role="tab"]):not(.nav-link):not([aria-selected]):not([data-action]){
+html[data-theme="light"] body:has(> .dalp-global-header) main a[href]:not(.account-text-link):not(.card):not([role="button"]):not([role="tab"]):not(.nav-link):not([aria-selected]):not([data-action]){
   background:transparent!important;background-image:none!important;
   border:0!important;box-shadow:none!important;
   color:#3035b0!important;-webkit-text-fill-color:#3035b0!important;
   text-shadow:none!important;text-decoration:underline!important;text-underline-offset:4px!important;
   border-radius:0!important;white-space:normal!important;overflow-wrap:anywhere!important;
 }
-html[data-theme="light"] body:has(> .dalp-global-header) main a[href]:not(.card):not([role="button"]):not([role="tab"]):not(.nav-link):not([aria-selected]):not([data-action]):hover{
+html[data-theme="light"] body:has(> .dalp-global-header) main a[href]:not(.account-text-link):not(.card):not([role="button"]):not([role="tab"]):not(.nav-link):not([aria-selected]):not([data-action]):hover{
   color:#252a86!important;-webkit-text-fill-color:#252a86!important;text-decoration-thickness:2px!important;
 }
-html[data-theme="light"] body:has(> .dalp-global-header) main a[href]:not(.card):not([role="button"]):not([role="tab"]):not(.nav-link):not([aria-selected]):not([data-action]):focus-visible{
+html[data-theme="light"] body:has(> .dalp-global-header) main a[href]:not(.account-text-link):not(.card):not([role="button"]):not([role="tab"]):not(.nav-link):not([aria-selected]):not([data-action]):focus-visible{
   outline:3px solid #df842b!important;outline-offset:3px!important;
 }
 
@@ -1140,3 +1118,153 @@ html[data-theme="light"] body .dalp-footer-page-note{
 }
 @media (prefers-reduced-motion:reduce){.dalp-public-footer *{scroll-behavior:auto!important;transition:none!important;animation:none!important;}}
 
+
+
+/* HEADER COLOUR AUDIT | 2026-11-01
+   Consolidated page & course header surfaces. Flat dark backgrounds, WCAG-friendly
+   white headings, quiet supporting copy, and accessible unfenced resource links.
+   Ordinary lesson cards, inputs and course content retain their light surfaces.
+   Distinct category tones are deliberate; the primary navigation remains uniform. */
+:root{
+  --dalp-nav-surface:#13243b;
+  --dalp-hero-fg:#ffffff;
+  --dalp-hero-subtle:#e0eaf6;
+  --dalp-hero-link:#dceaff;
+  --dalp-hero-highlight:#ffe0a1;
+}
+html[data-theme="light"] body[data-dalp-header-tone="ink"]{--dalp-page-hero:#203a57;--dalp-hero-edge:#59728e}
+html[data-theme="light"] body[data-dalp-header-tone="navy"]{--dalp-page-hero:#263d5d;--dalp-hero-edge:#607c9b}
+html[data-theme="light"] body[data-dalp-header-tone="indigo"]{--dalp-page-hero:#303561;--dalp-hero-edge:#7079a9}
+html[data-theme="light"] body[data-dalp-header-tone="slate"]{--dalp-page-hero:#29476b;--dalp-hero-edge:#6385aa}
+html[data-theme="light"] body[data-dalp-header-tone="plum"]{--dalp-page-hero:#3b365c;--dalp-hero-edge:#8078a4}
+html[data-theme="light"] body[data-dalp-header-tone="ink-slate"]{--dalp-page-hero:#29374e;--dalp-hero-edge:#687b96}
+/* One dependable dark masthead on every learner-facing route. */
+html[data-theme="light"] body .dalp-global-header{
+  background:var(--dalp-nav-surface)!important;border-bottom-color:#40556f!important;
+  color:#fff!important;box-shadow:0 2px 8px rgba(8,18,36,.12)!important;
+}
+html[data-theme="light"] body .dalp-global-header .dalp-global-nav a{
+  color:#e4edfa!important;-webkit-text-fill-color:#e4edfa!important;
+}
+html[data-theme="light"] body .dalp-global-header .dalp-global-nav a:is(:hover,:focus-visible,[aria-current="page"]){
+  background:#344c6b!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
+}
+html[data-theme="light"] body .dalp-global-header .dalp-global-brand strong{
+  color:#e5eeff!important;-webkit-text-fill-color:#e5eeff!important;
+}
+/* Dark primary course/page banners replace legacy white and pale lavender. */
+html[data-theme="light"] body .dalp-themed-hero{
+  background:var(--dalp-page-hero,#263d5d)!important;
+  background-image:none!important;
+  border:1px solid var(--dalp-hero-edge,#607c9b)!important;
+  color:var(--dalp-hero-fg)!important;
+  box-shadow:none!important;
+  text-shadow:none!important;
+  min-width:0;
+}
+html[data-theme="light"] body :is(.lp-hero,.intro-hero).dalp-themed-hero{
+  border-left:0!important;border-right:0!important;
+  border-radius:0!important;
+}
+/* Keep dark hero text legible even with old page-level heading rules. */
+html[data-theme="light"] body .dalp-themed-hero h1,
+html[data-theme="light"] body .dalp-themed-hero h1 :is(span,em,strong,b),
+html[data-theme="light"] body .dalp-themed-hero > h2,
+html[data-theme="light"] body .dalp-themed-hero .pl-hero-inner h2{
+  color:#fff!important;-webkit-text-fill-color:#fff!important;text-shadow:none!important;
+}
+html[data-theme="light"] body .dalp-themed-hero :is(p,.lead,.lede,.subtitle,.hero-description,.course-intro-copy),
+html[data-theme="light"] body .dalp-themed-hero .pl-hero-inner > p{
+  color:var(--dalp-hero-subtle)!important;-webkit-text-fill-color:var(--dalp-hero-subtle)!important;
+  text-shadow:none!important;
+}
+html[data-theme="light"] body .dalp-themed-hero :is(.eyebrow,.section-tag,.dlp97-eyebrow,.guide-eyebrow,.pl-hero-eyebrow,.auth-kicker,.ps-eyebrow,.mastery-eyebrow,.ip-eyebrow){
+  color:var(--dalp-hero-highlight)!important;-webkit-text-fill-color:var(--dalp-hero-highlight)!important;
+}
+/* Actual content / progress cards inside a hero keep dark text on light backgrounds. */
+html[data-theme="light"] body .dalp-themed-hero :is(.stat,.metric,.intro-progress-card,.auth-benefit,.auth-course-chips,.dlp97-hero-stats,.lp-demo) :is(p,small,span){
+  color:#dbe6f6!important;-webkit-text-fill-color:#dbe6f6!important;
+}
+html[data-theme="light"] body .dalp-themed-hero :is(.intro-progress-card):is(.stat,.card,.panel),
+html[data-theme="light"] body .dalp-themed-hero .intro-progress-card :is(h2,h3,h4,strong,small,span,p){
+  color:#233b58!important;-webkit-text-fill-color:#233b58!important;
+}
+/* Inline resource links are links, not cards; give them an appropriately light hue. */
+html[data-theme="light"] body .dalp-themed-hero a:not(.dalp-global-brand):not([role="button"]):not(.button):not(.btn){
+  color:var(--dalp-hero-link)!important;-webkit-text-fill-color:var(--dalp-hero-link)!important;
+  text-decoration:underline;text-underline-offset:3px;
+}
+html[data-theme="light"] body .dalp-themed-hero a:not([role="button"]):focus-visible{
+  outline:3px solid var(--dalp-hero-highlight)!important;outline-offset:3px!important;
+}
+/* Course-player section headers and compact topbar: matching dark-blue family. */
+html[data-theme="light"] body.dlp-course-v29 .topbar{
+  background:#263c59!important;background-image:none!important;
+  color:#f5f8ff!important;border-bottom:1px solid #6c86a4!important;
+}
+html[data-theme="light"] body.dlp-course-v29 .topbar :is(.topbar-title,.topbar-title strong,.topbar-title small,a:not(.btn),.course-top-actions a){
+  color:#f5f8ff!important;-webkit-text-fill-color:#f5f8ff!important;
+}
+html[data-theme="light"] body.dlp-course-v29 .week-header{
+  background:#355474!important;background-image:none!important;
+  border-bottom:1px solid #7796b5!important;color:#fff!important;
+}
+html[data-theme="light"] body.dlp-course-v29 .week-header :is(h2,h3,h4,.week-title,.week-title p){
+  color:#fff!important;-webkit-text-fill-color:#fff!important;
+}
+html[data-theme="light"] body.dlp-course-v29 .week-header .week-num{
+  background:#e3eaf6!important;color:#233c5e!important;-webkit-text-fill-color:#233c5e!important;
+  border:1px solid #ced9e8!important;
+}
+/* Consistent wrapping and compact but comfortable banner proportions. */
+html[data-theme="light"] body .dalp-themed-hero :is(h1,p,a){overflow-wrap:anywhere;max-width:100%}
+html[data-theme="light"] body .dalp-themed-hero h1{line-height:1.18!important;text-wrap:balance}
+html[data-theme="light"] body .dalp-feature-header{
+  padding:clamp(20px,3vw,34px)!important;margin-bottom:clamp(16px,2.2vw,26px)!important;
+  border-radius:17px!important;
+}
+@media(max-width:680px){
+ html[data-theme="light"] body .dalp-themed-hero{min-width:0}
+ html[data-theme="light"] body .dalp-feature-header{padding:20px 16px!important}
+ html[data-theme="light"] body .dalp-themed-hero h1{font-size:clamp(27px,7.2vw,42px)!important}
+ html[data-theme="light"] body.dlp-course-v29 .week-header{padding:14px!important}
+}
+@media(prefers-reduced-motion:reduce){
+ html[data-theme="light"] body .dalp-themed-hero *{transition:none!important;animation:none!important}
+}
+
+/* Contextual public mastheads on pages without the shared eight-link navigation. */
+html[data-theme="light"] body :is(.auth-topbar,.verify-header,.preview-topbar){
+  background:#223b57!important;background-image:none!important;
+  border:1px solid #526c89!important;border-radius:13px!important;
+  padding:12px clamp(14px,2vw,22px)!important;color:#fff!important;
+  min-width:0;flex-wrap:wrap;gap:10px;
+}
+html[data-theme="light"] body :is(.auth-topbar,.verify-header,.preview-topbar) :is(a,strong,b,span,small,p){
+  color:#eef4ff!important;-webkit-text-fill-color:#eef4ff!important;
+}
+html[data-theme="light"] body :is(.auth-topbar,.verify-header,.preview-topbar) a:focus-visible{
+  outline:3px solid #ffe0a1!important;outline-offset:3px!important;
+}
+html[data-theme="light"] body.lp-ai-page .course-top{
+  background:#1b304a!important;background-image:none!important;
+  border-bottom:1px solid #587495!important;
+  color:#eef4ff!important;
+}
+html[data-theme="light"] body.lp-ai-page .course-top :is(a,span,strong){
+  color:#eef4ff!important;-webkit-text-fill-color:#eef4ff!important;
+}
+/* Decorations must not obscure text or reintroduce layered washes. */
+html[data-theme="light"] body .dalp-themed-hero::before,
+html[data-theme="light"] body .dalp-themed-hero::after{
+  content:none!important;display:none!important;
+}
+
+/* Inset feature intros need real breathing room on their new dark surfaces. */
+html[data-theme="light"] body :is(.tutor-intro,.ps-heading).dalp-themed-hero{
+  padding:clamp(20px,2.7vw,32px)!important;
+  border-radius:17px!important;
+}
+html[data-theme="light"] body .dalp-themed-hero :is(.tutor-highlight,.ps-title-row h1 em){
+  color:#fff!important;-webkit-text-fill-color:#fff!important;
+}

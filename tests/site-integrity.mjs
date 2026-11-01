@@ -21,8 +21,10 @@ for(const page of pages){
   if(contentCss.endsWith('course-shared-responsiveness.css')) assert(fs.readFileSync(path.join(ROOT,contentCss),'utf8').includes('Final course page improvements'),`${page.route}: consolidated responsive and content layout missing`);
  }
  assert(!page.links.some(link=>['site-refresh.css','experience.css','layout-tuning.css'].some(x=>link.path.endsWith('/'+x))),`${page.route}: obsolete theme layer found`);
- assert.equal(page.links.at(-1)?.path,'assets/styles/design-system.css',`${page.route}: unified visual system should load last`);
- assert(page.links.length<=(resourcePage?2:page.route.startsWith('courses/')?7:6),`${page.route}: redundant CSS loading; found ${page.links.length} layers`);
+ const adminRoute=['admin.html','progress.html','reviewer.html'].includes(page.route);
+ assert.equal(page.links.at(-1)?.path,adminRoute?'assets/styles/admin-workspace.css':'assets/styles/design-system.css',`${page.route}: current page theme should load last`);
+ if(adminRoute)assert(page.links.some(x=>x.path==='assets/styles/design-system.css'),`${page.route}: shared design foundation is required`);
+ assert(page.links.length<=(resourcePage?2:page.route.startsWith('courses/')?7:adminRoute?7:6),`${page.route}: redundant CSS loading; found ${page.links.length} layers`);
  for(const m of page.html.matchAll(/<(a|img|source|iframe|video|link|script)\b[^>]*?(?:href|src)\s*=\s*(["'])(.*?)\2/gi)){
   const [_,kind,,ref]=m;
   if(/^(?:https?:|#|data:|mailto:|tel:|javascript:|\/\/)/i.test(ref))continue;
@@ -66,7 +68,7 @@ for(const name of ['introduction','excel','sql','powerbi','python','ai']){
 }
 for(const name of ['admin-dashboard.js','admin-console.js','progress-admin.js','reviewer.js'])
  assert.equal(restrictedKind('/assets/scripts/'+name),'adminAsset');
-for(const name of ['admin.css','progress.css','reviewer.css'])
+for(const name of ['admin.css','admin-workspace.css','progress.css','reviewer.css'])
  assert.equal(restrictedKind('/assets/styles/'+name),'adminAsset');
 for(const internal of ['/database/migrations/supabase_setup.sql','/docs/SUPABASE_SETUP.txt','/tests/smoke.mjs','/lib/server-auth.js'])
  assert.equal(restrictedKind(internal),'deny');

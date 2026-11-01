@@ -12,7 +12,7 @@ assert(css.includes('.lp-home .lp-course[data-track="ai"]') && css.includes('gri
 assert(!css.includes('grid-column:span 2'),'AI must not span multiple columns');
 assert(!css.includes('.lp-home .lp-course[data-track="ai"] .lp-course-cta::after'),'AI course link must not overlay the whole card');
 assert(home.includes('class="dalp-plain-link lp-course-cta" href="courses/ai.html"'), 'AI course must retain its direct, plain-text link');
-assert(account.includes('class="card ai-account-course-card" href="courses/ai.html"'),'My Learning must contain dedicated clickable AI card');
+assert(account.includes('class="card progress-card" data-track="ai"') && account.includes('href="courses/ai.html">AI Integration Course ↗</a>'),'My Learning must have AI progress plus a plain course link');
 assert(account.includes('id="aiText"') && account.includes('id="aiBar"'),'My Learning must display AI cloud progress');
 assert(account.includes('successful===6') && account.includes('ai:10'),'My Learning must sync six tracks');
 assert(account.includes('AI Integration Course ↗'),'My Learning must offer direct AI continuation');

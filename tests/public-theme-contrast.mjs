@@ -21,9 +21,10 @@ for(const route of htmlPages){
  const source=read(route);
  const css=[...source.matchAll(/<link\b[^>]*>/gi)].filter(x=>/\brel=["']stylesheet["']/.test(x[0])).map(x=>x[0].match(/\bhref=["']([^"']+)["']/)?.[1]).filter(Boolean);
  assert.equal(css.filter(x=>x.endsWith('/design-system.css')).length,1,`${route}: theme must load exactly once`);
- assert(css.at(-1)?.endsWith('/design-system.css'),`${route}: theme must load after other page styles`);
+ const expected=['admin.html','progress.html','reviewer.html'].includes(route)?'admin-workspace.css':'design-system.css';
+ assert(css.at(-1)?.endsWith('/'+expected),`${route}: maintained route theme must load after other styles`);
  const absolute=path.resolve(root,path.dirname(route),css.at(-1));
- assert.equal(absolute,path.join(root,'assets/styles/design-system.css'),`${route}: bad nested stylesheet path`);
+ assert.equal(absolute,path.join(root,'assets/styles',expected),`${route}: bad nested stylesheet path`);
 }
 for(const route of globalNavPages){
  const source=read(route);

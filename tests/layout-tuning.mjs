@@ -13,7 +13,7 @@ for(const page of discoverPages()){
  const guide=/-roadmap\.html$|-extension\.html$/.test(page.route);
  const expected=guide?'assets/styles/course-guide-pages.css':page.route==='courses/introduction.html'?'assets/styles/course-page-improvements.css':page.route.startsWith('courses/')?'assets/styles/course-shared-responsiveness.css':null;
  if(expected)assert(page.links.some(l=>l.path===expected),`${page.route}: missing functional course layout`);
- assert.equal(page.links.at(-1)?.path,'assets/styles/design-system.css',`${page.route}: current design system must load last`);
+ assert.equal(page.links.at(-1)?.path,['admin.html','progress.html','reviewer.html'].includes(page.route)?'assets/styles/admin-workspace.css':'assets/styles/design-system.css',`${page.route}: current design system must load last`);
 }
 assert.equal((home.match(/class="[^"]*\blp-studio-cta\b[^"]*"/g)||[]).length,6,'Six course studio links must be retained');
 assert.match(styles,/\.lp-studio-cta/,'Standalone studio links must have accessible visited styling');

@@ -1,5 +1,8 @@
 # Public theme audit — 1 November 2026
 
+> **Current header colours (1 November 2026):** This earlier theme audit has been supplemented by [`PUBLIC_HEADER_COLOUR_AUDIT.md`](PUBLIC_HEADER_COLOUR_AUDIT.md). Public and course page banners now use coordinated dark surfaces and white/light text; older descriptions of pale headers are historical.
+
+
 ## Objective and scope
 
 Refine the public learning site into a coherent, high-contrast visual system. Replace the previous teal secondary accent with a darker **slate blue** while preserving the indigo primary actions, navy navigation, plain public resource links and public browsing.

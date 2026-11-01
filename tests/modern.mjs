@@ -40,7 +40,7 @@ console.log('PASS manual grading: private reviewer gate, searchable inbox, photo
 const progressPage=read('progress.html'),progressJs=read('assets/scripts/progress-admin.js');
 for(const id of ['progressGate','progressApp','statLearners','statTracks','statCompleted','statReview','progressLearner','progressCourse','progressStatus','progressBody','learnerDetail','weekGrid'])assert(progressPage.includes(`id="${id}"`),id);
 assert(read('account.html').includes('href="progress.html"'),'Instructor workspace links to learner progress');
-assert(owner.includes('href="progress.html"'),'Review desk links to learner progress');
+assert(read('assets/scripts/admin-console.js').includes("'Progress reports','progress.html'"),'Shared Review Desk navigation links to learner progress');
 assert(progressJs.includes(".from('capstone_reviewers')"),'Progress page checks instructor allowlist');
 assert(progressJs.includes("db().rpc('instructor_progress_overview'"),'Progress overview uses protected public RPC');
 assert(progressJs.includes("db().rpc('instructor_progress_detail'"),'Week detail uses protected public RPC');

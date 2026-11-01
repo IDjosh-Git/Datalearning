@@ -10,7 +10,7 @@ for(const page of pages){
  const expected=guide?'assets/styles/course-guide-pages.css':page.route==='courses/introduction.html'?'assets/styles/course-page-improvements.css':page.route.startsWith('courses/')?'assets/styles/course-shared-responsiveness.css':null;
  if(expected)assert(page.links.some(l=>l.path===expected),page.route+' must retain its content layout');
  assert(!page.links.some(l=>/\/(site-refresh|experience|layout-tuning)\.css$/.test(l.path)),page.route+' has obsolete stylesheet');
- assert.equal(page.links.at(-1)?.path,'assets/styles/design-system.css',page.route+' unified visual stylesheet missing');
+ assert.equal(page.links.at(-1)?.path,['admin.html','progress.html','reviewer.html'].includes(page.route)?'assets/styles/admin-workspace.css':'assets/styles/design-system.css',page.route+' unified visual stylesheet missing');
  assert(page.links.every(x=>!/[?&]v=/.test(x.href)),page.route+' contains old cache revision links');
  assert(page.scripts.every(x=>!/[?&]v=/.test(x.href)),page.route+' contains old script revisions');
 }
