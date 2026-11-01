@@ -1,3 +1,5 @@
+> **Historical dark-theme audit — superseded on 1 November 2026.** The current admin workspace uses a light canvas and light panels. See [Responsive and light-workspace audit](RESPONSIVE_AND_LIGHT_THEME_AUDIT.md) and `assets/styles/admin-workspace.css`. The dark palette below is historical and no longer describes the current site.
+
 # Admin Workspace — Dark Theme and Source Cleanup Audit
 
 **Date:** 1 November 2026  

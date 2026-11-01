@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 
-<html class="light" data-theme="light" lang="en" style="color-scheme: light">
+<html class="light" data-theme="light" lang="en">
 <head><link crossorigin="anonymous" href="https://cdn.jsdelivr.net" rel="preconnect"/>
 <script>document.documentElement.classList.add('dalp-auth-checking')</script>
 <link href="assets/styles/access-guard.css" rel="stylesheet"/>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0"></script>
-<script src="assets/scripts/supabase-config.js"></script>
-<script src="assets/scripts/supabase-client.js"></script><script defer="" src="assets/scripts/server-session.js"></script>
-<script src="assets/scripts/auth-gate.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0"></script>
+<script defer src="assets/scripts/supabase-config.js"></script>
+<script defer src="assets/scripts/supabase-client.js"></script><script defer="" src="assets/scripts/server-session.js"></script>
+<script defer src="assets/scripts/auth-gate.js"></script>
 <meta charset="utf-8"/><meta content="width=device-width,initial-scale=1.0" name="viewport"/>
 <title>My Learning | Data Analysis Learning Path</title>
 
@@ -65,9 +65,9 @@
 </div>
 </div>
 </main>
-<script src="assets/scripts/progress-cloud.js"></script>
+<script defer src="assets/scripts/progress-cloud.js"></script>
 <script>
-(async()=>{
+document.addEventListener('DOMContentLoaded',async()=>{
  const syncStatus=document.getElementById('accountSyncStatus');
  if(!window.ZAH_DB.configured){
    if(syncStatus) syncStatus.textContent='Your learning account is temporarily unavailable. Please try signing in again.';
@@ -75,6 +75,17 @@
  }
  const user=await window.ZAHProgressCloud.getUser();
  if(!user){location.href='auth.html';return}
+ // These read-only account panels do not depend on progress migration.
+ // Fetch them concurrently rather than waiting through three extra network round trips.
+ const quizRequest=Promise.resolve(window.ZAH_DB.client.from('quiz_results')
+   .select('course_slug,week_no,score,total,percentage').eq('user_id',user.id)
+   .order('course_slug').order('week_no'));
+ const certificateRequest=Promise.resolve(window.ZAH_DB.client.from('certificates')
+   .select('certificate_id,course_title,completion_date,status').eq('user_id',user.id)
+   .order('issued_at',{ascending:false}));
+ const capstoneRequest=Promise.resolve(window.ZAH_DB.client.from('capstone_submissions')
+   .select('course_slug,project_title,status,score,created_at,review_due_at')
+   .eq('user_id',user.id).order('created_at',{ascending:false}));
 
  window.ZAH_DB.client.from('site_admins').select('user_id').eq('user_id',user.id).maybeSingle().then(({data})=>{if(data)document.getElementById('instructorAccess').hidden=false}).catch(()=>{});
 
@@ -110,27 +121,17 @@
    syncStatus.textContent+=` Last progress update: ${new Date(latest).toLocaleString()}.`;
  }
 
- const {data:q}=await window.ZAH_DB.client
-   .from('quiz_results')
-   .select('course_slug,week_no,score,total,percentage')
-   .eq('user_id',user.id)
-   .order('course_slug')
-   .order('week_no');
+ const {data:q}=await quizRequest;
  document.getElementById('quizBody').innerHTML=(q||[]).map(r=>`<tr><td>${r.course_slug.toUpperCase()}</td><td>${r.week_no}</td><td>${r.score}/${r.total}</td><td>${r.percentage}%</td></tr>`).join('')||'<tr><td colspan="4">No quiz results yet.</td></tr>';
 
- const {data:c}=await window.ZAH_DB.client
-   .from('certificates')
-   .select('certificate_id,course_title,completion_date,status')
-   .eq('user_id',user.id)
-   .order('issued_at',{ascending:false});
- const {data:submissions, error:capError}=await window.ZAH_DB.client.from('capstone_submissions').select('course_slug,project_title,status,score,created_at,review_due_at').eq('user_id',user.id).order('created_at',{ascending:false});
+ const [{data:c},{data:submissions,error:capError}]=await Promise.all([certificateRequest,capstoneRequest]);
  const capHost=document.getElementById('accountCapstones');
  if(capError)capHost.textContent='Your assessment records are unavailable right now. Please try again later or contact your instructor.';
- else if(!submissions.length)capHost.textContent='No capstones submitted yet.';
+ else if(!submissions?.length)capHost.textContent='No capstones submitted yet.';
  else{const labels={excel:'Excel',sql:'SQL',powerbi:'Power BI',ai:'AI Integration'};capHost.replaceChildren();submissions.forEach(r=>{const line=document.createElement('p'),a=document.createElement('a');a.textContent=(labels[r.course_slug]||r.course_slug.toUpperCase())+' · '+r.project_title+' · '+r.status.replaceAll('_',' ')+(r.score!=null?' · '+r.score+'/100':'');a.href='capstone.html?course='+encodeURIComponent(r.course_slug);a.className='account-text-link';line.append(a);capHost.append(line)})}
  const escapeHTML = value => String(value ?? '').replace(/[&<>\"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[c]));
  document.getElementById('certBody').innerHTML=(c||[]).map(r=>`<tr><td>${escapeHTML(r.certificate_id)}</td><td>${escapeHTML(r.course_title)}</td><td>${escapeHTML(r.completion_date)}</td><td>${escapeHTML(r.status)}</td><td><a href="certificate.html?id=${encodeURIComponent(r.certificate_id)}" class="account-text-link">View &amp; download ↗</a></td></tr>`).join('')||'<tr><td colspan="5">No completion records registered yet.</td></tr>';
-})();
+},{once:true});
 
 document.getElementById('logout').onclick=async()=>{
  await window.DALP_SERVER_SESSION?.clear();

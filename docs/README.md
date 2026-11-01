@@ -2,6 +2,8 @@
 
 ## Current sources of truth
 
+- [Responsive and light-workspace audit](RESPONSIVE_AND_LIGHT_THEME_AUDIT.md) — current mobile/tablet CSS, learner/admin light theme, contrast tests and browser-review limits.
+
 - [Website organization and access map](SITE_ORGANIZATION_AUDIT.md) — route hierarchy, page ownership, open risks and verification.
 - [Route manifest](SITE_ROUTE_MANIFEST.json) — all HTML routes grouped by access boundary, used by automated checks.
 - [Current styling system](CURRENT_STYLE_SYSTEM.md) — the authoritative design tokens and stylesheet ownership.

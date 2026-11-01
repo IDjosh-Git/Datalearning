@@ -8,11 +8,11 @@ html.dalp-auth-checking,html.dalp-auth-checking body{min-height:100%;background:
 .dalp-gate-brand{display:flex;align-items:center;justify-content:center;gap:11px;margin-bottom:28px;font-size:13px;font-weight:850;text-align:left}
 .dalp-gate-brand img{width:43px;height:43px;border-radius:12px}
 .dalp-gate-brand small{display:block;font-weight:550;font-size:11px;opacity:.72}
-.dalp-gate-spin{display:block;width:32px;height:32px;border-radius:100%;margin:0 auto 21px;border:3px solid #dce4ed;border-top-color:#ae6282;animation:dalp-gate-spin .7s linear infinite}
+.dalp-gate-spin{display:block;width:32px;height:32px;border-radius:100%;margin:0 auto 21px;border:3px solid #dce4ed;border-top-color:#3f46d9;animation:dalp-gate-spin .7s linear infinite}
 @keyframes dalp-gate-spin{to{transform:rotate(360deg)}}
 .dalp-gate-box h2{font-size:20px;letter-spacing:-.035em;margin:0 0 9px;color:inherit}
 .dalp-gate-box p{font-size:13px;line-height:1.65;opacity:.77;margin:0 0 19px;color:inherit}
-.dalp-gate-box button{background:#9e526f;border:0;border-radius:12px;padding:13px 20px;min-height:46px;color:#fff;font-weight:800;font:inherit;cursor:pointer}
+.dalp-gate-box button{background:#3f46d9;border:0;border-radius:12px;padding:13px 20px;min-height:46px;color:#fff;font-weight:800;font:inherit;cursor:pointer}
 .dalp-gate-error .dalp-gate-spin{display:none}
 .dalp-gate-error .dalp-gate-box p{opacity:.9}
 .dalp-gate-logout{min-height:40px;border:1px solid currentColor;border-radius:9px;background:transparent;color:inherit;font:inherit;font-size:12px;font-weight:750;cursor:pointer;padding:7px 11px;margin-inline-start:8px}

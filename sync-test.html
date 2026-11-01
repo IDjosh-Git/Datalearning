@@ -1,21 +1,16 @@
 <!DOCTYPE html>
 
-<html class="light" data-theme="light" lang="en" style="color-scheme: light">
+<html class="light" data-theme="light" lang="en">
 <head><link crossorigin="anonymous" href="https://cdn.jsdelivr.net" rel="preconnect"/>
 <script>document.documentElement.classList.add('dalp-auth-checking')</script>
 <link href="assets/styles/sync-test-foundation.css" rel="stylesheet"/>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0"></script>
-<script src="assets/scripts/supabase-config.js"></script>
-<script src="assets/scripts/supabase-client.js"></script><script defer="" src="assets/scripts/server-session.js"></script>
-<script src="assets/scripts/auth-gate.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0"></script>
+<script defer src="assets/scripts/supabase-config.js"></script>
+<script defer src="assets/scripts/supabase-client.js"></script><script defer="" src="assets/scripts/server-session.js"></script>
+<script defer src="assets/scripts/auth-gate.js"></script>
 <meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
 <title>Progress Check | Data Analysis Learning Path</title>
-<style>
-body{font-family:system-ui;background:#F2F2F2;margin:0;padding:24px;color:#1c2830}
-.card{max-width:850px;margin:auto;background:white;border:1px solid #dce5e9;border-radius:18px;padding:24px}
-.row{padding:12px 0;border-bottom:1px solid #e6ecef}.ok{color:#21603a}.bad{color:#8b2e2e}.wait{color:#705b22}
-button,a{display:inline-block;margin-top:12px;padding:10px 14px;border:0;border-radius:10px;background:#254559;color:#fff;text-decoration:none;font-weight:800}
-</style>
+
 <link href="assets/styles/sync-test-layout.css" rel="stylesheet"/>
 <link href="assets/icons/da-logo.svg" rel="icon" type="image/svg+xml"/>
 <link href="assets/styles/design-system.css" rel="stylesheet"/>
@@ -33,7 +28,7 @@ button,a{display:inline-block;margin-top:12px;padding:10px 14px;border:0;border-
 <a href="index.html">Learning Portal</a>
 </div>
 </main>
-<script src="assets/scripts/progress-cloud.js"></script>
+<script defer src="assets/scripts/progress-cloud.js"></script>
 <script>
 async function run(){
  const userEl=document.getElementById('user');
@@ -56,7 +51,7 @@ async function run(){
  }
 }
 document.getElementById('retry').onclick=run;
-run();
+document.addEventListener('DOMContentLoaded',run,{once:true});
 </script>
 <script defer="" src="assets/scripts/modern.js"></script><script defer="" src="assets/scripts/course-studio-data.js"></script><script defer="" src="assets/scripts/learner-companion.js"></script><script defer="" src="assets/scripts/responsive.js"></script>
 <script defer="" src="assets/scripts/accessibility.js"></script><script defer="" src="assets/scripts/embedded-palette-sync.js"></script><script defer="" src="assets/scripts/learning-experience.js"></script><script defer="" src="assets/scripts/experience.js"></script>

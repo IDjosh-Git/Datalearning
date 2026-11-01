@@ -6,7 +6,7 @@ Updated `account.html` and consolidated account styles into **`assets/styles/acc
 
 ## Presentation and information architecture
 
-- One dark, flat account overview with high-contrast heading, signed-in identity and plain Practice Studio link. No redundant second logo or dashboard link.
+- One pale-indigo, flat account overview with high-contrast heading, signed-in identity and plain Practice Studio link. No redundant second logo or dashboard link.
 - Six accessible progress cards with category colour accents and **separate, underlined course links** rather than clickable card overlays. Removed the duplicate Continue Learning links panel.
 - Real action buttons remain buttons (Sign out). The instructor-only workspace retains its permission gate and plain admin links.
 - Quiz and certificate tables are horizontally scrollable within their own labeled regions on narrow screens.
@@ -20,3 +20,5 @@ Use `assets/styles/account.css` for account-specific selectors scoped to `body.d
 ## Verification
 
 Run `npm run build`, `npm run lint`, `npm test` and `node tests/learner-account-theme.mjs`. Browser-based authenticated visual review and real-data/RLS verification remain necessary before production sign-off.
+
+**Current update (1 November 2026):** The previous navy account introduction was replaced with `#EAF0FF` and readable dark text, retaining the six white course progress cards. See [responsive/light audit](RESPONSIVE_AND_LIGHT_THEME_AUDIT.md).

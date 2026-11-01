@@ -26,13 +26,13 @@ assert(css.includes('@media(max-width:1024px)')&&css.includes('prefers-reduced-m
 function lum(hex){return [0,2,4].map(i=>parseInt(hex.slice(i,i+2),16)/255).map(x=>x<=.04045?x/12.92:((x+.055)/1.055)**2.4).reduce((a,x,i)=>a+x*[.2126,.7152,.0722][i],0)}
 function ratio(a,b){const v=[lum(a),lum(b)].sort((x,y)=>y-x);return (v[0]+.05)/(v[1]+.05)}
 for(const [name,fg,bg,min] of [
- ['Workspace headings','f4f8ff','101d30',4.5],
- ['Panel body text','f4f8ff','1b2c44',4.5],
- ['Panel muted text','c0d0e1','1b2c44',4.5],
- ['Panel links','b7d2ff','1b2c44',4.5],
- ['Sidebar navigation','d7e4f3','0b1729',4.5],
- ['Input text','ffffff','13243a',4.5],
- ['Topbar links','e1edff','15263e',4.5],
- ['Keyboard focus on page','f9c77d','101d30',3],
+ ['Workspace headings','15243a','f5f7fb',4.5],
+ ['Panel body text','15243a','ffffff',4.5],
+ ['Panel muted text','50627a','ffffff',4.5],
+ ['Panel links','3035b0','ffffff',4.5],
+ ['Sidebar navigation','15243a','ffffff',4.5],
+ ['Input text','15243a','ffffff',4.5],
+ ['Topbar links','15243a','ffffff',4.5],
+ ['Keyboard focus on page','3f46d9','f5f7fb',3],
 ])assert(ratio(fg,bg)>=min,`${name}: contrast ${ratio(fg,bg).toFixed(2)} below ${min}`);
-console.log('PASS admin workspace: 3 protected routes, one dark theme, no duplicate header/footer, transparent links, focus/drawer protection, 8 contrast checks');
+console.log('PASS admin workspace: 3 protected routes, one light theme, no duplicate header/footer, transparent links, focus/drawer protection, 8 light contrast checks');

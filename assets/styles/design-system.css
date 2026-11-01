@@ -23,7 +23,7 @@
  --dlp29-shadow-hover:0 10px 24px rgba(18,37,65,.1);
  font-family:Inter,"Plus Jakarta Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
 }
-html,html[data-theme="light"]{scroll-padding-top:84px}
+html,html[data-theme="light"]{scroll-padding-top:84px;scroll-behavior:auto!important}
 html body,html[data-theme="light"] body,html[data-theme="light"] body.dlp-course-v29{
  font-family:Inter,"Plus Jakarta Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif!important;
  color:var(--ui-ink)!important;background:var(--ui-canvas)!important;
@@ -39,7 +39,7 @@ html[data-theme="light"] :is(a,button,input,select,textarea,summary,[role="butto
  outline:3px solid var(--ui-focus)!important;outline-offset:3px!important;
 }
 html[data-theme="light"] :is(.nav-shell,.ac-topbar,header.nav-shell){
- backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+ 
  background:var(--ui-paper)!important;background-image:none!important;
  border-color:var(--ui-stroke)!important;box-shadow:0 1px 0 var(--ui-stroke)!important;
 }
@@ -142,8 +142,8 @@ body[data-course] .sidebar .nav-title{margin:20px 9px 8px;color:#52627a!importan
 body[data-course] .sidebar .nav-link{display:flex;align-items:flex-start;min-width:0;gap:10px;margin:2px 0;padding:10px;border:1px solid transparent;border-radius:10px;color:#21334b!important;font-size:13px;line-height:1.45;overflow-wrap:anywhere;}
 body[data-course] .sidebar .nav-link .nav-num{flex:0 0 26px;background:#eff2f8!important;color:#27384f!important;}
 body[data-course] .sidebar .nav-link.active,body[data-course] .sidebar .nav-link[aria-current]{background:#eff0ff!important;border-color:#bfc4f9!important;color:#292f98!important;font-weight:700}
-body[data-course] .sidebar .nav-link.is-complete::after{content:'✓ Done';font-size:10px;white-space:nowrap;color:#29476b;background:#eaf0f8;border-radius:5px;padding:2px 5px;margin-left:auto;align-self:center}
-body[data-course] .sidebar .nav-link.active:not(.is-complete)::after{content:'Current';font-size:10px;color:#3035a8;margin-left:auto;align-self:center}
+body[data-course] .sidebar .nav-link.is-complete::after{content:"✓ Done";font-size:10px;white-space:nowrap;color:#29476b;background:#eaf0f8;border-radius:5px;padding:2px 5px;margin-left:auto;align-self:center}
+body[data-course] .sidebar .nav-link.active:not(.is-complete)::after{content:"Current";font-size:10px;color:#3035a8;margin-left:auto;align-self:center}
 body[data-course] .course-lesson-disclosure{border:0!important;background:transparent!important;box-shadow:none!important;}
 body[data-course] .course-lesson-disclosure>summary{cursor:pointer;border:1px solid #d9e1ec!important;background:#f5f7fb!important;color:#15243a!important;border-radius:9px;padding:11px 12px;font-size:13px;font-weight:700;}
 body[data-course] .course-lesson-items{padding:7px 0 0;min-width:0}
@@ -159,7 +159,7 @@ body[data-course] .lesson{padding:14px 16px!important;border-radius:11px!importa
 body[data-course] .lesson h4{font-size:1rem;line-height:1.4;overflow-wrap:anywhere}
 body[data-course] :is(video,iframe,embed,object){max-width:100%;}
 body[data-course] video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:#0f172a;border-radius:12px}
-body[data-course] iframe[src*='youtube'],body[data-course] iframe[src*='vimeo'],body[data-course] iframe[title*='video' i]{display:block;width:100%;height:auto;aspect-ratio:16/9;border:0;border-radius:12px}
+body[data-course] iframe[src*="youtube"],body[data-course] iframe[src*="vimeo"],body[data-course] iframe[title*="video" i]{display:block;width:100%;height:auto;aspect-ratio:16/9;border:0;border-radius:12px}
 body[data-course] :is(pre,.code-block,.table-wrap){max-width:100%;overflow-x:auto;}
 body[data-course] table{max-width:100%;}
 body[data-course] :is(h1,h2,h3,h4,p,a,button,summary){overflow-wrap:anywhere}
@@ -220,7 +220,7 @@ html[data-theme] .lp-course .lp-course-footer a.lp-studio-cta:focus-visible{outl
 .dalp-global-inner{max-width:1440px;margin:0 auto;min-height:58px;padding:6px 20px;display:flex;gap:14px;align-items:center;justify-content:space-between}
 .dalp-global-brand{display:inline-flex;gap:10px;align-items:center;flex:none;color:#fff!important;text-decoration:none!important;font-size:15px;font-weight:650;line-height:1.3}
 .dalp-global-brand strong{display:block;color:#e1eafe;font-size:12px;letter-spacing:.04em;text-transform:uppercase}
-.dalp-brand-symbol{background:#414fe2;color:white;border-radius:11px;padding:7px 11px;font-size:21px}
+
 .dalp-global-nav{display:flex;align-items:center;gap:2px;flex-wrap:wrap;justify-content:flex-end}
 .dalp-global-nav a{color:#e1e9f6!important;text-decoration:none!important;display:inline-block;white-space:normal;line-height:1.3;font-size:12px;font-weight:650;padding:10px 9px;border-radius:8px}
 .dalp-global-nav a:hover,.dalp-global-nav a[aria-current=page]{background:#344869;color:#fff!important}
@@ -304,13 +304,13 @@ html[data-theme="light"] body .guide-block :is(.dlp29-milestone,.cv88-roadmap li
 html[data-theme="light"] body .guide-bottom{background:#15243a!important;color:#f6f8ff!important;border:1px solid #354862}
 html[data-theme="light"] body .guide-bottom :is(h2,h3,h4,p,small){color:#fff!important;-webkit-text-fill-color:#fff!important}
 html[data-theme="light"] body .guide-bottom a{color:#e1eafe!important;-webkit-text-fill-color:#e1eafe!important}
-html[data-theme="light"] body .guide-footer{background:#edf1f8!important;color:var(--ui-muted)!important;border-color:var(--ui-stroke)!important}
+
 /* Pale, readable site footer on every public page. */
 html[data-theme="light"] body .footer{background:#edf1f8!important;background-image:none!important;color:var(--ui-ink)!important;border-top:1px solid var(--ui-stroke)!important}
 html[data-theme="light"] body .footer :is(h2,h3,h4,strong,.wordmark,.wordmark strong){color:var(--ui-ink)!important;-webkit-text-fill-color:var(--ui-ink)!important}
 html[data-theme="light"] body .footer :is(p,span,small){color:var(--ui-muted)!important;-webkit-text-fill-color:var(--ui-muted)!important}
 html[data-theme="light"] body .footer a{color:#3035b0!important;-webkit-text-fill-color:#3035b0!important}
-html[data-theme="light"] body .footer .footer-contact{color:#3035b0!important}
+
 /* Keep the support action black with readable white text. */
 html[data-theme="light"] body a:is(.contact-support,.support-link),
 html[data-theme="light"] body a[href^="mailto:"][class*="support"]{
@@ -360,8 +360,8 @@ html[data-theme="light"] body.dlp-course-v29 .content{max-width:1500px;padding-i
 html[data-theme="light"] body.dlp-course-v29 .week-header{gap:clamp(10px,2vw,18px);padding:clamp(16px,2vw,22px)}
 html[data-theme="light"] body.dlp-course-v29 .week-body{padding:clamp(15px,2.25vw,26px)}
 html[data-theme="light"] body.dlp-course-v29 :is(.lesson,.mastery-body,.course-mastery,.tool-deep-dive,.mastery-section,.mastery-deep-dive){min-width:0}
-html[data-theme="light"] body.dlp-course-v29 .course-map{grid-template-columns:repeat(auto-fit,minmax(min(100%,175px),1fr))}
-html[data-theme="light"] body.dlp-course-v29 .overview-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr))}
+
+
 html[data-theme="light"] body.dlp-course-v29 .learning-grid{gap:clamp(14px,2vw,24px)}
 html[data-theme="light"] body.dlp-course-v29 .lesson-list{gap:clamp(10px,1.6vw,18px)}
 html[data-theme="light"] body.dlp-course-v29 :is(.mastery-code,.mastery-output pre,.lesson pre){max-width:100%;overflow:auto}
@@ -371,7 +371,7 @@ html[data-theme="light"] :is(img,svg,video,canvas){max-width:100%}
 html[data-theme="light"] img,html[data-theme="light"] video{height:auto}
 html[data-theme="light"] :is(.wrap,.container,.page-wrap,.workspace,.main,.content-wrap,.admin-wrap,.ac-container){max-width:100%}
 html[data-theme="light"] .dalp-global-header{isolation:isolate}
-html[data-theme="light"] body footer.footer .footer-bottom a[href^="mailto:"]{background:#101010!important;color:#fff!important;-webkit-text-fill-color:#fff!important;border:1px solid #101010!important;border-radius:9px;padding:9px 15px;display:inline-flex;align-items:center;min-height:44px;text-decoration:none}
+
 html[data-theme="light"] body .lp-course .lp-studio-cta{background:transparent!important;border:0!important;box-shadow:none!important;color:var(--ui-primary)!important;-webkit-text-fill-color:var(--ui-primary)!important;text-decoration:underline!important;padding:8px 0!important;white-space:normal}
 html[data-theme="light"] body .lp-course :is(h3,p,.lp-course-outcome,.lp-progress-meta){color:var(--ui-ink)!important;-webkit-text-fill-color:var(--ui-ink)!important}
 @media(max-width:900px){html[data-theme="light"] body.lp-home .lp-hero-grid{grid-template-columns:1fr}html[data-theme="light"] body.lp-home .lp-course-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
@@ -405,7 +405,7 @@ html[data-theme="light"] body .lp-course :is(h3,p,.lp-course-outcome,.lp-progres
 .learning-answer .learning-caution{background:#fff5e8;padding:12px;border-radius:9px;color:#85530d!important}
 .learning-intro-clarity{margin:26px 0}
 /* A compact toolbar improves wayfinding without covering the content. */
-.experience-top-progress{position:fixed;inset:0 auto auto 0;width:0;height:3px;z-index:5000;pointer-events:none;background:var(--ui-accent);transition:width .1s linear}
+.experience-top-progress{position:fixed;inset:0 auto auto 0;width:100%;height:3px;z-index:5000;pointer-events:none;background:var(--ui-accent);transform:scaleX(0);transform-origin:left center;will-change:transform;transition:none}
 .experience-back-top{position:fixed;right:clamp(12px,2vw,24px);bottom:clamp(12px,2vw,24px);z-index:100;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-width:44px;min-height:44px;padding:10px 14px;border:1px solid #c8d5e6!important;border-radius:999px;background:#fff!important;color:var(--ui-primary)!important;font-weight:800;box-shadow:0 8px 25px rgba(21,81,49,.12);opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .25s,transform .25s}
 .experience-back-top.is-visible{opacity:1;pointer-events:auto;transform:translateY(0)}
 .experience-study-map{margin:0 0 22px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:20px clamp(18px,2vw,26px);border:1px solid var(--ui-stroke);background:var(--ui-paper);border-radius:18px;box-shadow:var(--experience-shadow)}
@@ -416,7 +416,7 @@ html[data-theme="light"] body .lp-course :is(h3,p,.lp-course-outcome,.lp-progres
 /* Layout adaptivity and touch targets at real phone, tablet, laptop and wide-screen widths. */
 @media(min-width:1550px){html[data-theme="light"] :is(.wrap,.lp-hero-grid){max-width:1380px}html[data-theme="light"] body.dlp-course-v29 .content{max-width:1440px}}
 @media(max-width:1100px){html[data-theme="light"] body.lp-home .lp-hero-grid{grid-template-columns:repeat(2,minmax(0,1fr))}html[data-theme="light"] body.lp-home .lp-hero h1{font-size:clamp(39px,5.3vw,65px)}}
-@media(max-width:900px){html[data-theme="light"] body.lp-home .lp-hero-grid{grid-template-columns:1fr}html[data-theme="light"] body.lp-home .lp-demo{width:min(100%,650px);margin-inline:auto}html[data-theme="light"] body.lp-home .lp-course-grid{grid-template-columns:repeat(2,minmax(0,1fr))}html[data-theme="light"] body.lp-home .lp-pathfinder-layout{grid-template-columns:1fr}html[data-theme="light"] body.lp-home .lp-flow{grid-template-columns:repeat(2,minmax(0,1fr))}html[data-theme="light"] body.dlp-course-v29 .course-map{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:900px){html[data-theme="light"] body.lp-home .lp-hero-grid{grid-template-columns:1fr}html[data-theme="light"] body.lp-home .lp-demo{width:min(100%,650px);margin-inline:auto}html[data-theme="light"] body.lp-home .lp-course-grid{grid-template-columns:repeat(2,minmax(0,1fr))}html[data-theme="light"] body.lp-home .lp-pathfinder-layout{grid-template-columns:1fr}html[data-theme="light"] body.lp-home .lp-flow{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:680px){
  html[data-theme="light"] body.lp-home .lp-course-grid,html[data-theme="light"] body.lp-home .lp-flow{grid-template-columns:1fr}
  html[data-theme="light"] body.lp-home .lp-course h3{min-height:0}
@@ -429,7 +429,7 @@ html[data-theme="light"] body .lp-course :is(h3,p,.lp-course-outcome,.lp-progres
  html[data-theme="light"] body.dlp-course-v29 .week-body{padding:14px}
  html[data-theme="light"] body.dlp-course-v29 :is(.hero,.ai-hero,.intro-hero){padding:clamp(22px,5.5vw,36px)!important;border-radius:20px!important}
  html[data-theme="light"] body.dlp-course-v29 .hero h2{font-size:clamp(30px,8.3vw,47px)!important}
- html[data-theme="light"] body.dlp-course-v29 .course-map{grid-template-columns:1fr 1fr}
+ 
  .learning-clarity{padding:15px;margin-block:18px}
  .learning-table{min-width:540px}
  .learning-scenario{grid-template-columns:1fr}
@@ -438,25 +438,18 @@ html[data-theme="light"] body .lp-course :is(h3,p,.lp-course-outcome,.lp-progres
  .experience-study-map{padding:18px}
  .experience-study-map a{width:100%;justify-content:center}
 }
-@media(max-width:360px){html[data-theme="light"] body.lp-home .lp-demo-metrics{grid-template-columns:1fr 1fr}html[data-theme="light"] body.dlp-course-v29 .stats{grid-template-columns:1fr 1fr!important}html[data-theme="light"] body.dlp-course-v29 .course-map{grid-template-columns:1fr 1fr}}
-@media(prefers-reduced-motion:no-preference){
- .experience-reveal{transition:opacity .65s var(--experience-ease),transform .65s var(--experience-ease)}
- .experience-reveal:not(.is-seen){opacity:.86;transform:translateY(10px)}
- .experience-reveal.is-seen{opacity:1;transform:none}
- .experience-study-map{animation:experience-enter .5s both}
- @keyframes experience-enter{from{opacity:.55;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-}
+@media(max-width:360px){html[data-theme="light"] body.lp-home .lp-demo-metrics{grid-template-columns:1fr 1fr}html[data-theme="light"] body.dlp-course-v29 .stats{grid-template-columns:1fr 1fr!important}}
 @media(prefers-reduced-motion:reduce){html[data-theme="light"]{scroll-behavior:auto!important}html[data-theme="light"] *,html[data-theme="light"] *::before,html[data-theme="light"] *::after{animation:none!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.experience-reveal,.experience-reveal:not(.is-seen){opacity:1;transform:none}}
 @media(forced-colors:active){.learning-table,.learning-table :is(td,th),.learning-clarity,.experience-study-map{border:1px solid CanvasText}.experience-back-top{border:1px solid ButtonText!important}}
 @media print{.experience-back-top,.experience-top-progress,.experience-study-map a,.nav-shell,.sidebar,.topbar{display:none!important}.learning-table-scroll{overflow:visible!important}.learning-table{min-width:0!important;font-size:10pt}.learning-clarity,.week,.mastery-section{break-inside:avoid;box-shadow:none!important}html[data-theme="light"] body{background:white!important}}
 /* Clear page title and touch-sized primary navigation on account screens. */
-.experience-page-heading{font-size:clamp(26px,3vw,37px);margin:8px 0 18px;color:var(--ui-ink)!important;letter-spacing:-.045em}
+
 @media(max-width:680px){html[data-theme="light"] :is(.nav-toggle,.menu-btn,.sidebar-toggle){min-width:44px;min-height:44px}html[data-theme="light"] :is(.nav-links a,.lp-context-chip){min-height:42px}html[data-theme="light"] body.dalp-account-page .btn{min-height:44px}}
 
 
 /* Navigation icons: text-based marks avoid missing images, invalid SVG sizing and cache failures. */
 .dlp97-subject-icon{box-sizing:border-box;flex:0 0 33px!important;width:33px!important;height:33px!important;display:grid!important;place-items:center!important;overflow:hidden;border-radius:9px;background:var(--ui-primary-soft)!important;color:var(--ui-primary)!important}
-.dlp97-icon-mark{display:grid;place-items:center;width:100%;height:100%;font:850 12px/1 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:-.025em;color:var(--ui-primary)}
+.dlp97-icon-mark{display:grid;place-items:center;width:100%;height:100%;font:850 12px/1 system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:-.025em;color:var(--ui-primary)}
 .dlp97-icon-excel{background:var(--ui-accent-soft);color:#29476b;font-size:20px}
 .dlp97-icon-sql{background:#dfefff;color:#155caa;font-size:10px}
 .dlp97-icon-powerbi{background:#fff4c4;color:#825a00;font-size:13px}
@@ -481,10 +474,7 @@ html[data-theme="light"] body[data-responsive-page="practice"] .pc-layout{
 html[data-theme="light"] body[data-responsive-page="practice"] .pc-hero p:last-child{
   max-width:112ch!important;line-height:1.55!important;
 }
-html[data-theme="light"] body[data-responsive-page="practice"] .arena-start-guide{
-  grid-template-columns:minmax(260px,.8fr) minmax(0,1.4fr)!important;
-  gap:clamp(18px,3vw,48px)!important;
-}
+
 html[data-theme="light"] body[data-responsive-page="practice"] .arena-subject-options{
   display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
   gap:clamp(10px,1.5vw,20px)!important;
@@ -594,9 +584,7 @@ html[data-theme="light"] body[data-responsive-page="practice"] .arena-task-panel
  html[data-theme="light"] body[data-responsive-page="practice"] .arena-subject-options{
    grid-template-columns:minmax(0,1fr)!important;
  }
- html[data-theme="light"] body[data-responsive-page="practice"] .arena-start-guide{
-   grid-template-columns:minmax(0,1fr)!important;
- }
+ 
  html[data-theme="light"] body[data-responsive-page="practice"] .arena-task-panel.is-collapsed{
    min-height:0!important;height:auto!important;
  }
@@ -670,9 +658,9 @@ html[data-theme="light"] .ref-meta img{
 
 /* Inline course-navigation icons: no external image download needed. */
 .dlp97-subject-icon svg{display:block;width:21px;height:21px;max-width:100%;max-height:100%;flex-shrink:0}
-.dlp97-course-resources{display:grid;gap:5px;margin:8px 12px 12px;padding:12px 7px;border-top:1px solid var(--ui-stroke)}
-.dlp97-course-resources a{min-height:40px;display:flex;align-items:center;padding:8px 10px;border:1px solid transparent;border-radius:9px;font-weight:700;font-size:13px;color:var(--ui-primary);text-decoration:none}
-.dlp97-course-resources a:hover,.dlp97-course-resources a:focus-visible{background:var(--ui-primary-soft);border-color:#c8d5e6}
+
+
+
 .dl-track>svg{display:block;height:44px;width:44px;max-width:100%;object-fit:contain;flex:none}
 .ref-group-icon{display:inline-grid;place-items:center;width:28px;height:28px;flex:0 0 28px}
 .ref-group-icon svg{height:28px;width:28px}
@@ -771,7 +759,6 @@ html[data-theme="light"] body .guide-block a.dlp29-milestone.dalp-plain-link .dl
 html[data-theme="light"] body :is(.guide-actions,.cv88-map-actions,.cv88-contract-actions,.lp-hero-actions,.dlp97-hero-actions,.capstone-path-actions,.capstone-route-actions,.sample-links) > a.dalp-plain-link{
   margin:0!important;
 }
-html[data-theme="light"] body .dlp97-course-resources a[href],
 html[data-theme="light"] body .ref-actions a[href]{
   border:0!important;
   border-radius:0!important;
@@ -974,11 +961,8 @@ html[data-theme="light"] body.lp-home .footer {
 html[data-theme="light"] body.lp-home .footer :is(h2,h3,h4,strong,.wordmark,.wordmark strong){color:#fff!important;-webkit-text-fill-color:#fff!important}
 html[data-theme="light"] body.lp-home .footer :is(p,span,small){color:#e1e9f6!important;-webkit-text-fill-color:#e1e9f6!important}
 html[data-theme="light"] body.lp-home .footer a{color:#e1e9f6!important;-webkit-text-fill-color:#e1e9f6!important}
-html[data-theme="light"] body.lp-home .footer .footer-bottom {border-color:#415575!important}
-html[data-theme="light"] body.lp-home .footer .footer-bottom a[href^="mailto:"] {
-  background:#080c13!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
-  border-color:#536884!important;
-}
+
+
 @media(max-width:680px){
  html[data-theme="light"] body :is(.lp-course,.lp-feature,.lp-step,.ref-card,.pl-card,.guide-block,.dlp97-card){padding:16px!important}
  html[data-theme="light"] body.dlp-course-v29 :is(.topbar,.week-header,.course-hero) :is(h1,h2,h3){text-wrap:wrap!important}
@@ -1268,3 +1252,62 @@ html[data-theme="light"] body :is(.tutor-intro,.ps-heading).dalp-themed-hero{
 html[data-theme="light"] body .dalp-themed-hero :is(.tutor-highlight,.ps-title-row h1 em){
   color:#fff!important;-webkit-text-fill-color:#fff!important;
 }
+
+/* Responsive device audit | 2026-11-01
+   Single shared source for phone/tablet spacing; no new stylesheet or duplicate menu.
+   Page-specific course-player and protected-area controls keep ownership of their UI. */
+html[data-theme="light"] body { overflow-wrap:break-word; }
+html[data-theme="light"] body :is(img,video,canvas,svg,iframe,embed,object){max-width:100%;}
+html[data-theme="light"] body :is(pre,code,table,.table-scroll,.learning-table-scroll,.account-table-scroll){max-width:100%;}
+html[data-theme="light"] body :is(pre,.table-scroll,.learning-table-scroll,.account-table-scroll){overflow-x:auto;overscroll-behavior-inline:contain;-webkit-overflow-scrolling:touch;}
+html[data-theme="light"] body :is(.grid,.cards,.card-grid,.course-grid,.learning-grid,.dlp97-grid,.lp-course-grid,.lp-flow,.lp-hero-grid,.course-map,.ref-grid,.prompt-grid,.pl-grid,.cap-grid,.pc-grid,.guide-grid)>*{min-width:0;max-width:100%;}
+html[data-theme="light"] body :is(.card,.lp-course,.lp-feature,.dlp97-card,.ref-card,.pl-card,.cap-card,.pc-card,.guide-block,.guide-hero,.sample-card){overflow-wrap:anywhere;}
+html[data-theme="light"] body :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,legend,label){max-width:100%;overflow-wrap:break-word;}
+html[data-theme="light"] body :is(input,select,textarea){max-width:100%;font-size:max(16px,1rem);}
+html[data-theme="light"] body :is(.dalp-global-header,.dalp-global-inner,.dalp-public-footer){max-width:100%;}
+html[data-theme="light"] body .dalp-global-brand{min-width:0;max-width:calc(100% - 54px)}
+html[data-theme="light"] body .dalp-global-brand span{min-width:0;overflow-wrap:break-word;white-space:normal;line-height:1.2}
+html[data-theme="light"] body .dalp-global-toggle{min-width:44px;min-height:44px;flex:none}
+@media (min-width:768px) and (max-width:1199px){
+ html[data-theme="light"] body :is(.lp-course-grid,.course-grid,.cards,.card-grid,.dlp97-grid,.ref-grid,.pl-grid,.guide-grid){grid-template-columns:repeat(2,minmax(0,1fr));}
+ html[data-theme="light"] body :is(.lp-hero-grid,.lp-pathfinder-layout){grid-template-columns:minmax(0,1fr)!important;}
+ html[data-theme="light"] body :is(.container,.wrap,.content,.guide-wrap,.lp-dashboard){max-width:100%;}
+ html[data-theme="light"] body .dalp-public-footer__grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+@media (max-width:767px){
+ html[data-theme="light"] body {min-width:0;max-width:100%;overflow-x:clip;}
+ html[data-theme="light"] body :is(main,.content,.wrap,.container,.main-content,.lp-dashboard,.guide-wrap,.dlp97-main){min-width:0;max-width:100%;}
+ html[data-theme="light"] body :is(.lp-hero-grid,.lp-pathfinder-layout,.lp-course-grid,.lp-flow,.course-grid,.cards,.card-grid,.learning-grid,.dlp97-grid,.ref-grid,.pl-grid,.cap-grid,.pc-grid,.guide-grid){grid-template-columns:minmax(0,1fr)!important;}
+ html[data-theme="light"] body :is(.hero,.lp-hero,.page-hero,.guide-hero,.ref-hero,.pl-hero,.cap-hero,.pc-hero,.intro-hero){background-image:none!important;}
+ html[data-theme="light"] body :is(.hero,.lp-hero,.page-hero,.guide-hero,.ref-hero,.pl-hero,.cap-hero,.pc-hero,.intro-hero){padding:clamp(18px,5vw,30px)!important;}
+ html[data-theme="light"] body :is(.card,.lp-course,.lp-feature,.dlp97-card,.ref-card,.pl-card,.cap-card,.pc-card,.guide-block,.sample-card){padding:clamp(15px,4vw,22px);}
+ html[data-theme="light"] body :is(.lp-course,.lp-feature,.dlp97-card,.ref-card,.pl-card,.cap-card,.pc-card,.guide-block) :is(h2,h3,h4,p,li,a){overflow-wrap:anywhere;}
+ html[data-theme="light"] body :is(.lp-hero h1,.page-hero h1,.guide-hero h1,.ref-hero h1,.pl-hero h1){font-size:clamp(1.65rem,7vw,2.35rem)!important;line-height:1.15;letter-spacing:-.025em;}
+ html[data-theme="light"] body .dalp-global-header .dalp-global-inner{padding:6px 13px!important;min-height:58px;}
+ html[data-theme="light"] body .dalp-global-nav.is-open{width:min(100%,100vw - 20px);max-height:calc(100dvh - 70px);overflow-y:auto;overscroll-behavior:contain;}
+ html[data-theme="light"] body .dalp-global-nav.is-open a{white-space:normal;overflow-wrap:anywhere;}
+ html[data-theme="light"] body :is(.learning-table-scroll,.table-scroll,.account-table-scroll){border-radius:10px;}
+ html[data-theme="light"] body :is(button,[role="button"],.dalp-global-nav a){touch-action:manipulation;}
+ html[data-theme="light"] body.dlp-course-v29 :is(.content,.main-content,.lesson-content,.course-content){min-width:0;max-width:100%;}
+ html[data-theme="light"] body.dlp-course-v29 :is(.video-container,.video-wrap,.lesson-video,.video-player,iframe,video){max-width:100%;}
+ html[data-theme="light"] body.dlp-course-v29 :is(iframe,video){height:auto;aspect-ratio:16/9;}
+ html[data-theme="light"] body.dlp-course-v29 :is(.course-map,.lesson-grid,.lesson-list){min-width:0;max-width:100%;}
+ html[data-theme="light"] body.dlp-course-v29 :is(pre,.code-block,.data-table-wrap,.exercise-table){max-width:100%;overflow-x:auto;}
+ html[data-theme="light"] body .dalp-public-footer__grid{grid-template-columns:minmax(0,1fr);gap:22px;}
+}
+@media (max-width:420px){
+ html[data-theme="light"] body .dalp-global-header .dalp-brand-logo{width:32px;height:32px;flex-basis:32px;}
+ html[data-theme="light"] body .dalp-global-brand{gap:7px!important;font-size:clamp(.77rem,3.65vw,.94rem)!important;}
+ html[data-theme="light"] body :is(.lp-quick-links,.account-link-list,.course-links,.guide-links){gap:10px;}
+ html[data-theme="light"] body :is(.lp-hero,.page-hero,.guide-hero,.ref-hero,.pl-hero,.cap-hero,.pc-hero){padding:18px 15px!important;}
+ html[data-theme="light"] body :is(.lp-course,.lp-feature,.dlp97-card,.ref-card,.pl-card,.cap-card,.pc-card,.guide-block){padding:16px!important;}
+ html[data-theme="light"] body .dalp-public-footer__inner{width:calc(100% - 30px);}
+ html[data-theme="light"] body.dlp-course-v29 :is(.stats,.course-map){grid-template-columns:repeat(2,minmax(0,1fr))!important;}
+}
+@media (prefers-reduced-motion:reduce){
+ html[data-theme="light"] body :is(.dalp-global-nav,.course-map,.lp-course,.lp-feature){animation:none!important;transition:none!important;scroll-behavior:auto!important;}
+}
+
+
+/* Maintained page layout extracted from index.html (formerly inline). */
+.capstone-path-v74{margin:22px 0;padding:22px;border:1px solid var(--border,#b9c9d9);border-radius:16px;background:var(--surface,#f5f9ff);color:var(--text,#152536)}.capstone-path-v74 h2,.capstone-path-v74 h3{margin:6px 0 12px;color:inherit}.capstone-path-v74 p,.capstone-path-v74 li{line-height:1.65}.capstone-path-v74 .capstone-path-label{font-weight:800;letter-spacing:.05em;font-size:.78rem}.capstone-path-v74 .capstone-path-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}.capstone-path-v74 .capstone-path-actions a{display:inline-block;background:#174e9a;color:white;padding:11px 16px;border-radius:9px;font-weight:700;text-decoration:none}.capstone-path-v74 .capstone-path-actions a:focus-visible{outline:3px solid #f59e0b;outline-offset:3px}.capstone-path-v74 ol{padding-left:1.5rem}.capstone-path-v74 details{margin-top:12px}.capstone-path-v74 summary{cursor:pointer;font-weight:700}

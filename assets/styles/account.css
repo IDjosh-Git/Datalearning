@@ -21,7 +21,7 @@ html[data-theme="light"] body.dalp-account-page .wrap {
   margin:30px auto 64px;
   min-width:0;
 }
-/* A single purposeful, flat header surface. */
+/* A single purposeful, LIGHT welcome surface. */
 html[data-theme="light"] body.dalp-account-page .account-overview {
   display:flex;
   align-items:flex-start;
@@ -29,12 +29,12 @@ html[data-theme="light"] body.dalp-account-page .account-overview {
   gap:24px;
   padding:clamp(24px,3vw,40px);
   margin:0 0 24px;
-  border:1px solid #31466a;
+  border:1px solid #c8d6f0;
   border-radius:18px;
-  background:#172d4d;
+  background:#eaf0ff;
   background-image:none !important;
-  box-shadow:0 6px 18px rgba(19,36,61,.09);
-  color:#f4f8ff;
+  box-shadow:0 4px 14px rgba(32,57,94,.06);
+  color:#15243a;
   position:relative;
   isolation:isolate;
 }
@@ -42,12 +42,12 @@ html[data-theme="light"] body.dalp-account-page .account-overview::before,
 html[data-theme="light"] body.dalp-account-page .account-overview::after {content:none !important;display:none !important}
 html[data-theme="light"] body.dalp-account-page .account-overview-content{min-width:0;flex:1 1 auto}
 html[data-theme="light"] body.dalp-account-page .account-overview :is(h1,p,span) {
-  color:#f4f8ff !important;
-  -webkit-text-fill-color:#f4f8ff !important;
+  color:#15243a !important;
+  -webkit-text-fill-color:#15243a !important;
 }
 html[data-theme="light"] body.dalp-account-page .account-overview .account-eyebrow{
   margin:0 0 8px;font-size:.76rem;font-weight:800;letter-spacing:.13em;
-  color:#c4d5ff !important;-webkit-text-fill-color:#c4d5ff !important;
+  color:#3035b0 !important;-webkit-text-fill-color:#3035b0 !important;
 }
 html[data-theme="light"] body.dalp-account-page .account-overview h1{
   font-size:clamp(1.75rem,3.1vw,2.7rem);line-height:1.17;letter-spacing:-.035em;
@@ -57,7 +57,7 @@ html[data-theme="light"] body.dalp-account-page .account-identity{
   font-weight:650;font-size:.94rem;margin:0 0 12px;overflow-wrap:anywhere;
 }
 html[data-theme="light"] body.dalp-account-page .account-overview .account-intro{
-  color:#dae6f8 !important;-webkit-text-fill-color:#dae6f8 !important;
+  color:#4f607b !important;-webkit-text-fill-color:#4f607b !important;
   max-width:62ch;font-size:1rem;line-height:1.6;margin:0 0 20px;
 }
 html[data-theme="light"] body.dalp-account-page .account-studio-link{
@@ -66,11 +66,11 @@ html[data-theme="light"] body.dalp-account-page .account-studio-link{
   border:0!important;box-shadow:none!important;
 }
 html[data-theme="light"] body.dalp-account-page .account-studio-link span{
-  color:#dae6f8!important;-webkit-text-fill-color:#dae6f8!important;
+  color:#4f607b!important;-webkit-text-fill-color:#4f607b!important;
   font-size:.88rem;overflow-wrap:anywhere;
 }
 html[data-theme="light"] body.dalp-account-page .account-overview .account-studio-link a{
-  color:#fff!important;-webkit-text-fill-color:#fff!important;
+  color:#3035b0!important;-webkit-text-fill-color:#3035b0!important;
   text-decoration:underline!important;text-underline-offset:4px;
   font-weight:750;display:inline!important;
   margin:0!important;padding:0!important;border:0!important;
@@ -81,12 +81,12 @@ html[data-theme="light"] body.dalp-account-page .account-overview .account-studi
 }
 html[data-theme="light"] body.dalp-account-page .account-signout{
   flex:0 0 auto;min-height:44px;padding:10px 16px;
-  border:1px solid #aebfd7;border-radius:10px;
-  background:transparent;color:#fff;cursor:pointer;
+  border:1px solid #879cda;border-radius:10px;
+  background:#ffffff;color:#3035b0;cursor:pointer;
   font-size:.92rem;font-weight:750;transition:background-color .15s,border-color .15s;
 }
 html[data-theme="light"] body.dalp-account-page .account-signout:hover{
-  background:#2c4166;border-color:#e1e9f6;
+  background:#dce5ff;border-color:#6e83c9;
 }
 html[data-theme="light"] body.dalp-account-page .grid{
   display:grid;grid-template-columns:repeat(12,minmax(0,1fr));

@@ -1,16 +1,16 @@
 /* Course lesson layout and mastery checkpoint structure; colours use the current shared design tokens. */
-body.dlp-course-v29 .dalp-course-resource-links{display:flex;flex-wrap:wrap;gap:9px;margin:16px 0 19px;padding:0;align-items:center;position:relative;z-index:2}
-body.dlp-course-v29 .dalp-course-resource-links a{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 14px;min-height:44px;border:1px solid var(--ui-stroke);border-radius:11px;background:var(--ui-canvas);color:var(--ui-primary)!important;text-decoration:none!important;font-size:14px;font-weight:750;line-height:1.35;box-shadow:none}
-body.dlp-course-v29 .dalp-course-resource-links a:hover{background:var(--ui-primary-soft);border-color:var(--ui-stroke-strong);transform:translateY(-1px)}
-body.dlp-course-v29 .dalp-course-resource-links a:focus-visible{outline:3px solid var(--ui-focus);outline-offset:3px}
-body.dlp-course-v29 .dalp-guide-short{display:flex;gap:16px;align-items:center;padding:clamp(15px,2.5vw,24px);height:auto;min-height:0!important;background:var(--ui-canvas);border:1px solid var(--ui-stroke);border-radius:14px}
-body.dlp-course-v29 .dalp-guide-short p{margin:3px 0 7px;color:var(--ui-muted);line-height:1.45}
-body.dlp-course-v29 .dalp-guide-short strong{display:block;font-weight:800;color:var(--ui-ink)}
-body.dlp-course-v29 .dalp-guide-short a,body.dlp-course-v29 .dalp-extension-link a,body.dlp-course-v29 .dalp-module-link a{color:var(--ui-primary)!important;font-weight:800;text-underline-offset:3px}
-body.dlp-course-v29 .dalp-guide-short .dalp-short-icon{display:grid;place-items:center;flex:0 0 42px;width:42px;height:42px;background:var(--ui-primary-soft);color:var(--ui-primary);border-radius:11px;font-size:22px}
-body.dlp-course-v29 .dalp-module-link{margin:14px 0 0;padding:12px 14px;background:var(--ui-primary-soft);border:1px solid var(--ui-stroke);border-radius:11px}
-body.dlp-course-v29 .dalp-extension-link{box-sizing:border-box;display:flex;flex-direction:column;gap:4px;margin:18px auto!important;width:min(100%,1160px);max-width:100%;border:1px solid var(--ui-stroke);border-radius:14px;background:var(--ui-canvas);padding:18px 22px;color:var(--ui-ink)}
-body.dlp-course-v29 .dalp-extension-link p{margin:0;color:var(--ui-muted);line-height:1.5}
+
+
+
+
+
+
+
+
+
+
+
+
 body.dlp-course-v29 .course-mastery-wrap{width:100%!important;max-width:100%!important;margin:clamp(20px,3vw,36px) 0!important;min-width:0!important;box-sizing:border-box}
 body.dlp-course-v29 .course-mastery-wrap.course-mastery-intro{max-width:100%!important;width:100%!important;margin:20px auto!important}
 body.dlp-course-v29 .course-mastery{box-sizing:border-box;width:100%!important;max-width:100%!important;min-width:0!important;border-radius:18px!important;padding:clamp(18px,2.5vw,32px)!important;border:1px solid var(--ui-stroke)!important;background:#fff!important}
@@ -27,8 +27,8 @@ body.dlp-course-v29 .course-mastery-meta{display:flex;flex-wrap:wrap;gap:8px;jus
 body.dlp-course-v29 .course-mastery-result{max-width:100%!important;min-width:0}
 @media(min-width:1100px){body.dlp-course-v29 .course-mastery-questions{grid-template-columns:repeat(2,minmax(0,1fr))!important}body.dlp-course-v29 .course-mastery-option{font-size:14px!important}body.dlp-course-v29 .course-mastery-head{max-width:100%}}
 @media(min-width:1540px){body.dlp-course-v29 .course-mastery-question{padding:24px!important}}
-@media(max-width:640px){body.dlp-course-v29 .dalp-course-resource-links{display:grid;grid-template-columns:1fr;gap:8px}body.dlp-course-v29 .dalp-course-resource-links a{justify-content:flex-start}body.dlp-course-v29 .course-mastery-question{padding:13px!important}body.dlp-course-v29 .course-mastery-options{gap:7px!important}body.dlp-course-v29 .course-mastery{padding:14px!important}}
-@media(prefers-reduced-motion:reduce){body.dlp-course-v29 .dalp-course-resource-links a:hover{transform:none}}
+@media(max-width:640px){body.dlp-course-v29 .course-mastery-question{padding:13px!important}body.dlp-course-v29 .course-mastery-options{gap:7px!important}body.dlp-course-v29 .course-mastery{padding:14px!important}}
+
 
 /* Compact course entry, no second tall roadmap on the lesson page. */
 body.dlp-course-v29 .dalp-quick-guide{box-sizing:border-box;width:100%;max-width:none!important;min-height:0!important;height:auto!important;padding:clamp(18px,2.1vw,28px)!important;margin:clamp(14px,2vw,24px) 0!important;border:1px solid var(--ui-stroke)!important;background:var(--ui-paper)!important;border-radius:20px!important;box-shadow:0 9px 24px rgb(21 36 58 / 6%)!important}
@@ -44,8 +44,8 @@ body.dlp-course-v29 .dalp-quick-guide-progress .dlp97-meter{margin-top:8px}
 body.dlp-course-v29 .dalp-quick-guide-links{display:flex;flex-wrap:wrap;align-items:stretch;justify-content:flex-end;gap:9px;min-width:0}
 body.dlp-course-v29 .dalp-quick-link{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:45px;flex:1 1 170px;padding:10px 15px;text-align:center;text-decoration:none!important;color:var(--ui-primary)!important;background:#fff;border:1px solid var(--ui-stroke);border-radius:11px;font-size:13px;font-weight:750;line-height:1.35;transition:border-color .16s ease,box-shadow .16s ease,transform .16s ease}
 body.dlp-course-v29 .dalp-quick-link:hover{background:var(--ui-accent-soft);border-color:var(--ui-accent-border);transform:translateY(-2px);box-shadow:0 6px 14px rgb(21 36 58 / 8%)}
-body.dlp-course-v29 .dalp-quick-link-primary{background:var(--ui-primary)!important;border-color:var(--ui-primary)!important;color:#fff!important}
-body.dlp-course-v29 .dalp-quick-link-primary:hover{background:var(--ui-primary-hover)!important}
+
+
 body.dlp-course-v29 .dalp-quick-link:focus-visible{outline:3px solid var(--ui-focus);outline-offset:3px}
 body.dlp-course-v29 .dalp-quick-guide-signin{display:inline-flex;margin-top:10px;font-size:12px!important;color:var(--ui-primary)!important;text-underline-offset:3px}
 /* Cards should size to their own content: do not create tall blank blocks beside longer lessons. */
@@ -54,9 +54,9 @@ body.dlp-course-v29 :is(.overview-grid,.learning-grid,.two-cols,.resources,.chec
 body.dlp-course-v29 .course-mastery-question{align-self:start!important;height:auto!important}
 body.dlp-course-v29 :is(.week,.week-body,.lesson,.course-mastery,.learning-clarity,.cv88-lesson-contract){min-width:0}
 /* The course icons are self-contained vectors, so they cannot become broken image placeholders. */
-body.dlp-course-v29 .lp-icon.small{display:inline-block;vertical-align:middle;width:28px;height:28px;max-width:28px;max-height:28px;flex-shrink:0}
-body.dlp-course-v29 .dalp-course-resource-links{margin-block:12px 18px}
-@media (min-width:1450px){body.dlp-course-v29 .content{max-width:none!important;width:100%!important;padding-inline:clamp(22px,3.4vw,62px)!important}body.dlp-course-v29 .course-mastery-question{padding:22px!important}body.dlp-course-v29 .overview-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}}
+
+
+@media (min-width:1450px){body.dlp-course-v29 .content{max-width:none!important;width:100%!important;padding-inline:clamp(22px,3.4vw,62px)!important}body.dlp-course-v29 .course-mastery-question{padding:22px!important}}
 @media (max-width:1000px){body.dlp-course-v29 .dalp-quick-guide-bottom{grid-template-columns:1fr}body.dlp-course-v29 .dalp-quick-guide-links{justify-content:flex-start}}
 @media (max-width:580px){body.dlp-course-v29 .dalp-quick-guide{padding:15px!important;border-radius:15px!important}body.dlp-course-v29 .dalp-quick-guide-bottom{gap:13px}body.dlp-course-v29 .dalp-quick-guide-links{display:grid;grid-template-columns:minmax(0,1fr)}body.dlp-course-v29 .dalp-quick-link{justify-content:flex-start;width:100%;min-height:44px}body.dlp-course-v29 .dalp-quick-guide-count{font-size:11px}}
 @media (prefers-reduced-motion:reduce){body.dlp-course-v29 .dalp-quick-link{transition:none!important}body.dlp-course-v29 .dalp-quick-link:hover{transform:none}}
@@ -80,13 +80,13 @@ body.dlp-course-v29 .course-portal-links .course-portal-primary{background:var(-
 body.dlp-course-v29 .course-portal-links .course-portal-secondary{background:#fff!important;color:var(--ui-accent)!important;border:1px solid var(--ui-accent-border)!important;-webkit-text-fill-color:var(--ui-accent)!important}
 body.dlp-course-v29 .course-portal-links a:hover{filter:brightness(.95)}
 body.dlp-course-v29 .course-portal-links a:focus-visible{outline:3px solid var(--ui-gold)!important;outline-offset:3px!important}
-body.dlp-course-v29 .capstone-route-link{margin:14px 0}
-body.dlp-course-v29 .capstone-route-link a{display:inline-block;font-weight:800;color:var(--ui-accent);text-decoration:underline;text-underline-offset:4px}
+
+
 /* Keep lesson navigation accessible, without a permanently long list of ten links. */
-body.dlp-course-v29 .sidebar .course-lesson-disclosure{margin:13px 0;border:1px solid var(--ui-accent-border);border-radius:12px;padding:0;background:var(--ui-canvas);overflow:clip}
-body.dlp-course-v29 .sidebar .course-lesson-disclosure>summary{display:flex;align-items:center;gap:8px;cursor:pointer;padding:12px 11px;font-size:13px;font-weight:800;color:var(--ui-accent);min-height:44px}
-body.dlp-course-v29 .sidebar .course-lesson-disclosure>summary:focus-visible{outline:3px solid var(--ui-gold);outline-offset:-3px}
-body.dlp-course-v29 .sidebar .course-lesson-count{margin-left:auto;font-size:11px;font-weight:750;color:var(--ui-muted)}
+
+
+
+
 body.dlp-course-v29 .sidebar .course-lesson-items{display:grid;gap:3px;padding:5px 6px 9px;border-top:1px solid var(--ui-stroke)}
 body.dlp-course-v29 .sidebar .course-lesson-items .nav-link{height:auto!important;min-height:42px!important;margin:0!important}
 @media(max-width:640px){body.dlp-course-v29 .course-portal-links{margin:10px auto 12px;padding:12px}body.dlp-course-v29 .course-portal-kicker{flex-basis:100%}body.dlp-course-v29 .course-portal-links a{flex:1 1 180px}}
@@ -101,10 +101,10 @@ body.dlp-course-v29 .course-wrap,body.dlp-course-v29 main>.wrap{box-sizing:borde
 body.dlp-course-v29 .course-portal-links{width:min(100% - 32px,var(--course-content-max))!important;max-width:var(--course-content-max)!important;margin:14px auto 16px!important;border-color:var(--ui-accent-border);background:var(--ui-accent-soft)}
 body.dlp-course-v29 .course-portal-kicker{color:var(--ui-accent)!important}
 body.dlp-course-v29 .course-portal-links a{flex:0 1 auto}
-body.dlp-course-v29 .capstone-requirement-strip{box-sizing:border-box;display:flex;gap:12px;align-items:center;flex-wrap:wrap;width:min(100% - 32px,var(--course-content-max));margin:12px auto!important;padding:13px 18px;border:1px solid var(--ui-accent-border);border-left:4px solid var(--ui-primary);border-radius:12px;background:var(--ui-canvas);color:var(--ui-ink);min-height:0;height:auto;box-shadow:none}
-body.dlp-course-v29 .capstone-requirement-strip strong{font-size:.87rem;color:var(--ui-accent)}
-body.dlp-course-v29 .capstone-requirement-strip p{flex:1 1 380px;margin:0!important;color:var(--ui-muted);font-size:.875rem;line-height:1.5}
-body.dlp-course-v29 .capstone-requirement-strip a{font-size:.87rem;color:var(--ui-accent);font-weight:800;text-underline-offset:3px}
+
+
+
+
 body.dlp-course-v29 :is(.overview-grid,.learning-grid,.two-cols,.resources,.check-grid,.metric-grid,.card-grid,.module-grid,.stats-grid,.week-grid){align-items:start!important;grid-auto-rows:auto!important}
 body.dlp-course-v29 :is(.overview-grid,.learning-grid,.two-cols,.resources,.check-grid,.metric-grid,.card-grid,.module-grid,.stats-grid,.week-grid)>*{height:auto!important;min-height:0!important;align-self:start!important;max-width:100%;box-sizing:border-box}
 body.dlp-course-v29 :is(.card,.lesson-card,.overview-card,.week-card,.resource-card,.module-card,.metric-card){box-sizing:border-box;overflow-wrap:anywhere;border-color:var(--course-line);box-shadow:0 2px 12px rgba(20,60,42,.045)}
@@ -115,9 +115,9 @@ body.dlp-course-v29 .dalp-quick-guide-bottom{grid-template-columns:minmax(0,1fr)
 body.dlp-course-v29 .dalp-quick-guide-links{justify-content:flex-end}
 body.dlp-course-v29 .course-mastery-questions{align-items:start!important}
 body.dlp-course-v29 .course-mastery-question{align-self:start!important;height:auto!important}
-@media(min-width:1450px){body.dlp-course-v29 .content{max-width:var(--course-content-max)!important;padding-inline:36px!important}body.dlp-course-v29 .overview-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media(min-width:1450px){body.dlp-course-v29 .content{max-width:var(--course-content-max)!important;padding-inline:36px!important}}
 @media(max-width:900px){body.dlp-course-v29 .dalp-quick-guide-bottom{grid-template-columns:1fr!important}body.dlp-course-v29 .dalp-quick-guide-links{justify-content:flex-start}}
-@media(max-width:650px){body.dlp-course-v29 .course-portal-links a{flex:1 1 100%;justify-content:flex-start}body.dlp-course-v29 .capstone-requirement-strip{align-items:flex-start;gap:6px;padding:12px}body.dlp-course-v29 .capstone-requirement-strip p{flex-basis:100%}body.dlp-course-v29 .content{padding-inline:15px!important}}
+@media(max-width:650px){body.dlp-course-v29 .course-portal-links a{flex:1 1 100%;justify-content:flex-start}body.dlp-course-v29 .content{padding-inline:15px!important}}
 @media(prefers-reduced-motion:reduce){body.dlp-course-v29 *,body.dlp-course-v29 *::before,body.dlp-course-v29 *::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
 
 /* Unified course canvas and full-width, space-efficient question cards.
@@ -383,7 +383,7 @@ body::before, body::after { content: none !important; display: none !important; 
 }
 :where(.nav-shell, header.nav-shell, .top, .topbar, .ac-topbar) {
   background: #fff !important; color: var(--polish-ink); border-color: var(--polish-line) !important;
-  -webkit-backdrop-filter: none !important; backdrop-filter: none !important;
+   
 }
 :where(.lp-hero, .page-hero, .hero, .ac-hero, .admin-hero) {
   background: #263b70 !important; color: #fff !important; background-image: none !important;
@@ -400,7 +400,7 @@ body::before, body::after { content: none !important; display: none !important; 
 :where(h1, h2, h3, h4) { color: var(--polish-ink); text-wrap: balance; }
 :where(p, li) { color: inherit; }
 :where(.lp-dashboard-strip, .lp-smart-banner, .lp-demo, .lp-context-nav, .lp-notice, .lead-band .inner) {
-  background: #fff !important; background-image: none !important; -webkit-backdrop-filter: none !important; backdrop-filter: none !important;
+  background: #fff !important; background-image: none !important;  
 }
 :where(.lp-dashboard-strip, .lp-smart-banner, .lp-context-nav) { border-color: var(--polish-line) !important; }
 :where(.lp-home .section) { padding-block: clamp(48px, 6vw, 82px); }
@@ -408,7 +408,7 @@ body::before, body::after { content: none !important; display: none !important; 
 :where(.footer) { background: #1d2a47 !important; color: #f5f7fc !important; background-image: none !important; }
 :where(.footer a) { color: #d7e2ff; }
 /* Admin surfaces retain the same canvas and font while using clear, high-contrast data presentation. */
-.dalp-admin-page, body[data-responsive-page="admin"] { background: var(--polish-canvas) !important; color: var(--polish-ink) !important; }
+body[data-responsive-page="admin"]{ background: var(--polish-canvas) !important; color: var(--polish-ink) !important; }
 .dalp-admin-page :where(.ac-section-header p, .ac-section-eyebrow, .ac-empty, .ac-privacy-note) { color: var(--polish-muted); }
 .dalp-admin-page :where(.ac-stat-value, .ac-kpi strong, .ac-section-header h2) { color: var(--polish-ink); }
 .dalp-admin-page :where(.ac-section-eyebrow) { color: var(--polish-indigo); }
@@ -436,7 +436,7 @@ img,video { height:auto; }
 :where(a,button,input,select,textarea,summary):focus-visible { outline:3px solid #bd812b!important;outline-offset:3px; }
 :where([hidden]) { display:none!important; }
 :where([class*="backdrop"],[class*="overlay"],[id*="backdrop"],[id*="overlay"]) {
-  backdrop-filter:none!important; -webkit-backdrop-filter:none!important;
+   
 }
 /* Explicit decorative overlays / glass veils (not the surfaces of modal dialogs). */
 :where(.lp-hero,.page-hero,.hero,.section-hero,.lp-pathfinder,.ps-home-promo)::before,
@@ -448,7 +448,7 @@ img,video { height:auto; }
 :where(.modal-backdrop,.dialog-backdrop,.drawer-backdrop,.dlp97-backdrop,
        .auth-backdrop,.nav-backdrop,.menu-backdrop,[data-overlay-backdrop]) {
   background:transparent!important; background-image:none!important;
-  backdrop-filter:none!important; -webkit-backdrop-filter:none!important;
+   
 }
 /* Normalize page layers, content spacing, and responsive grids. */
 :where(.wrap,.container,.page-wrap,.workspace,.main,.content-wrap,.admin-wrap,.ac-container) { max-width:100%; }
@@ -480,19 +480,19 @@ body{background:#f7f9fa!important}
 .hero h1,.ai-hero h1,.intro-hero h1{line-height:1.16!important;letter-spacing:-.035em!important;max-width:850px}
 .hero p{max-width:780px}
 .hero .stats{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important;max-width:540px;margin-top:20px!important}
-.hero .stat{border:1px solid var(--course-ui-line)!important;box-shadow:none!important;background:#fff!important;border-radius:12px!important;padding:12px 16px!important}
 
-.mastery-data-guide{margin-top:20px!important}
+
+
 .week{margin-block:18px!important;border-radius:16px!important;box-shadow:none!important;border:1px solid var(--course-ui-line)!important;background:#fff!important;overflow:clip}
 .week:before,.week:after{pointer-events:none}
 .week h2,.week h3,.week h4{letter-spacing:-.02em}
-.week .card,.week .lesson-card,.week .topic-card{box-shadow:none!important}
-.week .card:hover,.week .lesson-card:hover{transform:none!important}
-.capstone,.certificate-section{box-shadow:none!important}
+.week .card{box-shadow:none!important}
+.week .card:hover{transform:none!important}
+.capstone{box-shadow:none!important}
 @media(max-width:760px){.content{padding-inline:14px!important}.course-portal-links{gap:8px!important}.course-portal-kicker{width:100%}.course-portal-links a{flex:1 1 auto;text-align:center}.hero .stats{grid-template-columns:1fr 1fr!important}.hero,.ai-hero,.intro-hero{border-radius:14px!important}}
 @media(max-width:400px){.hero .stats{grid-template-columns:1fr!important}}
 
-.course-intro-minimal{display:flex!important;gap:8px!important;align-items:center!important;flex-wrap:wrap!important;padding:12px 16px!important;margin:12px 0!important;background:#fff!important;border:1px solid #e2e8e7!important;border-radius:12px!important;box-shadow:none!important;font-size:13px!important}.course-intro-minimal a{text-decoration:underline!important}
+
 
 
 /* Foundation roadmap and course-at-a-glance alignment (Nov 2026).

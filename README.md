@@ -83,3 +83,8 @@ Excel, SQL, Power BI and Python keep the week navigation in an expandable **Brow
 Vercel deploys this site from the linked GitHub repository. **Replacing a ZIP in a local folder does not update production**: extract this archive at the GitHub repository root, commit and push all changed files to `main`, then confirm the new production deployment uses that new commit. Keep `index.html`, `vercel.json`, `service-worker.js`, `assets/` and `courses/` at the repository root. The Vercel output directory is `.`. Course HTML is served with `Cache-Control: no-store`.
 
 To verify the new release, open `https://datalearning.vercel.app/courses/excel.html` and look for the **Course resources** links above the title. If it is missing after a READY deployment, confirm the deployment's commit SHA is the one containing this change.
+
+
+### Styling maintenance (current)
+
+The current light UI theme is defined by `assets/styles/design-system.css`; active feature/page styles remain in `assets/styles/`. Do not restore retired fonts, palette values, glass overlays or embedded page `<style>` blocks. The audit and responsive test limitations are documented in `docs/LEGACY_STYLE_CLEANUP_AUDIT.md`. Run `npm run build && npm run lint && npm test` before deployment.
