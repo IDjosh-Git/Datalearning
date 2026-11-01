@@ -163,8 +163,10 @@ body[data-course] iframe[src*="youtube"],body[data-course] iframe[src*="vimeo"],
 body[data-course] :is(pre,.code-block,.table-wrap){max-width:100%;overflow-x:auto;}
 body[data-course] table{max-width:100%;}
 body[data-course] :is(h1,h2,h3,h4,p,a,button,summary){overflow-wrap:anywhere}
-body[data-course] .course-sidebar-collapse{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:40px;padding:7px 12px;border:1px solid #c5cfdd;border-radius:9px;background:#fff;color:#15243a;font:600 13px/1.2 inherit;cursor:pointer;}
-body[data-course] .course-sidebar-collapse:hover{background:#eff0ff}
+body[data-course] .course-sidebar-collapse{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px;padding:9px 15px;border:1px solid #222980;border-radius:10px;background:#3035b0;color:#fff;font:750 13px/1.3 Inter,system-ui,sans-serif;letter-spacing:.005em;cursor:pointer;box-shadow:0 2px 8px #15243a18;}
+body[data-course] .course-sidebar-collapse:hover{background:#222980;border-color:#1c246f;color:#fff}
+body[data-course] .course-sidebar-collapse[aria-expanded="false"]{background:#29476b;border-color:#213c5b;color:#fff}
+body[data-course] .course-sidebar-collapse[aria-expanded="false"]:hover{background:#1c3657}
 body[data-course].course-sidebar-collapsed .app{grid-template-columns:0 minmax(0,1fr)}
 body[data-course].course-sidebar-collapsed .sidebar{width:0;padding:0;border:0!important;overflow:hidden;visibility:hidden}
 body[data-course] .course-sidebar-collapse:focus-visible{outline:3px solid #df842b;outline-offset:3px}
@@ -1373,18 +1375,18 @@ html[data-theme="light"] body.dlp-course-v29 .topbar .course-top-actions a[href]
 /* The AI course uses a standalone content frame; keep its banner, resources
    and teaching cards aligned instead of allowing edge-to-edge content. */
 html[data-theme="light"] body.lp-ai-page .ai-hero.dalp-themed-hero{
-  width:calc(100% - 32px)!important;max-width:1248px!important;
+  width:calc(100% - 32px)!important;max-width:1400px!important;
   margin-inline:auto!important;
   padding:clamp(22px,3vw,38px)!important;
   box-sizing:border-box;
 }
 html[data-theme="light"] body.lp-ai-page .course-portal-links{
-  width:calc(100% - 32px)!important;max-width:1248px!important;
+  width:calc(100% - 32px)!important;max-width:1400px!important;
   margin:14px auto 16px!important;padding:14px clamp(16px,2vw,24px)!important;
   box-sizing:border-box;
 }
 html[data-theme="light"] body.lp-ai-page .course-wrap{
-  width:calc(100% - 32px)!important;max-width:1248px!important;
+  width:calc(100% - 32px)!important;max-width:1400px!important;
   margin-inline:auto!important;box-sizing:border-box;
 }
 /* Shared feature mastheads have consistent safe inset space. */

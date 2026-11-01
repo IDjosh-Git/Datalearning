@@ -399,7 +399,7 @@ html[data-theme] body.dl-workspace :is(.capstone,.capstone-route-panel,.capstone
 html[data-theme] body.dl-workspace :is(.capstone,.capstone-route-panel,.capstone-challenge) a:not(.btn) {color:var(--course-accent,#2563eb)!important;text-decoration:underline;}
 /* Previous checkpoint shell reached 900px, with multiple large margins and nested panels. */
 html[data-theme] body.dl-workspace .course-mastery-wrap {
-  width:min(100%,760px)!important;max-width:760px!important;margin:16px auto!important;
+  width:100%!important;max-width:100%!important;margin:16px 0!important;
 }
 html[data-theme] body.dl-workspace .course-mastery {
   padding:clamp(12px,2vw,18px)!important;border-radius:14px!important;
