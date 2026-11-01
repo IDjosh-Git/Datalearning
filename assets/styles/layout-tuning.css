@@ -427,3 +427,49 @@ html[data-theme="light"] body.lp-home .lp-hero :is(h1, h2, p, .lp-hero-proof spa
 html[data-theme="light"] body.lp-home .lp-hero h1 em { color: #77e4d3 !important; -webkit-text-fill-color: #77e4d3 !important; }
 html[data-theme="light"] body.lp-home .lp-hero-proof b { color: #ffffff !important; }
 html[data-theme="light"] body.lp-home .lp-hero-proof span { color: #dce7fb !important; }
+
+/* Cross-page visual audit — November 2026.
+   Removes decorative veil/overlay backgrounds while retaining working dialogs,
+   learner controls and legible foreground surfaces. */
+:root { --audit-gutter:clamp(16px,3vw,38px); --audit-outline:#d8e4e0; }
+html { overflow-x:clip; }
+body { overflow-x:clip; }
+*,*::before,*::after { box-sizing:border-box; }
+img,svg,video,canvas { max-width:100%; }
+img,video { height:auto; }
+:where(main,section,article,aside,form,.wrap,.container) { min-width:0; }
+:where(h1,h2,h3,h4,p) { overflow-wrap:break-word; }
+:where(input,textarea,select,button) { max-width:100%; font:inherit; }
+:where(button,a,summary) { -webkit-tap-highlight-color:transparent; }
+:where(a,button,input,select,textarea,summary):focus-visible { outline:3px solid #bd812b!important;outline-offset:3px; }
+:where([hidden]) { display:none!important; }
+:where([class*="backdrop"],[class*="overlay"],[id*="backdrop"],[id*="overlay"]) {
+  backdrop-filter:none!important; -webkit-backdrop-filter:none!important;
+}
+/* Explicit decorative overlays / glass veils (not the surfaces of modal dialogs). */
+:where(.lp-hero,.page-hero,.hero,.section-hero,.lp-pathfinder,.ps-home-promo)::before,
+:where(.lp-hero,.page-hero,.hero,.section-hero,.lp-pathfinder,.ps-home-promo)::after {
+  background-image:none!important; box-shadow:none!important; pointer-events:none!important;
+}
+:where(.lp-hero,.page-hero,.hero,.section-hero,.lp-pathfinder,.ps-home-promo) { isolation:isolate; }
+/* The translucent screen remains available for modal interaction but has no overlay background. */
+:where(.modal-backdrop,.dialog-backdrop,.drawer-backdrop,.dlp97-backdrop,
+       .auth-backdrop,.nav-backdrop,.menu-backdrop,[data-overlay-backdrop]) {
+  background:transparent!important; background-image:none!important;
+  backdrop-filter:none!important; -webkit-backdrop-filter:none!important;
+}
+/* Normalize page layers, content spacing, and responsive grids. */
+:where(.wrap,.container,.page-wrap,.workspace,.main,.content-wrap,.admin-wrap,.ac-container) { max-width:100%; }
+:where(.lp-course-grid,.lp-feature-grid,.lp-quick-grid,.lp-flow,.lp-trust-grid,.footer-grid) > * { min-width:0; }
+:where(.lp-course,.lp-feature,.lp-step,.panel,.card) { overflow-wrap:anywhere; }
+:where(table) { border-collapse:collapse; }
+:where(.table-scroll,.table-wrap,.table-responsive) { max-width:100%;overflow-x:auto; }
+@media(max-width:767px) {
+  :where(.lp-hero-grid,.lp-pathfinder-layout,.lp-trust-grid,.lp-flow,.lp-dashboard-strip) { min-width:0; }
+  :where(.lp-demo,.lp-pathfinder-form,.lp-course,.lp-feature) { max-width:100%; }
+  :where(.lp-hero h1) { font-size:clamp(2rem,9vw,3.6rem);line-height:1.08; }
+  :where(.lp-hero-actions,.lp-pathfinder-fields) { max-width:100%; }
+  :where(.lp-hero-actions a) { max-width:100%; }
+}
+@media(prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; } }
+
