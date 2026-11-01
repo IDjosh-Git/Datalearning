@@ -15,7 +15,8 @@ for(const f of files.filter(f=>!protectedFiles.has(f))){
 const home=fs.readFileSync(path.join(root,'index.html'),'utf8');
 assert(!home.includes('class="lp-quick-card"'),'Quick access must be direct links, not four separate cards');
 assert(home.includes('class="lp-quick-links"'),'Quick access plain-link group missing');
-assert.equal((home.match(/class="dalp-plain-link" href="(?:courses\/introduction\.html|reference\.html|capstone\.html|account\.html)"/g)||[]).length,4,'Four quick-access links must be preserved');
+const quickLinks=home.match(/<div class="lp-quick-links"[^>]*>([\s\S]*?)<\/div>/)?.[1] || "";
+assert.equal((quickLinks.match(/class="dalp-plain-link"/g)||[]).length,4,'Four quick-access links must be preserved');
 const css=fs.readFileSync(path.join(root,'assets/styles/design-system.css'),'utf8');
 assert.match(css,/body a\.dalp-plain-link,/, 'Common link reset missing');
 assert.match(css,/body a\.dalp-plain-link:focus-visible/, 'Visible keyboard focus missing');

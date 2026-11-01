@@ -263,7 +263,7 @@ body.auth-page .auth-field input{font-size:16px!important;min-height:48px!import
 body.auth-page .auth-eye{min-height:42px!important;}
 body.auth-page .auth-submit{min-height:49px!important;width:100%!important;}
 body.auth-page .auth-account-note{margin-top:17px!important;padding:12px!important;}
-body.auth-page .auth-site-foot{font-size:11px!important;line-height:1.6!important;}
+
 body[data-responsive-page="practice"] .pc-wrap,body[data-responsive-page="learning-lab"] .lab-shell{width:calc(100% - 2 * var(--mx-gutter))!important;max-width:100%!important;margin:0 auto!important;padding-top:20px!important;}
 body[data-responsive-page="practice"] .pc-hero{padding:16px!important;border-radius:16px!important;}
 body[data-responsive-page="practice"] .pc-hero h1,body[data-responsive-page="learning-lab"] h1{font-size:clamp(25px,7vw,35px)!important;}
@@ -355,7 +355,7 @@ pre{tab-size:2}
 .auth-benefits{grid-template-columns:repeat(2,minmax(0,1fr))}
 .study-studio{width:100%;max-width:100%}
 .pl-hero-art{display:none}
-.footer-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+}
 @media(max-width:760px){:is(.cap-side,.ip-stats,.review-stats,.overview-grid,.course-map,.resources,.usage-grid,.prompt-grid){grid-template-columns:repeat(2,minmax(0,1fr))}
 .auth-forms{padding:26px!important}
 .auth-story{padding:30px!important}
@@ -440,7 +440,7 @@ html{scroll-padding-top:68px}
 .lp-search input{width:100%}
 .lp-filter{flex:1 1 auto;min-height:43px}
 .lp-course-top,.lp-course-footer{min-width:0}
-.footer-grid{grid-template-columns:minmax(0,1fr)!important}
+
 .app{display:block!important;width:100%}
 .app>main{width:100%;min-width:0}
 .topbar{padding:10px var(--rv-gutter)!important;gap:8px!important}
@@ -1203,8 +1203,8 @@ html[data-theme] :is(.pl-shell .toast,.verify-status,.review-list-status){
   background:var(--info-soft);color:var(--info);border-color:var(--border-subtle);
 }
 html[data-theme] .pl-header + .pl-hero{border-color:var(--border-subtle)}
-html[data-theme] .pl-shell + footer{background:var(--surface-alt);color:var(--text-muted)}
-html[data-theme] .pl-shell + footer a{color:var(--link)}
+
+
 html[data-theme] :is(.auth-msg.warn,.review-notice.error,.verify-invalid){
   background:var(--warning-soft)!important;color:var(--warning-text)!important;
   border-color:var(--warning-text)!important;
@@ -1663,7 +1663,7 @@ html[data-theme] body[data-responsive-page="preview"] .sample-links a:last-child
   color:var(--text-main)!important;
 }
 html[data-theme] body[data-responsive-page="preview"] .sample-links a:last-child:hover{background:var(--surface-hover)!important}
-html[data-theme] body[data-responsive-page="preview"] .sample-footer{color:var(--text-muted)!important}
+
 html[data-theme] body.auth-page:has(#loginBtn) .auth-layout{
   background:var(--surface)!important;border:1px solid var(--border-subtle)!important;
   box-shadow:var(--shadow-raised);overflow:hidden;
@@ -2291,10 +2291,7 @@ html[data-theme="light"] body .arena-subject-options button.arena-python-launch 
 html[data-theme] body.dlp-course-v29 :is(.dlp-module,.dlp-mastery) .dlp-kicker {
   color:var(--v98-link)!important;-webkit-text-fill-color:currentColor!important;
 }
-html[data-theme] body[data-responsive-page="introduction"] .footer-grid p,
-html[data-theme] body.dlp-course-v29 .footer-grid p {
-  color:#cfdee5!important;-webkit-text-fill-color:currentColor!important;
-}
+
 html[data-theme="light"] body.dlp-course-v29 .three-points span {
   color:#465e6d!important;-webkit-text-fill-color:currentColor!important;
 }

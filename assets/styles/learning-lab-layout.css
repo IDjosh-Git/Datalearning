@@ -121,7 +121,7 @@ body{width:100%;min-width:0;overflow-x:clip}
 :where(.lab-controls >*,.search-row >*){min-width:0}
 :where(.dalp-floating-lab,.dalp-floating-practice){max-width:calc(50% - 14px)!important;width:calc(50% - 14px)!important;bottom:calc(9px + env(safe-area-inset-bottom))!important}
 body:has(.dalp-floating-link){padding-bottom:calc(82px + env(safe-area-inset-bottom))!important}
-footer{padding-bottom:24px}
+
 }
 @media(max-width:380px){
 .nav-toggle{width:42px!important;height:42px!important}

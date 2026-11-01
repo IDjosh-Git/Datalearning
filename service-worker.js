@@ -1,5 +1,5 @@
 /* Serve current published files first; use public cache only when offline. */
-const CACHE='dalp-public-course-links';
+const CACHE='dalp-public-unified-footer-v1';
 const PRIVATE=/(?:^|\/)(?:api|admin|auth|account|progress|reviewer|capstone|certificate|verify|connection-test|sync-test)(?:\/|\.|$)/i;
 const PUBLIC=/\.(?:html|css|js|svg|png|webp|jpg|jpeg|woff2?|csv|md|sqlite)$/i;
 self.addEventListener('install',event=>{event.waitUntil(self.skipWaiting())});

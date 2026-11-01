@@ -124,11 +124,11 @@ body.dlp-course-v29 .course-mastery-question{align-self:start!important;height:a
    This stylesheet is the last course stylesheet, so these rules intentionally
    supersede earlier multi-colour and gradient page treatments. */
 html[data-theme="light"] body.dlp-course-v29 {
-  --course-page-canvas: #f6f8f6;
+  --course-page-canvas: #f5f7fb;
   --course-page-surface: #ffffff;
-  --course-page-outline: #cbdcd1;
-  --course-page-ink: #183b2c;
-  --course-page-muted: #3d594b;
+  --course-page-outline: #d9e1ed;
+  --course-page-ink: #15243a;
+  --course-page-muted: #52627b;
   background: var(--course-page-canvas) !important;
   background-image: none !important;
   color: var(--course-page-ink) !important;
@@ -493,3 +493,128 @@ body{background:#f7f9fa!important}
 @media(max-width:400px){.hero .stats{grid-template-columns:1fr!important}}
 
 .course-intro-minimal{display:flex!important;gap:8px!important;align-items:center!important;flex-wrap:wrap!important;padding:12px 16px!important;margin:12px 0!important;background:#fff!important;border:1px solid #e2e8e7!important;border-radius:12px!important;box-shadow:none!important;font-size:13px!important}.course-intro-minimal a{text-decoration:underline!important}
+
+
+/* Foundation roadmap and course-at-a-glance alignment (Nov 2026).
+   Roadmap scroll arrows were removed from the source. Keep lesson controls and
+   course navigation intact; desktop lessons form a scannable, full-width grid. */
+:root { --foundation-layout-max: 1480px; --foundation-gutter: clamp(16px,2.8vw,46px); }
+body.dlp-course-v29 .cw-intro-nav,
+body.dlp-course-v29 .intro-body,
+body.dlp-course-v29 .intro-hero .wrap,
+body.dlp-course-v29 .intro-underhero {
+  box-sizing: border-box;
+  width: min(calc(100% - 2 * var(--foundation-gutter)), var(--foundation-layout-max)) !important;
+  max-width: var(--foundation-layout-max) !important;
+  margin-inline: auto !important;
+  min-width: 0;
+}
+body.dlp-course-v29 .cw-intro-nav { margin-block: 18px 26px !important; }
+body.dlp-course-v29 .cw-intro-head { max-width: 100%; margin-bottom: 18px; }
+body.dlp-course-v29 .cw-intro-head > h2,
+body.dlp-course-v29 .cw-intro-head > p { max-width: 80ch; text-wrap: pretty; }
+body.dlp-course-v29 .cw-intro-nav .cw-timeline-heading { padding-inline: 0; }
+body.dlp-course-v29 .cw-intro-weekstrip { box-sizing: border-box; width: 100%; min-width: 0; }
+body.dlp-course-v29 .cw-intro-weekstrip .cw-week-chip { min-width: 0; }
+body.dlp-course-v29 .cw-intro-weekstrip .cw-week-chip strong {
+  display: block; -webkit-line-clamp: unset; line-clamp: unset;
+  white-space: normal; overflow: visible; overflow-wrap: anywhere;
+  font-size: clamp(12px,.92vw,14px); line-height: 1.45;
+}
+body.dlp-course-v29 .cw-intro-nav :is(.cw-week-controls,.cw-resources) { min-width: 0; width: 100%; }
+body.dlp-course-v29 .cw-intro-nav .cw-week-controls { gap: clamp(14px,2vw,30px); align-items: end; }
+body.dlp-course-v29 .cw-intro-nav .cw-select-wrap { flex: 1 1 420px; max-width: none; }
+body.dlp-course-v29 .cw-intro-nav .cw-direction { flex: 0 0 auto; }
+body.dlp-course-v29 .cw-intro-nav .cw-resources {
+  grid-template-columns: minmax(0,1.4fr) minmax(235px,.8fr); gap: clamp(12px,2vw,24px);
+  align-items: center; background: var(--ui-paper,#fff); border: 1px solid var(--ui-stroke,#d9e1ed);
+}
+body.dlp-course-v29 .cw-intro-resources .cw-resource-primary,
+body.dlp-course-v29 .cw-intro-resources .cw-resource-side { min-width: 0; }
+body.dlp-course-v29 .cw-intro-resources .cw-resource-side { grid-column: auto; border-top: 0; padding-top: 0; }
+/* The roadmap duplicates the fixed sidebar on the introductory track.
+   Keep original sidebar markup/hooks but display one coherent lesson selector. */
+body.dlp-course-v29.cw-intro-ready .intro-side { display: none !important; }
+body.dlp-course-v29.cw-intro-ready .intro-body { display: block !important; padding-top: 8px; }
+body.dlp-course-v29.cw-intro-ready .intro-lessons { width: 100%; max-width: 100%; min-width: 0; }
+body.dlp-course-v29.cw-intro-ready .intro-lesson {
+  width: 100%; max-width: 100%; box-sizing: border-box;
+  padding: clamp(18px,2.2vw,34px); border-radius: 16px;
+  overflow-wrap: anywhere;
+}
+body.dlp-course-v29.cw-intro-ready .intro-lesson :is(h2,h3,p,li,label) { max-width: 100%; overflow-wrap: break-word; }
+body.dlp-course-v29 .cw-intro-nav :is(.cw-breadcrumb,.cw-timeline-heading,.cw-week-controls,.cw-intro-resources) { max-width: 100%; }
+/* The dynamically generated course summary is part of the same readable grid
+   as the hero and main content, never a full-bleed band with content at the edges. */
+html[data-theme="light"] body.dlp-course-v29 .dalp-quick-guide {
+  box-sizing: border-box !important;
+  width: min(calc(100% - 2 * var(--foundation-gutter)),var(--foundation-layout-max)) !important;
+  max-width: var(--foundation-layout-max) !important;
+  margin: 18px auto 26px !important;
+  padding: clamp(18px,2.4vw,30px) !important;
+  border: 1px solid var(--course-page-outline) !important;
+  border-radius: 16px !important;
+  background: var(--course-page-surface) !important;
+  box-shadow: none !important;
+}
+body.dlp-course-v29 .dalp-quick-guide-intro {
+  display: grid !important;
+  grid-template-columns: minmax(0,1fr) auto;
+  column-gap: clamp(18px,3vw,52px); row-gap: 12px;
+  align-items: start !important;
+}
+body.dlp-course-v29 .dalp-quick-guide-intro > div { min-width: 0; }
+body.dlp-course-v29 .dalp-quick-guide-intro p { max-width: 74ch !important; }
+body.dlp-course-v29 .dalp-quick-guide-count { justify-self: end; align-self: start; max-width: 100%; }
+html[data-theme="light"] body.dlp-course-v29 .dalp-quick-guide-bottom {
+  display: grid !important;
+  grid-template-columns: minmax(0,1fr) auto !important;
+  align-items: end !important; column-gap: clamp(18px,3vw,50px);
+  row-gap: 14px; margin-top: 20px !important;
+}
+body.dlp-course-v29 .dalp-quick-guide-progress { width: 100%; max-width: 640px; }
+body.dlp-course-v29 .dalp-quick-guide-links { min-width: 0; justify-content: flex-end; align-items: center; }
+body.dlp-course-v29 .dalp-quick-link {
+  flex: none; width: auto; text-align: left; padding: 8px 0; min-height: 42px;
+  background: transparent !important; border: 0 !important; border-radius: 0 !important;
+  box-shadow: none !important; text-decoration: underline !important; text-underline-offset: 4px;
+}
+body.dlp-course-v29 .dalp-quick-link:hover { background: transparent !important; box-shadow: none !important; transform: none !important; }
+@media (min-width: 768px) {
+  body.dlp-course-v29 .cw-intro-weekstrip {
+    display: grid !important;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 12px !important;
+    overflow: visible !important; scrollbar-width: none;
+    padding: clamp(12px,1.6vw,20px) !important;
+  }
+  body.dlp-course-v29 .cw-intro-weekstrip .cw-week-chip {
+    box-sizing: border-box; width: 100%; max-width: none !important;
+    flex: none !important; min-height: 86px; height: auto !important;
+    padding: 13px 15px !important; text-align: left;
+  }
+  body.dlp-course-v29 .cw-intro-weekstrip .cw-week-chip.cw-selected { padding: 12px 14px !important; }
+}
+@media (min-width: 1080px) {
+  body.dlp-course-v29 .cw-intro-weekstrip { grid-template-columns: repeat(3,minmax(0,1fr)); }
+}
+@media (min-width: 1560px) {
+  body.dlp-course-v29 .cw-intro-weekstrip { grid-template-columns: repeat(4,minmax(0,1fr)); }
+}
+@media (max-width: 900px) {
+  body.dlp-course-v29 .cw-intro-nav .cw-resources { grid-template-columns: 1fr; }
+  body.dlp-course-v29 .cw-intro-nav .cw-resource-side { border-top: 1px solid var(--ui-stroke,#d9e1ed); padding-top: 12px; }
+  body.dlp-course-v29 .dalp-quick-guide-intro,
+  html[data-theme="light"] body.dlp-course-v29 .dalp-quick-guide-bottom { grid-template-columns: minmax(0,1fr) !important; }
+  body.dlp-course-v29 .dalp-quick-guide-count { justify-self: start; }
+  body.dlp-course-v29 .dalp-quick-guide-links { justify-content: flex-start; }
+}
+@media (max-width: 767px) {
+  body.dlp-course-v29 .cw-intro-nav .cw-timeline-heading { padding-inline: 12px; }
+  body.dlp-course-v29 .cw-intro-weekstrip { max-width: 100%; overflow-x: auto; }
+  body.dlp-course-v29 .cw-intro-nav .cw-week-controls { display: grid; grid-template-columns: 1fr; }
+  body.dlp-course-v29 .cw-intro-nav .cw-direction { width: 100%; }
+  body.dlp-course-v29 .cw-intro-nav .cw-direction button { min-width: 0; white-space: normal; }
+  body.dlp-course-v29 .dalp-quick-guide-links { display: flex; }
+  body.dlp-course-v29 .dalp-quick-link { width: auto; }
+}

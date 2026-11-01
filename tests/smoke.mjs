@@ -11,7 +11,8 @@ for(const p of ['courses/excel.html','courses/sql.html','courses/powerbi.html'])
 const refs=JSON.parse(read('assets/scripts/reference-data.js').replace(/^window.IJ_REFERENCE=/,'').replace(/;\s*$/,''));assert.equal(refs.length,603);for(const r of refs){assert(r.title&&r.code&&r.watch&&r.meaning)}
 for(const item of ['assets/icons/da-logo.svg','assets/styles/home.css','assets/scripts/tutor.js','assets/scripts/reference.js','api/tutor.js','lib/tutor-context.js','downloads/retail_orders.csv','downloads/retail_practice.sqlite'])assert(fs.existsSync(path.join(root,item)),item);
 assert.equal(read('downloads/retail_orders.csv').trim().split(/\r?\n/).length,361);
-assert(read('index.html').includes('esoterikjoshua@gmail.com'));
+assert(read('index.html').includes('assets/scripts/public-footer.js'));
+assert(read('assets/scripts/public-footer.js').includes('mailto:esoterikjoshua@gmail.com'));
 assert(!read('assets/scripts/tutor.js').includes('process.env.OPENAI_API_KEY'));assert(!read('assets/scripts/supabase-config.js').includes('service_role'));
 const req=(method,body)=>({method,body,headers:{host:'example.vercel.app',origin:'https://example.vercel.app','x-forwarded-for':'203.0.113.45'}});
 async function run(r){return await new Promise((resolve,reject)=>{let output='',code,headers={};const res={set statusCode(v){code=v},get statusCode(){return code},setHeader(k,v){headers[k]=v},end(x){output=x;resolve({code,headers,body:JSON.parse(output)})}};Promise.resolve(handler(r,res)).catch(reject)})}

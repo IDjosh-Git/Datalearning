@@ -255,8 +255,8 @@ html[data-theme] :is(.pl-shell .toast,.verify-status,.review-list-status){
   background:var(--info-soft);color:var(--info);border-color:var(--border-subtle);
 }
 html[data-theme] .pl-header + .pl-hero{border-color:var(--border-subtle)}
-html[data-theme] .pl-shell + footer{background:var(--surface-alt);color:var(--text-muted)}
-html[data-theme] .pl-shell + footer a{color:var(--link)}
+
+
 html[data-theme] :is(.auth-msg.warn,.review-notice.error,.verify-invalid){
   background:var(--warning-soft)!important;color:var(--warning-text)!important;
   border-color:var(--warning-text)!important;
@@ -764,7 +764,7 @@ html[data-theme] body[data-responsive-page="preview"] .sample-links a:last-child
   color:var(--text-main)!important;
 }
 html[data-theme] body[data-responsive-page="preview"] .sample-links a:last-child:hover{background:var(--surface-hover)!important}
-html[data-theme] body[data-responsive-page="preview"] .sample-footer{color:var(--text-muted)!important}
+
 
 /* Sign in: old orange/white forced colours violated dark mode and muted supporting copy. */
 html[data-theme] body.auth-page:has(#loginBtn) .auth-layout{
@@ -1066,8 +1066,8 @@ body.dlp97-learning-page .completeBox:disabled,body.dlp97-learning-page [data-in
 .dlp97-course-progress{font-size:12px;color:var(--dlp97-subtle)}
 .dlp97-empty{border:1px dashed var(--dlp97-border);border-radius:15px;background:var(--dlp97-surface);padding:40px 20px;text-align:center}
 .dlp97-empty h2{font-size:20px;margin:0}.dlp97-empty p{color:var(--dlp97-subtle);margin:8px 0 18px}
-.dlp97-catalog-footer{display:flex;justify-content:space-between;align-items:center;gap:18px;padding-top:35px;color:var(--dlp97-subtle);font-size:13px}
-.dlp97-catalog-footer a{color:var(--dlp97-accent);font-weight:800}
+
+
 @media(max-width:1100px){
  /* Course pages already have the workspace header, bottom tabs and a complete
     course list in its More drawer. Keep the v97 sidebar on desktop and on
@@ -1084,7 +1084,7 @@ body.dlp97-learning-page .completeBox:disabled,body.dlp97-learning-page [data-in
  .dlp97-nav-open{overflow:hidden}
  .dlp97-catalog-main{padding-top:19px}
 }
-@media(max-width:720px){.dlp97-cards,.dlp97-guide-metrics{grid-template-columns:1fr}.dlp97-guide-intro{flex-direction:column}.dlp97-course-facts{max-width:none}.dlp97-course-guide{margin:17px auto 24px;width:calc(100% - 22px);padding:17px}.dlp97-outline-row{grid-template-columns:28px minmax(0,1fr);gap:9px}.dlp97-unit-number{width:28px;height:28px}.dlp97-unit-side{grid-column:2;justify-items:start;max-width:none;display:flex;gap:7px;text-align:left;align-items:center}.dlp97-catalog-hero{padding:25px}.dlp97-catalog-footer{display:block}.dlp97-facts{gap:9px}}
+@media(max-width:720px){.dlp97-cards,.dlp97-guide-metrics{grid-template-columns:1fr}.dlp97-guide-intro{flex-direction:column}.dlp97-course-facts{max-width:none}.dlp97-course-guide{margin:17px auto 24px;width:calc(100% - 22px);padding:17px}.dlp97-outline-row{grid-template-columns:28px minmax(0,1fr);gap:9px}.dlp97-unit-number{width:28px;height:28px}.dlp97-unit-side{grid-column:2;justify-items:start;max-width:none;display:flex;gap:7px;text-align:left;align-items:center}.dlp97-catalog-hero{padding:25px}.dlp97-facts{gap:9px}}
 @media(prefers-reduced-motion:reduce){.dlp97-learning-page *, .dlp97-learning-page *::before,.dlp97-learning-page *::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
 /* Keep legacy teaching examples readable on narrow screens without page-wide scrolling. */
 body.dlp97-learning-page{overflow-x:clip}
@@ -1681,10 +1681,7 @@ html[data-theme] body.dlp-course-v29 :is(.dlp-module,.dlp-mastery) .dlp-kicker {
 
 
 /* Introduction course uses its own teaching cards. */
-html[data-theme] body[data-responsive-page="introduction"] .footer-grid p,
-html[data-theme] body.dlp-course-v29 .footer-grid p {
-  color:#cfdee5!important;-webkit-text-fill-color:currentColor!important;
-}
+
 html[data-theme="light"] body.dlp-course-v29 .three-points span {
   color:#465e6d!important;-webkit-text-fill-color:currentColor!important;
 }

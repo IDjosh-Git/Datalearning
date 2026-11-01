@@ -83,8 +83,8 @@ body.dlp97-learning-page .completeBox:disabled,body.dlp97-learning-page [data-in
 .dlp97-empty{border:1px dashed var(--dlp97-border);border-radius:15px;background:var(--dlp97-surface);padding:40px 20px;text-align:center}
 .dlp97-empty h2{font-size:20px;margin:0}
 .dlp97-empty p{color:var(--dlp97-subtle);margin:8px 0 18px}
-.dlp97-catalog-footer{display:flex;justify-content:space-between;align-items:center;gap:18px;padding-top:35px;color:var(--dlp97-subtle);font-size:13px}
-.dlp97-catalog-footer a{color:var(--dlp97-accent);font-weight:800}
+
+
 @media(max-width:1100px){body.dl-workspace.dlp97-learning-page .dlp97-navigation{display:none}
 body.dlp97-learning-page{padding-left:0!important}
 .dlp97-mobile-bar{position:relative;z-index:8990;display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:59px;padding:8px 17px;background:#172f42;color:white;font-size:14px}
@@ -99,7 +99,7 @@ body.dlp97-learning-page{padding-left:0!important}
 @media(max-width:720px){.dlp97-cards{grid-template-columns:1fr}
 .dlp97-course-guide{margin:17px auto 24px;width:calc(100% - 22px);padding:17px}
 .dlp97-catalog-hero{padding:25px}
-.dlp97-catalog-footer{display:block}
+
 .dlp97-facts{gap:9px}}
 @media(prefers-reduced-motion:reduce){.dlp97-learning-page *, .dlp97-learning-page *::before,.dlp97-learning-page *::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
 body.dlp97-learning-page{overflow-x:clip}
@@ -566,10 +566,7 @@ html[data-theme="light"] body .arena-subject-options button.arena-python-launch 
 html[data-theme] body.dlp-course-v29 :is(.dlp-module,.dlp-mastery) .dlp-kicker {
   color:var(--v98-link)!important;-webkit-text-fill-color:currentColor!important;
 }
-html[data-theme] body[data-responsive-page="introduction"] .footer-grid p,
-html[data-theme] body.dlp-course-v29 .footer-grid p {
-  color:#cfdee5!important;-webkit-text-fill-color:currentColor!important;
-}
+
 html[data-theme="light"] body.dlp-course-v29 .three-points span {
   color:#465e6d!important;-webkit-text-fill-color:currentColor!important;
 }

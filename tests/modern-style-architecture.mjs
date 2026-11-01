@@ -15,5 +15,5 @@ for(const page of discoverPages()){
  assert.equal(unique.size,styles.length,`${page.route}: duplicate stylesheet reference`);
 }
 const current=fs.readFileSync(path.join(root,'assets/styles/design-system.css'),'utf8');
-for(const selector of ['.learning-table-scroll','.learning-clarity','.experience-back-top','.dlp97-subject-icon svg','.arena-task-panel.is-collapsed','.dalp-global-header','.lp-studio-cta','footer.footer'])assert(current.includes(selector),`Missing retained functional component: ${selector}`);
+for(const selector of ['.learning-table-scroll','.learning-clarity','.experience-back-top','.dlp97-subject-icon svg','.arena-task-panel.is-collapsed','.dalp-global-header','.lp-studio-cta','.dalp-public-footer'])assert(current.includes(selector),`Missing retained functional component: ${selector}`);
 console.log('PASS modern style architecture: 38 pages, one shared current theme, 0 obsolete stylesheets, retained functional components');

@@ -10,7 +10,8 @@ assert(home.includes('id="ai-progress"') && home.includes('id="ai-progress-text"
 assert(home.includes('>6 courses</span>'),'Course count includes Introduction + five specialists');
 assert(css.includes('.lp-home .lp-course[data-track="ai"]') && css.includes('grid-column:auto'),'AI must have a standard one-column footprint');
 assert(!css.includes('grid-column:span 2'),'AI must not span multiple columns');
-assert(css.includes('.lp-course-cta::after'),'AI homepage card must be fully clickable');
+assert(!css.includes('.lp-home .lp-course[data-track="ai"] .lp-course-cta::after'),'AI course link must not overlay the whole card');
+assert(home.includes('class="dalp-plain-link lp-course-cta" href="courses/ai.html"'), 'AI course must retain its direct, plain-text link');
 assert(account.includes('class="card ai-account-course-card" href="courses/ai.html"'),'My Learning must contain dedicated clickable AI card');
 assert(account.includes('id="aiText"') && account.includes('id="aiBar"'),'My Learning must display AI cloud progress');
 assert(account.includes('successful===6') && account.includes('ai:10'),'My Learning must sync six tracks');

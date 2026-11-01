@@ -20,7 +20,7 @@ const coach=read('assets/scripts/learner-companion.js');
 assert(coach.includes("document.querySelector('.dalp-global-header .dalp-global-nav')"),'Coach must be moved inside shared navigation');
 assert(coach.includes('publicNav.appendChild(launch)'),'Coach must be last navigation action');
 const css=read('assets/styles/design-system.css');
-for(const str of ['--dalp-header-height:58px','body.lp-home .footer','background:#101d33!important','body.lp-home .lp-trust-strip','body .dalp-global-nav .lc-launch','main a[href]:not(.card)'])assert(css.includes(str),`theme must contain ${str}`);
+for(const str of ['--dalp-header-height:58px','.dalp-public-footer','background:#101d33!important','body.lp-home .lp-trust-strip','body .dalp-global-nav .lc-launch','main a[href]:not(.card)'])assert(css.includes(str),`theme must contain ${str}`);
 const logo=read('assets/icons/da-logo.svg');
 assert(logo.includes('viewBox="0 0 96 96"')&&logo.includes('#15243A')&&logo.includes('#FFBD7A'),'Brand mark uses vector dark-slate palette');
 assert(!logo.includes('#176B53'),'Old green logo removed');

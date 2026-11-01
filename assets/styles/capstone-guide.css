@@ -57,14 +57,14 @@ h1 em{font-style:normal;color:var(--mint)}
 .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
 .progress-meta{display:flex;align-items:center;justify-content:space-between;color:#66748c;font-size:11px;font-weight:800;margin:0 0 8px}
 .path{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-.footer{background:#0b1428;color:#afbfda;margin-top:35px}
-.footer-grid{padding:47px 0 26px;display:grid;grid-template-columns:1.25fr .75fr .75fr;gap:35px}
-.footer p{font-size:13px;line-height:1.8;max-width:390px}
-.footer h4{font-size:13px;color:#fff;margin:4px 0 13px;letter-spacing:0}
-.footer a{display:block;color:#b8c8e1;font-size:13px;margin:9px 0}
-.footer a:hover{color:var(--mint)}
-.footer-bottom{border-top:1px solid #293652;padding:19px 0;font-size:12px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
-.footer-bottom a{display:inline;color:#a9dcce}
+
+
+
+
+
+
+
+
 .lead-band{padding:36px 0 0}
 .lead-band .inner{border-radius:24px;padding:30px 35px;background:linear-gradient(115deg,#e7eeff,#e1f8f2);border:1px solid #d2e4ed;display:flex;align-items:center;justify-content:space-between;gap:26px}
 .lead-band h3{font-size:23px;margin:0 0 4px}
@@ -114,7 +114,7 @@ h1 em{font-style:normal;color:var(--mint)}
 .chat-input textarea{min-height:52px;max-height:170px;resize:vertical;flex:1;padding:13px;border-radius:12px;border:1px solid #cbd7e9;min-width:0}
 .chat-input button{background:var(--blue-deep);border:0;color:white;border-radius:11px;font-size:13px;font-weight:900;padding:15px 20px}
 .chat-note{padding:0 20px 16px;color:#71819b;font-size:11px}
-.footer-contact{display:inline-flex!important;gap:8px;align-items:center;color:var(--mint)!important;overflow-wrap:anywhere}
+
 @media(max-width:1000px){.nav-inner{min-height:73px}
 .nav-toggle{display:block}
 .nav-links{display:none;position:absolute;left:0;right:0;top:73px;background:#0c1428;padding:17px max(20px,calc((100vw - 1170px)/2));flex-direction:column;align-items:stretch;border-top:1px solid #293755}
@@ -122,7 +122,7 @@ h1 em{font-style:normal;color:var(--mint)}
 .nav-links a{padding:12px}
 .nav-links a.account-link{margin:4px 0 0}
 .cards{gap:12px}
-.footer-grid{grid-template-columns:1fr 1fr}}
+}
 @media(max-width:720px){.wrap{width:min(100% - 32px,1170px)}
 .hero{padding:47px 0 64px}
 .hero h1{font-size:clamp(39px,9.8vw,58px)}
@@ -133,7 +133,7 @@ h1 em{font-style:normal;color:var(--mint)}
 .section-head{align-items:flex-start;flex-direction:column}
 .cards, .path, .ref-grid{grid-template-columns:1fr}
 .lead-band .inner{align-items:flex-start;flex-direction:column;padding:26px}
-.footer-grid{grid-template-columns:1fr;gap:16px;padding-top:37px}
+
 .search-row{flex-wrap:wrap}
 .search-row input{flex-basis:100%}
 .search-row select{flex:1;max-width:none}
@@ -169,9 +169,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .nav-links a.account-link,.button.primary,.btn.primary{background:var(--brand)!important;color:#fff!important}
 .nav-links a.account-link:hover,.button.primary:hover,.btn.primary:hover{background:#3035b0!important}
 .wordmark small{color:#cfdef1}
-.footer{background:#172233}
-.footer a:hover{color:#f2bdce}
-.footer-contact{color:#cfdef1!important}
+
+
+
 .card, .ref-card, .search-area, .chat-panel, .chat-side{background:var(--surface);color:var(--ink);border-color:var(--line);box-shadow:var(--shadow)}
 .button,.btn{border-radius:12px}
 .button.blue,.chat-input button{background:var(--brand);color:white}
@@ -354,7 +354,7 @@ body:has(#loginBtn) button.secondary,body:has(#loginBtn) .btn.secondary{backgrou
 .instructor-access-button{display:inline-flex;align-items:center;justify-content:center;min-width:190px;padding:12px 16px;border-radius:11px;background:var(--navy);color:#fff!important;font-size:12px;font-weight:900;text-decoration:none;white-space:nowrap}
 .instructor-access-button:hover{transform:translateY(-1px);background:#263750}
 .instructor-access-note{margin:8px 3px 0;color:var(--muted);font-size:10px;text-align:right}
-.instructor-access-panel+.footer{margin-top:0}
+
 @media(max-width:680px){.instructor-access-card{align-items:stretch;flex-direction:column}
 .instructor-access-button{width:100%}
 .instructor-access-note{text-align:left}

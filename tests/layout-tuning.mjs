@@ -18,7 +18,7 @@ for(const page of discoverPages()){
 assert.equal((home.match(/class="[^"]*\blp-studio-cta\b[^"]*"/g)||[]).length,6,'Six course studio links must be retained');
 assert.match(styles,/\.lp-studio-cta/,'Standalone studio links must have accessible visited styling');
 assert.match(styles,/background:transparent!important/,'Studio links must not look like cards');
-assert.match(styles,/footer\.footer/,'Shared support footer must be styled');
+assert.match(styles,/\.dalp-public-footer/,'Shared support footer must be styled');
 assert.match(read('assets/styles/design-system.css'),/background:#101010!important/,'Contact Support must remain black');
 assert.match(styles,/max-width:1800px!important/,'Arena needs a wider desktop canvas');
 assert.match(styles,/\.ide-content:has\(>\.arena-task-panel\.is-collapsed\)/,'Collapsed brief must release desktop column space');
