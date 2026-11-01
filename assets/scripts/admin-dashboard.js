@@ -2,10 +2,17 @@
    No privileged credentials or mutation operations appear in the browser. */
 (function(){'use strict';
  const $=id=>document.getElementById(id);
- const COURSE={introduction:['Introduction',8,'01'],excel:['Excel',10,'XL'],sql:['SQL',10,'SQL'],powerbi:['Power BI',10,'BI'],ai:['AI Integration',10,'AI']};
+ const COURSE={introduction:['Introduction',8,'01'],excel:['Excel',10,'XL'],sql:['SQL',10,'SQL'],powerbi:['Power BI',10,'BI'],ai:['AI Integration',10,'AI'],python:['Python',10,'PY']};
  const PENDING=new Set(['submitted','processing','review_error','needs_manual_review']);
  let profiles=[],progress=[],quizzes=[],submissions=[],certificates=[],filtered=[],page=0,busy=false;
  let progressByUser=new Map(),quizByUser=new Map(),subByUser=new Map(),certByUser=new Map(),profilesById=new Map();
+ const isWithin=(value)=>{if(!value)return false;const v=String(value).slice(0,10),from=$('adminFrom')?.value,to=$('adminTo')?.value;return (!from||v>=from)&&(!to||v<=to)};
+ const selectedPeriod=()=>!!($('adminFrom')?.value||$('adminTo')?.value);
+ const courseEvents=(slug)=>{
+  const ids=new Set();for(const [records,field] of [[progress,'updated_at'],[quizzes,'submitted_at'],[submissions,'created_at']]){
+   for(const r of records){if(r.course_slug===slug&&r.user_id!==window.DALP_AUTH_USER?.id&&isWithin(r[field]))ids.add(r.user_id)}
+  }return ids;
+ };
  const pageSize=12,db=()=>window.ZAH_DB?.client;
  const esc=v=>String(v??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
  const date=v=>v?new Date(v).toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'}):'—';
@@ -40,8 +47,13 @@
   $('adminUpdated').textContent='Updated '+new Date().toLocaleTimeString(undefined,{hour:'numeric',minute:'2-digit'});
  }
  function paintInsights(){
-  const attention=$('adminAttention'),activity=$('adminActivity'),courses=$('adminCourseCards');
-  attention.replaceChildren();activity.replaceChildren();courses.replaceChildren();
+  const attention=$('adminAttention'),activity=$('adminActivity'),courses=$('adminCourseCards'),chart=$('adminActivityChart');
+  attention.replaceChildren();activity.replaceChildren();courses.replaceChildren();chart.replaceChildren();
+  const from=$('adminFrom').value,to=$('adminTo').value;
+  $('adminPeriod').textContent=from||to?'Activity period: '+(from||'earliest available')+' to '+(to||'latest available'):'All recorded activity';
+  const counts=Object.keys(COURSE).map(slug=>({slug,count:courseEvents(slug).size}));
+  const max=Math.max(1,...counts.map(c=>c.count));
+  for(const {slug,count} of counts){const el=document.createElement('div');el.className='ac-chart-row';el.setAttribute('role','listitem');const label=COURSE[slug][0];el.innerHTML='<span>'+esc(label)+'</span><div class="ac-chart-track" aria-hidden="true"><span style="width:'+Math.round(count/max*100)+'%"></span></div><strong>'+count+' learner'+(count===1?'':'s')+'</strong>';el.setAttribute('aria-label',label+': '+count+' active learners in selected period');chart.append(el)}
   const outstanding=submissions.filter(s=>PENDING.has(s.status)&&s.user_id!==window.DALP_AUTH_USER?.id).sort((a,b)=>String(a.created_at||'').localeCompare(String(b.created_at||'')));
   if(!outstanding.length) attention.innerHTML='<div class="ac-task"><span class="ac-task-badge">✓</span><div class="ac-task-copy"><strong>Your assessment queue is clear</strong><small>New capstone submissions will appear here when received.</small></div></div>';
   outstanding.slice(0,4).forEach(s=>{
@@ -55,9 +67,9 @@
   if(!recent.length)activity.innerHTML='<p class="ac-empty">No activity recorded yet. New learner events will appear here.</p>';
   recent.forEach(r=>{const p=profilesById.get(r.id),el=document.createElement('div');el.className='ac-event';el.innerHTML='<span class="ac-event-icon">↗</span><div class="ac-event-copy"><strong>'+esc(r.type)+'</strong><small>'+esc(p?.full_name||p?.email||'Learner')+' · '+esc(r.detail)+' · '+esc(time(r.when))+'</small></div>';activity.append(el)});
   for(const [slug,[label,total,abbr]] of Object.entries(COURSE)){
-   const owners=new Set([...progress.filter(r=>r.course_slug===slug).map(r=>r.user_id),...quizzes.filter(r=>r.course_slug===slug).map(r=>r.user_id),...submissions.filter(r=>r.course_slug===slug).map(r=>r.user_id)]);
+   const owners=selectedPeriod()?courseEvents(slug):new Set([...progress.filter(r=>r.course_slug===slug).map(r=>r.user_id),...quizzes.filter(r=>r.course_slug===slug).map(r=>r.user_id),...submissions.filter(r=>r.course_slug===slug).map(r=>r.user_id)]);
    owners.delete(window.DALP_AUTH_USER?.id);
-   const units=progress.filter(r=>r.course_slug===slug&&r.completed&&r.user_id!==window.DALP_AUTH_USER?.id).length;
+   const units=progress.filter(r=>r.course_slug===slug&&r.completed&&owners.has(r.user_id)&&(!selectedPeriod()||isWithin(r.completed_at||r.updated_at))).length;
    const average=owners.size?Math.min(100,Math.round(units/(total*owners.size)*100)):0;
    const card=document.createElement('article');card.className='ac-course-card';
    card.innerHTML='<span class="ac-course-symbol">'+abbr+'</span><h3>'+esc(label)+'</h3><small>'+owners.size+' learner'+(owners.size===1?'':'s')+' started</small><strong>'+average+'%</strong><small>Average units completed</small><div class="ac-course-bar"><span style="width:'+average+'%"></span></div><button type="button" data-course="'+slug+'">View enrolled learners →</button>';
@@ -71,8 +83,9 @@
    const s=profileStats(p);
    const match=!q||[p.full_name,p.email].some(v=>String(v||'').toLowerCase().includes(q));
    const st=status==='all'||(status==='active'&&s.active)||(status==='new'&&!s.active)||(status==='completed'&&s.completedPath);
-   const co=course==='all'||s.courseSet.has(course);
-   return match&&st&&co;
+   const co=course==='all'||(selectedPeriod()?courseEvents(course).has(p.user_id):s.courseSet.has(course));
+   const inPeriod=!selectedPeriod()||[p.joined_at,...rowsFor(p.user_id).map(r=>r.updated_at),...(quizByUser.get(p.user_id)||[]).map(r=>r.submitted_at),...(subByUser.get(p.user_id)||[]).map(r=>r.created_at)].some(isWithin);
+   return match&&st&&co&&inPeriod;
   }).sort((a,b)=>String(b.joined_at||'').localeCompare(String(a.joined_at||'')));
  }
  function render(){
@@ -134,6 +147,8 @@
   const {data:admin,error:roleError}=await db().from('site_admins').select('user_id').eq('user_id',data.user.id).maybeSingle();
   if(roleError||!admin){notice('Administrator authorisation failed. Learner details will not be shown.',true);return;}
   $('adminWorkspace').hidden=false;
+  const refreshDates=()=>{const from=$('adminFrom').value,to=$('adminTo').value;if(from&&to&&from>to){notice('Start date must be before end date.',true);return;}$('adminNotice').hidden=true;page=0;paintInsights();render()};
+  $('adminFrom').addEventListener('change',refreshDates);$('adminTo').addEventListener('change',refreshDates);$('adminClearDates').addEventListener('click',()=>{$('adminFrom').value='';$('adminTo').value='';refreshDates()});
   $('adminSearch').addEventListener('input',()=>{page=0;render()});$('adminStatus').addEventListener('change',()=>{page=0;render()});$('adminCourse').addEventListener('change',()=>{page=0;render()});
   $('adminReload').addEventListener('click',load);$('adminExport').addEventListener('click',exportCSV);
   $('adminPrevPage').addEventListener('click',()=>{page--;render()});$('adminNextPage').addEventListener('click',()=>{page++;render()});

@@ -473,3 +473,46 @@ img,video { height:auto; }
 }
 @media(prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; } }
 
+
+/* Site-wide accessibility and course-card refinement, Nov 2026. */
+/* The studio action is an unboxed text link, not a second solid button. */
+html body .lp-course .lp-studio-cta,
+html[data-theme] body .lp-course .lp-studio-cta,
+html body a.lp-studio-cta {
+  display:inline-flex!important; align-items:center!important; justify-content:center!important;
+  background:transparent!important; background-image:none!important;
+  border:0!important; box-shadow:none!important; backdrop-filter:none!important;
+  color:#174e42!important; -webkit-text-fill-color:#174e42!important;
+  text-decoration:underline!important; text-underline-offset:3px!important;
+  font-weight:750!important; white-space:normal!important; line-height:1.4!important;
+  padding:10px 6px!important; min-height:44px!important; max-width:100%!important;
+}
+html body .lp-course .lp-studio-cta:hover,
+html[data-theme] body .lp-course .lp-studio-cta:hover {
+  background:transparent!important; background-image:none!important;
+  color:#10392f!important; -webkit-text-fill-color:#10392f!important;
+  box-shadow:none!important; transform:none!important;
+}
+/* Black support action with legible foreground in all themes. */
+html body .footer-bottom a[href^="mailto:"],
+html[data-theme] body footer.footer .footer-bottom a[href^="mailto:"] {
+  background:#000!important; background-image:none!important; border:1px solid #777!important;
+  border-radius:9px!important; padding:9px 15px!important; min-height:44px!important;
+  color:#fff!important; -webkit-text-fill-color:#fff!important;
+  text-decoration:none!important; font-weight:700!important;
+}
+html body .footer-bottom a[href^="mailto:"]:hover,
+html[data-theme] body footer.footer .footer-bottom a[href^="mailto:"]:hover {
+ background:#171717!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
+ border-color:#aaa!important;
+}
+/* Card content visibility and stable wrapping across viewport sizes. */
+html body .lp-course {min-width:0!important;overflow-wrap:break-word!important;}
+html body .lp-course :is(h3,p,li,.lp-course-outcome,.lp-progress-meta) {overflow-wrap:anywhere;}
+html body .lp-course h3 {color:#172b29!important;-webkit-text-fill-color:#172b29!important;}
+html body .lp-course :is(p,li,.lp-course-outcome span,.lp-progress-meta) {color:#384d4b!important;-webkit-text-fill-color:#384d4b!important;}
+html body .lp-course .lp-course-outcome strong {color:#183c36!important;-webkit-text-fill-color:#183c36!important;}
+html body .lp-course .lp-course-tag {color:#174e42!important;-webkit-text-fill-color:#174e42!important;}
+html body .lp-course :is(.lp-course-cta,.lp-studio-cta):focus-visible,
+html body .footer-bottom a[href^="mailto:"]:focus-visible {outline:3px solid #edaf39!important;outline-offset:3px!important;}
+@media(max-width:540px){html body .lp-course-footer{min-width:0!important;}html body .lp-course .lp-studio-cta{width:100%!important;}}

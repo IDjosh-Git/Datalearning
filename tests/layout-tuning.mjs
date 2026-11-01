@@ -12,13 +12,13 @@ const styles=read('assets/styles/layout-tuning.css');
 for(const page of discoverPages()){
  const guide=/-roadmap\.html$|-extension\.html$/.test(page.route);
  const expected=guide?'assets/styles/course-guide-pages.css':page.route.startsWith('courses/')?'assets/styles/course-page-improvements.css':'assets/styles/layout-tuning.css';
- assert.equal(page.links.at(-1)?.path,expected,`${page.route}: missing final style layer`);
+ assert.equal(page.links.at(-2)?.path,expected,`${page.route}: missing final style layer`);
 }
 assert.equal((home.match(/class="lp-studio-cta"/g)||[]).length,6,'Six course studio links must be retained');
 assert.match(styles,/\.lp-course-footer a\.lp-studio-cta:visited/,'Standalone studio links must have accessible visited styling');
 assert.match(styles,/background:transparent!important/,'Studio links must not look like cards');
 assert.match(styles,/footer\.footer/,'Shared support footer must be styled');
-assert.match(styles,/background:#183b35!important/,'Support footer must be dark evergreen');
+assert.match(read('assets/styles/design-system.css'),/background:#101010!important/,'Contact Support must remain black');
 assert.match(styles,/max-width:1800px!important/,'Arena needs a wider desktop canvas');
 assert.match(styles,/\.ide-content:has\(>\.arena-task-panel\.is-collapsed\)/,'Collapsed brief must release desktop column space');
 assert.match(styles,/@media\(max-width:767px\)/,'Mobile layout protection is required');

@@ -8,7 +8,8 @@ assertReferences(assert,pages);
 for(const page of pages){
  const guide=/-roadmap\.html$|-extension\.html$/.test(page.route);
  const expected=guide?'assets/styles/course-guide-pages.css':page.route.startsWith('courses/')?'assets/styles/course-page-improvements.css':'assets/styles/layout-tuning.css';
- assert.equal(page.links.at(-1)?.path,expected,page.route+' must apply its final stylesheet last');
+ assert.equal(page.links.at(-2)?.path,expected,page.route+' must apply its final stylesheet last');
+ assert.equal(page.links.at(-1)?.path,'assets/styles/design-system.css',page.route+' unified visual stylesheet missing');
  assert(page.links.every(x=>!/[?&]v=/.test(x.href)),page.route+' contains old cache revision links');
  assert(page.scripts.every(x=>!/[?&]v=/.test(x.href)),page.route+' contains old script revisions');
 }

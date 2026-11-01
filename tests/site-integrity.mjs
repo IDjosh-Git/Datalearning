@@ -16,8 +16,9 @@ for(const page of pages){
  assert(!/prefers-color-scheme:\s*dark|theme-toggle|theme-control-v\d+\.js/.test(page.html),`${page.route}: obsolete theme feature`);
  const resourcePage=/^courses\/(?:introduction|excel|sql|powerbi|python|ai)-(?:roadmap|extension)\.html$/.test(page.route);
  const expectedCss=resourcePage?'assets/styles/course-guide-pages.css':page.route.startsWith('courses/')?'assets/styles/course-page-improvements.css':'assets/styles/layout-tuning.css';
- assert.equal(page.links.at(-1)?.path,expectedCss,`${page.route}: expected final presentation layer ${expectedCss}`);
- assert(page.links.length<=(resourcePage?2:page.route.startsWith('courses/')?9:8),`${page.route}: redundant CSS loading; found ${page.links.length} layers`);
+ assert.equal(page.links.at(-2)?.path,expectedCss,`${page.route}: expected preceding presentation layer ${expectedCss}`);
+ assert.equal(page.links.at(-1)?.path,'assets/styles/design-system.css',`${page.route}: unified visual system should load last`);
+ assert(page.links.length<=(resourcePage?3:page.route.startsWith('courses/')?10:9),`${page.route}: redundant CSS loading; found ${page.links.length} layers`);
  for(const m of page.html.matchAll(/<(a|img|source|iframe|video|link|script)\b[^>]*?(?:href|src)\s*=\s*(["'])(.*?)\2/gi)){
   const [_,kind,,ref]=m;
   if(/^(?:https?:|#|data:|mailto:|tel:|javascript:|\/\/)/i.test(ref))continue;
@@ -32,7 +33,7 @@ for(const page of pages){
  css+=page.links.length;js+=page.scripts.length;
 }
 const styles=fs.readdirSync(path.join(ROOT,'assets/styles')).filter(x=>x.endsWith('.css'));
-assert(styles.length<=45,'Legacy CSS files were not consolidated');
+assert(styles.length<=46,'Legacy CSS files were not consolidated');
 for(const cssFile of styles){
  const content=fs.readFileSync(path.join(ROOT,'assets/styles',cssFile),'utf8');
  assert(!/\[data-theme=["']?dark["']?\]|prefers-color-scheme:\s*dark/.test(content),`${cssFile}: dark-mode styling`);
