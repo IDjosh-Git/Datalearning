@@ -1,58 +1,37 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light" class="light" style="color-scheme: light"><head>
-<link rel="icon" type="image/svg+xml" href="assets/icons/da-logo.svg">
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#f7faf7">
+
+<html class="light" data-theme="light" lang="en" style="color-scheme: light"><head>
+<link href="assets/icons/da-logo.svg" rel="icon" type="image/svg+xml"/>
+<meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><meta content="#f7faf7" name="theme-color"/>
 <title>Practice Studio | Data Analysis Learning Path</title>
-<meta name="description" content="Focus on one practical data-analysis skill at a time with guided examples, hands-on questions and explanations.">
+<meta content="Focus on one practical data-analysis skill at a time with guided examples, hands-on questions and explanations." name="description"/>
 <script></script>
-<link rel="stylesheet" href="assets/styles/studio.css" />
-
-
-
-
+<link href="assets/styles/studio.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0"></script>
 <script src="assets/scripts/supabase-config.js"></script><script src="assets/scripts/supabase-client.js"></script>
-<script defer src="assets/scripts/server-session.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link rel="stylesheet" href="assets/styles/site-refresh.css"/><link rel="stylesheet" href="assets/styles/experience.css" />
-<link rel="stylesheet" href="assets/styles/layout-tuning.css"/>
-<link rel="stylesheet" href="assets/styles/design-system.css" />
-</head><body class="ps-page" data-responsive-page="studio">
-<main class="ps-main">
- <div class="ps-heading"><div class="ps-eyebrow"><span class="ps-dot"></span> YOUR LEARNING TOOLS <span aria-hidden="true"> / </span> PRACTICE STUDIO</div><div class="ps-title-row"><div><h1>Practice <em>Studio.</em></h1><p>Choose a subject, practise one skill and check the explanation. Your weekly lessons stay separate and easy to find.</p></div><a class="ps-outline-action" href="index.html#courses">← All courses</a></div></div>
- <div class="ps-callout" role="note"><span class="ps-callout-icon" aria-hidden="true">✓</span><div><strong>Interactive practice, in one dedicated space</strong><p>Worked examples, short challenges and self-checks for every course. <a href="#ps-workspace" class="ps-jump">Start with a skill ↓</a></p><details class="ps-offline-details"><summary>How does practising offline work?</summary><p>Your answers are saved on this device for your signed-in account. You can continue an already open exercise without a connection, but opening the site, signing in and loading new pages may need internet access. Please note: this is not a downloadable offline course.</p></details></div><button id="ps-restore" type="button" hidden>Restore older device practice</button></div>
- <nav class="ps-course-nav" aria-label="Choose a subject" id="ps-course-nav"></nav>
- <button type="button" id="ps-browse-mobile" class="ps-mobile-browse" aria-controls="ps-rail" aria-expanded="false"><span class="ps-browse-icon" aria-hidden="true">☷</span><span id="ps-browse-label">Browse skills</span><span aria-hidden="true">⌄</span></button>
- <div class="ps-layout" id="ps-workspace">
-  <aside class="ps-rail" id="ps-rail" aria-label="Skills in this subject"><div class="ps-rail-head"><div><span class="ps-overline">SKILL PATH</span><h2>Choose an exercise</h2><small id="ps-list-count">Loading…</small></div><strong class="ps-total" id="ps-skill-total">0</strong></div>
-   <div class="ps-rail-controls"><label class="ps-search-label" for="ps-search">Search skills</label><input id="ps-search" type="search" autocomplete="off" placeholder="Search a topic or example…"><label class="ps-filter-label" for="ps-filter">Show</label><select id="ps-filter"><option value="all">All skills</option><option value="todo">Still to practise</option><option value="done">Completed skills</option></select></div>
-   <div class="ps-skill-list" id="ps-skill-list"></div>
-   <div class="ps-rail-foot">Choose any skill. Your course lessons are always one click away.</div>
-  </aside>
-  <section class="ps-focus" aria-labelledby="ps-skill-title"><div class="ps-focus-top"><span class="ps-overline" id="ps-course-label">Select a skill</span><div class="ps-progress"><strong id="ps-progress-total">0 / 12</strong><div class="ps-progress-track"><div id="ps-progress-fill"></div></div><span id="ps-progress-label">0% of skills completed</span></div></div>
-  <div id="ps-focus-area"><h2 id="ps-skill-title">Getting your practice ready…</h2><p class="ps-subtitle" id="ps-skill-description"></p>
-   <div class="ps-example"><div class="ps-block-label"><span>01</span> LEARN BY EXAMPLE</div><h3>See how it works</h3><p id="ps-example"></p></div>
-   <div class="ps-task"><div class="ps-block-label"><span>02</span> YOUR TURN</div><h3>Try it yourself</h3><p id="ps-prompt"></p><label for="ps-answer">Your answer or working</label><textarea id="ps-answer" rows="6" spellcheck="true" placeholder="Write your approach, formula, query or explanation here…"></textarea><div class="ps-task-actions"><button type="button" class="ps-secondary" id="ps-reveal">Check explanation</button><button type="button" class="ps-primary" id="ps-complete">Mark skill complete</button></div><div id="ps-solution" class="ps-solution" hidden><h4>Suggested explanation</h4><p id="ps-solution-copy"></p><h4>A common mistake to avoid</h4><p id="ps-pitfall"></p><small>These exercises are self-assessed and do not replace your course quizzes or graded assignments.</small></div></div></div>
-   <div class="ps-footnav"><button type="button" class="ps-secondary" id="ps-prev">← Previous skill</button><a href="courses/introduction.html" id="ps-back-course">Open course lessons ↗</a><button type="button" class="ps-primary" id="ps-next">Next skill →</button></div><p id="ps-status" role="status" aria-live="polite" class="ps-status"></p>
-  </section>
- </div>
- <div class="ps-more"><div><span class="ps-overline">NEXT STEP</span><h2>Keep learning beyond practice</h2><p>Return to your weekly lessons, or explore guided exercises and reference materials.</p></div><a href="learning-lab.html">Explore the Learning Lab →</a><a href="practice.html">Open the Practice Arena →</a></div>
+<script defer="" src="assets/scripts/server-session.js"></script>
+<link href="assets/styles/design-system.css" rel="stylesheet"/>
+</link></head><body class="ps-page" data-responsive-page="studio"><a class="dalp-skip-link" href="#main-content">Skip to main content</a><header class="dalp-global-header"><div class="dalp-global-inner"><a aria-label="Data Analysis Learning Path homepage" class="dalp-global-brand" href="index.html"><span aria-hidden="true" class="dalp-brand-symbol">▥</span><span>Data Analysis <strong>Learning Path</strong></span></a><button aria-controls="dalpGlobalNav" aria-expanded="false" aria-label="Open navigation" class="dalp-global-toggle" type="button">☰</button><nav aria-label="Primary navigation" class="dalp-global-nav" id="dalpGlobalNav"><a href="index.html">Dashboard</a><a href="catalog.html">Learn</a><a href="courses/ai.html">AI Course</a><a href="prompt-library.html">AI Prompt Library</a><a href="reference.html">Reference Library</a><a href="capstone.html">Capstone Studio</a><a href="tutor.html">AI Tutor</a><a class="account-link" href="account.html">My Learning</a></nav></div></header>
+<main id="main-content" class="ps-main">
+<div class="ps-heading"><div class="ps-eyebrow"><span class="ps-dot"></span> YOUR LEARNING TOOLS <span aria-hidden="true"> / </span> PRACTICE STUDIO</div><div class="ps-title-row"><div><h1>Practice <em>Studio.</em></h1><p>Choose a subject, practise one skill and check the explanation. Your weekly lessons stay separate and easy to find.</p></div><a class="ps-outline-action" href="index.html#courses">← All courses</a></div></div>
+<div class="ps-callout" role="note"><span aria-hidden="true" class="ps-callout-icon">✓</span><div><strong>Interactive practice, in one dedicated space</strong><p>Worked examples, short challenges and self-checks for every course. <a class="ps-jump" href="#ps-workspace">Start with a skill ↓</a></p><details class="ps-offline-details"><summary>How does practising offline work?</summary><p>Your answers are saved on this device for your signed-in account. You can continue an already open exercise without a connection, but opening the site, signing in and loading new pages may need internet access. Please note: this is not a downloadable offline course.</p></details></div><button hidden="" id="ps-restore" type="button">Restore older device practice</button></div>
+<nav aria-label="Choose a subject" class="ps-course-nav" id="ps-course-nav"></nav>
+<button aria-controls="ps-rail" aria-expanded="false" class="ps-mobile-browse" id="ps-browse-mobile" type="button"><span aria-hidden="true" class="ps-browse-icon">☷</span><span id="ps-browse-label">Browse skills</span><span aria-hidden="true">⌄</span></button>
+<div class="ps-layout" id="ps-workspace">
+<aside aria-label="Skills in this subject" class="ps-rail" id="ps-rail"><div class="ps-rail-head"><div><span class="ps-overline">SKILL PATH</span><h2>Choose an exercise</h2><small id="ps-list-count">Loading…</small></div><strong class="ps-total" id="ps-skill-total">0</strong></div>
+<div class="ps-rail-controls"><label class="ps-search-label" for="ps-search">Search skills</label><input autocomplete="off" id="ps-search" placeholder="Search a topic or example…" type="search"/><label class="ps-filter-label" for="ps-filter">Show</label><select id="ps-filter"><option value="all">All skills</option><option value="todo">Still to practise</option><option value="done">Completed skills</option></select></div>
+<div class="ps-skill-list" id="ps-skill-list"></div>
+<div class="ps-rail-foot">Choose any skill. Your course lessons are always one click away.</div>
+</aside>
+<section aria-labelledby="ps-skill-title" class="ps-focus"><div class="ps-focus-top"><span class="ps-overline" id="ps-course-label">Select a skill</span><div class="ps-progress"><strong id="ps-progress-total">0 / 12</strong><div class="ps-progress-track"><div id="ps-progress-fill"></div></div><span id="ps-progress-label">0% of skills completed</span></div></div>
+<div id="ps-focus-area"><h2 id="ps-skill-title">Getting your practice ready…</h2><p class="ps-subtitle" id="ps-skill-description"></p>
+<div class="ps-example"><div class="ps-block-label"><span>01</span> LEARN BY EXAMPLE</div><h3>See how it works</h3><p id="ps-example"></p></div>
+<div class="ps-task"><div class="ps-block-label"><span>02</span> YOUR TURN</div><h3>Try it yourself</h3><p id="ps-prompt"></p><label for="ps-answer">Your answer or working</label><textarea id="ps-answer" placeholder="Write your approach, formula, query or explanation here…" rows="6" spellcheck="true"></textarea><div class="ps-task-actions"><button class="ps-secondary" id="ps-reveal" type="button">Check explanation</button><button class="ps-primary" id="ps-complete" type="button">Mark skill complete</button></div><div class="ps-solution" hidden="" id="ps-solution"><h4>Suggested explanation</h4><p id="ps-solution-copy"></p><h4>A common mistake to avoid</h4><p id="ps-pitfall"></p><small>These exercises are self-assessed and do not replace your course quizzes or graded assignments.</small></div></div></div>
+<div class="ps-footnav"><button class="ps-secondary" id="ps-prev" type="button">← Previous skill</button><a href="courses/introduction.html" id="ps-back-course" class="dalp-plain-link">Open course lessons ↗</a><button class="ps-primary" id="ps-next" type="button">Next skill →</button></div><p aria-live="polite" class="ps-status" id="ps-status" role="status"></p>
+</section>
+</div>
+<div class="ps-more"><div><span class="ps-overline">NEXT STEP</span><h2>Keep learning beyond practice</h2><p>Return to your weekly lessons, or explore guided exercises and reference materials.</p></div><a href="learning-lab.html">Explore the Learning Lab →</a><a href="practice.html">Open the Practice Arena →</a></div>
 </main>
-<script defer src="assets/scripts/course-studio-data.js"></script><script defer src="assets/scripts/course-studio.js"></script><script defer src="assets/scripts/workspace-shell.js"></script><script defer src="assets/scripts/responsive.js"></script>
-
-<script defer src="assets/scripts/accessibility.js"></script><script defer src="assets/scripts/embedded-palette-sync.js"></script><script defer src="assets/scripts/learning-experience.js"></script><script defer src="assets/scripts/experience.js"></script>
-</body></html>
+<script defer="" src="assets/scripts/course-studio-data.js"></script><script defer="" src="assets/scripts/course-studio.js"></script><script defer="" src="assets/scripts/responsive.js"></script>
+<script defer="" src="assets/scripts/accessibility.js"></script><script defer="" src="assets/scripts/embedded-palette-sync.js"></script><script defer="" src="assets/scripts/learning-experience.js"></script><script defer="" src="assets/scripts/experience.js"></script>
+<script defer="" src="assets/scripts/public-navigation.js"></script></body></html>

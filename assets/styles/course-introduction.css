@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap");
 /* Auth-first entry and fail-closed page guard. Loaded before page content. */
 html.dalp-auth-checking body > *:not(#dalp-auth-gate){display:none!important}
 html.dalp-auth-checking,html.dalp-auth-checking body{min-height:100%;background:#f3f6f9}
@@ -4484,7 +4483,7 @@ html[data-theme="light"] body .project :is(h1,h2,h3,h4,p,li,strong,span){color:#
   --syntax-comment:#5b6f7f;--syntax-function:#74468d;
 }
 
-/* Deliberate subject identity; teal remains the action colour in every course. */
+/* Deliberate subject identity; slate blue remains the accent colour in every course. */
 .lp-course[data-track="intro"],body[data-course="introduction"]{--track:var(--track-foundations)}
 .lp-course[data-track="excel"],body[data-course="excel"]{--track:var(--track-excel)}
 .lp-course[data-track="sql"],body[data-course="sql"]{--track:var(--track-sql)}
@@ -4799,7 +4798,7 @@ html[data-theme] :is(.alert.warning,.quiz-warning,.status-warning){
 html[data-theme] :is(.alert.info,.status-info){
   background:var(--info-soft)!important;color:var(--info)!important;border-color:var(--info)!important;
 }
-/* Progress is teal throughout; track identity belongs to labels and imagery. */
+/* Progress uses slate blue throughout; track identity belongs to labels and imagery. */
 html[data-theme] :is(.progress-fill,.progress-bar>div,.bar>.fill,.ac-course-bar>span,
  .dl-track-meter>span,.dl-home-meter>span,.ip-progress-fill,.cap-score-row>div>span){
   background:var(--primary)!important;
@@ -4950,7 +4949,7 @@ html[data-theme] :is(.verify-valid,.review-notice.success){
   border-color:var(--positive)!important;
 }
 html[data-theme] body.auth-page{background:var(--background)!important;color:var(--text-main)!important}
-/* Respect the native course timeline semantics: teal for action, track hues for identity. */
+/* Respect the native course timeline semantics: slate blue for status, track hues for identity. */
 html[data-theme] .lp-demo-chart .lp-demo-bar{background:var(--chart-1)!important}
 html[data-theme] :is(.dl-analytics-chart,.dashboard-chart,.chart-card){
   --chart-gridline:var(--chart-grid);--chart-label:var(--chart-axis);
@@ -5063,7 +5062,7 @@ html[data-theme] :is(.lp-context-chip.active,.lp-context-chip[aria-current="page
   border-color:var(--learning-accent)!important;
   color:var(--link)!important;
 }
-/* Controls: navy action, teal selection/progress, course colour only for identity. */
+/* Controls: navy action, slate-blue selection/progress, course colour only for identity. */
 html[data-theme] :is(.lp-primary,.lp-studio-cta,.lp-course-cta,.lp-pathfinder-submit,
   .dl-resume-cta,.dlp-next-primary,.btn.primary,.button.primary,
   .tutor-send,.tutor-submit,.cap-primary,.ac-primary,.ps-primary,.hub-primary,
@@ -5638,7 +5637,7 @@ html[data-theme] body.dlp-course-v29 .intro-hero h1 em{
 html{scroll-padding-top:74px}
 body.dlp97-learning-page{
  --dlp97-page:#f5f7f6;--dlp97-ink:#20313d;--dlp97-subtle:#516775;--dlp97-surface:#fff;--dlp97-soft:#ebf3f1;
- --dlp97-border:#d4dfdf;--dlp97-teal:#126a6c;--dlp97-focus:#eaab4a;--dlp97-panel:#f7faf9;
+ --dlp97-border:#d4dfdf;--dlp97-accent:var(--ui-accent);--dlp97-focus:#eaab4a;--dlp97-panel:#f7faf9;
  margin-left:0!important;padding-left:248px!important;max-width:none;
 }
 
@@ -5659,7 +5658,7 @@ body.dlp97-catalog-page{font-family:Inter,system-ui,-apple-system,BlinkMacSystem
 .dlp97-nav-label{color:#aec8d3;font-weight:800;font-size:10px;letter-spacing:.13em;margin:9px 12px 6px}
 .dlp97-primary-nav>a,.dlp97-subject-nav>a{display:flex;align-items:center;gap:10px;border-radius:10px;padding:10px 12px;min-height:43px;transition:background .14s ease,color .14s ease}
 .dlp97-side nav a:hover{background:#2a5061;color:#fff}
-.dlp97-side nav a.is-active,.dlp97-side nav a[aria-current="page"]{background:#126a6c;color:white;box-shadow:inset 3px 0 #bcebe1}
+.dlp97-side nav a.is-active,.dlp97-side nav a[aria-current="page"]{background:var(--ui-accent);color:white;box-shadow:inset 3px 0 #bcebe1}
 .dlp97-locked{font-size:12px;opacity:.75;margin-left:auto}
 .dlp97-subject-icon{flex:none;width:30px;height:30px;background:#f0f6f5;border-radius:9px;display:grid;place-items:center}
 .dlp97-subject-nav>a span:last-child{min-width:0;display:grid;gap:1px}
@@ -5670,7 +5669,7 @@ body.dlp97-catalog-page{font-family:Inter,system-ui,-apple-system,BlinkMacSystem
 .dlp97-side-bottom>a,.dlp97-side-bottom button{display:flex;align-items:center;justify-content:center;text-align:center;font:inherit;min-height:43px;border:1px solid #72aba9;border-radius:9px;padding:8px 10px;background:#244c5c;color:#f2ffff;font-weight:700;font-size:12px;cursor:pointer;text-decoration:none}
 .dlp97-side-bottom button:hover,.dlp97-side-bottom>a:hover{background:#316677}
 .dlp97-mobile-bar,.dlp97-close,.dlp97-backdrop{display:none}
-.dlp97-skip{position:fixed;top:-140px;left:10px;z-index:999999;padding:12px 18px;background:#fff;color:#113f49;border:2px solid #126a6c;border-radius:10px;font-weight:800}
+.dlp97-skip{position:fixed;top:-140px;left:10px;z-index:999999;padding:12px 18px;background:#fff;color:#113f49;border:2px solid var(--ui-accent);border-radius:10px;font-weight:800}
 .dlp97-skip:focus{top:10px}
 .dlp97-learning-page :is(a,button,input,select,textarea):focus-visible{outline:3px solid var(--dlp97-focus)!important;outline-offset:3px!important}
 .dlp97-learning-page [hidden]{display:none!important}
@@ -5680,7 +5679,7 @@ body.dlp97-catalog-page{font-family:Inter,system-ui,-apple-system,BlinkMacSystem
 .dlp97-course-guide{box-sizing:border-box;clear:both;width:min(100% - 32px,1120px);margin:26px auto 34px;padding:clamp(18px,3vw,30px);border:1px solid var(--dlp97-border);border-radius:22px;background:var(--dlp97-surface);color:var(--dlp97-ink);box-shadow:0 10px 36px #0925360d;font:inherit;line-height:1.55}
 .dlp97-course-guide :is(h2,h3,h4,p){color:var(--dlp97-ink);text-shadow:none}
 .dlp97-guide-intro{display:flex;align-items:start;justify-content:space-between;gap:20px}
-.dlp97-eyebrow{color:var(--dlp97-teal);font-size:11px;letter-spacing:.14em;font-weight:850}
+.dlp97-eyebrow{color:var(--dlp97-accent);font-size:11px;letter-spacing:.14em;font-weight:850}
 .dlp97-guide-intro h2{font-size:clamp(22px,2.8vw,34px)!important;line-height:1.17;margin:6px 0 12px}
 .dlp97-guide-intro p{max-width:670px;margin:0;color:var(--dlp97-subtle)!important;font-size:15px}
 .dlp97-course-facts{display:flex;flex-wrap:wrap;gap:7px;max-width:240px}
@@ -5697,22 +5696,22 @@ body.dlp97-catalog-page{font-family:Inter,system-ui,-apple-system,BlinkMacSystem
 .dlp97-primary,.dlp97-secondary{box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;padding:11px 18px;min-height:45px;border-radius:10px;font-size:13px;font-weight:850;text-decoration:none!important;line-height:1.3}
 .dlp97-primary{color:#fff!important;background:#106b70!important;border:1px solid #106b70!important}
 .dlp97-primary:hover{background:#074f55!important}
-.dlp97-secondary{color:var(--dlp97-teal)!important;border:1px solid var(--dlp97-border);background:var(--dlp97-panel)}
-.dlp97-secondary:hover{border-color:var(--dlp97-teal)}
+.dlp97-secondary{color:var(--dlp97-accent)!important;border:1px solid var(--dlp97-border);background:var(--dlp97-panel)}
+.dlp97-secondary:hover{border-color:var(--dlp97-accent)}
 .dlp97-outline-title{font-size:23px;margin:0 0 6px}.dlp97-outline-intro{font-size:14px;color:var(--dlp97-subtle)!important;margin:0 0 20px}
 .dlp97-outline{display:grid;gap:7px}
 .dlp97-outline h4{font-size:12px;text-transform:uppercase;letter-spacing:.06em;margin:21px 0 4px;padding-bottom:6px;border-bottom:1px solid var(--dlp97-border);color:var(--dlp97-subtle)}
 .dlp97-outline-row{box-sizing:border-box;display:grid;grid-template-columns:37px minmax(0,1fr) auto;gap:12px;align-items:center;min-width:0;border:1px solid var(--dlp97-border);border-radius:11px;padding:12px;background:var(--dlp97-surface);color:var(--dlp97-ink)!important;text-decoration:none!important}
-.dlp97-outline-row:hover{background:var(--dlp97-soft);border-color:var(--dlp97-teal)}
-.dlp97-outline-row.is-next{border-color:var(--dlp97-teal);background:var(--dlp97-soft)}
-.dlp97-unit-number{display:grid;place-items:center;width:34px;height:34px;background:var(--dlp97-soft);color:var(--dlp97-teal);border-radius:10px;font-size:12px;font-weight:850}
+.dlp97-outline-row:hover{background:var(--dlp97-soft);border-color:var(--dlp97-accent)}
+.dlp97-outline-row.is-next{border-color:var(--dlp97-accent);background:var(--dlp97-soft)}
+.dlp97-unit-number{display:grid;place-items:center;width:34px;height:34px;background:var(--dlp97-soft);color:var(--dlp97-accent);border-radius:10px;font-size:12px;font-weight:850}
 .dlp97-unit-main{display:grid;min-width:0;gap:4px}
 .dlp97-unit-main strong{font-size:14px;color:var(--dlp97-ink);line-height:1.34}
 .dlp97-unit-main small{font-size:12px;color:var(--dlp97-subtle);font-weight:450;line-height:1.4}
 .dlp97-unit-side{display:grid;justify-items:end;text-align:right;gap:5px;max-width:150px}
 .dlp97-unit-time{font-size:11px;color:var(--dlp97-subtle)}
 .dlp97-unit-status{font-size:11px;color:var(--dlp97-ink);font-weight:850;border-radius:99px;padding:4px 8px;background:var(--dlp97-panel);border:1px solid var(--dlp97-border)}
-.dlp97-outline-row.is-completed .dlp97-unit-status{color:var(--dlp97-teal);background:var(--dlp97-soft)}
+.dlp97-outline-row.is-completed .dlp97-unit-status{color:var(--dlp97-accent);background:var(--dlp97-soft)}
 .dlp97-guide-note{color:var(--dlp97-subtle)!important;font-size:13px;margin:20px 0 0}
 body.dlp97-learning-page .completeBox:disabled,body.dlp97-learning-page [data-intro-check]:disabled{cursor:not-allowed;opacity:.62}
 /* Standalone public catalog. */
@@ -5736,7 +5735,7 @@ body.dlp97-learning-page .completeBox:disabled,body.dlp97-learning-page [data-in
 .dlp97-card{min-width:0;display:flex;flex-direction:column;gap:10px;background:var(--dlp97-surface);border:1px solid var(--dlp97-border);border-radius:15px;padding:clamp(19px,2.5vw,27px);color:var(--dlp97-ink)}
 .dlp97-card-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .dlp97-card-head img{background:#eff6f4;border-radius:12px;padding:6px;box-sizing:content-box}
-.dlp97-category{background:var(--dlp97-soft);color:var(--dlp97-teal);font-size:11px;padding:5px 9px;border-radius:99px;font-weight:800}
+.dlp97-category{background:var(--dlp97-soft);color:var(--dlp97-accent);font-size:11px;padding:5px 9px;border-radius:99px;font-weight:800}
 .dlp97-card h2{font-size:clamp(19px,2vw,24px);line-height:1.2;letter-spacing:-.025em;margin:3px 0}
 .dlp97-card p{color:var(--dlp97-subtle);margin:0;font-size:14px}
 .dlp97-facts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:8px 0}
@@ -5751,7 +5750,7 @@ body.dlp97-learning-page .completeBox:disabled,body.dlp97-learning-page [data-in
 .dlp97-empty{border:1px dashed var(--dlp97-border);border-radius:15px;background:var(--dlp97-surface);padding:40px 20px;text-align:center}
 .dlp97-empty h2{font-size:20px;margin:0}.dlp97-empty p{color:var(--dlp97-subtle);margin:8px 0 18px}
 .dlp97-catalog-footer{display:flex;justify-content:space-between;align-items:center;gap:18px;padding-top:35px;color:var(--dlp97-subtle);font-size:13px}
-.dlp97-catalog-footer a{color:var(--dlp97-teal);font-weight:800}
+.dlp97-catalog-footer a{color:var(--dlp97-accent);font-weight:800}
 @media(max-width:1100px){
  /* Course pages already have the workspace header, bottom tabs and a complete
     course list in its More drawer. Keep the v97 sidebar on desktop and on
@@ -5780,7 +5779,7 @@ body.dlp97-learning-page .dlp97-table-scroll table{margin-bottom:0}
 .dlp97-activity-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:5px}
 .dlp97-activity-tags em{font-style:normal;font-weight:700;font-size:10px;padding:4px 7px;border:1px solid var(--dlp97-border);border-radius:999px;color:var(--dlp97-subtle);background:var(--dlp97-panel)}
 .dlp97-intro-check{margin-top:16px;padding:12px 16px;border:1px solid var(--dlp97-border);border-radius:9px;background:var(--dlp97-panel)}
-.dlp97-intro-check a{font-size:13px;font-weight:800;color:var(--dlp97-teal);text-decoration:underline}
+.dlp97-intro-check a{font-size:13px;font-weight:800;color:var(--dlp97-accent);text-decoration:underline}
 
 /* v100: on phones keep the Subject label below the search input. Prevent the
    default flex wrap from leaving a stray label alongside a nearly full input. */
@@ -6039,7 +6038,7 @@ body.dlp97-learning-page {
   --dlp97-surface:var(--surface);
   --dlp97-soft:var(--learning-soft);
   --dlp97-border:var(--border-subtle);
-  --dlp97-teal:var(--link);
+  --dlp97-accent:var(--ui-accent);
   --dlp97-panel:var(--surface-alt);
 }
 html[data-theme] body.dlp97-learning-page .dlp97-side {

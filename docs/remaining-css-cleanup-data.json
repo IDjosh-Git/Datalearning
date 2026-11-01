@@ -1,0 +1,196 @@
+[
+  {
+    "stylesheet": "home.css",
+    "before_bytes": 287464,
+    "after_bytes": 233986,
+    "examined": 2623,
+    "orphan_rules": 356,
+    "orphan_selector_parts": 101,
+    "empty_at_rules": 8,
+    "duplicate_rules": 13
+  },
+  {
+    "stylesheet": "home-refinements.css",
+    "before_bytes": 142329,
+    "after_bytes": 123175,
+    "examined": 893,
+    "orphan_rules": 66,
+    "empty_at_rules": 2,
+    "orphan_selector_parts": 2,
+    "duplicate_rules": 4
+  },
+  {
+    "stylesheet": "catalog.css",
+    "before_bytes": 45672,
+    "after_bytes": 36288,
+    "examined": 315,
+    "orphan_rules": 48,
+    "orphan_selector_parts": 2,
+    "empty_at_rules": 1
+  },
+  {
+    "stylesheet": "studio.css",
+    "before_bytes": 305983,
+    "after_bytes": 255809,
+    "examined": 2294,
+    "orphan_rules": 221,
+    "orphan_selector_parts": 50,
+    "empty_at_rules": 9,
+    "duplicate_rules": 8
+  },
+  {
+    "stylesheet": "capstone.css",
+    "before_bytes": 295630,
+    "after_bytes": 237887,
+    "examined": 2718,
+    "orphan_rules": 397,
+    "orphan_selector_parts": 101,
+    "empty_at_rules": 8,
+    "duplicate_rules": 13
+  },
+  {
+    "stylesheet": "capstone-layout.css",
+    "before_bytes": 122749,
+    "after_bytes": 108776,
+    "examined": 721,
+    "orphan_rules": 27,
+    "empty_at_rules": 2,
+    "duplicate_rules": 4
+  },
+  {
+    "stylesheet": "capstone-guide.css",
+    "before_bytes": 46613,
+    "after_bytes": 37319,
+    "examined": 510,
+    "orphan_rules": 103,
+    "orphan_selector_parts": 8
+  },
+  {
+    "stylesheet": "capstone-guide-layout.css",
+    "before_bytes": 184741,
+    "after_bytes": 160276,
+    "examined": 1342,
+    "orphan_selector_parts": 20,
+    "orphan_rules": 91,
+    "empty_at_rules": 3,
+    "duplicate_rules": 4
+  },
+  {
+    "stylesheet": "preview-foundation.css",
+    "before_bytes": 126320,
+    "after_bytes": 103040,
+    "examined": 1282,
+    "orphan_rules": 185,
+    "orphan_selector_parts": 28,
+    "empty_at_rules": 2,
+    "duplicate_rules": 1
+  },
+  {
+    "stylesheet": "preview-layout.css",
+    "before_bytes": 105034,
+    "after_bytes": 94525,
+    "examined": 570,
+    "orphan_rules": 9,
+    "empty_at_rules": 1,
+    "duplicate_rules": 4
+  },
+  {
+    "stylesheet": "account-foundation.css",
+    "before_bytes": 15823,
+    "after_bytes": 10187,
+    "examined": 192,
+    "orphan_rules": 61,
+    "orphan_selector_parts": 38,
+    "empty_at_rules": 1
+  },
+  {
+    "stylesheet": "account-layout.css",
+    "before_bytes": 366749,
+    "after_bytes": 309786,
+    "examined": 2855,
+    "orphan_selector_parts": 80,
+    "orphan_rules": 260,
+    "empty_at_rules": 9,
+    "duplicate_rules": 18
+  },
+  {
+    "stylesheet": "auth.css",
+    "before_bytes": 383873,
+    "after_bytes": 326758,
+    "examined": 3053,
+    "orphan_rules": 261,
+    "orphan_selector_parts": 91,
+    "empty_at_rules": 9,
+    "duplicate_rules": 18
+  },
+  {
+    "stylesheet": "admin.css",
+    "before_bytes": 378186,
+    "after_bytes": 314830,
+    "examined": 3062,
+    "orphan_rules": 353,
+    "orphan_selector_parts": 67,
+    "empty_at_rules": 9,
+    "duplicate_rules": 14
+  },
+  {
+    "stylesheet": "progress.css",
+    "before_bytes": 432834,
+    "after_bytes": 362908,
+    "examined": 3647,
+    "orphan_rules": 406,
+    "orphan_selector_parts": 102,
+    "empty_at_rules": 10,
+    "duplicate_rules": 19
+  },
+  {
+    "stylesheet": "reviewer.css",
+    "before_bytes": 434895,
+    "after_bytes": 365040,
+    "examined": 3659,
+    "orphan_rules": 406,
+    "orphan_selector_parts": 102,
+    "empty_at_rules": 10,
+    "duplicate_rules": 19
+  },
+  {
+    "stylesheet": "certificate.css",
+    "before_bytes": 321560,
+    "after_bytes": 267288,
+    "examined": 2471,
+    "orphan_rules": 280,
+    "orphan_selector_parts": 46,
+    "empty_at_rules": 8,
+    "duplicate_rules": 9
+  },
+  {
+    "stylesheet": "connection-test-layout.css",
+    "before_bytes": 374447,
+    "after_bytes": 316736,
+    "examined": 2962,
+    "orphan_rules": 274,
+    "orphan_selector_parts": 111,
+    "empty_at_rules": 9,
+    "duplicate_rules": 18
+  },
+  {
+    "stylesheet": "sync-test-layout.css",
+    "before_bytes": 368388,
+    "after_bytes": 312848,
+    "examined": 2901,
+    "orphan_selector_parts": 93,
+    "orphan_rules": 252,
+    "empty_at_rules": 9,
+    "duplicate_rules": 18
+  },
+  {
+    "stylesheet": "verify.css",
+    "before_bytes": 344603,
+    "after_bytes": 289325,
+    "examined": 2672,
+    "orphan_rules": 281,
+    "orphan_selector_parts": 66,
+    "empty_at_rules": 8,
+    "duplicate_rules": 12
+  }
+]

@@ -26,10 +26,10 @@ for(const course of ['introduction','excel','sql','powerbi','python','ai']){
   }
   tables++;
  }
- assert.match(html,/assets\/styles\/experience\.css/,course+' missing shared responsive presentation');
+ assert.match(html,/assets\/styles\/design-system\.css/,course+' missing shared responsive presentation');
  assert.match(html,/assets\/scripts\/experience\.js/,course+' missing accessible navigation enhancements');
 }
 assert.equal(tables,58);assert.equal(examples,50);
-const stylesheet=fs.readFileSync(path.join(ROOT,'assets/styles/experience.css'),'utf8');
+const stylesheet=fs.readFileSync(path.join(ROOT,'assets/styles/design-system.css'),'utf8');
 for(const term of ['prefers-reduced-motion:reduce','forced-colors:active','@media(max-width:680px)','@media(max-width:900px)','learning-table-scroll'])assert(stylesheet.includes(term),term+' missing');
 console.log('PASS teaching quality: 58 semantic tables, 174 explained concepts, 50 guided practice and verification panels, keyboard scrolling, reduced-motion support.');

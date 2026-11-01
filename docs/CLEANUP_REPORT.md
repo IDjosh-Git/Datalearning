@@ -1,3 +1,5 @@
+> Historical design notes. Styling instructions below are superseded by `docs/CURRENT_STYLE_SYSTEM.md`.
+
 # Project cleanup and consolidation report
 
 **Scope:** Clean-up of the previous redesigned website. Production filenames and main directory names now have no release-version suffixes.

@@ -1,0 +1,56 @@
+{
+  "practice": {
+    "removed_rules": 1218,
+    "removed_bytes": 118985,
+    "removed_empty_groups": 33,
+    "duplicate_rules_removed": 20,
+    "original_bytes": 568559,
+    "final_bytes": 412468,
+    "duplicated_intro_sections_removed": 1,
+    "empty_script_removed": 1
+  },
+  "tutor": {
+    "removed_rules": 1190,
+    "removed_bytes": 114518,
+    "removed_empty_groups": 32,
+    "duplicate_rules_removed": 14,
+    "original_bytes": 415297,
+    "final_bytes": 271082
+  },
+  "reference": {
+    "removed_rules": 1194,
+    "removed_bytes": 115684,
+    "removed_empty_groups": 32,
+    "duplicate_rules_removed": 14,
+    "original_bytes": 396244,
+    "final_bytes": 250904
+  },
+  "prompt-library": {
+    "removed_rules": 1007,
+    "removed_bytes": 100583,
+    "removed_empty_groups": 31,
+    "duplicate_rules_removed": 13,
+    "original_bytes": 373503,
+    "final_bytes": 244325
+  },
+  "learning-lab": {
+    "embedded_style_bytes_removed": 1248,
+    "inline_css_moved_to": "assets/styles/learning-lab-layout.css"
+  },
+  "learning-lab-foundation": {
+    "removed_rules": 400,
+    "removed_bytes": 34502,
+    "removed_empty_groups": 9,
+    "duplicate_rules_removed": 0,
+    "original_bytes": 63384,
+    "final_bytes": 26347
+  },
+  "learning-lab-layout": {
+    "removed_rules": 784,
+    "removed_bytes": 79846,
+    "removed_empty_groups": 23,
+    "duplicate_rules_removed": 9,
+    "original_bytes": 306244,
+    "final_bytes": 200817
+  }
+}

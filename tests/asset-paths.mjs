@@ -26,12 +26,12 @@ for(const f of ['courses/excel.html','courses/sql.html','courses/powerbi.html','
 }
 assert.doesNotMatch(read('practice.html'),/<img[^>]*src=\"https:\/\/cdn\.(?:simpleicons\.org|jsdelivr\.net)/,'Arena logos must load from local icons');
 assert.doesNotMatch(read('assets/scripts/arena-ide.js'),/<img[^>]*src=\"https:\/\/cdn\.(?:simpleicons\.org|jsdelivr\.net)/,'IDE logos must load from local icons');
-const css=read('assets/styles/layout-tuning.css');
+const css=read('assets/styles/design-system.css');
 assert.match(css,/\.dlp97-subject-icon svg/,'inline navigation icons need fixed sizing');
 assert.match(css,/\.dlp90-practice-actions > a:not\(\.dlp90-arena-cta\)/,'studio link should be unboxed');
 assert.match(css,/\.arena-task-panel\.is-collapsed/,'details panel needs a collapsed state');
 const navigation=read('assets/scripts/learning-catalog.js');
 assert.match(navigation,/const navIcon=name=>.*dlp97-icon-mark|const navIcon=name=>`<span/, 'Navigation monogram marks missing');
-assert.match(read('assets/styles/experience.css'),/\.dlp97-icon-mark/, 'Navigation icons need deterministic sizing');
+assert.match(read('assets/styles/design-system.css'),/\.dlp97-icon-mark/, 'Navigation icons need deterministic sizing');
 assert.match(navigation,/dalp-quick-guide/, 'Course guide should use compact quick links');
 console.log('PASS embedded course icons, shipped SVGs, navigation sizing, and icon-safe links');

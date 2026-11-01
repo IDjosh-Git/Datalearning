@@ -13,25 +13,28 @@ This is a multi-page static application with serverless API routes. Its `build` 
 
 ## Project layout
 
+The canonical route and access inventory is in [`docs/SITE_ROUTE_MANIFEST.json`](docs/SITE_ROUTE_MANIFEST.json). The public **Dashboard** (`index.html`) and protected administrator dashboard (`admin.html`) are different routes. Public course content is browseable without an account; saving personal progress requires sign-in.
+
+
 | Path | Contents |
 | --- | --- |
 | `index.html`, root `*.html` | Public and authenticated website pages |
 | `courses/` | Six teaching tracks and their routes |
-| `assets/styles/` | Compiled page-specific styling, shared access CSS and final `site-refresh.css` plus the new `experience.css` learning and accessibility layer |
+| `assets/styles/` | Current shared `design-system.css` and necessary page-specific course/layout bundles; obsolete site-wide styling removed |
 | `assets/scripts/` | Browser code, local exercises, progress, and navigation |
 | `assets/icons/` | Brand and learning-track icons |
 | `downloads/` | Learner downloads and practice datasets |
 | `curriculum/` | Current curriculum source data and regeneration utilities |
 | `api/`, `lib/`, `middleware.js` | Serverless tutor, session verification, and access controls |
 | `database/migrations/` | Database setup and migrations (server-side only) |
-| `docs/` | Current setup guidance and cleanup report |
+| `docs/` | Current architecture, route map, setup guidance and historical cleanup reports (see `docs/README.md`) |
 | `tests/` | Active automated checks; no retired release test scripts |
 
-The page-specific CSS files are page-oriented compatibility bundles. They replace over 120 individually loaded, version-suffixed stylesheets and preserve their cascade order, including splits at embedded page styles. The final shared light-only base is in `assets/styles/site-refresh.css`; `assets/styles/experience.css` supplies the shared learning experience; the final per-page `layout-tuning.css` and `course-page-improvements.css` layers refine individual layouts. Standalone learning guides use `course-guide-pages.css`. Avoid restoring versioned CSS bundles.
+The page-specific CSS files are page-oriented compatibility bundles. They replace over 120 individually loaded, version-suffixed stylesheets and preserve their cascade order, including splits at embedded page styles. The current, authoritative shared visual theme and learning-experience styles are in `assets/styles/design-system.css`. The older global themes `site-refresh.css`, `experience.css`, and `layout-tuning.css` were deleted; the functional `course-page-improvements.css` remains scoped to interactive lessons. Standalone learning guides use `course-guide-pages.css`. Avoid restoring versioned CSS bundles.
 
 ## Learning and interface improvements
 
-The 26 original website routes retain the shared `experience.css` and `experience.js` enhancement layer, and 12 additional linked course-resource pages have their own lightweight responsive stylesheet. The six course routes include 58 accessible concept tables (three examples per unit) and all 50 specialist modules now have guided practice prompts with learner-revealed verification and pitfall explanations. The original quizzes, project grading and progress logic remain unchanged. Motion honours reduced-motion preferences and the course tables support horizontal scrolling and keyboard focus on smaller viewports.
+The 26 original website routes retain the shared `design-system.css` styling and `experience.js` enhancement script, and 12 additional linked course-resource pages have their own lightweight responsive stylesheet. The six course routes include 58 accessible concept tables (three examples per unit) and all 50 specialist modules now have guided practice prompts with learner-revealed verification and pitfall explanations. The original quizzes, project grading and progress logic remain unchanged. Motion honours reduced-motion preferences and the course tables support horizontal scrolling and keyboard focus on smaller viewports.
 
 
 ## Roadmaps, curriculum extensions and mastery checkpoints
@@ -69,7 +72,7 @@ npm run verify:deployment
 
 **Validation limit:** The automatic tests check local URLs, source syntax, course and interactive logic with mocks, offline exercises, authorization and layout rules. Real sign-in, database synchronization, AI provider requests and browser interaction must be tested in a configured staging environment with test accounts.
 
-Further details: [`docs/CLEANUP_REPORT.md`](docs/CLEANUP_REPORT.md) and [`docs/FRONTEND_AND_CURRICULUM_HANDOFF.md`](docs/FRONTEND_AND_CURRICULUM_HANDOFF.md).
+Start with the [current organization audit and route map](docs/SITE_ORGANIZATION_AUDIT.md), [documentation index](docs/README.md) and [current styling guide](docs/CURRENT_STYLE_SYSTEM.md). Prior cleanup/handoff notes are historical references.
 
 ## Course roadmap navigation and live deployment
 
@@ -79,4 +82,4 @@ Excel, SQL, Power BI and Python keep the week navigation in an expandable **Brow
 
 Vercel deploys this site from the linked GitHub repository. **Replacing a ZIP in a local folder does not update production**: extract this archive at the GitHub repository root, commit and push all changed files to `main`, then confirm the new production deployment uses that new commit. Keep `index.html`, `vercel.json`, `service-worker.js`, `assets/` and `courses/` at the repository root. The Vercel output directory is `.`. Course HTML is served with `Cache-Control: no-store`.
 
-To verify the new release, open `https://datalearning.vercel.app/courses/excel.html` and look for the pale-green **Course resources** bar above the title. If it is missing after a READY deployment, confirm the deployment's commit SHA is the one containing this change.
+To verify the new release, open `https://datalearning.vercel.app/courses/excel.html` and look for the **Course resources** links above the title. If it is missing after a READY deployment, confirm the deployment's commit SHA is the one containing this change.

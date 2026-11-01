@@ -1,13 +1,13 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-const css=fs.readFileSync('assets/styles/course-page-improvements.css','utf8');
+const css=fs.readFileSync('assets/styles/course-shared-responsiveness.css','utf8');
 const js=fs.readFileSync('assets/scripts/course-checkpoints.js','utf8');
 const navigation=fs.readFileSync('assets/scripts/learning-catalog.js','utf8');
 assert(!navigation.includes('dlp97-course-resources'), 'Shared sidebar must not create a second roadmap menu');
 const courses=['introduction','excel','sql','powerbi','python','ai'];
 for(const slug of courses){
  const html=fs.readFileSync(`courses/${slug}.html`,'utf8');
- assert.match(html,/course-page-improvements\.css/,`${slug}: final shared course design must load`);
+ assert.match(html,slug==='introduction'?/course-page-improvements\.css/:/course-shared-responsiveness\.css/,`${slug}: final shared course design must load`);
  assert.match(html,/course-checkpoints\.js/,`${slug}: mastery questions must be generated`);
  assert.equal((html.match(new RegExp(`href="${slug}-roadmap\\.html"`, 'g'))||[]).length,1,`${slug}: the course must show exactly one roadmap link`);
  assert.match(html,new RegExp(`href="${slug}-roadmap\\.html"`),`${slug}: standalone roadmap must remain linked`);

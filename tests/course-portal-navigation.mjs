@@ -29,7 +29,7 @@ assert(!nav.includes('<img alt="" src="${uri('), 'Navigation brand still depends
 assert(!nav.includes('dalpIconSvg'), 'Old duplicate icon insertion must be removed');
 assert(!nav.includes('dlp97-course-resources'), 'Duplicate course resource links must not be injected into the sidebar');
 assert(!nav.includes("course+'-roadmap.html'"), 'Sidebar should not produce duplicate roadmap links');
-const css=read('assets/styles/experience.css');
+const css=read('assets/styles/design-system.css');
 assert(css.includes('.dlp97-icon-mark'), 'Navigation icon styles must load on every course and catalog page');
 assert(read('assets/styles/course-page-improvements.css').includes('.course-portal-links'), 'Resource links must have visible shared styling');
 console.log('PASS visible course links, standalone resource pages, collapsed lesson lists and reliable navigation icons across six tracks');

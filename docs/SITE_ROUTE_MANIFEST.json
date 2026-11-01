@@ -1,0 +1,55 @@
+{
+  "description": "Static route inventory and access organization. Do not use this list as an authorization policy; server middleware and database RLS remain authoritative.",
+  "categories": {
+    "public_pages": [
+      "index.html",
+      "catalog.html",
+      "preview.html",
+      "reference.html",
+      "prompt-library.html",
+      "tutor.html",
+      "learning-lab.html",
+      "practice.html",
+      "studio.html",
+      "capstone.html",
+      "capstone-guide.html",
+      "verify.html",
+      "auth.html"
+    ],
+    "course_players": [
+      "courses/introduction.html",
+      "courses/excel.html",
+      "courses/sql.html",
+      "courses/powerbi.html",
+      "courses/python.html",
+      "courses/ai.html"
+    ],
+    "course_guides": [
+      "courses/introduction-roadmap.html",
+      "courses/introduction-extension.html",
+      "courses/excel-roadmap.html",
+      "courses/excel-extension.html",
+      "courses/sql-roadmap.html",
+      "courses/sql-extension.html",
+      "courses/powerbi-roadmap.html",
+      "courses/powerbi-extension.html",
+      "courses/python-roadmap.html",
+      "courses/python-extension.html",
+      "courses/ai-roadmap.html",
+      "courses/ai-extension.html"
+    ],
+    "learner_account": [
+      "account.html",
+      "certificate.html"
+    ],
+    "admin_only": [
+      "admin.html",
+      "progress.html",
+      "reviewer.html"
+    ],
+    "admin_diagnostics": [
+      "connection-test.html",
+      "sync-test.html"
+    ]
+  }
+}

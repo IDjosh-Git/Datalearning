@@ -16,8 +16,8 @@ for(const page of pages){
   queryCount++;
   continue;
  }
- assert(page.html.includes('site-refresh.css'),`${page.route}: final light styling missing`);
- const compiled=page.links.filter(l=>l.local && !['assets/styles/site-refresh.css','assets/styles/experience.css','assets/styles/layout-tuning.css','assets/styles/design-system.css'].includes(l.path));
+ assert(page.html.includes('design-system.css'),`${page.route}: final light styling missing`);
+ const compiled=page.links.filter(l=>l.local && !['assets/styles/design-system.css'].includes(l.path));
  assert(compiled.length>=1 && compiled.length<=6,`${page.route}: expected compact page CSS bundles`);
  const styles=compiled.map(l=>fs.readFileSync(path.join(root,l.path),'utf8')).join('\n');
  assert(/@media\s*\(/.test(styles),`${page.route}: no responsive CSS present`);
@@ -25,7 +25,7 @@ for(const page of pages){
  queryCount+=(styles.match(/@media\s*\(/g)||[]).length;
  assert(!/prefers-color-scheme\s*:\s*dark/.test(styles),`${page.route}: stale dark-mode media query`);
  if(page.route.startsWith('courses/')){
-  assert(page.html.includes('workspace-shell.js'),`${page.route}: accessible mobile workspace navigation missing`);
+  assert(page.html.includes('public-navigation.js'),`${page.route}: accessible mobile workspace navigation missing`);
   assert(styles.includes('.sidebar')||styles.includes('.dlp97-navigation'),`${page.route}: course navigation CSS missing`);
  }
 }

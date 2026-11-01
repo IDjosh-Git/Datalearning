@@ -1,3 +1,5 @@
+> Historical design notes. Styling instructions below are superseded by `docs/CURRENT_STYLE_SYSTEM.md`.
+
 # Frontend and curriculum enhancement — handoff
 
 ## Scope
@@ -42,4 +44,4 @@ Likewise, a configured staging deployment is required to exercise actual Supabas
 
 ## Maintenance guidance
 
-Use `assets/styles/experience.css` for shared presentation refinements, `assets/scripts/experience.js` for non-business-logic enhancement, and the individual `courses/*.html` pages to edit teaching prose. Keep quizzes and completion/assessment logic separate from formative notes. Run `npm run verify:deployment` after further edits.
+For current shared presentation changes, use `assets/styles/design-system.css` (the former `experience.css` has been deleted); `assets/scripts/experience.js` for non-business-logic enhancement, and the individual `courses/*.html` pages to edit teaching prose. Keep quizzes and completion/assessment logic separate from formative notes. Run `npm run verify:deployment` after further edits.
