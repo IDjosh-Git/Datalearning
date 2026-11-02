@@ -145,7 +145,19 @@ body[data-course] .sidebar .nav-link.active,body[data-course] .sidebar .nav-link
 body[data-course] .sidebar .nav-link.is-complete::after{content:"✓ Done";font-size:10px;white-space:nowrap;color:#29476b;background:#eaf0f8;border-radius:5px;padding:2px 5px;margin-left:auto;align-self:center}
 body[data-course] .sidebar .nav-link.active:not(.is-complete)::after{content:"Current";font-size:10px;color:#3035a8;margin-left:auto;align-self:center}
 body[data-course] .course-lesson-disclosure{border:0!important;background:transparent!important;box-shadow:none!important;}
-body[data-course] .course-lesson-disclosure>summary{cursor:pointer;border:1px solid #d9e1ec!important;background:#f5f7fb!important;color:#15243a!important;border-radius:9px;padding:11px 12px;font-size:13px;font-weight:700;}
+/* Paired disclosure surface and text colors; open/hover remain readable. */
+html[data-theme] body.dlp-course-v29[data-course] .course-lesson-disclosure>summary{
+ cursor:pointer;border:1px solid #cbd8e8!important;border-radius:9px;
+ background:#f0f4fb!important;background-image:none!important;
+ color:#172d49!important;-webkit-text-fill-color:#172d49!important;
+ padding:11px 12px;font-size:13px;font-weight:700;
+}
+html[data-theme] body.dlp-course-v29[data-course] .course-lesson-disclosure>summary:hover,
+html[data-theme] body.dlp-course-v29[data-course] .course-lesson-disclosure[open]>summary{
+ background:#e8edff!important;background-image:none!important;
+ color:#202a71!important;-webkit-text-fill-color:#202a71!important;
+ border-color:#b5bde7!important;
+}
 body[data-course] .course-lesson-items{padding:7px 0 0;min-width:0}
 body[data-course] .sidebar-tools{display:flex;flex-direction:column;gap:3px}
 body[data-course] .sidebar-tools a{min-height:38px;padding:8px 10px;border-radius:8px;overflow-wrap:anywhere}
@@ -163,10 +175,40 @@ body[data-course] iframe[src*="youtube"],body[data-course] iframe[src*="vimeo"],
 body[data-course] :is(pre,.code-block,.table-wrap){max-width:100%;overflow-x:auto;}
 body[data-course] table{max-width:100%;}
 body[data-course] :is(h1,h2,h3,h4,p,a,button,summary){overflow-wrap:anywhere}
-body[data-course] .course-sidebar-collapse{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px;padding:9px 15px;border:1px solid #222980;border-radius:10px;background:#3035b0;color:#fff;font:750 13px/1.3 Inter,system-ui,sans-serif;letter-spacing:.005em;cursor:pointer;box-shadow:0 2px 8px #15243a18;}
-body[data-course] .course-sidebar-collapse:hover{background:#222980;border-color:#1c246f;color:#fff}
-body[data-course] .course-sidebar-collapse[aria-expanded="false"]{background:#29476b;border-color:#213c5b;color:#fff}
-body[data-course] .course-sidebar-collapse[aria-expanded="false"]:hover{background:#1c3657}
+/* Course outline disclosure: couple every background state to an explicit, accessible white label.
+   This single maintained rule wins over legacy .topbar button/gradient text styles. */
+html[data-theme] body.dlp-course-v29[data-course] .course-sidebar-collapse{
+ display:inline-flex;align-items:center;justify-content:center;gap:8px;
+ min-height:44px;padding:10px 16px;border:1px solid #293580!important;border-radius:11px;
+ background-color:#223184!important;
+ background-image:linear-gradient(125deg,#28399b,#1a2d68)!important;
+ color:#fff!important;-webkit-text-fill-color:#fff!important;
+ font:750 13px/1.3 Inter,system-ui,sans-serif;letter-spacing:.01em;
+ cursor:pointer;text-shadow:none!important;box-shadow:0 5px 14px rgba(23,39,100,.16);
+ transition:background-color .18s ease,box-shadow .18s ease,transform .18s ease;
+}
+html[data-theme] body.dlp-course-v29[data-course] .course-sidebar-collapse:hover{
+ background-color:#1b2766!important;
+ background-image:linear-gradient(125deg,#1d2b7c,#112351)!important;
+ border-color:#182660!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
+ box-shadow:0 7px 18px rgba(17,35,81,.2);transform:translateY(-1px);
+}
+html[data-theme] body.dlp-course-v29[data-course] .course-sidebar-collapse[aria-expanded="false"]{
+ background-color:#194b5e!important;
+ background-image:linear-gradient(125deg,#20546a,#17394f)!important;
+ border-color:#1c485d!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
+}
+html[data-theme] body.dlp-course-v29[data-course] .course-sidebar-collapse[aria-expanded="false"]:hover{
+ background-color:#153c4b!important;
+ background-image:linear-gradient(125deg,#17475b,#102d40)!important;
+ border-color:#12384b!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
+}
+html[data-theme] body.dlp-course-v29[data-course] .course-sidebar-collapse:focus-visible{
+ outline:3px solid #e6a439!important;outline-offset:3px!important;
+}
+@media(prefers-reduced-motion:reduce){
+ html[data-theme] body.dlp-course-v29[data-course] .course-sidebar-collapse{transition:none!important;transform:none!important}
+}
 body[data-course].course-sidebar-collapsed .app{grid-template-columns:0 minmax(0,1fr)}
 body[data-course].course-sidebar-collapsed .sidebar{width:0;padding:0;border:0!important;overflow:hidden;visibility:hidden}
 body[data-course] .course-sidebar-collapse:focus-visible{outline:3px solid #df842b;outline-offset:3px}

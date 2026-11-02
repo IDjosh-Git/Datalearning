@@ -16,6 +16,7 @@ assert.match(courseCss, /\.cw-overview-head\{display:grid;grid-template-columns:
 assert.match(courseCss, /body\.dl-workspace :is\(\.quiz:not\(\.intro-quiz\),\.ai-quiz\)\{width:100%;max-width:100%!important;/);
 assert.match(contentCss, /body\.dl-workspace \.course-mastery-wrap\s*\{\s*width:100%!important;max-width:100%!important;margin:16px 0!important;/);
 assert.match(design, /body\.lp-ai-page \.course-wrap\{\s*width:calc\(100% - 32px\)!important;max-width:1400px!important;/);
-assert.match(design, /\.course-sidebar-collapse\[aria-expanded="false"\]\{background:#29476b;border-color:#213c5b;color:#fff\}/);
-assert.match(design, /\.course-sidebar-collapse:hover\{background:#222980;border-color:#1c246f;color:#fff\}/);
+assert.match(design, /\.course-sidebar-collapse\[aria-expanded="false"\]\{[\s\S]*?background-image:linear-gradient\(125deg,#20546a,#17394f\)!important/);
+assert.match(design, /\.course-sidebar-collapse:hover\{[\s\S]*?background-image:linear-gradient\(125deg,#1d2b7c,#112351\)!important/);
+assert.match(design, /-webkit-text-fill-color:#fff!important/);
 console.log('PASS AI workspace: full-width questions, coherent overview and high-contrast course-outline toggle');
