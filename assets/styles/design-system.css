@@ -1731,3 +1731,160 @@ html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-pathfinder-su
     outline:3px solid #d17919!important;outline-offset:3px!important;
   }
 }
+
+/* Public card content alignment | 2026-11-02
+   One scoped layout contract for course/catalog and supporting public cards.
+   Preserve course-specific gradients, instructional table semantics and the
+   independent private/admin styles. */
+html[data-theme="light"] body[data-gradient-public="true"] {
+  --card-space:clamp(18px,1.8vw,26px);
+  --card-content-gap:clamp(10px,1.2vw,15px);
+}
+/* Primary public cards: same inset on all four sides, stable reading axis. */
+html[data-theme="light"] body[data-gradient-public="true"] :is(
+  .lp-course,.dlp97-card,.lp-feature,.lp-step,.ref-card,.pl-card,
+  .guide-block,.cap-panel,.pc-card,.sample-card,.dlp-module
+) {
+  box-sizing:border-box;
+  min-width:0;
+  padding:var(--card-space)!important;
+  text-align:left;
+}
+html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-course,.dlp97-card){
+  display:flex;
+  flex-direction:column;
+  gap:var(--card-content-gap);
+  align-items:stretch;
+}
+html[data-theme="light"] body[data-gradient-public="true"] :is(
+  .lp-course,.dlp97-card,.lp-feature,.lp-step,.ref-card,.pl-card,.cap-panel,
+  .pc-card,.guide-block,.sample-card,.dlp-module,.intro-lesson
+) :is(h2,h3,h4,h5,p,dt,dd,li){
+  text-align:left;
+  word-break:normal;
+  overflow-wrap:break-word;
+}
+html[data-theme="light"] body[data-gradient-public="true"] :is(
+  .lp-course,.dlp97-card,.lp-feature,.lp-step,.ref-card,.pl-card,.cap-panel,
+  .pc-card,.guide-block,.sample-card,.dlp-module
+) :is(h2,h3,h4){
+  margin-block:0;
+  line-height:1.32;
+  text-wrap:pretty;
+}
+html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-course,.dlp97-card) > p{
+  margin:0;
+  line-height:1.65;
+  max-width:68ch;
+}
+html[data-theme="light"] body[data-gradient-public="true"] :is(
+  .lp-course,.dlp97-card,.lp-feature,.lp-step,.ref-card,.pl-card,
+  .cap-panel,.pc-card,.guide-block,.dlp-module
+) :is(ul,ol){
+  margin-block:3px 5px;
+  padding-inline-start:clamp(19px,1.7vw,24px);
+  text-align:left;
+}
+html[data-theme="light"] body[data-gradient-public="true"] :is(
+  .lp-course,.dlp97-card,.lp-feature,.lp-step,.ref-card,.pl-card,
+  .cap-panel,.pc-card,.guide-block,.dlp-module
+) li {padding-inline-start:2px;line-height:1.58;}
+html[data-theme="light"] body[data-gradient-public="true"] :is(
+  .lp-course,.dlp97-card,.lp-feature,.lp-step,.ref-card,.pl-card,
+  .cap-panel,.pc-card,.guide-block,.dlp-module
+) li + li {margin-top:5px;}
+/* Course-cover icons and category chips share a reliable top baseline. */
+html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-course-top,.dlp97-card-head){
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:12px;
+  min-width:0;
+}
+html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-course-tag,.dlp97-category){
+  max-width:100%;
+  width:fit-content;
+  text-align:left;
+  line-height:1.4;
+  white-space:normal;
+}
+html[data-theme="light"] body[data-gradient-public="true"] .dlp97-card .dlp97-facts{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px 18px;
+  margin-block:2px 0;
+}
+html[data-theme="light"] body[data-gradient-public="true"] .dlp97-facts > div{min-width:0;padding-top:12px;}
+html[data-theme="light"] body[data-gradient-public="true"] .dlp97-facts :is(dt,dd){
+  margin-inline:0;
+  text-align:left;
+  line-height:1.5;
+}
+html[data-theme="light"] body[data-gradient-public="true"] .dlp97-facts dd{margin-top:5px;}
+html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-course-outcome,.dlp97-prerequisite){
+  margin-block:4px 0;
+  text-align:left;
+  line-height:1.6;
+}
+html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-course-footer,.dlp97-card-bottom){
+  margin-top:auto;
+  padding-top:16px;
+  min-width:0;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px 13px;
+  align-items:flex-start;
+  text-align:left;
+}
+html[data-theme="light"] body[data-gradient-public="true"] .lp-course-footer{flex-direction:column;align-items:flex-start;}
+html[data-theme="light"] body[data-gradient-public="true"] .dlp97-course-progress{max-width:100%;align-self:center;}
+/* Reading panels: consistent padding, without adding padding to every nested lesson. */
+html[data-theme="light"] body[data-gradient-public="true"] :is(
+  .intro-lesson,.learning-clarity,.mastery-section,.mastery-deep-dive,
+  .ps-task,.ps-callout,.pl-art-panel
+){padding:clamp(18px,2.1vw,28px)!important;box-sizing:border-box;min-width:0;}
+html[data-theme="light"] body[data-gradient-public="true"] :is(
+  .intro-lesson,.learning-clarity,.mastery-section,.mastery-deep-dive,
+  .ps-task,.ps-callout,.pl-art-panel
+) :is(h2,h3,h4,h5,h6,p){text-align:left;max-width:100%;}
+/* Teaching tables must scroll horizontally on phones, never squeeze their
+   three columns into unreadable fragments. A broad legacy table max-width
+   reset previously overrode their minimum width. */
+html[data-theme="light"] body[data-gradient-public="true"] .learning-table-scroll{
+  width:100%;max-width:100%;min-width:0;
+  overflow-x:auto;overflow-y:hidden;
+  overscroll-behavior-x:contain;
+  -webkit-overflow-scrolling:touch;
+}
+html[data-theme="light"] body[data-gradient-public="true"] .learning-table-scroll > table.learning-table{
+  width:100%;min-width:600px;
+  max-width:none!important;
+  table-layout:fixed;
+}
+html[data-theme="light"] body[data-gradient-public="true"] .learning-table :is(th,td){
+  text-align:left;
+  vertical-align:top;
+  word-break:normal;
+  overflow-wrap:break-word;
+}
+/* Actions belong on the same reading axis and wrap as labels grow. */
+html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-course,.dlp97-card) a[data-gradient-action="true"]{
+  max-width:100%;
+  white-space:normal;
+  text-align:center;
+  line-height:1.45;
+}
+@media (max-width:680px){
+  html[data-theme="light"] body[data-gradient-public="true"] {--card-space:clamp(16px,4.8vw,20px);--card-content-gap:11px;}
+  html[data-theme="light"] body[data-gradient-public="true"] .dlp97-facts{gap:10px;}
+  html[data-theme="light"] body[data-gradient-public="true"] .learning-table-scroll > table.learning-table{min-width:600px;}
+  html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-course-footer,.dlp97-card-bottom){padding-top:14px;}
+}
+@media (max-width:420px){
+  html[data-theme="light"] body[data-gradient-public="true"] .dlp97-card .dlp97-facts{
+    grid-template-columns:minmax(0,1fr);
+    gap:8px;
+  }
+  html[data-theme="light"] body[data-gradient-public="true"] .dlp97-card .dlp97-facts > div{padding-top:8px;}
+}
