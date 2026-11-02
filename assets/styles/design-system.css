@@ -1578,3 +1578,156 @@ body.dalp-utility-page :is(h1,h2,h3,p,li){overflow-wrap:anywhere}
 body.dalp-utility-page :is(main a[href]:not(.dalp-utility-brand),.cert-view-header a[href]){background:transparent!important;box-shadow:none!important}
 @media(max-width:660px){body.dalp-utility-page .dalp-utility-inner{width:calc(100% - 28px);gap:8px 12px;flex-wrap:wrap}body.dalp-utility-page .dalp-utility-current{display:none}body.dalp-utility-page .dalp-utility-inner nav{margin-left:auto;gap:12px}body.dalp-utility-page .dalp-utility-brand{font-size:12px}body.dalp-utility-page .dalp-utility-brand img{width:28px;height:28px}}
 @media(max-width:370px){body.dalp-utility-page .dalp-utility-inner nav{width:100%;justify-content:flex-end}}
+
+/* ===========================================================================
+   Public Gradient Studio | November 2026
+   Maintained final public-only layer. Deliberately scoped to public pages;
+   owner/admin/auth forms, code editors, and accessibility components are untouched.
+   =========================================================================== */
+html[data-theme="light"] body[data-gradient-public="true"] {
+  --g-ink:#172541;
+  --g-muted:#3e506d;
+  --g-ring:#2d489f;
+  --g-depth:0 18px 42px rgba(36,51,105,.095),0 2px 8px rgba(25,51,89,.045);
+  --g-ease:cubic-bezier(.22,.72,.25,1);
+  --g-c1:#e2eaff;--g-c2:#cfe6ff;--g-accent:#4865bd;
+  --g-btn-a:#324fa3;--g-btn-b:#243e80;
+  color:var(--g-ink)!important;
+  background-color:#edf3fc!important;
+  background-image:radial-gradient(ellipse 850px 580px at 0 10%,rgba(134,166,255,.2),transparent 75%),
+    radial-gradient(ellipse 750px 560px at 94% 24%,rgba(84,201,188,.13),transparent 76%),
+    linear-gradient(160deg,#f2f6ff 0%,#eaf1fc 45%,#f2f2ff 100%)!important;
+  background-attachment:fixed;
+}
+/* Distinct subjects, shared text-contrast and layout contract. */
+html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-course[data-track="intro"],.dlp97-card[data-course="introduction"]) {--g-c1:#e0e5ff;--g-c2:#c5e4fb;--g-accent:#5356ad;--g-btn-a:#413b94;--g-btn-b:#283e81}
+html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-course[data-track="excel"],.dlp97-card[data-course="excel"]) {--g-c1:#d8f5e4;--g-c2:#b8e9d5;--g-accent:#1d8d68;--g-btn-a:#146542;--g-btn-b:#17574a}
+html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-course[data-track="sql"],.dlp97-card[data-course="sql"]) {--g-c1:#d9efff;--g-c2:#bfd7fc;--g-accent:#2b69bb;--g-btn-a:#194f9d;--g-btn-b:#1b3d83}
+html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-course[data-track="powerbi"],.dlp97-card[data-course="powerbi"]) {--g-c1:#fff1cd;--g-c2:#f9df9f;--g-accent:#ae7e1d;--g-btn-a:#855100;--g-btn-b:#754600}
+html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-course[data-track="python"],.dlp97-card[data-course="python"]) {--g-c1:#ede3ff;--g-c2:#d0dafa;--g-accent:#7865ba;--g-btn-a:#504098;--g-btn-b:#41377d}
+html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-course[data-track="ai"],.dlp97-card[data-course="ai"]) {--g-c1:#fbe0f3;--g-c2:#e4d4ff;--g-accent:#a252a0;--g-btn-a:#7a368c;--g-btn-b:#553084}
+/* Course pages carry the same identities right through their curriculum. */
+html[data-theme="light"] body[data-gradient-public="true"][data-learning-subject="intro"] {--g-c1:#e0e5ff;--g-c2:#c5e4fb;--g-accent:#5356ad;--g-btn-a:#413b94;--g-btn-b:#283e81}
+html[data-theme="light"] body[data-gradient-public="true"][data-learning-subject="excel"] {--g-c1:#d8f5e4;--g-c2:#b8e9d5;--g-accent:#1d8d68;--g-btn-a:#146542;--g-btn-b:#17574a}
+html[data-theme="light"] body[data-gradient-public="true"][data-learning-subject="sql"] {--g-c1:#d9efff;--g-c2:#bfd7fc;--g-accent:#2b69bb;--g-btn-a:#194f9d;--g-btn-b:#1b3d83}
+html[data-theme="light"] body[data-gradient-public="true"][data-learning-subject="powerbi"] {--g-c1:#fff1cd;--g-c2:#f9df9f;--g-accent:#ae7e1d;--g-btn-a:#855100;--g-btn-b:#754600}
+html[data-theme="light"] body[data-gradient-public="true"][data-learning-subject="python"] {--g-c1:#ede3ff;--g-c2:#d0dafa;--g-accent:#7865ba;--g-btn-a:#504098;--g-btn-b:#41377d}
+html[data-theme="light"] body[data-gradient-public="true"][data-learning-subject="ai"] {--g-c1:#fbe0f3;--g-c2:#e4d4ff;--g-accent:#a252a0;--g-btn-a:#7a368c;--g-btn-b:#553084}
+/* Every primary course card is its own modern, legible color surface. */
+html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-course,.dlp97-card) {
+  position:relative;isolation:isolate;overflow:hidden;
+  background:radial-gradient(ellipse 80% 65% at 98% 0%,rgba(255,255,255,.72) 0%,transparent 85%),linear-gradient(145deg,var(--g-c1),var(--g-c2))!important;
+  border:1px solid color-mix(in srgb,var(--g-accent) 24%,transparent)!important;
+  border-top:3px solid var(--g-accent)!important;
+  border-radius:24px!important;
+  color:var(--g-ink)!important;
+  box-shadow:var(--g-depth)!important;
+  transition:transform .3s var(--g-ease),box-shadow .3s var(--g-ease),border-color .3s ease!important;
+}
+html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-course,.dlp97-card)::before {
+  content:"";position:absolute;z-index:-1;top:-65px;right:-55px;width:190px;height:190px;border-radius:50%;
+  background:radial-gradient(circle,color-mix(in srgb,var(--g-accent) 14%,transparent),transparent 67%);pointer-events:none;
+}
+html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-course,.dlp97-card):hover {
+  transform:translateY(-5px);
+  border-color:color-mix(in srgb,var(--g-accent) 42%,transparent)!important;
+  box-shadow:0 23px 45px rgba(24,44,81,.16)!important;
+}
+html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-course,.dlp97-card) :is(h2,h3,h4,.lp-course-outcome strong) {color:#17253b!important;-webkit-text-fill-color:#17253b!important}
+html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-course,.dlp97-card) :is(p,li,dt,dd,small,.lp-course-outcome,.dlp97-prerequisite,.dlp97-course-progress) {color:#34455f!important}
+html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-course,.dlp97-card) :is(.lp-course-tag,.dlp97-category) {
+  display:inline-flex;align-items:center;border-radius:99px;padding:6px 11px;
+  border:1px solid color-mix(in srgb,var(--g-accent) 29%,transparent)!important;
+  background:rgba(255,255,255,.43)!important;color:color-mix(in srgb,var(--g-btn-b) 90%,#000)!important;
+}
+html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-course .lp-course-outcome,.dlp97-card .dlp97-facts,.dlp97-card .dlp97-card-bottom) {border-color:color-mix(in srgb,var(--g-accent) 19%,transparent)!important}
+html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-course .lp-icon,.dlp97-card .dlp97-course-icon) {filter:drop-shadow(0 6px 9px rgba(20,33,64,.09))}
+/* General public cards: curated alternating colorways instead of white slabs. */
+html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-feature,.lp-step,.lp-demo,.lp-pathfinder-layout,.lp-smart-banner,.lp-quick-card,.lp-hero-proof>div,.ps-home-inner,.capstone-path-v74,.dlp97-filters,.cap-panel,.ps-callout,.ps-task,.ps-focus,.pl-art-panel,.chat-panel,.tutor-sidebar,.lab-grid>*,.ref-card,.guide-block,.dlp29-panel,.dlp-module,.mastery-section,.mastery-deep-dive,.week,.intro-lesson,.learning-clarity,.idea-card,.try-card,.soft-box,.caution-card) {
+  background:radial-gradient(circle at 100% 0%,rgba(255,255,255,.54),transparent 53%),linear-gradient(135deg,var(--g-c1),var(--g-c2))!important;
+  border:1px solid color-mix(in srgb,var(--g-accent) 19%,transparent)!important;
+  border-radius:clamp(15px,1.8vw,23px)!important;
+  color:var(--g-ink)!important;
+  box-shadow:0 9px 27px rgba(35,54,89,.07)!important;
+}
+/* The site's utility sections gain distinctly different colors as well. */
+html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-feature,.lp-step):nth-child(4n+1) {--g-c1:#d5e8ff;--g-c2:#cbd8fa;--g-accent:#4a6bc4}
+html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-feature,.lp-step):nth-child(4n+2) {--g-c1:#d7f4e6;--g-c2:#bbe6da;--g-accent:#228b75}
+html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-feature,.lp-step):nth-child(4n+3) {--g-c1:#fae2ef;--g-c2:#e4d4fa;--g-accent:#9c529c}
+html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-feature,.lp-step):nth-child(4n+4) {--g-c1:#ffedc9;--g-c2:#f4dbac;--g-accent:#9e7627}
+html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-feature,.lp-step) :is(h2,h3,p) {color:var(--g-ink)!important}
+html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-feature,.lp-step) p {color:var(--g-muted)!important}
+html[data-theme="light"] body[data-gradient-public="true"] :is(.week,.mastery-section,.intro-lesson) :is(h2,h3,h4,h5) {color:#182743!important}
+/* Keep deliberate white code/editor content surfaces for accurate syntax rendering. */
+html[data-theme="light"] body[data-gradient-public="true"] :is(pre,code,.editor,.monaco-editor,.cm-editor,.CodeMirror,textarea) {background-image:none}
+/* Common interactive buttons and prominent public actions. */
+html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-primary,.btn-primary,.btn.primary,.button.blue,.button.primary,.hub-primary,.ps-primary,.guide-primary,.dalp-next-primary,.course-portal-primary,.capstone-path-actions a,.dlp90-arena-cta,.pl-download-all) {
+  background:linear-gradient(122deg,var(--g-btn-a),var(--g-btn-b))!important;
+  color:#fff!important;-webkit-text-fill-color:#fff!important;
+  border:1px solid rgba(255,255,255,.16)!important;border-radius:12px!important;
+  box-shadow:0 9px 19px rgba(30,50,108,.14)!important;
+  transition:filter .22s ease,transform .22s var(--g-ease),box-shadow .22s ease!important;
+}
+html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-primary,.btn-primary,.btn.primary,.button.blue,.button.primary,.hub-primary,.ps-primary,.guide-primary,.dalp-next-primary,.course-portal-primary,.capstone-path-actions a,.dlp90-arena-cta,.pl-download-all):hover {filter:brightness(1.09);transform:translateY(-2px);box-shadow:0 12px 24px rgba(30,50,108,.23)!important}
+html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-secondary,.btn.secondary-action,.btn:not(.primary),.button.outline,.ps-secondary,.guide-button,.dalp-next-secondary,.course-portal-secondary,.lp-search-clear) {
+  background:linear-gradient(130deg,#e3edff,#d3e5ff)!important;color:#243d72!important;-webkit-text-fill-color:#243d72!important;
+  border:1px solid #a5bce6!important;border-radius:12px!important;box-shadow:0 4px 11px rgba(43,74,136,.06)!important;
+}
+html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-filter,.cap-track,.prompt-chip,.tutor-mode-button,.tutor-toolbar-btn) {border-radius:12px!important;transition:background .2s ease,transform .2s var(--g-ease),border-color .2s ease!important}
+html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-filter.active,.cap-track.active,.tutor-mode-button[aria-pressed="true"]) {background:linear-gradient(125deg,#304f96,#283b79)!important;color:#fff!important;-webkit-text-fill-color:#fff!important}
+html[data-theme="light"] body[data-gradient-public="true"] :is(.dlp97-filters,.lp-pathfinder-layout) :is(input,select) {background:#f9fbff!important;border:1px solid #a8bcd9!important;color:#1d2f4c!important}
+html[data-theme="light"] body[data-gradient-public="true"] :is(button,a[role="button"],.lp-course-cta,.dlp97-primary):focus-visible {outline:3px solid #c56712!important;outline-offset:3px!important}
+@media(hover:hover) and (prefers-reduced-motion:no-preference) {
+  html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-feature,.lp-step,.cap-panel,.ref-card):hover {transform:translateY(-3px);box-shadow:0 17px 32px rgba(28,54,96,.12)!important}
+}
+@media(max-width:680px) {
+  html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-course,.dlp97-card) {border-radius:19px!important}
+  html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-course,.dlp97-card) :is(.lp-course-cta,.lp-studio-cta,.dlp97-primary) {min-height:44px}
+  html[data-theme="light"] body[data-gradient-public="true"] {background-attachment:scroll}
+}
+@media(prefers-reduced-motion:reduce) {
+  html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-course,.dlp97-card,.lp-feature,.lp-step,button,a){transition:none!important;animation:none!important;transform:none!important}
+}
+@media(forced-colors:active) {
+  html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-course,.dlp97-card,.lp-feature,.lp-step,.week) {background:Canvas!important;border:1px solid CanvasText!important}
+  html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-course-cta,.dlp97-primary,.lp-primary){border:1px solid ButtonText!important}
+}
+/* Further public UI refinement: nested cards and explicitly styled actions. */
+html[data-theme="light"] body[data-gradient-public="true"] :is(.card,.lesson,.panel,.tile,.pc-item,.pl-card,.hub-card,.sample-card,.stat-card,.kpi-card,.ref-item,.ps-card,.intro-lesson) {
+  background:linear-gradient(142deg,color-mix(in srgb,var(--g-c1) 78%,white),color-mix(in srgb,var(--g-c2) 72%,white))!important;
+  border:1px solid color-mix(in srgb,var(--g-accent) 20%,transparent)!important;
+  border-radius:17px!important;box-shadow:0 5px 16px rgba(36,62,99,.045)!important;
+}
+html[data-theme="light"] body[data-gradient-public="true"] :is(.card,.lesson,.panel,.tile,.pc-item,.pl-card,.hub-card,.sample-card,.stat-card,.kpi-card,.ref-item,.ps-card,.intro-lesson) :is(h2,h3,h4,p,li) {color:var(--g-ink)!important}
+html[data-theme="light"] body.lp-home[data-gradient-public="true"] .lp-pathfinder-form button.lp-pathfinder-submit,
+html[data-theme="light"] body.dlp97-catalog-page[data-gradient-public="true"] button#dlp97-clear {
+  background:linear-gradient(120deg,#284d91,#283b7a)!important;
+  border:1px solid rgba(255,255,255,.14)!important;border-radius:12px!important;
+  color:#fff!important;-webkit-text-fill-color:#fff!important;
+  padding:10px 16px!important;min-height:44px!important;
+  font-weight:800!important;box-shadow:0 8px 16px rgba(28,51,102,.14)!important;
+}
+html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-pathfinder-submit,#dlp97-clear):hover {filter:brightness(1.12)!important;transform:translateY(-1px)!important}
+/* Named essential actions remain links semantically, but get a clearly visible
+   affordance. A targeted important layer overrides older global plain-link
+   resets without changing the appearance of supplementary resource links. */
+@layer public-gradient-actions {
+  html[data-theme="light"] body[data-gradient-public="true"] a[data-gradient-action="true"],
+  html[data-theme="light"] body[data-gradient-public="true"] a[data-gradient-action="true"]:visited {
+    display:inline-flex!important;align-items:center!important;justify-content:center!important;
+    align-self:flex-start!important;width:auto!important;min-height:44px!important;
+    padding:10px 17px!important;border-radius:12px!important;
+    background:linear-gradient(120deg,var(--g-btn-a),var(--g-btn-b))!important;
+    border:1px solid rgba(255,255,255,.17)!important;
+    color:#fff!important;-webkit-text-fill-color:#fff!important;
+    box-shadow:0 8px 19px rgba(24,42,85,.17)!important;text-decoration:none!important;
+    font-size:.875rem!important;font-weight:800!important;line-height:1.45!important;
+  }
+  html[data-theme="light"] body[data-gradient-public="true"] a[data-gradient-action="true"]:hover {
+    filter:brightness(1.08)!important;transform:translateY(-2px)!important;
+    text-decoration:none!important;box-shadow:0 12px 22px rgba(24,42,85,.23)!important;
+  }
+  html[data-theme="light"] body[data-gradient-public="true"] a[data-gradient-action="true"]:focus-visible {
+    outline:3px solid #d17919!important;outline-offset:3px!important;
+  }
+}
