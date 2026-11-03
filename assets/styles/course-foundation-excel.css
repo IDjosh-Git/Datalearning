@@ -1,18 +1,18 @@
 /* Excel course layout foundation. Modern slate/indigo palette; shared tokens in design-system.css. */
 
 :root{
-  --bg:#f5f7fb;
+  --bg:var(--ui-canvas);
   --surface:#ffffff;
   --surface-soft:#eaf0f8;
   --surface-warm:#fff7e7;
-  --text:#15243a;
+  --text:var(--ui-ink);
   --muted:#526078;
-  --green:#29476b;
+  --green:var(--ui-nav-ink);
   --green-dark:#1d3551;
-  --green-deep:#15243a;
+  --green-deep:var(--ui-ink);
   --green-light:#eaf0f8;
-  --gold:#b54f38;
-  --blue:#3f46d9;
+  --gold:var(--ui-coral);
+  --blue:var(--ui-primary);
   --red:#a12f37;
   --border:#d5dfec;
   --shadow:0 14px 40px rgba(21,73,48,.09);
@@ -22,7 +22,7 @@
 html{scroll-behavior:smooth}
 body{
   margin:0;
-  font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family:"DM Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color:var(--text);
   background:var(--bg);
   line-height:1.6;
@@ -32,7 +32,7 @@ a{text-decoration:none;color:inherit}
 .app{display:grid;grid-template-columns:300px minmax(0,1fr);min-height:100vh}
 .sidebar{
   position:sticky;top:0;height:100vh;overflow-y:auto;
-  background:linear-gradient(180deg,#15243a,#15243a 58%,#15243a);
+  background:linear-gradient(180deg,var(--ui-ink),var(--ui-ink) 58%,var(--ui-ink));
   color:#fff;padding:22px 18px;border-right:1px solid rgba(255,255,255,.08);
   z-index:20;
 }
@@ -93,7 +93,7 @@ main{min-width:0}
   background:
     radial-gradient(circle at 82% 16%,rgba(255,255,255,.16),transparent 25%),
     radial-gradient(circle at 92% 85%,rgba(244,166,42,.18),transparent 25%),
-    linear-gradient(135deg,#15243a,#29476b 68%,#29476b);
+    linear-gradient(135deg,var(--ui-ink),var(--ui-nav-ink) 68%,var(--ui-nav-ink));
   box-shadow:0 24px 60px rgba(20,87,51,.20)
 }
 .eyebrow{
@@ -161,7 +161,7 @@ main{min-width:0}
 .question{padding:15px;border:1px solid var(--border);border-radius:14px;margin:10px 0;background:#fff}
 .question p{margin:0 0 10px;font-weight:700}
 .option{display:block;margin:6px 0;color:#45554d}
-.answer-note{display:none;margin-top:9px;background:#f5f7fb;padding:9px 11px;border-radius:9px;font-size:13px;color:#47574f}
+.answer-note{display:none;margin-top:9px;background:var(--ui-canvas);padding:9px 11px;border-radius:9px;font-size:13px;color:#47574f}
 .quiz-actions{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:13px}
 .score{display:none;padding:8px 11px;border-radius:10px;background:var(--green-light);font-weight:900;color:var(--green-dark)}
 .project{

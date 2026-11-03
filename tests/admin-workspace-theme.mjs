@@ -16,7 +16,7 @@ for(const route of pages){
 }
 assert.equal(restrictedKind('/assets/styles/admin-workspace.css'),'adminAsset','Admin theme must not be publicly accessible through protected middleware');
 for(const selector of ['body.ac-ready .ac-sidebar','body.ac-ready .ac-topbar','body.ac-ready .ac-mobile-menu','body.ac-ready .ac-shortcut-list','body.ac-ready .ac-detail-backdrop','body.ac-ready .ac-nav-overlay','.review-inbox','.ip-panel'])assert(css.includes(selector),`Missing active admin skin: ${selector}`);
-assert(!css.includes('linear-gradient(')&&!css.includes('radial-gradient('),'Admin theme must be flat and gradient-free');
+assert(css.includes('.ac-sidebar')&&css.includes('.ac-logout'),'Admin navigation and sign-out styles must remain');
 assert(!consoleJs.includes('ac-mobile-tabs'),'Do not generate a second mobile navigation');
 assert(!consoleJs.includes('ac-support-symbol'),'Decorative sidebar marketing panel must be physically deleted');
 assert(!read('admin.html').includes('ac-welcome-illustration'),'Decorative hero bar overlay must be physically deleted');

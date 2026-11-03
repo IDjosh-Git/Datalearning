@@ -316,7 +316,7 @@ html[data-theme] {
 html[data-theme] body {
   color:var(--text-main);
   background:var(--background)!important;
-  font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family:"DM Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
 }
@@ -890,7 +890,7 @@ body.dlp97-learning-page{
    keep its auth and progress lifecycle intact. */
 body.lp-home.dlp97-learning-page{padding-left:0!important}
 body.lp-home.dlp97-learning-page .dlp97-navigation{display:none}
-body.dlp97-catalog-page{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--dlp97-ink);background:var(--dlp97-page);line-height:1.55}
+body.dlp97-catalog-page{font-family:"DM Sans",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--dlp97-ink);background:var(--dlp97-page);line-height:1.55}
 .dlp97-navigation{isolation:isolate}
 .dlp97-side{box-sizing:border-box;position:fixed;inset:0 auto 0 0;width:248px;z-index:9000;overflow-y:auto;overscroll-behavior:contain;padding:22px 12px;background:#172f42;color:#edf7f8;border-right:1px solid #2d4b5c;font:inherit;font-size:14px;line-height:1.45}
 .dlp97-side a{color:#dceaf0;text-decoration:none!important;box-sizing:border-box}
@@ -1107,10 +1107,10 @@ html[data-theme="light"] {
 html[data-theme] body:not(.dlp97-catalog-page) {
   background-color:var(--background);
   color:var(--text-main);
-  font-family:Inter,"Plus Jakarta Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-family:"DM Sans","Plus Jakarta Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
   letter-spacing:-.008em;
 }
-html[data-theme] body.dlp97-catalog-page {font-family:Inter,"Plus Jakarta Sans",system-ui,sans-serif}
+html[data-theme] body.dlp97-catalog-page {font-family:"DM Sans","Plus Jakarta Sans",system-ui,sans-serif}
 html[data-theme] :is(h1,h2,h3,h4) {letter-spacing:-.035em;text-wrap:balance}
 html[data-theme] :is(h1,h2,h3,h4):not(.token) {font-weight:780}
 html[data-theme] :is(p,li,dd) {line-height:1.65}
@@ -1361,7 +1361,7 @@ html[data-theme] body :is(.lp-context-nav,.dlp97-filters,.dlp97-card,.cap-panel,
    learning-progress changes. Keep after the existing v96 and v97 styles. */
 html[data-theme="light"] {
   --v98-ink:#172d40;--v98-muted:#465e6d;--v98-link:#075e59;
-  --v98-control:#173e55;--v98-control-hover:#0e3043;
+  --v98-control:var(--ui-nav-ink);--v98-control-hover:var(--ui-night);
   --v98-surface:#ffffff;--v98-surface-soft:#edf2f0;
   --v98-positive:#176443;--v98-warning:#74500c;--v98-danger:#9a293a;
 }
@@ -1386,28 +1386,28 @@ html[data-theme] body :is(.nav-links,.course-top-actions) :is(.account-link,.cou
 html[data-theme] body .course-top-actions .secondary-action,
 html[data-theme] body .nav-links .account-link {
   color:#ffffff!important;-webkit-text-fill-color:currentColor!important;
-  background:#173e55!important;border-color:#799ca9!important;
+  background:var(--ui-nav-ink)!important;border-color:#799ca9!important;
 }
 html[data-theme] body :is(.nav-links,.course-top-actions) :is(.account-link,.course-account-link):hover,
-html[data-theme] body .course-top-actions .secondary-action:hover {background:#0e3043!important;}
+html[data-theme] body .course-top-actions .secondary-action:hover {background:var(--ui-night)!important;}
 /* Dashboard: pale prompts, progress percentages and context navigation. */
 
 
 
 
 html[data-theme] body :is(.lp-filter.active,.lp-pathfinder-submit) {
-  background:#173e55!important;color:#ffffff!important;
-  -webkit-text-fill-color:#ffffff!important;border-color:#173e55!important;
+  background:var(--ui-nav-ink)!important;color:#ffffff!important;
+  -webkit-text-fill-color:#ffffff!important;border-color:var(--ui-nav-ink)!important;
 }
 /* Primary actions from old templates inherited a mauve background and white
    text (~3.2:1) in dark mode. Use a consistent navy with 11:1 white contrast. */
 html[data-theme] body :is(.continue-actions .btn,.cap-actions .lp-primary,
   .tutor-composer #sendQuestion,.tutor-avatar,.dalp-floating-lab a) {
-  background:#173e55!important;color:#fff!important;
-  -webkit-text-fill-color:#fff!important;border-color:#173e55!important;
+  background:var(--ui-nav-ink)!important;color:#fff!important;
+  -webkit-text-fill-color:#fff!important;border-color:var(--ui-nav-ink)!important;
 }
 html[data-theme] body :is(.continue-actions .btn,.cap-actions .lp-primary,
-  .tutor-composer #sendQuestion,.dalp-floating-lab a):hover {background:#0e3043!important}
+  .tutor-composer #sendQuestion,.dalp-floating-lab a):hover {background:var(--ui-night)!important}
 
 /* Learning practice controls: old light-mint button backgrounds cannot carry
    white text; preserve disabled semantics while keeping labels readable. */
@@ -1448,7 +1448,7 @@ html[data-theme] body.dlp97-learning-page :is(.dlp97-card,.dlp97-course-guide,.d
 
 
 html[data-theme] body[data-responsive-page="reference"] #clearSearch {
-  background:#173e55!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
+  background:var(--ui-nav-ink)!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
 }
 
 
@@ -1465,7 +1465,7 @@ html[data-theme] body[data-responsive-page="sync-test"] .card p {
   color:var(--v98-ink)!important;-webkit-text-fill-color:currentColor!important;
 }
 html[data-theme] body[data-responsive-page="sync-test"] .card :is(button,a) {
-  background:#173e55!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
+  background:var(--ui-nav-ink)!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
 }
 
 
@@ -1499,7 +1499,7 @@ html[data-theme] body.dlp-course-v29 .sidebar .nav-link.active .nav-num {
 
 
 html[data-theme="light"] body .arena-subject-options button.arena-python-launch span.arena-count {
-  color:#173e55!important;-webkit-text-fill-color:#173e55!important;
+  color:var(--ui-nav-ink)!important;-webkit-text-fill-color:var(--ui-nav-ink)!important;
 }
 /* Full-document sweep: weekly lesson copy below the opening viewport. */
 
@@ -1842,11 +1842,11 @@ html[data-theme="light"] body.dlp-course-v29 .dalp-quick-guide {
   padding: clamp(20px,2.6vw,32px) !important;
   background: #ffffff !important;
   border: 1px solid #d4dfec !important;
-  border-top: 4px solid #3f46d9 !important;
+  border-top: 4px solid var(--ui-primary) !important;
   border-radius: 16px !important;
   box-shadow: none !important;
   text-align: left !important;
-  color: #15243a !important;
+  color: var(--ui-ink) !important;
 }
 html[data-theme="light"] body.dlp-course-v29 .dalp-quick-guide-intro {
   display: grid !important;
@@ -1859,19 +1859,19 @@ html[data-theme="light"] body.dlp-course-v29 .dalp-quick-guide-intro {
 }
 html[data-theme="light"] body.dlp-course-v29 .dalp-quick-guide-intro > div {min-width:0;}
 html[data-theme="light"] body.dlp-course-v29 .dalp-quick-guide .dlp97-eyebrow {
-  display:block;margin-bottom:7px;line-height:1.35;color:#3035b0!important;
+  display:block;margin-bottom:7px;line-height:1.35;color:var(--ui-primary-hover)!important;
   font-size:11px;font-weight:800;letter-spacing:.11em;
 }
 html[data-theme="light"] body.dlp-course-v29 .dalp-quick-guide-intro h2 {
   font-size:clamp(20px,2vw,27px)!important;line-height:1.24!important;
-  margin:0 0 8px!important;color:#15243a!important;text-wrap:pretty;
+  margin:0 0 8px!important;color:var(--ui-ink)!important;text-wrap:pretty;
 }
 html[data-theme="light"] body.dlp-course-v29 .dalp-quick-guide-intro p {
   margin:0!important;max-width:70ch!important;color:#50627a!important;line-height:1.6!important;
 }
 html[data-theme="light"] body.dlp-course-v29 .dalp-quick-guide-count {
   justify-self:end;align-self:start;max-width:100%;white-space:normal;
-  text-align:center;line-height:1.4;color:#29476b!important;
+  text-align:center;line-height:1.4;color:var(--ui-nav-ink)!important;
 }
 html[data-theme="light"] body.dlp-course-v29 .dalp-quick-guide-bottom {
   display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;
@@ -1886,12 +1886,12 @@ html[data-theme="light"] body.dlp-course-v29 .dalp-quick-guide-links {
 html[data-theme="light"] body.dlp-course-v29 .dalp-quick-link {
   display:inline-flex!important;width:auto!important;min-height:40px;padding:8px 0!important;
   border:0!important;border-radius:0!important;box-shadow:none!important;
-  background:transparent!important;color:#3035b0!important;
+  background:transparent!important;color:var(--ui-primary-hover)!important;
   text-decoration:underline!important;text-underline-offset:4px;
   text-align:left!important;white-space:normal;overflow-wrap:anywhere;
 }
 html[data-theme="light"] body.dlp-course-v29 .dalp-quick-guide-signin {
-  margin-top:0!important;color:#3035b0!important;font-size:13px!important;
+  margin-top:0!important;color:var(--ui-primary-hover)!important;font-size:13px!important;
 }
 @media(max-width:900px){
   html[data-theme="light"] body.dlp-course-v29 .dalp-quick-guide-intro,
@@ -1961,7 +1961,7 @@ html[data-theme="light"] body.dlp-course-v29 :is(.hero,.intro-hero,.ai-hero) :is
 html, body { min-height: 100%; background: var(--polish-canvas) !important; color: var(--polish-ink); }
 html { scroll-behavior: smooth; }
 body {
-  font-family: Inter, "Plus Jakarta Sans", "Aptos", system-ui, -apple-system, "Segoe UI", sans-serif !important;
+  font-family: "DM Sans", "Plus Jakarta Sans", "Aptos", system-ui, -apple-system, "Segoe UI", sans-serif !important;
   letter-spacing: -.012em; text-rendering: optimizeLegibility;
 }
 body::before, body::after { content: none !important; display: none !important; }

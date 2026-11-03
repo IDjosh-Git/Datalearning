@@ -26,7 +26,7 @@ assert(read('reference.html').includes('reference-title-accent'),'reference head
 assert(!read('reference.html').includes('style="color:var(--mint)"'),'outdated inline teal title removed');
 assert(!read('learning-lab.html').includes('<style>'),'Q&A styles should live in CSS, not embedded HTML');
 assert(read('assets/styles/learning-lab-layout.css').includes('.lab-card'),'Q&A card layout preserved');
-assert(read('assets/styles/learning-lab-layout.css').includes('background:#29476b'),'Q&A action uses slate palette');
+assert(read('assets/styles/learning-lab-layout.css').includes('background:var(--ui-nav-ink)'),'Q&A action uses slate palette');
 const ctx={window:{}};vm.createContext(ctx);
 for(const name of ['offline-knowledge.js','reference-data.js','prompt-library-data.js','practice-data.js','practice-extra.js']){
  vm.runInContext(read('assets/scripts/'+name),ctx,{filename:name});

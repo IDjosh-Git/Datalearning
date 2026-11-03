@@ -23,7 +23,7 @@ for(const page of pages){
 for(const f of styles){
  assert(loaded.has(f),`Orphan CSS ${f} should be deleted or linked intentionally`);
  const src=fs.readFileSync(path.join(styleDir,f),'utf8');
- assert(!/\b(?:DM Sans|Manrope|Poppins|Montserrat)\b/i.test(src),`${f}: retired UI font`);
+ assert(!/\b(?:Manrope|Poppins|Montserrat)\b/i.test(src),`${f}: retired UI font`);
  assert(!/(?:-webkit-)?backdrop-filter\s*:/i.test(src),`${f}: decorative glass effect`);
  for(const col of forbiddenColors)assert(!src.toLowerCase().includes(col),`${f}: retired palette colour ${col}`);
  // Page-specific CSS remains intentional; do not ban responsive breakpoints or stateful overlays.

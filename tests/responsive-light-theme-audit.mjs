@@ -16,9 +16,9 @@ for(const cls of ['.dalp-global-header','.dalp-global-nav.is-open','.dalp-public
 }
 assert(shared.includes('overflow-x:auto')&&shared.includes('overscroll-behavior-inline:contain'),'Overflowing tables and code must scroll within content');
 assert(shared.includes('prefers-reduced-motion:reduce'),'Reduced motion must remain available');
-assert.match(admin,/--ac-canvas:#f5f7fb/,'Admin must use the light canvas');
+assert.match(admin,/--ac-canvas:var\(--ui-canvas\)/,'Admin must use the light canvas');
 assert.match(admin,/--ac-panel:#ffffff/,'Admin cards must be white');
-assert.match(admin,/--ac-text:#15243a/,'Admin default text must be dark');
+assert.match(admin,/--ac-text:var\(--ui-ink\)/,'Admin default text must be dark');
 assert.match(admin,/\.ac-sidebar\{[^}]*background:var\(--ac-deep\)/,'Admin sidebar must use the light surface token');
 assert(!admin.includes('.ac-mobile-tabs'),'Duplicate mobile tab bar should be removed; accessible sidebar drawer remains');
 assert.match(admin,/\.ac-detail-backdrop:not\(\[hidden\]\)/,'Authenticated learner detail backdrop must remain');

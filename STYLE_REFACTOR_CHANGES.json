@@ -1,0 +1,519 @@
+{
+  "files": {
+    "access-guard.css": {
+      "updated": true,
+      "palette_replacements": 4,
+      "detail": {
+        "#3f46d9": 3,
+        "#29476b": 1
+      }
+    },
+    "account.css": {
+      "updated": true,
+      "palette_replacements": 19,
+      "detail": {
+        "#15243a": 4,
+        "#3f46d9": 5,
+        "#f5f7fb": 1,
+        "#3035b0": 7,
+        "#29476b": 1,
+        "#b54f38": 1
+      }
+    },
+    "admin-workspace.css": {
+      "updated": false,
+      "palette_replacements": 0,
+      "detail": {}
+    },
+    "admin.css": {
+      "updated": true,
+      "palette_replacements": 5,
+      "detail": {
+        "#15243a": 3,
+        "#b54f38": 2
+      }
+    },
+    "auth.css": {
+      "updated": true,
+      "palette_replacements": 12,
+      "detail": {
+        "#3f46d9": 3,
+        "#3035b0": 4,
+        "#476dba": 2,
+        "#f5f7fb": 1,
+        "#15243a": 2
+      }
+    },
+    "capstone-guide-layout.css": {
+      "updated": true,
+      "palette_replacements": 21,
+      "detail": {
+        "#f8fafc": 4,
+        "#b54f38": 1,
+        "#173e55": 11,
+        "#0e3043": 4,
+        "#3f46d9": 1
+      }
+    },
+    "capstone-guide.css": {
+      "updated": true,
+      "palette_replacements": 15,
+      "detail": {
+        "#0c1428": 2,
+        "#3f46d9": 6,
+        "#3035b0": 2,
+        "#f5f7fb": 2,
+        "#476dba": 2,
+        "#29476b": 1
+      }
+    },
+    "capstone-layout.css": {
+      "updated": true,
+      "palette_replacements": 20,
+      "detail": {
+        "#f8fafc": 4,
+        "#173e55": 11,
+        "#0e3043": 4,
+        "#3f46d9": 1
+      }
+    },
+    "capstone.css": {
+      "updated": true,
+      "palette_replacements": 46,
+      "detail": {
+        "#ae6282": 1,
+        "#9e526f": 1,
+        "#15243a": 2,
+        "#29476b": 3,
+        "#0c1428": 2,
+        "#3f46d9": 13,
+        "#3035b0": 2,
+        "#f5f7fb": 2,
+        "#476dba": 5,
+        "#b54f38": 8,
+        "#f8fafc": 7
+      }
+    },
+    "catalog.css": {
+      "updated": true,
+      "palette_replacements": 14,
+      "detail": {
+        "#3f46d9": 1,
+        "#173e55": 10,
+        "#0e3043": 3
+      }
+    },
+    "certificate.css": {
+      "updated": true,
+      "palette_replacements": 6,
+      "detail": {
+        "#3f46d9": 2,
+        "#f5f7fb": 1,
+        "#15243a": 1,
+        "#3035b0": 2
+      }
+    },
+    "connection-test-layout.css": {
+      "updated": true,
+      "palette_replacements": 7,
+      "detail": {
+        "#15243a": 3,
+        "#29476b": 2,
+        "#3035b0": 2
+      }
+    },
+    "course-ai-content.css": {
+      "updated": true,
+      "palette_replacements": 8,
+      "detail": {
+        "#b54f38": 1,
+        "#f8fafc": 4,
+        "#173e55": 1,
+        "#0e3043": 1,
+        "#29476b": 1
+      }
+    },
+    "course-ai.css": {
+      "updated": true,
+      "palette_replacements": 63,
+      "detail": {
+        "#ae6282": 1,
+        "#9e526f": 1,
+        "#29476b": 19,
+        "#087b79": 1,
+        "#f5f7fb": 3,
+        "#476dba": 4,
+        "#3f46d9": 2,
+        "#b54f38": 23,
+        "#15243a": 2,
+        "#f8fafc": 7
+      }
+    },
+    "course-brand.css": {
+      "updated": true,
+      "palette_replacements": 4,
+      "detail": {
+        "#29476b": 2,
+        "#b54f38": 2
+      }
+    },
+    "course-foundation-excel.css": {
+      "updated": true,
+      "palette_replacements": 13,
+      "detail": {
+        "#f5f7fb": 2,
+        "#15243a": 6,
+        "#29476b": 3,
+        "#b54f38": 1,
+        "#3f46d9": 1
+      }
+    },
+    "course-foundation-general.css": {
+      "updated": true,
+      "palette_replacements": 4,
+      "detail": {
+        "#f5f7fb": 2,
+        "#f8fafc": 1,
+        "#3f46d9": 1
+      }
+    },
+    "course-foundation-powerbi.css": {
+      "updated": true,
+      "palette_replacements": 3,
+      "detail": {
+        "#f5f7fb": 2,
+        "#f8fafc": 1
+      }
+    },
+    "course-framework.css": {
+      "updated": true,
+      "palette_replacements": 65,
+      "detail": {
+        "#b54f38": 25,
+        "#0c1428": 4,
+        "#29476b": 18,
+        "#f5f7fb": 3,
+        "#476dba": 4,
+        "#3f46d9": 2,
+        "#15243a": 2,
+        "#f8fafc": 7
+      }
+    },
+    "course-guide-pages.css": {
+      "updated": true,
+      "palette_replacements": 9,
+      "detail": {
+        "#15243a": 2,
+        "#f5f7fb": 2,
+        "#e1eafe": 1,
+        "#d9e1ed": 2,
+        "#29476b": 1,
+        "#3f46d9": 1
+      }
+    },
+    "course-introduction.css": {
+      "updated": true,
+      "palette_replacements": 89,
+      "detail": {
+        "#ae6282": 1,
+        "#9e526f": 1,
+        "#29476b": 20,
+        "#087b79": 1,
+        "#0c1428": 3,
+        "#e1eafe": 1,
+        "#f5f7fb": 3,
+        "#476dba": 4,
+        "#3f46d9": 2,
+        "#b54f38": 25,
+        "#15243a": 2,
+        "#f8fafc": 11,
+        "#173e55": 11,
+        "#0e3043": 4
+      }
+    },
+    "course-navigation.css": {
+      "updated": true,
+      "palette_replacements": 7,
+      "detail": {
+        "#f8fafc": 4,
+        "#173e55": 1,
+        "#0e3043": 1,
+        "#29476b": 1
+      }
+    },
+    "course-page-improvements.css": {
+      "updated": true,
+      "palette_replacements": 5,
+      "detail": {
+        "#f5f7fb": 1,
+        "#d9e1ed": 3,
+        "#15243a": 1
+      }
+    },
+    "course-powerbi-overrides.css": {
+      "updated": true,
+      "palette_replacements": 7,
+      "detail": {
+        "#f8fafc": 4,
+        "#173e55": 1,
+        "#0e3043": 1,
+        "#29476b": 1
+      }
+    },
+    "course-python-overrides.css": {
+      "updated": true,
+      "palette_replacements": 7,
+      "detail": {
+        "#f8fafc": 4,
+        "#173e55": 1,
+        "#0e3043": 1,
+        "#29476b": 1
+      }
+    },
+    "course-shared-responsiveness.css": {
+      "updated": true,
+      "palette_replacements": 20,
+      "detail": {
+        "#173e55": 10,
+        "#0e3043": 3,
+        "#3f46d9": 1,
+        "#15243a": 2,
+        "#3035b0": 3,
+        "#29476b": 1
+      }
+    },
+    "design-system.css": {
+      "updated": true,
+      "palette_replacements": 78,
+      "detail": {
+        "#f5f7fb": 3,
+        "#15243a": 22,
+        "#3f46d9": 11,
+        "#3035b0": 21,
+        "#29476b": 11,
+        "#b54f38": 2,
+        "#f8fafc": 1,
+        "#e1eafe": 7
+      }
+    },
+    "home-refinements.css": {
+      "updated": true,
+      "palette_replacements": 20,
+      "detail": {
+        "#f8fafc": 4,
+        "#173e55": 11,
+        "#0e3043": 4,
+        "#3f46d9": 1
+      }
+    },
+    "home.css": {
+      "updated": true,
+      "palette_replacements": 50,
+      "detail": {
+        "#ae6282": 1,
+        "#9e526f": 1,
+        "#15243a": 2,
+        "#29476b": 6,
+        "#0c1428": 2,
+        "#3f46d9": 12,
+        "#3035b0": 4,
+        "#f5f7fb": 2,
+        "#476dba": 4,
+        "#b54f38": 10,
+        "#f8fafc": 6
+      }
+    },
+    "learning-lab-foundation.css": {
+      "updated": true,
+      "palette_replacements": 20,
+      "detail": {
+        "#ae6282": 1,
+        "#9e526f": 1,
+        "#29476b": 9,
+        "#087b79": 1,
+        "#0c1428": 2,
+        "#f5f7fb": 2,
+        "#476dba": 2,
+        "#3f46d9": 2
+      }
+    },
+    "learning-lab-layout.css": {
+      "updated": true,
+      "palette_replacements": 34,
+      "detail": {
+        "#29476b": 3,
+        "#b54f38": 6,
+        "#f8fafc": 10,
+        "#173e55": 11,
+        "#0e3043": 4
+      }
+    },
+    "practice.css": {
+      "updated": true,
+      "palette_replacements": 59,
+      "detail": {
+        "#0c1428": 2,
+        "#29476b": 13,
+        "#f5f7fb": 2,
+        "#476dba": 2,
+        "#3f46d9": 2,
+        "#b54f38": 6,
+        "#f8fafc": 15,
+        "#e1eafe": 1,
+        "#173e55": 12,
+        "#0e3043": 4
+      }
+    },
+    "preview-foundation.css": {
+      "updated": true,
+      "palette_replacements": 20,
+      "detail": {
+        "#0c1428": 2,
+        "#3f46d9": 6,
+        "#3035b0": 2,
+        "#f5f7fb": 2,
+        "#476dba": 2,
+        "#29476b": 1,
+        "#b54f38": 1,
+        "#f8fafc": 4
+      }
+    },
+    "preview-layout.css": {
+      "updated": true,
+      "palette_replacements": 16,
+      "detail": {
+        "#173e55": 11,
+        "#0e3043": 4,
+        "#3f46d9": 1
+      }
+    },
+    "private-workspace.css": {
+      "updated": true,
+      "palette_replacements": 60,
+      "detail": {
+        "#f5f7fb": 3,
+        "#15243a": 37,
+        "#3035b0": 12,
+        "#3f46d9": 6,
+        "#29476b": 2
+      }
+    },
+    "progress.css": {
+      "updated": true,
+      "palette_replacements": 2,
+      "detail": {
+        "#29476b": 1,
+        "#3f46d9": 1
+      }
+    },
+    "prompt-library.css": {
+      "updated": true,
+      "palette_replacements": 57,
+      "detail": {
+        "#ae6282": 1,
+        "#9e526f": 1,
+        "#29476b": 14,
+        "#087b79": 1,
+        "#f5f7fb": 3,
+        "#476dba": 4,
+        "#3f46d9": 2,
+        "#b54f38": 6,
+        "#f8fafc": 10,
+        "#173e55": 11,
+        "#0e3043": 4
+      }
+    },
+    "reference.css": {
+      "updated": true,
+      "palette_replacements": 64,
+      "detail": {
+        "#ae6282": 1,
+        "#9e526f": 1,
+        "#29476b": 15,
+        "#087b79": 1,
+        "#0c1428": 2,
+        "#f5f7fb": 2,
+        "#476dba": 4,
+        "#3f46d9": 2,
+        "#b54f38": 9,
+        "#f8fafc": 10,
+        "#173e55": 11,
+        "#0e3043": 4,
+        "#15243a": 1,
+        "#3035b0": 1
+      }
+    },
+    "reviewer.css": {
+      "updated": false,
+      "palette_replacements": 0,
+      "detail": {}
+    },
+    "studio.css": {
+      "updated": true,
+      "palette_replacements": 38,
+      "detail": {
+        "#ae6282": 1,
+        "#9e526f": 1,
+        "#15243a": 2,
+        "#29476b": 1,
+        "#b54f38": 7,
+        "#f8fafc": 10,
+        "#173e55": 11,
+        "#0e3043": 4,
+        "#3f46d9": 1
+      }
+    },
+    "sync-test-layout.css": {
+      "updated": true,
+      "palette_replacements": 9,
+      "detail": {
+        "#15243a": 3,
+        "#3f46d9": 3,
+        "#29476b": 1,
+        "#3035b0": 2
+      }
+    },
+    "tutor.css": {
+      "updated": true,
+      "palette_replacements": 73,
+      "detail": {
+        "#ae6282": 1,
+        "#9e526f": 1,
+        "#29476b": 17,
+        "#087b79": 1,
+        "#0c1428": 2,
+        "#f5f7fb": 2,
+        "#476dba": 4,
+        "#3f46d9": 4,
+        "#b54f38": 9,
+        "#f8fafc": 10,
+        "#173e55": 11,
+        "#0e3043": 4,
+        "#15243a": 7
+      }
+    },
+    "verify.css": {
+      "updated": true,
+      "palette_replacements": 50,
+      "detail": {
+        "#0c1428": 2,
+        "#3f46d9": 9,
+        "#3035b0": 2,
+        "#f5f7fb": 2,
+        "#476dba": 4,
+        "#29476b": 1,
+        "#b54f38": 5,
+        "#f8fafc": 10,
+        "#173e55": 11,
+        "#0e3043": 4
+      }
+    }
+  },
+  "fixed_invalid_link_closers": [
+    "preview.html",
+    "studio.html",
+    "verify.html",
+    "certificate.html",
+    "learning-lab.html"
+  ]
+}

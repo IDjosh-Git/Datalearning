@@ -1,13 +1,13 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 /* Unified visual system | Data Analysis Learning Path | 2026-11
    One shared final-layer stylesheet, intentionally loaded once on every HTML page.
    No business logic, routes, access rules or course content are changed. */
 :root,html,html[data-theme="light"]{
  color-scheme:light;
- --ui-canvas:#f5f7fb;--ui-paper:#fff;--ui-ink:#15243a;--ui-strong:#101d33;
+ --ui-canvas:#f6f7fc;--ui-paper:#fff;--ui-ink:#1c2540;--ui-strong:#101d33;
  --ui-muted:#516178;--ui-stroke:#d6e0ec;--ui-stroke-strong:#bdcbdc;--ui-control-stroke:#798ba2;
- --ui-primary:#3f46d9;--ui-primary-hover:#3035b0;--ui-primary-soft:#eff0ff;
- --ui-accent:#29476b;--ui-accent-hover:#1d3657;--ui-accent-soft:#eaf0f8;--ui-accent-border:#c8d5e6;--ui-coral:#b54f38;
+ --ui-primary:#6553e9;--ui-primary-hover:#5140ce;--ui-primary-soft:#eff0ff;
+ --ui-accent:var(--ui-nav-ink);--ui-accent-hover:#1d3657;--ui-accent-soft:#eaf0f8;--ui-accent-border:#c8d5e6;--ui-coral:#b54855;
  --ui-gold:#a56a08;--ui-shadow:0 3px 14px rgba(18,37,65,.055);
  --ui-radius:14px;--ui-focus:#df842b;
  --experience-ink:var(--ui-ink);--experience-muted:var(--ui-muted);
@@ -21,11 +21,11 @@
  --dlp29-primary:var(--ui-primary);--dlp29-primary-on:#fff;
  --dlp29-glow:transparent;--dlp29-grid:transparent;--dlp29-shadow:var(--ui-shadow);
  --dlp29-shadow-hover:0 10px 24px rgba(18,37,65,.1);
- font-family:Inter,"Plus Jakarta Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+ font-family:"DM Sans","Plus Jakarta Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
 }
 html,html[data-theme="light"]{scroll-padding-top:84px;scroll-behavior:auto!important}
 html body,html[data-theme="light"] body,html[data-theme="light"] body.dlp-course-v29{
- font-family:Inter,"Plus Jakarta Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif!important;
+ font-family:"DM Sans","Plus Jakarta Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif!important;
  color:var(--ui-ink)!important;background:var(--ui-canvas)!important;
  background-image:none!important;text-rendering:optimizeLegibility;
 }
@@ -76,7 +76,7 @@ html[data-theme="light"] :is(input,textarea)::placeholder{color:#64748b;opacity:
 html[data-theme="light"] :is(button,input,select,textarea,[role="button"]):disabled,
 html[data-theme="light"] :is(button,input,select,textarea,[role="button"])[aria-disabled="true"]{opacity:.58;cursor:not-allowed;box-shadow:none!important}
 html[data-theme="light"] :is([role="alert"],.error,.field-error){color:#9b2637}
-html[data-theme="light"] :is(.success,.status-success){color:#29476b}
+html[data-theme="light"] :is(.success,.status-success){color:var(--ui-nav-ink)}
 html[data-theme="light"] :is(table){background:#fff;border-color:var(--ui-stroke)}
 html[data-theme="light"] :is(th,thead td){background:#eef2f9;color:var(--ui-strong)}
 html[data-theme="light"] :is(td,th){border-color:var(--ui-stroke)}
@@ -135,14 +135,14 @@ html[data-theme="light"] a.lp-studio-cta:hover{color:var(--ui-primary-hover)!imp
 body[data-course] .app{grid-template-columns:minmax(230px,270px) minmax(0,1fr);max-width:100%;}
 body[data-course] .sidebar{padding:20px 14px;scrollbar-width:thin;border-right:1px solid var(--ui-stroke,#d9e1ec)!important;}
 body[data-course] .sidebar .brand{margin-bottom:14px}
-body[data-course] .sidebar .searchbox{background:#f5f7fb!important;border:1px solid #d9e1ec!important;border-radius:10px;padding:8px 10px;margin-bottom:12px}
-body[data-course] .sidebar .searchbox input{background:transparent!important;border:none!important;color:#15243a!important;min-width:0;box-shadow:none!important;}
+body[data-course] .sidebar .searchbox{background:var(--ui-canvas)!important;border:1px solid #d9e1ec!important;border-radius:10px;padding:8px 10px;margin-bottom:12px}
+body[data-course] .sidebar .searchbox input{background:transparent!important;border:none!important;color:var(--ui-ink)!important;min-width:0;box-shadow:none!important;}
 body[data-course] .sidebar .searchbox input::placeholder{color:#5b6980!important}
 body[data-course] .sidebar .nav-title{margin:20px 9px 8px;color:#52627a!important;font-size:11px;letter-spacing:.075em}
 body[data-course] .sidebar .nav-link{display:flex;align-items:flex-start;min-width:0;gap:10px;margin:2px 0;padding:10px;border:1px solid transparent;border-radius:10px;color:#21334b!important;font-size:13px;line-height:1.45;overflow-wrap:anywhere;}
 body[data-course] .sidebar .nav-link .nav-num{flex:0 0 26px;background:#eff2f8!important;color:#27384f!important;}
 body[data-course] .sidebar .nav-link.active,body[data-course] .sidebar .nav-link[aria-current]{background:#eff0ff!important;border-color:#bfc4f9!important;color:#292f98!important;font-weight:700}
-body[data-course] .sidebar .nav-link.is-complete::after{content:"✓ Done";font-size:10px;white-space:nowrap;color:#29476b;background:#eaf0f8;border-radius:5px;padding:2px 5px;margin-left:auto;align-self:center}
+body[data-course] .sidebar .nav-link.is-complete::after{content:"✓ Done";font-size:10px;white-space:nowrap;color:var(--ui-nav-ink);background:#eaf0f8;border-radius:5px;padding:2px 5px;margin-left:auto;align-self:center}
 body[data-course] .sidebar .nav-link.active:not(.is-complete)::after{content:"Current";font-size:10px;color:#3035a8;margin-left:auto;align-self:center}
 body[data-course] .course-lesson-disclosure{border:0!important;background:transparent!important;box-shadow:none!important;}
 /* Paired disclosure surface and text colors; open/hover remain readable. */
@@ -161,7 +161,7 @@ html[data-theme] body.dlp-course-v29[data-course] .course-lesson-disclosure[open
 body[data-course] .course-lesson-items{padding:7px 0 0;min-width:0}
 body[data-course] .sidebar-tools{display:flex;flex-direction:column;gap:3px}
 body[data-course] .sidebar-tools a{min-height:38px;padding:8px 10px;border-radius:8px;overflow-wrap:anywhere}
-body[data-course] .sidebar-progress{margin-top:16px;padding:13px;border:1px solid #d9e1ec!important;background:#f8fafc!important;color:#15243a!important;box-shadow:none}
+body[data-course] .sidebar-progress{margin-top:16px;padding:13px;border:1px solid #d9e1ec!important;background:var(--ui-surface-soft)!important;color:var(--ui-ink)!important;box-shadow:none}
 body[data-course] .sidebar-progress :is(.progress-meta,.progress-meta span,.progress-meta strong){color:#26364c!important}
 body[data-course] main{min-width:0;width:100%;overflow-x:clip;}
 body[data-course] .content{width:min(100%,1200px);margin-inline:auto;min-width:0;}
@@ -183,7 +183,7 @@ html[data-theme] body.dlp-course-v29[data-course] .course-sidebar-collapse{
  background-color:#223184!important;
  background-image:linear-gradient(125deg,#28399b,#1a2d68)!important;
  color:#fff!important;-webkit-text-fill-color:#fff!important;
- font:750 13px/1.3 Inter,system-ui,sans-serif;letter-spacing:.01em;
+ font:750 13px/1.3 "DM Sans",system-ui,sans-serif;letter-spacing:.01em;
  cursor:pointer;text-shadow:none!important;box-shadow:0 5px 14px rgba(23,39,100,.16);
  transition:background-color .18s ease,box-shadow .18s ease,transform .18s ease;
 }
@@ -232,7 +232,7 @@ body[data-course] .course-sidebar-collapse:focus-visible{outline:3px solid #df84
 @media(prefers-reduced-motion:reduce){body[data-course] .sidebar,body[data-course] .sidebar *{transition:none!important;animation:none!important}}
 
 /* Administrator reporting: chart is backed exclusively by authorized real records. */
-.ac-analytics-toolbar{display:flex;flex-wrap:wrap;align-items:end;gap:12px;margin:18px 0}.ac-analytics-toolbar label{display:grid;gap:5px;font-weight:650;font-size:.88rem}.ac-analytics-toolbar input{min-height:42px;padding:8px 10px;border:1px solid #a7b6c9;border-radius:9px;background:#fff;color:#15243a}.ac-analytics-toolbar button{min-height:42px;padding:8px 14px;border:1px solid #b5c3d3;background:#fff;color:#15243a;border-radius:9px;cursor:pointer}.ac-analytics-toolbar p{width:100%;margin:0;color:#475569;font-size:.85rem}.ac-analytics-chart{padding:20px;margin:16px 0 22px}.ac-analytics-chart h3{margin:0 0 6px;font-size:1.15rem}.ac-chart-description{margin:0 0 18px;color:#475569;font-size:.9rem}.ac-chart-row{display:grid;grid-template-columns:minmax(100px,170px) minmax(0,1fr) minmax(72px,100px);gap:12px;align-items:center;margin:12px 0;font-size:.9rem}.ac-chart-row>span{overflow-wrap:anywhere}.ac-chart-row strong{text-align:right;font-variant-numeric:tabular-nums}.ac-chart-track{height:13px;border-radius:7px;background:#e5eaf1;overflow:hidden}.ac-chart-track span{height:100%;display:block;border-radius:7px;background:#3f46d9}.ac-analytics-toolbar :focus-visible{outline:3px solid #3f46d9;outline-offset:3px}@media(max-width:550px){.ac-chart-row{grid-template-columns:85px minmax(0,1fr) 67px;gap:8px;font-size:.78rem}.ac-analytics-chart{padding:14px}.ac-analytics-toolbar label{flex:1;min-width:130px}.ac-analytics-toolbar input{max-width:100%;min-width:0}}
+.ac-analytics-toolbar{display:flex;flex-wrap:wrap;align-items:end;gap:12px;margin:18px 0}.ac-analytics-toolbar label{display:grid;gap:5px;font-weight:650;font-size:.88rem}.ac-analytics-toolbar input{min-height:42px;padding:8px 10px;border:1px solid #a7b6c9;border-radius:9px;background:#fff;color:var(--ui-ink)}.ac-analytics-toolbar button{min-height:42px;padding:8px 14px;border:1px solid #b5c3d3;background:#fff;color:var(--ui-ink);border-radius:9px;cursor:pointer}.ac-analytics-toolbar p{width:100%;margin:0;color:#475569;font-size:.85rem}.ac-analytics-chart{padding:20px;margin:16px 0 22px}.ac-analytics-chart h3{margin:0 0 6px;font-size:1.15rem}.ac-chart-description{margin:0 0 18px;color:#475569;font-size:.9rem}.ac-chart-row{display:grid;grid-template-columns:minmax(100px,170px) minmax(0,1fr) minmax(72px,100px);gap:12px;align-items:center;margin:12px 0;font-size:.9rem}.ac-chart-row>span{overflow-wrap:anywhere}.ac-chart-row strong{text-align:right;font-variant-numeric:tabular-nums}.ac-chart-track{height:13px;border-radius:7px;background:#e5eaf1;overflow:hidden}.ac-chart-track span{height:100%;display:block;border-radius:7px;background:var(--ui-primary)}.ac-analytics-toolbar :focus-visible{outline:3px solid var(--ui-primary);outline-offset:3px}@media(max-width:550px){.ac-chart-row{grid-template-columns:85px minmax(0,1fr) 67px;gap:8px;font-size:.78rem}.ac-analytics-chart{padding:14px}.ac-analytics-toolbar label{flex:1;min-width:130px}.ac-analytics-toolbar input{max-width:100%;min-width:0}}
 
 /* Plain, unboxed Practice Studio links throughout the course catalog. */
 html[data-theme] .lp-course-footer a.practice-studio-text-link,
@@ -241,29 +241,29 @@ html[data-theme] a.practice-studio-text-link:visited {
   display:inline!important; position:static!important; width:auto!important; min-height:0!important; min-width:0!important;
   margin:0!important; padding:0!important; border:0!important; border-radius:0!important;
   background:transparent!important; background-image:none!important; box-shadow:none!important;
-  color:#3f46d9!important; -webkit-text-fill-color:#3f46d9!important;
+  color:var(--ui-primary)!important; -webkit-text-fill-color:var(--ui-primary)!important;
   font-size:inherit; font-weight:650; line-height:1.6; text-decoration:underline!important; text-underline-offset:3px;
 }
 html[data-theme] a.practice-studio-text-link:hover{color:#272db7!important;-webkit-text-fill-color:#272db7!important}
-html[data-theme] a.practice-studio-text-link:focus-visible{outline:3px solid #3f46d9!important;outline-offset:4px}
+html[data-theme] a.practice-studio-text-link:focus-visible{outline:3px solid var(--ui-primary)!important;outline-offset:4px}
 /* Remove ALL button/card treatments from course-card Practice Studio links. */
 html[data-theme] .lp-course .lp-course-footer a.lp-studio-cta,
 html[data-theme] .lp-course .lp-course-footer a.lp-studio-cta:visited {
  display:inline!important;position:static!important;width:auto!important;min-height:0!important;min-width:0!important;
  margin:0!important;padding:0!important;border:0!important;border-radius:0!important;
  background:transparent!important;background-image:none!important;box-shadow:none!important;
- color:#3f46d9!important;-webkit-text-fill-color:#3f46d9!important;
+ color:var(--ui-primary)!important;-webkit-text-fill-color:var(--ui-primary)!important;
  font-size:inherit;font-weight:650;line-height:1.6;text-decoration:underline!important;text-underline-offset:3px;
 }
 html[data-theme] .lp-course .lp-course-footer a.lp-studio-cta:hover{color:#272db7!important;-webkit-text-fill-color:#272db7!important}
-html[data-theme] .lp-course .lp-course-footer a.lp-studio-cta:focus-visible{outline:3px solid #3f46d9!important;outline-offset:4px}
+html[data-theme] .lp-course .lp-course-footer a.lp-studio-cta:focus-visible{outline:3px solid var(--ui-primary)!important;outline-offset:4px}
 
 /* Unified public page navigation; scoped to avoid changing lesson or admin navigation. */
 .dalp-global-header,.dalp-global-header *{box-sizing:border-box}
-.dalp-global-header{position:relative;z-index:120;background:#15243a;color:#f6f8ff;border-bottom:1px solid #354862;font-family:Inter,"Plus Jakarta Sans",system-ui,sans-serif;width:100%}
+.dalp-global-header{position:relative;z-index:120;background:var(--ui-ink);color:#f6f8ff;border-bottom:1px solid #354862;font-family:"DM Sans","Plus Jakarta Sans",system-ui,sans-serif;width:100%}
 .dalp-global-inner{max-width:1320px;margin:0 auto;min-height:56px;padding:5px 20px;display:flex;gap:14px;align-items:center;justify-content:space-between}
 .dalp-global-brand{display:inline-flex;gap:10px;align-items:center;flex:none;color:#fff!important;text-decoration:none!important;font-size:15px;font-weight:650;line-height:1.3}
-.dalp-global-brand strong{display:block;color:#e1eafe;font-size:12px;letter-spacing:.04em;text-transform:uppercase}
+.dalp-global-brand strong{display:block;color:var(--ui-primary-soft);font-size:12px;letter-spacing:.04em;text-transform:uppercase}
 
 .dalp-global-nav{display:flex;align-items:center;gap:2px;flex-wrap:wrap;justify-content:flex-end}
 .dalp-global-nav a{color:#e1e9f6!important;text-decoration:none!important;display:inline-block;white-space:normal;line-height:1.3;font-size:12px;font-weight:650;padding:10px 9px;border-radius:8px}
@@ -290,12 +290,12 @@ html[data-theme] .lp-course .lp-course-footer a.lp-studio-cta:focus-visible{outl
 /* The public global header must be visible above its content on every page. */
 html[data-theme="light"] body .dalp-global-header{
  display:block!important;visibility:visible!important;opacity:1!important;
- background:#15243a!important;color:#f6f8ff!important;border-bottom:1px solid #354862!important;
+ background:var(--ui-ink)!important;color:#f6f8ff!important;border-bottom:1px solid #354862!important;
  position:relative;z-index:120;min-height:56px;overflow:visible;
 }
 html[data-theme="light"] body .dalp-global-header .dalp-global-inner{min-height:56px}
 html[data-theme="light"] body .dalp-global-header a.dalp-global-brand{color:#fff!important;-webkit-text-fill-color:#fff!important}
-html[data-theme="light"] body .dalp-global-header .dalp-global-brand strong{color:#e1eafe!important;-webkit-text-fill-color:#e1eafe!important}
+html[data-theme="light"] body .dalp-global-header .dalp-global-brand strong{color:var(--ui-primary-soft)!important;-webkit-text-fill-color:var(--ui-primary-soft)!important}
 html[data-theme="light"] body .dalp-global-header .dalp-global-nav a{
  color:#e1e9f6!important;-webkit-text-fill-color:#e1e9f6!important;
  background:transparent;opacity:1;visibility:visible;
@@ -340,20 +340,20 @@ html[data-theme="light"] body :is(.ref-card,.pl-card,.cap-card,.pc-card,.guide-b
 }
 html[data-theme="light"] body :is(.ref-card,.pl-card,.cap-card,.pc-card,.guide-block,.sample-card) :is(h2,h3,h4,h5){color:var(--ui-strong)!important}
 html[data-theme="light"] body :is(.ref-card,.pl-card,.cap-card,.pc-card,.guide-block,.sample-card) :is(p,li,.meta,.subtle){color:var(--ui-muted)!important}
-html[data-theme="light"] body :is(.ref-card,.pl-card,.cap-card,.pc-card,.guide-block,.sample-card) a:not([class*="primary"]):not([class*="blue"]){color:#3035b0}
+html[data-theme="light"] body :is(.ref-card,.pl-card,.cap-card,.pc-card,.guide-block,.sample-card) a:not([class*="primary"]):not([class*="blue"]){color:var(--ui-primary-hover)}
 /* Standalone roadmap/extension pages used independent green tokens. */
 html[data-theme="light"] body .guide-eyebrow,
-html[data-theme="light"] body .guide-block :is(.dlp29-overline,.dlp-kicker,.cv88-kicker){color:#3035b0!important}
+html[data-theme="light"] body .guide-block :is(.dlp29-overline,.dlp-kicker,.cv88-kicker){color:var(--ui-primary-hover)!important}
 html[data-theme="light"] body .guide-block :is(.dlp29-milestone,.cv88-roadmap li,.dlp-module){background:var(--ui-canvas)!important;border-color:var(--ui-stroke)!important}
-html[data-theme="light"] body .guide-bottom{background:#15243a!important;color:#f6f8ff!important;border:1px solid #354862}
+html[data-theme="light"] body .guide-bottom{background:var(--ui-ink)!important;color:#f6f8ff!important;border:1px solid #354862}
 html[data-theme="light"] body .guide-bottom :is(h2,h3,h4,p,small){color:#fff!important;-webkit-text-fill-color:#fff!important}
-html[data-theme="light"] body .guide-bottom a{color:#e1eafe!important;-webkit-text-fill-color:#e1eafe!important}
+html[data-theme="light"] body .guide-bottom a{color:var(--ui-primary-soft)!important;-webkit-text-fill-color:var(--ui-primary-soft)!important}
 
 /* Pale, readable site footer on every public page. */
 html[data-theme="light"] body .footer{background:#edf1f8!important;background-image:none!important;color:var(--ui-ink)!important;border-top:1px solid var(--ui-stroke)!important}
 html[data-theme="light"] body .footer :is(h2,h3,h4,strong,.wordmark,.wordmark strong){color:var(--ui-ink)!important;-webkit-text-fill-color:var(--ui-ink)!important}
 html[data-theme="light"] body .footer :is(p,span,small){color:var(--ui-muted)!important;-webkit-text-fill-color:var(--ui-muted)!important}
-html[data-theme="light"] body .footer a{color:#3035b0!important;-webkit-text-fill-color:#3035b0!important}
+html[data-theme="light"] body .footer a{color:var(--ui-primary-hover)!important;-webkit-text-fill-color:var(--ui-primary-hover)!important}
 
 /* Keep the support action black with readable white text. */
 html[data-theme="light"] body a:is(.contact-support,.support-link),
@@ -363,13 +363,13 @@ html[data-theme="light"] body a[href^="mailto:"][class*="support"]{
 }
 /* Form and helper labels must remain distinguishable on pale backgrounds. */
 html[data-theme="light"] body :is(.search-hint,.result-head,.ref-card,.form-help,.helper-text){color:var(--ui-muted)}
-html[data-theme="light"] body :is(.eyebrow,.guide-eyebrow,.lp-smart-tag){color:#3035b0}
+html[data-theme="light"] body :is(.eyebrow,.guide-eyebrow,.lp-smart-tag){color:var(--ui-primary-hover)}
 html[data-theme="light"] body :is(input,textarea,select){color:var(--ui-ink)!important;caret-color:var(--ui-primary);background-color:#fff!important}
 html[data-theme="light"] body :is(input,textarea,select):focus-visible{border-color:var(--ui-primary)!important}
 /* Preserve plain text practice links. */
 html[data-theme="light"] body a:is(.lp-studio-cta,.practice-studio-text-link,.open-practice-studio){
- background:transparent!important;color:#3035b0!important;
- -webkit-text-fill-color:#3035b0!important;border:0!important;
+ background:transparent!important;color:var(--ui-primary-hover)!important;
+ -webkit-text-fill-color:var(--ui-primary-hover)!important;border:0!important;
  box-shadow:none!important;text-decoration:underline!important;
 }
 @media (max-width:760px){
@@ -380,12 +380,12 @@ html[data-theme="light"] body a:is(.lp-studio-cta,.practice-studio-text-link,.op
 /* Course-resource pages retain their contextual back link below the shared header. */
 html[data-theme="light"] body .guide-hero .guide-breadcrumb{
  display:inline-flex;align-items:center;min-height:40px;margin:0 0 14px;
- color:#3035b0!important;-webkit-text-fill-color:#3035b0!important;
+ color:var(--ui-primary-hover)!important;-webkit-text-fill-color:var(--ui-primary-hover)!important;
  font-weight:700;text-decoration:underline;text-underline-offset:3px;
 }
 
 
-html[data-theme="light"] :is(h1,h2,h3,h4,h5,h6){font-family:Inter,"Plus Jakarta Sans",ui-sans-serif,system-ui,sans-serif!important}
+html[data-theme="light"] :is(h1,h2,h3,h4,h5,h6){font-family:"DM Sans","Plus Jakarta Sans",ui-sans-serif,system-ui,sans-serif!important}
 
 /* Current shared component layout: consolidated from former presentation layers.
    These rules define functionality and responsiveness, not a competing theme. */
@@ -440,7 +440,7 @@ html[data-theme="light"] body .lp-course :is(h3,p,.lp-course-outcome,.lp-progres
 .learning-table tbody tr:hover td,.learning-table tbody tr:hover th{background:var(--ui-primary-soft)}
 .learning-scenario{display:grid;gap:13px;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start}
 .learning-scenario>div:first-child{background:#eaf0f8;border-radius:14px;padding:clamp(14px,2vw,20px);border:1px solid #c8d5e6;min-height:100%}
-.learning-scenario h6{margin:0 0 7px;font-size:.93rem;color:#29476b!important}
+.learning-scenario h6{margin:0 0 7px;font-size:.93rem;color:var(--ui-nav-ink)!important}
 .learning-scenario-task{margin:0;color:var(--ui-ink)!important}
 .learning-answer{border:1px solid var(--ui-stroke);background:#fff;border-radius:14px;padding:16px;min-width:0}
 .learning-answer summary{color:var(--ui-primary);font-weight:800;line-height:1.5;padding-block:2px}
@@ -453,7 +453,7 @@ html[data-theme="light"] body .lp-course :is(h3,p,.lp-course-outcome,.lp-progres
 .experience-back-top{position:fixed;right:clamp(12px,2vw,24px);bottom:clamp(12px,2vw,24px);z-index:100;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-width:44px;min-height:44px;padding:10px 14px;border:1px solid #c8d5e6!important;border-radius:999px;background:#fff!important;color:var(--ui-primary)!important;font-weight:800;box-shadow:0 8px 25px rgba(21,81,49,.12);opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .25s,transform .25s}
 .experience-back-top.is-visible{opacity:1;pointer-events:auto;transform:translateY(0)}
 .experience-study-map{margin:0 0 22px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:20px clamp(18px,2vw,26px);border:1px solid var(--ui-stroke);background:var(--ui-paper);border-radius:18px;box-shadow:var(--experience-shadow)}
-.experience-study-map strong{display:block;font-size:clamp(17px,2vw,21px);color:#29476b;margin-bottom:5px}
+.experience-study-map strong{display:block;font-size:clamp(17px,2vw,21px);color:var(--ui-nav-ink);margin-bottom:5px}
 .experience-study-map p{max-width:67ch;color:var(--ui-muted);margin:0;font-size:.92rem}
 .experience-study-map a{align-self:center;white-space:normal;display:inline-flex;align-items:center;padding:10px 15px;border:1px solid var(--ui-stroke-strong);background:#fff;color:var(--ui-primary);border-radius:12px;text-decoration:none;font-weight:800}
 
@@ -494,12 +494,12 @@ html[data-theme="light"] body .lp-course :is(h3,p,.lp-course-outcome,.lp-progres
 /* Navigation icons: text-based marks avoid missing images, invalid SVG sizing and cache failures. */
 .dlp97-subject-icon{box-sizing:border-box;flex:0 0 33px!important;width:33px!important;height:33px!important;display:grid!important;place-items:center!important;overflow:hidden;border-radius:9px;background:var(--ui-primary-soft)!important;color:var(--ui-primary)!important}
 .dlp97-icon-mark{display:grid;place-items:center;width:100%;height:100%;font:850 12px/1 system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:-.025em;color:var(--ui-primary)}
-.dlp97-icon-excel{background:var(--ui-accent-soft);color:#29476b;font-size:20px}
+.dlp97-icon-excel{background:var(--ui-accent-soft);color:var(--ui-nav-ink);font-size:20px}
 .dlp97-icon-sql{background:#dfefff;color:#155caa;font-size:10px}
 .dlp97-icon-powerbi{background:#fff4c4;color:#825a00;font-size:13px}
 .dlp97-icon-python{background:#e5eaff;color:#344a94;font-size:14px}
 .dlp97-icon-ai{background:#eee2ff;color:#6540a5;font-size:14px}
-.dlp97-icon-intro{background:var(--ui-accent-soft);color:#29476b;font-size:11px}
+.dlp97-icon-intro{background:var(--ui-accent-soft);color:var(--ui-nav-ink);font-size:11px}
 .dlp97-brand-mark{display:grid;place-items:center;flex:0 0 39px;width:39px;height:39px;border-radius:11px;background:var(--ui-primary);color:#fff;font-weight:850;font-size:12px;letter-spacing:.04em}
 
 
@@ -733,8 +733,8 @@ html[data-theme="light"] body a.dalp-plain-link:visited{
   background:transparent!important;
   background-image:none!important;
   box-shadow:none!important;
-  color:#3035b0!important;
-  -webkit-text-fill-color:#3035b0!important;
+  color:var(--ui-primary-hover)!important;
+  -webkit-text-fill-color:var(--ui-primary-hover)!important;
   font-weight:750!important;
   font-size:inherit;
   line-height:1.5!important;
@@ -761,7 +761,7 @@ html[data-theme="light"] body a.dalp-plain-link:hover{
   transform:none!important;
 }
 html[data-theme="light"] body a.dalp-plain-link:focus-visible{
-  outline:3px solid #3f46d9!important;
+  outline:3px solid var(--ui-primary)!important;
   outline-offset:4px!important;
   border-radius:2px!important;
 }
@@ -810,7 +810,7 @@ html[data-theme="light"] body .ref-actions a[href]{
   box-shadow:none!important;
   padding:7px 0!important;
   width:auto!important;
-  color:#3035b0!important;
+  color:var(--ui-primary-hover)!important;
   text-decoration:underline!important;
   text-underline-offset:4px!important;
 }
@@ -891,15 +891,15 @@ html[data-theme="light"] body a.lp-studio-cta{box-shadow:none!important;backgrou
  html[data-theme="light"] body :is(.card,.lp-course,.ref-card,.guide-block){transition:none!important}
 }
 /* Site organization: consistent keyboard entry point on every page. */
-.dalp-skip-link{position:fixed;inset-block-start:0.75rem;inset-inline-start:0.75rem;z-index:100000;transform:translateY(-180%);display:inline-flex;align-items:center;min-height:44px;padding:0.65rem 1rem;background:#fff;color:#15243a;border:2px solid #3f46d9;border-radius:10px;font:700 0.95rem/1.3 Inter,system-ui,sans-serif;text-decoration:underline;box-shadow:0 5px 18px rgba(21,36,58,.14)}
-.dalp-skip-link:focus,.dalp-skip-link:focus-visible{transform:none;outline:3px solid #b54f38;outline-offset:3px}
+.dalp-skip-link{position:fixed;inset-block-start:0.75rem;inset-inline-start:0.75rem;z-index:100000;transform:translateY(-180%);display:inline-flex;align-items:center;min-height:44px;padding:0.65rem 1rem;background:#fff;color:var(--ui-ink);border:2px solid var(--ui-primary);border-radius:10px;font:700 0.95rem/1.3 "DM Sans",system-ui,sans-serif;text-decoration:underline;box-shadow:0 5px 18px rgba(21,36,58,.14)}
+.dalp-skip-link:focus,.dalp-skip-link:focus-visible{transform:none;outline:3px solid var(--ui-coral);outline-offset:3px}
 @media(prefers-reduced-motion:reduce){.dalp-skip-link{transition:none}}
 
 
 /* Public surface & course-page refinement | 2026-11-01
    One current styling layer. Public navigation, learning widgets, quiz state,
    authentication and the separate course lesson outline remain functional. */
-:root { --dalp-header-height:56px; --dalp-brand-surface:#15243a; }
+:root { --dalp-header-height:56px; --dalp-brand-surface:var(--ui-ink); }
 html[data-theme="light"] body .dalp-global-header,
 html[data-theme="light"] body .dalp-global-header .dalp-global-inner {
   min-height:var(--dalp-header-height)!important;
@@ -949,13 +949,13 @@ html[data-theme="light"] body :is(.lp-course,.lp-feature,.lp-step,.ref-card,.pl-
   background-color:#fff!important;background-image:none!important;
   border-color:#d6e0ec!important;border-radius:14px!important;
   box-shadow:0 2px 12px rgba(21,36,58,.045)!important;
-  color:#15243a!important;min-width:0;overflow-wrap:anywhere;
+  color:var(--ui-ink)!important;min-width:0;overflow-wrap:anywhere;
 }
 html[data-theme="light"] body :is(.lp-course,.lp-feature,.lp-step,.ref-card,.pl-card,.guide-block,.intro-lesson,.dlp97-card,.cap-card,.pc-card) :is(h2,h3,h4,p,small){
   max-width:100%;overflow-wrap:anywhere;word-break:normal;text-align:start;
 }
 html[data-theme="light"] body :is(.lp-course,.lp-feature,.lp-step,.ref-card,.pl-card,.guide-block,.intro-lesson,.dlp97-card,.cap-card,.pc-card) :is(h2,h3,h4){
-  color:#15243a!important;line-height:1.32!important;letter-spacing:-.018em!important;margin-block-start:0;
+  color:var(--ui-ink)!important;line-height:1.32!important;letter-spacing:-.018em!important;margin-block-start:0;
 }
 html[data-theme="light"] body :is(.lp-course,.lp-feature,.lp-step,.ref-card,.pl-card,.guide-block,.intro-lesson,.dlp97-card,.cap-card,.pc-card) :is(p,small){
   color:#43536b!important;line-height:1.63!important;
@@ -973,7 +973,7 @@ html[data-theme="light"] body.dlp-course-v29 :is(.topbar,.course-header,.week-he
 }
 html[data-theme="light"] body.dlp-course-v29 :is(.topbar-title,.week-header,.section-header,.course-hero) :is(h1,h2,h3,strong),
 html[data-theme="light"] body.dlp-course-v29 .topbar-title {
-  color:#15243a!important;-webkit-text-fill-color:#15243a!important;
+  color:var(--ui-ink)!important;-webkit-text-fill-color:var(--ui-ink)!important;
   opacity:1!important;visibility:visible!important;text-shadow:none!important;
   overflow-wrap:anywhere;line-height:1.3!important;
 }
@@ -986,7 +986,7 @@ html[data-theme="light"] body :is(.lp-course,.lp-feature,.lp-step,.ref-card,.pl-
 html[data-theme="light"] body a.dalp-plain-link {
   background:transparent!important;background-image:none!important;
   border:0!important;border-radius:0!important;box-shadow:none!important;
-  color:#3035b0!important;-webkit-text-fill-color:#3035b0!important;
+  color:var(--ui-primary-hover)!important;-webkit-text-fill-color:var(--ui-primary-hover)!important;
   padding:6px 0!important;min-height:36px;
   font-weight:700!important;text-decoration:underline!important;
   text-underline-offset:4px;white-space:normal!important;text-align:left!important;
@@ -1022,7 +1022,7 @@ html[data-theme="light"] body.lp-home .footer a{color:#e1e9f6!important;-webkit-
 html[data-theme="light"] body:has(> .dalp-global-header) main a[href]:not(.dalp-themed-hero a):not(.guide-bottom a):not(.finish a):not(.topbar a):not(.account-text-link):not(.card):not([role="button"]):not([role="tab"]):not(.nav-link):not([aria-selected]):not([data-action]){
   background:transparent!important;background-image:none!important;
   border:0!important;box-shadow:none!important;
-  color:#3035b0!important;-webkit-text-fill-color:#3035b0!important;
+  color:var(--ui-primary-hover)!important;-webkit-text-fill-color:var(--ui-primary-hover)!important;
   text-shadow:none!important;text-decoration:underline!important;text-underline-offset:4px!important;
   border-radius:0!important;white-space:normal!important;overflow-wrap:anywhere!important;
 }
@@ -1042,7 +1042,7 @@ html[data-theme="light"] body.lp-home :is(.lp-course-footer,.lp-smart-actions,.l
   width:auto!important;min-width:0!important;min-height:0!important;max-width:100%!important;
   padding:0!important;margin:0!important;background:transparent!important;background-image:none!important;
   border:0!important;border-radius:0!important;box-shadow:none!important;
-  color:#3035b0!important;-webkit-text-fill-color:#3035b0!important;
+  color:var(--ui-primary-hover)!important;-webkit-text-fill-color:var(--ui-primary-hover)!important;
   text-decoration:underline!important;text-underline-offset:4px!important;
   font-size:14px!important;line-height:1.5!important;font-weight:750!important;
   text-align:left!important;white-space:normal!important;overflow-wrap:anywhere!important;
@@ -1078,7 +1078,7 @@ html[data-theme="light"] body > .dalp-public-footer {
   border-top:1px solid #394a67;
   box-shadow:none;
   text-align:left;
-  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-family:"DM Sans",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   line-height:1.6;
 }
 html[data-theme="light"] body > .dalp-public-footer *,
@@ -1129,8 +1129,8 @@ html[data-theme="light"] body > .dalp-public-footer a:focus-visible{
 html[data-theme="light"] body > .dalp-footer-page-note,
 html[data-theme="light"] body .dalp-footer-page-note{
   display:block;width:min(1220px,calc(100% - 40px));margin:28px auto 12px;
-  padding:12px 16px;border-left:3px solid #29476b;border-radius:5px;
-  background:#eaf0f8;color:#15243a;line-height:1.65;font-size:.92rem;
+  padding:12px 16px;border-left:3px solid var(--ui-nav-ink);border-radius:5px;
+  background:#eaf0f8;color:var(--ui-ink);line-height:1.65;font-size:.92rem;
 }
 @media (max-width:1020px){.dalp-public-footer__grid{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:30px;}}
 @media (max-width:580px){
@@ -1165,7 +1165,7 @@ html[data-theme="light"] body .dalp-footer-page-note{
 html[data-theme="light"] body[data-dalp-header-tone="ink"]{--dalp-page-hero:#203a57;--dalp-hero-edge:#59728e}
 html[data-theme="light"] body[data-dalp-header-tone="navy"]{--dalp-page-hero:#263d5d;--dalp-hero-edge:#607c9b}
 html[data-theme="light"] body[data-dalp-header-tone="indigo"]{--dalp-page-hero:#303561;--dalp-hero-edge:#7079a9}
-html[data-theme="light"] body[data-dalp-header-tone="slate"]{--dalp-page-hero:#29476b;--dalp-hero-edge:#6385aa}
+html[data-theme="light"] body[data-dalp-header-tone="slate"]{--dalp-page-hero:var(--ui-nav-ink);--dalp-hero-edge:#6385aa}
 html[data-theme="light"] body[data-dalp-header-tone="plum"]{--dalp-page-hero:#3b365c;--dalp-hero-edge:#8078a4}
 html[data-theme="light"] body[data-dalp-header-tone="ink-slate"]{--dalp-page-hero:#29374e;--dalp-hero-edge:#687b96}
 /* One dependable dark masthead on every learner-facing route. */
@@ -1216,7 +1216,7 @@ html[data-theme="light"] body .dalp-themed-hero :is(.eyebrow,.section-tag,.dlp97
 html[data-theme="light"] body.dlp-course-v29 .hero.dalp-themed-hero .stat,
 html[data-theme="light"] body.dlp-course-v29 .hero.dalp-themed-hero .stat :is(strong,span,p,small),
 html[data-theme="light"] body .dalp-themed-hero .intro-progress-card :is(h2,h3,h4,strong,small,span,p){
-  color:#15243a!important;-webkit-text-fill-color:#15243a!important;
+  color:var(--ui-ink)!important;-webkit-text-fill-color:var(--ui-ink)!important;
 }
 html[data-theme="light"] body .dalp-themed-hero :is(.intro-progress-card,.auth-benefit,.auth-course-chips,.lp-demo) :is(p,small,span){
   color:#233b58!important;-webkit-text-fill-color:#233b58!important;
@@ -1225,10 +1225,10 @@ html[data-theme="light"] body .dalp-themed-hero :is(.intro-progress-card,.auth-b
    the light-on-dark paragraph and inline-link palette. */
 html[data-theme="light"] body.dlp-course-v29 .hero.dalp-themed-hero .job-ready-banner :is(h2,h3,h4,p,strong,span),
 html[data-theme="light"] body.dlp-course-v29 .hero.dalp-themed-hero .job-ready-extension :is(h2,h3,h4,p,strong,span){
-  color:#15243a!important;-webkit-text-fill-color:#15243a!important;
+  color:var(--ui-ink)!important;-webkit-text-fill-color:var(--ui-ink)!important;
 }
 html[data-theme="light"] body.dlp-course-v29 .hero.dalp-themed-hero :is(.job-ready-banner,.job-ready-extension) a[href]{
-  color:#3035b0!important;-webkit-text-fill-color:#3035b0!important;
+  color:var(--ui-primary-hover)!important;-webkit-text-fill-color:var(--ui-primary-hover)!important;
 }
 /* Course category badges use a dark tinted surface, unlike the white stat tiles. */
 html[data-theme="light"] body.dlp-course-v29 :is(.hero,.week-header).dalp-themed-hero .badge,
@@ -1378,7 +1378,7 @@ html[data-theme="light"] body .dalp-global-toggle{min-width:44px;min-height:44px
 
 /* Practice Arena uses a dark masthead, not the generic white practice panel. */
 html[data-theme="light"] body[data-responsive-page="practice"] .pc-hero.dalp-themed-hero{
-  background:#29476b!important;background-color:#29476b!important;background-image:none!important;
+  background:var(--ui-nav-ink)!important;background-color:var(--ui-nav-ink)!important;background-image:none!important;
   color:#fff!important;-webkit-text-fill-color:#fff!important;
   border:1px solid #6a86a7!important;
 }
@@ -1406,7 +1406,7 @@ html[data-theme="light"] body.dlp-course-v29 .intro-visual .process-chip span{
 /* Verified dark panels: use light links on dark surfaces, without filled pills. */
 html[data-theme="light"] body:has(> .dalp-global-header) main .guide-bottom a[href],
 html[data-theme="light"] body .guide-bottom a[href]{
-  color:#e1eafe!important;-webkit-text-fill-color:#e1eafe!important;
+  color:var(--ui-primary-soft)!important;-webkit-text-fill-color:var(--ui-primary-soft)!important;
   background:transparent!important;border:0!important;box-shadow:none!important;text-decoration:underline!important;
 }
 html[data-theme="light"] body.dlp-course-v29 .topbar .course-account-link,
@@ -1528,7 +1528,7 @@ html[data-theme="light"] body.dlp-course-v29.cw-workspace-ready .cw-workspace .c
   border:1px solid #d7e0eb!important;
   border-bottom:0!important;
   border-radius:16px 16px 0 0!important;
-  color:#15243a!important;
+  color:var(--ui-ink)!important;
   min-width:0;
 }
 html[data-theme="light"] body.dlp-course-v29.cw-workspace-ready .cw-workspace .cw-timeline-heading > strong {
@@ -1548,7 +1548,7 @@ html[data-theme="light"] body.dlp-course-v29.cw-intro-ready .cw-intro-nav .cw-ti
   margin:12px 0 0!important;
   padding:16px 18px!important;
   background:#edf2fa!important;
-  color:#15243a!important;
+  color:var(--ui-ink)!important;
   border:1px solid #d7e0eb!important;
   border-radius:16px 16px 0 0!important;
 }
@@ -1563,7 +1563,7 @@ html[data-theme="light"] body.dlp-course-v29.cw-intro-ready .cw-intro-nav .cw-ti
 }
 
 /* Protected learner utilities: shared brand navigation without duplicate site menus. */
-body.dalp-utility-page{background:#f5f7fb;color:#15243a;min-width:0}
+body.dalp-utility-page{background:var(--ui-canvas);color:var(--ui-ink);min-width:0}
 body.dalp-utility-page .dalp-utility-header{position:relative;z-index:10;background:#203a57;color:#f4f8ff;border-bottom:1px solid #496180;box-shadow:none}
 body.dalp-utility-page .dalp-utility-inner{width:min(100% - 36px,1320px);margin:0 auto;min-height:58px;display:flex;align-items:center;gap:clamp(10px,2vw,24px);padding-block:8px;min-width:0}
 body.dalp-utility-page .dalp-utility-brand{display:flex;align-items:center;gap:10px;min-width:0;text-decoration:none;color:#ffffff!important;-webkit-text-fill-color:#ffffff!important;font-size:14px;line-height:1.3;font-weight:600}
@@ -1888,3 +1888,277 @@ html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-course,.dlp97
   }
   html[data-theme="light"] body[data-gradient-public="true"] .dlp97-card .dlp97-facts > div{padding-top:8px;}
 }
+
+/* BEGIN PREMIUM EXPERIENCE 20261103 (synchronised from premium-experience.css) */
+/* DALP premium visual system, 2026-11-03.
+ * Final global theme on all routes. Protected workspace navigation has a local, scoped layer.
+ * Shared tokens are the authoritative surface/interaction palette. */
+:root,html,html[data-theme="light"]{
+ --ui-canvas:#f6f7fc;--ui-paper:#fff;--ui-ink:#1c2540;--ui-strong:#101831;
+ --ui-muted:#596783;--ui-stroke:#e2e7f2;--ui-stroke-strong:#ccd5e7;--ui-control-stroke:#8595ae;
+ --ui-primary:#6553e9;--ui-primary-hover:#5140ce;--ui-primary-soft:#f0edff;
+ --ui-accent:#286b9c;--ui-accent-hover:#1d5279;--ui-accent-soft:#e8f5ff;--ui-accent-border:#cce7fa;
+ --ui-coral:#b54855;--ui-gold:#956018;--ui-focus:#5847d9;
+ --ui-night:#161b38;--ui-nav-ink:#26365a;--ui-primary-strong:#5140ce;
+ --ui-surface-soft:#f8f9fd;--ui-content-width:1320px;
+ --ui-easing:cubic-bezier(.2,.75,.25,1);
+ --ui-radius:20px;--ui-shadow:0 12px 38px rgba(29,36,86,.065);
+ --app-bg:var(--ui-canvas);--app-surface:#fff;--app-surface-2:#f6f7fc;--app-surface-3:#edf0f8;
+ --app-text:var(--ui-ink);--app-muted:var(--ui-muted);--app-line:var(--ui-stroke);--app-line-strong:var(--ui-stroke-strong);
+ --app-brand:var(--ui-primary);--app-brand-strong:var(--ui-primary-hover);--app-brand-soft:var(--ui-primary-soft);--app-brand-text:var(--ui-primary);
+ --app-shadow:0 25px 75px rgba(27,32,84,.12);--app-shadow-soft:var(--ui-shadow);
+ font-family:'DM Sans',system-ui,sans-serif;
+}
+html[data-theme="light"] body,html body,html[data-theme="light"] body.dlp-course-v29{font-family:'DM Sans',system-ui,sans-serif!important;background:var(--ui-canvas)!important;color:var(--ui-ink)!important}
+html[data-theme="light"] :is(h1,h2,h3,h4,h5,h6),html[data-theme="light"] :is(.auth-heading h2,.auth-story h1,.ac-welcome h1){font-family:'Plus Jakarta Sans','DM Sans',sans-serif!important;letter-spacing:-.038em}
+html[data-theme="light"] :is(button,.btn,.button,.btn-primary,.button-primary,.primary-btn,.lp-btn-primary,.auth-submit,.primary-action,[role="button"]){font-family:'DM Sans',sans-serif;font-weight:750;transition:background-color .18s ease,border-color .18s ease,box-shadow .18s ease,transform .18s ease}
+html[data-theme="light"] :is(.btn-primary,.button-primary,.primary-btn,.dlp29-button-primary,.lp-btn-primary,.auth-submit,.primary-action){background:linear-gradient(135deg,#6651e4,#4933bf)!important;border:1px solid #6553e9!important;color:#fff!important;-webkit-text-fill-color:#fff!important;border-radius:14px!important;box-shadow:0 8px 20px rgba(94,75,219,.20)!important;min-height:44px}
+html[data-theme="light"] :is(.btn-primary,.button-primary,.primary-btn,.dlp29-button-primary,.lp-btn-primary,.auth-submit,.primary-action):hover:not(:disabled){background:linear-gradient(135deg,#5845d5,#3c29ae)!important;box-shadow:0 12px 26px rgba(94,75,219,.26)!important;transform:translateY(-1px)}
+html[data-theme="light"] :is(.btn-secondary,.button-secondary,.secondary-btn,.lp-btn-secondary){border:1px solid #d8d3fa!important;background:#f8f7ff!important;color:#5140ce!important;-webkit-text-fill-color:#5140ce!important;border-radius:14px!important}
+html[data-theme="light"] :is(input:not([type="checkbox"]):not([type="radio"]),textarea,select){border-radius:13px;accent-color:var(--ui-primary)}
+html[data-theme="light"] :is(a,button,input,select,textarea,summary,[role="button"]):focus-visible{outline:3px solid #5847d9!important;outline-offset:3px!important}
+html[data-theme="light"] :is(.card,.lp-course,.lp-feature,.lp-step,.lp-quick-card,.dlp97-card,.week,.lesson,.mini,.unit,.dlp-module,.intro-lesson,.ref-card,.ps-card,.pc-item,.tool-case,.cap-panel,.mastery-section,.mastery-deep-dive,.sample-card,.stat-card,.kpi-card,.admin-card,.auth-card,.panel,.tile){border-radius:20px!important;box-shadow:0 12px 34px rgba(27,32,84,.055)!important;border-color:var(--ui-stroke)!important}
+/* Authentication is a standalone app experience: no page footer. */
+html[data-theme="light"] body.auth-page{min-height:100dvh;background:radial-gradient(circle at 5% 10%,#ebe8ff 0,transparent 32%),radial-gradient(circle at 98% 95%,#e6f4ff 0,transparent 38%),#f7f8fe!important}
+html[data-theme="light"] body.auth-page .dalp-footer-page-note,html[data-theme="light"] body.auth-page .auth-footer-note,html[data-theme="light"] body.auth-page footer{display:none!important}
+html[data-theme="light"] body.auth-page .auth-shell{width:min(1190px,calc(100% - 40px));padding:28px 0 32px}
+html[data-theme="light"] body.auth-page .auth-topbar{margin-bottom:27px}
+html[data-theme="light"] body.auth-page .auth-wordmark img{border-radius:14px;box-shadow:0 7px 24px rgba(70,53,156,.15)}
+html[data-theme="light"] body.auth-page .auth-wordmark strong{font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;color:#18213d}
+html[data-theme="light"] body.auth-page .auth-layout{grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr)!important;border:1px solid #e1e4f4!important;border-radius:30px!important;box-shadow:0 32px 95px rgba(28,31,83,.13)!important;background:#fff!important}
+html[data-theme="light"] body.auth-page .auth-story{min-height:650px;padding:55px 51px!important;background:linear-gradient(150deg,#161b4a 0%,#29246d 51%,#5847cb 100%)!important}
+html[data-theme="light"] body.auth-page .auth-story:before{width:430px;height:430px;right:-185px;top:-155px;background:radial-gradient(circle,rgba(174,154,255,.33),transparent 70%)}
+html[data-theme="light"] body.auth-page .auth-story:after{width:360px;height:360px;left:-150px;bottom:-170px;background:radial-gradient(circle,rgba(75,202,231,.19),transparent 70%)}
+html[data-theme="light"] body.auth-page .auth-story h1{font-size:clamp(35px,3.5vw,53px)!important;line-height:1.12;max-width:490px;color:#fff!important}
+html[data-theme="light"] body.auth-page .auth-story>div>p{font-size:14px;line-height:1.8;color:#d6d6f4!important}
+html[data-theme="light"] body.auth-page .auth-kicker{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.18);color:#ece9ff;padding:9px 13px;font-size:10px}
+html[data-theme="light"] body.auth-page .auth-course-chips span{background:rgba(255,255,255,.12)!important;border-color:rgba(255,255,255,.22)!important;color:#fff!important;border-radius:999px!important}
+html[data-theme="light"] body.auth-page .auth-benefit{border-color:rgba(255,255,255,.14);background:rgba(255,255,255,.07);border-radius:17px;padding:15px 16px}
+html[data-theme="light"] body.auth-page .auth-benefit svg{color:#c9bdff}
+html[data-theme="light"] body.auth-page .auth-benefit b{color:#fff!important;font-size:13px}
+html[data-theme="light"] body.auth-page .auth-benefit span{color:#d5d5f2!important;font-size:12px}
+html[data-theme="light"] body.auth-page .auth-forms{display:flex;flex-direction:column;justify-content:center;padding:58px clamp(26px,4.3vw,66px)!important;background:#fff!important;border:0!important}
+html[data-theme="light"] body.auth-page .auth-heading small{font-size:11px;letter-spacing:.12em;color:#6553e9!important}
+html[data-theme="light"] body.auth-page .auth-heading h2{font-size:clamp(28px,3vw,38px)!important;margin:10px 0;color:#131b36!important}
+html[data-theme="light"] body.auth-page .auth-heading p{font-size:14px;color:#65718b!important}
+html[data-theme="light"] body.auth-page .auth-tabs{padding:5px;border-radius:15px;background:#f3f4fb!important}
+html[data-theme="light"] body.auth-page .auth-tab{border-radius:11px!important;font-size:13px!important;min-height:42px}
+html[data-theme="light"] body.auth-page .auth-tab.active{background:#fff!important;color:#4d3bc4!important;box-shadow:0 4px 14px rgba(36,30,91,.1)!important}
+html[data-theme="light"] body.auth-page .auth-field{margin-bottom:19px}
+html[data-theme="light"] body.auth-page .auth-field label{font-size:12px;color:#26334e!important}
+html[data-theme="light"] body.auth-page .auth-field input{height:52px!important;background:#fbfcff!important;border:1px solid #dce2f0!important;border-radius:13px!important;font-size:14px!important;padding:0 16px!important}
+html[data-theme="light"] body.auth-page .auth-field input:focus{border-color:#6553e9!important;box-shadow:0 0 0 4px #ece9ff!important}
+html[data-theme="light"] body.auth-page .auth-submit{height:52px!important;border-radius:14px!important;font-size:14px!important;letter-spacing:.01em}
+html[data-theme="light"] body.auth-page .auth-account-note{border-radius:16px!important;background:#f7f6ff!important;border-color:#e5e0ff!important}
+html[data-theme="light"] body.auth-page .auth-switch{font-size:13px}
+html[data-theme="light"] body.auth-page .auth-secure-chip{border-radius:999px!important}
+/* Private workspace: stable bottom action with its own non-scrolling footer. */
+html[data-theme] body.ac-ready{--ac-canvas:#f6f7fc;--ac-deep:#171a43;--ac-nav-border:#343962;--ac-nav-text:#f7f6ff;--ac-nav-muted:#c6c6e4;--ac-nav-accent:#c3b8ff;--ac-panel:#fff;--ac-panel-raised:#f5f6fc;--ac-stroke:#e1e5f1;--ac-text:#1c2540;--ac-muted:#596783;--ac-accent:#6553e9;--ac-focus:#c3b8ff;font-family:'DM Sans',sans-serif}
+html[data-theme] body.ac-ready .ac-sidebar{height:100dvh!important;max-height:100dvh!important;overflow:hidden!important;display:flex!important;flex-direction:column!important;padding:16px 13px max(12px,env(safe-area-inset-bottom))!important;background:linear-gradient(180deg,#191c4c 0%,#171a3c 100%)!important}
+html[data-theme] body.ac-ready .ac-brand{flex:0 0 auto}
+html[data-theme] body.ac-ready .ac-side-nav{flex:1 1 0!important;min-height:0!important;overflow-y:auto!important;overscroll-behavior:contain;padding-bottom:16px!important;scrollbar-width:thin}
+html[data-theme] body.ac-ready .ac-side-bottom{flex:0 0 auto!important;position:relative!important;bottom:auto!important;margin-top:0!important;padding:13px 2px 0!important;border-top:1px solid rgba(255,255,255,.15)!important;background:transparent!important;z-index:2}
+html[data-theme] body.ac-ready .ac-logout{width:100%!important;min-height:48px!important;margin:11px 0 0!important;padding:12px 16px!important;background:#343066!important;border:1px solid #57548c!important;border-radius:13px!important;color:#fff!important;-webkit-text-fill-color:#fff!important;font:750 13px 'DM Sans',sans-serif!important;box-shadow:none!important;white-space:normal!important}
+html[data-theme] body.ac-ready .ac-logout:hover{background:#4c428e!important;border-color:#9385d8!important}
+html[data-theme] body.ac-ready .ac-side-link{border-radius:12px!important;font-size:13px!important}
+html[data-theme] body.ac-ready .ac-side-link.ac-selected{background:rgba(148,128,255,.22)!important;color:#fff!important}
+html[data-theme] body.ac-ready .ac-topbar{background:#fff!important;border-color:#e1e5f1!important}
+html[data-theme] body.ac-ready :is(.ac-course-card,.ac-stat-card,.ac-section,.ip-panel,.review-panel){border-radius:20px!important;border-color:var(--ac-stroke)!important;box-shadow:0 12px 34px rgba(27,32,84,.055)!important}
+@media(max-width:900px){html[data-theme="light"] body.auth-page .auth-layout{grid-template-columns:minmax(0,1fr)!important}html[data-theme="light"] body.auth-page .auth-forms{order:-1;padding:40px clamp(20px,5vw,42px)!important}html[data-theme="light"] body.auth-page .auth-story{min-height:0!important;padding:34px!important}html[data-theme="light"] body.auth-page .auth-benefits{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){html[data-theme="light"] body.auth-page .auth-shell{width:calc(100% - 22px);padding-top:16px}html[data-theme="light"] body.auth-page .auth-topbar{margin-bottom:17px}html[data-theme="light"] body.auth-page .auth-layout{border-radius:23px!important}html[data-theme="light"] body.auth-page .auth-forms{padding:30px 22px!important}html[data-theme="light"] body.auth-page .auth-story{padding:29px 23px!important}html[data-theme="light"] body.auth-page .auth-story h1{font-size:31px!important}html[data-theme="light"] body.auth-page .auth-benefits{grid-template-columns:1fr}html[data-theme="light"] body.auth-page .auth-wordmark strong{font-size:12px}html[data-theme="light"] body.auth-page .auth-secure-chip{font-size:10px}html[data-theme] body.ac-ready .ac-sidebar{width:min(330px,88vw)!important}}
+@media(max-width:360px){html[data-theme="light"] body.auth-page .auth-forms{padding:24px 17px!important}html[data-theme="light"] body.auth-page .auth-story{padding:23px 17px!important}html[data-theme="light"] body.auth-page .auth-top-actions{display:none}}
+@media(prefers-reduced-motion:reduce){html[data-theme="light"] :is(button,.btn,.button,[role="button"]){transition:none!important;transform:none!important}}
+
+
+
+/* Sign-in rules must outrank auth.css's legacy html[data-theme] selectors. */
+html[data-theme="light"] body.auth-page .auth-submit{
+  background:linear-gradient(135deg,#6651e4,#4933bf)!important;
+  border:1px solid #6553e9!important;color:#fff!important;
+  -webkit-text-fill-color:#fff!important;box-shadow:0 8px 20px rgba(94,75,219,.20)!important;
+}
+html[data-theme="light"] body.auth-page .auth-submit:not(:disabled):hover{
+  background:linear-gradient(135deg,#5845d5,#3c29ae)!important;
+  box-shadow:0 12px 26px rgba(94,75,219,.26)!important;
+}
+html[data-theme="light"] body.auth-page .auth-story .auth-benefit{
+  background:rgba(255,255,255,.07)!important;
+  border-color:rgba(255,255,255,.16)!important;
+}
+html[data-theme="light"] body.auth-page .auth-story .auth-benefit span{
+  color:#e6e3ff!important;-webkit-text-fill-color:#e6e3ff!important;
+}
+html[data-theme="light"] body.auth-page .auth-story .auth-benefit svg{
+  color:#c9bdff!important;
+}
+html[data-theme="light"] body.auth-page .auth-field input{
+  background:#fbfcff!important;border-color:#8595ae!important;
+}
+html[data-theme="light"] body.auth-page .auth-field input:focus-visible{
+  border-color:#5847d9!important;outline:3px solid #5847d9!important;
+  outline-offset:2px!important;
+}
+
+/* PREMIUM QUALITY PASS / 2026-11-03
+   One visual system across all 38 routes; component shapes and contrast are
+   constrained here without re-writing course-specific curriculum layouts. */
+html[data-theme="light"] body :is(input:not([type="checkbox"]):not([type="radio"]),select,textarea){
+  border:1px solid var(--ui-control-stroke);background-color:#fff;
+  transition:border-color .18s ease,box-shadow .18s ease;
+}
+html[data-theme="light"] body :is(input:not([type="checkbox"]):not([type="radio"]),select,textarea):focus-visible{
+  border-color:#5847d9!important;box-shadow:0 0 0 4px rgba(101,83,233,.14)!important;
+}
+html[data-theme="light"] body :is(button,[type="submit"],[role="button"]){touch-action:manipulation}
+html[data-theme="light"] body :is(button,[role="button"]):not(:disabled){cursor:pointer}
+html[data-theme="light"] body :is(.auth-tab,.lp-filter,.cap-track,.prompt-chip,.tutor-mode-button,.tutor-toolbar-btn){
+  min-height:40px;align-items:center;
+}
+html[data-theme="light"] body :is(.auth-tab,.lp-filter,.cap-track,.prompt-chip,.tutor-mode-button,.tutor-toolbar-btn):focus-visible{
+  outline:3px solid #5847d9!important;outline-offset:3px!important;
+}
+/* Prominent actions have accessible text contrast on the entire gradient. */
+html[data-theme="light"] body :is(.btn-primary,.button-primary,.primary-btn,.dlp29-button-primary,.lp-btn-primary,.auth-submit,.primary-action):active:not(:disabled){
+  transform:translateY(0);box-shadow:0 4px 12px rgba(63,48,163,.16)!important;
+}
+/* The public navigation and resource pages use the same geometry as private UI. */
+html[data-theme="light"] body :is(.dalp-global-header,.lp-search,.dlp97-filters,.tutor-sidebar,.chat-panel,.pl-art-panel){
+  border-radius:clamp(13px,1.5vw,20px);
+}
+html[data-theme="light"] body :is(.lp-course,.dlp97-card,.lp-feature,.lp-step,.ref-card,.cap-panel,.ps-card,.pl-card,.guide-block){
+  box-sizing:border-box;min-width:0;
+}
+html[data-theme="light"] body :is(.lp-course,.dlp97-card,.lp-feature,.lp-step,.ref-card,.cap-panel,.ps-card,.pl-card,.guide-block) :is(a,button){
+  touch-action:manipulation;
+}
+/* Respect browser zoom and avoid clipping small-screen table columns. */
+html[data-theme="light"] body :is(.learning-table-scroll,.account-table-scroll,.ip-table-wrap,.dalp-admin-table-wrap){
+  max-width:100%;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;
+}
+html[data-theme="light"] body :is(.learning-table-scroll,.account-table-scroll,.ip-table-wrap,.dalp-admin-table-wrap):focus-visible{
+  outline:3px solid #5847d9!important;outline-offset:3px!important;
+}
+@media(max-width:600px){
+  html[data-theme="light"] body.auth-page .auth-field input{font-size:16px!important}
+  html[data-theme="light"] body.auth-page .auth-submit{font-size:15px!important}
+  html[data-theme="light"] body :is(.lp-filter,.cap-track,.prompt-chip,.tutor-mode-button){min-height:44px}
+  html[data-theme="light"] body :is(.auth-shell,.ac-shell,.tutor-grid,.lp-course-grid,.dlp97-grid,.pc-layout){min-width:0;max-width:100%}
+}
+@media(forced-colors:active){
+  html[data-theme="light"] body :is(.btn-primary,.button-primary,.primary-btn,.auth-submit,.primary-action){
+    background:ButtonFace!important;color:ButtonText!important;-webkit-text-fill-color:ButtonText!important;border:2px solid ButtonText!important;box-shadow:none!important;
+  }
+  html[data-theme="light"] body :is(input,select,textarea){border:1px solid FieldText!important}
+}
+@media(prefers-reduced-motion:reduce){
+  html[data-theme="light"] body :is(input,select,textarea,button,.btn,[role="button"]){transition:none!important}
+}
+
+html[data-theme="light"] body[data-gradient-public="true"] :is(button,a[role="button"],.lp-course-cta,.dlp97-primary):focus-visible{outline:3px solid #5140ce!important;outline-offset:3px!important}
+
+
+/* 2026 comprehensive browser-visual pass — consistent interaction and accessible depth. */
+:root{color-scheme:light;scrollbar-gutter:stable}
+html[data-theme="light"] body{font-optical-sizing:auto;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}
+html[data-theme="light"] body :is(.dalp-global-header,.ac-topbar,.auth-topbar){isolation:isolate}
+html[data-theme="light"] body :is(button,[role="button"],input,select,textarea){letter-spacing:normal}
+html[data-theme="light"] body :is(button,[role="button"],input,select,textarea):focus-visible{outline:3px solid var(--ui-focus)!important;outline-offset:3px!important}
+html[data-theme="light"] body :is(.dalp-global-nav a,.nav-links a,.ac-side-link,.auth-tab,.lp-filter,.prompt-chip){transition:background-color .18s var(--ui-easing),color .18s var(--ui-easing),box-shadow .18s var(--ui-easing),border-color .18s var(--ui-easing)}
+html[data-theme="light"] body :is(.dalp-global-nav a,.nav-links a,.ac-side-link):hover{box-shadow:inset 0 0 0 1px rgba(255,255,255,.09)}
+html[data-theme="light"] body :is(.dalp-global-header,.nav-shell){box-shadow:0 7px 26px rgba(22,27,56,.08)}
+html[data-theme="light"] body :is(.dalp-themed-hero,.dlp97-hero,.lp-hero,.ps-hero,.pl-hero,.cap-hero,.ref-hero,.tutor-hero){border-radius:clamp(18px,2.1vw,28px);background-clip:padding-box}
+html[data-theme="light"] body :is(.lp-course,.dlp97-card,.ref-card,.ps-card,.pl-card,.ac-course-card,.ac-kpis article,.review-stat,.ip-stats article){border-width:1px!important;box-shadow:0 8px 28px rgba(27,32,84,.06)!important}
+html[data-theme="light"] body :is(.lp-course,.dlp97-card,.ref-card,.ps-card,.pl-card,.ac-course-card){transition:box-shadow .2s var(--ui-easing),border-color .2s var(--ui-easing),transform .2s var(--ui-easing)}
+@media (hover:hover) and (prefers-reduced-motion:no-preference){
+ html[data-theme="light"] body :is(.lp-course,.dlp97-card,.ref-card,.ps-card,.pl-card,.ac-course-card):hover{box-shadow:0 14px 38px rgba(27,32,84,.115)!important;transform:translateY(-2px)}
+}
+html[data-theme="light"] body :is(input:not([type="checkbox"]):not([type="radio"]),select,textarea){max-width:100%;box-shadow:0 1px 2px rgba(16,24,49,.035)}
+html[data-theme="light"] body :is(input,select,textarea)::placeholder{color:#61728e;opacity:1}
+html[data-theme="light"] body :is(.learning-table-scroll,.account-table-scroll,.ip-table-wrap,.dalp-admin-table-wrap,.table-wrap,.table-scroll){min-width:0;max-width:100%;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin}
+html[data-theme="light"] body :is(.learning-table,.ip-table,.dalp-admin-table,.account-table){min-width:max-content;white-space:nowrap}
+html[data-theme="light"] body :is(.learning-table,.ip-table,.dalp-admin-table,.account-table) :is(th,td){vertical-align:middle;white-space:nowrap;overflow-wrap:normal}
+html[data-theme="light"] body :is(.learning-table,.ip-table,.dalp-admin-table,.account-table) th{white-space:normal;min-width:130px;max-width:340px}
+html[data-theme="light"] body :is(.ac-section-header,.ac-card-head,.auth-heading,.dlp97-card-body){min-width:0}
+html[data-theme="light"] body.ac-ready :is(.ac-sidebar,.ac-side-bottom,.ac-side-nav){box-sizing:border-box}
+html[data-theme="light"] body.ac-ready .ac-side-link{min-height:44px;gap:12px;align-items:center}
+html[data-theme="light"] body.ac-ready .ac-side-name{flex:1;min-width:0;line-height:1.45;overflow-wrap:break-word}
+html[data-theme="light"] body.ac-ready .ac-side-bottom{background:linear-gradient(180deg,rgba(25,28,76,0),rgba(25,28,76,.95) 18%)!important}
+html[data-theme="light"] body.ac-ready .ac-logout{display:flex!important;justify-content:center;align-items:center;gap:10px;text-align:center!important;min-height:48px!important}
+html[data-theme="light"] body.auth-page .auth-tab{font-weight:750}
+html[data-theme="light"] body.auth-page :is(.auth-field input,.auth-submit){min-width:0}
+/* Hide the skip navigation visually until the visitor uses keyboard focus. */
+html body .dalp-skip-link:not(:focus-visible){position:fixed!important;inset-block-start:0!important;inset-inline-start:0!important;transform:translateY(-200%)!important;clip-path:inset(100%)!important;width:1px!important;height:1px!important;min-height:0!important;overflow:hidden!important;padding:0!important;border:0!important}
+html body .dalp-skip-link:focus-visible{position:fixed!important;inset-block-start:12px!important;inset-inline-start:12px!important;transform:none!important;clip-path:none!important;width:auto!important;height:auto!important;min-height:44px!important;max-width:calc(100vw - 24px)!important;overflow:visible!important;padding:.65rem 1rem!important;border:2px solid var(--ui-primary)!important;z-index:100000!important}
+@media(max-width:680px){
+ html[data-theme="light"] body :is(.dalp-global-nav,.ac-side-nav){scrollbar-width:thin}
+ html[data-theme="light"] body :is(.dalp-themed-hero,.dlp97-hero,.lp-hero,.ps-hero,.pl-hero,.cap-hero,.ref-hero,.tutor-hero){border-radius:18px}
+ html[data-theme="light"] body :is(.dlp97-card,.lp-course,.ref-card,.ps-card,.pl-card){min-width:0;max-width:100%}
+ html[data-theme="light"] body :is(.learning-table-scroll,.account-table-scroll,.ip-table-wrap,.dalp-admin-table-wrap){max-width:calc(100vw - 32px)}
+ html[data-theme="light"] body :is(.auth-submit,.dalp-global-toggle,.ac-mobile-menu,.ac-logout){min-height:48px}
+}
+@media(max-height:560px){html[data-theme="light"] body.ac-ready .ac-sidebar{padding-top:8px!important;padding-bottom:max(8px,env(safe-area-inset-bottom))!important}html[data-theme="light"] body.ac-ready .ac-side-bottom{padding-top:6px!important}html[data-theme="light"] body.ac-ready .ac-logout{min-height:44px!important}}
+@media(prefers-reduced-motion:reduce){html[data-theme="light"] body :is(.lp-course,.dlp97-card,.ref-card,.ps-card,.pl-card,.ac-course-card){transition:none!important;transform:none!important}}
+
+
+/* Authentication header polish: avoid the legacy 33px white-on-white status circle. */
+html[data-theme="light"] body.auth-page .auth-topbar{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:16px!important;padding:14px 18px!important}
+html[data-theme="light"] body.auth-page .auth-wordmark{flex:1;min-width:0;display:flex!important;gap:12px!important;align-items:center!important}
+html[data-theme="light"] body.auth-page .auth-wordmark>span{display:block!important;min-width:0;line-height:1.45}
+html[data-theme="light"] body.auth-page .auth-wordmark strong{display:block!important;color:#fff!important;-webkit-text-fill-color:#fff!important;font-size:clamp(11px,1.5vw,14px)!important;line-height:1.4}
+html[data-theme="light"] body.auth-page .auth-wordmark>span>span{display:none!important}
+html[data-theme="light"] body.auth-page .auth-top-actions{flex:0 0 auto}
+html[data-theme="light"] body.auth-page .auth-secure-chip{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:auto!important;min-width:0!important;height:auto!important;min-height:34px!important;padding:8px 12px!important;font-size:11px!important;line-height:1.35!important;border:1px solid rgba(255,255,255,.25)!important;background:rgba(255,255,255,.1)!important;color:#f1efff!important;-webkit-text-fill-color:#f1efff!important;white-space:nowrap!important}
+@media(max-width:600px){html[data-theme="light"] body.auth-page .auth-top-actions{display:none!important}html[data-theme="light"] body.auth-page .auth-wordmark strong{font-size:12px!important}html[data-theme="light"] body.auth-page .auth-topbar{padding:13px 16px!important}}
+
+@media(max-width:1024px){:root{scrollbar-gutter:auto}}
+/* END PREMIUM EXPERIENCE 20261103 */
+
+/* DEVICE-QUALITY RESPONSIVE SYSTEM / 2026-11-03
+   Complements the page bundles without changing their layout semantics or data flows.
+   Use fluid spacing, legible controls and safe areas at 320px through wide desktop. */
+html[data-theme="light"]{--ui-device-gutter:clamp(12px,2.4vw,32px);--ui-device-radius:clamp(14px,1.7vw,22px);--ui-tap-target:44px}
+html[data-theme="light"] body{min-height:100svh}
+html[data-theme="light"] body :is(.lp-course-grid,.dlp97-grid,.pc-layout,.cap-layout,.tutor-grid,.review-shell,.ip-stats,.ac-kpis)>*{min-width:0}
+html[data-theme="light"] body :is(.lp-course,.dlp97-card,.ref-card,.ps-card,.pl-card,.ac-course-card,.cap-panel,.guide-block){border-radius:var(--ui-device-radius)!important}
+html[data-theme="light"] body :is(.lp-course,.dlp97-card,.ref-card,.ps-card,.pl-card,.ac-course-card) :is(h2,h3,h4,p,small){max-width:100%}
+html[data-theme="light"] body :is(.learning-table-scroll,.account-table-scroll,.ip-table-wrap,.dalp-admin-table-wrap,.table-wrap,.table-scroll){touch-action:pan-x pan-y}
+html[data-theme="light"] body :is(.dalp-global-header,.ac-topbar,.auth-topbar){max-width:100%;box-sizing:border-box}
+html[data-theme="light"] body :is(.dalp-global-header,.ac-topbar) :is(button,a){touch-action:manipulation}
+/* Text links inside forms are buttons, so give them comfortable touch hit areas. */
+html[data-theme="light"] body.auth-page :is(.auth-inline-link,.auth-switch button){display:inline-flex;align-items:center;justify-content:center;min-height:40px!important;padding:8px 3px!important;line-height:1.35}
+html[data-theme="light"] body.auth-page .auth-eye{min-height:44px!important;min-width:44px!important;display:inline-flex;align-items:center;justify-content:center;padding:9px!important}
+html[data-theme="light"] body.auth-page .auth-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}
+html[data-theme="light"] body.auth-page .auth-tab{white-space:nowrap;min-height:44px!important}
+html[data-theme="light"] body.auth-page .auth-field :is(input,select,textarea){font-size:16px!important}
+/* Fixed bars and navigations respect gesture-inset space on notched phones. */
+@media(max-width:600px){
+ html[data-theme="light"] body.auth-page .auth-shell{width:calc(100% - clamp(16px,5vw,28px))!important}
+ html[data-theme="light"] body.auth-page .auth-topbar{min-width:0;gap:8px!important}
+ html[data-theme="light"] body.auth-page .auth-forms{padding-inline:clamp(16px,5vw,26px)!important}
+ html[data-theme="light"] body.auth-page .auth-field{min-width:0}
+ html[data-theme="light"] body.auth-page .auth-account-note{font-size:12px;line-height:1.55}
+ html[data-theme="light"] body :is(.dalp-global-header,.ac-topbar){padding-left:max(10px,env(safe-area-inset-left))!important;padding-right:max(10px,env(safe-area-inset-right))!important}
+ html[data-theme="light"] body :is(.lp-course-grid,.dlp97-grid,.pc-layout,.tutor-grid){min-width:0}
+ html[data-theme="light"] body :is(.lp-course,.dlp97-card,.ref-card,.ps-card,.pl-card){max-width:100%;box-sizing:border-box}
+}
+@media(max-width:359px){
+ html[data-theme="light"] body.auth-page .auth-tab{font-size:12px!important;padding:8px 4px!important;letter-spacing:-.01em}
+ html[data-theme="light"] body.auth-page .auth-heading h2{font-size:clamp(23px,7vw,27px)!important}
+ html[data-theme="light"] body.auth-page .auth-wordmark{gap:8px!important}
+ html[data-theme="light"] body.auth-page .auth-wordmark strong{font-size:11px!important;line-height:1.4}
+ html[data-theme="light"] body.auth-page .auth-topbar{padding:12px!important}
+ html[data-theme="light"] body.auth-page .auth-forms{padding-inline:14px!important}
+ html[data-theme="light"] body.auth-page .auth-account-note{padding:12px!important}
+}
+@media(min-width:1600px){
+ html[data-theme="light"] body :is(.lp-course,.dlp97-card,.ref-card,.ps-card,.pl-card,.ac-course-card){border-radius:22px!important}
+ html[data-theme="light"] body.auth-page .auth-shell{width:min(1260px,calc(100% - 80px))}
+}
+@media(pointer:coarse){
+ html[data-theme="light"] body :is(.auth-submit,.auth-tab,.dalp-global-toggle,.ac-mobile-menu,.ac-logout){min-height:48px!important}
+ html[data-theme="light"] body :is(.lp-filter,.cap-track,.tutor-mode-button,.prompt-chip){min-height:44px}
+}
+@media(prefers-reduced-motion:reduce){
+ html[data-theme="light"] body :is(.dalp-global-toggle,.ac-mobile-menu,.auth-tab,.auth-inline-link){animation:none!important;transition:none!important}
+}
+/* END DEVICE-QUALITY RESPONSIVE SYSTEM */

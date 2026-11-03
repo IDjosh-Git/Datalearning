@@ -37,9 +37,9 @@ for(const required of ['.dalp-global-header','.dalp-global-nav a[aria-current="p
  assert(css.includes(required),`Missing expected accessible theme rule: ${required}`);
 }
 assert(!css.includes('h1,h2,h3,h4,p,span,strong,small'), 'Broad hero text override would recolour button labels');
-assert(css.includes('--ui-accent:#29476b'), 'Shared secondary accent should be deep slate blue');
-assert(css.includes('--ui-accent-soft:#eaf0f8'), 'Accent soft surface should use the updated neutral blue');
-assert(css.includes('--ui-radius:14px'), 'Shared cards should use a consistent 14px corner radius');
+assert(css.includes('--ui-accent:#286b9c'), 'Shared secondary accent should use the modern accessible blue');
+assert(css.includes('--ui-accent-soft:#e8f5ff'), 'Accent soft surface should use the updated neutral blue');
+assert(css.includes('--ui-radius:20px'), 'Shared cards should use the modern 20px corner radius');
 assert(!/--ui-teal|--dlp97-teal|#087c79|#a5e8df/i.test(css), 'Outdated teal theme rules should not remain');
 function luminance(hex){
  const rgb=hex.replace('#','').match(/../g).map(h=>parseInt(h,16)/255);

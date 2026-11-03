@@ -1,9 +1,9 @@
 
 :root{
-  --zah-navy:#29476b;
+  --zah-navy:var(--ui-nav-ink);
   --zah-navy-dark:#18313f;
   --zah-navy-deep:#102832;
-  --zah-orange:#b54f38;
+  --zah-orange:var(--ui-coral);
   --zah-offwhite:#F2F2F2;
   --zah-soft-blue:#e7eef2;
   --zah-soft-orange:#fff0e7;
@@ -106,12 +106,12 @@ body{background:var(--zah-offwhite) !important;color:var(--zah-text)}
   line-height:1.05;
 }
 .brand-company-name strong{
-  color:#29476b;
+  color:var(--ui-nav-ink);
   font-size:16px;
   letter-spacing:.02em;
 }
 .brand-company-name span{
-  color:#b54f38;
+  color:var(--ui-coral);
   font-size:12px;
   font-weight:800;
   letter-spacing:.06em;

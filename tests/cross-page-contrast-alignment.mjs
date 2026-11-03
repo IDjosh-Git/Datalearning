@@ -26,9 +26,9 @@ for(const group of ['.guide-bottom a','.finish a','.topbar a']) {
 }
 assert(!ai.includes('.lp-ai-page .finish{background:var(--ui-hero);'), 'AI capstone finish panel cannot use retired hero token');
 assert(ai.includes('.lp-ai-page .finish{background:#263d5d!important'), 'AI finish requires its own dark background');
-assert(practice.includes('background: #29476b !important'), 'Practice Arena masthead must not be transparent');
+assert(practice.includes('background: var(--ui-nav-ink) !important'), 'Practice Arena masthead must not be transparent');
 assert(verify.includes('.verify-eyebrow{font-size:12px;letter-spacing:.18em;color:#eef4ff'), 'Verify banner eyebrow needs readable contrast');
-assert(guide.includes('color:#15243a!important;-webkit-text-fill-color:#15243a!important'), 'Course stat cards must use dark ink on white');
+assert(guide.includes('color:var(--ui-ink)!important;-webkit-text-fill-color:var(--ui-ink)!important'), 'Course stat cards must use dark ink on white');
 const pages=[...fs.readdirSync(root).filter(x=>x.endsWith('.html')),
  ...fs.readdirSync(path.join(root,'courses')).filter(x=>x.endsWith('.html')).map(x=>'courses/'+x)];
 assert.equal(pages.length,38,'All website routes remain present');

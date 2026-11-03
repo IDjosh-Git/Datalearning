@@ -9,8 +9,9 @@ const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=(p)=>fs.readFileSync(path.join(root,p),'utf8');
 const restricted=new Set(['admin.html','progress.html','reviewer.html','connection-test.html','sync-test.html','account.html','certificate.html']);
 const publicPages=discoverPages().filter(page=>!restricted.has(page.route));
-assert.equal(publicPages.length,31,'31 public routes receive the unified footer; private routes use the private workspace');
+assert.equal(publicPages.length,31,'31 public routes, including the footer-free sign-in route');
 for(const page of publicPages){
+ if(page.route==='auth.html'){assert(!page.html.includes('assets/scripts/public-footer.js'),'Sign-in must not load a footer');continue;}
  const nested=page.route.startsWith('courses/');
  const tag=`<script defer src="${nested?'../':''}assets/scripts/public-footer.js"></script>`;
  assert.equal(page.html.split(tag).length-1,1,`${page.route}: load one shared footer`);
@@ -49,4 +50,4 @@ const rgb=hex=>[1,3,5].map(i=>parseInt(hex.slice(i,i+2),16)/255).map(n=>n<=.0404
 const luminance=hex=>rgb(hex).reduce((s,n,i)=>s+[.2126,.7152,.0722][i]*n,0);
 const contrast=(a,b)=>{const x=luminance(a),y=luminance(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05)};
 for(const text of ['#eef3ff','#cbd7ee','#dce6fa'])assert(contrast('#101d33',text)>=4.5,`${text} should pass WCAG AA contrast`);
-console.log(`PASS unified footer: ${publicPages.length} public pages, single reusable component, no duplicate markup, nested paths, and WCAG AA contrast`);
+console.log(`PASS unified footer: ${publicPages.length-1} public pages plus footer-free sign-in, single reusable component, no duplicate markup, nested paths, and WCAG AA contrast`);

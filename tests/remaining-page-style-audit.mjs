@@ -57,7 +57,7 @@ for(const page of protectedPages){
  assert(/auth-gate|guard|admin/i.test(html),`${page}: protected-page authentication integration removed`);
 }
 const theme=read('assets/styles/design-system.css');
-for(const token of ['--ui-primary:#3f46d9','--ui-accent:#29476b','--ui-radius:14px']){
+for(const token of ['--ui-primary:#6553e9','--ui-accent:#286b9c','--ui-radius:20px']){
  assert(theme.includes(token),`Shared theme is missing ${token}`);
 }
 console.log(`PASS remaining-page theme audit: ${Object.keys(routes).length} routes, 19 maintained layout stylesheets, current shared theme and protected-page integration preserved`);

@@ -1,10 +1,10 @@
 /* Secure connection diagnostic: compact, current light styling. */
 body[data-responsive-page="connection-test"] main{width:min(calc(100% - 32px),780px);margin:clamp(22px,5vw,58px) auto 60px;padding:0}
-body[data-responsive-page="connection-test"] main .card{background:#ffffff!important;color:#15243a!important;border:1px solid #d4deea!important;border-top:4px solid #29476b!important;border-radius:14px!important;padding:clamp(22px,4vw,38px)!important;box-shadow:0 8px 25px #15243a0d!important}
-body[data-responsive-page="connection-test"] main h1{color:#15243a!important;font-size:clamp(26px,3.4vw,38px);line-height:1.18;margin:0 0 14px}
+body[data-responsive-page="connection-test"] main .card{background:#ffffff!important;color:var(--ui-ink)!important;border:1px solid #d4deea!important;border-top:4px solid var(--ui-nav-ink)!important;border-radius:14px!important;padding:clamp(22px,4vw,38px)!important;box-shadow:0 8px 25px var(--ui-ink)0d!important}
+body[data-responsive-page="connection-test"] main h1{color:var(--ui-ink)!important;font-size:clamp(26px,3.4vw,38px);line-height:1.18;margin:0 0 14px}
 body[data-responsive-page="connection-test"] main p{color:#50627a!important;font-size:15px;line-height:1.65;margin:0 0 16px}
-body[data-responsive-page="connection-test"] #status{display:block;padding:15px 18px;border:1px solid #cbd8e8;border-radius:10px;background:#edf2fa;color:#29476b;font-weight:650;line-height:1.5;margin:18px 0}
+body[data-responsive-page="connection-test"] #status{display:block;padding:15px 18px;border:1px solid #cbd8e8;border-radius:10px;background:#edf2fa;color:var(--ui-nav-ink);font-weight:650;line-height:1.5;margin:18px 0}
 body[data-responsive-page="connection-test"] #status.ok{background:#eaf3ed;color:#176443;border-color:#b9d6c4}
 body[data-responsive-page="connection-test"] #status.bad{background:#fff0ef;color:#9a293a;border-color:#e8c1c7}
-body[data-responsive-page="connection-test"] main a[href]{color:#3035b0!important;-webkit-text-fill-color:#3035b0!important;display:inline!important;background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important;text-decoration:underline!important;text-underline-offset:4px;font-weight:750}
+body[data-responsive-page="connection-test"] main a[href]{color:var(--ui-primary-hover)!important;-webkit-text-fill-color:var(--ui-primary-hover)!important;display:inline!important;background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important;text-decoration:underline!important;text-underline-offset:4px;font-weight:750}
 @media(max-width:480px){body[data-responsive-page="connection-test"] main{width:calc(100% - 24px);margin:20px auto 40px}}

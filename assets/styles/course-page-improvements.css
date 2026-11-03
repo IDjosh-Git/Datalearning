@@ -124,10 +124,10 @@ body.dlp-course-v29 .course-mastery-question{align-self:start!important;height:a
    This stylesheet is the last course stylesheet, so these rules intentionally
    supersede earlier multi-colour and gradient page treatments. */
 html[data-theme="light"] body.dlp-course-v29 {
-  --course-page-canvas: #f5f7fb;
+  --course-page-canvas: var(--ui-canvas);
   --course-page-surface: #ffffff;
-  --course-page-outline: #d9e1ed;
-  --course-page-ink: #15243a;
+  --course-page-outline: var(--ui-stroke);
+  --course-page-ink: var(--ui-ink);
   --course-page-muted: #52627b;
   background: var(--course-page-canvas) !important;
   background-image: none !important;
@@ -367,7 +367,7 @@ html[data-theme="light"] body.dlp-course-v29 :is(.hero,.intro-hero,.ai-hero) :is
 html, body { min-height: 100%; background: var(--polish-canvas) !important; color: var(--polish-ink); }
 html { scroll-behavior: smooth; }
 body {
-  font-family: Inter, "Plus Jakarta Sans", "Aptos", system-ui, -apple-system, "Segoe UI", sans-serif !important;
+  font-family: "DM Sans", "Plus Jakarta Sans", "Aptos", system-ui, -apple-system, "Segoe UI", sans-serif !important;
   letter-spacing: -.012em; text-rendering: optimizeLegibility;
 }
 body::before, body::after { content: none !important; display: none !important; }
@@ -526,7 +526,7 @@ body.dlp-course-v29 .cw-intro-nav .cw-select-wrap { flex: 1 1 420px; max-width: 
 body.dlp-course-v29 .cw-intro-nav .cw-direction { flex: 0 0 auto; }
 body.dlp-course-v29 .cw-intro-nav .cw-resources {
   grid-template-columns: minmax(0,1.4fr) minmax(235px,.8fr); gap: clamp(12px,2vw,24px);
-  align-items: center; background: var(--ui-paper,#fff); border: 1px solid var(--ui-stroke,#d9e1ed);
+  align-items: center; background: var(--ui-paper,#fff); border: 1px solid var(--ui-stroke,var(--ui-stroke));
 }
 body.dlp-course-v29 .cw-intro-resources .cw-resource-primary,
 body.dlp-course-v29 .cw-intro-resources .cw-resource-side { min-width: 0; }
@@ -602,7 +602,7 @@ body.dlp-course-v29 .dalp-quick-link:hover { background: transparent !important;
 }
 @media (max-width: 900px) {
   body.dlp-course-v29 .cw-intro-nav .cw-resources { grid-template-columns: 1fr; }
-  body.dlp-course-v29 .cw-intro-nav .cw-resource-side { border-top: 1px solid var(--ui-stroke,#d9e1ed); padding-top: 12px; }
+  body.dlp-course-v29 .cw-intro-nav .cw-resource-side { border-top: 1px solid var(--ui-stroke,var(--ui-stroke)); padding-top: 12px; }
   body.dlp-course-v29 .dalp-quick-guide-intro,
   html[data-theme="light"] body.dlp-course-v29 .dalp-quick-guide-bottom { grid-template-columns: minmax(0,1fr) !important; }
   body.dlp-course-v29 .dalp-quick-guide-count { justify-self: start; }

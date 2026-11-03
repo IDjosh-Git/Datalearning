@@ -1,2 +1,3 @@
-/* Administrator route skin. Reuses the single private navigation and dashboard layout skin. */
+/* Protected administrator workspace. Inherits the maintained private navigation skin.
+   Global tokens, components, and form styling load from design-system.css. */
 @import url("./private-workspace.css");

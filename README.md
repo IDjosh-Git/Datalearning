@@ -88,3 +88,10 @@ To verify the new release, open `https://datalearning.vercel.app/courses/excel.h
 ### Styling maintenance (current)
 
 The current light UI theme is defined by `assets/styles/design-system.css`; active feature/page styles remain in `assets/styles/`. Do not restore retired fonts, palette values, glass overlays or embedded page `<style>` blocks. The audit and responsive test limitations are documented in `docs/LEGACY_STYLE_CLEANUP_AUDIT.md`. Run `npm run build && npm run lint && npm test` before deployment.
+
+
+## Vercel-ready responsive release (3 November 2026)
+
+This release pins Node.js 24 in `.nvmrc` and `package.json` and uses an explicit Vercel build command (`npm run build`) to verify route, asset, middleware, and responsive contracts. The static site is served from the repository root (`outputDirectory: "."`); its APIs and middleware are still Vercel functions. See [`docs/VERCEL_RESPONSIVE_RELEASE_20261103.md`](docs/VERCEL_RESPONSIVE_RELEASE_20261103.md) for browser matrices and release/preview instructions.
+
+Unzip the project contents directly at the **Git repository root**, not inside another `learning-path-site/` folder. Push a preview branch and test real authentication before releasing.

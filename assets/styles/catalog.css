@@ -7,7 +7,7 @@ body.dlp97-learning-page{
 }
 body.lp-home.dlp97-learning-page{padding-left:0!important}
 body.lp-home.dlp97-learning-page .dlp97-navigation{display:none}
-body.dlp97-catalog-page{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--dlp97-ink);background:var(--dlp97-page);line-height:1.55}
+body.dlp97-catalog-page{font-family:"DM Sans",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--dlp97-ink);background:var(--dlp97-page);line-height:1.55}
 .dlp97-navigation{isolation:isolate}
 .dlp97-side{box-sizing:border-box;position:fixed;inset:0 auto 0 0;width:248px;z-index:9000;overflow-y:auto;overscroll-behavior:contain;padding:22px 12px;background:#172f42;color:#edf7f8;border-right:1px solid #2d4b5c;font:inherit;font-size:14px;line-height:1.45}
 .dlp97-side a{color:#dceaf0;text-decoration:none!important;box-sizing:border-box}
@@ -70,7 +70,7 @@ body.dlp97-learning-page .completeBox:disabled,body.dlp97-learning-page [data-in
 .dlp97-card-head img.dlp97-course-icon{display:block;flex:0 0 56px;width:56px;height:56px;max-width:56px;object-fit:contain;box-sizing:border-box;border-radius:12px;background:transparent;padding:0}
 .dlp97-card-clickable{cursor:pointer}
 .dlp97-card-clickable:hover{border-color:#8ba7c8;box-shadow:0 12px 30px rgb(21 36 58 / .10)}
-.dlp97-card-clickable:focus-within{border-color:#3f46d9}
+.dlp97-card-clickable:focus-within{border-color:var(--ui-primary)}
 @media(max-width:480px){.dlp97-card-head img.dlp97-course-icon{width:48px;height:48px;max-width:48px;flex-basis:48px}}
 .dlp97-category{background:var(--dlp97-soft);color:var(--dlp97-accent);font-size:11px;padding:5px 9px;border-radius:99px;font-weight:800}
 .dlp97-card h2{font-size:clamp(19px,2vw,24px);line-height:1.2;letter-spacing:-.025em;margin:3px 0}
@@ -187,10 +187,10 @@ html[data-theme="light"] {
 html[data-theme] body:not(.dlp97-catalog-page) {
   background-color:var(--background);
   color:var(--text-main);
-  font-family:Inter,"Plus Jakarta Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-family:"DM Sans","Plus Jakarta Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
   letter-spacing:-.008em;
 }
-html[data-theme] body.dlp97-catalog-page {font-family:Inter,"Plus Jakarta Sans",system-ui,sans-serif}
+html[data-theme] body.dlp97-catalog-page {font-family:"DM Sans","Plus Jakarta Sans",system-ui,sans-serif}
 html[data-theme] :is(h1,h2,h3,h4) {letter-spacing:-.035em;text-wrap:balance}
 html[data-theme] :is(h1,h2,h3,h4):not(.token) {font-weight:780}
 html[data-theme] :is(p,li,dd) {line-height:1.65}
@@ -422,7 +422,7 @@ html[data-theme] body :is(.dlp97-card,.cap-panel,.ip-panel,.ac-section) {box-sha
 @media(max-width:950px) and (max-height:480px){body.dl-workspace .dl-drawer-head{padding-block:10px!important}}
 html[data-theme="light"] {
   --v98-ink:#172d40;--v98-muted:#465e6d;--v98-link:#075e59;
-  --v98-control:#173e55;--v98-control-hover:#0e3043;
+  --v98-control:var(--ui-nav-ink);--v98-control-hover:var(--ui-night);
   --v98-surface:#ffffff;--v98-surface-soft:#edf2f0;
   --v98-positive:#176443;--v98-warning:#74500c;--v98-danger:#9a293a;
 }
@@ -441,21 +441,21 @@ html[data-theme] body .nav-inner .wordmark :is(strong,small) {
 }
 html[data-theme] body :is(.nav-links,.course-top-actions) :is(.account-link,.course-account-link), html[data-theme] body .nav-links .account-link{
   color:#ffffff!important;-webkit-text-fill-color:currentColor!important;
-  background:#173e55!important;border-color:#799ca9!important;
+  background:var(--ui-nav-ink)!important;border-color:#799ca9!important;
 }
-html[data-theme] body :is(.nav-links,.course-top-actions) :is(.account-link,.course-account-link):hover{background:#0e3043!important;}
+html[data-theme] body :is(.nav-links,.course-top-actions) :is(.account-link,.course-account-link):hover{background:var(--ui-night)!important;}
 
 html[data-theme] body :is(.lp-filter.active,.lp-pathfinder-submit) {
-  background:#173e55!important;color:#ffffff!important;
-  -webkit-text-fill-color:#ffffff!important;border-color:#173e55!important;
+  background:var(--ui-nav-ink)!important;color:#ffffff!important;
+  -webkit-text-fill-color:#ffffff!important;border-color:var(--ui-nav-ink)!important;
 }
 html[data-theme] body :is(.continue-actions .btn,.cap-actions .lp-primary,
   .tutor-composer #sendQuestion,.tutor-avatar,.dalp-floating-lab a) {
-  background:#173e55!important;color:#fff!important;
-  -webkit-text-fill-color:#fff!important;border-color:#173e55!important;
+  background:var(--ui-nav-ink)!important;color:#fff!important;
+  -webkit-text-fill-color:#fff!important;border-color:var(--ui-nav-ink)!important;
 }
 html[data-theme] body :is(.continue-actions .btn,.cap-actions .lp-primary,
-  .tutor-composer #sendQuestion,.dalp-floating-lab a):hover {background:#0e3043!important}
+  .tutor-composer #sendQuestion,.dalp-floating-lab a):hover {background:var(--ui-night)!important}
 html[data-theme] body :is(#ps-complete,#ps-next) {
   background:#125b5c!important;border-color:#125b5c!important;
   color:#ffffff!important;-webkit-text-fill-color:#ffffff!important;
@@ -483,7 +483,7 @@ html[data-theme] body.dlp97-learning-page :is(.dlp97-card,.dlp97-course-guide,.d
 }
 
 html[data-theme] body[data-responsive-page="reference"] #clearSearch {
-  background:#173e55!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
+  background:var(--ui-nav-ink)!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
 }
 
 
@@ -496,7 +496,7 @@ html[data-theme] body[data-responsive-page="sync-test"] .card p {
   color:var(--v98-ink)!important;-webkit-text-fill-color:currentColor!important;
 }
 html[data-theme] body[data-responsive-page="sync-test"] .card :is(button,a) {
-  background:#173e55!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
+  background:var(--ui-nav-ink)!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
 }
 html[data-theme="light"] body.dlp-course-v29 .week-title p {
   color:#465e6d!important;
@@ -507,7 +507,7 @@ html[data-theme="light"] body.dlp-course-v29 .week-title p {
 
 
 html[data-theme="light"] body .arena-subject-options button.arena-python-launch span.arena-count {
-  color:#173e55!important;-webkit-text-fill-color:#173e55!important;
+  color:var(--ui-nav-ink)!important;-webkit-text-fill-color:var(--ui-nav-ink)!important;
 }
 html[data-theme] body.dlp-course-v29 :is(.dlp-module,.dlp-mastery) .dlp-kicker {
   color:var(--v98-link)!important;-webkit-text-fill-color:currentColor!important;
