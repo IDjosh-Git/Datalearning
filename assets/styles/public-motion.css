@@ -1345,3 +1345,561 @@ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .
  html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-primary .arena-editor{grid-template-rows:minmax(410px,1fr)!important;min-height:440px!important}
  html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-primary .arena-editor :is(#arenaLines,#arenaInputHost,#practiceAnswer.sql-editor-textarea){min-height:410px!important}
 }
+/* Homepage Premium UI / brand-contrast release — 2026-11-04
+   Intent: clear accessible masthead, editorial hero, proper card surfaces, no decorative overlays.
+   Scoped to the homepage except for the shared brand-contrast correction. */
+html[data-theme="light"] body[data-public-refresh] > .dalp-global-header{
+  background:#fff!important;background-image:none!important;
+  border-bottom:1px solid #dbe3ef!important;box-shadow:0 8px 24px rgba(15,31,66,.07)!important;
+}
+html[data-theme="light"] body[data-public-refresh] > .dalp-global-header .dalp-global-brand,
+html[data-theme="light"] body[data-public-refresh] > .dalp-global-header .dalp-brand-name{
+  color:#14243f!important;-webkit-text-fill-color:#14243f!important;
+}
+html[data-theme="light"] body[data-public-refresh] > .dalp-global-header .dalp-brand-name .dalp-brand-accent{
+  color:#5638c7!important;-webkit-text-fill-color:#5638c7!important;
+}
+html[data-theme="light"] body[data-public-refresh] > .dalp-global-header .dalp-brand-copy small{
+  color:#56657e!important;-webkit-text-fill-color:#56657e!important;letter-spacing:.15em!important;
+}
+html[data-theme="light"] body[data-public-refresh] > .dalp-global-header .dalp-global-nav > .dalp-nav-link:not(.dalp-nav-account),
+html[data-theme="light"] body[data-public-refresh] > .dalp-global-header .dalp-nav-group > summary{
+  color:#283b59!important;-webkit-text-fill-color:#283b59!important;
+}
+html[data-theme="light"] body[data-public-refresh] > .dalp-global-header .dalp-global-nav > .dalp-nav-link:not(.dalp-nav-account):is(:hover,[aria-current="page"],:focus-visible),
+html[data-theme="light"] body[data-public-refresh] > .dalp-global-header .dalp-nav-group > summary:is(:hover,:focus-visible),
+html[data-theme="light"] body[data-public-refresh] > .dalp-global-header .dalp-nav-group[open] > summary{
+  background:#eeebff!important;color:#4429ab!important;-webkit-text-fill-color:#4429ab!important;
+}
+html[data-theme="light"] body[data-public-refresh] > .dalp-global-header .dalp-nav-group > summary .dalp-chevron,
+html[data-theme="light"] body[data-public-refresh] > .dalp-global-header .dalp-nav-summary-icon{
+  color:#6245c7!important;-webkit-text-fill-color:#6245c7!important;border-color:#6245c7!important;
+}
+html[data-theme="light"] body[data-public-refresh] > .dalp-global-header a.dalp-nav-account{
+  color:#fff!important;-webkit-text-fill-color:#fff!important;
+  background:#563bc9!important;border-color:#563bc9!important;
+}
+/* The mobile menu stays an opaque surface with readable navigation labels. */
+@media(max-width:1200px){
+ html[data-theme="light"] body[data-public-refresh] > .dalp-global-header .dalp-global-toggle{
+  background:#f0edff!important;color:#4328a7!important;border-color:#d9d1ff!important;
+ }
+ html[data-theme="light"] body[data-public-refresh] > .dalp-global-header .dalp-menu-icon i{background:#4328a7!important}
+ html[data-theme="light"] body[data-public-refresh] > .dalp-global-header .dalp-global-nav.is-open{
+  background:#fff!important;border-color:#dbe3ef!important;
+ }
+}
+/* Homepage foundation */
+html[data-theme="light"] body.lp-home[data-public-refresh]{
+ --hm-ink:#12233f;--hm-body:#455675;--hm-line:#e0e7f1;--hm-purple:#5a41d2;
+ --hm-paper:#f7f9fd;--hm-shadow:0 12px 32px rgba(24,41,83,.07);
+ background:var(--hm-paper)!important;background-image:none!important;color:var(--hm-ink)!important;
+}
+html[data-theme="light"] body.lp-home main{background:transparent!important;background-image:none!important;overflow:clip}
+html[data-theme="light"] body.lp-home main > :is(section,div)::before,
+html[data-theme="light"] body.lp-home main > :is(section,div)::after{
+ background-image:none!important;box-shadow:none!important;filter:none!important;pointer-events:none;
+}
+html[data-theme="light"] body.lp-home .wrap{width:min(1240px,calc(100% - 48px))!important}
+html[data-theme="light"] body.lp-home main .section{padding-block:clamp(46px,5.5vw,82px)!important}
+html[data-theme="light"] body.lp-home main .section-head{margin-bottom:27px!important;gap:20px}
+html[data-theme="light"] body.lp-home main .section-head h2{
+ font-size:clamp(29px,3.6vw,46px)!important;letter-spacing:-.052em!important;line-height:1.13!important;
+ color:var(--hm-ink)!important;-webkit-text-fill-color:var(--hm-ink)!important;
+}
+html[data-theme="light"] body.lp-home main .section-head p{font-size:15px!important;line-height:1.75!important;color:var(--hm-body)!important}
+html[data-theme="light"] body.lp-home main .section-tag{
+ color:#5337bb!important;-webkit-text-fill-color:#5337bb!important;font-size:11px!important;
+ letter-spacing:.13em!important;font-weight:850!important;
+}
+/* An intentional solid hero, not a stack of tinted glass / floating glows. */
+html[data-theme="light"] body.lp-home main > .lp-hero{
+ position:relative;isolation:isolate;overflow:hidden!important;
+ background:#142443!important;background-image:none!important;
+ color:#fff!important;border:0!important;border-radius:0 0 30px 30px!important;
+ min-height:0!important;padding:clamp(58px,7vw,96px) 0 clamp(64px,7vw,100px)!important;
+ box-shadow:none!important;
+}
+html[data-theme="light"] body.lp-home main > .lp-hero::before,
+html[data-theme="light"] body.lp-home main > .lp-hero::after,
+html[data-theme="light"] body.lp-home main .lp-demo::before,
+html[data-theme="light"] body.lp-home main .lp-demo::after{
+ content:none!important;display:none!important;background:none!important;
+}
+html[data-theme="light"] body.lp-home .lp-hero-grid{
+ display:grid!important;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr)!important;
+ align-items:center!important;gap:clamp(34px,5vw,82px)!important;
+}
+html[data-theme="light"] body.lp-home .lp-hero-grid > *{min-width:0}
+html[data-theme="light"] body.lp-home .lp-eyebrow{
+ display:inline-flex!important;align-items:center;gap:10px;
+ background:#243a60!important;border:1px solid #435a82!important;
+ border-radius:100px!important;padding:10px 15px!important;
+ color:#d8efff!important;-webkit-text-fill-color:#d8efff!important;
+ text-transform:uppercase;letter-spacing:.09em!important;font-size:11px!important;font-weight:850!important;
+}
+html[data-theme="light"] body.lp-home .lp-hero h1{
+ font-size:clamp(44px,5.3vw,77px)!important;line-height:1.07!important;
+ font-weight:850!important;letter-spacing:-.067em!important;
+ color:#fff!important;-webkit-text-fill-color:#fff!important;
+ margin:25px 0 21px!important;max-width:13ch!important;
+}
+html[data-theme="light"] body.lp-home .lp-hero h1 em{
+ font-style:normal!important;background:none!important;
+ color:#a6ead5!important;-webkit-text-fill-color:#a6ead5!important;
+}
+html[data-theme="light"] body.lp-home .lp-hero > .wrap p,
+html[data-theme="light"] body.lp-home .lp-hero-grid > div:first-child > p{
+ color:#d7e1f4!important;-webkit-text-fill-color:#d7e1f4!important;
+ max-width:54ch!important;font-size:clamp(15px,1.3vw,17px)!important;line-height:1.8!important;
+}
+html[data-theme="light"] body.lp-home .lp-hero-actions{
+ display:flex!important;flex-wrap:wrap!important;align-items:center!important;gap:12px!important;margin:30px 0 32px!important;
+}
+html[data-theme="light"] body.lp-home .lp-hero-actions a{
+ min-height:50px!important;padding:13px 20px!important;font-size:14px!important;font-weight:800!important;
+ text-decoration:none!important;border-radius:13px!important;
+}
+html[data-theme="light"] body.lp-home .lp-hero-actions .lp-primary{
+ background:#7058ed!important;background-image:none!important;
+ color:#fff!important;-webkit-text-fill-color:#fff!important;border:1px solid #8976fc!important;
+ box-shadow:0 10px 25px rgba(4,9,35,.23)!important;
+}
+html[data-theme="light"] body.lp-home .lp-hero-actions .lp-secondary{
+ background:transparent!important;background-image:none!important;
+ color:#fff!important;-webkit-text-fill-color:#fff!important;
+ border:1px solid #8b9bb9!important;box-shadow:none!important;
+}
+html[data-theme="light"] body.lp-home .lp-hero-actions .lp-secondary:hover{background:#263956!important}
+html[data-theme="light"] body.lp-home .lp-hero-proof{
+ display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:10px!important;
+ margin-top:30px!important;
+}
+html[data-theme="light"] body.lp-home .lp-hero-proof > div{
+ background:#1c3051!important;background-image:none!important;border:1px solid #344967!important;
+ border-radius:13px!important;padding:15px 13px!important;min-width:0;
+}
+html[data-theme="light"] body.lp-home .lp-hero-proof b{
+ color:#fff!important;-webkit-text-fill-color:#fff!important;font-size:24px!important;line-height:1.2!important;
+}
+html[data-theme="light"] body.lp-home .lp-hero-proof span{color:#c8d6ee!important;-webkit-text-fill-color:#c8d6ee!important;font-size:12px!important}
+/* Dashboard illustration: one clean white surface with properly bounded charts. */
+html[data-theme="light"] body.lp-home .lp-demo{
+ position:relative!important;isolation:isolate;background:#fff!important;background-image:none!important;
+ border:1px solid #d2dbef!important;border-radius:25px!important;
+ padding:clamp(15px,2.4vw,27px)!important;box-shadow:0 28px 60px rgba(0,7,27,.23)!important;
+ color:var(--hm-ink)!important;
+}
+html[data-theme="light"] body.lp-home .lp-demo-inner{
+ background:#fff!important;background-image:none!important;border-color:#dfe6f1!important;
+ border-radius:17px!important;box-shadow:none!important;color:var(--hm-ink)!important;
+}
+html[data-theme="light"] body.lp-home .lp-demo-top{color:#344867!important;-webkit-text-fill-color:#344867!important}
+html[data-theme="light"] body.lp-home .lp-demo-top span{
+ background:#eaf6f0!important;color:#17664c!important;-webkit-text-fill-color:#17664c!important;
+ border-radius:100px!important;padding:6px 10px!important;
+}
+html[data-theme="light"] body.lp-home .lp-demo-metric{
+ background:#f5f7fc!important;background-image:none!important;border:1px solid #e4e9f4!important;
+ border-radius:13px!important;box-shadow:none!important;
+}
+html[data-theme="light"] body.lp-home .lp-demo-metric :is(small,b){color:#223554!important;-webkit-text-fill-color:#223554!important}
+html[data-theme="light"] body.lp-home .lp-demo-chart{
+ background:#f5f8fd!important;background-image:none!important;border:1px solid #e5ebf4!important;
+ border-radius:15px!important;padding:18px 14px 0!important;
+}
+html[data-theme="light"] body.lp-home .lp-demo-bar{
+ background:#6a58dc!important;background-image:none!important;border-radius:7px 7px 2px 2px!important;
+}
+html[data-theme="light"] body.lp-home .lp-demo-bar:nth-child(3n){background:#18a882!important}
+html[data-theme="light"] body.lp-home .lp-demo-bar:nth-child(4n){background:#2f85cf!important}
+html[data-theme="light"] body.lp-home .lp-demo-footer{color:#50617c!important;-webkit-text-fill-color:#50617c!important}
+html[data-theme="light"] body.lp-home .lp-demo-chip{
+ border-radius:12px!important;background:#dcf7e9!important;background-image:none!important;
+ color:#14593f!important;-webkit-text-fill-color:#14593f!important;border:1px solid #c3ebd8!important;
+}
+/* Post-hero learning dashboard — informative cards instead of one blended wash. */
+html[data-theme="light"] body.lp-home .lp-dashboard{
+ display:grid!important;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr)!important;
+ gap:19px!important;align-items:stretch!important;margin:46px auto 0!important;padding:0!important;
+ background:transparent!important;background-image:none!important;box-shadow:none!important;
+}
+html[data-theme="light"] body.lp-home .lp-dashboard > :is(.capstone-path-v74,.lp-dashboard-strip){
+ margin:0!important;background:#fff!important;background-image:none!important;
+ border:1px solid var(--hm-line)!important;border-radius:22px!important;
+ box-shadow:var(--hm-shadow)!important;padding:clamp(22px,3vw,32px)!important;
+}
+html[data-theme="light"] body.lp-home .capstone-path-v74{border-top:4px solid #5a41d2!important}
+html[data-theme="light"] body.lp-home .capstone-path-v74 h2{
+ color:var(--hm-ink)!important;-webkit-text-fill-color:var(--hm-ink)!important;
+ font-size:clamp(21px,2vw,29px)!important;line-height:1.18!important;letter-spacing:-.04em!important;
+}
+html[data-theme="light"] body.lp-home .capstone-path-v74 p{
+ color:var(--hm-body)!important;-webkit-text-fill-color:var(--hm-body)!important;line-height:1.75!important;
+}
+html[data-theme="light"] body.lp-home .capstone-path-actions a{
+ color:#4c32ae!important;-webkit-text-fill-color:#4c32ae!important;font-weight:800!important;
+}
+html[data-theme="light"] body.lp-home .lp-dashboard-strip{
+ display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ align-content:space-between!important;gap:16px 12px!important;
+}
+html[data-theme="light"] body.lp-home .lp-dashboard-strip > div:first-child{grid-column:1/-1!important}
+html[data-theme="light"] body.lp-home .lp-dashboard-strip > div{
+ background:transparent!important;background-image:none!important;border:0!important;padding:0!important;
+}
+html[data-theme="light"] body.lp-home .lp-dashboard-strip > div:not(:first-child){
+ border-top:1px solid #e3e8f3!important;padding-top:15px!important;
+}
+html[data-theme="light"] body.lp-home .lp-dashboard-strip strong{color:var(--hm-ink)!important;-webkit-text-fill-color:var(--hm-ink)!important}
+html[data-theme="light"] body.lp-home .lp-dashboard-strip small,
+html[data-theme="light"] body.lp-home .lp-dashboard-strip p{color:#52637d!important;-webkit-text-fill-color:#52637d!important}
+/* Starting-point selector — clean, legible, and no translucent oversized section. */
+html[data-theme="light"] body.lp-home main #pathfinder{
+ max-width:1240px!important;margin:30px auto 0!important;padding:0!important;
+ border:1px solid #e0e7f1!important;border-radius:25px!important;
+ background:#fff!important;background-image:none!important;box-shadow:var(--hm-shadow)!important;
+ overflow:hidden!important;
+}
+html[data-theme="light"] body.lp-home main #pathfinder::before,
+html[data-theme="light"] body.lp-home main #pathfinder::after{content:none!important;display:none!important}
+html[data-theme="light"] body.lp-home .lp-pathfinder-layout{
+ display:grid!important;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)!important;
+ gap:clamp(15px,3vw,35px)!important;align-items:stretch!important;padding:clamp(18px,2.5vw,30px)!important;
+}
+html[data-theme="light"] body.lp-home .lp-pathfinder-intro{
+ background:#eaf5f0!important;background-image:none!important;border:1px solid #cde5d9!important;
+ border-radius:18px!important;padding:clamp(21px,3vw,35px)!important;
+ box-shadow:none!important;
+}
+html[data-theme="light"] body.lp-home .lp-pathfinder-intro h2{color:#142a39!important;-webkit-text-fill-color:#142a39!important;letter-spacing:-.05em!important}
+html[data-theme="light"] body.lp-home .lp-pathfinder-intro p{color:#415b60!important;-webkit-text-fill-color:#415b60!important}
+html[data-theme="light"] body.lp-home .lp-pathfinder-form{
+ background:#fff!important;background-image:none!important;border:0!important;
+ box-shadow:none!important;padding:clamp(10px,1.8vw,22px)!important;
+}
+html[data-theme="light"] body.lp-home .lp-pathfinder-form :is(select,input){
+ color:#1b3354!important;-webkit-text-fill-color:#1b3354!important;
+ background:#f9fbff!important;border:1px solid #b9c9df!important;
+ border-radius:12px!important;min-height:47px!important;
+}
+html[data-theme="light"] body.lp-home .lp-pathfinder-form :is(label,small){color:#203653!important;-webkit-text-fill-color:#203653!important}
+html[data-theme="light"] body.lp-home .lp-pathfinder-form button{
+ border-radius:12px!important;min-height:48px!important;background:#6049d7!important;
+ color:#fff!important;-webkit-text-fill-color:#fff!important;
+ box-shadow:none!important;
+}
+/* Practice promotion and quick navigation are content surfaces, not whole-page overlays. */
+html[data-theme="light"] body.lp-home .ps-home-promo{
+ background:transparent!important;background-image:none!important;border:0!important;
+ padding:32px 0 0!important;margin:0!important;box-shadow:none!important;
+}
+html[data-theme="light"] body.lp-home .ps-home-inner{
+ border:1px solid #d8e1ef!important;border-radius:21px!important;
+ background:#eef4ff!important;background-image:none!important;
+ box-shadow:none!important;padding:clamp(22px,2.5vw,36px)!important;
+}
+html[data-theme="light"] body.lp-home .ps-home-inner :is(h2,p){color:#182d4f!important;-webkit-text-fill-color:#182d4f!important}
+html[data-theme="light"] body.lp-home .ps-home-inner .ps-home-eyebrow{color:#3e39af!important;-webkit-text-fill-color:#3e39af!important}
+html[data-theme="light"] body.lp-home .ps-home-inner a{color:#4830aa!important;-webkit-text-fill-color:#4830aa!important}
+html[data-theme="light"] body.lp-home .lp-quicknav{padding-bottom:12px!important}
+html[data-theme="light"] body.lp-home .lp-quick-links{
+ display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:14px!important;
+}
+html[data-theme="light"] body.lp-home .lp-quick-links a{
+ display:flex!important;align-items:center!important;justify-content:space-between!important;
+ gap:10px!important;padding:20px!important;min-height:99px!important;
+ border:1px solid #dfe6f0!important;border-radius:16px!important;
+ background:#fff!important;background-image:none!important;
+ color:#1c3051!important;-webkit-text-fill-color:#1c3051!important;
+ font-weight:800!important;font-size:14px!important;text-decoration:none!important;
+ box-shadow:0 8px 24px rgba(17,32,67,.05)!important;
+}
+html[data-theme="light"] body.lp-home .lp-quick-links a:hover{border-color:#bfb5ef!important;box-shadow:0 14px 28px rgba(31,31,79,.10)!important}
+html[data-theme="light"] body.lp-home .lp-smart-panel{padding-top:0!important}
+html[data-theme="light"] body.lp-home .lp-smart-banner{
+ background:#182c4b!important;background-image:none!important;border:1px solid #2d4162!important;
+ border-radius:22px!important;box-shadow:none!important;
+}
+html[data-theme="light"] body.lp-home .lp-smart-banner :is(h3,p,.lp-smart-tag){color:#f0f5ff!important;-webkit-text-fill-color:#f0f5ff!important}
+/* Course discovery: six uncluttered editorial cards, consistent layout, clear skill colours. */
+html[data-theme="light"] body.lp-home #courses{
+ background:#f2f5fb!important;background-image:none!important;border-block:1px solid #e6ecf4!important;
+}
+html[data-theme="light"] body.lp-home .lp-course-grid{gap:19px!important}
+html[data-theme="light"] body.lp-home .lp-course{
+ display:flex!important;flex-direction:column!important;min-width:0;
+ background:#fff!important;background-image:none!important;border:1px solid #dae3f0!important;
+ border-top:4px solid var(--course-accent,#6752da)!important;
+ border-radius:20px!important;box-shadow:0 8px 24px rgba(27,45,87,.055)!important;
+ padding:clamp(21px,2.3vw,29px)!important;overflow:hidden!important;
+}
+html[data-theme="light"] body.lp-home .lp-course::before,
+html[data-theme="light"] body.lp-home .lp-course::after{
+ content:none!important;display:none!important;background:none!important;
+}
+html[data-theme="light"] body.lp-home .lp-course:hover{
+ transform:translateY(-3px)!important;box-shadow:0 20px 42px rgba(24,39,85,.10)!important;
+ border-color:#c6d2e5!important;border-top-color:var(--course-accent,#6752da)!important;
+}
+html[data-theme="light"] body.lp-home .lp-course h3{
+ color:#13243f!important;-webkit-text-fill-color:#13243f!important;
+ font-size:clamp(19px,1.8vw,23px)!important;letter-spacing:-.035em!important;line-height:1.24!important;
+}
+html[data-theme="light"] body.lp-home .lp-course p,
+html[data-theme="light"] body.lp-home .lp-course li{
+ color:#435571!important;-webkit-text-fill-color:#435571!important;font-size:13.5px!important;line-height:1.68!important;
+}
+html[data-theme="light"] body.lp-home .lp-course :is(.lp-course-outcome,.lp-course-footer){margin-top:auto}
+html[data-theme="light"] body.lp-home .lp-course-outcome{
+ background:var(--course-pale,#f1edff)!important;background-image:none!important;
+ border:1px solid #dce3ed!important;border-radius:12px!important;box-shadow:none!important;
+ color:#1e3451!important;-webkit-text-fill-color:#1e3451!important;
+}
+html[data-theme="light"] body.lp-home .lp-course-outcome :is(span,strong){color:#1b2e48!important;-webkit-text-fill-color:#1b2e48!important}
+html[data-theme="light"] body.lp-home .lp-tools{
+ background:#fff!important;background-image:none!important;border:1px solid #dce4ef!important;
+ border-radius:17px!important;padding:15px!important;box-shadow:none!important;
+}
+html[data-theme="light"] body.lp-home .lp-tools :is(input,button){color:#273957!important;-webkit-text-fill-color:#273957!important}
+html[data-theme="light"] body.lp-home .lp-course-tag{color:var(--course-ink,#3b298e)!important;-webkit-text-fill-color:var(--course-ink,#3b298e)!important}
+/* Features and step cards: no gradients, clear typography and contrast. */
+html[data-theme="light"] body.lp-home .lp-feature,
+html[data-theme="light"] body.lp-home .lp-step{
+ background:#fff!important;background-image:none!important;
+ border:1px solid #e0e7f1!important;border-radius:18px!important;
+ box-shadow:0 8px 24px rgba(18,36,73,.05)!important;
+}
+html[data-theme="light"] body.lp-home .lp-feature::before,
+html[data-theme="light"] body.lp-home .lp-step::before,
+html[data-theme="light"] body.lp-home .lp-feature::after,
+html[data-theme="light"] body.lp-home .lp-step::after{content:none!important;display:none!important}
+html[data-theme="light"] body.lp-home .lp-feature h3,
+html[data-theme="light"] body.lp-home .lp-step h3{color:#1b2d4b!important;-webkit-text-fill-color:#1b2d4b!important}
+html[data-theme="light"] body.lp-home .lp-feature p,
+html[data-theme="light"] body.lp-home .lp-step p{color:#4a5d7c!important;-webkit-text-fill-color:#4a5d7c!important;line-height:1.7!important}
+html[data-theme="light"] body.lp-home .lp-feature a{color:#4f35bf!important;-webkit-text-fill-color:#4f35bf!important;text-decoration:underline;text-underline-offset:3px}
+html[data-theme="light"] body.lp-home .lp-prompt-promo{
+ background:#edf2ff!important;background-image:none!important;color:#23365b!important;
+ border-top:1px solid #dce6f5!important;
+}
+html[data-theme="light"] body.lp-home .lp-prompt-promo :is(h2,p){color:#243653!important;-webkit-text-fill-color:#243653!important}
+/* Responsive: the editor-style preview and lesson cards never create horizontal scroll. */
+@media(max-width:1080px){
+ html[data-theme="light"] body.lp-home .lp-hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:26px!important}
+ html[data-theme="light"] body.lp-home .lp-quick-links{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:760px){
+ html[data-theme="light"] body.lp-home .wrap{width:calc(100% - 30px)!important}
+ html[data-theme="light"] body.lp-home main > .lp-hero{padding:45px 0 52px!important;border-radius:0 0 21px 21px!important}
+ html[data-theme="light"] body.lp-home .lp-hero-grid,
+ html[data-theme="light"] body.lp-home .lp-dashboard,
+ html[data-theme="light"] body.lp-home .lp-pathfinder-layout{grid-template-columns:minmax(0,1fr)!important}
+ html[data-theme="light"] body.lp-home .lp-hero h1{font-size:clamp(42px,10.5vw,60px)!important}
+ html[data-theme="light"] body.lp-home .lp-hero-proof{gap:7px!important}
+ html[data-theme="light"] body.lp-home .lp-hero-proof>div{padding:11px 8px!important}
+ html[data-theme="light"] body.lp-home .lp-hero-proof b{font-size:21px!important}
+ html[data-theme="light"] body.lp-home .lp-hero-proof span{font-size:10px!important}
+ html[data-theme="light"] body.lp-home .lp-dashboard{margin-top:24px!important}
+ html[data-theme="light"] body.lp-home #pathfinder{width:calc(100% - 30px)!important;border-radius:19px!important}
+ html[data-theme="light"] body.lp-home .lp-quick-links{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important}
+ html[data-theme="light"] body.lp-home .lp-quick-links a{padding:15px!important;font-size:12px!important;min-height:80px!important}
+ html[data-theme="light"] body.lp-home .lp-dashboard-strip{gap:12px!important}
+ html[data-theme="light"] body.lp-home .lp-dashboard-strip > div{min-width:0;overflow-wrap:anywhere}
+}
+@media(max-width:420px){
+ html[data-theme="light"] body.lp-home .lp-hero h1{font-size:40px!important}
+ html[data-theme="light"] body.lp-home .lp-demo{padding:13px!important}
+ html[data-theme="light"] body.lp-home .lp-quick-links{grid-template-columns:1fr!important}
+ html[data-theme="light"] body.lp-home .lp-dashboard-strip{grid-template-columns:1fr 1fr!important}
+ html[data-theme="light"] body.lp-home .lp-dashboard-strip > div:first-child{grid-column:1/-1!important}
+}
+@media(prefers-reduced-motion:reduce){
+ html[data-theme="light"] body.lp-home .lp-course:hover{transform:none!important}
+}
+/* The legacy homepage hid its hero and navigation shortcuts with display:none.
+   Restore those intended premium sections for first-time visitors; the personalised
+   returning-learner mode may continue to simplify its own dashboard. */
+html[data-theme="light"] body.lp-home:not(.dlp-returning-learner) main > .lp-hero,
+html[data-theme="light"] body.lp-home:not(.dlp-returning-learner) main > .lp-quicknav,
+html[data-theme="light"] body.lp-home:not(.dlp-returning-learner) main > .lp-smart-panel{display:block!important;visibility:visible!important}
+
+
+/* DataLearning — homepage finishing pass, November 2026.
+ * Loaded AFTER the site-wide design system and public effects to avoid old
+ * global link/gradient rules obscuring the premium homepage surface.
+ * All rules are homepage-scoped. No challenge, editor or course logic changes.
+ */
+html[data-theme="light"] body.lp-home[data-public-refresh] {
+  background:#f7f9fd!important;
+  background-image:none!important;
+  color:#14243f!important;
+}
+/* High contrast header wordmark, including focus and hover states. */
+html[data-theme="light"] body.lp-home[data-public-refresh] > .dalp-global-header .dalp-brand-name,
+html[data-theme="light"] body.lp-home[data-public-refresh] > .dalp-global-header .dalp-global-brand:is(:hover,:focus-visible) .dalp-brand-name {
+  color:#14243f!important;
+  -webkit-text-fill-color:#14243f!important;
+  font-weight:900!important;
+  letter-spacing:-.052em!important;
+}
+html[data-theme="light"] body.lp-home[data-public-refresh] > .dalp-global-header .dalp-brand-name .dalp-brand-accent,
+html[data-theme="light"] body.lp-home[data-public-refresh] > .dalp-global-header .dalp-global-brand:is(:hover,:focus-visible) .dalp-brand-accent {
+  color:#5638c7!important;
+  -webkit-text-fill-color:#5638c7!important;
+}
+/* Earlier global 'vibrant hero' rules re-added decorative overlays. This
+ * higher-specificity rule intentionally restores a solid navy canvas. */
+html[data-theme="light"] body.lp-home[data-public-refresh] main#main-content > section.lp-hero.dalp-themed-hero {
+  background:#142443!important;
+  background-image:none!important;
+  border:0!important;
+  border-radius:0 0 30px 30px!important;
+  box-shadow:none!important;
+}
+html[data-theme="light"] body.lp-home[data-public-refresh] main#main-content > section.lp-hero.dalp-themed-hero::before,
+html[data-theme="light"] body.lp-home[data-public-refresh] main#main-content > section.lp-hero.dalp-themed-hero::after {
+  content:none!important;
+  display:none!important;
+  background:none!important;
+}
+/* A clean dashboard preview: no transparent glass or radial wash. */
+html[data-theme="light"] body.lp-home[data-public-refresh] main#main-content .lp-demo {
+  background:#fff!important;
+  background-image:none!important;
+  border:1px solid #dce5f4!important;
+  border-radius:24px!important;
+  box-shadow:0 24px 52px rgba(3,12,34,.22)!important;
+}
+html[data-theme="light"] body.lp-home[data-public-refresh] main#main-content .lp-demo::before,
+html[data-theme="light"] body.lp-home[data-public-refresh] main#main-content .lp-demo::after {
+  content:none!important;
+  display:none!important;
+}
+/* Explicit navigation CTA treatment supersedes the old site-wide plain-link
+ * reset, which was leaving the homepage hero with underlined text on blocks. */
+html[data-theme="light"] body.lp-home[data-public-refresh] main#main-content section.lp-hero .lp-hero-actions {
+  display:flex!important;
+  grid-template-columns:none!important;
+  flex-wrap:wrap!important;
+  gap:12px!important;
+  align-items:center!important;
+  margin:30px 0 32px!important;
+}
+html[data-theme="light"] body.lp-home[data-public-refresh] main#main-content section.lp-hero .lp-hero-actions > a.dalp-plain-link {
+  display:inline-flex!important;
+  flex:0 0 auto!important;
+  justify-content:center!important;
+  align-items:center!important;
+  gap:8px!important;
+  width:auto!important;
+  min-width:0!important;
+  max-width:100%!important;
+  min-height:50px!important;
+  height:auto!important;
+  padding:13px 20px!important;
+  border-radius:13px!important;
+  font-size:14px!important;
+  font-weight:820!important;
+  line-height:1.4!important;
+  text-align:center!important;
+  text-decoration:none!important;
+  text-shadow:none!important;
+  white-space:normal!important;
+  transition:background .16s ease,transform .16s ease,border-color .16s ease!important;
+}
+html[data-theme="light"] body.lp-home[data-public-refresh] main#main-content section.lp-hero .lp-hero-actions > a.lp-primary.dalp-plain-link,
+html[data-theme="light"] body.lp-home[data-public-refresh] main#main-content section.lp-hero .lp-hero-actions > a.lp-primary.dalp-plain-link:visited {
+  background:#6251da!important;
+  background-image:none!important;
+  border:1px solid #6251da!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  box-shadow:0 8px 20px rgba(4,9,35,.19)!important;
+}
+html[data-theme="light"] body.lp-home[data-public-refresh] main#main-content section.lp-hero .lp-hero-actions > a.lp-primary.dalp-plain-link:hover {
+  background:#4e3bbd!important;
+  border-color:#4e3bbd!important;
+  transform:translateY(-2px)!important;
+}
+html[data-theme="light"] body.lp-home[data-public-refresh] main#main-content section.lp-hero .lp-hero-actions > a.lp-secondary.dalp-plain-link,
+html[data-theme="light"] body.lp-home[data-public-refresh] main#main-content section.lp-hero .lp-hero-actions > a.lp-secondary.dalp-plain-link:visited {
+  background:#203653!important;
+  background-image:none!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  border:1px solid #7185a6!important;
+  box-shadow:none!important;
+}
+html[data-theme="light"] body.lp-home[data-public-refresh] main#main-content section.lp-hero .lp-hero-actions > a.lp-secondary.dalp-plain-link:hover {
+  background:#2e4767!important;
+  border-color:#a5b3cb!important;
+  transform:translateY(-2px)!important;
+}
+html[data-theme="light"] body.lp-home[data-public-refresh] main#main-content section.lp-hero .lp-hero-actions > a:focus-visible {
+  outline:3px solid #abf0db!important;
+  outline-offset:3px!important;
+}
+/* Informational cards are opaque, with a single border/shadow hierarchy.
+   Intentionally do not re-theme any cards inside the individual courses. */
+html[data-theme="light"] body.lp-home[data-public-refresh] main#main-content .lp-feature,
+html[data-theme="light"] body.lp-home[data-public-refresh] main#main-content .lp-step {
+  background:#fff!important;
+  background-image:none!important;
+  color:#14243f!important;
+  border:1px solid #dfe6f0!important;
+  border-radius:18px!important;
+  box-shadow:0 8px 24px rgba(18,36,73,.05)!important;
+}
+html[data-theme="light"] body.lp-home[data-public-refresh] main#main-content .lp-feature::before,
+html[data-theme="light"] body.lp-home[data-public-refresh] main#main-content .lp-feature::after,
+html[data-theme="light"] body.lp-home[data-public-refresh] main#main-content .lp-step::before,
+html[data-theme="light"] body.lp-home[data-public-refresh] main#main-content .lp-step::after {
+  content:none!important;
+  display:none!important;
+}
+html[data-theme="light"] body.lp-home[data-public-refresh] main#main-content .lp-feature :is(h2,h3),
+html[data-theme="light"] body.lp-home[data-public-refresh] main#main-content .lp-step :is(h2,h3) {
+  color:#182a45!important;
+  -webkit-text-fill-color:#182a45!important;
+}
+html[data-theme="light"] body.lp-home[data-public-refresh] main#main-content .lp-feature p,
+html[data-theme="light"] body.lp-home[data-public-refresh] main#main-content .lp-step p {
+  color:#485b75!important;
+  -webkit-text-fill-color:#485b75!important;
+}
+/* No uninvited overlays on the top-level homepage sections. */
+html[data-theme="light"] body.lp-home[data-public-refresh] main#main-content > section::before,
+html[data-theme="light"] body.lp-home[data-public-refresh] main#main-content > section::after {
+  content:none!important;
+  background-image:none!important;
+  pointer-events:none!important;
+}
+/* Keep the starting-point form and dashboard above the page background. */
+html[data-theme="light"] body.lp-home[data-public-refresh] main#main-content #pathfinder,
+html[data-theme="light"] body.lp-home[data-public-refresh] main#main-content #pathfinder .lp-pathfinder-form,
+html[data-theme="light"] body.lp-home[data-public-refresh] main#main-content .lp-dashboard > * {
+  background-image:none!important;
+}
+@media (max-width:760px) {
+ html[data-theme="light"] body.lp-home[data-public-refresh] main#main-content section.lp-hero .lp-hero-actions {
+   display:grid!important;
+   grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ }
+ html[data-theme="light"] body.lp-home[data-public-refresh] main#main-content section.lp-hero .lp-hero-actions > a.dalp-plain-link {
+   width:100%!important;
+   height:100%!important;
+   min-height:52px!important;
+   padding:12px 13px!important;
+ }
+}
+@media (max-width:430px) {
+ html[data-theme="light"] body.lp-home[data-public-refresh] main#main-content section.lp-hero .lp-hero-actions {
+   grid-template-columns:minmax(0,1fr)!important;
+   gap:10px!important;
+ }
+ html[data-theme="light"] body.lp-home[data-public-refresh] main#main-content section.lp-hero .lp-hero-actions > a.dalp-plain-link {width:100%!important;}
+}
+@media (prefers-reduced-motion: reduce) {
+ html[data-theme="light"] body.lp-home[data-public-refresh] main#main-content section.lp-hero .lp-hero-actions > a.dalp-plain-link {transition:none!important;transform:none!important;}
+}
