@@ -8,11 +8,12 @@ for(const page of pages){
  const txt=fs.readFileSync(page.route,'utf8');
  const nav=txt.match(/<nav[^>]+class="dalp-global-nav"[^>]*>([\s\S]*?)<\/nav>/)?.[1];
  if(!nav)continue; publicCount++;
- assert.equal((nav.match(/<a /g)||[]).length,10,`${page.route}: expected ten direct nav links`);
- assert.doesNotMatch(nav,/<details/);
+ assert.equal((nav.match(/<a /g)||[]).length,10,`${page.route}: all ten destinations must remain reachable`);
+ assert.match(nav,/<details class="dalp-study-tools"/);
+ assert.match(nav,/<summary[^>]*>.*?Study tools/s);
  assert.match(nav,/Practice Arena/);assert.match(nav,/Learning Lab/);assert.match(nav,/AI Tutor/);
 }
 assert.match(css,/min-height:620px!important/);
 assert.match(css,/height:clamp\(620px,72vh,820px\)!important/);
-assert.match(css,/max-width:1350px/);
-console.log(`PASS direct navigation and full-height editor on ${publicCount} public routes`);
+assert.match(css,/max-width:1130px/);
+console.log(`PASS grouped navigation and full-height editor on ${publicCount} public routes`);

@@ -33,7 +33,7 @@ assert.match(ui,/scaleX\(/,'scroll indicator does not use compositor transform')
 assert.match(ui,/requestIdleCallback\(batch/,'large table enhancements must be chunked');
 assert.doesNotMatch(ui,/scroll',onScroll/,'old synchronous scroll layout polling remains');
 assert.match(css,/scroll-behavior:auto!important/,'anchor navigation must be responsive');
-assert.match(nav,/matchMedia\('\(min-width:1351px\)'\)/,'global nav still runs a handler on every resize');
+assert.match(nav,/matchMedia\('\(min-width:1131px\)'\)/,'global nav still runs a handler on every resize');
 assert.match(coach,/matchMedia\('\(max-width:950px\)'\)/,'coach still relocates on every pixel of resize');
 assert.match(sw,/event\.waitUntil\(caches\.open\(CACHE\)\.then\(cache=>cache\.put\(/,'cache writes should not delay user responses');
 assert.match(sw,/const PRIVATE/,'protected resources must be excluded from public caching');

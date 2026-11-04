@@ -666,3 +666,228 @@ html[data-theme="light"] body[data-responsive-page="practice"] .python-lab texta
  html[data-theme="light"] body[data-responsive-page="practice"] #pythonCode {height:440px!important;min-height:400px!important}
  html[data-theme="light"] body[data-responsive-page="practice"] .ide-shell .ide-primary {padding:11px!important}
 }
+/* November 2026 final polish — restored grouped navigation, unclipped Arena, Tutor Studio. */
+html[data-theme="light"] body .dalp-global-header{background:#111e37!important;overflow:visible!important;z-index:400!important}
+html[data-theme="light"] body .dalp-global-header .dalp-global-inner{max-width:1536px!important;min-height:70px!important;gap:clamp(12px,2vw,28px)!important;padding:10px clamp(18px,2.6vw,36px)!important;flex-wrap:nowrap!important;overflow:visible!important}
+html[data-theme="light"] body .dalp-global-header .dalp-global-brand{flex:0 1 265px!important;min-width:0!important;color:#fff!important;-webkit-text-fill-color:#fff!important}
+html[data-theme="light"] body .dalp-global-header .dalp-global-nav{display:flex!important;align-items:center!important;justify-content:flex-end!important;flex:1 1 auto!important;gap:clamp(4px,.8vw,12px)!important;width:auto!important;padding:0!important;margin-left:auto!important;overflow:visible!important}
+html[data-theme="light"] body .dalp-global-header .dalp-global-nav>a{flex:0 0 auto!important;min-height:43px!important;padding:10px 12px!important;font-size:13px!important;white-space:nowrap!important;color:#e2eaff!important;-webkit-text-fill-color:#e2eaff!important;background:transparent!important;border:1px solid transparent!important;border-radius:11px!important}
+html[data-theme="light"] body .dalp-global-header .dalp-global-nav>a:hover,
+html[data-theme="light"] body .dalp-global-header .dalp-global-nav>a[aria-current="page"]{color:#fff!important;-webkit-text-fill-color:#fff!important;background:#304364!important;border-color:#67799c!important;box-shadow:none!important}
+html[data-theme="light"] body .dalp-global-header .dalp-global-nav>a.account-link{margin:0 0 0 clamp(4px,1vw,16px)!important;padding:11px 17px!important;border:1px solid #9385f1!important;background:#634ce2!important;background-image:none!important;color:#fff!important;-webkit-text-fill-color:#fff!important;box-shadow:0 5px 18px rgb(57 43 159 / 25%)!important}
+html[data-theme="light"] body .dalp-global-header .dalp-study-tools{position:relative!important;flex:0 0 auto!important;width:auto!important;z-index:450!important}
+html[data-theme="light"] body .dalp-global-header .dalp-study-tools>summary{display:flex!important;align-items:center!important;justify-content:center!important;gap:9px!important;min-height:43px!important;padding:10px 13px!important;background:#273b60!important;border:1px solid #6d80a4!important;border-radius:11px!important;white-space:nowrap!important;font-size:13px!important;color:#fff!important;-webkit-text-fill-color:#fff!important;font-weight:800!important;cursor:pointer!important;list-style:none!important}
+html[data-theme="light"] body .dalp-global-header .dalp-study-tools>summary:hover,
+html[data-theme="light"] body .dalp-global-header .dalp-study-tools[open]>summary,
+html[data-theme="light"] body .dalp-global-header .dalp-study-tools[data-current-section="true"]>summary{background:#354d79!important;border-color:#aa9ef4!important}
+html[data-theme="light"] body .dalp-study-tools>summary::-webkit-details-marker{display:none!important}
+html[data-theme="light"] body .dalp-study-tools>summary::marker{content:""}
+html[data-theme="light"] body .dalp-global-header :is(.dalp-summary-icon,.dalp-study-chevron){width:17px!important;height:17px!important;flex:0 0 17px!important;color:#d1caff!important;-webkit-text-fill-color:#d1caff!important}
+html[data-theme="light"] body .dalp-global-header .dalp-study-tools[open] .dalp-study-chevron{transform:rotate(180deg)!important}
+html[data-theme="light"] body .dalp-global-header .dalp-study-panel{position:absolute!important;top:calc(100% + 12px)!important;right:0!important;width:min(360px,calc(100vw - 32px))!important;display:flex!important;flex-direction:column!important;gap:3px!important;z-index:1000!important;padding:9px!important;overflow:visible!important;background:#fff!important;border:1px solid #ced9ea!important;border-radius:17px!important;box-shadow:0 22px 55px rgb(15 30 58 / 23%)!important}
+html[data-theme="light"] body .dalp-global-header .dalp-study-panel::before{display:none!important}
+html[data-theme="light"] body .dalp-global-header .dalp-study-overline{padding:9px 12px 10px!important;font-size:10px!important;letter-spacing:.13em!important;font-weight:850!important;color:#50617b!important;-webkit-text-fill-color:#50617b!important}
+html[data-theme="light"] body .dalp-global-header .dalp-study-panel>a{display:flex!important;align-items:center!important;gap:11px!important;padding:9px 11px!important;min-height:59px!important;width:100%!important;text-align:left!important;white-space:normal!important;background:#fff!important;color:#192b46!important;-webkit-text-fill-color:#192b46!important;border:1px solid transparent!important;border-radius:11px!important;text-decoration:none!important;line-height:1.3!important}
+html[data-theme="light"] body .dalp-global-header .dalp-study-panel>a:hover,
+html[data-theme="light"] body .dalp-global-header .dalp-study-panel>a:focus-visible,
+html[data-theme="light"] body .dalp-global-header .dalp-study-panel>a[aria-current="page"]{background:#f1edff!important;color:#362591!important;-webkit-text-fill-color:#362591!important;border-color:#d7d0ff!important}
+html[data-theme="light"] body .dalp-global-header .dalp-menu-symbol{display:grid!important;place-items:center!important;flex:0 0 40px!important;width:40px!important;height:40px!important;border-radius:11px!important;background:#eae5ff!important;color:#4d32b9!important;-webkit-text-fill-color:#4d32b9!important}
+html[data-theme="light"] body .dalp-global-header .dalp-menu-symbol svg{display:block;width:20px!important;height:20px!important;stroke:currentColor!important}
+html[data-theme="light"] body .dalp-study-panel>a:nth-of-type(2) .dalp-menu-symbol{background:#e4f5ee!important;color:#146949!important;-webkit-text-fill-color:#146949!important}
+html[data-theme="light"] body .dalp-study-panel>a:nth-of-type(3) .dalp-menu-symbol{background:#e8efff!important;color:#2756a5!important;-webkit-text-fill-color:#2756a5!important}
+html[data-theme="light"] body .dalp-study-panel>a:nth-of-type(4) .dalp-menu-symbol{background:#fff0dc!important;color:#94530e!important;-webkit-text-fill-color:#94530e!important}
+html[data-theme="light"] body .dalp-study-panel>a:nth-of-type(5) .dalp-menu-symbol{background:#f9e8f1!important;color:#993769!important;-webkit-text-fill-color:#993769!important}
+html[data-theme="light"] body .dalp-global-header .dalp-menu-copy{display:flex!important;flex-direction:column!important;gap:4px!important;flex:1 1 auto!important;min-width:0!important}
+html[data-theme="light"] body .dalp-global-header .dalp-menu-copy strong{font-size:13px!important;font-weight:850!important;color:#1c2e4a!important;-webkit-text-fill-color:#1c2e4a!important}
+html[data-theme="light"] body .dalp-global-header .dalp-menu-copy small{font-size:11px!important;line-height:1.3!important;color:#50647e!important;-webkit-text-fill-color:#50647e!important}
+html[data-theme="light"] body .dalp-global-header .dalp-menu-arrow{width:15px!important;height:15px!important;flex:none!important;color:#5a6a87!important}
+html[data-theme="light"] body .dalp-global-header .dalp-global-toggle{display:none!important}
+@media(max-width:1130px){
+ html[data-theme="light"] body .dalp-global-header .dalp-global-inner{min-height:64px!important;gap:9px!important;padding:9px 16px!important;flex-wrap:wrap!important}
+ html[data-theme="light"] body .dalp-global-header .dalp-global-brand{flex:1 1 auto!important;max-width:calc(100% - 62px)!important}
+ html[data-theme="light"] body .dalp-global-header .dalp-global-toggle{display:inline-grid!important;place-items:center!important;margin-left:auto!important;width:45px!important;height:45px!important;min-width:45px!important;min-height:45px!important;background:#293c62!important;color:#fff!important;border:1px solid #6d82ab!important;border-radius:12px!important}
+ html[data-theme="light"] body .dalp-global-header .dalp-global-nav,
+ html[data-theme="light"] body .dalp-global-header .dalp-global-nav:not(.is-open){display:none!important}
+ html[data-theme="light"] body .dalp-global-header .dalp-global-nav.is-open{display:flex!important;flex-direction:column!important;align-items:stretch!important;flex:0 0 100%!important;width:100%!important;max-height:calc(100dvh - 73px)!important;overflow-y:auto!important;overflow-x:hidden!important;overscroll-behavior:contain!important;gap:5px!important;padding:10px 2px 14px!important;margin:0!important;border-top:1px solid #384d73!important}
+ html[data-theme="light"] body .dalp-global-header .dalp-global-nav>a{width:100%!important;justify-content:flex-start!important;min-height:46px!important;padding:12px 14px!important;font-size:14px!important}
+ html[data-theme="light"] body .dalp-global-header .dalp-global-nav>a.account-link{margin:6px 0 0!important;justify-content:center!important}
+ html[data-theme="light"] body .dalp-global-header .dalp-study-tools{width:100%!important;flex:0 0 auto!important}
+ html[data-theme="light"] body .dalp-global-header .dalp-study-tools>summary{justify-content:flex-start!important;width:100%!important;min-height:46px!important;padding:12px 14px!important;font-size:14px!important}
+ html[data-theme="light"] body .dalp-global-header .dalp-study-tools>summary .dalp-study-chevron{margin-left:auto!important}
+ html[data-theme="light"] body .dalp-global-header .dalp-study-panel{position:static!important;width:100%!important;margin:7px 0 0!important;box-shadow:none!important;background:#f4f6fd!important;border-color:#8fa1bf!important}
+}
+/* Arena: remove inherited fixed-height clipping.  All panes remain in page flow. */
+html[data-theme="light"] body[data-responsive-page="practice"] :is(.pc-wrap,.pc-layout,#practiceDetail.pc-detail){min-width:0!important;max-width:100%!important;height:auto!important;max-height:none!important;overflow:visible!important}
+html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-shell{height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;contain:none!important;width:100%!important}
+html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-content{display:grid!important;grid-template-columns:minmax(0,1.35fr) minmax(320px,.9fr)!important;align-items:start!important;gap:16px!important;min-width:0!important;height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important}
+html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-content>.ide-primary,
+html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-content>.ide-secondary{min-width:0!important;width:100%!important;height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;border:1px solid #d4dfed!important;border-radius:16px!important;background:#fff!important}
+html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail :is(#ideEditorSlot,.arena-workspace,.arena-grid,.arena-editor-pane,.arena-editor,.arena-code-wrap){min-width:0!important;width:100%!important;max-width:100%!important;min-height:0!important;height:auto!important;max-height:none!important;overflow:visible!important}
+html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .arena-editor .arena-code{display:flex!important;align-items:stretch!important;position:relative!important;width:100%!important;min-height:600px!important;height:auto!important;max-height:none!important;overflow:visible!important;background:#0f1b30!important;border:1px solid #324663!important;border-radius:0 0 12px 12px!important}
+html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .arena-editor .arena-code #arenaInputHost{display:flex!important;flex:1 1 auto!important;align-items:stretch!important;min-width:0!important;min-height:600px!important;height:auto!important;overflow:visible!important}
+html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .arena-editor .arena-code #arenaInputHost textarea#practiceAnswer{flex:1 1 auto!important;display:block!important;position:relative!important;width:100%!important;min-width:0!important;box-sizing:border-box!important;min-height:600px!important;height:600px!important;max-height:none!important;padding:17px!important;line-height:1.7!important;font-size:15px!important;overflow:auto!important;resize:vertical!important;background:#0f1b30!important;background-color:#0f1b30!important;background-image:none!important;color:#edf5ff!important;-webkit-text-fill-color:#edf5ff!important;caret-color:#a7efd5!important;border:0!important}
+html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail #arenaLines.arena-lines{align-self:stretch!important;flex:none!important;height:auto!important;min-height:600px!important;padding:18px 8px!important;overflow:hidden!important;background:#172844!important;color:#b4c6e2!important;-webkit-text-fill-color:#b4c6e2!important;border-right:1px solid #394e6b!important}
+html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-panel:not([hidden]){display:block!important;height:auto!important;min-height:250px!important;max-height:none!important;overflow:visible!important;background:#f7f9ff!important}
+html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-panel[hidden]{display:none!important}
+html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail :is(.ide-grid-scroll,.arena-table-scroll){max-width:100%!important;overflow-x:auto!important;overscroll-behavior-x:contain!important}
+html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-results-tabs{display:flex!important;flex-wrap:wrap!important;gap:4px!important;overflow:visible!important}
+html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-results-tabs button{min-height:41px!important;color:#263a59!important;-webkit-text-fill-color:#263a59!important;padding:8px 10px!important}
+html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-results-tabs button[aria-selected="true"]{background:#ece8ff!important;color:#382691!important;-webkit-text-fill-color:#382691!important}
+html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-editor-toolbar{display:flex!important;align-items:center!important;flex-wrap:wrap!important;gap:9px!important;justify-content:space-between!important}
+html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-editor-toolbar>div{display:flex!important;flex-wrap:wrap!important;gap:7px!important}
+html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .arena-editor-toggle{border:1px solid #aabbd3!important;color:#2b3d5a!important;-webkit-text-fill-color:#2b3d5a!important;background:#fff!important;border-radius:9px!important;min-height:41px!important;padding:9px 12px!important;font-size:12px!important;font-weight:800!important}
+html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .arena-editor-toggle[aria-pressed="true"]{background:#ebe8ff!important;color:#372698!important;-webkit-text-fill-color:#372698!important;border-color:#8777d8!important}
+html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-shell.is-editor-expanded .ide-content{grid-template-columns:minmax(0,1fr)!important}
+html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-shell.is-editor-expanded #arenaInputHost textarea#practiceAnswer{min-height:74vh!important;height:74vh!important}
+html[data-theme="light"] body[data-responsive-page="practice"] :is(#pythonCode,.python-lab textarea#pythonCode){display:block!important;min-height:440px!important;height:clamp(440px,57vh,700px)!important;max-height:none!important;overflow:auto!important;resize:vertical!important}
+@media(max-width:1120px){
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-content{display:flex!important;flex-direction:column!important;grid-template-columns:1fr!important;gap:14px!important}
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-content>.ide-primary,
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-content>.ide-secondary,
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-content.ide-show-output>.ide-primary,
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-content:not(.ide-show-output)>.ide-secondary{display:block!important;position:static!important;visibility:visible!important;max-height:none!important;min-height:0!important}
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .arena-editor .arena-code,
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail #arenaInputHost,
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail #arenaInputHost textarea#practiceAnswer,
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail #arenaLines.arena-lines{min-height:480px!important}
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail #arenaInputHost textarea#practiceAnswer{height:480px!important}
+}
+@media(max-width:620px){
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-content>.ide-primary,
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-content>.ide-secondary{padding:12px!important}
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .arena-editor .arena-code,
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail #arenaInputHost,
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail #arenaInputHost textarea#practiceAnswer,
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail #arenaLines.arena-lines{min-height:410px!important}
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail #arenaInputHost textarea#practiceAnswer{height:410px!important;padding:14px 11px!important;font-size:14px!important}
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-editor-toolbar>div{width:100%;justify-content:flex-end}
+}
+/* Tutor layout and vertical section navigator */
+html[data-theme="light"] body[data-responsive-page="tutor"]{background:#f4f7fc!important;background-image:none!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-shell{max-width:1460px!important;width:100%!important;padding-inline:clamp(15px,3vw,42px)!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] main .tutor-intro.dalp-themed-hero{padding:26px clamp(20px,3vw,40px)!important;margin-bottom:20px!important;background:linear-gradient(110deg,#182e53,#2b265f)!important;border:1px solid #435687!important;border-radius:18px!important;box-shadow:0 14px 28px rgb(22 32 69 / 12%)!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-intro h1{font-size:clamp(30px,3.2vw,47px)!important;margin:5px 0 9px!important;letter-spacing:-.04em!important;color:#fff!important;-webkit-text-fill-color:#fff!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-intro h1 .tutor-highlight{color:#cbbcff!important;-webkit-text-fill-color:#cbbcff!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-intro .eyebrow{color:#cfc6ff!important;-webkit-text-fill-color:#cfc6ff!important;font-size:11px!important;letter-spacing:.13em!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-intro p{color:#e1e9fc!important;-webkit-text-fill-color:#e1e9fc!important;max-width:67ch!important;line-height:1.6!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-grid{display:grid!important;grid-template-columns:minmax(280px,338px) minmax(0,1fr)!important;gap:19px!important;align-items:start!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-sidebar{width:100%!important;max-width:none!important;position:sticky!important;top:85px!important;max-height:calc(100dvh - 100px)!important;overflow-y:auto!important;overflow-x:hidden!important;padding:0 17px 18px!important;border:1px solid #d2deee!important;border-radius:18px!important;background:#fff!important;box-shadow:0 9px 26px rgb(32 49 82 / 7%)!important;scrollbar-width:thin}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-rail-top{display:flex!important;flex-direction:column!important;gap:7px!important;margin:0 -17px 13px!important;padding:20px 21px 18px!important;background:linear-gradient(130deg,#192e50,#2d3969)!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-rail-top .tutor-rail-eyebrow{color:#cbbdff!important;-webkit-text-fill-color:#cbbdff!important;font-size:10px!important;letter-spacing:.16em!important;font-weight:850!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-rail-top strong{color:#fff!important;-webkit-text-fill-color:#fff!important;font-size:19px!important;font-family:"Plus Jakarta Sans",system-ui,sans-serif;font-weight:850!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-rail-top>span:last-child{color:#d2dff5!important;-webkit-text-fill-color:#d2dff5!important;font-size:12px!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-rail-nav{display:flex!important;flex-direction:column!important;gap:5px!important;padding:0 0 15px!important;margin:0 0 18px!important;border-bottom:1px solid #e0e7f1!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-rail-link{display:flex!important;align-items:center!important;gap:10px!important;width:100%!important;min-height:45px!important;padding:10px 12px!important;background:#fff!important;border:1px solid transparent!important;border-radius:11px!important;text-decoration:none!important;color:#273a56!important;-webkit-text-fill-color:#273a56!important;font-size:13px!important;font-weight:750!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-rail-link svg{width:17px!important;height:17px!important;flex:none!important;color:#5941b4!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-rail-link:nth-child(2) svg{color:#167254!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-rail-link:nth-child(3) svg{color:#2b5ba9!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-rail-link:nth-child(4) svg{color:#975613!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-rail-link>span:first-of-type{flex:1!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-rail-index{font-size:10px!important;color:#5b6b84!important;-webkit-text-fill-color:#5b6b84!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-rail-link:hover,
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-rail-link:focus-visible{background:#f0edff!important;border-color:#d9d1ff!important;color:#36268c!important;-webkit-text-fill-color:#36268c!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-rail-cta{background:#eeeaff!important;border-color:#d7cdfc!important;color:#392a9c!important;-webkit-text-fill-color:#392a9c!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-side-top{padding:17px!important;border:1px solid #e0e7f1!important;background:#f6f8fe!important;border-radius:13px!important;margin:0 0 15px!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-side-top :is(h2,p){color:#263854!important;-webkit-text-fill-color:#263854!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-side-top p{color:#52667d!important;-webkit-text-fill-color:#52667d!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-mode-block,
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-resources{background:#fff!important;border:1px solid #dfe6f2!important;border-radius:13px!important;padding:15px!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-mode-block h3,
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-prompt-heading,
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-resources h3{color:#1d304d!important;-webkit-text-fill-color:#1d304d!important;font-weight:850!important;font-size:13px!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] :is(#tutorModeHelp,.tutor-topic-help){color:#52657e!important;-webkit-text-fill-color:#52657e!important;font-size:12px!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-mode-button{min-height:42px!important;border-radius:10px!important;padding:9px!important;font-size:12px!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-mode-button[aria-pressed="true"]{background:#4934ad!important;color:#fff!important;-webkit-text-fill-color:#fff!important;border-color:#4934ad!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-mode-button:disabled{background:#ebf0f6!important;color:#4e6178!important;-webkit-text-fill-color:#4e6178!important;border-color:#bac8d8!important;opacity:1!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] #tutorTopic{width:100%!important;min-height:45px!important;background:#fff!important;color:#203450!important;-webkit-text-fill-color:#203450!important;border:1px solid #aebdd2!important;border-radius:10px!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-prompt-list{display:grid!important;grid-template-columns:1fr!important;gap:8px!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-prompt-list .prompt-chip{display:flex!important;align-items:center!important;gap:11px!important;width:100%!important;min-height:47px!important;text-align:left!important;padding:10px 12px!important;background:#fff!important;border:1px solid #d6e0ef!important;border-radius:11px!important;color:#273a56!important;-webkit-text-fill-color:#273a56!important;font-size:12px!important;font-weight:750!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-prompt-list .prompt-chip>span{display:grid!important;place-items:center!important;flex:0 0 30px!important;width:30px!important;height:30px!important;border-radius:8px!important;background:#e9e5ff!important;color:#4d37ae!important;-webkit-text-fill-color:#4d37ae!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-prompt-list .prompt-chip:nth-child(3n+2)>span{background:#e3f4eb!important;color:#146b4b!important;-webkit-text-fill-color:#146b4b!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-prompt-list .prompt-chip:nth-child(3n)>span{background:#e6eeff!important;color:#26559d!important;-webkit-text-fill-color:#26559d!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-prompt-list .prompt-chip:hover{background:#f1eeff!important;border-color:#a192e4!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-resources a{color:#293d5a!important;-webkit-text-fill-color:#293d5a!important;min-height:40px!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-chat{display:flex!important;flex-direction:column!important;min-width:0!important;width:100%!important;height:auto!important;min-height:660px!important;max-height:none!important;overflow:hidden!important;background:#fff!important;border:1px solid #cfdaeb!important;border-radius:19px!important;box-shadow:0 13px 35px rgb(25 42 79 / 7%)!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-chat .tutor-toolbar{background:#1a2c50!important;padding:16px 20px!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-chat .messages{flex:1 1 auto!important;min-height:460px!important;max-height:none!important;height:auto!important;overflow-y:visible!important;padding:22px!important;background:#f7f9fe!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-chat .bubble{color:#1b2f4c!important;-webkit-text-fill-color:#1b2f4c!important;background:#fff!important;border-color:#d8e1ef!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-chat .bubble.user{color:#fff!important;-webkit-text-fill-color:#fff!important;background:#4a37b6!important;border-color:#4a37b6!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-chat .tutor-welcome{background:#edebff!important;border-color:#d2c9ff!important;color:#243452!important;-webkit-text-fill-color:#243452!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-chat .tutor-composer{display:flex!important;align-items:center!important;flex-wrap:nowrap!important;gap:8px!important;margin:12px 15px 8px!important;padding:8px 10px!important;background:#fff!important;border:1px solid #b1bfd7!important;border-radius:15px!important;box-shadow:0 4px 14px rgb(30 45 83 / 6%)!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-chat .tutor-composer textarea{flex:1 1 auto!important;min-width:0!important;width:auto!important;height:auto!important;min-height:49px!important;max-height:165px!important;padding:11px 8px!important;background:#fff!important;color:#20324e!important;-webkit-text-fill-color:#20324e!important;border:0!important;resize:vertical!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-chat .tutor-composer #sendQuestion{min-height:47px!important;min-width:83px!important;flex:none!important;background:#5139bf!important;color:#fff!important;-webkit-text-fill-color:#fff!important;border-color:#5139bf!important;border-radius:10px!important}
+@media(max-width:950px){
+ html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-grid{display:flex!important;flex-direction:column!important;gap:14px!important}
+ html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-chat{order:0!important;min-height:0!important}
+ html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-sidebar{order:1!important;position:static!important;max-height:none!important;overflow:visible!important}
+ html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-rail-nav,
+ html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-prompt-list{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-chat .messages{min-height:350px!important;max-height:none!important;overflow-y:visible!important}
+}
+@media(max-width:560px){
+ html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-shell{padding-inline:13px!important}
+ html[data-theme="light"] body[data-responsive-page="tutor"] main .tutor-intro.dalp-themed-hero{padding:20px!important}
+ html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-rail-nav,
+ html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-prompt-list{grid-template-columns:1fr!important}
+ html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-chat .messages{min-height:310px!important;max-height:none!important;overflow-y:visible!important;padding:15px!important}
+ html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-chat .tutor-composer{flex-wrap:wrap!important;gap:7px!important;margin:9px!important;padding:8px!important}
+ html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-chat .tutor-composer textarea{flex:1 1 calc(100% - 48px)!important;height:68px!important;min-height:68px!important}
+ html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-chat .tutor-composer #sendQuestion{margin-left:auto!important}
+}
+@media(prefers-reduced-motion:reduce){html[data-theme="light"] body :is(.dalp-global-nav,.dalp-study-tools,.tutor-rail-link,.arena-editor-toggle){transition:none!important;animation:none!important}}
+/* Arena critical fix: obsolete three-column grid placement created a large
+   blank first column and squeezed the actual editor. Declare placement. */
+@media(min-width:1121px){
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-content>.ide-primary{grid-column:1!important;grid-row:1!important;align-self:stretch!important;justify-self:stretch!important}
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-content>.ide-secondary{grid-column:2!important;grid-row:1!important;align-self:start!important;justify-self:stretch!important}
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-content>.arena-task-panel{grid-column:1 / -1!important;grid-row:1!important;min-height:0!important;max-height:none!important;height:auto!important;overflow:visible!important}
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-content:has(>.arena-task-panel)>.ide-primary{grid-column:1!important;grid-row:2!important}
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-content:has(>.arena-task-panel)>.ide-secondary{grid-column:2!important;grid-row:2!important}
+}
+@media(max-width:1120px){
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-content{display:flex!important;flex-direction:column!important;grid-template:none!important}
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-content>.arena-task-panel{display:block!important;order:0!important;width:100%!important;min-height:0!important;height:auto!important;max-height:none!important;overflow:visible!important}
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-content>.ide-primary{order:1!important;flex:0 0 auto!important;min-height:0!important;height:auto!important;max-height:none!important;width:100%!important;align-self:stretch!important;overflow:visible!important}
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-content>.ide-secondary{order:2!important;flex:0 0 auto!important;min-height:0!important;height:auto!important;max-height:none!important;width:100%!important;align-self:stretch!important;overflow:visible!important}
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-shell .ide-content.ide-show-output>.ide-primary,
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-shell .ide-content:not(.ide-show-output)>.ide-secondary{display:flex!important;visibility:visible!important;position:static!important;opacity:1!important}
+}
+@media(max-width:620px){
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-shell .arena-editor .arena-code,
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-shell .arena-code #arenaInputHost,
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-shell .arena-code #arenaInputHost textarea#practiceAnswer.sql-editor-textarea,
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-shell #arenaLines.arena-lines{min-height:430px!important}
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-shell .arena-code #arenaInputHost textarea#practiceAnswer.sql-editor-textarea{height:430px!important;max-height:none!important}
+}
+/* Tutor sidebar links should behave as modern selectable navigation, not old underlined article links. */
+html[data-theme="light"] body[data-responsive-page="tutor"] aside.tutor-sidebar{background-image:none!important;background-color:#fff!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-rail-nav>a.tutor-rail-link,
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-rail-nav>a.tutor-rail-link *{text-decoration:none!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-rail-link>span:first-of-type{color:#263b5c!important;-webkit-text-fill-color:#263b5c!important}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-rail-link:hover>span:first-of-type{color:#362894!important;-webkit-text-fill-color:#362894!important}
+/* Last mobile clipping cause: the old SQL host was position:absolute,
+   so its 600px textarea escaped a 480px wrapper and overlapped the toolbar. */
+html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-shell .arena-editor .arena-code #arenaInputHost{
+  position:relative!important;inset:auto!important;top:auto!important;left:auto!important;right:auto!important;bottom:auto!important;
+  transform:none!important;width:auto!important;min-width:0!important;min-height:600px!important;height:auto!important;
+  flex:1 1 auto!important;align-self:stretch!important;display:flex!important;overflow:visible!important;
+}
+@media(max-width:1120px){
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-shell .arena-editor .arena-code #arenaInputHost{min-height:480px!important}
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-shell .arena-editor .arena-code #arenaInputHost textarea#practiceAnswer.sql-editor-textarea{min-height:480px!important;height:480px!important}
+}
+@media(max-width:620px){
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-shell .arena-editor .arena-code #arenaInputHost{min-height:430px!important}
+ html[data-theme="light"] body[data-responsive-page="practice"] #practiceDetail .ide-shell .arena-editor .arena-code #arenaInputHost textarea#practiceAnswer.sql-editor-textarea{min-height:430px!important;height:430px!important}
+}
+
+/* An immediately accessible Tutor section navigator on phones and tablets.
+   The detailed resource sidebar remains intact below the conversation. */
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-mobile-shortcuts{display:none!important}
+@media(max-width:950px){
+ html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-mobile-shortcuts{display:flex!important;flex-wrap:wrap!important;align-items:center!important;gap:8px!important;padding:12px!important;margin:0 0 16px!important;border:1px solid #d5dfef!important;border-radius:14px!important;background:#fff!important;box-shadow:0 7px 22px rgb(25 44 80 / 5%)!important}
+ html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-mobile-shortcuts-title{display:block!important;flex-basis:100%!important;color:#4b5d75!important;-webkit-text-fill-color:#4b5d75!important;font-size:11px!important;font-weight:850!important;letter-spacing:.06em!important;text-transform:uppercase!important}
+ html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-mobile-shortcuts>a{display:inline-flex!important;align-items:center!important;justify-content:center!important;flex:1 1 auto!important;min-height:41px!important;padding:8px 10px!important;border:1px solid #d6def0!important;border-radius:10px!important;background:#f8faff!important;color:#273e60!important;-webkit-text-fill-color:#273e60!important;font-size:12px!important;font-weight:750!important;text-decoration:none!important;white-space:normal!important;text-align:center!important}
+ html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-mobile-shortcuts>a.tutor-mobile-ask{background:#4b36b3!important;border-color:#4b36b3!important;color:#fff!important;-webkit-text-fill-color:#fff!important}
+ html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-mobile-shortcuts>a:focus-visible{outline:3px solid #c0b3fa!important;outline-offset:2px!important}
+}

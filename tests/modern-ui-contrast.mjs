@@ -50,6 +50,6 @@ assert.match(nav,/ac-top-practice/,'Private topbar provides a useful Practice li
 assert.match(prac,/id="practiceDetail"/,'Practice Arena must keep its challenge area');
 assert.match(active,/aria-expanded/,'Mobile navigation must maintain toggle accessibility');
 const publicPages=pages.filter(page=>fs.readFileSync(page.route,'utf8').includes('dalp-global-nav'));
-for(const page of publicPages){const html=fs.readFileSync(page.route,'utf8');assert.doesNotMatch(html,/<details class="dalp-study-tools">/,'Study links should be visible directly');}
+for(const page of publicPages){const html=fs.readFileSync(page.route,'utf8');assert.match(html,/<details class="dalp-study-tools"/,'Study links should remain grouped in the original dropdown');}
 assert.match(css,/min-height:620px!important/,'Full-height editor styles are required');
-console.log(`PASS modern UI contrast and direct navigation: ${cases.length} pairs, ${pages.length} routes, ${publicPages.length} direct-link menus, tall editor`);
+console.log(`PASS modern UI contrast and grouped navigation: ${cases.length} pairs, ${pages.length} routes, ${publicPages.length} grouped navigation menus, tall editor`);
