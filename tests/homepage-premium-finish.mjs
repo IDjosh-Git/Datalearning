@@ -32,5 +32,5 @@ for (const pattern of [
 assert(ratio('14243f','ffffff')>=7,'Primary DataLearning brand text should meet AAA contrast');
 assert(ratio('5638c7','ffffff')>=7,'Purple DataLearning brand accent should meet AAA contrast');
 assert(ratio('ffffff','6251da')>=4.5,'Primary CTA must meet AA contrast');
-assert(sw.includes('dalp-public-course-rail-v31'),'Visitors must receive the latest CSS after release');
+assert(sw.includes('dalp-public-bento-search-overview-v33'),'Visitors must receive the latest CSS after release');
 console.log('PASS final homepage: DataLearning AAA wordmark, visible AA CTAs, solid hero/dashboard, overlay removal, course navigation and cache revision');

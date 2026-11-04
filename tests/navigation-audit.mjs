@@ -6,7 +6,7 @@ import {discoverPages} from './page-assets.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const pages=discoverPages();
 const source=new Map(pages.map(p=>[p.route,p.html]));
-const expectedTop=['Home','Courses','Study tools','Capstone','My learning'];
+const expectedTop=['Home','Overview','Courses','Study tools','Capstone','My learning'];
 const expectedCourses=['introduction','excel','sql','powerbi','python','ai'];
 let total=0, dynamic=0;
 for (const page of pages) {
@@ -35,7 +35,7 @@ for(const page of ['index.html','catalog.html','prompt-library.html','reference.
  const nav=html.match(/<nav\b[^>]*class=["'][^"']*dalp-global-nav[^"']*["'][^>]*>([\s\S]*?)<\/nav>/i)?.[1];
  assert(nav,`${page}: missing primary navigation`);
  for(const term of expectedTop)assert(nav.includes(term),`${page}: missing ${term} top-level navigation`);
- assert.equal((nav.match(/class="dalp-nav-link"/g)||[]).length,4,`${page}: unexpected top-level nav repetition`);
+ assert.equal((nav.match(/class="dalp-nav-link(?: dalp-overview-nav)?"/g)||[]).length,5,`${page}: unexpected top-level nav repetition`);
  for(const slug of expectedCourses)assert(nav.includes(`href="${prefix}courses/${slug}.html"`),`${page}: ${slug} course not discoverable`);
  for(const target of ['reference.html','prompt-library.html','tutor.html','studio.html','learning-lab.html','practice.html','capstone.html','account.html'])
    assert(nav.includes(`href="${prefix}${target}"`),`${page}: missing ${target}`);

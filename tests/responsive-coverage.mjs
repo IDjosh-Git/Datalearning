@@ -18,7 +18,7 @@ for(const page of pages){
  }
  assert(page.html.includes('design-system.css'),`${page.route}: final light styling missing`);
  const compiled=page.links.filter(l=>l.local && !['assets/styles/design-system.css'].includes(l.path));
- assert(compiled.length>=1 && compiled.length<=8,`${page.route}: expected compact page CSS bundles`);
+ assert(compiled.length>=1 && compiled.length<=9,`${page.route}: expected compact page CSS bundles`);
  const styles=compiled.map(l=>fs.readFileSync(path.join(root,l.path),'utf8')).join('\n');
  assert(/@media\s*\(/.test(styles),`${page.route}: no responsive CSS present`);
  assert(/max-width\s*:/.test(styles),`${page.route}: no narrow viewport adaptation`);

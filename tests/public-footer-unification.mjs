@@ -9,7 +9,7 @@ const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=(p)=>fs.readFileSync(path.join(root,p),'utf8');
 const restricted=new Set(['admin.html','progress.html','reviewer.html','connection-test.html','sync-test.html','account.html','certificate.html']);
 const publicPages=discoverPages().filter(page=>!restricted.has(page.route));
-assert.equal(publicPages.length,31,'31 public routes, including the footer-free sign-in route');
+assert.equal(publicPages.length,32,'31 public routes, including the footer-free sign-in route');
 for(const page of publicPages){
  if(page.route==='auth.html'){assert(!page.html.includes('assets/scripts/public-footer.js'),'Sign-in must not load a footer');continue;}
  const nested=page.route.startsWith('courses/');

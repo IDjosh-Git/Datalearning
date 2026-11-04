@@ -95,3 +95,10 @@ The current light UI theme is defined by `assets/styles/design-system.css`; acti
 This release pins Node.js 24 in `.nvmrc` and `package.json` and uses an explicit Vercel build command (`npm run build`) to verify route, asset, middleware, and responsive contracts. The static site is served from the repository root (`outputDirectory: "."`); its APIs and middleware are still Vercel functions. See [`docs/VERCEL_RESPONSIVE_RELEASE_20261103.md`](docs/VERCEL_RESPONSIVE_RELEASE_20261103.md) for browser matrices and release/preview instructions.
 
 Unzip the project contents directly at the **Git repository root**, not inside another `learning-path-site/` folder. Push a preview branch and test real authentication before releasing.
+
+## Premium Bento & Learning Overview (4 Nov 2026)
+
+See [`PREMIUM_BENTO_RELEASE_20261104.md`](PREMIUM_BENTO_RELEASE_20261104.md) for the new cross-site search, shared UI, privacy-safe learner activity overview, daily study plan, Supabase aggregate migration, cleanup details and deployment checklist. Apply `database/migrations/learning_overview_aggregate.sql` to your intended Supabase environment before expecting live popularity figures. The overview explicitly reports when data is unavailable.
+
+## Verified actual app users
+Use `database/migrations/app_usage_only_users.sql` to count verified DataLearning sign-ins and actual learning activity, rather than all Supabase Auth accounts. See `APP_USER_COUNTING_RELEASE_20261104.md` for activation and privacy details.

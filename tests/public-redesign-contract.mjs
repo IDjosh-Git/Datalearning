@@ -7,7 +7,7 @@ const root=path.resolve(import.meta.dirname,'..');
 const manifest=JSON.parse(fs.readFileSync(path.join(root,'docs/SITE_ROUTE_MANIFEST.json'),'utf8'));
 const cat=manifest.categories;
 const pages=[...cat.public_pages.filter(r=>!['auth.html','verify.html'].includes(r)),...cat.course_players,...cat.course_guides];
-assert.equal(pages.length,29,'All public learning pages should be covered');
+assert.equal(pages.length,30,'All public learning pages should be covered');
 const tracks=['introduction','excel','sql','powerbi','python','ai'];
 const css=fs.readFileSync(path.join(root,'assets/styles/public-vibrant.css'),'utf8');
 const nav=fs.readFileSync(path.join(root,'assets/scripts/public-navigation.js'),'utf8');
@@ -18,7 +18,7 @@ for(const page of pages){
  assert.equal((html.match(/class="dalp-global-nav"/g)||[]).length,1,`${page}: exactly one primary nav`);
  assert.equal((html.match(/class="dalp-global-toggle"/g)||[]).length,1,`${page}: accessible mobile toggle`);
  assert(html.includes('aria-expanded="false"') && html.includes('aria-controls="dalpGlobalNav"'),`${page}: mobile control state`);
- assert(html.includes('data-public-refresh="20261103"'),`${page}: scoped public styles`);
+ assert(html.includes(page==='overview.html'?'data-public-refresh="20261104"':'data-public-refresh="20261103"'),`${page}: scoped public styles`);
  assert(html.includes(`href="${prefix}assets/styles/public-vibrant.css"`),`${page}: new design layer`);
  assert(html.indexOf(`${prefix}assets/styles/design-system.css`) < html.indexOf(`${prefix}assets/styles/public-vibrant.css`),`${page}: new public styles must override legacy`);
  assert.equal((html.match(/public-navigation\.js/g)||[]).length,1,`${page}: exactly one interaction script`);

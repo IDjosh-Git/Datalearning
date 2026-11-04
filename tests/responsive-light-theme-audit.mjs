@@ -23,8 +23,9 @@ assert.match(admin,/\.ac-sidebar\{[^}]*background:var\(--ac-deep\)/,'Admin sideb
 assert(!admin.includes('.ac-mobile-tabs'),'Duplicate mobile tab bar should be removed; accessible sidebar drawer remains');
 assert.match(admin,/\.ac-detail-backdrop:not\(\[hidden\]\)/,'Authenticated learner detail backdrop must remain');
 assert.match(admin,/\.ac-nav-overlay\{[^}]*background:#080f1dc4/,'Mobile menu scrim must remain functional');
-assert.match(learner,/\.account-overview\s*\{[^}]*background:#eaf0ff/,'Account introduction panel should be light indigo');
-assert(!learner.includes('background:#172d4d;'),'Old dark learner hero must not return');
+assert.match(learner,/\.account-overview\s*\{[^}]*background:#17264d!important/,'Account introduction uses the maintained solid-navy dashboard hero');
+assert(!learner.includes('background:#172d4d;'),'Old dark learner hero token must not return');
+assert(learner.includes('.mld-stat-grid')&&learner.includes('.mld-resume')&&learner.includes('.mld-progress-ring'),'Dashboard retains the new learning summary and course-resume surface');
 for(const route of ['admin.html','progress.html','reviewer.html']){
  const html=read(route);
  assert(html.indexOf('assets/styles/design-system.css')<html.indexOf('assets/styles/admin-workspace.css'),`${route}: light admin CSS should win over shared base`);
@@ -37,8 +38,8 @@ for(const [name,fg,bg] of [
  ['Admin text','#15243a','#ffffff'],
  ['Admin muted text','#50627a','#ffffff'],
  ['Admin links','#3035b0','#ffffff'],
- ['Learner hero text','#15243a','#eaf0ff'],
- ['Learner hero muted','#4f607b','#eaf0ff'],
- ['Learner hero links','#3035b0','#eaf0ff']
+ ['Learner hero text','#ffffff','#17264d'],
+ ['Learner hero muted','#e1e9f8','#17264d'],
+ ['Learner hero links','#201a53','#ece9ff']
 ])assert(contrast(fg,bg)>=4.5,`${name} contrast insufficient: ${contrast(fg,bg).toFixed(2)}:1`);
-console.log('PASS responsive/light theme: phone/tablet breakpoints, public cards/menus, 3 protected light pages, learner light page, 6 AA contrast checks and cache revision');
+console.log('PASS responsive/light theme: phone/tablet breakpoints, public cards/menus, 3 protected light pages, modern learner dashboard, 6+ AA contrast checks and cache revision');

@@ -4,10 +4,11 @@ import fs from 'node:fs';
 import {discoverPages,root} from './page-assets.mjs';
 import path from 'node:path';
 const read=p=>fs.readFileSync(path.join(root,p),'utf8');
+assert(read('overview.html').includes('assets/scripts/public-footer.js'),'New overview page needs shared public footer');
 const publicRoutes=discoverPages().filter(p=>p.html.includes('data-public-refresh="20261103"'));
 assert.equal(publicRoutes.length,29);
 for(const page of publicRoutes){
- assert.equal(page.links.at(-1)?.path,['capstone.html','capstone-guide.html'].includes(page.route)?'assets/styles/capstone-premium.css':'assets/styles/public-motion.css',`${page.route}: the relevant public finishing layer must win`);
+ assert.equal(page.links.at(-1)?.path,'assets/styles/premium-unified.css',`${page.route}: shared premium CSS must load last`);
  const scripts=page.scripts.map(x=>x.path);
  assert.equal(scripts.filter(x=>x==='assets/scripts/public-motion.js').length,1,`${page.route}: missing public motion controller`);
  assert.equal(scripts.filter(x=>x==='assets/scripts/public-footer.js').length,1,`${page.route}: shared footer missing`);

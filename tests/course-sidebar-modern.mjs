@@ -35,5 +35,5 @@ for(const slug of ['introduction','ai']){
 }
 assert.match(read('assets/scripts/course-lesson-disclosure.js'),/min-width:1051px/,'Desktop lessons should be discoverable');
 assert.match(shared,/\[role="tab"\]/,'Plain-link override must be scoped narrowly');
-assert.match(read('service-worker.js'),/dalp-public-course-rail-v31/,'New CSS needs a fresh offline cache key');
+assert.match(read('service-worker.js'),/dalp-public-bento-search-overview-v33/,'New CSS needs a fresh offline cache key');
 console.log('PASS modern course sidebars: all six tracks, 40 lesson links, responsive presentation and WCAG AA contrast pairs');

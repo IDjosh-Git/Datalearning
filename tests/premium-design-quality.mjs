@@ -11,7 +11,7 @@ const auth=read('auth.html');
 const nav=read('assets/scripts/private-navigation.js');
 const sw=read('service-worker.js');
 const routes=discoverPages();
-assert.equal(routes.length,38,'Full site layout must be covered');
+assert.equal(routes.length,39,'Full site layout must be covered');
 assert.equal((global.match(/BEGIN PREMIUM EXPERIENCE 20261103/g)||[]).length,1,'One global premium stylesheet');
 assert(!privateCss.includes('BEGIN PREMIUM EXPERIENCE 20261103'),'Do not duplicate global theme in private navigation');
 assert(!adminCss.includes('BEGIN PREMIUM EXPERIENCE 20261103'),'Admin skin inherits private navigation rather than duplicating all CSS');
@@ -28,7 +28,7 @@ assert(privateCss.includes('flex:1 1 0!important;min-height:0!important;overflow
 assert(privateCss.includes('.ac-side-bottom{flex:0 0 auto!important'),'Sign out must stay outside scrolling links');
 assert(nav.includes('bottom.append(logout)'),'Sign out control must be under fixed sidebar bottom section');
 assert(nav.includes('aria-expanded'),'Accessible mobile menu state');
-assert(sw.includes('dalp-public-course-rail-v31'),'CSS cache version must be refreshed');
+assert(sw.includes('dalp-public-bento-search-overview-v33'),'CSS cache version must be refreshed');
 assert(!/<footer\b/i.test(auth),'Sign-in page should not contain a footer');
 assert(!/<style\b/i.test(auth),'No embedded sign-in CSS');
 for(const route of routes){

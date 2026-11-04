@@ -71,6 +71,7 @@
      role='admin';
    }
    prepareWorkspace(data.user);
+   void window.DALP_APP_USAGE?.record('use');
    window.DALP_AUTH_USER=data.user;window.DALP_ROLE=role;
    window.DALP_ROLE_UNVERIFIED=!adminPage;
    // A hosting-session refresh is best-effort for learner pages and must not

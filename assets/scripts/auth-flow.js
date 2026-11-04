@@ -75,6 +75,8 @@
   async function enter(user,msgId){
     if(completing)return;
     completing=true;
+    // Do not count sign-ups: record only after a verified in-app sign-in.
+    void window.DALP_APP_USAGE?.record('sign_in');
     const el=msgId?$(msgId):null;
     if(el)message(msgId,'Signed in. Preparing your personal learning space…','success');
     try{

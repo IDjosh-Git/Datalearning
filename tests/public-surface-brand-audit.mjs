@@ -6,7 +6,7 @@ const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const pages=[...fs.readdirSync(root).filter(n=>n.endsWith('.html')),...fs.readdirSync(path.join(root,'courses')).filter(n=>n.endsWith('.html')).map(n=>'courses/'+n)];
 const shared=pages.filter(p=>read(p).includes('dalp-global-header'));
-assert.equal(shared.length,29,'29 pages use the unified public header');
+assert.equal(shared.length,30,'29 pages use the unified public header');
 for(const page of shared){
  const html=read(page),rel=page.startsWith('courses/')?'../':'';
  assert.equal((html.match(/class="dalp-brand-logo"/g)||[]).length,1,`${page}: one brand mark`);

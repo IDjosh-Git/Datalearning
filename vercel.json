@@ -87,6 +87,10 @@
       "destination": "/index.html"
     },
     {
+      "source": "/overview",
+      "destination": "/overview.html"
+    },
+    {
       "source": "/studio",
       "destination": "/studio.html"
     },
