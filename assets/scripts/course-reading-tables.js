@@ -1,7 +1,7 @@
 /* Accessible tables for the Premium Course Reading Experience V7. No data changes. */
 (()=>{'use strict';
  const init=()=>{
-  if(!document.body.matches('[data-premium-course-v7="true"]'))return;
+  if(!location.pathname.includes('/courses/') && !document.body.matches('[data-premium-course-v7="true"]'))return;
   const tables=[...document.querySelectorAll('main table:not(.ide-sheet):not(.arena-table):not(.account-table)')];
   tables.forEach((table,index)=>{
    let region=table.closest('.learning-table-scroll,.table-wrap,.table-scroll,.table-responsive,.dlp-table-frame');
