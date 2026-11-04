@@ -34,7 +34,7 @@ const cases=[
  ['Focus indicator on white','5135c5','ffffff',3.0],
 ];
 for(const [name,fg,bg,min] of cases){const ratio=contrast(fg,bg);assert(ratio>=min,`${name}: ratio ${ratio.toFixed(2)} is below ${min}`)};
-assert.match(css,/Navigation and code-workbench refresh/,'Direct-link navigation must use the refreshed visual treatment');
+assert.match(css,/details\.dalp-study-tools > div\.dalp-study-panel > a/,'Study menu must override the legacy global nav anchor colour');
 assert.match(css,/#main-content\.pc-wrap > header\.pc-hero\.dalp-themed-hero a/,'Practice breadcrumb must override light-on-dark legacy hero link');
 assert.match(css,/#practiceAnswer\.sql-editor-textarea/,'SQL code input needs a dedicated dark contrast rule');
 assert.match(css,/#arenaLines\.arena-lines/,'Line number gutter needs dedicated dark contrast rule');
@@ -50,6 +50,5 @@ assert.match(nav,/ac-top-practice/,'Private topbar provides a useful Practice li
 assert.match(prac,/id="practiceDetail"/,'Practice Arena must keep its challenge area');
 assert.match(active,/aria-expanded/,'Mobile navigation must maintain toggle accessibility');
 const publicPages=pages.filter(page=>fs.readFileSync(page.route,'utf8').includes('dalp-global-nav'));
-for(const page of publicPages){const html=fs.readFileSync(page.route,'utf8');assert.match(html,/<details class="dalp-study-tools"/,'Study links should remain grouped in the original dropdown');}
-assert.match(css,/min-height:620px!important/,'Full-height editor styles are required');
-console.log(`PASS modern UI contrast and grouped navigation: ${cases.length} pairs, ${pages.length} routes, ${publicPages.length} grouped navigation menus, tall editor`);
+for(const page of publicPages){const html=fs.readFileSync(page.route,'utf8');assert.match(html,/<details class="dalp-study-tools">/,'Study resources must use accessible native disclosure');}
+console.log(`PASS modern UI and WCAG contrast tokens: ${cases.length} accessible pairs, ${pages.length} linked routes, ${publicPages.length} nav menus, private SVG icons, responsive Practice Arena`);

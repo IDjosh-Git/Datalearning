@@ -41,10 +41,7 @@
  function nextNumber(slug){return data[slug].units.find(u=>state(slug)[String(u.number)]!==true)?.number||0;}
  function paintCatalog(){if(!onCatalog)return;for(const slug of cardOrder){const el=document.querySelector(`.dlp97-course-progress[data-for="${slug}"]`);if(!el)continue;const done=doneCount(slug);el.textContent=user?(cloudOK?`${done} / ${data[slug].units.length} complete`:`${done} / ${data[slug].units.length} on this device`):'Preview without signing in';}}
  function initFilters(){if(!onCatalog)return;const search=document.getElementById('dlp97-search'),subject=document.getElementById('dlp97-category'),counter=document.getElementById('dlp97-result-count'),empty=document.getElementById('dlp97-empty'),cards=[...document.querySelectorAll('.dlp97-card')];
-  function apply(){const q=search.value.toLowerCase().trim();let n=0;for(const card of cards){const yes=(subject.value==='all'||subject.value===card.dataset.category)&&(!q||card.dataset.search.includes(q));card.hidden=!yes;if(yes)n++;}// Stage headers follow the same result visibility as their course cards.
-   const stages=[['foundations',['introduction']],['core',['excel','sql','powerbi']],['advanced',['python','ai']]];
-   for(const [stage,slugs] of stages){const heading=document.querySelector(`.dalp-stage-heading[data-stage="${stage}"]`);if(heading)heading.hidden=!slugs.some(slug=>cards.some(card=>card.dataset.course===slug&&!card.hidden));}
-   counter.textContent=`${n} ${n===1?'course':'courses'} found`;empty.hidden=!!n;}
+  function apply(){const q=search.value.toLowerCase().trim();let n=0;for(const card of cards){const yes=(subject.value==='all'||subject.value===card.dataset.category)&&(!q||card.dataset.search.includes(q));card.hidden=!yes;if(yes)n++;}counter.textContent=`${n} ${n===1?'course':'courses'} found`;empty.hidden=!!n;}
   function clearAll(){search.value='';subject.value='all';apply();search.focus();}
   search.addEventListener('input',apply);subject.addEventListener('change',apply);document.getElementById('dlp97-clear').addEventListener('click',clearAll);document.getElementById('dlp97-empty-clear').addEventListener('click',clearAll);apply();
  }
