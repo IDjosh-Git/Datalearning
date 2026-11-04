@@ -2,6 +2,7 @@
 (()=>{'use strict';
  const init=()=>{const panel=document.getElementById('courseLessonIndex');if(!panel)return;
   const shouldOpen=()=>/^#(?:week|module)\d+/.test(location.hash);
+  if(matchMedia('(min-width:1051px)').matches||shouldOpen())panel.open=true;
   if(shouldOpen())panel.open=true;
   window.addEventListener('hashchange',()=>{if(shouldOpen())panel.open=true;});
   const search=document.getElementById('searchInput');
