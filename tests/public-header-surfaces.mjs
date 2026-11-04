@@ -14,7 +14,7 @@ for(const file of pages){
   const html=fs.readFileSync(path.join(root,file),'utf8');
   assert.match(html,/<body\b[^>]*data-dalp-header-tone="(ink|navy|indigo|slate|plum|ink-slate)"/,`${file}: needs a recognized tone`);
   assert.equal((html.match(/class="[^"]*\bdalp-themed-hero\b/g)||[]).length,1,`${file}: needs exactly one primary dark header surface`);
-  assert.equal((html.match(/class="[^"]*\bdalp-global-header\b/g)||[]).length, file==='auth.html'||file==='verify.html'?0:1,`${file}: unexpected public masthead`);
+  assert.equal((html.match(/class="[^"]*\bdalp-global-header\b/g)||[]).length, file==='auth.html'||file==='preview.html'||file==='capstone-guide.html'||file==='verify.html'?0:1,`${file}: unexpected public masthead`);
   assert.match(html,/assets\/styles\/design-system\.css/,`${file}: missing shared theme`);
   assert.match(html,/<h1\b/,`${file}: missing page heading`);
 }

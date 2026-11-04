@@ -21,7 +21,7 @@ for(const route of htmlPages){
  const source=read(route);
  const css=[...source.matchAll(/<link\b[^>]*>/gi)].filter(x=>/\brel=["']stylesheet["']/.test(x[0])).map(x=>x[0].match(/\bhref=["']([^"']+)["']/)?.[1]).filter(Boolean);
  assert.equal(css.filter(x=>x.endsWith('/design-system.css')).length,1,`${route}: theme must load exactly once`);
- const expected=['admin.html','progress.html','reviewer.html'].includes(route)?'admin-workspace.css':['admin.html','progress.html','reviewer.html','account.html','certificate.html','connection-test.html','sync-test.html'].includes(route)?'private-workspace.css':['capstone.html','capstone-guide.html'].includes(route)?'capstone-premium.css':(source.includes('data-public-refresh=')||route==='verify.html')?'public-motion.css':'design-system.css';
+ const expected='modern-workspace-20261104.css';
  assert(css.at(-1)?.endsWith('/'+expected),`${route}: maintained route theme must load after other styles`);
  const absolute=path.resolve(root,path.dirname(route),css.at(-1));
  assert.equal(absolute,path.join(root,'assets/styles',expected),`${route}: bad nested stylesheet path`);

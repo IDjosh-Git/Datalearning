@@ -392,14 +392,3 @@ html[data-theme] body.ac-ready .ac-logout{touch-action:manipulation}
  html[data-theme] body.ac-ready .ac-logout{min-height:44px!important;margin-top:5px!important}
 }
 /* END DEVICE-QUALITY PRIVATE WORKSPACE */
-
-/* Certificate controls must not exceed the mobile reading viewport. */
-html[data-theme] body[data-responsive-page="certificate"] .dalp-cert-viewer .cert-view-wrap{
- box-sizing:border-box!important;width:100%!important;
- max-width:min(1260px,100vw)!important;min-width:0!important;
- margin-inline:auto!important;padding-inline:clamp(12px,2vw,24px)!important;
-}
-html[data-theme] body[data-responsive-page="certificate"] .cert-view-wrap :is(.cert-view-header,.cert-view-controls,.cert-view-message){
- box-sizing:border-box!important;min-width:0!important;max-width:100%!important;
-}
-html[data-theme] body[data-responsive-page="certificate"] .cert-view-controls>*{min-width:0!important;overflow-wrap:anywhere}
