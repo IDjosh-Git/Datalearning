@@ -13,7 +13,7 @@ assert.equal(publicPages.length,31,'31 public routes, including the footer-free 
 for(const page of publicPages){
  if(page.route==='auth.html'){assert(!page.html.includes('assets/scripts/public-footer.js'),'Sign-in must not load a footer');continue;}
  const nested=page.route.startsWith('courses/');
- const tag=`<script defer src="${nested?'../':''}assets/scripts/public-footer.js"></script>`;
+ const tag=`<script async src="${nested?'../':''}assets/scripts/public-footer.js"></script>`;
  assert.equal(page.html.split(tag).length-1,1,`${page.route}: load one shared footer`);
  assert.doesNotMatch(page.html,/<footer\b/i,`${page.route}: duplicate or old inline footer`);
  assert(!page.html.includes('workspace-shell.js'),`${page.route}: legacy navigation not allowed`);

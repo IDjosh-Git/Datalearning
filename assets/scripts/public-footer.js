@@ -53,6 +53,8 @@
       </div>`;
     document.body.appendChild(footer);
   };
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',render,{once:true});
-  else render();
+  // This script is loaded once at the end of <body>. Render as soon as <body>
+  // exists so third-party deferred scripts cannot delay or suppress the footer.
+  if(document.body)render();
+  else document.addEventListener('DOMContentLoaded',render,{once:true});
 })();
