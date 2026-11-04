@@ -209,3 +209,11 @@ html[data-theme] body.ac-ready .review-live-dot{background:#7561dc;box-shadow:0 
 @media(prefers-reduced-motion:reduce){html[data-theme] body.ac-ready .ac-orbit-art,html[data-theme] body.ac-ready .ac-kpis article,html[data-theme] body.ac-ready .ac-action-card{animation:none!important;transition:none!important;transform:none!important}}
 /* Win over legacy :is() rules that explicitly stripped all hero background images. */
 html[data-theme] body.ac-ready .ac-welcome.ac-command-hero{background-color:#242b67!important;background-image:radial-gradient(circle at 85% 18%,rgba(134,104,251,.54),transparent 43%),radial-gradient(circle at 15% 128%,rgba(39,206,196,.24),transparent 39%),linear-gradient(118deg,#18244a,#302d72 61%,#48318b)!important}
+
+/* Assessment hero links stay readable before and after the role gate resolves. */
+html[data-theme] body[data-private-workspace="true"] :is(.review-hero,.ip-hero) a.review-hero-secondary{
+ display:inline-flex;align-items:center;min-height:40px;
+ color:#ffffff!important;-webkit-text-fill-color:#ffffff!important;
+ background:rgba(255,255,255,.15)!important;
+ border:1px solid rgba(255,255,255,.4)!important;
+}

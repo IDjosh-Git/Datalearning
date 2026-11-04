@@ -8,7 +8,7 @@
     "node": "24.x"
   },
   "scripts": {
-    "build": "node tests/site-integrity.mjs && node tests/asset-paths.mjs && node tests/vercel-deploy-readiness.mjs && node tests/responsive-design-contract.mjs && node tests/public-redesign-contract.mjs && node tests/public-motion-footer.mjs && node tests/admin-premium-experience.mjs && node tests/premium-course-layout-v7.mjs",
+    "build": "node tests/site-integrity.mjs && node tests/asset-paths.mjs && node tests/vercel-deploy-readiness.mjs && node tests/responsive-design-contract.mjs && node tests/public-redesign-contract.mjs && node tests/public-motion-footer.mjs && node tests/admin-premium-experience.mjs && node tests/premium-course-layout-v7.mjs && node tests/contrast-upgrade-v10.mjs",
     "lint": "node tests/script-syntax.mjs && node tests/site-integrity.mjs",
     "test": "npm run test:core && npm run test:responsive && npm run test:learning && npm run test:security && npm run test:arena && npm run test:tutor",
     "test:core": "node tests/site-integrity.mjs && node tests/script-syntax.mjs && node tests/smoke.mjs && node tests/modern.mjs && node tests/cache-revisions.mjs && node tests/navigation-audit.mjs && node tests/public-link-cleanup.mjs && node tests/site-organization.mjs && node tests/course-card-plain-links.mjs && node tests/public-footer-unification.mjs && node tests/performance-readiness.mjs && node tests/public-navigation-interactions.mjs",

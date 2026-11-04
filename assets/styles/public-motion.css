@@ -616,3 +616,104 @@ html[data-theme="light"] body.dlp-course-v29[data-premium-course-v7="true"][data
 html[data-theme="light"] body[data-premium-course-v7="true"] .dalp-next-actions:focus-visible{
   outline:2px solid var(--pc-accent)!important;outline-offset:2px!important;border-radius:8px;
 }
+
+
+/* ACCESSIBLE COLOUR CONTRAST / 2026-11-04
+   Correct pale text surviving the earlier course refresh on light reading surfaces.
+   Retain light-on-dark treatment only where a dark gradient truly exists. */
+html[data-theme="light"] body.dlp-course-v29 .intro-hero .intro-hero-details,
+html[data-theme="light"] body.dlp-course-v29 .intro-hero .intro-hero-details span{
+  color:#344563!important;-webkit-text-fill-color:#344563!important;
+}
+html[data-theme="light"] body.dlp-course-v29 .intro-hero .hero-buttons .button.ghost{
+  background:#eef2ff!important;background-image:none!important;
+  border:1px solid #a9b9e7!important;color:#263b75!important;
+  -webkit-text-fill-color:#263b75!important;
+}
+html[data-theme="light"] body.dlp-course-v29 .intro-hero .hero-buttons .button.ghost:hover{background:#e0e9ff!important;border-color:#586cc0!important}
+html[data-theme="light"] body.dlp-course-v29 .ai-hero .metrics span{
+  background:#eff5ff!important;color:#263851!important;-webkit-text-fill-color:#263851!important;
+  border:1px solid #c5d5ec!important;
+}
+html[data-theme="light"] body.dlp-course-v29 .ai-hero .metrics span b{
+  color:#173d7a!important;-webkit-text-fill-color:#173d7a!important;
+}
+html[data-theme="light"] body.dlp-course-v29 .course-top small,
+html[data-theme="light"] body.dlp-course-v29 .sidebar small{color:#4c5c77!important}
+html[data-theme="light"] body .dalp-global-menu .dalp-menu-all,
+html[data-theme="light"] body .dalp-menu-all{
+  color:#263d75!important;-webkit-text-fill-color:#263d75!important;
+  background:#edf0ff!important;border-color:#c6cdee!important;
+}
+html[data-theme="light"] body .dalp-menu-all :is(span,svg){color:inherit!important;-webkit-text-fill-color:inherit!important}
+/* Surfaces used for readable lesson content and summary cards. */
+html[data-theme="light"] body.dlp-course-v29 :is(.course-mastery,.course-mastery-question,.intro-lesson,.unit,.week,.learning-clarity,.dalp-quick-guide) :is(p,li,small,td,dd,label){
+  color:#40516b;
+}
+html[data-theme="light"] body.dlp-course-v29 :is(.course-mastery,.course-mastery-question,.intro-lesson,.unit,.week,.learning-clarity,.dalp-quick-guide) :is(h2,h3,h4,strong,legend,th){
+  color:#1c2e4b;
+}
+html[data-theme="light"] body.dlp-course-v29 :is(.course-mastery,.course-mastery-question,.intro-lesson,.unit,.week,.learning-clarity,.dalp-quick-guide) :is(a,button):focus-visible{
+  outline:3px solid #4734ad!important;outline-offset:3px!important;
+}
+/* Course-specific accent buttons retain their intentional dark high-contrast fills. */
+html[data-theme="light"] body.dlp-course-v29 :is(.button.primary,.course-portal-primary,.auth-submit) :is(span,strong){color:inherit!important;-webkit-text-fill-color:inherit!important}
+/* Inputs: readable labels, values and placeholders without muted-on-white failures. */
+html[data-theme="light"] body :is(.auth-field,.ac-form,.dalp-admin-form,.lp-filters,.ref-filters,.dlp97-filters) label{color:#243653!important}
+html[data-theme="light"] body :is(input,select,textarea){caret-color:#263b75}
+html[data-theme="light"] body :is(input,textarea)::placeholder{color:#53637d!important;opacity:1}
+@media (prefers-contrast:more){
+ html[data-theme="light"] body{--ui-muted:#33445b;--ui-stroke:#889bb5}
+ html[data-theme="light"] body :is(.course-mastery,.intro-lesson,.week,.unit,.lp-course,.dlp97-card){border-color:#8398b9!important}
+}
+
+/* 2026-11-04 targeted dropdown and global brand readability. */
+html[data-theme="light"] body[data-public-refresh] .dalp-global-nav a.dalp-menu-all,
+html[data-theme="light"] body[data-public-refresh] nav .dalp-menu-all{
+ color:#293f78!important;-webkit-text-fill-color:#293f78!important;
+ background:#ecebff!important;background-image:none!important;
+}
+html[data-theme="light"] body .dalp-global-brand .dalp-brand-copy small{
+ color:#455570!important;-webkit-text-fill-color:#455570!important;
+}
+
+/* Keep metric numerals intact on the smallest course layouts. */
+html[data-theme="light"] body.dlp-course-v29 .ai-hero .metrics span b{
+ display:inline-block;flex:0 0 auto;min-width:2ch;white-space:nowrap!important;
+}
+
+/* Shared course roadmap/extension actions: dark ink on light lesson panels. */
+html[data-theme="light"] body .guide-hero .guide-back.guide-breadcrumb{
+ color:#243d76!important;-webkit-text-fill-color:#243d76!important;
+ text-decoration:underline;text-underline-offset:4px;
+}
+html[data-theme="light"] body .guide-hero .guide-actions a.guide-button{
+ color:#243d76!important;-webkit-text-fill-color:#243d76!important;
+ background:#ffffff!important;background-image:none!important;
+ border:1px solid #aebcdd!important;
+}
+html[data-theme="light"] body .guide-hero .guide-actions a.guide-button.guide-primary{
+ color:#ffffff!important;-webkit-text-fill-color:#ffffff!important;
+ background:#4936b5!important;background-image:none!important;
+ border-color:#4936b5!important;
+}
+html[data-theme="light"] body .guide-hero .guide-actions a.guide-button:hover{
+ border-color:#4b55a4!important;
+}
+html[data-theme="light"] body[data-responsive-page="learning-lab"] .dalp-feature-header p.eyebrow{
+ color:#253c74!important;-webkit-text-fill-color:#253c74!important;
+}
+
+/* High-specificity accessibility repair where earlier hero themes retained pale links. */
+html[data-theme="light"] body[data-gradient-public="true"][data-public-refresh] main#main-content .dalp-themed-hero.guide-hero .guide-back.guide-breadcrumb{
+ color:#243d76!important;-webkit-text-fill-color:#243d76!important;
+}
+html[data-theme="light"] body[data-gradient-public="true"][data-public-refresh] main#main-content .guide-hero.dalp-themed-hero .guide-actions a.guide-button.guide-primary{
+ color:#ffffff!important;-webkit-text-fill-color:#ffffff!important;background:#4936b5!important;background-image:none!important;
+}
+html[data-theme="light"] body[data-gradient-public="true"][data-public-refresh] main#main-content .guide-hero.dalp-themed-hero .guide-actions a.guide-button:not(.guide-primary){
+ color:#243d76!important;-webkit-text-fill-color:#243d76!important;background:#fff!important;background-image:none!important;
+}
+html[data-theme="light"] body[data-responsive-page="learning-lab"][data-gradient-public="true"] main#main-content .dalp-feature-header.dalp-themed-hero p.eyebrow{
+ color:#253c74!important;-webkit-text-fill-color:#253c74!important;
+}

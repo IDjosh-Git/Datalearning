@@ -2162,3 +2162,8 @@ html[data-theme="light"] body.auth-page .auth-field :is(input,select,textarea){f
  html[data-theme="light"] body :is(.dalp-global-toggle,.ac-mobile-menu,.auth-tab,.auth-inline-link){animation:none!important;transition:none!important}
 }
 /* END DEVICE-QUALITY RESPONSIVE SYSTEM */
+
+/* 2026-11-04 input and muted-text contrast refinement. */
+html[data-theme="light"] body.auth-page .auth-panel :is(label,.auth-help,.auth-note){color:#354660!important}
+html[data-theme="light"] body.auth-page .auth-field input{color:#1d304e!important;background:#fff!important}
+html[data-theme="light"] body.auth-page .auth-field input::placeholder{color:#53647b!important}
