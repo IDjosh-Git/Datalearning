@@ -44,7 +44,9 @@
   $('adminTotal').textContent=learners.length;
   $('adminActive').textContent=learners.filter(p=>profileStats(p).active).length;
   $('adminCompleted').textContent=progress.filter(r=>r.completed&&r.user_id!==window.DALP_AUTH_USER?.id).length;
-  $('adminPending').textContent=submissions.filter(s=>PENDING.has(s.status)&&s.user_id!==window.DALP_AUTH_USER?.id).length;
+  const pendingCount=submissions.filter(s=>PENDING.has(s.status)&&s.user_id!==window.DALP_AUTH_USER?.id).length;
+  $('adminPending').textContent=pendingCount;
+  if($('adminPendingHero'))$('adminPendingHero').textContent=pendingCount;
   $('adminUpdated').textContent='Updated '+new Date().toLocaleTimeString(undefined,{hour:'numeric',minute:'2-digit'});
  }
  function paintInsights(){

@@ -8,9 +8,9 @@ assert(shared.includes('Final course page improvements'),'Responsive and content
 for(const track of ['excel','sql','powerbi','python']){
  const page=read(`courses/${track}.html`);
  const sheets=[...page.matchAll(/<link[^>]+href="\.\.\/assets\/styles\/([^"]+)"[^>]*>/g)].map(x=>x[1]);
- assert.equal(sheets.length,7,`${track} must use exactly 7 purposeful stylesheet layers`);
+ assert.equal(sheets.length,9,`${track} must use exactly 9 purposeful stylesheet layers`);
  assert.equal(new Set(sheets).size,sheets.length,`${track} duplicate stylesheets`);
- assert.equal(sheets.at(-1),'design-system.css',`${track} theme order`);
+ assert.equal(sheets.at(-1),'public-motion.css',`${track} theme order`);
  assert(sheets.includes('course-shared-responsiveness.css'),`${track} shared lesson layout missing`);
  assert(sheets.some(x=>x.startsWith('course-foundation-')),`${track} foundation missing`);
  assert(!/<style\b/i.test(page),`${track} obsolete inline course styles`);
@@ -37,4 +37,4 @@ for(const name of ['course-navigation.css','course-python-overrides.css','course
  const css=read(`assets/styles/${name}`);
  assert(css.length<80000,`${name}: the duplicate 100KB tail was reintroduced`);
 }
-console.log('PASS course cleanup: 6 course pages, 7 orderly stylesheets per player, no repeated inline/floating UI, resource/quiz/progress controls preserved');
+console.log('PASS course cleanup: 6 course pages, 9 purposeful stylesheets per player, no repeated inline/floating UI, resource/quiz/progress controls preserved');

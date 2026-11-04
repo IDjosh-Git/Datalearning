@@ -32,7 +32,7 @@ for(const page of pages){
     publicNonGated++;
   }
 }
-assert.equal(globalHeaders,27,'The current shared-header inventory changed; review route organization');
+assert.equal(globalHeaders,29,'The current shared-header inventory changed; review route organization');
 const expectedPrivate=[...groups.learner_account,...groups.admin_only,...groups.admin_diagnostics];
 assert.equal(expectedPrivate.length,7,'Protected route inventory changed; review middleware and access tests');
 assert.equal((fs.readFileSync(path.join(root,'assets/styles/design-system.css'),'utf8').match(/\.dalp-skip-link\{position:fixed/g)||[]).length,1,'Skip-link styling duplicated');

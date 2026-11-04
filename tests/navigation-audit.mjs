@@ -6,7 +6,8 @@ import {discoverPages} from './page-assets.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const pages=discoverPages();
 const source=new Map(pages.map(p=>[p.route,p.html]));
-const expected=[['Dashboard','index.html'],['Learn','catalog.html'],['AI Course','courses/ai.html'],['AI Prompt Library','prompt-library.html'],['Reference Library','reference.html'],['Capstone Studio','capstone.html'],['AI Tutor','tutor.html'],['My Learning','account.html']];
+const expectedTop=['Home','Courses','Study tools','Capstone','My learning'];
+const expectedCourses=['introduction','excel','sql','powerbi','python','ai'];
 let total=0, dynamic=0;
 for (const page of pages) {
   for(const match of page.html.matchAll(/<a\b[^>]*href\s*=\s*["']([^"']+)["'][^>]*>/gi)) {
@@ -29,13 +30,16 @@ for (const page of pages) {
     total++;
   }
 }
-for(const page of ['index.html','catalog.html','prompt-library.html','reference.html','tutor.html','capstone.html','practice.html','learning-lab.html','studio.html']){
- const html=source.get(page);
- const nav=html.match(/<header\b[\s\S]*?<nav\b[^>]*class=["'][^"']*dalp-global-nav[^"']*["'][^>]*>([\s\S]*?)<\/nav>/i)?.[1];
- assert(nav,`${page}: missing shared primary nav`);
- const actual=[...nav.matchAll(/<a\b[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi)].map(m=>[m[2].replace(/<[^>]+>/g,'').trim(),m[1]]);
- assert.deepEqual(actual,expected,`${page}: primary navigation mismatch`);
- assert.equal((html.match(/<nav\b[^>]*class=["'][^"']*dalp-global-nav/g)||[]).length,1,`${page}: duplicate primary navigation`);
+for(const page of ['index.html','catalog.html','prompt-library.html','reference.html','tutor.html','capstone.html','practice.html','learning-lab.html','studio.html', 'courses/introduction.html','courses/excel.html','courses/sql.html','courses/powerbi.html','courses/python.html','courses/ai.html']){
+ const html=source.get(page),prefix=page.startsWith('courses/')?'../':'';
+ const nav=html.match(/<nav\b[^>]*class=["'][^"']*dalp-global-nav[^"']*["'][^>]*>([\s\S]*?)<\/nav>/i)?.[1];
+ assert(nav,`${page}: missing primary navigation`);
+ for(const term of expectedTop)assert(nav.includes(term),`${page}: missing ${term} top-level navigation`);
+ assert.equal((nav.match(/class="dalp-nav-link"/g)||[]).length,4,`${page}: unexpected top-level nav repetition`);
+ for(const slug of expectedCourses)assert(nav.includes(`href="${prefix}courses/${slug}.html"`),`${page}: ${slug} course not discoverable`);
+ for(const target of ['reference.html','prompt-library.html','tutor.html','studio.html','learning-lab.html','practice.html','capstone.html','account.html'])
+   assert(nav.includes(`href="${prefix}${target}"`),`${page}: missing ${target}`);
+ assert.equal((html.match(/<nav\b[^>]*class=["'][^"']*dalp-global-nav/g)||[]).length,1,`${page}: duplicate primary nav`);
  assert.match(html,/assets\/scripts\/public-navigation\.js/,`${page}: no responsive menu handler`);
 }
 console.log(`PASS navigation audit: ${pages.length} pages, ${total} local HTML links, ${dynamic} dynamically generated checkpoint anchors, shared primary navigation consistent.`);
