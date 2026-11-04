@@ -1019,17 +1019,17 @@ html[data-theme="light"] body.lp-home .footer a{color:#e1e9f6!important;-webkit-
 
 /* Final public-content link audit: turn inherited filled anchors into text links.
    Preserve meaningful clickable course cards and semantic action/tab controls. */
-html[data-theme="light"] body:has(> .dalp-global-header) main a[href]:not(.dalp-themed-hero a):not(.guide-bottom a):not(.finish a):not(.topbar a):not(.account-text-link):not(.card):not([role="button"]):not([role="tab"]):not(.nav-link):not([aria-selected]):not([data-action]){
+html[data-theme="light"] body:has(> .dalp-global-header) main a[href]:not(.dalp-themed-hero a):not(.guide-bottom a):not(.finish a):not(.topbar a):not(.account-text-link):not(.card):not([role="button"]):not([role="tab"]):not(.nav-link):not([aria-selected]):not([data-action]):not(.dalp-next-primary):not(.dalp-next-secondary):not(.course-portal-primary):not(.course-portal-secondary):not(.guide-button){
   background:transparent!important;background-image:none!important;
   border:0!important;box-shadow:none!important;
   color:var(--ui-primary-hover)!important;-webkit-text-fill-color:var(--ui-primary-hover)!important;
   text-shadow:none!important;text-decoration:underline!important;text-underline-offset:4px!important;
   border-radius:0!important;white-space:normal!important;overflow-wrap:anywhere!important;
 }
-html[data-theme="light"] body:has(> .dalp-global-header) main a[href]:not(.dalp-themed-hero a):not(.guide-bottom a):not(.finish a):not(.topbar a):not(.account-text-link):not(.card):not([role="button"]):not([role="tab"]):not(.nav-link):not([aria-selected]):not([data-action]):hover{
+html[data-theme="light"] body:has(> .dalp-global-header) main a[href]:not(.dalp-themed-hero a):not(.guide-bottom a):not(.finish a):not(.topbar a):not(.account-text-link):not(.card):not([role="button"]):not([role="tab"]):not(.nav-link):not([aria-selected]):not([data-action]):not(.dalp-next-primary):not(.dalp-next-secondary):not(.course-portal-primary):not(.course-portal-secondary):not(.guide-button):hover{
   color:#252a86!important;-webkit-text-fill-color:#252a86!important;text-decoration-thickness:2px!important;
 }
-html[data-theme="light"] body:has(> .dalp-global-header) main a[href]:not(.dalp-themed-hero a):not(.guide-bottom a):not(.finish a):not(.topbar a):not(.account-text-link):not(.card):not([role="button"]):not([role="tab"]):not(.nav-link):not([aria-selected]):not([data-action]):focus-visible{
+html[data-theme="light"] body:has(> .dalp-global-header) main a[href]:not(.dalp-themed-hero a):not(.guide-bottom a):not(.finish a):not(.topbar a):not(.account-text-link):not(.card):not([role="button"]):not([role="tab"]):not(.nav-link):not([aria-selected]):not([data-action]):not(.dalp-next-primary):not(.dalp-next-secondary):not(.course-portal-primary):not(.course-portal-secondary):not(.guide-button):focus-visible{
   outline:3px solid #df842b!important;outline-offset:3px!important;
 }
 
@@ -2075,8 +2075,8 @@ html[data-theme="light"] body :is(.lp-course,.dlp97-card,.ref-card,.ps-card,.pl-
 html[data-theme="light"] body :is(input:not([type="checkbox"]):not([type="radio"]),select,textarea){max-width:100%;box-shadow:0 1px 2px rgba(16,24,49,.035)}
 html[data-theme="light"] body :is(input,select,textarea)::placeholder{color:#61728e;opacity:1}
 html[data-theme="light"] body :is(.learning-table-scroll,.account-table-scroll,.ip-table-wrap,.dalp-admin-table-wrap,.table-wrap,.table-scroll){min-width:0;max-width:100%;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin}
-html[data-theme="light"] body :is(.learning-table,.ip-table,.dalp-admin-table,.account-table){min-width:max-content;white-space:nowrap}
-html[data-theme="light"] body :is(.learning-table,.ip-table,.dalp-admin-table,.account-table) :is(th,td){vertical-align:middle;white-space:nowrap;overflow-wrap:normal}
+html[data-theme="light"] body :is(.ip-table,.dalp-admin-table,.account-table){min-width:max-content;white-space:nowrap}
+html[data-theme="light"] body :is(.ip-table,.dalp-admin-table,.account-table) :is(th,td){vertical-align:middle;white-space:nowrap;overflow-wrap:normal}
 html[data-theme="light"] body :is(.learning-table,.ip-table,.dalp-admin-table,.account-table) th{white-space:normal;min-width:130px;max-width:340px}
 html[data-theme="light"] body :is(.ac-section-header,.ac-card-head,.auth-heading,.dlp97-card-body){min-width:0}
 html[data-theme="light"] body.ac-ready :is(.ac-sidebar,.ac-side-bottom,.ac-side-nav){box-sizing:border-box}
@@ -2162,3 +2162,8 @@ html[data-theme="light"] body.auth-page .auth-field :is(input,select,textarea){f
  html[data-theme="light"] body :is(.dalp-global-toggle,.ac-mobile-menu,.auth-tab,.auth-inline-link){animation:none!important;transition:none!important}
 }
 /* END DEVICE-QUALITY RESPONSIVE SYSTEM */
+
+/* 2026-11-04 input and muted-text contrast refinement. */
+html[data-theme="light"] body.auth-page .auth-panel :is(label,.auth-help,.auth-note){color:#354660!important}
+html[data-theme="light"] body.auth-page .auth-field input{color:#1d304e!important;background:#fff!important}
+html[data-theme="light"] body.auth-page .auth-field input::placeholder{color:#53647b!important}

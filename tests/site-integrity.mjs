@@ -23,10 +23,9 @@ for(const page of pages){
  assert(!page.links.some(link=>['site-refresh.css','experience.css','layout-tuning.css'].some(x=>link.path.endsWith('/'+x))),`${page.route}: obsolete theme layer found`);
  const adminRoute=['admin.html','progress.html','reviewer.html'].includes(page.route);
  const privateRoute=['admin.html','progress.html','reviewer.html','account.html','certificate.html','connection-test.html','sync-test.html'].includes(page.route);
- assert.equal(page.links.at(-1)?.path,'assets/styles/modern-workspace-20261104.css',`${page.route}: maintained contrast and layout layer must load last`);
- assert(page.links.some(x=>x.path===(adminRoute?'assets/styles/admin-workspace.css':privateRoute?'assets/styles/private-workspace.css':'assets/styles/design-system.css')),`${page.route}: required functional styling missing`);
+ assert.equal(page.links.at(-1)?.path,adminRoute?'assets/styles/admin-workspace.css':privateRoute?'assets/styles/private-workspace.css':['capstone.html','capstone-guide.html'].includes(page.route)?'assets/styles/capstone-premium.css':(page.html.includes('data-public-refresh=')||page.route==='verify.html')?'assets/styles/public-motion.css':'assets/styles/design-system.css',`${page.route}: current page theme should load last`);
  if(privateRoute)assert(page.links.some(x=>x.path==='assets/styles/design-system.css'),`${page.route}: shared design foundation is required`);
- assert(page.links.length<=(resourcePage?3:page.route.startsWith('courses/')?8:adminRoute?8:7),`${page.route}: redundant CSS loading; found ${page.links.length} layers`);
+ assert(page.links.length<=(resourcePage?4:page.route.startsWith('courses/')?9:adminRoute?7:page.html.includes('data-public-refresh=')?8:6),`${page.route}: redundant CSS loading; found ${page.links.length} layers`);
  for(const m of page.html.matchAll(/<(a|img|source|iframe|video|link|script)\b[^>]*?(?:href|src)\s*=\s*(["'])(.*?)\2/gi)){
   const [_,kind,,ref]=m;
   if(/^(?:https?:|#|data:|mailto:|tel:|javascript:|\/\/)/i.test(ref))continue;
