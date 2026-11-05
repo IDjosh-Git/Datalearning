@@ -44,3 +44,7 @@ The Python Lab and challenge checker share a single lazily created Web Worker pe
 `assets/styles/design-system.css` provides foundational tokens, while `assets/styles/premium-unified.css` is the shared final visual layer on all pages. Older page-specific styles that contain functional course, practice, and private navigation rules are retained to avoid breaking components. Avoid adding redundant versions of the same navigation, form or course dataset. Use `assets/scripts/catalog-data.js` as the course catalogue source and `assets/scripts/practice-data.js` / `python-challenges.js` as the challenge sources.
 
 The [route manifest](docs/SITE_ROUTE_MANIFEST.json) lists the current routes. New page changes must remain responsive at 320, 390, 768 and 1440px, and pass `npm run verify:deployment`. Browser-level preview is still required for dynamic mobile overlays and external services.
+
+## AI Prompt Library popup (5 Nov 2026)
+
+The `prompt-library.html` page now uses an accessible modal reader instead of expanding each prompt card. Read/copy/close are available without changing the grid layout. See `PROMPT_LIBRARY_POPUP_RELEASE_20261105.md`.

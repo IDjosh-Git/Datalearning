@@ -23,6 +23,29 @@
 <div class="result-meta"><p aria-live="polite" id="resultCount" role="status">Loading prompts…</p><button id="clearFilters" type="button">Clear filters</button></div><div class="prompt-grid" id="promptGrid"></div><div class="empty" hidden="" id="emptyState"><h3>No prompts match those filters.</h3><p>Try a different keyword, choose another topic, or clear your filters.</p></div><div class="more-row"><button hidden="" id="loadMore" type="button">Show more prompts ↓</button></div></section>
 <section class="bottom-cta"><h2>Turn prompts into real analytical skills</h2><p>Follow the standalone 10-week AI Integration in Data Analysis course for worked examples, weekly tests, practical labs, responsible-AI safeguards and a capstone assessment.</p><a href="courses/ai.html" class="dalp-plain-link">Explore the AI course ↗</a></section>
 </div></main>
+<dialog class="pl-prompt-modal" id="promptPreviewDialog" aria-labelledby="promptModalTitle" aria-describedby="promptModalDescription">
+  <div class="pl-modal-frame">
+    <header class="pl-modal-header">
+      <div class="pl-modal-heading">
+        <span class="pl-modal-eyebrow" id="promptModalReference">PROMPT LIBRARY</span>
+        <h2 id="promptModalTitle">Full prompt</h2>
+        <p id="promptModalDescription">Review the full prompt, copy it, and adapt the placeholders to your approved data.</p>
+      </div>
+      <button type="button" class="pl-modal-icon-close" id="promptModalCloseIcon" aria-label="Close full prompt">×</button>
+    </header>
+    <div class="pl-modal-content" id="promptModalScroll" tabindex="0">
+      <div class="pl-modal-meta" id="promptModalMeta"></div>
+      <div class="pl-modal-prompt" id="promptModalContent"></div>
+    </div>
+    <div class="pl-modal-footer">
+      <span class="pl-modal-hint">Replace placeholders and verify the generated result.</span>
+      <div class="pl-modal-buttons">
+        <button type="button" class="pl-modal-dismiss" id="promptModalClose">Close</button>
+        <button type="button" class="pl-modal-copy" id="promptModalCopy">Copy full prompt <span aria-hidden="true">↗</span></button>
+      </div>
+    </div>
+  </div>
+</dialog>
 <div aria-live="polite" class="toast" id="promptToast" role="status"></div>
 <script defer="" src="assets/scripts/prompt-library-data.js"></script><script defer="" src="assets/scripts/prompt-library.js"></script><script defer="" src="assets/scripts/modern.js"></script>
 <script defer="" src="assets/scripts/learner-companion.js"></script><script defer="" src="assets/scripts/responsive.js"></script>
