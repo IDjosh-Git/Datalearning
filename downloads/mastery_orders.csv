@@ -1,7 +1,0 @@
-order_id,order_date,customer_id,customer,region,product_id,product,quantity,unit_price,unit_cost,status,channel
-1001,2026-01-05,C001,Amina,East,P01,Laptop,2,150000,120000,Completed,Web
-1002,2026-01-08,C002,Kola,West,P02,Mouse,5,8000,5000,Completed,Store
-1003,2026-02-02,C001,Amina,East,P02,Mouse,3,8000,5000,Returned,Web
-1004,2026-02-09,C003,Ngozi,North,P03,Keyboard,4,18000,12000,Completed,Store
-1005,2026-02-11,C004,Idris,West,P01,Laptop,1,150000,120000,Completed,Web
-1006,2026-02-18,C003,Ngozi,East,P02,Mouse,2,8000,5000,Completed,Web
