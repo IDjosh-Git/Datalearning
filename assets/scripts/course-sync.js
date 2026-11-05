@@ -18,11 +18,13 @@
     b.title='Check or retry account sync';
     b.setAttribute('aria-live','polite');
     b.addEventListener('click',()=>runSync(true));
-    const strip=document.getElementById('dlp-course-utility-strip');
-    const host=strip||document.querySelector('.content,.progress-card,main');
-    if(strip){const slot=document.createElement('span');slot.className='dlp-sync-slot';slot.appendChild(b);strip.appendChild(slot)}
-    else if(host)host.prepend(b);
-    else document.body.appendChild(b);
+    // Keep status beside the learner's progress meter, never at page start.
+    const host=document.querySelector('.sidebar-progress') || document.querySelector('.progress-card') || document.querySelector('.dl-lesson-rail-resources') || document.querySelector('.sidebar');
+    const slot=document.createElement('div');
+    slot.className='dlp-sync-slot';
+    slot.appendChild(b);
+    if(host) host.appendChild(slot);
+    else document.body.appendChild(slot);
   }
 
   function badge(text,state='normal'){

@@ -8,6 +8,11 @@
   const progressBar = document.getElementById('introProgressBar');
   const progressFill = document.getElementById('introProgressFill');
   const syncStatus = document.getElementById('introSyncStatus');
+  const statusHome = document.querySelector('.dl-lesson-rail-resources') || document.querySelector('.sidebar');
+  if(syncStatus && statusHome){
+    statusHome.appendChild(syncStatus);
+    syncStatus.classList.add('dl-progress-sync-relocated');
+  }
   const safeRead = () => { try { return JSON.parse(localStorage.getItem(key) || '{}') || {}; } catch { return {}; } };
   const paint = progress => {
     const state = progress || Object.fromEntries(checkboxes.map(c => [c.dataset.introCheck, c.checked]));

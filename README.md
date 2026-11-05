@@ -30,3 +30,11 @@ A local ZIP is **not** a production deployment. Existing Supabase data, login, p
 - Six course pages plus twelve resource guides: under `courses/`.
 - Account, review and admin pages: kept with their existing access controls.
 - Diagnostics: `connection-test.html` and `sync-test.html` are distinct admin utilities, not duplicate course pages.
+
+### Latest course reading update (5 November 2026)
+
+The six current course pages now use a compact, readable, full-width teaching layout with corrected introductory hero contrast, offscreen lesson rendering optimization, and unobtrusive progress-save indicators located near their course-progress widgets. Details and verification limits are recorded in `CURRENT_RELEASE.md`. Run `npm run verify:deployment` before publishing to Vercel.
+
+### Premium white lesson navigation (5 November 2026)
+
+All six course pages now use the same **white-to-ivory gradient lesson sidebar**, matching gradient lesson buttons, resource cards, search field, progress meter, and accessible active states. Accent colour remains unique to each course. On desktop, the sidebar is inset beneath the sticky global header; on mobile, the lesson drawer opens below the header without covering navigation. The compact shared styles remain at the **end of `assets/styles/premium-unified.css`**, avoiding an extra blocking stylesheet. `assets/scripts/course-sidebar-header-offset.js` measures the actual header height at runtime. All lesson actions, quizzes, progress and course content are unchanged.
