@@ -5,6 +5,7 @@ const home=readFileSync('index.html','utf8');
 const css=readFileSync('assets/styles/design-system.css','utf8');
 assert.match(admin, /src="assets\/scripts\/private-navigation\.js"/, 'Admin mobile navigation must load one shared click handler');
 assert.doesNotMatch(admin,/src="assets\/scripts\/site\.js"/,'Redundant public navigation script removed from admin');
-assert.equal((home.match(/class="[^"]*\blp-studio-cta\b[^"]*"/g)||[]).length,6);
+assert(!home.includes('class="lp-quick-links"'),'Homepage removes duplicated navigation controls');
+assert(!home.includes('class="lp-prompt-promo"'),'No repeated AI-prompt promotion');
 assert.match(css,/Remove ALL button\/card treatments from course-card Practice Studio links/);
 console.log('PASS admin menu script and unboxed Practice Studio links');

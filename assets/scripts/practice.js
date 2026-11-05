@@ -2,6 +2,12 @@
 // Presentation-only guidance, derived from bundled subject/topic. The challenge data
 // itself does not claim an official difficulty or duration.
 const levels={SQL:{Advanced:['Windows','CTEs','Sets'],Intermediate:['Joins','Subqueries','Aggregation','Aggregations','Grouping','Logic','Functions','Dates','Nulls','Deduplication']},Excel:{Advanced:['Dynamic arrays','Lookups'],Intermediate:['Conditional','Logic','Text','Statistics']},Python:{Advanced:['Advanced','NumPy','Pandas','Algorithms'],Intermediate:['Statistics','Dictionaries','Cleaning','Analytics','Dates','Strings']}};
+// Counts are derived from the loaded challenge catalogue, not repeated HTML numbers.
+for(const control of document.querySelectorAll('[data-arena-subject]')){
+ const kind=control.dataset.arenaSubject,count=tasks.filter(task=>task.kind===kind).length;
+ const label=control.querySelector('.arena-count');if(label)label.textContent=count+' challenges';
+ control.setAttribute('aria-label','Browse '+count+' '+kind+' challenges and open '+kind+' editor');
+}
 const levelFor=t=>levels[t.kind]?.Advanced?.includes(t.topic)?'Advanced':levels[t.kind]?.Intermediate?.includes(t.topic)?'Intermediate':'Beginner';
 const timeFor=t=>levelFor(t)==='Advanced'?'20–25 min':levelFor(t)==='Intermediate'?'12–18 min':'8–12 min';
 const subjectTopic=kind=>[...new Set(tasks.filter(t=>kind==='All'||t.kind===kind).map(t=>t.topic))].sort((a,b)=>a.localeCompare(b));
@@ -76,7 +82,12 @@ function gradeFeedback(t,result,runError,actual,expected){
 
 $('#practiceList').addEventListener('click',e=>{let btn=e.target.closest('[data-id]');if(!btn)return;active=tasks.find(x=>x.id===btn.dataset.id);if(!active)return;reflectChallengeUrl();detail();listing();window.DALP_HUB?.close();window.DALP_HUB?.sync(active)});$('#practiceDetail').addEventListener('input',e=>{if(e.target.id==='pythonCode'&&active?.kind==='Python'){const source=$('#practiceAnswer');if(source)source.value=e.target.value;}if((e.target.id==='practiceAnswer'||(e.target.id==='pythonCode'&&active?.kind==='Python'))&&active){state[active.id]={...(state[active.id]||{}),draft:e.target.value};scheduleDraftSave()}});$('#practiceDetail').addEventListener('click',async e=>{let b=e.target.closest('button');if(!b)return;let id=b.id,t=active;if(id==='practiceCheck'){let value=$('#practiceAnswer').value,result,runRows=null,runError=null,sampleActual=null,sampleExpected=null,started=performance.now();try{if(t.kind==='Python'){
  const grade=window.DALP_PY_GRADE;if(!grade)throw Error('Python challenge runtime is unavailable.');
- const checked=await grade(value,t);result={ok:checked.ok,errors:[checked.error||checked.output||'The solution did not pass all checks.'],value:checked.output||'',hiddenPassed:checked.ok?2:0};
+ const checkButton=$('#practiceCheck');
+ const previousLabel=checkButton?.textContent||'Check solution';
+ if(checkButton){checkButton.disabled=true;checkButton.textContent='Checking Python…';checkButton.setAttribute('aria-busy','true');}
+ let checked;
+ try{checked=await grade(value,t,message=>{if(checkButton)checkButton.textContent=message||'Checking Python…';});}
+ finally{if(checkButton){checkButton.disabled=false;checkButton.textContent=previousLabel;checkButton.removeAttribute('aria-busy');}}result={ok:checked.ok,errors:[checked.error||checked.output||'The solution did not pass all checks.'],value:checked.output||'',hiddenPassed:checked.ok?2:0};
 }else if(t.kind==='SQL'){
 const engine=window.DALP_EXEC_SQL;
 if(!engine?.execute)throw Error('SQL engine unavailable.');

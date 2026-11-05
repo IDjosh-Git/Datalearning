@@ -6,7 +6,8 @@ const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=x=>fs.readFileSync(path.join(root,x),'utf8');
 const page=read('index.html'),learner=read('capstone.html'),owner=read('reviewer.html'),db=read('database/migrations/supabase_setup.sql');
 for(const slug of ['excel','sql','powerbi','ai']){
- assert(page.includes(`data-track="${slug}"`));
+ assert(read('catalog.html').includes(`data-course="${slug}"`),'Course catalogue remains the canonical route');
+ assert(page.includes(`href="courses/${slug}.html"`),'The global course menu links to all courses');
  assert(learner.includes(`data-course="${slug}"`));
  assert(fs.existsSync(path.join(root,`assets/icons/icon-${slug}.svg`)));
  assert(read(`courses/${slug}.html`).includes(`../capstone.html?course=${slug}`));

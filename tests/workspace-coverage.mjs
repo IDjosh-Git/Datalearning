@@ -10,7 +10,7 @@ for(const file of all.filter(file=>!/-roadmap\.html$|-extension\.html$/.test(fil
 for(const file of list(['courses']).filter(file=>!/-roadmap\.html$|-extension\.html$/.test(file))){let s=read(file);assert.equal((s.match(/src="\.\.\/assets\/scripts\/course-studio-data\.js/g)||[]).length,1,file+' has duplicated course data');assert(s.includes('assets/styles/course-'),file+' missing compact lesson layout');}
 for(const file of all.filter(f=>!f.startsWith('courses/'))){const s=read(file);assert(!s.includes('src="assets/scripts/course-studio-data.js'),file+' should lazy-load coach data');}
 const shell=read('assets/scripts/public-navigation.js');assert(shell.includes('Escape')&&shell.includes('aria-expanded'),'Accessible public navigation');
-const home=read('assets/scripts/learner-home.js');for(const word of ['CONTINUE LEARNING','Explore your learning paths','Your study toolkit','dalp:progress-updated'])assert(home.includes(word));
+const hub=read('assets/scripts/discover-hub.js');assert(hub.includes('dalp-discover-goal-v1')&&hub.includes('data-dh-goal'),'Active Discover goal selection should remain');assert(read('account.html').includes('dashContinueLink'),'Live My Learning resume link must remain');
 const ref=read('assets/scripts/reference.js');assert(ref.includes('matches.slice(0,limit)')&&ref.includes('limit=24'),'Reference list must paginate');
 const progress=read('assets/scripts/progress-cloud.js');assert(progress.includes('Promise.all(Object.keys(COURSE_MAP)')&&progress.includes('remoteRows=await fetchCourseRows(user.id,slug);'),'Parallelized progress sync with conditional refetch');
 assert(read('assets/scripts/course-account.js').includes('dalp:auth-ready'),'Account buttons should reuse verified session');

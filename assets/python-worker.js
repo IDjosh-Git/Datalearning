@@ -5,7 +5,9 @@ async function getPython(){
     runtimePromise=(async()=>{
       self.postMessage({type:'status',id:activeId,message:'Loading Python runtime…'});
       importScripts('https://cdn.jsdelivr.net/pyodide/v0.27.7/full/pyodide.js');
-      return await loadPyodide({indexURL:'https://cdn.jsdelivr.net/pyodide/v0.27.7/full/'});
+      const runtime=await loadPyodide({indexURL:'https://cdn.jsdelivr.net/pyodide/v0.27.7/full/'});
+      self.postMessage({type:'status',id:activeId,ready:true,message:'Python ready · loading required packages…'});
+      return runtime;
     })().catch(error=>{runtimePromise=null;throw error});
   }
   return runtimePromise;
@@ -17,7 +19,11 @@ self.addEventListener('message',async({data})=>{
   try{
     const python=await getPython();
     const test=type==='grade' ? String(data.test??'') : '';
-    await python.loadPackagesFromImports(code+'\n'+test);
+    // Load optional modules only when the current example needs them; Pyodide caches them.
+    if(/^\s*(?:from|import)\s+/m.test(code+'\n'+test)){
+      self.postMessage({type:'status',id,ready:true,message:'Loading required Python packages…'});
+      await python.loadPackagesFromImports(code+'\n'+test);
+    }
     python.globals.set('__dalp_source',code);
     python.globals.set('__dalp_test',test);
     python.globals.set('__dalp_grade',type==='grade');
@@ -36,6 +42,7 @@ except BaseException as _dalp_exception:
 json.dumps(_dalp_response)
 `);
     const result=JSON.parse(response);
+    if(result.output?.length>120000)result.output=result.output.slice(0,120000)+'\n[Output truncated to keep this device responsive.]';
     if(type==='grade')self.postMessage({id,type:'grade',...result});
     else if(result.ok)self.postMessage({id,type:'result',output:result.output});
     else self.postMessage({id,type:'error',message:result.error});

@@ -1,112 +1,44 @@
-# Data Analysis Learning Path
+# DataLearning — Premium Learning Platform
 
-A light-only, responsive learning platform for data analysis, Excel, SQL, Power BI, Python and AI-assisted analytics. Includes self-paced courses, practical exercises, downloadable datasets, learner progress, quizzes, certificates, a Practice Arena, an AI learning tutor, and administrator tools.
+DataLearning is a multi-page learning platform for data analysis, Excel, SQL, Power BI, Python, and AI-assisted analytics. It includes six guided courses, a Practice Arena with runnable SQL/Excel/Python exercises, a Learning Lab, AI Tutor, progress tracking, capstones and private dashboards.
 
-## Getting started
+**Current release:** 5 November 2026 — mobile responsiveness, shared theme and form styling, removal of unused source, and a shared Python runtime. See [the current release report](CLEANUP_AND_MOBILE_PERFORMANCE_20261105.md).
 
-1. Review `.env.example` and `docs/SUPABASE_SETUP.txt` for authentication and API setup. Never put service-role credentials or other secret keys into browser JavaScript.
-2. Install Node.js 24 and run `npm install`.
-3. Run `npm run verify:deployment` before deploying to Vercel.
-4. Deploy using the existing `vercel.json` configuration and configure environment variables on the hosting platform.
+## Local verification and deployment
 
-This is a multi-page static application with serverless API routes. Its `build` command verifies project integrity; it is **not** a compilation step. For authentication and remote services, test via an HTTP server or a configured staging deployment rather than opening pages with `file://`.
+1. Install Node.js 24 (`.nvmrc`) and run `npm install`.
+2. Run `npm run verify:deployment` (build/readiness, lint and all automated tests).
+3. Deploy with the existing `vercel.json` (`framework: null`, `outputDirectory: "."`). Keep the ZIP's contents at the Git repository root, not inside another folder.
+4. Configure Vercel environment variables and Supabase according to `.env.example` and `docs/SUPABASE_SETUP.txt`. **Never put secret or service-role keys into browser JavaScript.**
+5. Review the database migrations under `database/migrations/` individually before applying them to the intended Supabase project.
+6. Test signed-in flows, Python execution, mobile menus and live APIs on a preview deployment with a test account before promoting to production.
 
-## Project layout
+A ZIP generated here does **not** automatically update the live Vercel website. Push the modified project to its connected GitHub repository, confirm a new production commit/deployment and then reload the site.
 
-The canonical route and access inventory is in [`docs/SITE_ROUTE_MANIFEST.json`](docs/SITE_ROUTE_MANIFEST.json). The public **Dashboard** (`index.html`) and protected administrator dashboard (`admin.html`) are different routes. Public course content is browseable without an account; saving personal progress requires sign-in.
+## Project organisation
 
-
-| Path | Contents |
+| Path | Purpose |
 | --- | --- |
-| `index.html`, root `*.html` | Public and authenticated website pages |
-| `courses/` | Six teaching tracks and their routes |
-| `assets/styles/` | Current shared `design-system.css` and necessary page-specific course/layout bundles; obsolete site-wide styling removed |
-| `assets/scripts/` | Browser code, local exercises, progress, and navigation |
-| `assets/icons/` | Brand and learning-track icons |
-| `downloads/` | Learner downloads and practice datasets |
-| `curriculum/` | Current curriculum source data and regeneration utilities |
-| `api/`, `lib/`, `middleware.js` | Serverless tutor, session verification, and access controls |
-| `database/migrations/` | Database setup and migrations (server-side only) |
-| `docs/` | Current architecture, route map, setup guidance and historical cleanup reports (see `docs/README.md`) |
-| `tests/` | Active automated checks; no retired release test scripts |
+| `index.html` | Discover and learning guidance |
+| `overview.html` | Learner activity overview, course popularity and study planning |
+| `catalog.html`, `courses/` | Catalogue, six course players, roadmaps and extensions |
+| `practice.html` | Practice Arena, challenge grading and one visible editor |
+| `learning-lab.html`, `tutor.html`, `studio.html` | Guided learning, tutor and exercises |
+| `account.html`, `admin.html`, `progress.html` | Role-protected learning and admin dashboards |
+| `assets/scripts/` | Browser logic, curriculum and practice integrations |
+| `assets/styles/` | Shared design system, final premium theme, functional page styling |
+| `assets/python-worker.js` | Browser-only Pyodide execution; shared through `python-runtime-manager.js` |
+| `database/migrations/` | Database setup and opt-in migrations |
+| `downloads/` | Learner datasets and resources |
+| `docs/` | Setup notes and architecture/route documentation |
+| `tests/` | Automated source, security, learning and browser runtime-contract tests |
 
-The page-specific CSS files are page-oriented compatibility bundles. They replace over 120 individually loaded, version-suffixed stylesheets and preserve their cascade order, including splits at embedded page styles. The current, authoritative shared visual theme and learning-experience styles are in `assets/styles/design-system.css`. The older global themes `site-refresh.css`, `experience.css`, and `layout-tuning.css` were deleted; the functional `course-page-improvements.css` remains scoped to interactive lessons. Standalone learning guides use `course-guide-pages.css`. Avoid restoring versioned CSS bundles.
+## Python mobile performance
 
-## Learning and interface improvements
+The Python Lab and challenge checker share a single lazily created Web Worker per open Arena tab. Pyodide is downloaded/initialized once and reused for later runs, while a Stop action resets it when needed. Importing packages like pandas may take longer than plain Python. The first run still needs internet and device memory; large workloads and infinite loops are cancellable. This browser-based runtime is not a remote execution service.
 
-The 26 original website routes retain the shared `design-system.css` styling and `experience.js` enhancement script, and 12 additional linked course-resource pages have their own lightweight responsive stylesheet. The six course routes include 58 accessible concept tables (three examples per unit) and all 50 specialist modules now have guided practice prompts with learner-revealed verification and pitfall explanations. The original quizzes, project grading and progress logic remain unchanged. Motion honours reduced-motion preferences and the course tables support horizontal scrolling and keyboard focus on smaller viewports.
+## Design maintenance
 
+`assets/styles/design-system.css` provides foundational tokens, while `assets/styles/premium-unified.css` is the shared final visual layer on all pages. Older page-specific styles that contain functional course, practice, and private navigation rules are retained to avoid breaking components. Avoid adding redundant versions of the same navigation, form or course dataset. Use `assets/scripts/catalog-data.js` as the course catalogue source and `assets/scripts/practice-data.js` / `python-challenges.js` as the challenge sources.
 
-## Roadmaps, curriculum extensions and mastery checkpoints
-
-Each of the six course pages now links prominently to two standalone learning resources:
-
-- `courses/<course>-roadmap.html`: milestones and a linked lesson-by-lesson study plan.
-- `courses/<course>-extension.html`: applied practice cases, worked examples and exercises.
-
-The Course Mastery Checkpoint now has 10 explanatory multiple-choice questions per track (60 total) and adapts to a two-column layout on wider Windows screens. The Practice Arena hero's redundant software badges have been removed. See [`docs/COURSE_GUIDES_AND_CHECKPOINTS.md`](docs/COURSE_GUIDES_AND_CHECKPOINTS.md).
-
-For Vercel use the project root as the configured root directory, with `vercel.json` `"outputDirectory": "."`. The build script verifies the static project; it does not emit a separate `public` folder.
-
-## Course navigation corrections
-
-The former in-page roadmap grids, lengthy milestone panels, and JavaScript-generated module-by-module navigation have been removed from each lesson page. Use the **Course roadmap** and **Curriculum extension** links near the course heading or in the shared course sidebar. The roadmap pages retain the original preparation notes, milestones, and lesson links.
-
-Navigation/course icons are embedded SVG artwork, rather than network-dependent images. The SVG assets remain under `assets/icons/` for other uses. For version-free deployed CSS/JS filenames, `vercel.json` now asks browsers to revalidate assets after deployment, and the service worker cache key has been refreshed. If an older deployment is open, reload the site after the new Vercel deployment is READY.
-
-Cards and mastery questions now size to their content rather than stretching to match the tallest adjacent card. The course quick-access panel and responsive grids are designed for desktop, tablet, and phone widths.
-
-## Verification commands
-
-```sh
-npm run build
-npm run lint
-npm test
-npm run test:responsive
-npm run test:security
-npm run test:learning
-npm run test:arena
-npm run test:tutor
-npm run verify:deployment
-```
-
-**Validation limit:** The automatic tests check local URLs, source syntax, course and interactive logic with mocks, offline exercises, authorization and layout rules. Real sign-in, database synchronization, AI provider requests and browser interaction must be tested in a configured staging environment with test accounts.
-
-Start with the [current organization audit and route map](docs/SITE_ORGANIZATION_AUDIT.md), [documentation index](docs/README.md) and [current styling guide](docs/CURRENT_STYLE_SYSTEM.md). Prior cleanup/handoff notes are historical references.
-
-## Course roadmap navigation and live deployment
-
-Every course page displays **View full course roadmap** and **Open curriculum extension** immediately above the introduction, without requiring JavaScript. The resource files live in `courses/<course>-roadmap.html` and `courses/<course>-extension.html`.
-
-Excel, SQL, Power BI and Python keep the week navigation in an expandable **Browse course lessons** sidebar section. The course navigation uses CSS lettermark icons that do not depend on remote image URLs. The capstone route links to the standalone roadmap instead of showing a long checklist.
-
-Vercel deploys this site from the linked GitHub repository. **Replacing a ZIP in a local folder does not update production**: extract this archive at the GitHub repository root, commit and push all changed files to `main`, then confirm the new production deployment uses that new commit. Keep `index.html`, `vercel.json`, `service-worker.js`, `assets/` and `courses/` at the repository root. The Vercel output directory is `.`. Course HTML is served with `Cache-Control: no-store`.
-
-To verify the new release, open `https://datalearning.vercel.app/courses/excel.html` and look for the **Course resources** links above the title. If it is missing after a READY deployment, confirm the deployment's commit SHA is the one containing this change.
-
-
-### Styling maintenance (current)
-
-The current light UI theme is defined by `assets/styles/design-system.css`; active feature/page styles remain in `assets/styles/`. Do not restore retired fonts, palette values, glass overlays or embedded page `<style>` blocks. The audit and responsive test limitations are documented in `docs/LEGACY_STYLE_CLEANUP_AUDIT.md`. Run `npm run build && npm run lint && npm test` before deployment.
-
-
-## Vercel-ready responsive release (3 November 2026)
-
-This release pins Node.js 24 in `.nvmrc` and `package.json` and uses an explicit Vercel build command (`npm run build`) to verify route, asset, middleware, and responsive contracts. The static site is served from the repository root (`outputDirectory: "."`); its APIs and middleware are still Vercel functions. See [`docs/VERCEL_RESPONSIVE_RELEASE_20261103.md`](docs/VERCEL_RESPONSIVE_RELEASE_20261103.md) for browser matrices and release/preview instructions.
-
-Unzip the project contents directly at the **Git repository root**, not inside another `learning-path-site/` folder. Push a preview branch and test real authentication before releasing.
-
-## Premium Bento & Learning Overview (4 Nov 2026)
-
-See [`PREMIUM_BENTO_RELEASE_20261104.md`](PREMIUM_BENTO_RELEASE_20261104.md) for the new cross-site search, shared UI, privacy-safe learner activity overview, daily study plan, Supabase aggregate migration, cleanup details and deployment checklist. Apply `database/migrations/learning_overview_aggregate.sql` to your intended Supabase environment before expecting live popularity figures. The overview explicitly reports when data is unavailable.
-
-## Verified actual app users
-Use `database/migrations/app_usage_only_users.sql` to count verified DataLearning sign-ins and actual learning activity, rather than all Supabase Auth accounts. See `APP_USER_COUNTING_RELEASE_20261104.md` for activation and privacy details.
-
-## Guided Learning Journey (4 November 2026)
-
-Open **Study Tools → Learning Lab** (or **My Learning → My study plan**) to create a seven-session, course-specific route. Learners select a subject, previous experience and session time, then work through the *Understand → Apply → Recall* cycle using the existing lesson material and guided Practice Studio examples. The new active-recall worksheet includes model answers, common pitfalls and a confidence self-check; completed steps and reflections are stored locally and can be exported. This is a personal learning aid, **not a formal assessment or course-completion record**.
-
-Implementation: `assets/scripts/study-success.js` and scoped styles in `assets/styles/learning-lab-layout.css`; the existing 500+ Learning Lab review questions remain available. The structured course data is loaded dynamically only on demand by the feature script. Study plans are namespaced by signed-in Supabase user ID, and guest plans remain separate on the same device. Study-plan data is **not** synced to Supabase; use the Export action to back it up. The feature makes no new network writes and requires no database migration.
-
-Run `node tests/study-success.mjs` for targeted protection and `npm run verify:deployment` for the full application regression. Browser-based interaction testing is performed using a same-origin HTML fixture with inlined styles because local HTTP navigation is restricted in the test environment. A real Vercel preview is still required to validate production sign-in, external resources, and cross-device behavior.
+The [route manifest](docs/SITE_ROUTE_MANIFEST.json) lists the current routes. New page changes must remain responsive at 320, 390, 768 and 1440px, and pass `npm run verify:deployment`. Browser-level preview is still required for dynamic mobile overlays and external services.

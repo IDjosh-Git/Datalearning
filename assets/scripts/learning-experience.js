@@ -95,7 +95,7 @@
   }
   const m=path.match(/\/courses\/(excel|sql|python)\.html$/);if(!m)return;
   const tool=m[1]==='sql'?'SQL':m[1]==='excel'?'Excel':'Python';
-  const top=document.querySelector('.dalp-next-actions');if(top){const link=document.createElement('a');link.className='dalp-next-secondary dalp-arena-link';link.href='../practice.html?tool='+tool;link.textContent='Open '+tool+' Practice Arena ↗';top.append(link);}
+  /* The next-lesson banner already contains the Arena action; do not duplicate it. */
   for(const [week,id,title] of recommended[m[1]]){
    const unit=document.getElementById(week);if(!unit)continue;
    const aside=document.createElement('aside');aside.className='dalp-arena-lesson';aside.setAttribute('aria-label','Apply this lesson in Practice Arena');

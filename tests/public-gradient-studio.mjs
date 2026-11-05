@@ -16,7 +16,7 @@ for(const category of ['introduction','excel','sql','powerbi','python','ai']) {
  assert.match(fs.readFileSync(path.join(root,`courses/${category}.html`),'utf8'), /data-learning-subject="(?:intro|excel|sql|powerbi|python|ai)"/);
 }
 assert.equal((fs.readFileSync(path.join(root,'catalog.html'),'utf8').match(/data-gradient-action="true"/g)||[]).length,6);
-assert.equal((fs.readFileSync(path.join(root,'index.html'),'utf8').match(/data-gradient-action="true"/g)||[]).length,7);
+assert.equal((fs.readFileSync(path.join(root,'index.html'),'utf8').match(/data-gradient-action="true"/g)||[]).length,1,'Remove action duplication along with the course cards');
 assert.match(css, /@layer public-gradient-actions/, 'Primary CTA layer missing');
 assert.match(css, /prefers-reduced-motion:reduce/, 'Reduced-motion support missing');
 assert.match(css, /forced-colors:active/, 'High contrast support missing');

@@ -15,7 +15,8 @@ for(const page of discoverPages()){
  if(expected)assert(page.links.some(l=>l.path===expected),`${page.route}: missing functional course layout`);
  assert.equal(page.links.at(-1)?.path,'assets/styles/premium-unified.css',`${page.route}: shared premium CSS must load last`);
 }
-assert.equal((home.match(/class="[^"]*\blp-studio-cta\b[^"]*"/g)||[]).length,6,'Six course studio links must be retained');
+assert(!home.includes('class="lp-quick-links"'),'No duplicate quick links in Discover');
+assert(home.includes('href="practice.html"') && home.includes('href="learning-lab.html#study-plan"'),'Keep purposeful practice and study actions');
 assert.match(styles,/\.lp-studio-cta/,'Standalone studio links must have accessible visited styling');
 assert.match(styles,/background:transparent!important/,'Studio links must not look like cards');
 assert.match(styles,/\.dalp-public-footer/,'Shared support footer must be styled');

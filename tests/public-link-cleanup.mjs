@@ -13,14 +13,15 @@ for(const f of files.filter(f=>!protectedFiles.has(f))){
  assert(!/class="dalp-global-nav[^\"]*dalp-plain-link/.test(html),`${f}: shared navigation styling changed`);
 }
 const home=fs.readFileSync(path.join(root,'index.html'),'utf8');
-assert(!home.includes('class="lp-quick-card"'),'Quick access must be direct links, not four separate cards');
-assert(home.includes('class="lp-quick-links"'),'Quick access plain-link group missing');
-const quickLinks=home.match(/<div class="lp-quick-links"[^>]*>([\s\S]*?)<\/div>/)?.[1] || "";
-assert.equal((quickLinks.match(/class="dalp-plain-link"/g)||[]).length,4,'Four quick-access links must be preserved');
+assert(!home.includes('class="lp-quick-links"'),'Redundant quick-navigation group must be removed from Discover');
+assert(!home.includes('class="lp-prompt-promo"'),'Prompt-library advertising does not belong at the end of Discover');
+assert(home.includes('id="courses"') && home.includes('dlp-journey-grid'),'Detailed learning journey must replace repeated course links');
+assert(readFileCatalog().includes('id="dlp97-search"') || readFileCatalog().includes('dlp97-search-row'),'Course catalogue retains genuine course filters');
+function readFileCatalog(){return fs.readFileSync(path.join(root,'catalog.html'),'utf8')}
 const css=fs.readFileSync(path.join(root,'assets/styles/design-system.css'),'utf8');
 assert.match(css,/body a\.dalp-plain-link,/, 'Common link reset missing');
 assert.match(css,/body a\.dalp-plain-link:focus-visible/, 'Visible keyboard focus missing');
 assert.match(css,/body \.guide-block a\.dlp29-milestone\.dalp-plain-link/, 'Roadmap link-only cards not cleaned');
 assert.match(css,/body\.lp-prompt-page \.bottom-cta/,'Prompt-library resource link must have readable background');
 assert(converted>=280,`Expected public link cleanup, found ${converted}`);
-console.log(`PASS unboxed public links: ${converted} action/resource links across ${files.length-protectedFiles.size} public HTML pages; 4 direct quick-access links; no old floating card CTA.`);
+console.log(`PASS unboxed public links: ${converted} action/resource links across ${files.length-protectedFiles.size} public HTML pages; no redundant quick-navigation block; catalogue filtering preserved.`);

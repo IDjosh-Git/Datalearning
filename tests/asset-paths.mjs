@@ -5,7 +5,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=(f)=>fs.readFileSync(path.join(root,f),'utf8');
-const sourceFiles=['assets/scripts/modern.js','assets/scripts/learning-catalog.js','assets/scripts/reference.js','assets/scripts/arena-ide.js'];
+const sourceFiles=['assets/scripts/learning-catalog.js','assets/scripts/reference.js','assets/scripts/arena-ide.js'];
 for(const name of sourceFiles){
  const code=read(name);
  assert.doesNotMatch(code,/(?:\.\.\/)?assets\/icon-(?!s\/)/,`${name}: obsolete icon directory`);
@@ -35,3 +35,6 @@ assert.match(navigation,/const navIcon=name=>.*dlp97-icon-mark|const navIcon=nam
 assert.match(read('assets/styles/design-system.css'),/\.dlp97-icon-mark/, 'Navigation icons need deterministic sizing');
 assert.match(navigation,/dalp-quick-guide/, 'Course guide should use compact quick links');
 console.log('PASS embedded course icons, shipped SVGs, navigation sizing, and icon-safe links');
+
+assert(!read('assets/scripts/modern.js').includes('SWITCH TRACK'),'Do not inject a redundant course-track navigation menu');
+assert(read('assets/scripts/modern.js').includes('instructor-access-panel'),'Preserve instructor access when eligible');

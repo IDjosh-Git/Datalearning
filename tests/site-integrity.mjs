@@ -59,7 +59,8 @@ for(const folder of ['assets/styles','assets/scripts','assets/icons','curriculum
 }
 assert.deepEqual(versioned,[],'Versioned production filenames remain');
 assert(fs.existsSync(path.join(ROOT,'assets/python-worker.js')),'Python challenge worker must exist');
-for(const script of ['python-lab.js','python-grader.js'])assert(fs.readFileSync(path.join(ROOT,'assets/scripts',script),'utf8').includes('assets/python-worker.js'),`Python worker not linked by ${script}`);
+assert(fs.readFileSync(path.join(ROOT,'assets/scripts/python-runtime-manager.js'),'utf8').includes('../python-worker.js'),'Shared Python manager must link worker');
+for(const script of ['python-lab.js','python-grader.js'])assert(fs.readFileSync(path.join(ROOT,'assets/scripts',script),'utf8').includes('DALP_PY_RUNTIME'),`Shared Python runtime not linked by ${script}`);
 assert(fs.existsSync(path.join(ROOT,'service-worker.js')),'Latest offline worker missing');
 assert(!fs.existsSync(path.join(ROOT,'service-worker-v23.js')),'Old service worker should be removed');
 assert(!fs.existsSync(path.join(ROOT,'docs/history')),'Historical release archive should be removed');
