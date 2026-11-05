@@ -2,7 +2,9 @@
 
 DataLearning is a multi-page learning platform for data analysis, Excel, SQL, Power BI, Python, and AI-assisted analytics. It includes six guided courses, a Practice Arena with runnable SQL/Excel/Python exercises, a Learning Lab, AI Tutor, progress tracking, capstones and private dashboards.
 
-**Current release:** 5 November 2026 — mobile responsiveness, shared theme and form styling, removal of unused source, and a shared Python runtime. See [the current release report](CLEANUP_AND_MOBILE_PERFORMANCE_20261105.md).
+**Current update:** Progress Reports filter only actual signed-in or engaged DataLearning users (see `PROGRESS_REPORT_ACTUAL_USERS_20261105.md`).
+
+**Previous release:** 5 November 2026 — mobile responsiveness, shared theme and form styling, removal of unused source, and a shared Python runtime. See [the current release report](CLEANUP_AND_MOBILE_PERFORMANCE_20261105.md).
 
 ## Local verification and deployment
 

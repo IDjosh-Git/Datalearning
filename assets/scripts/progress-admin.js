@@ -62,7 +62,7 @@
  }
  function render(){
    const body=el('progressBody');body.replaceChildren();el('progressCount').textContent=filtered.length+' course record'+(filtered.length===1?'':'s');
-   if(!filtered.length){body.innerHTML='<tr><td colspan="10" class="ip-empty">No learner progress matches these filters.</td></tr>';return}
+   if(!filtered.length){body.innerHTML='<tr><td colspan="10" class="ip-empty">No DataLearning users match these filters.</td></tr>';return}
    for(const r of filtered){
      const tr=document.createElement('tr'),st=rowStatus(r);
      const total=UNITS[r.course_slug]||10;
