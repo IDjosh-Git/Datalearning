@@ -28,5 +28,5 @@ for(const text of ['.dh-hero-grid','.dh-bento','.dh-goal.is-selected','.dalp-nav
 const L=(hex)=>[0,2,4].map(i=>parseInt(hex.slice(i,i+2),16)/255).map(x=>x<=.04045?x/12.92:((x+.055)/1.055)**2.4).reduce((acc,v,i)=>acc+v*[.2126,.7152,.0722][i],0);
 const ratio=(x,y)=>{const n=[L(x),L(y)].sort((a,b)=>a-b);return (n[1]+.05)/(n[0]+.05)};
 for(const [name,fg,bg] of [['body','142340','f5f7fb'],['hero','ffffff','142443'],['account button','ffffff','4932a5'],['primary goal CTA','ffffff','523bb5']])assert(ratio(fg,bg)>=4.5,`${name} must meet WCAG AA`);
-assert(read('service-worker.js').includes('dalp-public-premium-editorial-v38'),'New static UI must have new public cache revision');
+assert(read('service-worker.js').includes('dalp-public-catalog-menu-v39'),'New static UI must have new public cache revision');
 console.log('PASS Discover: distinct goals and destinations, unified premium navigation, protected learning features and 4 accessible contrast pairs');

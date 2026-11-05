@@ -24,7 +24,10 @@
  <nav aria-label="Courses by subject" class="dlp97-subject-nav"><span class="dlp97-nav-label">COURSES BY SUBJECT</span>${cardOrder.map(slug=>`<a href="${uri('courses/'+slug+'.html')}" ${course===slug?'aria-current="page"':''} class="${course===slug?'is-active':''}"><span class="dlp97-subject-icon">${navIcon(data[slug].icon)}</span><span><small>${e(data[slug].category)}</small><strong>${e(data[slug].name)}</strong></span></a>`).join('')}</nav>
  <div class="dlp97-side-bottom"><p id="dlp97-auth-label" aria-live="polite">Checking account status…</p><a id="dlp97-auth-link" href="${signin(location.href)}">Sign in to save progress</a><button type="button" id="dlp97-signout" hidden>Sign out</button></div></aside>`;
  const holder=document.createElement('div');holder.className='dlp97-navigation';holder.innerHTML=markup;
- document.body.prepend(holder);
+ // The global header is the sole navigation on the catalogue. Keep the detached
+ // holder for the existing auth/progress controller; attach course navigation only
+ // on routes that need a lesson sidebar.
+ if(!onCatalog)document.body.prepend(holder);
  const toggle=holder.querySelector('.dlp97-menu-toggle'),close=holder.querySelector('.dlp97-close'),backdrop=holder.querySelector('.dlp97-backdrop'),side=holder.querySelector('.dlp97-side');
  const isMobile=()=>matchMedia('(max-width:1100px)').matches;
  let previousFocus=null;
@@ -34,7 +37,7 @@
  side.addEventListener('click',ev=>{if(ev.target.closest('a')&&isMobile())setOpen(false);});
  document.addEventListener('keydown',ev=>{if(!document.body.classList.contains('dlp97-nav-open'))return;if(ev.key==='Escape'){ev.preventDefault();setOpen(false);return;}if(ev.key!=='Tab')return;const focusables=[...side.querySelectorAll('a[href],button:not([hidden]):not([disabled])')].filter(x=>x.getClientRects().length);if(!focusables.length)return;const first=focusables[0],last=focusables.at(-1);if(ev.shiftKey&&document.activeElement===first){ev.preventDefault();last.focus();}else if(!ev.shiftKey&&document.activeElement===last){ev.preventDefault();first.focus();}});
  matchMedia('(max-width:1100px)').addEventListener('change',()=>setOpen(false));
- if(!document.querySelector('a.dlp97-skip')){const skip=document.createElement('a');skip.href=onCatalog?'#main-content':course?'#dlp97-course-content':'#courses';skip.className='dlp97-skip';skip.textContent='Skip to learning content';document.body.prepend(skip);}
+ if(!onCatalog&&!document.querySelector('a.dlp97-skip')){const skip=document.createElement('a');skip.href=onCatalog?'#main-content':course?'#dlp97-course-content':'#courses';skip.className='dlp97-skip';skip.textContent='Skip to learning content';document.body.prepend(skip);}
 
  function state(slug){const c=data[slug];if(!user)return Object.fromEntries(c.units.map(u=>[u.number,false]));let saved={};try{saved=JSON.parse(localStorage.getItem(c.storageKey)||'{}')||{};}catch(_){ }return saved;}
  function doneCount(slug){return data[slug].units.reduce((n,u)=>n+(state(slug)[String(u.number)]===true?1:0),0);}

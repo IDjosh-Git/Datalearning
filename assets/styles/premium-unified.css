@@ -626,3 +626,157 @@ html[data-theme="light"] body :is(.card,.bo-panel,.ss-plan,.dlp97-card) :is(p,h2
  html[data-theme="light"] body #pythonCode{min-height:200px}
 }
 @media(prefers-reduced-motion:reduce){html[data-theme="light"] body :is(input,select,textarea){transition:none!important}}
+
+/* PREMIUM CATALOGUE + NAVIGATION · 2026-11-05
+   The catalogue is a standalone public page, not an old 248px-left-sidebar layout.
+   Restrict all changes to the public header and catalogue, preserving course players. */
+html[data-theme="light"] body.dlp97-catalog-page.dlp97-learning-page {
+  padding-left:0!important;
+  margin-left:0!important;
+  width:100%!important;
+  min-width:0!important;
+}
+html[data-theme="light"] body.dlp97-catalog-page .dlp97-navigation {display:none!important}
+html[data-theme="light"] body.dlp97-catalog-page main.dlp97-catalog-main {
+  box-sizing:border-box!important;
+  display:block;
+  width:100%!important;
+  max-width:1776px!important;
+  margin-inline:auto!important;
+  padding:clamp(20px,3vw,44px) clamp(17px,3.1vw,54px) 86px!important;
+}
+html[data-theme="light"] body.dlp97-catalog-page .dlp97-cards {
+  display:grid!important;
+  width:100%;min-width:0;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:clamp(16px,1.7vw,27px)!important;
+  align-items:stretch;
+}
+html[data-theme="light"] body.dlp97-catalog-page .dlp97-card {
+  min-width:0;overflow-wrap:break-word;
+  padding:clamp(19px,1.9vw,29px)!important;
+  transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
+}
+html[data-theme="light"] body.dlp97-catalog-page .dlp97-card:hover{transform:translateY(-3px)}
+html[data-theme="light"] body.dlp97-catalog-page .dlp97-card-bottom>a{min-width:134px}
+html[data-theme="light"] body.dlp97-catalog-page .dlp97-catalog-hero {
+  margin-bottom:clamp(18px,2.5vw,30px)!important;
+  padding:clamp(28px,4vw,64px)!important;
+}
+html[data-theme="light"] body.dlp97-catalog-page .dlp97-filters {
+  margin-bottom:clamp(17px,2vw,28px)!important;
+}
+html[data-theme="light"] body.dlp97-catalog-page .dlp97-search-row input#dlp97-search{min-width:0;flex:2 1 290px}
+
+/* Two premium Bento flyouts: clear labels, grounded course colours and generous tap targets. */
+@media(min-width:1201px){
+ html[data-theme="light"] body[data-public-refresh] .dalp-global-header .dalp-course-menu{
+   width:640px!important;max-width:calc(100vw - 34px)!important;
+ }
+ html[data-theme="light"] body[data-public-refresh] .dalp-global-header .dalp-tools-menu{
+   width:575px!important;max-width:calc(100vw - 34px)!important;
+   left:auto!important;right:-88px!important;transform:none!important;
+ }
+ html[data-theme="light"] body[data-public-refresh] .dalp-global-header .dalp-tools-menu::before{
+   left:auto!important;right:110px!important;
+ }
+ html[data-theme="light"] body[data-public-refresh] .dalp-menu-panel .dalp-menu-course-grid,
+ html[data-theme="light"] body[data-public-refresh] .dalp-menu-panel .dalp-tool-grid{
+   display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+   gap:10px!important;
+ }
+}
+html[data-theme="light"] body[data-public-refresh] .dalp-global-header .dalp-menu-panel{
+  padding:20px!important;border-radius:24px!important;
+  background:#fff!important;
+  border:1px solid #d9e1f0!important;
+  box-shadow:0 25px 72px rgba(16,30,64,.19),0 5px 20px rgba(16,30,64,.045)!important;
+}
+html[data-theme="light"] body[data-public-refresh] .dalp-global-header .dalp-panel-heading{
+  border:0!important;margin:0 0 13px!important;padding:2px 3px 14px!important;
+  display:grid;gap:4px;
+}
+html[data-theme="light"] body[data-public-refresh] .dalp-global-header .dalp-panel-kicker{
+  font-size:10px!important;letter-spacing:.13em!important;font-weight:850!important;color:#5240b6!important;
+}
+html[data-theme="light"] body[data-public-refresh] .dalp-global-header .dalp-panel-heading strong{
+  font-size:18px!important;line-height:1.35!important;color:#142642!important;-webkit-text-fill-color:#142642!important;
+}
+html[data-theme="light"] body[data-public-refresh] .dalp-global-header :is(.dalp-course-option,.dalp-tool-option){
+  box-sizing:border-box!important;display:grid!important;
+  grid-template-columns:44px minmax(0,1fr) auto!important;
+  align-items:center!important;gap:10px!important;
+  min-height:84px!important;min-width:0!important;
+  padding:13px!important;border-radius:16px!important;
+  border:1px solid #e2e8f2!important;
+  background:#f8faff!important;
+  box-shadow:0 1px 1px rgba(20,36,66,.03)!important;
+  text-decoration:none!important;white-space:normal!important;
+  transition:background .16s ease,border-color .16s ease,transform .16s ease,box-shadow .16s ease;
+}
+html[data-theme="light"] body[data-public-refresh] .dalp-global-header :is(.dalp-course-option,.dalp-tool-option):is(:hover,:focus-visible){
+  background:#f0edff!important;border-color:#a99ce9!important;
+  transform:translateY(-2px)!important;box-shadow:0 9px 22px rgba(50,38,115,.09)!important;
+}
+html[data-theme="light"] body[data-public-refresh] .dalp-global-header :is(.dalp-course-option,.dalp-tool-option) > span:nth-child(2){min-width:0!important}
+html[data-theme="light"] body[data-public-refresh] .dalp-global-header :is(.dalp-course-option,.dalp-tool-option) strong{
+  display:block!important;margin:0 0 3px!important;
+  font-size:13.5px!important;line-height:1.35!important;
+  font-weight:850!important;color:#182847!important;-webkit-text-fill-color:#182847!important;
+  overflow-wrap:break-word!important;
+}
+html[data-theme="light"] body[data-public-refresh] .dalp-global-header :is(.dalp-course-option,.dalp-tool-option) small{
+  display:block!important;margin:0!important;
+  color:#52647d!important;-webkit-text-fill-color:#52647d!important;
+  font-size:11.5px!important;line-height:1.45!important;
+}
+html[data-theme="light"] body[data-public-refresh] .dalp-global-header :is(.dalp-course-number,.dalp-tool-dot){
+  width:43px!important;height:43px!important;min-width:43px!important;
+  border-radius:13px!important;display:grid!important;place-items:center!important;
+  background:#eae6ff!important;color:#4530a1!important;-webkit-text-fill-color:#4530a1!important;
+}
+html[data-theme="light"] body[data-public-refresh] .dalp-global-header .dalp-course-excel .dalp-course-number{background:#d9f5e6!important;color:#087446!important;-webkit-text-fill-color:#087446!important}
+html[data-theme="light"] body[data-public-refresh] .dalp-global-header .dalp-course-sql .dalp-course-number{background:#dceffb!important;color:#08648c!important;-webkit-text-fill-color:#08648c!important}
+html[data-theme="light"] body[data-public-refresh] .dalp-global-header .dalp-course-powerbi .dalp-course-number{background:#fff0c5!important;color:#805309!important;-webkit-text-fill-color:#805309!important}
+html[data-theme="light"] body[data-public-refresh] .dalp-global-header .dalp-course-python .dalp-course-number{background:#deebff!important;color:#2b5299!important;-webkit-text-fill-color:#2b5299!important}
+html[data-theme="light"] body[data-public-refresh] .dalp-global-header .dalp-course-ai .dalp-course-number{background:#f9dff4!important;color:#892f74!important;-webkit-text-fill-color:#892f74!important}
+html[data-theme="light"] body[data-public-refresh] .dalp-global-header :is(.dalp-option-arrow,.dalp-tool-option>span:last-child){
+  color:#6d7c98!important;-webkit-text-fill-color:#6d7c98!important;font-size:17px!important;
+}
+html[data-theme="light"] body[data-public-refresh] .dalp-global-header .dalp-menu-all{
+  display:flex!important;align-items:center!important;justify-content:space-between!important;
+  gap:15px!important;min-height:48px!important;
+  margin-top:13px!important;padding:12px 15px!important;
+  border-radius:13px!important;background:#201d4e!important;border:1px solid #201d4e!important;
+  color:#fff!important;-webkit-text-fill-color:#fff!important;font-size:12.5px!important;font-weight:800!important;
+}
+html[data-theme="light"] body[data-public-refresh] .dalp-global-header .dalp-menu-all:hover{background:#342a76!important;border-color:#342a76!important}
+@media(max-width:1240px) and (min-width:921px){
+ html[data-theme="light"] body.dlp97-catalog-page .dlp97-cards{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:920px){
+ html[data-theme="light"] body.dlp97-catalog-page .dlp97-cards{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ html[data-theme="light"] body[data-public-refresh] .dalp-global-header .dalp-menu-panel{padding:12px!important;box-shadow:none!important}
+ html[data-theme="light"] body[data-public-refresh] .dalp-menu-panel .dalp-tool-grid{grid-template-columns:1fr!important}
+}
+@media(max-width:680px){
+ html[data-theme="light"] body.dlp97-catalog-page main.dlp97-catalog-main{padding-inline:14px!important;padding-top:18px!important}
+ html[data-theme="light"] body.dlp97-catalog-page .dlp97-cards{grid-template-columns:minmax(0,1fr)!important;gap:16px!important}
+ html[data-theme="light"] body.dlp97-catalog-page .dlp97-card{padding:20px!important}
+ html[data-theme="light"] body.dlp97-catalog-page .dlp97-catalog-hero{padding:27px 22px!important;border-radius:22px!important}
+ html[data-theme="light"] body[data-public-refresh] .dalp-global-header :is(.dalp-course-option,.dalp-tool-option){min-height:69px!important;padding:9px!important;grid-template-columns:40px minmax(0,1fr) auto!important}
+ html[data-theme="light"] body[data-public-refresh] .dalp-global-header :is(.dalp-course-number,.dalp-tool-dot){width:40px!important;height:40px!important;min-width:40px!important}
+ html[data-theme="light"] body[data-public-refresh] .dalp-global-header .dalp-menu-panel{border-radius:14px!important;padding:9px!important}
+ html[data-theme="light"] body[data-public-refresh] .dalp-menu-panel .dalp-menu-course-grid{grid-template-columns:1fr!important}
+}
+@media(prefers-reduced-motion:reduce){
+ html[data-theme="light"] body[data-public-refresh] .dalp-global-header :is(.dalp-course-option,.dalp-tool-option){transition:none!important;transform:none!important}
+}
+/* The catalogue CTA inside the Courses menu uses the same readable dark treatment. */
+html[data-theme="light"] body[data-public-refresh] .dalp-global-header .dalp-global-nav .dalp-menu-panel a.dalp-menu-all{
+ background:#292064!important;background-color:#292064!important;background-image:none!important;
+ color:#fff!important;-webkit-text-fill-color:#fff!important;border-color:#292064!important;
+}
+html[data-theme="light"] body[data-public-refresh] .dalp-global-header .dalp-global-nav .dalp-menu-panel a.dalp-menu-all:is(:hover,:focus-visible){
+ background:#453396!important;background-color:#453396!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
+}

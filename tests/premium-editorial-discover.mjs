@@ -17,5 +17,5 @@ for(const x of ['.dlp-journey-grid','.dlp-session-grid','.dlp-outcome-grid','.dl
 const luminance=hex=>{const c=[0,2,4].map(i=>parseInt(hex.slice(i,i+2),16)/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4);return c[0]*.2126+c[1]*.7152+c[2]*.0722;};
 const contrast=(f,b)=>{const vals=[luminance(f),luminance(b)].sort((a,b)=>b-a);return (vals[0]+.05)/(vals[1]+.05);};
 for(const [label,fg,bg] of [['header purple','392a8d','ece8fb'],['nav button','ffffff','4933a5'],['dark panel','dbe3f0','172742'],['body','182944','f6f8fc']])assert(contrast(fg,bg)>=4.5,`${label} contrast below WCAG AA`);
-assert(read('service-worker.js').includes('dalp-public-premium-editorial-v38'),'Offline cache must change for this release');
+assert(read('service-worker.js').includes('dalp-public-catalog-menu-v39'),'Offline cache must change for this release');
 console.log('PASS premium editorial discovery: no duplicate navigation, six catalog courses, learning guide, font, AA colour pairs and refreshed cache');

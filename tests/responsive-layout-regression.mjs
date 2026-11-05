@@ -28,5 +28,5 @@ assert(overview.includes('class="bo-primary"') && overview.includes('background:
 assert(account.includes('id="dashContinueLink"'), 'Resume-learning action must remain present');
 assert(practice.includes('id="practiceDetail"'), 'Practice editor mounting point must remain present');
 assert(practice.includes('assets/scripts/practice.js') && practice.includes('assets/scripts/arena-workspace-visibility.js'), 'Practice editor runtime was disconnected');
-assert(serviceWorker.includes('dalp-public-premium-editorial-v38'), 'Fresh responsive CSS needs a new offline cache key');
+assert(serviceWorker.includes('dalp-public-catalog-menu-v39'), 'Fresh responsive CSS needs a new offline cache key');
 console.log('PASS responsive layout regressions: catalogue search, overview contrast, account CTAs, arena editor and cache version');

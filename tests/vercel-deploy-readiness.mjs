@@ -22,7 +22,7 @@ const mid=read('middleware.js');
 assert(mid.includes('@vercel/functions')&&mid.includes('matcher:'),'Admin middleware must be registered');
 assert(mid.includes("'/admin.html'")&&mid.includes("'/reviewer.html'"),'Protect private routes');
 assert(read('api/auth/session.js').includes("'Set-Cookie'"),'Session endpoint must remain in the deployment');
-assert(read('service-worker.js').includes('dalp-public-premium-editorial-v38'),'Release cache should refresh for returning visitors');
+assert(read('service-worker.js').includes('dalp-public-catalog-menu-v39'),'Release cache should refresh for returning visitors');
 const expected=['TUTOR_PROVIDER','GROQ_API_KEY','GROQ_MODEL','OPENAI_API_KEY'];
 assert(expected.every(k=>read('.env.example').includes(k)),'Document the provider setup for deployment');
 console.log('PASS Vercel readiness: explicit build verification, Node 24 pin, static root, rewrites, API functions, middleware and cache headers.');
