@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html class="light" data-theme="light" lang="en">
+<head><link crossorigin="anonymous" href="https://cdn.jsdelivr.net" rel="preconnect"/>
+<script>document.documentElement.classList.add('dalp-auth-checking')</script>
+<link href="assets/styles/access-guard.css" rel="stylesheet"/>
+<script defer="" src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0"></script>
+<script defer="" src="assets/scripts/supabase-config.js"></script>
+<script defer="" src="assets/scripts/supabase-client.js"></script><script defer="" src="assets/scripts/server-session.js"></script>
+<script defer="" src="assets/scripts/auth-gate.js"></script>
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Progress Check | Data Analysis Learning Path</title>
+<link href="assets/icons/favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="assets/icons/favicon-32.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="assets/icons/favicon-180.png" rel="apple-touch-icon" sizes="180x180"/>
+<link href="assets/styles/sync-test-layout.css" rel="stylesheet"/>
+<link href="assets/styles/design-system.css" rel="stylesheet"/>
+<link href="assets/styles/private-workspace.css" rel="stylesheet"/><link href="assets/styles/private-shell-modern.css" rel="stylesheet"/><link rel="stylesheet" href="assets/styles/premium-unified.css"></head>
+<body class="dalp-utility-page" data-admin-console="sync" data-private-workspace="true" data-responsive-page="sync-test">
+<main id="main-content"><div class="card">
+<h1>Check saved learning progress</h1>
+<p>See whether your Excel, SQL and Power BI learning progress is up to date. If anything needs attention, you can try saving again.</p>
+<div class="row wait" id="user">Checking learner account…</div>
+<div class="row wait" id="excel">Excel: waiting…</div>
+<div class="row wait" id="sql">SQL: waiting…</div>
+<div class="row wait" id="powerbi">Power BI: waiting…</div>
+<button id="retry">Update My Progress</button>
+<a href="account.html">My Account</a>
+<a href="index.html">Learning Portal</a>
+</div>
+</main>
+<script defer="" src="assets/scripts/progress-cloud.js"></script>
+<script>
+async function run(){
+ const userEl=document.getElementById('user');
+ const user=await window.ZAHProgressCloud.getUser();
+ if(!user){
+   userEl.className='row bad';userEl.textContent='Not signed in. Sign in first.';
+   return;
+ }
+ userEl.className='row ok';userEl.textContent='Signed in as: '+user.email;
+ const result=await window.ZAHProgressCloud.syncAll();
+ for(const slug of ['excel','sql','powerbi']){
+   const el=document.getElementById(slug),r=result.courses[slug];
+   if(r?.ok){
+     el.className='row ok';
+     el.textContent=`${slug.toUpperCase()}: ${r.completed}/10 weeks • ${r.percent}% • saved ${new Date(r.lastSync).toLocaleString()}`;
+   }else{
+     el.className='row bad';
+     el.textContent=`${slug.toUpperCase()}: we couldn’t update your progress. Please try again.`;
+   }
+ }
+}
+document.getElementById('retry').onclick=run;
+document.addEventListener('DOMContentLoaded',run,{once:true});
+</script>
+<script defer="" src="assets/scripts/course-studio-data.js"></script>
+<script defer="" src="assets/scripts/accessibility.js"></script>
+<script defer="" src="assets/scripts/private-navigation.js"></script><script defer src="assets/scripts/premium-search.js"></script></body></html>

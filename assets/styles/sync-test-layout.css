@@ -1,0 +1,11 @@
+/* Authenticated sync diagnostic: compact and responsive light surfaces. */
+body[data-responsive-page="sync-test"] main{width:min(calc(100% - 32px),820px);margin:clamp(22px,5vw,58px) auto 60px;padding:0}
+body[data-responsive-page="sync-test"] main .card{background:#ffffff!important;color:var(--ui-ink)!important;border:1px solid #d4deea!important;border-top:4px solid var(--ui-primary)!important;border-radius:14px!important;padding:clamp(22px,4vw,38px)!important;box-shadow:0 8px 25px var(--ui-ink)0d!important;max-width:100%}
+body[data-responsive-page="sync-test"] main h1{color:var(--ui-ink)!important;font-size:clamp(26px,3.4vw,38px);line-height:1.18;margin:0 0 14px}
+body[data-responsive-page="sync-test"] main p{color:#50627a!important;font-size:15px;line-height:1.65;margin:0 0 18px}
+body[data-responsive-page="sync-test"] main .row{display:block;padding:12px 15px;margin:10px 0;border:1px solid #cbd8e8;border-radius:10px;background:#edf2fa;color:var(--ui-nav-ink);overflow-wrap:anywhere;line-height:1.5}
+body[data-responsive-page="sync-test"] main .row.ok{background:#eaf3ed;color:#176443;border-color:#b9d6c4}
+body[data-responsive-page="sync-test"] main .row.bad{background:#fff0ef;color:#9a293a;border-color:#e8c1c7}
+body[data-responsive-page="sync-test"] main button{display:inline-flex;align-items:center;justify-content:center;min-height:44px;border:1px solid var(--ui-primary);border-radius:10px;padding:10px 17px;background:var(--ui-primary)!important;color:#ffffff!important;font:750 14px/1.4 "DM Sans",system-ui,sans-serif;cursor:pointer;margin:14px 16px 12px 0}
+body[data-responsive-page="sync-test"] main a[href]{display:inline!important;margin-right:18px;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important;color:var(--ui-primary-hover)!important;-webkit-text-fill-color:var(--ui-primary-hover)!important;text-decoration:underline!important;text-underline-offset:4px;font-weight:750}
+@media(max-width:480px){body[data-responsive-page="sync-test"] main{width:calc(100% - 24px);margin:20px auto 40px}body[data-responsive-page="sync-test"] main a[href]{display:inline-block!important;margin:8px 16px 8px 0}}

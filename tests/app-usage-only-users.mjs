@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+const read=file=>fs.readFileSync(file,'utf8');
+const sql=read('database/migrations/app_usage_only_users.sql');
+for(const pattern of [/datalearning_app_users/,/user_id uuid PRIMARY KEY/,/ENABLE ROW LEVEL SECURITY/,/SECURITY INVOKER/,/auth.uid\(\)/,/p_event NOT IN/,/is_anonymous/,/GRANT EXECUTE ON FUNCTION public.record_datalearning_use/,/COUNT\(\*\)/i,/GROUP BY e.user_id/i,/total >= 5/,/users_30d/]) assert.match(sql,pattern);
+assert.doesNotMatch(sql,/INSERT INTO public.datalearning_app_users.*SELECT.*auth.users/si);
+const client=read('assets/scripts/supabase-client.js');
+for(const term of ['getUser()','record_datalearning_use','registerActualVisit','verified.user.id',"event === 'use'"]) assert(client.includes(term));
+assert(read('assets/scripts/auth-flow.js').includes("record('sign_in')"));
+const admin=read('assets/scripts/admin-dashboard.js');
+for(const term of ["fetchAll('datalearning_app_users'",'realParticipants','p.filter(person=>realParticipants.has(person.user_id))','First app use']) assert(admin.includes(term));
+assert(!admin.includes('profiles=p;progress=c'),'Admin roster must not equate Auth profiles with app users');
+const overview=read('assets/scripts/learning-overview.js');
+assert(overview.includes("rpc('public_datalearning_user_summary')"));
+assert(!overview.includes("boTrackedLearners').textContent=new Intl.NumberFormat().format(count)"));
+assert(read('overview.html').includes('Verified app learners'));
+console.log('PASS actual DataLearning use only: verified sign-in, RLS identity, unique count, no signup-only roster, privacy limits');

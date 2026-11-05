@@ -1,0 +1,136 @@
+
+:root{
+  --zah-navy:var(--ui-nav-ink);
+  --zah-navy-dark:#18313f;
+  --zah-navy-deep:#102832;
+  --zah-orange:var(--ui-coral);
+  --zah-offwhite:#F2F2F2;
+  --zah-soft-blue:#e7eef2;
+  --zah-soft-orange:#fff0e7;
+  --zah-text:#1c2830;
+  --zah-muted:#667681;
+}
+
+/* Normalize course-theme variables to Data Analysis Learning Path branding */
+:root{
+  /* Course-specific visual branding remains navy/orange; semantic UI comes from v86. */
+  --bg:var(--background);--surface-soft:var(--surface-alt);
+  --surface-warm:var(--warning-soft);--text:var(--text-main);
+  --muted:var(--text-muted);--brand:var(--primary);
+  --brand-dark:var(--primary-hover);--brand-light:var(--primary-soft);
+  --border:var(--border-subtle);
+  --green:var(--track-excel);--gold:var(--track-powerbi);
+  --blue:var(--track-sql);
+}
+
+body{background:var(--zah-offwhite) !important;color:var(--zah-text)}
+.sidebar{
+  background:linear-gradient(180deg,var(--zah-navy-deep),var(--zah-navy) 62%,var(--zah-navy-dark)) !important;
+}
+.hero{
+  background:
+    radial-gradient(circle at 82% 16%,rgba(255,255,255,.14),transparent 25%),
+    radial-gradient(circle at 92% 85%,rgba(242,115,41,.22),transparent 25%),
+    linear-gradient(135deg,var(--zah-navy-dark),var(--zah-navy) 68%,#37657d) !important;
+  box-shadow:0 24px 60px rgba(37,69,89,.18) !important;
+}
+.project{
+  background:linear-gradient(135deg,var(--zah-navy-dark),var(--zah-navy)) !important;
+}
+.fill{background:var(--primary) !important}
+.btn.primary,.week-num{background:var(--zah-navy) !important;border-color:var(--zah-navy) !important}
+.badge{background:var(--zah-soft-orange) !important;color:#a84913 !important}
+.icon,.score{background:var(--zah-soft-blue) !important;color:var(--zah-navy) !important}
+.complete-label{color:var(--zah-navy) !important}
+.complete-label input{accent-color:var(--primary) !important}
+
+.toast{background:var(--zah-navy) !important}
+.capstone{
+  background:linear-gradient(135deg,#fffaf7,var(--zah-soft-orange)) !important;
+  border-color:#f4c9ad !important;
+}
+.mini.tip{background:#fff8f3 !important;border-color:#f4c9ad !important}
+.formula,.kbd{
+  background:#eef3f5 !important;
+  color:var(--zah-navy) !important;
+  border-color:#d9e3e7 !important;
+}
+.answer-note{background:#f4f7f8 !important}
+.topbar{background:rgba(242,242,242,.94) !important}
+
+/* Actual Data Analysis Learning Path logo */
+
+
+.course-brand{
+  align-items:center !important;
+  gap:12px !important;
+}
+.course-brand h1{color:#fff !important}
+.course-brand p{color:#d7e4ea !important}
+
+
+
+.mark{display:none !important}
+
+
+
+
+
+#zah-sync-badge{background:var(--zah-navy) !important}
+
+
+
+
+
+
+
+
+
+/* Refined company logo presentation: background removed from logo file, tighter spacing, company name shown beside logo. */
+.course-brand-shell{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+
+
+
+
+
+
+
+.brand-company-name{
+  display:flex;
+  flex-direction:column;
+  line-height:1.05;
+}
+.brand-company-name strong{
+  color:var(--ui-nav-ink);
+  font-size:16px;
+  letter-spacing:.02em;
+}
+.brand-company-name span{
+  color:var(--ui-coral);
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.course-brand .brand-company-name strong{color:#ffffff}
+.course-brand .brand-company-name span{color:#ffd5bf}
+.course-brand{gap:10px !important}
+
+
+
+
+
+@media(max-width:680px){
+  .course-brand-shell{gap:8px}
+  
+  
+  
+  
+  .brand-company-name strong{font-size:14px}
+  .brand-company-name span{font-size:10px}
+}

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Microsoft Power BI product icon">
+<title>Microsoft Power BI</title><defs>
+<linearGradient id="pbi-tall" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#F9C900"/><stop offset=".65" stop-color="#ED9C04"/><stop offset="1" stop-color="#B96000"/></linearGradient>
+<linearGradient id="pbi-medium" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#FFE787"/><stop offset="1" stop-color="#EBA900"/></linearGradient>
+<linearGradient id="pbi-short" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#FFF196"/><stop offset="1" stop-color="#F1C627"/></linearGradient>
+</defs>
+<rect x="34" y="3" width="25" height="58" rx="5.2" fill="url(#pbi-tall)"/>
+<rect x="20" y="17" width="25" height="44" rx="5.2" fill="url(#pbi-medium)"/>
+<rect x="6" y="31" width="25" height="30" rx="5.2" fill="url(#pbi-short)"/>
+</svg>

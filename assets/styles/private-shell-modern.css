@@ -1,0 +1,191 @@
+/* DATALEARNING — PRIVATE SHELL, NOVEMBER 2026
+ * Shared by ALL 7 protected pages: learner dashboard, admin overview,
+ * progress reports, review desk, certificates, connection and sync checks.
+ * Replaces conflicting navigation colours from old private/admin overrides.
+ * Authentication, permissions and data handling remain in their original JS.
+ */
+html[data-theme] body[data-private-workspace="true"].ac-ready{
+ --ac-deep:#192342;--ac-nav-text:#f5f7ff;--ac-nav-muted:#c5d0e7;
+ --ac-nav-border:#354263;--ac-nav-accent:#b7a8ff;
+ --ac-canvas:#f5f7fc;--ac-panel:#fff;--ac-panel-raised:#f7f8fc;
+ --ac-text:#1b2946;--ac-muted:#52637b;--ac-stroke:#dee5f0;
+ --ac-focus:#9b83fc;
+ background:#f5f7fc!important;color:#1b2946;
+}
+html[data-theme] body.ac-ready .ac-shell{display:grid;grid-template-columns:274px minmax(0,1fr)!important;min-height:100dvh;max-width:100%}
+html[data-theme] body.ac-ready .ac-sidebar{
+ display:flex!important;flex-direction:column!important;gap:0;position:sticky;top:0;
+ width:100%;min-width:0;max-height:100dvh;height:100dvh!important;
+ padding:20px 15px max(13px,env(safe-area-inset-bottom))!important;
+ overflow:hidden!important;z-index:120;
+ color:#f5f7ff!important;background:#192342!important;background-image:none!important;
+ border-right:1px solid #354263!important;
+ box-shadow:none!important;
+}
+html[data-theme] body.ac-ready .ac-brand{
+ display:flex;align-items:center;gap:12px;margin:0 2px 14px!important;
+ padding:4px 8px 19px!important;border-bottom:1px solid #354263!important;
+ text-decoration:none!important;background:transparent!important;min-width:0;
+}
+html[data-theme] body.ac-ready .ac-brand img{
+ width:43px;height:43px;object-fit:contain;background:#fff!important;
+ border:1px solid #65728a;border-radius:13px;padding:5px;box-shadow:none!important;
+}
+html[data-theme] body.ac-ready .ac-brand strong{
+ font:850 16px/1.22 'Plus Jakarta Sans','DM Sans',system-ui,sans-serif!important;
+ color:#fff!important;-webkit-text-fill-color:#fff!important;
+ letter-spacing:-.035em;white-space:nowrap;
+}
+html[data-theme] body.ac-ready .ac-brand small{
+ display:block;margin:5px 0 0;font-size:9.5px!important;font-weight:850;letter-spacing:.11em!important;
+ color:#cfc6ff!important;-webkit-text-fill-color:#cfc6ff!important;
+}
+html[data-theme] body.ac-ready .ac-side-nav{
+ flex:1 1 auto!important;min-height:0!important;overflow-y:auto!important;
+ overflow-x:hidden!important;scrollbar-width:thin;scrollbar-color:#7986b0 transparent;
+ overscroll-behavior:contain;padding:1px 3px 15px!important;
+}
+html[data-theme] body.ac-ready .ac-nav-group{min-width:0;margin-bottom:12px}
+html[data-theme] body.ac-ready .ac-side-label{
+ margin:19px 10px 10px!important;font-size:10px!important;font-weight:850!important;
+ line-height:1.5;letter-spacing:.13em!important;color:#c6d0e9!important;
+ -webkit-text-fill-color:#c6d0e9!important;
+}
+html[data-theme] body.ac-ready .ac-side-link,
+html[data-theme] body.ac-ready .ac-side-nav a.ac-side-link{
+ display:flex;align-items:center;gap:11px;min-height:48px!important;
+ margin:3px 0!important;padding:8px 11px!important;border-radius:13px!important;
+ border:1px solid transparent!important;border-left:1px solid transparent!important;
+ background:transparent!important;background-image:none!important;
+ color:#e8effe!important;-webkit-text-fill-color:#e8effe!important;
+ font-size:12.5px!important;font-weight:650;line-height:1.4;text-decoration:none!important;
+ box-shadow:none!important;transform:none!important;
+}
+html[data-theme] body.ac-ready .ac-side-nav a.ac-side-link:hover{
+ background:#2c385f!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
+ border-color:#4b5983!important;text-decoration:none!important;
+}
+html[data-theme] body.ac-ready .ac-side-nav a.ac-side-link.ac-selected,
+html[data-theme] body.ac-ready .ac-side-nav a.ac-side-link[aria-current="page"]{
+ background:#493f8a!important;background-image:none!important;
+ border-color:#8576d0!important;border-left:3px solid #d0c3ff!important;
+ color:#fff!important;-webkit-text-fill-color:#fff!important;
+ font-weight:800!important;text-decoration:none!important;
+ box-shadow:0 4px 14px #080e2a21!important;
+}
+html[data-theme] body.ac-ready .ac-side-icon{
+ width:33px!important;height:33px;flex:none;display:grid;place-items:center;
+ border-radius:10px;background:#354365!important;color:#d7ddff!important;
+}
+html[data-theme] body.ac-ready .ac-side-icon svg{
+ display:block;width:18px;height:18px;stroke:currentColor;stroke-width:1.8;
+ fill:none;stroke-linecap:round;stroke-linejoin:round;
+}
+html[data-theme] body.ac-ready .ac-side-link:is(.ac-selected,[aria-current="page"]) .ac-side-icon{background:#7263bc!important;color:#fff!important}
+html[data-theme] body.ac-ready .ac-side-arrow{margin-left:auto;color:#b5c5e3!important;font-size:18px;font-weight:600}
+html[data-theme] body.ac-ready .ac-side-link.ac-selected .ac-side-arrow{color:#fff!important}
+html[data-theme] body.ac-ready .ac-side-bottom{
+ margin-top:8px!important;flex:0 0 auto!important;position:relative!important;
+ padding:13px 2px 0!important;border-top:1px solid #46516f!important;
+ background:transparent!important;
+}
+html[data-theme] body.ac-ready .ac-side-account{
+ display:flex;align-items:center;gap:10px;min-width:0;
+ border-radius:12px!important;padding:9px!important;background:#273456!important;
+}
+html[data-theme] body.ac-ready .ac-side-account :is(strong,small){white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+html[data-theme] body.ac-ready .ac-side-account strong{color:#fff!important;-webkit-text-fill-color:#fff!important;font-size:12px!important}
+html[data-theme] body.ac-ready .ac-side-account small{color:#c2cee9!important;-webkit-text-fill-color:#c2cee9!important;font-size:10px!important}
+html[data-theme] body.ac-ready .ac-avatar{
+ width:36px;height:36px;flex:none;display:grid;place-items:center;
+ background:#6556bb!important;color:#fff!important;border:1px solid #8d83dc!important;
+ border-radius:11px!important;font-weight:850;font-size:15px;
+}
+html[data-theme] body.ac-ready .ac-logout{
+ display:flex;align-items:center;justify-content:center;gap:9px;
+ margin:10px 0 0!important;width:100%!important;min-height:44px!important;
+ padding:10px 12px!important;border-radius:11px!important;
+ border:1px solid #6e7897!important;background:#303d63!important;background-image:none!important;
+ color:#fff!important;-webkit-text-fill-color:#fff!important;
+ font:800 12px 'DM Sans',system-ui,sans-serif!important;text-align:center!important;
+ box-shadow:none!important;cursor:pointer;
+}
+html[data-theme] body.ac-ready .ac-logout:hover{background:#45527e!important;border-color:#c3c9e1!important}
+html[data-theme] body.ac-ready .ac-main-frame{width:100%;min-width:0;background:#f5f7fc!important}
+html[data-theme] body.ac-ready .ac-topbar{
+ display:flex;align-items:center;justify-content:space-between;gap:14px;
+ min-height:70px!important;padding:10px clamp(17px,2.9vw,39px)!important;
+ background:#fff!important;background-image:none!important;border-bottom:1px solid #dee5ef!important;
+ color:#1e2d48!important;position:sticky;top:0;z-index:100;
+ box-shadow:0 3px 12px #24385108!important;
+}
+html[data-theme] body.ac-ready .ac-breadcrumb{display:flex;align-items:center;gap:10px;min-width:0;color:#67758c!important;font-size:12px!important;line-height:1.4}
+html[data-theme] body.ac-ready .ac-breadcrumb-prefix{color:#69788e!important;font-weight:650!important}
+html[data-theme] body.ac-ready .ac-breadcrumb strong{color:#1b2946!important;-webkit-text-fill-color:#1b2946!important;font-size:13px;font-weight:850;white-space:nowrap}
+html[data-theme] body.ac-ready .ac-topbar-mark{display:grid;place-items:center;flex:none;width:34px;height:34px;border-radius:11px;background:#eeeaff!important;color:#5f49c9!important;font-size:18px}
+html[data-theme] body.ac-ready .ac-top-actions{display:flex;align-items:center;gap:14px;min-width:0;margin-left:auto}
+html[data-theme] body.ac-ready .ac-secure{display:inline-flex;align-items:center;gap:8px;color:#4d617d!important;font-size:11px;font-weight:750;white-space:nowrap}
+html[data-theme] body.ac-ready .ac-secure-dot{width:8px;height:8px;flex:none;border-radius:50%;background:#18a078;box-shadow:0 0 0 3px #d8f4e9}
+html[data-theme] body.ac-ready a.ac-topbar-link{
+ display:inline-flex;align-items:center;gap:8px;min-height:39px;padding:9px 15px!important;
+ background:#f0edff!important;border:1px solid #d8d0ff!important;
+ color:#4b389e!important;-webkit-text-fill-color:#4b389e!important;
+ border-radius:11px!important;text-decoration:none!important;font-size:12px;font-weight:850;
+ box-shadow:none!important;
+}
+html[data-theme] body.ac-ready a.ac-topbar-link:hover{background:#e8e2ff!important;border-color:#aaa0f0!important}
+html[data-theme] body.ac-ready .ac-page-area{
+ min-width:0;width:100%;max-width:1770px;margin:0 auto;
+ padding:0 clamp(16px,2.8vw,38px) 45px;overflow-x:clip;
+ background:transparent!important;
+}
+html[data-theme] body.ac-ready .ac-drawer-close{display:none}
+html[data-theme] body.ac-ready .ac-utilities-details{margin:16px 0 0;padding-top:13px;border-top:1px solid #445170!important}
+html[data-theme] body.ac-ready .ac-utilities-details summary{
+ color:#d5dff4!important;-webkit-text-fill-color:#d5dff4!important;
+ border-radius:10px;min-height:43px;padding:12px;font-size:12px;font-weight:800;
+}
+html[data-theme] body.ac-ready .ac-utilities-details summary:hover{background:#2e3b62;color:#fff!important}
+html[data-theme] body.ac-ready :is(.ac-side-link,.ac-logout,.ac-mobile-menu,.ac-drawer-close,.ac-topbar-link):focus-visible{
+ outline:3px solid #c1adff!important;outline-offset:2px!important;
+}
+html[data-theme] body.ac-ready [data-admin-only][hidden]{display:none!important}
+html[data-theme] body.ac-ready .ac-side-nav :is(.ac-side-link,.ac-utilities-details summary){touch-action:manipulation}
+/* Shared compact header and accessible off-canvas navigation on smaller viewports. */
+@media(max-width:1024px){
+ html[data-theme] body.ac-ready .ac-shell{display:block!important;grid-template-columns:minmax(0,1fr)!important}
+ html[data-theme] body.ac-ready .ac-sidebar{
+  position:fixed!important;top:0;bottom:0;left:0;width:min(336px,calc(100vw - 32px))!important;
+  height:100dvh!important;max-height:100dvh!important;
+  transform:translateX(-105%);transition:transform .2s ease;z-index:113!important;
+  box-shadow:18px 0 42px #10193639!important;
+ }
+ html[data-theme] body.ac-ready.ac-menu-open .ac-sidebar{transform:translateX(0)}
+ html[data-theme] body.ac-ready.ac-menu-open .ac-nav-overlay{
+  display:block;position:fixed;inset:0;background:#0b1635b8;z-index:112;
+ }
+ html[data-theme] body.ac-ready.ac-menu-open{overflow:hidden!important}
+ html[data-theme] body.ac-ready .ac-mobile-menu{
+  display:flex!important;align-items:center;justify-content:center;flex:none;
+  width:44px;height:44px;border:1px solid #d6ddeb!important;border-radius:12px!important;
+  background:#f6f7fc!important;color:#243457!important;font-size:21px;
+ }
+ html[data-theme] body.ac-ready .ac-drawer-close{
+  display:flex!important;align-items:center;justify-content:center;flex:none;
+  width:42px;height:42px;margin:0 6px 8px auto!important;
+  border-radius:11px!important;border:1px solid #6b7696!important;
+  background:#334266!important;color:#fff!important;font-size:17px;
+ }
+ html[data-theme] body.ac-ready .ac-topbar{min-height:66px!important;padding-inline:clamp(12px,3vw,26px)!important}
+ html[data-theme] body.ac-ready .ac-page-area{padding-inline:clamp(13px,3vw,26px)}
+}
+@media(max-width:700px){
+ html[data-theme] body.ac-ready .ac-breadcrumb-prefix{display:none!important}
+ html[data-theme] body.ac-ready .ac-top-actions .ac-secure{display:none!important}
+ html[data-theme] body.ac-ready .ac-topbar-link{display:none!important}
+ html[data-theme] body.ac-ready .ac-page-area{padding-inline:13px}
+}
+@media(max-width:360px){html[data-theme] body.ac-ready .ac-sidebar{width:calc(100vw - 22px)!important}html[data-theme] body.ac-ready .ac-breadcrumb{gap:7px!important}}
+@media(max-height:530px){html[data-theme] body.ac-ready .ac-brand{padding-bottom:9px!important;margin-bottom:7px!important}html[data-theme] body.ac-ready .ac-side-bottom{padding-top:7px!important}}
+@media(prefers-reduced-motion:reduce){html[data-theme] body.ac-ready .ac-sidebar,html[data-theme] body.ac-ready .ac-side-link,html[data-theme] body.ac-ready .ac-topbar-link{transition:none!important;animation:none!important}}
+@media(forced-colors:active){html[data-theme] body.ac-ready :is(a,button,input,select,summary):focus-visible{outline:3px solid Highlight!important}}

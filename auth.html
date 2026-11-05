@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+
+<html lang="en" data-theme="light" class="light">
+<head><link crossorigin="anonymous" href="https://cdn.jsdelivr.net" rel="preconnect"/>
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1.0" name="viewport"/><meta content="#192537" name="theme-color"/>
+<title>Sign in or create account | Data Analysis Learning Path</title>
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml"/>
+<link rel="icon" href="assets/icons/favicon-32.png" type="image/png" sizes="32x32"/>
+<link rel="apple-touch-icon" href="assets/icons/favicon-180.png" sizes="180x180"/>
+<meta content="Sign in or create a learner account to access your data analysis courses, practice projects, tutor, and saved progress." name="description"/>
+
+
+<link rel="stylesheet" href="assets/styles/auth.css" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="assets/styles/design-system.css" />
+<link rel="stylesheet" href="assets/styles/premium-unified.css"></head>
+<body class="auth-page" data-auth-mode="login" data-responsive-page="auth" data-dalp-header-tone="ink-slate"><a class="dalp-skip-link" href="#main-content">Skip to main content</a>
+<div class="auth-shell">
+<header class="auth-topbar">
+<div class="auth-wordmark"><img class="dalp-inline-logo" src="assets/icons/da-logo.svg" width="32" height="32" alt="Data Analysis Learning Path logo"/><span><strong>Data Analysis Learning Path</strong><span>Learn · practise · build · present</span></span></div>
+<div class="auth-top-actions"><span class="auth-secure-chip">● Secure account access</span></div>
+</header>
+<main id="main-content" class="auth-layout">
+<section aria-label="About the learning platform" class="auth-story dalp-themed-hero">
+<div>
+<span class="auth-kicker">YOUR LEARNING SPACE</span>
+<h1>Build your data skills.<br/>Keep every milestone.</h1>
+<p>Learn by doing. Follow practical learning paths in Excel, SQL, Power BI and AI—then continue seamlessly from your last lesson.</p>
+<p class="dalp-preview-invite"><a href="preview.html">Read the first lesson free →</a> <a href="catalog.html">Browse all six courses →</a><span>No registration needed to preview the material.</span></p><div class="auth-course-chips"><span>Excel</span><span>SQL</span><span>Power BI</span><span>AI Analytics</span></div>
+<div class="auth-benefits">
+<div class="auth-benefit"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.3-5.7L4 8.6"></path><path d="M4 4v4.6h4.6"></path></svg><div><b>Pick up where you left off</b><span>Course and quiz progress stays with your account.</span></div></div>
+<div class="auth-benefit"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect height="16" rx="3" width="18" x="3" y="4"></rect><path d="M8 9h8M8 13h5"></path></svg><div><b>One path, every device</b><span>Continue on your phone, tablet or laptop.</span></div></div>
+<div class="auth-benefit"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 3 4.5 6v5.4c0 4.5 3 7.8 7.5 9.6 4.5-1.8 7.5-5.1V6L12 3Z"></path><path d="m9 12 2 2 4-4"></path></svg><div><b>Your own learning record</b><span>Your progress is private, and your instructors can support you when you need help.</span></div></div>
+</div>
+</div>
+<div class="auth-story-foot"><span class="auth-dot"></span> Your learning journey, all in one place</div>
+</section>
+<section aria-label="Learner and administrator sign-in and registration" class="auth-forms">
+<div class="auth-heading"><small>WELCOME TO YOUR LEARNING PATH</small><h2 id="authTitle">Welcome back</h2><p id="authSubtitle">Sign in to pick up exactly where you left off.</p></div>
+<div aria-live="assertive" class="auth-msg warn" hidden="" id="configWarn" role="alert"></div>
+<div aria-label="Account action" class="auth-tabs" id="authTabs" role="tablist">
+<button aria-controls="loginPanel" aria-selected="true" class="auth-tab active" id="signInTab" role="tab" type="button">Sign in</button>
+<button aria-controls="signupPanel" aria-selected="false" class="auth-tab" id="createTab" role="tab" type="button">Create account</button>
+</div>
+<section aria-labelledby="signInTab" class="auth-panel" id="loginPanel" role="tabpanel">
+<form id="loginForm" novalidate="">
+<div class="auth-field"><label for="loginEmail">Email address</label><input autocomplete="email" id="loginEmail" inputmode="email" name="email" placeholder="you@example.com" required="" type="email"/></div>
+<div class="auth-field"><label for="loginPassword">Password</label><div class="auth-input-wrap"><input autocomplete="current-password" id="loginPassword" name="password" placeholder="Enter your password" required="" type="password"/><button aria-label="Show password" class="auth-eye" data-password-toggle="loginPassword" type="button">Show</button></div></div>
+<div class="auth-inline-row"><button class="auth-inline-link" data-auth-mode="forgot" type="button">Forgot password?</button></div>
+<button class="auth-submit" data-busy-text="Signing in…" id="loginBtn" type="submit">Sign in</button>
+<div aria-live="polite" class="auth-msg" hidden="" id="loginMsg" role="status"></div>
+</form>
+<div class="auth-separator auth-google" hidden=""><span>or</span></div><button class="auth-google auth-google-btn" hidden="" type="button">Continue with a connected account</button>
+<p class="auth-switch">New to the learning path? <button data-auth-mode="create" type="button">Create an account</button></p>
+</section>
+<section aria-labelledby="createTab" class="auth-panel" hidden="" id="signupPanel" role="tabpanel">
+<form id="signupForm" novalidate="">
+<div class="auth-field"><label for="fullName">Full name</label><input autocomplete="name" id="fullName" maxlength="120" name="name" placeholder="Your full name" required="" type="text"/></div>
+<div class="auth-field"><label for="signupEmail">Email address</label><input autocomplete="email" id="signupEmail" inputmode="email" name="email" placeholder="you@example.com" required="" type="email"/></div>
+<div class="auth-field"><label for="signupPassword">Create password</label><div class="auth-input-wrap"><input autocomplete="new-password" id="signupPassword" minlength="8" name="password" placeholder="At least 8 characters" required="" type="password"/><button aria-label="Show password" class="auth-eye" data-password-toggle="signupPassword" type="button">Show</button></div><small class="auth-field-hint">Use at least 8 characters. A unique passphrase is recommended.</small></div>
+<div class="auth-field"><label for="signupConfirm">Confirm password</label><div class="auth-input-wrap"><input autocomplete="new-password" id="signupConfirm" minlength="8" name="confirmPassword" placeholder="Re-enter your password" required="" type="password"/><button aria-label="Show password" class="auth-eye" data-password-toggle="signupConfirm" type="button">Show</button></div></div>
+<button class="auth-submit" data-busy-text="Creating account…" id="signupBtn" type="submit">Create account</button>
+<div aria-live="polite" class="auth-msg" hidden="" id="signupMsg" role="status"></div>
+</form>
+<p class="auth-switch">Already have an account? <button data-auth-mode="login" type="button">Sign in</button></p>
+</section>
+<section class="auth-panel" hidden="" id="forgotPanel">
+<form id="forgotForm" novalidate="">
+<div class="auth-field"><label for="forgotEmail">Account email address</label><input autocomplete="email" id="forgotEmail" placeholder="you@example.com" required="" type="email"/></div>
+<button class="auth-submit" data-busy-text="Sending link…" id="forgotBtn" type="submit">Send reset link</button>
+<div aria-live="polite" class="auth-msg" hidden="" id="forgotMsg" role="status"></div>
+</form>
+<p class="auth-switch"><button data-auth-mode="login" type="button">← Back to sign in</button></p>
+</section>
+<section class="auth-panel" hidden="" id="resetPanel">
+<form id="resetForm" novalidate="">
+<div class="auth-field"><label for="newPassword">New password</label><div class="auth-input-wrap"><input autocomplete="new-password" id="newPassword" minlength="8" placeholder="At least 8 characters" required="" type="password"/><button aria-label="Show password" class="auth-eye" data-password-toggle="newPassword" type="button">Show</button></div></div>
+<div class="auth-field"><label for="confirmNewPassword">Confirm new password</label><div class="auth-input-wrap"><input autocomplete="new-password" id="confirmNewPassword" minlength="8" placeholder="Confirm new password" required="" type="password"/><button aria-label="Show password" class="auth-eye" data-password-toggle="confirmNewPassword" type="button">Show</button></div></div>
+<button class="auth-submit" data-busy-text="Updating password…" id="resetBtn" type="submit">Update password</button>
+<div aria-live="polite" class="auth-msg" hidden="" id="resetMsg" role="status"></div>
+</form>
+<p class="auth-switch"><button data-auth-mode="login" type="button">Back to sign in</button></p>
+</section>
+<div class="auth-account-note"><span aria-hidden="true">✦</span><p>One sign-in for learners and administrators. New here? Create your learner account to get started. Administrators can sign in with their existing account.</p></div>
+
+</section>
+</main>
+
+</div>
+<script defer="" src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0"></script>
+<script defer="" src="assets/scripts/supabase-config.js"></script>
+<script defer="" src="assets/scripts/supabase-client.js"></script><script defer src="assets/scripts/server-session.js"></script>
+<script defer="" src="assets/scripts/progress-cloud.js"></script>
+<script defer="" src="assets/scripts/auth-options.js"></script>
+<script defer="" src="assets/scripts/modern.js"></script>
+<script defer="" src="assets/scripts/auth-flow.js"></script>
+<script defer="" src="assets/scripts/responsive.js"></script>
+
+<script defer src="assets/scripts/accessibility.js"></script><script defer src="assets/scripts/embedded-palette-sync.js"></script><script defer src="assets/scripts/learning-experience.js"></script><script defer src="assets/scripts/experience.js"></script>
+
+<script defer src="assets/scripts/premium-search.js"></script></body></html>

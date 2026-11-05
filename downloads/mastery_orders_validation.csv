@@ -1,0 +1,7 @@
+order_id,status,region,quantity,unit_price,unit_cost,gross_order_value,completed_revenue,completed_profit
+1001,Completed,East,2,150000,120000,300000,300000,60000
+1002,Completed,West,5,8000,5000,40000,40000,15000
+1003,Returned,East,3,8000,5000,24000,0,0
+1004,Completed,North,4,18000,12000,72000,72000,24000
+1005,Completed,West,1,150000,120000,150000,150000,30000
+1006,Completed,East,2,8000,5000,16000,16000,6000

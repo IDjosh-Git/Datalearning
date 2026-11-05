@@ -1,0 +1,189 @@
+/* Standalone course roadmap and curriculum extension. Light-only, responsive, accessible. */
+:root{color-scheme:light;--ink:var(--ui-ink);--muted:var(--ui-muted);--line:var(--ui-stroke);--surface:#fff;--page:var(--ui-canvas);--accent:var(--ui-accent);--accent-dark:var(--ui-accent-hover);--mint:var(--ui-accent-soft);--focus:#a85412}*,*::before,*::after{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--page);color:var(--ink);font:16px/1.65 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:var(--accent-dark);text-underline-offset:3px}a:hover{text-decoration-thickness:2px}a:focus-visible{outline:3px solid var(--focus);outline-offset:4px;border-radius:4px}.skip-link{position:absolute;top:-100px;left:15px;z-index:10;padding:9px 14px;background:#fff}.skip-link:focus{top:12px}h1,h2,h3,h4{line-height:1.22;letter-spacing:-.02em}h1{font-size:clamp(2rem,5vw,3.55rem);margin:.25rem 0 .65rem}h2{font-size:clamp(1.45rem,2.5vw,2rem)}h3{font-size:1.18rem}p{margin:.5em 0 1em}.guide-back{font-weight:650}.guide-container{max-width:1280px;padding:24px clamp(16px,3vw,35px) 56px;margin:0 auto}.guide-hero{padding:clamp(24px,4vw,48px);background:var(--ui-accent-soft);border:1px solid var(--line);border-radius:18px;margin-bottom:22px}.guide-eyebrow{font-size:.78rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--accent)}.guide-hero>p:not(.guide-eyebrow){max-width:66ch;color:var(--muted)}.guide-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}.guide-button{display:inline-flex;align-items:center;min-height:44px;padding:10px 16px;border-radius:11px;border:1px solid var(--ui-accent-border);text-decoration:none;font-weight:750;background:#fff}.guide-primary{background:var(--accent);border-color:var(--accent);color:#fff}.guide-primary:hover{background:var(--accent-dark);color:#fff}.guide-block{padding:clamp(18px,3vw,32px);margin:20px 0;background:var(--surface);border:1px solid var(--line);border-radius:14px;min-width:0}.guide-block>h2{margin-top:0}.guide-block .dlp29-roadmap{border:0;padding:0;background:transparent;box-shadow:none}.guide-block .dlp29-panel-heading{margin-bottom:18px}.guide-block .dlp29-overline,.guide-block .dlp-kicker,.guide-block .cv88-kicker{display:block;text-transform:uppercase;font-size:.74rem;letter-spacing:.09em;font-weight:850;color:var(--accent);margin-bottom:6px}.guide-block .dlp29-panel-heading h3{margin:6px 0}.guide-block .dlp29-milestones{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.guide-block .dlp29-milestone{display:flex;align-items:center;gap:16px;background:var(--ui-canvas);border:1px solid var(--line);padding:17px;border-radius:14px;text-decoration:none;min-width:0}.guide-block .dlp29-milestone:hover,.guide-block .cv88-roadmap li:hover{background:var(--ui-accent-soft);border-color:var(--ui-accent-border)}.guide-block .dlp29-number{font-size:1.1rem;font-weight:850;color:var(--accent)}.guide-block .dlp29-mile-copy{display:grid;gap:3px;min-width:0;flex:1}.guide-block small,.guide-block .dlp29-mile-copy small{font-size:.82rem;line-height:1.5;color:var(--muted)}.guide-block .dlp29-arrow{font-weight:900}.guide-block .cv88-roadmap{list-style:none;counter-reset:modules;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;padding:0;margin:15px 0}.guide-block .cv88-roadmap li{padding:18px;border:1px solid var(--line);border-radius:14px;background:var(--ui-canvas);min-width:0}.guide-block .cv88-roadmap li>a{display:grid;gap:5px;text-decoration:none;overflow-wrap:anywhere}.guide-block .cv88-roadmap li>a strong{font-size:1.04rem}.guide-block .cv88-roadmap li>span{display:block;margin-top:9px;color:var(--muted);font-size:.92rem}.guide-lessons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;list-style-position:inside;padding:0}.guide-lessons li{border:1px solid var(--line);border-radius:12px;padding:12px}.extension-block>.dlp-mastery{margin:0;padding:0;width:100%;max-width:none;background:none;border:0;box-shadow:none}.extension-block .dlp-mastery h2{font-size:clamp(1.6rem,3vw,2.2rem)}.extension-block .dlp-module-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:22px}.extension-block .dlp-module{min-width:0;border:1px solid var(--line);border-radius:16px;padding:clamp(18px,2vw,26px);background:var(--ui-canvas)}.extension-block .dlp-module h3{margin:.3rem 0 1rem;font-size:1.35rem}.extension-block .dlp-module h4{font-size:.95rem;color:var(--accent-dark);margin:17px 0 4px}.extension-block .dlp-module p{margin:.2em 0 .65em}.extension-block .dlp-module ol{margin:.45rem 0;padding-left:22px}.extension-block .dlp-module li{padding-bottom:3px}.extension-block pre{white-space:pre;overflow:auto;max-width:100%;padding:16px;background:var(--ui-ink);color:var(--ui-canvas);border-radius:12px;font:14px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace}.extension-block .dlp-check{padding:14px;border-radius:10px;background:var(--mint);border-left:4px solid var(--accent)}.guide-bottom{margin-top:24px;border-radius:18px;padding:24px 30px;background:var(--ui-ink);color:var(--ui-canvas)}.guide-bottom h2{color:#fff;margin-top:0}.guide-bottom a{color:var(--ui-primary-soft);font-weight:750}@media (max-width:780px){.guide-block .dlp29-milestones,.guide-block .cv88-roadmap,.guide-lessons,.extension-block .dlp-module-grid{grid-template-columns:1fr}.guide-hero{border-radius:18px}.guide-actions{display:grid;grid-template-columns:1fr}.guide-button{justify-content:center}.guide-back{font-size:.9rem}}@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
+
+/* Course briefing migrated from the lesson pages into the dedicated roadmap. */
+.guide-brief>.guide-brief-content{border:0!important;box-shadow:none!important;background:transparent!important;margin:0!important;padding:0!important;max-width:none!important}
+.guide-brief>.guide-brief-content .cv88-kicker{color:var(--accent);text-transform:uppercase;font-weight:800;font-size:12px}
+.guide-brief>.guide-brief-content h2,.guide-brief>.guide-brief-content h3{margin:6px 0 10px;color:var(--ink)}
+.guide-brief>.guide-brief-content p,.guide-brief>.guide-brief-content li{color:var(--muted);line-height:1.6}
+.guide-brief>.guide-brief-content .cv88-map-actions,.guide-brief>.guide-brief-content .cv88-source-note{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.guide-brief>.guide-brief-content .cv88-map-actions a{min-height:44px;padding:10px 13px;background:var(--ui-accent-soft);border:1px solid #cadfcf;border-radius:11px;text-decoration:none;overflow-wrap:anywhere;font-weight:700}
+.guide-brief>.guide-brief-content table{border-collapse:collapse;max-width:100%;width:100%}
+.guide-brief>.guide-brief-content :is(td,th){border:1px solid var(--line);padding:9px;text-align:left}
+.guide-block :is(.cv88-roadmap,.dlp29-milestones){align-items:start;grid-auto-rows:min-content}
+.guide-block :is(.cv88-roadmap li,.dlp29-milestone){align-self:start;height:auto;min-height:0}
+
+
+
+/* Unified Data Analysis Learning Path visual system — shared across learner and admin pages. */
+:root {
+  color-scheme: light;
+  --polish-canvas: #f4f7fb;
+  --polish-surface: #ffffff;
+  --polish-ink: #17233b;
+  --polish-muted: #52627a;
+  --polish-line: #dce4ef;
+  --polish-indigo: #4f46e5;
+  --polish-accent: var(--ui-accent);
+  --polish-coral: #e66b55;
+  --polish-gold: #e2a52b;
+  --polish-radius: 18px;
+  --polish-shadow: 0 8px 28px rgba(26, 43, 76, .075);
+}
+html, body { min-height: 100%; background: var(--polish-canvas) !important; color: var(--polish-ink); }
+html { scroll-behavior: smooth; }
+body {
+  font-family: "DM Sans", "Plus Jakarta Sans", "Aptos", system-ui, -apple-system, "Segoe UI", sans-serif !important;
+  letter-spacing: -.012em; text-rendering: optimizeLegibility;
+}
+body::before, body::after { content: none !important; display: none !important; }
+:where(.wrap, .container, .page-wrap, .workspace, .main, .content-wrap, .admin-wrap, .ac-container) {
+  width: min(100% - 48px, 1440px); max-width: 1440px; margin-inline: auto;
+}
+:where(.section, main section) { scroll-margin-top: 92px; }
+:where(.card, .panel, .lp-course, .lp-feature, .lp-step, .ref-card, .feature-panel, .workspace-panel,
+       .ac-surface, .ac-kpi, .ac-course-card, .ac-shortcut-grid > a, .dalp-admin-panel) {
+  background: var(--polish-surface) !important; border: 1px solid var(--polish-line) !important;
+  border-radius: var(--polish-radius) !important; box-shadow: var(--polish-shadow) !important;
+}
+:where(.nav-shell, header.nav-shell, .top, .topbar, .ac-topbar) {
+  background: #fff !important; color: var(--polish-ink); border-color: var(--polish-line) !important;
+   
+}
+:where(.lp-hero, .page-hero, .hero, .ac-hero, .admin-hero) {
+  background: #263b70 !important; color: #fff !important; background-image: none !important;
+}
+:where(.lp-hero)::before, :where(.page-hero)::before, :where(.hero)::before { content: none !important; display: none !important; }
+:where(.lp-hero h1, .page-hero h1, .hero h1, .ac-hero h1) { color: #fff !important; }
+:where(.lp-hero h1 em) { background: none !important; color: #77e4d3 !important; -webkit-text-fill-color: currentColor !important; }
+:where(.lp-hero p, .page-hero p, .hero p) { color: #e3eaf7 !important; }
+:where(.lp-primary, .lp-course-cta, .button.primary, .btn.primary, .btn-primary, .button.blue, .ac-button-primary) {
+  background: var(--polish-indigo) !important; color: #fff !important; border-color: var(--polish-indigo) !important;
+}
+:where(.lp-primary, .lp-course-cta, .button.primary, .btn.primary, .btn-primary):hover { background: #3930c6 !important; }
+:where(a, button, input, select, textarea, summary):focus-visible { outline: 3px solid #e2a52b !important; outline-offset: 3px !important; }
+:where(h1, h2, h3, h4) { color: var(--polish-ink); text-wrap: balance; }
+:where(p, li) { color: inherit; }
+:where(.lp-dashboard-strip, .lp-smart-banner, .lp-demo, .lp-context-nav, .lp-notice, .lead-band .inner) {
+  background: #fff !important; background-image: none !important;  
+}
+:where(.lp-dashboard-strip, .lp-smart-banner, .lp-context-nav) { border-color: var(--polish-line) !important; }
+:where(.lp-home .section) { padding-block: clamp(48px, 6vw, 82px); }
+:where(.lp-course-grid, .lp-quick-grid, .lp-feature-grid, .ac-course-grid, .ac-shortcut-grid) { gap: clamp(16px, 2vw, 26px); }
+:where(.footer) { background: #1d2a47 !important; color: #f5f7fc !important; background-image: none !important; }
+:where(.footer a) { color: #d7e2ff; }
+/* Admin surfaces retain the same canvas and font while using clear, high-contrast data presentation. */
+.dalp-admin-page, body[data-responsive-page="admin"] { background: var(--polish-canvas) !important; color: var(--polish-ink) !important; }
+.dalp-admin-page :where(.ac-section-header p, .ac-section-eyebrow, .ac-empty, .ac-privacy-note) { color: var(--polish-muted); }
+.dalp-admin-page :where(.ac-stat-value, .ac-kpi strong, .ac-section-header h2) { color: var(--polish-ink); }
+.dalp-admin-page :where(.ac-section-eyebrow) { color: var(--polish-indigo); }
+.dalp-admin-page :where(.dalp-admin-table th) { background: #edf1fa !important; color: #344362 !important; }
+.dalp-admin-page :where(.dalp-admin-table td, .dalp-admin-table th) { border-color: var(--polish-line) !important; }
+.dalp-admin-page :where(button, .dalp-admin-tools button, .ac-pager button) { font: inherit; border-radius: 11px; }
+@media (max-width: 720px) {
+  :where(.wrap, .container, .page-wrap, .workspace, .main, .content-wrap, .admin-wrap, .ac-container) { width: min(100% - 28px, 1440px); }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; } }
+
+/* Cross-page visual audit — November 2026.
+   Removes decorative veil/overlay backgrounds while retaining working dialogs,
+   learner controls and legible foreground surfaces. */
+:root { --audit-gutter:clamp(16px,3vw,38px); --audit-outline:#d8e4e0; }
+html { overflow-x:clip; }
+body { overflow-x:clip; }
+*,*::before,*::after { box-sizing:border-box; }
+img,svg,video,canvas { max-width:100%; }
+img,video { height:auto; }
+:where(main,section,article,aside,form,.wrap,.container) { min-width:0; }
+:where(h1,h2,h3,h4,p) { overflow-wrap:break-word; }
+:where(input,textarea,select,button) { max-width:100%; font:inherit; }
+:where(button,a,summary) { -webkit-tap-highlight-color:transparent; }
+:where(a,button,input,select,textarea,summary):focus-visible { outline:3px solid #bd812b!important;outline-offset:3px; }
+:where([hidden]) { display:none!important; }
+:where([class*="backdrop"],[class*="overlay"],[id*="backdrop"],[id*="overlay"]) {
+   
+}
+/* Explicit decorative overlays / glass veils (not the surfaces of modal dialogs). */
+:where(.lp-hero,.page-hero,.hero,.section-hero,.lp-pathfinder,.ps-home-promo)::before,
+:where(.lp-hero,.page-hero,.hero,.section-hero,.lp-pathfinder,.ps-home-promo)::after {
+  background-image:none!important; box-shadow:none!important; pointer-events:none!important;
+}
+:where(.lp-hero,.page-hero,.hero,.section-hero,.lp-pathfinder,.ps-home-promo) { isolation:isolate; }
+/* The translucent screen remains available for modal interaction but has no overlay background. */
+:where(.modal-backdrop,.dialog-backdrop,.drawer-backdrop,.dlp97-backdrop,
+       .auth-backdrop,.nav-backdrop,.menu-backdrop,[data-overlay-backdrop]) {
+  background:transparent!important; background-image:none!important;
+   
+}
+/* Normalize page layers, content spacing, and responsive grids. */
+:where(.wrap,.container,.page-wrap,.workspace,.main,.content-wrap,.admin-wrap,.ac-container) { max-width:100%; }
+:where(.lp-course-grid,.lp-feature-grid,.lp-quick-grid,.lp-flow,.lp-trust-grid,.footer-grid) > * { min-width:0; }
+:where(.lp-course,.lp-feature,.lp-step,.panel,.card) { overflow-wrap:anywhere; }
+:where(table) { border-collapse:collapse; }
+:where(.table-scroll,.table-wrap,.table-responsive) { max-width:100%;overflow-x:auto; }
+@media(max-width:767px) {
+  :where(.lp-hero-grid,.lp-pathfinder-layout,.lp-trust-grid,.lp-flow,.lp-dashboard-strip) { min-width:0; }
+  :where(.lp-demo,.lp-pathfinder-form,.lp-course,.lp-feature) { max-width:100%; }
+  :where(.lp-hero h1) { font-size:clamp(2rem,9vw,3.6rem);line-height:1.08; }
+  :where(.lp-hero-actions,.lp-pathfinder-fields) { max-width:100%; }
+  :where(.lp-hero-actions a) { max-width:100%; }
+}
+@media(prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; } }
+
+
+
+/* Foundation's standalone roadmap: same wide alignment as the live course. */
+body.guide-foundation-page .guide-container {
+  box-sizing: border-box;
+  width: min(calc(100% - 2 * clamp(16px,2.8vw,46px)),1480px);
+  max-width: 1480px; padding: clamp(16px,2vw,30px) 0 clamp(36px,4vw,64px);
+  margin-inline: auto;
+}
+body.guide-foundation-page .guide-hero {
+  padding: clamp(20px,3vw,36px); border-radius: 16px;
+  margin-bottom: clamp(18px,2vw,28px);
+}
+body.guide-foundation-page .guide-hero > p { max-width: 78ch; }
+body.guide-foundation-page .guide-block {
+  padding: clamp(18px,2vw,30px); margin-block: clamp(16px,2vw,24px);
+  border: 1px solid var(--ui-stroke,var(--ui-stroke)); border-radius: 16px;
+}
+body.guide-foundation-page .guide-block > h2 { margin-bottom: 18px; }
+body.guide-foundation-page .guide-block .dlp29-milestones,
+body.guide-foundation-page .guide-lessons {
+  display: grid; grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: clamp(10px,1.4vw,18px); padding-left: 0; min-width: 0;
+}
+body.guide-foundation-page .guide-block .dlp29-milestone {
+  box-sizing: border-box; min-width: 0; height: 100%; align-items: start;
+  gap: 12px; padding: clamp(12px,1.6vw,20px); border-radius: 12px;
+}
+body.guide-foundation-page .guide-block .dlp29-milestone :is(strong,small) {
+  display: block; overflow-wrap: anywhere; line-height: 1.5;
+}
+body.guide-foundation-page .guide-lessons { list-style: none; counter-reset: foundation-lesson; }
+body.guide-foundation-page .guide-lessons li {
+  display: flex; gap: 12px; align-items: start; margin: 0; min-width: 0;
+  height: 100%; padding: 15px; background: #fff;
+  border: 1px solid var(--ui-stroke,var(--ui-stroke)); border-radius: 12px;
+  counter-increment: foundation-lesson;
+}
+body.guide-foundation-page .guide-lessons li::before {
+  content: counter(foundation-lesson, decimal-leading-zero);
+  color: var(--ui-accent,var(--ui-nav-ink)); font-weight: 800; flex: 0 0 24px;
+}
+body.guide-foundation-page .guide-lessons a {
+  min-width: 0; color: var(--ui-primary,var(--ui-primary));
+  font-weight: 650; line-height: 1.55; overflow-wrap: anywhere;
+  text-decoration: underline; text-underline-offset: 3px;
+}
+body.guide-foundation-page .guide-brief-content { max-width: 92ch; }
+body.guide-foundation-page .guide-bottom { padding: clamp(20px,2.8vw,36px); border-radius: 16px; }
+@media (min-width: 1100px) {
+  body.guide-foundation-page .guide-block .dlp29-milestones { grid-template-columns: repeat(4,minmax(0,1fr)); }
+  body.guide-foundation-page .guide-lessons { grid-template-columns: repeat(3,minmax(0,1fr)); }
+}
+@media (max-width: 680px) {
+  body.guide-foundation-page .guide-block .dlp29-milestones,
+  body.guide-foundation-page .guide-lessons { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Data analysis foundations course symbol">
+<title>Introduction to data analysis</title><defs><linearGradient id="intro-bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#6A65E9"/><stop offset="1" stop-color="#3C3AA2"/></linearGradient></defs>
+<rect x="5" y="5" width="54" height="54" rx="14" fill="url(#intro-bg)"/>
+<path d="M15 45V19M15 45h33" fill="none" stroke="#D4D8FF" stroke-width="2.5" stroke-linecap="round"/>
+<rect x="20" y="31" width="7" height="14" rx="2" fill="#C7B7FE"/>
+<rect x="30" y="24" width="7" height="21" rx="2" fill="#9DD9F4"/>
+<rect x="40" y="17" width="7" height="28" rx="2" fill="#7CE0BF"/>
+<path d="m20.5 24 9-9 9 4 9-9" fill="none" stroke="white" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
