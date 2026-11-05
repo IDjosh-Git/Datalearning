@@ -780,3 +780,181 @@ html[data-theme="light"] body[data-public-refresh] .dalp-global-header .dalp-glo
 html[data-theme="light"] body[data-public-refresh] .dalp-global-header .dalp-global-nav .dalp-menu-panel a.dalp-menu-all:is(:hover,:focus-visible){
  background:#453396!important;background-color:#453396!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
 }
+
+
+/* Premium wide learning libraries · 2026-11-05
+   Scoped to the three data-backed libraries; retained source filtering and actions. */
+:where(body[data-responsive-page="learning-lab"],body[data-responsive-page="prompt-library"],body[data-responsive-page="reference"]){
+  --library-ink:#16263e;--library-muted:#53657f;--library-line:#dbe3f1;
+  --library-violet:#6246c7;--library-canvas:#f5f7fc;
+}
+body[data-responsive-page="learning-lab"] main.lab-shell,
+body[data-responsive-page="prompt-library"] .pl-shell{
+  width:min(100% - 48px,1620px)!important;
+  max-width:1620px!important;
+  margin-inline:auto!important;
+  padding-inline:0!important;
+}
+body[data-responsive-page="learning-lab"] main.lab-shell{
+  padding-top:clamp(24px,3vw,45px)!important;
+  padding-bottom:85px!important;
+}
+body[data-responsive-page="prompt-library"] .pl-shell{padding-top:30px!important;padding-bottom:88px!important}
+body[data-responsive-page="learning-lab"] :is(.lab-grid,.lab-controls,.ss-workspace,.ss-library-heading),
+body[data-responsive-page="prompt-library"] :is(.prompt-grid,.filter-bar,.library){min-width:0;max-width:100%}
+/* The prior mobile-rule was unconditionally setting the lab to one column. */
+body[data-responsive-page="learning-lab"] #labCards.lab-grid{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:clamp(14px,1.4vw,22px)!important;
+  align-items:start!important;
+}
+body.lp-prompt-page #promptGrid.prompt-grid{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:clamp(14px,1.4vw,22px)!important;
+  align-items:start!important;
+}
+body[data-responsive-page="learning-lab"] #labCards>.lab-card,
+body.lp-prompt-page #promptGrid>.prompt-card{
+  width:100%;min-width:0;max-width:none;
+  align-self:start!important;height:auto!important;min-height:0!important;
+  border:1px solid var(--library-line)!important;
+  border-radius:22px!important;
+  background:#fff!important;
+  box-shadow:0 10px 24px rgba(23,37,74,.05),0 1px 3px rgba(23,37,74,.04)!important;
+  padding:clamp(17px,1.65vw,25px)!important;
+  color:var(--library-ink)!important;
+  display:flex;flex-direction:column;gap:8px;
+  transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;
+}
+body[data-responsive-page="learning-lab"] #labCards>.lab-card:hover,
+body.lp-prompt-page #promptGrid>.prompt-card:hover{
+  border-color:#b7acf4!important;
+  box-shadow:0 22px 45px rgba(53,55,112,.12)!important;
+  transform:translateY(-3px);
+}
+body[data-responsive-page="learning-lab"] #labCards .lab-card h3,
+body.lp-prompt-page #promptGrid .prompt-card h3{
+  font-family:"DM Sans",system-ui,sans-serif!important;
+  font-size:clamp(16px,1.12vw,19px)!important;
+  font-weight:800!important;
+  line-height:1.4!important;
+  letter-spacing:-.025em!important;
+  color:#192943!important;
+  margin:0 0 6px!important;
+  overflow-wrap:break-word;
+}
+body.lp-prompt-page #promptGrid .prompt-card h3{min-height:0!important}
+body[data-responsive-page="learning-lab"] #labCards .lab-muted{
+  opacity:1!important;font-size:12px!important;line-height:1.65!important;
+  color:var(--library-muted)!important;margin:0 0 8px!important;
+}
+body[data-responsive-page="learning-lab"] #labCards details{
+  margin:8px 0 14px!important;padding:13px 15px!important;
+  border:1px solid #e1e7f2!important;background:#f7f8fd!important;
+  border-radius:13px!important;
+}
+body[data-responsive-page="learning-lab"] #labCards details summary{
+  color:#47379f!important;line-height:1.5!important;font-size:13px!important;
+  font-weight:800!important;cursor:pointer;
+}
+body[data-responsive-page="learning-lab"] #labCards details[open]{background:#f5f3ff!important;border-color:#d4cbff!important}
+body[data-responsive-page="learning-lab"] #labCards details :is(p,b){font-size:13px!important;line-height:1.7!important;color:#33445d!important;overflow-wrap:anywhere}
+body[data-responsive-page="learning-lab"] #labCards .lab-actions{
+  margin-top:auto!important;padding-top:10px!important;
+  display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px!important;
+}
+body[data-responsive-page="learning-lab"] #labCards .lab-actions button{
+  border:1px solid #dbe3f1!important;background:#f8f9fd!important;
+  color:#334561!important;padding:11px 9px!important;
+  border-radius:11px!important;min-height:43px!important;
+  font-size:12px!important;font-weight:800!important;line-height:1.3!important;
+}
+body[data-responsive-page="learning-lab"] #labCards .lab-actions button:last-child{
+  grid-column:1/-1;background:#523bb5!important;color:#fff!important;border-color:#523bb5!important;
+}
+body[data-responsive-page="learning-lab"] #labCards .lab-actions button:hover{border-color:#6246c7!important;background:#eeebfe!important}
+body[data-responsive-page="learning-lab"] #labCards .lab-actions button:last-child:hover{background:#38278b!important;color:#fff!important}
+body.lp-prompt-page #promptGrid .prompt-id{color:#64758f!important;font-size:11px!important}
+body.lp-prompt-page #promptGrid .category-label{color:#5037b0!important;font-weight:900!important}
+body.lp-prompt-page #promptGrid .prompt-tags span{color:#42536f!important;background:#f5f7fb!important;border-color:#dfe6f0!important}
+body.lp-prompt-page #promptGrid .prompt-details{margin:8px 0 0!important}
+body.lp-prompt-page #promptGrid .prompt-details summary{color:#5036b2!important;font-weight:800!important;line-height:1.5}
+body.lp-prompt-page #promptGrid .prompt-content{border:1px solid #e1e6f1!important;background:#f7f8fd!important;color:#25344a!important;border-radius:13px!important;line-height:1.7!important}
+body.lp-prompt-page #promptGrid .card-actions{margin-top:auto!important;padding-top:15px!important;gap:8px!important}
+body.lp-prompt-page #promptGrid .copy-button{
+  background:#523bb5!important;color:#fff!important;
+  border:0!important;border-radius:12px!important;
+  min-height:45px!important;font-weight:850!important;
+}
+body.lp-prompt-page #promptGrid .copy-button:hover{background:#38278b!important}
+body.lp-prompt-page #promptGrid .favorite{background:#f1effe!important;color:#4a329b!important;border-radius:12px!important;min-width:38px;min-height:38px}
+body.lp-prompt-page #promptGrid .favorite.is-saved{background:#fff0c8!important;color:#775015!important}
+body[data-responsive-page="learning-lab"] .lab-controls,
+body.lp-prompt-page .filter-bar{
+  border-radius:20px!important;border:1px solid #dce4f2!important;
+  box-shadow:0 10px 28px rgba(30,45,76,.045)!important;
+  background:#fff!important;padding:clamp(14px,2vw,22px)!important;
+  gap:12px!important;
+}
+body[data-responsive-page="learning-lab"] .lab-controls :is(input,select),
+body.lp-prompt-page .filter-bar :is(input,select){
+  background:#fafbff!important;color:#1a2943!important;border:1px solid #ced9e9!important;
+  border-radius:12px!important;min-height:48px!important;padding:11px 14px!important;
+  box-shadow:none!important;
+}
+body[data-responsive-page="learning-lab"] .lab-controls :is(input,select):focus,
+body.lp-prompt-page .filter-bar :is(input,select):focus{border-color:#6849d1!important;outline:3px solid rgba(104,73,209,.16)!important;outline-offset:0}
+body[data-responsive-page="learning-lab"] .ss-library-heading{
+  padding:clamp(20px,2.5vw,32px)!important;background:#fff!important;
+  border:1px solid #e0e6f1!important;border-radius:22px!important;
+  box-shadow:0 10px 28px rgba(23,37,74,.045)!important;
+}
+body.lp-prompt-page .usage,body.lp-prompt-page .library,body.lp-prompt-page .bottom-cta{
+  border-radius:24px!important;
+}
+body.lp-prompt-page .library{padding:clamp(18px,2vw,30px)!important}
+/* Reference library has the same legacy 2-column cap. */
+body[data-responsive-page="reference"] .ref-grid{
+  display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:18px!important;
+}
+body[data-responsive-page="reference"] .ref-card{
+  border-radius:20px!important;border:1px solid #dbe3f1!important;background:#fff!important;
+  box-shadow:0 12px 28px rgba(23,37,74,.06)!important;padding:21px!important;
+}
+body[data-responsive-page="reference"] .ref-card:hover{border-color:#b7acf4!important;box-shadow:0 18px 34px rgba(23,37,74,.10)!important}
+@media(max-width:1299px){
+ body[data-responsive-page="learning-lab"] #labCards.lab-grid,
+ body.lp-prompt-page #promptGrid.prompt-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+}
+@media(max-width:999px){
+ body[data-responsive-page="learning-lab"] #labCards.lab-grid,
+ body.lp-prompt-page #promptGrid.prompt-grid,
+ body[data-responsive-page="reference"] .ref-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:650px){
+ body[data-responsive-page="learning-lab"] main.lab-shell,
+ body[data-responsive-page="prompt-library"] .pl-shell{width:calc(100% - 28px)!important;padding-inline:0!important}
+ body[data-responsive-page="learning-lab"] #labCards.lab-grid,
+ body.lp-prompt-page #promptGrid.prompt-grid,
+ body[data-responsive-page="reference"] .ref-grid{grid-template-columns:minmax(0,1fr)!important;gap:13px!important}
+ body[data-responsive-page="learning-lab"] #labCards>.lab-card,
+ body.lp-prompt-page #promptGrid>.prompt-card{padding:18px!important;border-radius:18px!important}
+ body[data-responsive-page="learning-lab"] .lab-controls{display:grid!important;grid-template-columns:minmax(0,1fr)!important}
+ body[data-responsive-page="learning-lab"] .lab-controls input{min-width:0!important;width:100%!important}
+ body.lp-prompt-page .filter-bar{grid-template-columns:minmax(0,1fr)!important}
+ body.lp-prompt-page .library-top{flex-direction:column;align-items:flex-start}
+}
+@media(prefers-reduced-motion:reduce){
+ body[data-responsive-page="learning-lab"] #labCards>.lab-card,
+ body.lp-prompt-page #promptGrid>.prompt-card{transition:none!important;transform:none!important}
+}
+
+/* Independent accordion cards: opening one answer only expands that card. */
+body[data-responsive-page="learning-lab"] #labCards.lab-grid,
+body.lp-prompt-page #promptGrid.prompt-grid { align-items:start!important; grid-auto-rows:max-content!important; }
+body[data-responsive-page="learning-lab"] #labCards.lab-grid > *,
+body.lp-prompt-page #promptGrid.prompt-grid > * { align-self:start!important; height:auto!important; min-height:0!important; }
+body[data-responsive-page="learning-lab"] #labCards .lab-actions,
+body.lp-prompt-page #promptGrid .card-actions { margin-top:12px!important; }
