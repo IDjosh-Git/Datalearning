@@ -1,3 +1,4 @@
+import {hasCurrentPublicCache} from './cache-release-contract.mjs';
 /** DataLearning viewport correction regression — 2026-11-04.
  * Source contract complements browser-width and interaction audits documented
  * in RESPONSIVE_LAYOUT_AUDIT_20261104.md. Avoid replacing runnable editors. */
@@ -28,5 +29,5 @@ assert(overview.includes('class="bo-primary"') && overview.includes('background:
 assert(account.includes('id="dashContinueLink"'), 'Resume-learning action must remain present');
 assert(practice.includes('id="practiceDetail"'), 'Practice editor mounting point must remain present');
 assert(practice.includes('assets/scripts/practice.js') && practice.includes('assets/scripts/arena-workspace-visibility.js'), 'Practice editor runtime was disconnected');
-assert(serviceWorker.includes('dalp-public-catalog-menu-v39'), 'Fresh responsive CSS needs a new offline cache key');
+assert(hasCurrentPublicCache(serviceWorker), 'Fresh responsive CSS needs a new offline cache key');
 console.log('PASS responsive layout regressions: catalogue search, overview contrast, account CTAs, arena editor and cache version');

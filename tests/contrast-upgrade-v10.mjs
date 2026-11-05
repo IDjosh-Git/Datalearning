@@ -1,3 +1,4 @@
+import {hasCurrentPublicCache} from './cache-release-contract.mjs';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 const publicCss=readFileSync('assets/styles/public-motion.css','utf8');
@@ -10,5 +11,5 @@ assert.match(publicCss,/color:#263851!important/,'AI course metrics must use rea
 assert.match(publicCss,/background:#eff5ff!important/,'AI course metrics need a defined light surface');
 assert.match(publicCss,/color:#293f78!important/,'Menu all course action needs high-contrast ink');
 assert.match(system,/auth-field input::placeholder/,'Sign-in placeholder must be legible');
-assert.match(worker,/dalp-public-catalog-menu-v39/,'Refresh offline assets on release');
+assert(hasCurrentPublicCache(worker),'Refresh offline assets on release');
 console.log('PASS course, navigation, auth and offline contrast regression checks');

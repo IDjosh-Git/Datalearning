@@ -1,3 +1,4 @@
+import {hasCurrentPublicCache} from './cache-release-contract.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 const read = p => fs.readFileSync(p, 'utf8');
@@ -21,5 +22,5 @@ assert.match(catalog, /assets\/scripts\/learning-catalog\.js/,
   'Course catalog filtering logic must stay loaded');
 assert.match(catalog, /id="dlp97-search"/);
 assert.match(catalog, /id="dlp97-clear"/);
-assert.match(sw, /dalp-public-catalog-menu-v39/);
+assert(hasCurrentPublicCache(sw));
 console.log('PASS catalogue fills width with no duplicate sidebar, mobile grid remains flexible, and dropdowns retain their actions');

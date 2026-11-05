@@ -1,3 +1,4 @@
+import {hasCurrentPublicCache} from './cache-release-contract.mjs';
 /* Regression check for the final homepage contrast and overlay correction. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -32,5 +33,5 @@ for (const pattern of [
 assert(ratio('14243f','ffffff')>=7,'Primary DataLearning brand text should meet AAA contrast');
 assert(ratio('5638c7','ffffff')>=7,'Purple DataLearning brand accent should meet AAA contrast');
 assert(ratio('ffffff','6251da')>=4.5,'Primary CTA must meet AA contrast');
-assert(sw.includes('dalp-public-catalog-menu-v39'),'Visitors must receive the latest CSS after release');
+assert(hasCurrentPublicCache(sw),'Visitors must receive the latest CSS after release');
 console.log('PASS final homepage: DataLearning AAA wordmark, visible AA CTAs, solid hero/dashboard, overlay removal, course navigation and cache revision');

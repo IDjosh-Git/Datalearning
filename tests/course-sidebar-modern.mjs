@@ -1,3 +1,4 @@
+import {hasCurrentPublicCache} from './cache-release-contract.mjs';
 /* Course-sidebar refresh must remain readable and keep the original learning controls. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -35,5 +36,5 @@ for(const slug of ['introduction','ai']){
 }
 assert.match(read('assets/scripts/course-lesson-disclosure.js'),/min-width:1051px/,'Desktop lessons should be discoverable');
 assert.match(shared,/\[role="tab"\]/,'Plain-link override must be scoped narrowly');
-assert.match(read('service-worker.js'),/dalp-public-catalog-menu-v39/,'New CSS needs a fresh offline cache key');
+assert(hasCurrentPublicCache(read('service-worker.js')),'New CSS needs a fresh offline cache key');
 console.log('PASS modern course sidebars: all six tracks, 40 lesson links, responsive presentation and WCAG AA contrast pairs');

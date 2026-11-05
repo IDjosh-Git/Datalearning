@@ -1,3 +1,4 @@
+import {hasCurrentPublicCache} from './cache-release-contract.mjs';
 /** Guided Learning Journey regression: no feature regression or private-data exposure. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -20,5 +21,5 @@ assert(read('account.html').includes('Build your personal study plan'),'My Learn
 assert(privateNav.includes("['My study plan','learning-lab.html#study-plan','study']"),'Private navigation must surface planner');
 assert(search.includes('learning-lab.html#study-plan')&&search.includes('study plan'),'Cross-site search must discover planner');
 assert(fs.existsSync('assets/scripts/arena-ide.js')&&fs.existsSync('assets/scripts/execution-engine.js'),'Practice Arena editor must remain intact');
-assert(read('service-worker.js').includes('dalp-public-catalog-menu-v39'),'Cache must refresh after new learning tool');
+assert(hasCurrentPublicCache(read('service-worker.js')),'Cache must refresh after new learning tool');
 console.log('PASS guided Learning Journey: six courses, seven structured sessions, active recall, private saved reflection, searchable navigation, preserved Arena/lesson flows');
