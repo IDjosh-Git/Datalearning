@@ -1,3 +1,5 @@
+> **Latest UI update (2026-11-05):** Tutor Studio premium navigation, hero, conversation card and message composer. See `TUTOR_STUDIO_PREMIUM_RELEASE_20261105.md`.
+
 # DataLearning — Premium Learning Platform
 
 DataLearning is a multi-page learning platform for data analysis, Excel, SQL, Power BI, Python, and AI-assisted analytics. It includes six guided courses, a Practice Arena with runnable SQL/Excel/Python exercises, a Learning Lab, AI Tutor, progress tracking, capstones and private dashboards.

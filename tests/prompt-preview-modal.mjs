@@ -1,5 +1,6 @@
 /** Regression for the prompt preview overlay, which must never resize grid cards. */
 import assert from 'node:assert/strict';
+import {hasCurrentPublicCache} from './cache-release-contract.mjs';
 import {readFileSync} from 'node:fs';
 const read=(path)=>readFileSync(new URL('../'+path,import.meta.url),'utf8');
 const html=read('prompt-library.html');
@@ -19,5 +20,5 @@ assert.doesNotMatch(js, /createElement\('details'\)/, 'Prompt cards must not exp
 assert.match(css, /dialog\.pl-prompt-modal/);
 assert.match(css, /\.pl-modal-content[\s\S]*?overflow-y:auto/);
 assert.match(css, /\.pl-modal-footer[\s\S]*?flex:none/);
-assert.match(read('service-worker.js'), /dalp-public-prompt-preview-v41/);
+assert(hasCurrentPublicCache(read('service-worker.js'),41),'A refreshed public cache is required for the prompt dialog');
 console.log('PASS AI prompt library: non-expanding cards, accessible popup, copy/close controls and refreshed assets');

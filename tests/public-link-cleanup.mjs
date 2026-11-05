@@ -23,5 +23,10 @@ assert.match(css,/body a\.dalp-plain-link,/, 'Common link reset missing');
 assert.match(css,/body a\.dalp-plain-link:focus-visible/, 'Visible keyboard focus missing');
 assert.match(css,/body \.guide-block a\.dlp29-milestone\.dalp-plain-link/, 'Roadmap link-only cards not cleaned');
 assert.match(css,/body\.lp-prompt-page \.bottom-cta/,'Prompt-library resource link must have readable background');
-assert(converted>=280,`Expected public link cleanup, found ${converted}`);
+// The Tutor Studio's three "Go further" destinations intentionally use designed
+// navigation cards instead of the generic unboxed action-link treatment.
+const tutor=fs.readFileSync(path.join(root,'tutor.html'),'utf8');
+const tutorNavigation=(tutor.match(/class="tutor-resource-link"/g)||[]).length;
+assert.equal(tutorNavigation,3,'Tutor resources must remain a three-link navigation group');
+assert(converted+tutorNavigation>=280,`Expected cleaned public links or Tutor navigation cards, found ${converted}+${tutorNavigation}`);
 console.log(`PASS unboxed public links: ${converted} action/resource links across ${files.length-protectedFiles.size} public HTML pages; no redundant quick-navigation block; catalogue filtering preserved.`);

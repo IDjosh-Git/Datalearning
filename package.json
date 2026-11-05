@@ -16,7 +16,7 @@
     "test:learning": "node tests/course-content.mjs && node tests/ai-card-visibility.mjs && node tests/workspace-coverage.mjs && node tests/sync-regression.mjs && node tests/learning-quality.mjs && node tests/course-resource-pages.mjs && node tests/course-portal-navigation.mjs && node tests/course-source-cleanup.mjs && node tests/feature-source-cleanup.mjs && node tests/course-icons-and-clickable-cards.mjs && node tests/study-success.mjs && node tests/prompt-preview-modal.mjs",
     "test:security": "node tests/auth-first.mjs && node tests/auth-gate-runtime.mjs && node tests/admin-roles.mjs && node tests/server-auth.mjs && node tests/middleware-access.mjs && node tests/admin-analytics.mjs && node tests/admin-navigation-style.mjs && node tests/admin-workspace-theme.mjs && node tests/protected-workspace-refresh.mjs && node tests/private-navigation-tutor-signin.mjs && node tests/private-skip-link-removal.mjs && node tests/private-workspace-dedup.mjs",
     "test:arena": "node tests/offline-engines.mjs && node tests/practice-arena.mjs && node tests/practice-deploy-audit.mjs && node tests/python-worker-reuse.mjs",
-    "test:tutor": "node tests/tutor.mjs && node tests/tutor-favicon-account.mjs",
+    "test:tutor": "node tests/tutor.mjs && node tests/tutor-favicon-account.mjs && node tests/tutor-premium-ui.mjs",
     "verify:deployment": "npm run build && npm run lint && npm test"
   },
   "dependencies": {
