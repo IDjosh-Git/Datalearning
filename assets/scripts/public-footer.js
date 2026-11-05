@@ -25,7 +25,7 @@
         </div>
         <div class="dalp-public-footer__grid">
           <div class="dalp-public-footer__about">
-            <a class="dalp-public-footer__brand" href="${href('index.html')}" aria-label="Data Learning home">
+            <a class="dalp-public-footer__brand" href="${href('index.html')}" aria-label="DataLearning Discover">
               <span class="dalp-public-footer__brand-mark"><img src="${href('assets/icons/da-logo.svg')}" alt="" width="42" height="42" loading="lazy"></span>
               <span><strong>data<span class="dalp-footer-wordmark-accent">learning</span></strong><span>LEARN · BUILD · GROW</span></span>
             </a>
@@ -60,7 +60,7 @@
         </div>
         <div class="dalp-public-footer__bottom">
           <span>© ${year} Data Learning. Made for lifelong learners.</span>
-          <div class="dalp-footer-bottom-links"><a href="${href('index.html')}">Back to dashboard</a><a href="${href('catalog.html')}">All courses</a></div>
+          <div class="dalp-footer-bottom-links"><a href="${href('index.html')}">Discover more</a><a href="${href('catalog.html')}">All courses</a></div>
         </div>
       </div>`;
     document.body.appendChild(footer);

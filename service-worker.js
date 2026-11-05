@@ -1,5 +1,5 @@
 /* Fast public responses, current published assets first; never cache private records. */
-const CACHE = 'dalp-public-bento-search-overview-v33';
+const CACHE = 'dalp-public-responsive-layout-v36';
 const PRIVATE = /(?:^|\/)(?:api|admin(?:-workspace)?|auth|account|progress|reviewer|capstone|certificate|verify|connection-test|sync-test)(?:\/|\.|$)/i;
 const PUBLIC = /\.(?:html|css|js|svg|ico|png|webp|jpg|jpeg|woff2?|csv|md|sqlite)$/i;
 self.addEventListener('install', event => {event.waitUntil(self.skipWaiting());});

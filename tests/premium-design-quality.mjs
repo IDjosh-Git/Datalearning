@@ -28,7 +28,7 @@ assert(privateCss.includes('flex:1 1 0!important;min-height:0!important;overflow
 assert(privateCss.includes('.ac-side-bottom{flex:0 0 auto!important'),'Sign out must stay outside scrolling links');
 assert(nav.includes('bottom.append(logout)'),'Sign out control must be under fixed sidebar bottom section');
 assert(nav.includes('aria-expanded'),'Accessible mobile menu state');
-assert(sw.includes('dalp-public-bento-search-overview-v33'),'CSS cache version must be refreshed');
+assert(sw.includes('dalp-public-responsive-layout-v36'),'CSS cache version must be refreshed');
 assert(!/<footer\b/i.test(auth),'Sign-in page should not contain a footer');
 assert(!/<style\b/i.test(auth),'No embedded sign-in CSS');
 for(const route of routes){

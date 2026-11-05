@@ -3,7 +3,7 @@
 const base=location.pathname.includes('/courses/')?'../':'';
 const records=[
  ['overview.html','Learning overview','Explore','See recorded course interest and build a study plan','insights popularity trends overview statistics learners'],
- ['index.html','Home','Explore','Your starting point for learning data analysis','home start dashboard'],
+ ['index.html','Discover','Explore','Choose a learning goal and start your next skill','discover find my path start goal home'],
  ['catalog.html','All courses','Explore','Discover the complete course catalogue','catalogue subjects browse'],
  ['courses/introduction.html','Introduction to data analysis','Courses','Data quality, business questions and foundations','beginner foundation types data basics'],
  ['courses/excel.html','Excel analytics','Courses','Formulas, XLOOKUP, pivots and dashboards','sumifs spreadsheet pivot tables cleaning'],
@@ -15,7 +15,7 @@ const records=[
  ['studio.html','Practice Studio','Study tools','Guided hands-on learning and exercises','studio project'],
  ['tutor.html','AI Learning Tutor','Study tools','Guided explanations, follow-up questions and knowledge checks','coach tutor chat explain'],
  ['reference.html','Reference library','Study tools','Formulas and worked examples across analytics tools','dax formulas excel sql functions'],
- ['learning-lab.html','Learning Lab','Study tools','Knowledge checks, learning techniques and guided practice','flashcards recap study'],
+ ['learning-lab.html#study-plan','Learning Lab & Study Plan','Study tools','Personal seven-session study routes, active recall and 500+ guided lessons','study plan learning schedule guided recall learning lab weekly goals reflection flashcards recap'],
  ['prompt-library.html','AI prompt library','Study tools','Practical prompts for analysts','ai chatgpt prompts'],
  ['account.html','My learning dashboard','My workspace','Personal course progress and achievements','my courses results certificates'],
  ['capstone.html','Capstone studio','My workspace','Submit projects and review instructor feedback','projects assignments submission'],

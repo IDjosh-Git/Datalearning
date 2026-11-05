@@ -102,3 +102,11 @@ See [`PREMIUM_BENTO_RELEASE_20261104.md`](PREMIUM_BENTO_RELEASE_20261104.md) for
 
 ## Verified actual app users
 Use `database/migrations/app_usage_only_users.sql` to count verified DataLearning sign-ins and actual learning activity, rather than all Supabase Auth accounts. See `APP_USER_COUNTING_RELEASE_20261104.md` for activation and privacy details.
+
+## Guided Learning Journey (4 November 2026)
+
+Open **Study Tools → Learning Lab** (or **My Learning → My study plan**) to create a seven-session, course-specific route. Learners select a subject, previous experience and session time, then work through the *Understand → Apply → Recall* cycle using the existing lesson material and guided Practice Studio examples. The new active-recall worksheet includes model answers, common pitfalls and a confidence self-check; completed steps and reflections are stored locally and can be exported. This is a personal learning aid, **not a formal assessment or course-completion record**.
+
+Implementation: `assets/scripts/study-success.js` and scoped styles in `assets/styles/learning-lab-layout.css`; the existing 500+ Learning Lab review questions remain available. The structured course data is loaded dynamically only on demand by the feature script. Study plans are namespaced by signed-in Supabase user ID, and guest plans remain separate on the same device. Study-plan data is **not** synced to Supabase; use the Export action to back it up. The feature makes no new network writes and requires no database migration.
+
+Run `node tests/study-success.mjs` for targeted protection and `npm run verify:deployment` for the full application regression. Browser-based interaction testing is performed using a same-origin HTML fixture with inlined styles because local HTTP navigation is restricted in the test environment. A real Vercel preview is still required to validate production sign-in, external resources, and cross-device behavior.

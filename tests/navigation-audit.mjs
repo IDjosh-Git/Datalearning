@@ -6,7 +6,7 @@ import {discoverPages} from './page-assets.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const pages=discoverPages();
 const source=new Map(pages.map(p=>[p.route,p.html]));
-const expectedTop=['Home','Overview','Courses','Study tools','Capstone','My learning'];
+const expectedTop=['Discover','Overview','Courses','Study tools','Capstone','My learning'];
 const expectedCourses=['introduction','excel','sql','powerbi','python','ai'];
 let total=0, dynamic=0;
 for (const page of pages) {

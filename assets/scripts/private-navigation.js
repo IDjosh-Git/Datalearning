@@ -15,6 +15,7 @@
   portal:'<path d="m3 10 9-7 9 7v11H3V10Z"/><path d="M9 21v-7h6v7"/>',
   practice:'<path d="m8 8-4 4 4 4m8-8 4 4-4 4M14 4l-4 16"/>',
   studio:'<rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 9v12M13 13h5m-5 4h3"/>',
+  study:'<path d="M4 6h16M4 12h10M4 18h7"/><path d="m16 17 2 2 4-5"/>',
   tutor:'<path d="M12 3 14 9l6 2-6 2-2 6-2-6-6-2 6-2 2-6Z"/><path d="M19 18v4m-2-2h4"/>',
   certificate:'<circle cx="12" cy="8" r="5"/><path d="m8 13-1 8 5-2.5 5 2.5-1-8"/>',
   capstone:'<path d="m12 2 9 5-9 5-9-5 9-5ZM5 11v6c4.5 3 9.5 3 14 0v-6"/>'
@@ -26,10 +27,10 @@
  ];
  const learnerNav=[
   {caption:'MY LEARNING',items:[
-    ['My dashboard','account.html','account'],['Learning overview','overview.html','overview'],['Browse courses','catalog.html','catalog'],
+    ['My dashboard','account.html','account'],['Learning overview','overview.html','overview'],['My study plan','learning-lab.html#study-plan','study'],['Browse courses','catalog.html','catalog'],
     ['Practice Arena','practice.html','practice'],['Practice Studio','studio.html','studio'],['AI Learning Tutor','tutor.html','tutor']]},
   {caption:'ACHIEVEMENTS',items:[['Capstone Studio','capstone.html','capstone'],['Certificates','account.html#certificates','certificate']]},
-  {caption:'PLATFORM',items:[['Visit website','index.html','portal']]}
+  {caption:'PLATFORM',items:[['Discover new skills','index.html','portal']]}
  ];
  const adminPages=new Set(['overview','progress','reviews','connection','sync']);
  const shell=document.createElement('div');shell.className='ac-shell';
