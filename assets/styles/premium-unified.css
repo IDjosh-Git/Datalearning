@@ -2523,3 +2523,148 @@ html body.dlp-course-v29[data-ui-course] .dl-lesson-mobile-bar #menuBtn .dl-less
  html body.dlp-course-v29[data-ui-course] #lessonRailBackdrop{display:none!important}
 }
 
+
+
+/* ================================================================
+   DataLearning mobile reading polish — 2026-11-06
+   Keep the premium ivory lesson rail. Remove oversized mobile section
+   gaps and render small teaching tables as readable vertical cards.
+   This final override is intentionally scoped to current course pages.
+   ================================================================ */
+@media screen and (max-width:760px){
+  /* Mobile course headings and lessons should occupy the full available
+     reading width; no artificial min-heights or oversized blank shells. */
+  html body.dlp-course-v29[data-ui-course] :is(main,.app,.content,.intro-body,.intro-underhero,.week,.week-body,.unit,.intro-lesson,.lesson,.learning-grid,.lesson-list,.side-stack,.mastery-data-guide){
+    min-width:0!important;max-width:100%!important;
+  }
+  html body.dlp-course-v29[data-ui-course] :is(.content,.intro-body){
+    padding-inline:clamp(12px,3.5vw,18px)!important;
+  }
+  html body.dlp-course-v29[data-ui-course] :is(.hero,.intro-hero,.ai-hero){
+    min-height:0!important;height:auto!important;
+    margin-bottom:12px!important;
+  }
+  html body.dlp-course-v29[data-ui-course] :is(.mastery-data-guide,.course-intro-callout,.intro-underhero){
+    margin-block:12px 16px!important;
+  }
+  html body.dlp-course-v29[data-ui-course] :is(.week,.unit,.intro-lesson){
+    margin-block:12px 16px!important;
+  }
+  html body.dlp-course-v29[data-ui-course] :is(.week-body,.unit-body,.intro-lesson-body){
+    padding:clamp(12px,3.5vw,17px)!important;
+  }
+  /* Remove the repeated nested padding that left teaching examples in a
+     narrow strip with broad white gutters on 320–390px phones. */
+  html body.dlp-course-v29[data-ui-course] .week{padding:clamp(9px,2.8vw,13px)!important;}
+  html body.dlp-course-v29[data-ui-course] .session-guide{padding:9px!important;}
+  html body.dlp-course-v29[data-ui-course] .learning-clarity{
+    padding:clamp(9px,2.8vw,12px)!important;
+    margin-block:12px!important;
+  }
+  html body.dlp-course-v29[data-ui-course] .intro-lesson{padding:clamp(10px,3vw,14px)!important;}
+  html body.dlp-course-v29[data-ui-course] .intro-body{padding-block:12px 28px!important;}
+  html body.dlp-course-v29[data-ui-course] :is(.lesson-list,.side-stack){
+    align-content:start!important;grid-auto-rows:max-content!important;gap:12px!important;
+  }
+  html body.dlp-course-v29[data-ui-course] :is(.learning-grid,.intro-lesson-grid){
+    align-items:start!important;gap:14px!important;
+  }
+  html body.dlp-course-v29[data-ui-course] :is(.lesson,.mini,.learning-clarity){
+    min-height:0!important;height:auto!important;
+  }
+  /* The old contain-intrinsic-size:720px reserved tall blank blocks in
+     mobile scrolling before their real content was measured. On phones,
+     display actual lesson heights to prevent phantom gaps and jumps. */
+  html body.dlp-course-v29[data-ui-course] :is(.week,.unit,.intro-lesson,.course-mastery):not([hidden]){
+    content-visibility:visible!important;
+    contain-intrinsic-size:none!important;
+  }
+  /* Three-/four-column explanatory tables are not data grids. On narrow
+     screens a labelled card per record is clearer than crushed columns. */
+  html[data-theme="light"] body.dlp-course-v29[data-premium-course-v7="true"] .dlp-mobile-card-region{
+    width:100%!important;max-width:100%!important;min-width:0!important;
+    overflow:visible!important;border:0!important;background:transparent!important;
+    box-shadow:none!important;outline-offset:2px;
+  }
+  html[data-theme="light"] body.dlp-course-v29[data-premium-course-v7="true"] main table.dlp-mobile-table-cards{
+    display:block!important;min-width:0!important;width:100%!important;
+    max-width:100%!important;table-layout:auto!important;
+    border:0!important;background:transparent!important;
+    font-size:14px!important;line-height:1.55!important;
+  }
+  html[data-theme="light"] body.dlp-course-v29[data-premium-course-v7="true"] main table.dlp-mobile-table-cards caption{
+    display:block!important;max-width:100%!important;width:100%!important;
+    padding:11px 13px!important;margin-bottom:10px!important;
+    background:#eef3fa!important;color:#2c4567!important;
+    border:1px solid #dce5f0!important;border-radius:12px!important;
+    font-size:12px!important;font-weight:800!important;line-height:1.45!important;
+    overflow-wrap:break-word!important;
+  }
+  html[data-theme="light"] body.dlp-course-v29[data-premium-course-v7="true"] main table.dlp-mobile-table-cards thead{
+    position:absolute!important;width:1px!important;height:1px!important;
+    padding:0!important;margin:-1px!important;overflow:hidden!important;
+    clip-path:inset(50%)!important;white-space:nowrap!important;border:0!important;
+  }
+  html[data-theme="light"] body.dlp-course-v29[data-premium-course-v7="true"] main table.dlp-mobile-table-cards tbody{
+    display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:10px!important;
+    width:100%!important;max-width:100%!important;min-width:0!important;
+  }
+  html[data-theme="light"] body.dlp-course-v29[data-premium-course-v7="true"] main table.dlp-mobile-table-cards tbody tr{
+    display:block!important;min-width:0!important;max-width:100%!important;
+    border:1px solid #dce5f0!important;border-radius:13px!important;
+    background:#fff!important;box-shadow:0 3px 12px rgba(25,49,85,.04)!important;
+    overflow:hidden!important;
+  }
+  html[data-theme="light"] body.dlp-course-v29[data-premium-course-v7="true"] main table.dlp-mobile-table-cards tbody :is(th,td){
+    display:block!important;width:100%!important;min-width:0!important;
+    max-width:100%!important;padding:10px 13px 12px!important;
+    border:0!important;border-bottom:1px solid #e9eef5!important;
+    background:#fff!important;color:#273a56!important;
+    font-size:13px!important;font-weight:450!important;
+    line-height:1.55!important;text-align:left!important;
+    overflow-wrap:break-word!important;word-break:normal!important;
+    hyphens:manual!important;white-space:normal!important;
+  }
+  html[data-theme="light"] body.dlp-course-v29[data-premium-course-v7="true"] main table.dlp-mobile-table-cards tbody :is(th,td):last-child{
+    border-bottom:0!important;
+  }
+  html[data-theme="light"] body.dlp-course-v29[data-premium-course-v7="true"] main table.dlp-mobile-table-cards tbody :is(th,td)::before{
+    content:attr(data-column-label);display:block;margin-bottom:3px;
+    color:#506381;font-size:10px;font-weight:850;letter-spacing:.07em;
+    line-height:1.35;text-transform:uppercase;
+  }
+  html[data-theme="light"] body.dlp-course-v29[data-premium-course-v7="true"] main table.dlp-mobile-table-cards tbody th{
+    color:#1a4b7d!important;font-size:14px!important;font-weight:800!important;
+    background:linear-gradient(135deg,#fff,#f4f8fd)!important;
+  }
+  html[data-theme="light"] body.dlp-course-v29[data-premium-course-v7="true"] main table.dlp-mobile-table-cards :is(code,kbd,samp){
+    white-space:normal!important;overflow-wrap:anywhere!important;
+    word-break:break-word!important;
+  }
+  html[data-theme="light"] body.dlp-course-v29[data-premium-course-v7="true"] .dlp-mobile-card-region > .dlp-table-hint{
+    display:none!important;
+  }
+  /* Truly wide financial/data tables keep horizontal scrolling, but retain
+     enough column width for values, numeric signs and meaningful labels. */
+  html[data-theme="light"] body.dlp-course-v29[data-premium-course-v7="true"] main table.lesson-table:not(.dlp-mobile-table-cards){
+    min-width:780px!important;max-width:none!important;table-layout:auto!important;
+    font-size:12px!important;
+  }
+  html[data-theme="light"] body.dlp-course-v29[data-premium-course-v7="true"] main table.lesson-table:not(.dlp-mobile-table-cards) :is(td,th){
+    min-width:110px!important;max-width:220px!important;
+    overflow-wrap:normal!important;word-break:normal!important;
+  }
+  html body.dlp-course-v29[data-ui-course] :is(.learning-table-scroll,.table-wrap,.dlp-table-frame){
+    min-width:0;max-width:100%;
+  }
+}
+@media print{
+  html body.dlp-course-v29[data-ui-course] main table.dlp-mobile-table-cards{
+    display:table!important;min-width:0!important;
+  }
+  html body.dlp-course-v29[data-ui-course] main table.dlp-mobile-table-cards thead{position:static!important;clip-path:none!important;width:auto!important;height:auto!important;}
+  html body.dlp-course-v29[data-ui-course] main table.dlp-mobile-table-cards tbody{display:table-row-group!important;}
+  html body.dlp-course-v29[data-ui-course] main table.dlp-mobile-table-cards tbody tr{display:table-row!important;}
+  html body.dlp-course-v29[data-ui-course] main table.dlp-mobile-table-cards tbody :is(td,th){display:table-cell!important;}
+  html body.dlp-course-v29[data-ui-course] main table.dlp-mobile-table-cards tbody :is(td,th)::before{display:none!important;}
+}

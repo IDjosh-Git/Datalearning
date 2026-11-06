@@ -38,3 +38,7 @@ The six current course pages now use a compact, readable, full-width teaching la
 ### Premium white lesson navigation (5 November 2026)
 
 All six course pages now use the same **white-to-ivory gradient lesson sidebar**, matching gradient lesson buttons, resource cards, search field, progress meter, and accessible active states. Accent colour remains unique to each course. On desktop, the sidebar is inset beneath the sticky global header; on mobile, the lesson drawer opens below the header without covering navigation. The compact shared styles remain at the **end of `assets/styles/premium-unified.css`**, avoiding an extra blocking stylesheet. `assets/scripts/course-sidebar-header-offset.js` measures the actual header height at runtime. All lesson actions, quizzes, progress and course content are unchanged.
+
+
+### Latest mobile course layout update — 2026-11-06
+Teaching tables on the six primary course pages become labelled vertical cards on phones; seven-column data examples remain horizontally scrollable. Course sections also have reduced nested whitespace, and the previous mobile lazy-layout blank placeholders are disabled. The full explanation and verification results are in `CURRENT_RELEASE.md`.
