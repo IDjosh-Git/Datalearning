@@ -1,3 +1,29 @@
+# DataLearning — Premium full-width course cards (6 November 2026)
+
+## Current update
+This release builds on `DataLearning_Mobile_Spacing_Tables_Refined_20261106.zip` and retains all existing lessons, the six white-gradient course sidebars, 12 roadmap/extension pages, progress saving, quizzes, Practice Arena, authentication, and Tutor Studio.
+
+- **Wider teaching cards across every course.** On a 390px screen, Excel/SQL/Power BI lesson cards increased from approximately 305px to 344px; their mastery cards from 287px to 344px. The Introduction lesson card increased from 331px to 348px, and AI lesson units from 334px to 356px. Equivalent layout rules apply to Python. On desktop, the support cards use two approximately 503px columns instead of three 331px columns.
+- **Modern, uncluttered surfaces.** Removed decorative panel/background overlays (not functional drawer and dialog backdrops), made the lesson surfaces consistent white with subtle shadows/borders, improved card padding, readable typography, accent borders, and focus-visible accessibility.
+- **Mobile tables no longer squeeze text.** An old CSS rule was overriding the previous table enhancement, recreating cramped 3-column learning tables. The three-column concept / explanation / example tables now render as full-width labelled cards on phones **even without JavaScript**, and their captions also span the available width. Wide financial/data tables retain horizontal scrolling.
+- **Responsive layouts without sideways scrolling.** Audited all six course pages in isolated Chromium HTML/CSS rendering at 320px, 375px, 390px, 768px, 1024px and 1440px: 36 checks with zero page-wide horizontal overflow or out-of-viewport teaching cards.
+- **Single design-layer source of truth.** All new scoped course styling is in the existing last-loaded `assets/styles/premium-unified.css`, avoiding another stylesheet or legacy override conflict. No new background assets or additional frontend dependencies.
+
+## Files changed
+- `assets/styles/premium-unified.css` — widened cards, reduced nested padding, cleaned decorative layers, corrected CSS-only mobile teaching tables.
+- `tests/course-premium-card-width.mjs` and `package.json` — regression contract included in the standard responsive test suite.
+- `CURRENT_RELEASE.md` and `README.md` — this release description.
+
+## Verification and limitations
+- `npm run verify:deployment` — **PASS** (build, lint, responsive, learning, security, practice, tutor).
+- 36 isolated Chromium HTML/CSS layout checks — **PASS**, no horizontal overflow. This is static rendering with page scripts removed for reproducibility; it does not prove dynamic behavior on the live Vercel site.
+- Existing automated project tests verify course navigation, exercises, quizzes, progress, access gates and learning infrastructure. Final cross-device review on a Vercel preview is recommended.
+- This ZIP has not been pushed to GitHub or deployed to Vercel; Supabase was not changed.
+
+---
+
+## Previous release record
+
 # DataLearning — Mobile spacing and teaching-table readability (6 November 2026)
 
 ## Baseline

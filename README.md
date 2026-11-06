@@ -1,6 +1,6 @@
 # DataLearning — current premium learning platform
 
-**Source release: 5 November 2026 — consolidated canonical course navigation.**
+**Source release: 6 November 2026 — premium full-width responsive course cards, without decorative overlays.**
 
 Six current course players (Introduction, Excel, SQL, Power BI, Python and AI) each use one premium **lesson sidebar** with responsive mobile drawer. Courses are selected from the header; the obsolete all-courses rail and its old navigation controllers are absent. All twelve course roadmaps/extensions remain because they are linked learning resources rather than duplicate course players.
 
