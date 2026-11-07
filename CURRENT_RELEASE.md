@@ -1,3 +1,11 @@
+# Current release — 7 November 2026
+
+This version retains the 6 November course-card layout and extends the existing final stylesheet for premium public/private design, tighter mobile controls, and consistent focus/scroll behavior. Supabase reliability improvements include serialized per-course writes, pending-change reconciliation, truthful live connection testing, and diagnostic coverage for all six course tracks.
+
+No production Supabase migration or deployment has been performed. See `docs/PREMIUM_UI_AND_SUPABASE_AUDIT_20261107.md` for evidence and limitations.
+
+---
+
 # DataLearning — Premium full-width course cards (6 November 2026)
 
 ## Current update

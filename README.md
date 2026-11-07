@@ -1,6 +1,10 @@
-# DataLearning — current premium learning platform
+# DataLearning — Premium Unified Edition (7 November 2026)
 
-**Source release: 6 November 2026 — premium full-width responsive course cards, without decorative overlays.**
+**Current build:** Unified premium UI for all 39 routes, improved cloud-progress write ordering and verified admin diagnostics. The existing published database and access rules are unchanged.
+
+For the new release and verified limitations, read [`docs/PREMIUM_UI_AND_SUPABASE_AUDIT_20261107.md`](docs/PREMIUM_UI_AND_SUPABASE_AUDIT_20261107.md). The folder map is in [`docs/PROJECT_FILE_MAP_20261107.md`](docs/PROJECT_FILE_MAP_20261107.md).
+
+**Previous source release: 6 November 2026 — premium full-width responsive course cards, without decorative overlays.**
 
 Six current course players (Introduction, Excel, SQL, Power BI, Python and AI) each use one premium **lesson sidebar** with responsive mobile drawer. Courses are selected from the header; the obsolete all-courses rail and its old navigation controllers are absent. All twelve course roadmaps/extensions remain because they are linked learning resources rather than duplicate course players.
 

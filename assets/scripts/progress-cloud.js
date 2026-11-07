@@ -10,6 +10,8 @@
   };
   const MIGRATION_VERSION='v4';
   let allSyncPromise=null;
+  // Serialize writes per course. Rapid mobile taps must not arrive at Supabase out of order.
+  const courseWriteLanes=new Map();
 
   function safeParse(value, fallback={}){ try { return JSON.parse(value || '') ?? fallback; } catch { return fallback; } }
   function readLocal(key){ try{return safeParse(localStorage.getItem(key), {});}catch{return {};} }
@@ -24,6 +26,13 @@
   const migratedKey=(userId,slug)=>`zahCloudMigration:${MIGRATION_VERSION}:${userId}:${slug}`;
   function readPending(key){ try{return safeParse(localStorage.getItem(key),{});}catch{return {};} }
   function writePending(key,value){ try{ if(value&&Object.keys(value).length)localStorage.setItem(key,JSON.stringify(value)); else localStorage.removeItem(key); }catch(_){} }
+  function clearSettledPending(key,submitted){
+    const current=readPending(key);
+    for(const [week,change] of Object.entries(submitted||{})){
+      if(current[week] && current[week].changed_at===change.changed_at && current[week].completed===change.completed) delete current[week];
+    }
+    writePending(key,current);
+  }
 
   async function getUser(){
     if(!window.ZAH_DB?.configured||!window.ZAH_DB?.client) return null;
@@ -38,7 +47,11 @@
   function queueForUser(userId,slug,week,completed){ const key=pendingKey(userId,slug),p=readPending(key); p[String(week)]={completed:!!completed,changed_at:new Date().toISOString()}; writePending(key,p); }
   function transferAnonymousPending(userId,slug){
     const anon=readPending(anonPendingKey(slug)); if(!Object.keys(anon).length)return;
-    const key=pendingKey(userId,slug),current=readPending(key); Object.assign(current,anon); writePending(key,current); writePending(anonPendingKey(slug),{});
+    const key=pendingKey(userId,slug),current=readPending(key);
+    for(const [week,entry] of Object.entries(anon)){
+      if(!current[week] || String(current[week].changed_at||'')<String(entry.changed_at||'')) current[week]=entry;
+    }
+    writePending(key,current); writePending(anonPendingKey(slug),{});
   }
   async function fetchCourseRows(userId,slug){
     const {data,error}=await window.ZAH_DB.client.from('course_progress').select('week_no,completed,completed_at,updated_at').eq('user_id',userId).eq('course_slug',slug).order('week_no');
@@ -46,8 +59,14 @@
   }
   async function upsertRows(rows){
     if(!rows.length)return;
-    const {error}=await window.ZAH_DB.client.from('course_progress').upsert(rows,{onConflict:'user_id,course_slug,week_no'});
-    if(error) throw error;
+    const slug=String(rows[0].course_slug||'');
+    const previous=courseWriteLanes.get(slug)||Promise.resolve();
+    const task=previous.catch(()=>{}).then(async()=>{
+      const {error}=await window.ZAH_DB.client.from('course_progress').upsert(rows,{onConflict:'user_id,course_slug,week_no'});
+      if(error) throw error;
+    });
+    courseWriteLanes.set(slug,task);
+    try{await task}finally{if(courseWriteLanes.get(slug)===task)courseWriteLanes.delete(slug);}
   }
   function rowFor(userId,slug,week,completed,changedAt){ const now=changedAt||new Date().toISOString(); return {user_id:userId,course_slug:slug,week_no:Number(week),completed:!!completed,completed_at:completed?now:null,updated_at:now}; }
 
@@ -79,7 +98,7 @@
     if(rowsToPush.length){ const dedup={}; rowsToPush.forEach(r=>dedup[String(r.week_no)]=r); await upsertRows(Object.values(dedup));
       // Only re-fetch when pending or recovered work changed the remote rows.
       remoteRows=await fetchCourseRows(user.id,slug); }
-    writePending(pendingKey(user.id,slug),{});
+    clearSettledPending(pendingKey(user.id,slug),pending);
     try{ localStorage.setItem(migratedKey(user.id,slug),'1'); }catch(_){}
 
     // Cloud becomes the shared source of truth after recovery.
@@ -96,9 +115,11 @@
     if(!window.ZAH_DB?.configured||!window.ZAH_DB?.client){ queueAnonymous(slug,week,completed); return {ok:false,reason:'not_configured',progress:local}; }
     user=user||await getUser(); if(!user){ queueAnonymous(slug,week,completed); return {ok:false,reason:'signed_out',progress:local}; }
     queueForUser(user.id,slug,week,completed);
+    const pendingKeyForCourse=pendingKey(user.id,slug);
+    const captured=readPending(pendingKeyForCourse)[String(week)];
     try{
-      await upsertRows([rowFor(user.id,slug,week,completed,new Date().toISOString())]);
-      const p=readPending(pendingKey(user.id,slug)); delete p[String(week)]; writePending(pendingKey(user.id,slug),p);
+      await upsertRows([rowFor(user.id,slug,week,completed,captured?.changed_at)]);
+      clearSettledPending(pendingKeyForCourse,{[String(week)]:captured});
       const now=new Date().toISOString(); try{localStorage.setItem(`zahLastSync:${user.id}:${slug}`,now)}catch(_){}
       return {ok:true,reason:'saved',user,lastSync:now,progress:local};
     }catch(error){ console.error('Cloud week save failed',error); return {ok:false,reason:'network_or_database',error,user,progress:local}; }
@@ -110,7 +131,8 @@
     user=user||await getUser(); if(!user){ Object.entries(progress).forEach(([w,v])=>queueAnonymous(slug,w,v)); return {ok:false,reason:'signed_out'}; }
     const now=new Date().toISOString(),rows=[];
     for(let w=1;w<=info.units;w++){ const value=!!progress[String(w)]; queueForUser(user.id,slug,w,value); rows.push(rowFor(user.id,slug,w,value,now)); }
-    try{ await upsertRows(rows); writePending(pendingKey(user.id,slug),{}); try{localStorage.setItem(`zahLastSync:${user.id}:${slug}`,now)}catch(_){} return {ok:true,reason:'saved',lastSync:now}; }
+    const captured=readPending(pendingKey(user.id,slug));
+    try{ await upsertRows(rows); clearSettledPending(pendingKey(user.id,slug),captured); try{localStorage.setItem(`zahLastSync:${user.id}:${slug}`,now)}catch(_){} return {ok:true,reason:'saved',lastSync:now}; }
     catch(error){ console.error('Cloud snapshot save failed',error); return {ok:false,reason:'network_or_database',error}; }
   }
 

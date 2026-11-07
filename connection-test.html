@@ -20,25 +20,46 @@
 <body class="dalp-utility-page" data-admin-console="connection" data-private-workspace="true" data-responsive-page="connection-test">
 <main id="main-content"><div class="card">
 <h1>Check your account connection</h1>
-<p>We’re checking that your account can connect securely.</p>
-<div id="status">Testing connection…</div>
+<p>Verify the live account session and database connection. This check does not change your records.</p>
+<div id="status" role="status" aria-live="polite">Checking connection…</div>
+<ol id="connectionSteps" class="dalp-connection-steps" aria-label="Connection checks"><li>Client configuration</li><li>Verified account session</li><li>Database permissions</li></ol>
+<button type="button" id="connectionRetry" class="lp-primary">Run connection check</button>
 <p><a href="index.html">Back to Learning Portal</a></p>
 </div>
 </main>
 <script>
-document.addEventListener('DOMContentLoaded',async()=>{
- const el=document.getElementById('status');
- try{
-   if(!window.ZAH_DB.configured) throw new Error('Your account connection is unavailable.');
-   const {data,error}=await window.ZAH_DB.client.auth.getSession();
-   if(error) throw error;
-   el.className='ok';
-   el.textContent='Your account connection is working. You can continue learning.';
- }catch(e){
-   el.className='bad';
-   el.textContent='We couldn’t connect to your account right now. Please refresh and try again.';
+(function(){'use strict';
+ const status=document.getElementById('status'),retry=document.getElementById('connectionRetry');
+ const steps=[...document.querySelectorAll('#connectionSteps li')];
+ let running=false;
+ const mark=(i,text,ok)=>{steps[i].textContent=(ok?'✓ ':'• ')+text;steps[i].dataset.result=ok?'ok':'pending'};
+ async function check(){
+  if(running)return;running=true;retry.disabled=true;retry.textContent='Checking…';
+  status.className='';status.textContent='Checking your live connection…';
+  steps.forEach((el,i)=>mark(i,['Client configuration','Verified account session','Database permissions'][i],false));
+  try{
+   const db=window.ZAH_DB;
+   if(!db?.configured || !db.client)throw new Error('setup');
+   mark(0,'Client configuration available',true);
+   const deadline=(promise)=>Promise.race([promise,new Promise((_,reject)=>setTimeout(()=>reject(new Error('timeout')),8000))]);
+   // getUser makes a real server request. getSession alone is only local storage.
+   const {data:identity,error:authError}=await deadline(db.client.auth.getUser());
+   if(authError||!identity?.user||identity.user.is_anonymous)throw new Error('auth');
+   mark(1,'Account verified with Supabase',true);
+   const {data:roles,error:readError}=await deadline(db.client.from('site_admins').select('user_id').eq('user_id',identity.user.id).limit(1));
+   if(readError)throw new Error('database');
+   if(!Array.isArray(roles)||roles.length===0)throw new Error('permission');
+   mark(2,'Database and administrator access verified',true);
+   status.className='ok';status.textContent='All three live connection checks passed.';
+  }catch(error){
+   status.className='bad';
+   const messages={setup:'The Supabase client is unavailable. Check the application configuration and script loading.',auth:'Your session could not be verified. Sign out and sign in again.',database:'Supabase responded, but its database query failed. Check Data API access and row-level security.',permission:'Your account is not authorized for administrator diagnostics.',timeout:'The connection took too long. Check your connection and try again.'};
+   status.textContent=messages[error?.message]||'The live check failed. Retry, or contact an administrator if it continues.';
+  }finally{running=false;retry.disabled=false;retry.textContent='Run connection check';}
  }
-},{once:true});
+ retry.addEventListener('click',check);
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',check,{once:true});else check();
+})();
 </script>
 <script defer="" src="assets/scripts/course-studio-data.js"></script>
 <script defer="" src="assets/scripts/accessibility.js"></script>

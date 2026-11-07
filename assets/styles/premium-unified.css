@@ -2932,3 +2932,206 @@ html[data-theme="light"] body.dlp-course-v29[data-ui-course] .content .side-stac
     overflow-wrap:break-word!important;
   }
 }
+
+
+/* DataLearning | Unified premium surface system, November 2026.
+ * A single final visual layer; existing page scripts, data attributes and
+ * component selectors remain unchanged. Accessibility and content come first.
+ */
+:root {
+  --dlx-ink:#182746;--dlx-muted:#53637c;--dlx-primary:#5b47c5;
+  --dlx-navy:#19294c;--dlx-blue:#3478c9;--dlx-teal:#0d987f;
+  --dlx-accent:#dfbb75;--dlx-line:#dfe6f1;--dlx-canvas:#f7f9fd;
+  --dlx-white:#fff;--dlx-radius:20px;--dlx-control-radius:13px;
+  --dlx-shadow:0 12px 34px rgba(24,38,74,.065),0 2px 5px rgba(24,38,74,.025);
+  --dlx-shadow-hover:0 18px 42px rgba(27,41,81,.115),0 3px 8px rgba(27,41,81,.035);
+}
+html { -webkit-text-size-adjust:100%; overflow-x:clip; scroll-behavior:auto!important; }
+body { max-width:100%; overflow-x:clip; -webkit-font-smoothing:antialiased; }
+* { scroll-margin-top:clamp(84px,9vw,115px); }
+:where(img,video,svg,canvas) { max-width:100%; }
+:where(main,section,article,aside,form) { min-width:0; }
+:where(p,li,td,th,small) { overflow-wrap:break-word; }
+:where(code,pre) { overflow-wrap:anywhere; }
+:where(a,button,input,textarea,select,summary,[role="button"]):focus-visible {
+  outline:3px solid #a28bef!important;outline-offset:3px!important;
+}
+:where(button,a,summary,[role="button"]) { -webkit-tap-highlight-color:transparent;touch-action:manipulation; }
+:where(button,input,select,textarea) { font-family:inherit; }
+:where(button):disabled { cursor:not-allowed; opacity:.62; }
+:where([hidden]) { display:none!important; }
+:where(input,select,textarea) { max-width:100%; }
+:where(textarea) { resize:vertical; }
+::selection { background:#dfd6ff;color:#192549; }
+/* Shared public foundation: one canvas, clean cards rather than stacked translucent layers. */
+html[data-theme="light"] body:not([data-private-workspace="true"]):not([data-ui-course]) {
+  background-color:var(--dlx-canvas);color:var(--dlx-ink);
+}
+html[data-theme="light"] body[data-public-refresh] :is(h1,h2,h3,h4),
+html[data-theme="light"] body.lp-home :is(h1,h2,h3,h4) {
+  letter-spacing:-.037em;text-wrap:balance;
+}
+html[data-theme="light"] body[data-public-refresh] :is(p,li) { line-height:1.65; }
+/* Header retains the brand; menu has a readable, keyboard-accessible surface. */
+html[data-theme="light"] body .dalp-global-header {
+  border-bottom:1px solid var(--dlx-line)!important;
+  box-shadow:0 5px 23px rgba(24,40,72,.055)!important;
+}
+html[data-theme="light"] body .dalp-global-header :is(.dalp-nav-link,.dalp-nav-account,.dalp-global-toggle) {
+  border-radius:13px!important;min-height:43px;
+}
+html[data-theme="light"] body .dalp-global-header .dalp-nav-link:hover {
+  background:#efedff!important;color:#4835ae!important;
+}
+html[data-theme="light"] body .dalp-global-header .dalp-menu-panel {
+  background:#fff!important;border:1px solid #dce4f0!important;
+  border-radius:19px!important;box-shadow:0 21px 55px rgba(23,38,75,.16)!important;
+}
+/* Modern buttons across public pages without disturbing Practice Arena editor controls. */
+html[data-theme="light"] body:not([data-ui-course]) :is(
+ .lp-primary,.lp-secondary,.bo-primary,.bo-secondary,.ps-primary,.ps-secondary,
+ .auth-submit,.cap-outline,.pc-primary,.pc-secondary,.dlp97-clear,
+ .mld-button,.ac-btn,.ac-action,.ip-button,.dalp-action-link,
+ .pl-modal-buttons button,.ss-create,.ss-save,.auth-google-btn
+) {
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  min-height:44px;border-radius:13px!important;font-weight:750!important;
+  line-height:1.25;text-decoration:none!important;white-space:normal;text-align:center;
+  transition:background-color .16s ease,border-color .16s ease,box-shadow .16s ease,transform .16s ease;
+}
+html[data-theme="light"] body:not([data-ui-course]) :is(
+ .lp-primary,.bo-primary,.ps-primary,.auth-submit,.pc-primary,.ss-create,.ss-save
+):not(:disabled) {
+  border:1px solid #5542bd!important;background:#5b47c5!important;
+  color:#fff!important;-webkit-text-fill-color:#fff!important;
+  box-shadow:0 7px 17px rgba(74,56,170,.16)!important;
+}
+html[data-theme="light"] body:not([data-ui-course]) :is(
+ .lp-primary,.bo-primary,.ps-primary,.auth-submit,.pc-primary,.ss-create,.ss-save
+):hover:not(:disabled) { background:#4836ac!important;box-shadow:0 11px 22px rgba(74,56,170,.20)!important; }
+html[data-theme="light"] body:not([data-ui-course]) :is(
+ .lp-secondary,.bo-secondary,.ps-secondary,.cap-outline,.pc-secondary,.dlp97-clear,.auth-google-btn
+):hover:not(:disabled) { border-color:#b4a6ec!important;background:#f3f0ff!important;color:#44359a!important; }
+/* Public inputs and selectors. Custom chevron only for single-select filters. */
+html[data-theme="light"] body:not([data-ui-course]) :is(
+ .lp-pathfinder input,.lp-pathfinder select,.dlp97-filters input,.dlp97-filters select,
+ .ps-page input,.ps-page select,.lp-prompt-page input,.lp-prompt-page select,
+ .auth-page input,.auth-page select,.bo-plan-panel input,.pc-wrap select,.pc-wrap input,
+ .ss-workspace select,.ss-workspace input,.tutor-main select,.tutor-main textarea,
+ .cap-panel input,.cap-panel textarea,.ip-panel input,.ip-panel select,
+ .review-inbox input,.review-inbox select,.ac-page-area input,.ac-page-area select,
+ .ac-page-area textarea
+) {
+  border:1px solid #d5dfed!important;border-radius:var(--dlx-control-radius)!important;
+  background-color:#fff!important;color:var(--dlx-ink)!important;
+  min-height:44px;box-shadow:0 1px 2px rgba(26,43,79,.018);
+}
+html[data-theme="light"] body:not([data-ui-course]) :is(
+ .dlp97-filters input,.dlp97-filters select,.ps-page input,.ps-page select,
+ .lp-prompt-page input,.lp-prompt-page select,.ac-page-area input,.ac-page-area select,
+ .review-inbox input,.review-inbox select
+):focus { border-color:#8e7bda!important;box-shadow:0 0 0 4px rgba(113,94,205,.115)!important; }
+html[data-theme="light"] body:not([data-ui-course]) :is(
+ .dlp97-filters select,.ps-page select,.lp-prompt-page select,
+ .ac-page-area select,.review-inbox select,.ip-panel select
+) {
+  appearance:none;-webkit-appearance:none;padding-right:39px!important;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%235746aa' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")!important;
+  background-repeat:no-repeat!important;background-position:right 13px center!important;background-size:17px!important;
+}
+/* Public bento and editorial cards: consistent density, elevation and alignment. */
+html[data-theme="light"] body :is(
+ .dlp97-card,.lp-course,.dlp-outcome-article,.dlp-journey-item,
+ .bo-panel,.bo-metric,.bo-tool-cards>a,.ps-card,.pl-card,.lp-feature,
+ .tutor-chat,.tutor-sidebar,.cap-panel,.ss-workspace,.lab-card,
+ .pc-panel,.pc-detail,.auth-panel,.mld-stat,.mld-record-card
+) {
+  border-radius:var(--dlx-radius)!important;
+  border-color:var(--dlx-line)!important;
+  box-shadow:var(--dlx-shadow)!important;
+}
+html[data-theme="light"] body :is(
+ .dlp97-card,.lp-course,.bo-tool-cards>a,.pl-card,.dlp-outcome-article
+):hover {box-shadow:var(--dlx-shadow-hover)!important;}
+html[data-theme="light"] body :is(.dlp97-card,.lp-course,.bo-panel,.bo-metric,.ps-card) {
+  min-width:0;
+}
+html[data-theme="light"] body :is(.dlp97-card,.lp-course,.bo-panel,.bo-metric) h3 {
+  color:var(--dlx-ink);line-height:1.3;
+}
+html[data-theme="light"] body :is(.bo-metric,.bo-panel,.dlp97-card) :is(small,p) {color:var(--dlx-muted);}
+/* Specific page layouts: generous but controlled spacing, no oversized empty filter cards. */
+html[data-theme="light"] body.dlp97-catalog-page .dlp97-filters {
+  border:1px solid var(--dlx-line);border-radius:18px!important;
+  background:#fff!important;box-shadow:var(--dlx-shadow)!important;
+  padding:clamp(14px,2.3vw,22px)!important;
+}
+html[data-theme="light"] body.dlp97-catalog-page .dlp97-card {overflow:hidden;}
+html[data-theme="light"] body.lp-prompt-page :is(.pl-filterbar,.pl-toolbar) {
+  border-radius:18px!important;
+}
+html[data-theme="light"] body.ps-page :is(.ps-workspace,.ps-controls,.ps-results,.ps-focus) {min-width:0;}
+html[data-theme="light"] body.ps-page .ps-focus {isolation:isolate;}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-chat {min-height:0;}
+html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-composer :is(textarea,button) {border-radius:13px!important;}
+/* Auth surfaces: readable, steady contrast with clear field hierarchy. */
+html[data-theme="light"] body.auth-page .auth-panel {background:#fff!important;}
+html[data-theme="light"] body.auth-page :is(.auth-tab,.auth-eye,.auth-inline-link) {border-radius:11px;}
+html[data-theme="light"] body.auth-page :is(.auth-tab,.auth-eye,.auth-inline-link):focus-visible {outline-offset:2px!important;}
+/* Learner and staff workspace: one coherent shell, cards, filters, and focus states. */
+html[data-theme] body[data-private-workspace="true"] .ac-main-frame,
+html[data-theme] body[data-private-workspace="true"] .ac-page-area {min-width:0;}
+html[data-theme] body[data-private-workspace="true"] :is(
+ .ac-surface,.ac-panel,.mld-stat,.mld-record-card,.mld-course-section,
+ .ip-panel,.ip-stats article,.review-inbox,.review-detail,.card,
+ .ac-command-hero,.mld-hero
+) {border-radius:20px!important;border-color:#dfe6f0!important;box-shadow:var(--dlx-shadow)!important;}
+html[data-theme] body[data-private-workspace="true"] :is(.ac-surface,.ac-panel,.card,.ip-panel,.review-inbox,.review-detail) {
+  background-color:#fff;color:var(--dlx-ink);
+}
+html[data-theme] body[data-private-workspace="true"] .ac-side-nav .ac-side-link {
+  min-height:45px!important;border-radius:12px!important;
+}
+html[data-theme] body[data-private-workspace="true"] .ac-side-nav .ac-side-link:is(:hover,:focus-visible) {
+  background:#35446f!important;color:#fff!important;
+}
+html[data-theme] body[data-private-workspace="true"] .ac-topbar {box-shadow:0 3px 14px rgba(24,38,74,.06)!important;}
+html[data-theme] body[data-private-workspace="true"] :is(.ac-page-area,.mld-course-section,.ip-panel,.review-inbox) :is(input,select,textarea) {
+  font-size:max(14px,1em);
+}
+html[data-theme] body[data-private-workspace="true"] :is(.ac-btn,.ip-button,.cap-outline,.mld-button) {
+  border-radius:12px!important;min-height:42px;
+}
+/* Course controls preserve their subject accents but gain consistent responsive proportions. */
+html[data-theme="light"] body.dlp-course-v29 :is(.btn,.secondary-action,.gradeBtn,.revealBtn) {
+  border-radius:12px!important;min-height:40px;
+}
+html[data-theme="light"] body.dlp-course-v29 #sidebar .searchbox {border-radius:13px!important;}
+html[data-theme="light"] body.dlp-course-v29 main :is(.lesson,.mini,.try-card,.idea-card,.question-card) {
+  border-radius:18px!important;
+}
+/* Responsive details: safe-area aware navigation and unclipped cards. */
+@media(max-width:900px) {
+  html[data-theme="light"] body .dalp-global-header .dalp-global-inner {gap:10px!important;}
+  html[data-theme="light"] body :is(.dlp97-card,.bo-panel,.bo-metric,.lp-course) {min-width:0;}
+  html[data-theme="light"] body:not([data-ui-course]) :is(.bo-metric-grid,.dlp97-cards,.bo-bento-grid) {max-width:100%;}
+  html[data-theme] body[data-private-workspace="true"] .ac-side-nav {overscroll-behavior:contain;}
+}
+@media(max-width:600px) {
+  :root {--dlx-radius:17px;--dlx-control-radius:12px;}
+  html[data-theme="light"] body .dalp-global-header .dalp-global-inner {padding-inline:14px!important;}
+  html[data-theme="light"] body:not([data-ui-course]) :is(.lp-primary,.lp-secondary,.bo-primary,.bo-secondary,.ps-primary,.ps-secondary,.auth-submit) {min-height:43px;}
+  html[data-theme="light"] body :is(.bo-metric,.dlp97-card,.lp-course,.bo-panel,.dlp-outcome-article) {border-radius:17px!important;}
+  html[data-theme="light"] body.dlp97-catalog-page .dlp97-filters {padding:13px!important;}
+  html[data-theme="light"] body.dlp97-catalog-page .dlp97-filters :is(input,select) {width:100%;min-width:0;}
+  html[data-theme="light"] body.ps-page :is(.ps-focus,.ps-card) {max-width:100%;}
+  html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-composer {max-width:100%;}
+  html[data-theme="light"] body.lp-prompt-page :is(.pl-card,.pl-modal) {max-width:100%;}
+  html[data-theme] body[data-private-workspace="true"] :is(.ac-page-area,.ac-main-frame,main) {max-width:100%;}
+  html[data-theme] body[data-private-workspace="true"] :is(.ac-command-hero,.mld-hero) {padding-inline:clamp(17px,4vw,24px)!important;}
+  :where(a,button,input,select,textarea,summary) {scroll-margin-top:80px;}
+}
+/* Make scrolling responsive, not forced; preserve keyboard focus and reduced motion. */
+@media (prefers-reduced-motion:reduce) {
+  *,*::before,*::after {animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important;}
+}

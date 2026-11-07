@@ -19,12 +19,15 @@
 <body class="dalp-utility-page" data-admin-console="sync" data-private-workspace="true" data-responsive-page="sync-test">
 <main id="main-content"><div class="card">
 <h1>Check saved learning progress</h1>
-<p>See whether your Excel, SQL and Power BI learning progress is up to date. If anything needs attention, you can try saving again.</p>
+<p>Check saved progress across all six learning paths. Retry any course that has not finished syncing.</p>
 <div class="row wait" id="user">Checking learner account…</div>
+<div class="row wait" id="introduction">Foundations: waiting…</div>
 <div class="row wait" id="excel">Excel: waiting…</div>
 <div class="row wait" id="sql">SQL: waiting…</div>
 <div class="row wait" id="powerbi">Power BI: waiting…</div>
-<button id="retry">Update My Progress</button>
+<div class="row wait" id="python">Python: waiting…</div>
+<div class="row wait" id="ai">AI Integration: waiting…</div>
+<button id="retry" class="lp-primary" type="button">Sync all six courses</button>
 <a href="account.html">My Account</a>
 <a href="index.html">Learning Portal</a>
 </div>
@@ -33,6 +36,9 @@
 <script>
 async function run(){
  const userEl=document.getElementById('user');
+ const retry=document.getElementById('retry');
+ retry.disabled=true;retry.textContent='Checking progress…';
+ try{
  const user=await window.ZAHProgressCloud.getUser();
  if(!user){
    userEl.className='row bad';userEl.textContent='Not signed in. Sign in first.';
@@ -40,16 +46,20 @@ async function run(){
  }
  userEl.className='row ok';userEl.textContent='Signed in as: '+user.email;
  const result=await window.ZAHProgressCloud.syncAll();
- for(const slug of ['excel','sql','powerbi']){
+ for(const slug of ['introduction','excel','sql','powerbi','python','ai']){
    const el=document.getElementById(slug),r=result.courses[slug];
    if(r?.ok){
      el.className='row ok';
-     el.textContent=`${slug.toUpperCase()}: ${r.completed}/10 weeks • ${r.percent}% • saved ${new Date(r.lastSync).toLocaleString()}`;
+     const unit=slug==='introduction'?'lessons':'weeks';
+     const total=window.ZAHProgressCloud.COURSE_MAP[slug].units;
+     el.textContent=`${slug.toUpperCase()}: ${r.completed}/${total} ${unit} • ${r.percent}% • updated ${new Date(r.lastSync).toLocaleString()}`;
    }else{
      el.className='row bad';
      el.textContent=`${slug.toUpperCase()}: we couldn’t update your progress. Please try again.`;
    }
  }
+ }catch(e){userEl.className='row bad';userEl.textContent='Unable to reach Supabase. Your local progress remains safe; retry after signing in.';}
+ finally{retry.disabled=false;retry.textContent='Sync all six courses';}
 }
 document.getElementById('retry').onclick=run;
 document.addEventListener('DOMContentLoaded',run,{once:true});
