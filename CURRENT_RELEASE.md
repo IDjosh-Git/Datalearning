@@ -1,3 +1,9 @@
+# Current release — Clarity Edition (7 November 2026)
+
+Simpler public pages and mobile menu, seven CSS layer consolidations (48 → 41 files), sidebar-only lesson selection, modern quiz cards, and a capstone without the decorative hero overlay. See [`docs/CLARITY_EDITION_20261107.md`](docs/CLARITY_EDITION_20261107.md) for specific file changes and verification. No production database writes or deployment were performed.
+
+---
+
 # Current release — 7 November 2026
 
 This version retains the 6 November course-card layout and extends the existing final stylesheet for premium public/private design, tighter mobile controls, and consistent focus/scroll behavior. Supabase reliability improvements include serialized per-course writes, pending-change reconciliation, truthful live connection testing, and diagnostic coverage for all six course tracks.

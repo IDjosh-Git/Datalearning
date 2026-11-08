@@ -6,7 +6,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
-const css=fs.readFileSync(path.join(root,'assets/styles/public-motion.css'),'utf8');
+const css=fs.readFileSync(path.join(root,'assets/styles/public-experience.css'),'utf8');
 const sw=fs.readFileSync(path.join(root,'service-worker.js'),'utf8');
 const ratio=(a,b)=>{
  const luminance=hex=>{

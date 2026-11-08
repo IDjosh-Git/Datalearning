@@ -9,7 +9,7 @@ const cat=manifest.categories;
 const pages=[...cat.public_pages.filter(r=>!['auth.html','verify.html'].includes(r)),...cat.course_players,...cat.course_guides];
 assert.equal(pages.length,30,'All public learning pages should be covered');
 const tracks=['introduction','excel','sql','powerbi','python','ai'];
-const css=fs.readFileSync(path.join(root,'assets/styles/public-vibrant.css'),'utf8');
+const css=fs.readFileSync(path.join(root,'assets/styles/public-experience.css'),'utf8');
 const nav=fs.readFileSync(path.join(root,'assets/scripts/public-navigation.js'),'utf8');
 for(const page of pages){
  const html=fs.readFileSync(path.join(root,page),'utf8');
@@ -19,8 +19,8 @@ for(const page of pages){
  assert.equal((html.match(/class="dalp-global-toggle"/g)||[]).length,1,`${page}: accessible mobile toggle`);
  assert(html.includes('aria-expanded="false"') && html.includes('aria-controls="dalpGlobalNav"'),`${page}: mobile control state`);
  assert(html.includes(page==='overview.html'?'data-public-refresh="20261104"':'data-public-refresh="20261103"'),`${page}: scoped public styles`);
- assert(html.includes(`href="${prefix}assets/styles/public-vibrant.css"`),`${page}: new design layer`);
- assert(html.indexOf(`${prefix}assets/styles/design-system.css`) < html.indexOf(`${prefix}assets/styles/public-vibrant.css`),`${page}: new public styles must override legacy`);
+ assert(html.includes(`href="${prefix}assets/styles/public-experience.css"`),`${page}: new design layer`);
+ assert(html.indexOf(`${prefix}assets/styles/design-system.css`) < html.indexOf(`${prefix}assets/styles/public-experience.css`),`${page}: new public styles must override legacy`);
  assert.equal((html.match(/public-navigation\.js/g)||[]).length,1,`${page}: exactly one interaction script`);
  for(const t of tracks)assert(html.includes(`href="${prefix}courses/${t}.html"`),`${page}: missing ${t} from course selector`);
  for(const tool of ['catalog','prompt-library','reference','studio','tutor','learning-lab','practice','capstone','account'])

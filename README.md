@@ -1,4 +1,14 @@
-# DataLearning — Premium Unified Edition (7 November 2026)
+> **7 November 2026 — Premium Finish & Focused Tutor**: unified premium buttons and action links on public/private pages, improved wrapping and accessible color pairs, and a full-height mobile Tutor with scrollable conversation and compact Tools drawer. See [`docs/PREMIUM_FINISH_TUTOR_20261107.md`](docs/PREMIUM_FINISH_TUTOR_20261107.md).
+
+# DataLearning — Clarity Edition (7 November 2026)
+
+**Current build:** Premium, simplified public website and mobile navigation; one library-style lesson sidebar per course; compact, modern quiz cards; collapsible secondary information; no decorative capstone overlay. The previous Supabase reliability work is preserved.
+
+[Release details and deployment instructions](docs/CLARITY_EDITION_20261107.md) · [Current release history](CURRENT_RELEASE.md)
+
+**CSS cleanup:** Seven safe consolidation operations reduced active stylesheets from **48 to 41**. Active route styles and existing quiz, authentication, progress and capstone functionality remain intact.
+
+# Previous release — Premium Unified Edition (7 November 2026)
 
 **Current build:** Unified premium UI for all 39 routes, improved cloud-progress write ordering and verified admin diagnostics. The existing published database and access rules are unchanged.
 
@@ -6,7 +16,7 @@ For the new release and verified limitations, read [`docs/PREMIUM_UI_AND_SUPABAS
 
 **Previous source release: 6 November 2026 — premium full-width responsive course cards, without decorative overlays.**
 
-Six current course players (Introduction, Excel, SQL, Power BI, Python and AI) each use one premium **lesson sidebar** with responsive mobile drawer. Courses are selected from the header; the obsolete all-courses rail and its old navigation controllers are absent. All twelve course roadmaps/extensions remain because they are linked learning resources rather than duplicate course players.
+Six current course players (Introduction, Excel, SQL, Power BI, Python and AI) each use one premium **lesson sidebar** with responsive mobile drawer, now with a navy active-lesson rail and no duplicate in-content week selector. Courses are selected from the header; the obsolete all-courses rail and its old navigation controllers are absent. All twelve course roadmaps/extensions remain because they are linked learning resources rather than duplicate course players.
 
 ## Current sources of truth
 
@@ -39,7 +49,7 @@ A local ZIP is **not** a production deployment. Existing Supabase data, login, p
 
 The six current course pages now use a compact, readable, full-width teaching layout with corrected introductory hero contrast, offscreen lesson rendering optimization, and unobtrusive progress-save indicators located near their course-progress widgets. Details and verification limits are recorded in `CURRENT_RELEASE.md`. Run `npm run verify:deployment` before publishing to Vercel.
 
-### Premium white lesson navigation (5 November 2026)
+### Previous white lesson navigation (5 November 2026)
 
 All six course pages now use the same **white-to-ivory gradient lesson sidebar**, matching gradient lesson buttons, resource cards, search field, progress meter, and accessible active states. Accent colour remains unique to each course. On desktop, the sidebar is inset beneath the sticky global header; on mobile, the lesson drawer opens below the header without covering navigation. The compact shared styles remain at the **end of `assets/styles/premium-unified.css`**, avoiding an extra blocking stylesheet. `assets/scripts/course-sidebar-header-offset.js` measures the actual header height at runtime. All lesson actions, quizzes, progress and course content are unchanged.
 

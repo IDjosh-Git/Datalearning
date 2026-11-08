@@ -13,6 +13,7 @@
     function closeMenus(except) { menus.forEach(item => { if (item !== except) item.open = false; }); }
     function close(restoreFocus = false) {
       nav.classList.remove('is-open');
+      document.body?.classList?.remove('dl-mobile-nav-open');
       button.setAttribute('aria-expanded', 'false');
       button.setAttribute('aria-label', 'Open navigation');
       closeMenus();
@@ -22,6 +23,7 @@
     function open() {
       previousFocus = document.activeElement;
       nav.classList.add('is-open');
+      if (!desktop.matches) document.body?.classList?.add('dl-mobile-nav-open');
       button.setAttribute('aria-expanded', 'true');
       button.setAttribute('aria-label', 'Close navigation');
     }

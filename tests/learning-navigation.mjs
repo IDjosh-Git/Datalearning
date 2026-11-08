@@ -7,7 +7,7 @@ const pages=discoverPages();assertReferences(assert,pages);
 const home=pages.find(p=>p.route==='index.html');
 for(const asset of ['assets/scripts/learning-catalog.js','assets/scripts/catalog-data.js','assets/scripts/public-navigation.js'])
  assert(home.html.includes(asset),`Homepage missing ${asset}`);
-const css=fs.readFileSync(path.join(root,'assets/styles/home-refinements.css'),'utf8');
+const css=fs.readFileSync(path.join(root,'assets/styles/home.css'),'utf8');
 assert(css.includes('body.lp-home.dlp97-learning-page .dlp97-navigation{display:none}'),'Homepage redundant navigation not hidden');
 for(const slug of ['introduction','excel','sql','powerbi','python','ai']){
  const page=pages.find(p=>p.route===`courses/${slug}.html`);

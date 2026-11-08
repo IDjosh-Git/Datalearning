@@ -2,13 +2,13 @@ import fs from 'node:fs';
 import assert from 'node:assert/strict';
 const read=p=>fs.readFileSync(p,'utf8');
 const tracks=['introduction','excel','sql','powerbi','python','ai'];
-const theme=read('assets/styles/public-motion.css');
+const theme=read('assets/styles/public-experience.css');
 for(const c of tracks){
  for(const suffix of ['','-roadmap','-extension']){
   const f=`courses/${c}${suffix}.html`,html=read(f);
   assert(html.includes('data-premium-course-v7="true"'),`${f} missing premium contract`);
   assert(html.includes(`data-course-theme="${c}"`),`${f} missing course palette`);
-  assert(html.includes('assets/styles/public-motion.css'),`${f} needs final visual sheet`);
+  assert(html.includes('assets/styles/public-experience.css'),`${f} needs final visual sheet`);
   if(!suffix)assert(html.includes('assets/scripts/course-reading-tables.js'),`${f} missing accessible table enhancement`);
  }
 }

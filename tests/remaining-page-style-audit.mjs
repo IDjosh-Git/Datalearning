@@ -8,12 +8,12 @@ import {fileURLToPath} from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=rel=>fs.readFileSync(path.join(root,rel),'utf8');
 const routes={
- 'index.html':['home.css','home-refinements.css'],
+ 'index.html':['home.css','home.css'],
  'catalog.html':['catalog.css'],
  'studio.html':['studio.css'],
- 'capstone.html':['capstone.css','capstone-layout.css'],
- 'capstone-guide.html':['capstone-guide.css','capstone-guide-layout.css'],
- 'preview.html':['preview-foundation.css','preview-layout.css'],
+ 'capstone.html':['capstone.css','capstone.css'],
+ 'capstone-guide.html':['capstone-guide.css','capstone-guide.css'],
+ 'preview.html':['preview.css','preview.css'],
  'account.html':['account.css'],
  'auth.html':['auth.css'],
  'admin.html':['admin.css'],

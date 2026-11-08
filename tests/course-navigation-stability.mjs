@@ -32,7 +32,7 @@ assert.doesNotMatch(read('assets/scripts/experience.js'),/experience-study-map/,
 assert.doesNotMatch(read('assets/scripts/learning-catalog.js'),/dlp97-side|dlp97-menu-toggle|holder\.querySelector/, 'Retired course-list sidebar script remains');
 for(const file of ['course-mobile-drawer.js','course-layout-theme.js'])assert(!fs.existsSync('assets/scripts/'+file),`Obsolete ${file} still deployed`);
 const sw=read('service-worker.js');
-assert.match(sw,/dalp-public-mobile-reading-v50/);
+assert.match(sw,/dalp-public-clarity-v51/);
 assert.doesNotMatch(sw,/const PUBLIC = .*html\|css\|js/);
 const headers=JSON.parse(read('vercel.json')).headers;
 assert(headers.some(h=>h.source.includes('scripts|styles')&&h.headers.some(x=>x.key==='Cache-Control'&&x.value.includes('no-store'))));

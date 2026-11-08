@@ -4,10 +4,11 @@ const player = fs.readFileSync('assets/scripts/weekly-workspace.js','utf8');
 const course = fs.readFileSync('assets/styles/course-page-improvements.css','utf8');
 const roadmap = fs.readFileSync('courses/introduction-roadmap.html','utf8');
 const guide = fs.readFileSync('assets/styles/course-guide-pages.css','utf8');
-assert(player.includes('Foundation roadmap'), 'Foundation roadmap heading must remain');
+assert(player.includes('cw-intro-title'), 'Current foundation lesson heading must remain');
 assert(!player.includes('data-ci-scroll'), 'Obsolete foundation arrow scroll controls must be removed');
-for(const token of ['data-ci-lesson','cw-intro-select','data-ci-move','cw-intro-weekstrip','cw-intro-current'])
+for(const token of ['data-ci-move','cw-intro-current','intro-side a[href^="#"]','cw-intro-title'])
   assert(player.includes(token),`Foundation lesson navigation remains operational: ${token}`);
+assert(!player.includes('id="cw-intro-select"'),'Duplicate foundation lesson selector must not return');
 for(const token of ['.cw-intro-weekstrip','repeat(3,minmax(0,1fr))','repeat(4,minmax(0,1fr))','.dalp-quick-guide-intro','.dalp-quick-guide-bottom'])
   assert(course.includes(token),`Foundation or course guide geometry missing: ${token}`);
 assert(roadmap.includes('class="guide-foundation-page"'));

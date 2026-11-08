@@ -9,7 +9,7 @@ const features={
  'tutor.html':['tutor.css','tutor.js','tutor-ai.js'],
  'reference.html':['reference.css','reference.js','reference-data.js'],
  'prompt-library.html':['prompt-library.css','prompt-library.js','prompt-library-data.js'],
- 'learning-lab.html':['learning-lab-layout.css','learning-lab.js','offline-knowledge.js']
+ 'learning-lab.html':['learning-lab.css','learning-lab.js','offline-knowledge.js']
 };
 for(const [page,assets] of Object.entries(features)){
  const html=read(page);
@@ -25,8 +25,8 @@ assert(read('practice.html').includes('id="pythonLab"'),'Python Lab preserved');
 assert(read('reference.html').includes('reference-title-accent'),'reference heading uses managed styles');
 assert(!read('reference.html').includes('style="color:var(--mint)"'),'outdated inline teal title removed');
 assert(!read('learning-lab.html').includes('<style>'),'Q&A styles should live in CSS, not embedded HTML');
-assert(read('assets/styles/learning-lab-layout.css').includes('.lab-card'),'Q&A card layout preserved');
-assert(read('assets/styles/learning-lab-layout.css').includes('background:var(--ui-nav-ink)'),'Q&A action uses slate palette');
+assert(read('assets/styles/learning-lab.css').includes('.lab-card'),'Q&A card layout preserved');
+assert(read('assets/styles/learning-lab.css').includes('background:var(--ui-nav-ink)'),'Q&A action uses slate palette');
 const ctx={window:{}};vm.createContext(ctx);
 for(const name of ['offline-knowledge.js','reference-data.js','prompt-library-data.js','practice-data.js','practice-extra.js']){
  vm.runInContext(read('assets/scripts/'+name),ctx,{filename:name});

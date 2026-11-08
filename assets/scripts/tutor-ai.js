@@ -135,7 +135,7 @@
  const quick=document.createElement('section');quick.className='tutor-quickstart';quick.setAttribute('aria-label','Tutor setup and example questions');
  const examples=document.createElement('details');examples.className='tutor-mobile-examples';
  const summary=document.createElement('summary');summary.textContent='Browse example questions';examples.append(summary);
- quick.append(examples);document.querySelector('.tutor-context-bar').before(quick);
+ quick.append(examples);sidebar?.querySelector('.tutor-suggestions')?.before(quick);
  const mobile=window.matchMedia('(max-width: 900px)');
  function arrange(){
   if(mobile.matches){

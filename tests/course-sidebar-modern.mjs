@@ -3,7 +3,7 @@ import {hasCurrentPublicCache} from './cache-release-contract.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 const read = p=>fs.readFileSync(p,'utf8');
-const shared=read('assets/styles/public-motion.css');
+const shared=read('assets/styles/public-experience.css');
 const compact = c => c.replaceAll('#','');
 const srgb=x => {const n=parseInt(x,16)/255;return n<=.04045?n/12.92:((n+.055)/1.055)**2.4;};
 const luminance=c=>{c=compact(c);return srgb(c.slice(0,2))*.2126+srgb(c.slice(2,4))*.7152+srgb(c.slice(4,6))*.0722;};

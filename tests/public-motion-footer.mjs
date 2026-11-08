@@ -13,13 +13,13 @@ for(const page of publicRoutes){
  assert.equal(scripts.filter(x=>x==='assets/scripts/public-motion.js').length,1,`${page.route}: missing public motion controller`);
  assert.equal(scripts.filter(x=>x==='assets/scripts/public-footer.js').length,1,`${page.route}: shared footer missing`);
 }
-assert(read('verify.html').includes('assets/styles/public-motion.css'),'Certificate verification footer must match the public design');
+assert(read('verify.html').includes('assets/styles/public-experience.css'),'Certificate verification footer must match the public design');
 assert(!read('auth.html').includes('public-footer.js'),'Sign-in page must stay footer-free');
 const motion=read('assets/scripts/public-motion.js');
 assert(motion.includes('prefers-reduced-motion: reduce'),'Respect reduced motion');
 assert(motion.includes('IntersectionObserver'),'Use intersection animation without global scroll listeners');
 assert(!/\.style\.opacity\s*=\s*['"]?0/.test(motion),'Never hide public content on startup');
-const css=read('assets/styles/public-motion.css');
+const css=read('assets/styles/public-experience.css');
 for(const selector of ['.dalp-footer-invite','.dalp-public-footer__grid','.dalp-public-footer__brand-mark','@media(max-width:480px)','prefers-reduced-motion:reduce',':focus-visible'])
  assert(css.includes(selector),`Missing footer/motion styling: ${selector}`);
 assert(css.includes('body[data-public-refresh].dlp97-catalog-page'),'Public catalogue must not inherit private sidebar padding');

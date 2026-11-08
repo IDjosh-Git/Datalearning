@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 const text=file=>fs.readFileSync(file,'utf8');
 const practice=text('practice.html');
-const editorCss=text('assets/styles/public-motion.css');
+const editorCss=text('assets/styles/public-experience.css');
 const js=text('assets/scripts/practice.js');
 const coach=text('assets/scripts/learner-companion.js');
 const icons=text('assets/scripts/premium-menu-icons.js');
@@ -34,7 +34,7 @@ for(const course of courses){
   const page=text(file);
   assert(page.includes(`data-ui-course="${course}"`),`${file}: subject theme missing`);
   assert(page.includes('data-learning-subject='),`${file}: subject identity missing`);
-  assert(page.includes('public-motion.css'),`${file}: theme CSS missing`);
+  assert(page.includes('public-experience.css'),`${file}: theme CSS missing`);
   checked++;
  }
 }

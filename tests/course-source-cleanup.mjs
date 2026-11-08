@@ -8,7 +8,7 @@ assert(shared.includes('Final course page improvements'),'Responsive and content
 for(const track of ['excel','sql','powerbi','python']){
  const page=read(`courses/${track}.html`);
  const sheets=[...page.matchAll(/<link[^>]+href="\.\.\/assets\/styles\/([^"]+)"[^>]*>/g)].map(x=>x[1]);
- assert.equal(sheets.length,10,`${track} must use exactly 9 purposeful stylesheet layers`);
+ assert.equal(sheets.length,9,`${track} must use 9 purposeful stylesheet layers after consolidation`);
  assert.equal(new Set(sheets).size,sheets.length,`${track} duplicate stylesheets`);
  assert.equal(sheets.at(-1),'premium-unified.css',`${track} theme order`);
  assert(sheets.includes('course-shared-responsiveness.css'),`${track} shared lesson layout missing`);
@@ -33,8 +33,10 @@ for(const removed of ['course-capstones.css','course-certificate-ui.css']){
  assert(!fs.existsSync(`assets/styles/${removed}`),`${removed}: obsolete standalone layer`);
 }
 assert(!shared.includes('.course-learning-rhythm{'),'Dead onboarding styles must stay removed');
-for(const name of ['course-navigation.css','course-python-overrides.css','course-powerbi-overrides.css','course-ai-content.css']){
+for(const name of ['course-navigation.css','course-python-overrides.css','course-powerbi-overrides.css']){
  const css=read(`assets/styles/${name}`);
  assert(css.length<80000,`${name}: the duplicate 100KB tail was reintroduced`);
 }
-console.log('PASS course cleanup: 6 course pages, 10 purposeful stylesheets per player, no repeated inline/floating UI, resource/quiz/progress controls preserved');
+assert(!fs.existsSync('assets/styles/course-ai-content.css'),'AI lesson content consolidated into the course bundle');
+assert(read('assets/styles/course-ai.css').includes('.week10-capstone-v75'),'AI-specific lesson styles retained in bundle');
+console.log('PASS course cleanup: 6 course pages, 9 purposeful stylesheets per player, no repeated inline/floating UI, resource/quiz/progress controls preserved');

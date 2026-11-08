@@ -5,7 +5,7 @@ import fs from 'node:fs';
 const read=file=>fs.readFileSync(file,'utf8');
 const html=read('learning-lab.html');
 const script=read('assets/scripts/study-success.js');
-const css=read('assets/styles/learning-lab-layout.css');
+const css=read('assets/styles/learning-lab.css');
 assert.equal((html.match(/id="study-plan"/g)||[]).length,1,'One study planner');
 for(const id of ['ss-plan-form','ss-course','ss-experience','ss-minutes','ss-session-list','ss-meter-bar','ss-attempt','ss-confidence','ss-save','ss-reveal','ss-solution','ss-status','ss-export','ss-import','ss-import-file'])assert(html.includes(`id="${id}"`),`Study plan missing ${id}`);
 assert(html.includes('assets/scripts/study-success.js'),'New guided plan must load');

@@ -1,7 +1,7 @@
 import {hasCurrentPublicCache} from './cache-release-contract.mjs';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-const publicCss=readFileSync('assets/styles/public-motion.css','utf8');
+const publicCss=readFileSync('assets/styles/public-experience.css','utf8');
 const system=readFileSync('assets/styles/design-system.css','utf8');
 const worker=readFileSync('service-worker.js','utf8');
 for (const selector of ['.intro-hero-details span','.hero-buttons .button.ghost','.ai-hero .metrics span','.dalp-menu-all','.dalp-brand-copy small']) {

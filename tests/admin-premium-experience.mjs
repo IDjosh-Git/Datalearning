@@ -28,7 +28,8 @@ for(const id of ['progressLearner','progressCourse','progressStatus','progressBo
 const cap=read('capstone.html'), guide=read('capstone-guide.html'), cs=read('assets/styles/capstone-premium.css');
 for(const id of ['capstoneForm','evidenceInput','submitCapstone','reviewStatus','certificateControls','certificatePaper','courseProgress'])
  assert(cap.includes(`id="${id}"`),`Capstone learner workflow missing ${id}`);
-assert(cap.includes('cap-hero-card'),'Capstone page needs visible learning pathway');
+assert(!cap.includes('cap-hero-card'),'Decorative capstone overlay should be removed');
+assert(cap.includes('dl-inline-disclosure'),'Keep optional project guidance in expandable section');
 for(const page of [cap,guide])assert(page.includes('assets/styles/capstone-premium.css'),'Capstone page missing new responsive visual layer');
 for(const query of ['max-width:760px','max-width:380px','prefers-reduced-motion:reduce','cap-hero-layout','cap-track-picker'])
  assert(cs.includes(query),`Capstone responsive CSS missing ${query}`);
