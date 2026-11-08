@@ -1,3 +1,13 @@
+# Current release — 8 November 2026
+
+**In-app YouTube course videos:** all six main courses open their video resource in a premium responsive player without navigating away from the lesson; Close, fullscreen and external fallback remain available. Original reading links preserved. See `docs/IN_APP_COURSE_VIDEO_20261108.md`. No database migration.
+
+# Current release — 8 November 2026
+
+**Premium navigation contrast, improved mobile Tutor, and course sidebar close button**
+
+See `docs/NAV_TUTOR_SIDEBAR_20261108.md` for details. No new Supabase migration or environment variables.
+
 ## 8 November 2026 — Mobile Tutor immersive viewport
 
 The mobile Tutor now occupies the full dynamic screen height. The global site header and extra hero are hidden within Tutor only; a Back to Discover link and Tools drawer remain available. Long messages scroll independently of the compact anchored composer. See `docs/TUTOR_FULLSCREEN_MOBILE_20261108.md`.

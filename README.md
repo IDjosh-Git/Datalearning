@@ -1,3 +1,5 @@
+**Latest update (8 November 2026):** In-app YouTube video viewer across all six courses, with responsive video dialog, close/fullscreen, and fallback. See [`docs/IN_APP_COURSE_VIDEO_20261108.md`](docs/IN_APP_COURSE_VIDEO_20261108.md).
+
 > **8 November 2026 — Capstone, Profile & Mobile Navigation:** cleaned-up Capstone header, accurate signed-out/submission-loading states with retry, premium editable user profile, private photo uploads, visible account status in top navigation, and animated Discover header. See [`docs/CAPSTONE_PROFILE_MOBILE_20261108.md`](docs/CAPSTONE_PROFILE_MOBILE_20261108.md).
 
 > **7 November 2026 — Premium Finish & Focused Tutor**: unified premium buttons and action links on public/private pages, improved wrapping and accessible color pairs, and a full-height mobile Tutor with scrollable conversation and compact Tools drawer. See [`docs/PREMIUM_FINISH_TUTOR_20261107.md`](docs/PREMIUM_FINISH_TUTOR_20261107.md).
@@ -62,3 +64,11 @@ Teaching tables on the six primary course pages become labelled vertical cards o
 
 ### Tutor fullscreen mobile (8 November 2026)
 The Tutor uses the entire viewport up to 900px wide. The site-wide navigation and decorative Tutor hero are hidden *only inside the mobile Tutor*, with an accessible Back to Discover link in the conversation toolbar. Chat history scrolls independently and the composer stays anchored inside the panel, above safe-area insets. The existing Tools drawer also contains Privacy & accuracy; no Tutor provider or course data flow changed.
+
+
+## 8 November 2026 — Navigation contrast, mobile Tutor and course drawer
+
+- Fixed pale text on light navigation cards and dropdown options; buttons now have explicit, readable foreground/background colors.
+- Improved fullscreen mobile AI Tutor: compact controls, improved chat readability and composer; practice controls live in the Tools drawer.
+- Added a 44px Close button to the mobile lesson sidebar for all six courses, keeping backdrop, Escape and focus restoration.
+- No database changes required. See `docs/NAV_TUTOR_SIDEBAR_20261108.md`.

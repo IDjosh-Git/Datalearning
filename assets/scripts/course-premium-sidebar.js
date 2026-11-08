@@ -22,6 +22,26 @@
    if(open){const first=focusable()[0];first?.focus({preventScroll:true});}
    if(!open&&returnFocus){(previousFocus?.isConnected?previousFocus:trigger)?.focus({preventScroll:true});}
   };
+  // A genuine, keyboard-accessible close control lives inside every course drawer.
+  // Mount once here rather than maintaining six independent sidebar templates.
+  let drawerHeading=sidebar.querySelector('.dl-lesson-drawer-heading');
+  if(!drawerHeading){
+   drawerHeading=document.createElement('div');
+   drawerHeading.className='dl-lesson-drawer-heading';
+   const heading=document.createElement('span');
+   heading.className='dl-lesson-drawer-caption';
+   heading.textContent='Course lessons';
+   const dismiss=document.createElement('button');
+   dismiss.type='button';
+   dismiss.className='dl-lesson-drawer-dismiss';
+   dismiss.setAttribute('aria-label','Close course sidebar');
+   dismiss.setAttribute('title','Close course sidebar');
+   dismiss.setAttribute('aria-controls','sidebar');
+   dismiss.innerHTML='<span aria-hidden="true">&#215;</span>';
+   dismiss.addEventListener('click',()=>setOpen(false,{returnFocus:true}));
+   drawerHeading.append(heading,dismiss);
+   sidebar.prepend(drawerHeading);
+  }
   trigger.addEventListener('click',()=>setOpen(!isOpen()));
   backdrop.addEventListener('click',()=>setOpen(false,{returnFocus:true}));
   document.addEventListener('pointerdown',e=>{if(isOpen()&&!sidebar.contains(e.target)&&!trigger.contains(e.target))setOpen(false)});
