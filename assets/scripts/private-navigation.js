@@ -10,6 +10,7 @@
   capstones:'<path d="m12 2 2.5 5.5L20 10l-5.5 2.5L12 18l-2.5-5.5L4 10l5.5-2.5L12 2Z"/><path d="m19 17 .8 1.7L21.5 19.5l-1.7.8L19 22l-.8-1.7-1.7-.8 1.7-.8L19 17Z"/>',
   progress:'<path d="M3 17.5 9 11l4 3 8-9"/><path d="M16 5h5v5"/><path d="M3 21h18"/>',
   reviews:'<rect x="4" y="3" width="16" height="18" rx="3"/><path d="M8 8h8m-8 4h5m-5 5 2 2 4-4"/>',
+  profile:'<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
   account:'<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
   catalog:'<path d="M4 19.5V5a2 2 0 0 1 2-2h14v18H6a2 2 0 0 1 0-4h14"/><path d="M8 7h8m-8 4h6"/>',
   portal:'<path d="m3 10 9-7 9 7v11H3V10Z"/><path d="M9 21v-7h6v7"/>',
@@ -27,7 +28,7 @@
  ];
  const learnerNav=[
   {caption:'MY LEARNING',items:[
-    ['My dashboard','account.html','account'],['Learning overview','overview.html','overview'],['My study plan','learning-lab.html#study-plan','study'],['Browse courses','catalog.html','catalog'],
+    ['My dashboard','account.html','account'],['Edit my profile','profile.html','profile'],['Learning overview','overview.html','overview'],['My study plan','learning-lab.html#study-plan','study'],['Browse courses','catalog.html','catalog'],
     ['Practice Arena','practice.html','practice'],['Practice Studio','studio.html','studio'],['AI Learning Tutor','tutor.html','tutor']]},
   {caption:'ACHIEVEMENTS',items:[['Capstone Studio','capstone.html','capstone'],['Certificates','account.html#certificates','certificate']]},
   {caption:'PLATFORM',items:[['Discover new skills','index.html','portal']]}
@@ -51,7 +52,7 @@
  const frame=document.createElement('div');frame.className='ac-main-frame';
  const header=document.createElement('header');header.className='ac-topbar';
  const mobileToggle=document.createElement('button');mobileToggle.type='button';mobileToggle.className='ac-mobile-menu';mobileToggle.setAttribute('aria-label','Open navigation');mobileToggle.setAttribute('aria-controls','acSidebar');mobileToggle.setAttribute('aria-expanded','false');mobileToggle.textContent='☰';
- const trail=document.createElement('div');trail.className='ac-breadcrumb';trail.innerHTML='<span class="ac-topbar-mark" aria-hidden="true">✦</span><span class="ac-breadcrumb-prefix">DataLearning /</span><strong>'+({overview:'Overview',progress:'Progress reports',reviews:'Assessment desk',account:'My Learning',certificate:'Certificate',connection:'Connection check',sync:'Progress check'}[current]||'My Learning')+'</strong>';
+ const trail=document.createElement('div');trail.className='ac-breadcrumb';trail.innerHTML='<span class="ac-topbar-mark" aria-hidden="true">✦</span><span class="ac-breadcrumb-prefix">DataLearning /</span><strong>'+({overview:'Overview',progress:'Progress reports',reviews:'Assessment desk',account:'My Learning',profile:'Edit profile',certificate:'Certificate',connection:'Connection check',sync:'Progress check'}[current]||'My Learning')+'</strong>';
  const right=document.createElement('div');right.className='ac-top-actions';right.innerHTML='<span class="ac-secure"><span class="ac-secure-dot" aria-hidden="true"></span> Private workspace</span><a class="ac-topbar-link" data-learner-shortcut href="catalog.html">Explore courses <span aria-hidden="true">↗</span></a><a class="ac-topbar-link" data-admin-shortcut hidden href="reviewer.html">Assessment desk <span aria-hidden="true">↗</span></a>';
  header.append(mobileToggle,trail,right);
  const area=document.createElement('div');area.className='ac-page-area';

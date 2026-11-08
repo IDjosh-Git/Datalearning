@@ -1,3 +1,9 @@
+## 8 November 2026 — Mobile Tutor immersive viewport
+
+The mobile Tutor now occupies the full dynamic screen height. The global site header and extra hero are hidden within Tutor only; a Back to Discover link and Tools drawer remain available. Long messages scroll independently of the compact anchored composer. See `docs/TUTOR_FULLSCREEN_MOBILE_20261108.md`.
+
+**Latest release (8 November 2026):** Capstone / Profile / Mobile Header. See `docs/CAPSTONE_PROFILE_MOBILE_20261108.md`. All existing learning and administrator features retained.
+
 # Current release — Clarity Edition (7 November 2026)
 
 Simpler public pages and mobile menu, seven CSS layer consolidations (48 → 41 files), sidebar-only lesson selection, modern quiz cards, and a capstone without the decorative hero overlay. See [`docs/CLARITY_EDITION_20261107.md`](docs/CLARITY_EDITION_20261107.md) for specific file changes and verification. No production database writes or deployment were performed.

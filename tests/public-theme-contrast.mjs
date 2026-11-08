@@ -15,7 +15,7 @@ const collect=(dir='')=>{
   }
 };
 collect();
-assert.equal(htmlPages.length,39,'All published HTML pages must participate in the shared theme');
+assert.equal(htmlPages.length,40,'All published HTML pages must participate in the shared theme');
 const globalNavPages=['index.html','catalog.html','reference.html','prompt-library.html','capstone.html','tutor.html','practice.html','studio.html','learning-lab.html',...['excel','sql','powerbi','python','introduction','ai'].flatMap(n=>[`courses/${n}.html`,`courses/${n}-roadmap.html`,`courses/${n}-extension.html`])];
 for(const route of htmlPages){
  const source=read(route);

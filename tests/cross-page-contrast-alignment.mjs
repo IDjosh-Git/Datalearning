@@ -31,7 +31,7 @@ assert(verify.includes('.verify-eyebrow{font-size:12px;letter-spacing:.18em;colo
 assert(guide.includes('color:var(--ui-ink)!important;-webkit-text-fill-color:var(--ui-ink)!important'), 'Course stat cards must use dark ink on white');
 const pages=[...fs.readdirSync(root).filter(x=>x.endsWith('.html')),
  ...fs.readdirSync(path.join(root,'courses')).filter(x=>x.endsWith('.html')).map(x=>'courses/'+x)];
-assert.equal(pages.length,39,'All website routes remain present');
+assert.equal(pages.length,40,'All website routes remain present');
 for(const page of pages){
  const source=read(page);
  assert(source.includes('design-system.css')||['admin.html','progress.html','reviewer.html'].includes(page),`${page}: current theme must be loaded`);

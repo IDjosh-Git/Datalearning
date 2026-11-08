@@ -12,7 +12,7 @@ const auth=read('auth.html');
 const nav=read('assets/scripts/private-navigation.js');
 const sw=read('service-worker.js');
 const routes=discoverPages();
-assert.equal(routes.length,39,'Full site layout must be covered');
+assert.equal(routes.length,40,'Full site layout must be covered');
 assert.equal((global.match(/BEGIN PREMIUM EXPERIENCE 20261103/g)||[]).length,1,'One global premium stylesheet');
 assert(!privateCss.includes('BEGIN PREMIUM EXPERIENCE 20261103'),'Do not duplicate global theme in private navigation');
 assert(!adminCss.includes('BEGIN PREMIUM EXPERIENCE 20261103'),'Admin skin inherits private navigation rather than duplicating all CSS');

@@ -4,7 +4,7 @@ import path from 'node:path';
 const root=path.resolve(import.meta.dirname,'..');
 const manifest=JSON.parse(fs.readFileSync(path.join(root,'docs/SITE_ROUTE_MANIFEST.json'),'utf8'));
 const privatePages=[...manifest.categories.learner_account,...manifest.categories.admin_only,...manifest.categories.admin_diagnostics];
-assert.equal(privatePages.length,7,'Protected page inventory changed: review skip-link policy');
+assert.equal(privatePages.length,8,'Protected page inventory changed: review skip-link policy');
 for(const page of privatePages){
   const html=fs.readFileSync(path.join(root,page),'utf8');
   assert.match(html,/data-private-workspace="true"/,`${page}: missing private-page marker`);

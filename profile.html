@@ -1,0 +1,43 @@
+<!doctype html>
+<html class="light" data-theme="light" lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light"><meta name="theme-color" content="#1d2656">
+<title>Edit your profile | DataLearning</title><meta name="description" content="Update your DataLearning profile, photo, and account preferences securely.">
+<link href="assets/icons/favicon.svg" rel="icon" type="image/svg+xml"/><link href="assets/icons/favicon-32.png" rel="icon" sizes="32x32" type="image/png"/><link href="assets/icons/favicon-180.png" rel="apple-touch-icon" sizes="180x180"/>
+<script>document.documentElement.classList.add('dalp-auth-checking')</script>
+<link rel="stylesheet" href="assets/styles/access-guard.css"><link rel="stylesheet" href="assets/styles/account.css">
+<link rel="stylesheet" href="assets/styles/design-system.css"><link rel="stylesheet" href="assets/styles/private-workspace.css">
+<link rel="stylesheet" href="assets/styles/private-shell-modern.css"><link rel="stylesheet" href="assets/styles/premium-unified.css">
+
+<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0"></script>
+<script defer src="assets/scripts/supabase-config.js"></script><script defer src="assets/scripts/supabase-client.js"></script>
+<script defer src="assets/scripts/server-session.js"></script><script defer src="assets/scripts/auth-gate.js"></script>
+<script defer src="assets/scripts/private-navigation.js"></script><script defer src="assets/scripts/profile-photo.js"></script><script defer src="assets/scripts/profile-editor.js"></script>
+<script defer src="assets/scripts/profile-navigation.js"></script><script defer src="assets/scripts/premium-search.js"></script>
+</head><body data-admin-console="profile" class="profile-page" data-private-workspace="true" data-responsive-page="profile">
+<main id="main-content"><div class="profile-shell">
+<section class="profile-hero" aria-labelledby="profileTitle"><div class="profile-hero-overline"><span class="profile-spark" aria-hidden="true">✦</span> PERSONAL WORKSPACE</div>
+<h1 id="profileTitle">Your profile, <em>your identity.</em></h1>
+<p>Keep your learning profile current. Your photo and contact details are only available through your signed-in account.</p>
+<div class="profile-identity"><div class="profile-avatar" id="profileAvatar" aria-label="Profile photo preview"><span id="profileInitials">DL</span><img id="profileAvatarImg" alt="Your profile photo" hidden></div>
+<div class="profile-identity-name"><strong id="profileDisplayName">Your name</strong><span id="profileDisplayEmail">Checking account…</span><span class="profile-verified"><i aria-hidden="true"></i><span id="profileAccountStatus">Verifying your session</span></span></div></div>
+</section>
+<div class="profile-grid"><div class="profile-main-col">
+<section class="profile-card"><div class="profile-card-heading"><span class="profile-section-icon" aria-hidden="true">◉</span><div><span class="profile-kicker">01 · APPEARANCE</span><h2>Your photo</h2></div></div><p>Use a clear image so your workspace is easy to recognize. Only you can access the original image.</p>
+<div class="profile-photo-actions"><button type="button" id="profilePhotoTrigger" class="profile-btn profile-btn-primary">Upload photo</button><input id="profilePhotoFile" type="file" accept="image/png,image/jpeg,image/webp" hidden><button type="button" id="removeProfilePhoto" class="profile-btn profile-btn-quiet">Remove photo</button><span class="profile-fine">JPG, PNG or WebP · max 5 MB before compression</span></div>
+<div id="photoStatus" class="profile-inline-status" role="status" aria-live="polite"></div></section>
+<section class="profile-card"><div class="profile-card-heading"><span class="profile-section-icon" aria-hidden="true">✎</span><div><span class="profile-kicker">02 · PROFILE DETAILS</span><h2>About you</h2></div></div>
+<form id="profileDetailsForm" novalidate><div class="profile-fields"><label class="profile-field">Full name <span>*</span><input id="profileFullName" name="full_name" autocomplete="name" maxlength="90" required placeholder="Your full name"></label>
+<label class="profile-field">Professional headline<input id="profileHeadline" maxlength="100" autocomplete="organization-title" placeholder="e.g. Learning data analytics"></label>
+<label class="profile-field">Phone (optional)<input id="profilePhone" type="tel" autocomplete="tel" maxlength="35" placeholder="Your preferred contact number"></label>
+<label class="profile-field">Location (optional)<input id="profileLocation" autocomplete="address-level2" maxlength="100" placeholder="City, country"></label>
+<label class="profile-field profile-field-full">Learning goal<select id="profileGoal"><option value="">Select a focus</option><option value="Foundations">Data foundations</option><option value="Excel">Excel and spreadsheets</option><option value="SQL">SQL and databases</option><option value="Power BI">Power BI and reporting</option><option value="Python">Python and automation</option><option value="AI">AI and analytics</option></select></label>
+<label class="profile-field profile-field-full">Short bio<textarea id="profileBio" maxlength="360" rows="4" placeholder="A little about what you are learning and building"></textarea><small>Up to 360 characters.</small></label></div>
+<div class="profile-form-footer"><button type="submit" class="profile-btn profile-btn-primary" id="saveProfileBtn">Save profile</button><span id="profileSaveStatus" class="profile-inline-status" aria-live="polite" role="status"></span></div></form></section>
+</div><aside class="profile-side-col"><section class="profile-card profile-account-card"><div class="profile-card-heading"><span class="profile-section-icon" aria-hidden="true">⌁</span><div><span class="profile-kicker">03 · SECURITY</span><h2>Account details</h2></div></div>
+<label class="profile-field">Current email<input id="profileCurrentEmail" type="email" autocomplete="email" readonly></label>
+<details class="profile-accordion"><summary>Change email address <span aria-hidden="true">+</span></summary><form id="profileEmailForm"><label class="profile-field">New email<input required id="profileNewEmail" type="email" autocomplete="email" placeholder="name@example.com"></label><button type="submit" class="profile-btn profile-btn-outline" id="profileEmailBtn">Send confirmation</button><p id="profileEmailStatus" class="profile-inline-status" role="status"></p><p class="profile-fine">For security, your new email may require confirmation before it becomes active.</p></form></details>
+<details class="profile-accordion"><summary>Change password <span aria-hidden="true">+</span></summary><form id="profilePasswordForm"><label class="profile-field">New password<input required id="profilePassword" type="password" minlength="8" maxlength="128" autocomplete="new-password" placeholder="At least 8 characters"></label><label class="profile-field">Confirm password<input required id="profilePasswordConfirm" type="password" minlength="8" maxlength="128" autocomplete="new-password" placeholder="Repeat new password"></label><button type="submit" class="profile-btn profile-btn-outline" id="profilePasswordBtn">Update password</button><p id="profilePasswordStatus" class="profile-inline-status" role="status"></p></form></details>
+<div class="profile-help"><strong>Private by design</strong><p>Your profile photo is stored privately. Other learners cannot browse your uploaded images.</p></div>
+<a class="profile-btn profile-btn-quiet profile-back" href="account.html">Back to my learning dashboard <span aria-hidden="true">↗</span></a></section></aside></div>
+</div></main></body></html>

@@ -8,7 +8,7 @@ const css=read('assets/styles/premium-unified.css');
 const tutor=read('tutor.html');
 const ai=read('assets/scripts/tutor-ai.js');
 const drawer=read('assets/scripts/tutor-workspace.js');
-assert.equal(pages.length,39,'All existing public/private HTML pages remain present');
+assert.equal(pages.length,40,'All existing public/private HTML pages remain present');
 for(const page of pages){
   assert(page.links.some(l=>l.path==='assets/styles/premium-unified.css'),`${page.route}: shared premium styles missing`);
   for(const ref of [...page.links,...page.scripts]){

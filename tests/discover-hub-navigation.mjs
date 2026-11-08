@@ -6,7 +6,7 @@ const read=(f)=>fs.readFileSync(f,'utf8');
 const page=read('index.html'),overview=read('overview.html'),css=read('assets/styles/premium-unified.css');
 const script=read('assets/scripts/discover-hub.js'),search=read('assets/scripts/premium-search.js');
 const pages=discoverPages();
-assert.equal(pages.length,39,'The 39 existing pages must stay available');
+assert.equal(pages.length,40,'The 39 existing pages must stay available');
 const headers=pages.filter(p=>p.html.includes('class="dalp-global-header"'));
 assert.equal(headers.length,30,'All public page navigation bars must be preserved');
 for(const p of headers){

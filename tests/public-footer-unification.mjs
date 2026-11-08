@@ -7,7 +7,7 @@ import {fileURLToPath} from 'node:url';
 import {discoverPages} from './page-assets.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=(p)=>fs.readFileSync(path.join(root,p),'utf8');
-const restricted=new Set(['admin.html','progress.html','reviewer.html','connection-test.html','sync-test.html','account.html','certificate.html']);
+const restricted=new Set(['admin.html','progress.html','reviewer.html','connection-test.html','sync-test.html','account.html','profile.html','certificate.html']);
 const publicPages=discoverPages().filter(page=>!restricted.has(page.route));
 assert.equal(publicPages.length,32,'31 public routes, including the footer-free sign-in route');
 for(const page of publicPages){

@@ -8,7 +8,7 @@ import {restrictedKind} from '../lib/server-auth.js';
 
 const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const pages=discoverPages();
-assert.equal(pages.length,39,'Expect 21 core routes including overview, six courses, and 12 resource pages');
+assert.equal(pages.length,40,'Expect the original 39 routes plus the new profile editor');
 assertReferences(assert,pages);
 let links=0,css=0,js=0;
 for(const page of pages){

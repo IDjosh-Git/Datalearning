@@ -34,6 +34,6 @@ for(const page of pages){
 }
 assert.equal(globalHeaders,30,'The current shared-header inventory changed; review route organization');
 const expectedPrivate=[...groups.learner_account,...groups.admin_only,...groups.admin_diagnostics];
-assert.equal(expectedPrivate.length,7,'Protected route inventory changed; review middleware and access tests');
+assert.equal(expectedPrivate.length,8,'Protected route inventory changed; review middleware and access tests');
 assert.equal((fs.readFileSync(path.join(root,'assets/styles/design-system.css'),'utf8').match(/\.dalp-skip-link\{position:fixed/g)||[]).length,1,'Skip-link styling duplicated');
 console.log(`PASS organization: ${pages.length} routes mapped; ${globalHeaders} shared headers; ${publicNonGated} public content pages without a page-wide auth gate; main landmarks present; skip links restricted to public pages.`);
