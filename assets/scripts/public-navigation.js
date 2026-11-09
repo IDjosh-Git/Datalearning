@@ -9,6 +9,23 @@
     const scrim = header.querySelector('.dalp-menu-scrim');
     const menus = Array.from(nav.querySelectorAll('.dalp-nav-group'));
     const desktop = matchMedia('(min-width:1201px)');
+    // Keep the off-canvas menu exactly below the rendered header, including
+    // phones with larger system text or a signed-in profile avatar.
+    let headerHeightFrame = 0;
+    const updateHeaderHeight = () => {
+      headerHeightFrame = 0;
+      const height = Math.round(typeof header.getBoundingClientRect === 'function'
+        ? header.getBoundingClientRect().height : (header.offsetHeight || 66));
+      if (height > 0 && height < 180 && document.documentElement?.style?.setProperty)
+        document.documentElement.style.setProperty('--dl-premium-header-height', `${height}px`);
+    };
+    const queueHeaderHeight = () => {
+      if (typeof requestAnimationFrame !== 'function') {updateHeaderHeight();return;}
+      if (!headerHeightFrame) headerHeightFrame = requestAnimationFrame(updateHeaderHeight);
+    };
+    updateHeaderHeight();
+    if (typeof addEventListener === 'function') addEventListener('resize', queueHeaderHeight, {passive:true});
+    if (typeof ResizeObserver === 'function') new ResizeObserver(queueHeaderHeight).observe(header);
     let previousFocus = null;
     function closeMenus(except) { menus.forEach(item => { if (item !== except) item.open = false; }); }
     function close(restoreFocus = false) {
@@ -22,6 +39,7 @@
     }
     function open() {
       previousFocus = document.activeElement;
+      updateHeaderHeight();
       nav.classList.add('is-open');
       if (!desktop.matches) document.body?.classList?.add('dl-mobile-nav-open');
       button.setAttribute('aria-expanded', 'true');

@@ -1,9 +1,9 @@
 /* Powerbi course layout foundation. Modern slate/indigo palette; shared tokens in design-system.css. */
 
 :root{
-  --bg:var(--ui-canvas);--surface:#fff;--surface-soft:#eaf0f8;--surface-warm:#fff7e7;
-  --text:#18202a;--muted:#66727e;--brand:#2563eb;--brand-dark:#1747a6;
-  --brand-deep:#102d6b;--brand-light:#e8f0ff;--gold:#f0ad21;--red:#c84c4c;
+  --bg:var(--ui-canvas);--surface:#fff;--surface-soft:#E8F1F2;--surface-warm:#fff7e7;
+  --text:#18202a;--muted:#66727e;--brand:#35637C;--brand-dark:#274F66;
+  --brand-deep:#274F66;--brand-light:#e8f0ff;--gold:#f0ad21;--red:#c84c4c;
   --border:#dfe6ec;--shadow:0 14px 40px rgba(28,52,78,.09);--radius:20px
 }
 *{box-sizing:border-box}html{scroll-behavior:smooth}
@@ -25,7 +25,7 @@ main{min-width:0}.topbar{position:sticky;top:0;z-index:10;padding:13px 26px;disp
 .topbar-title{display:flex;align-items:center;gap:10px}.topbar strong{font-size:14px}.topbar small{color:var(--muted)}
 .menu-btn,.btn{border:1px solid var(--border);background:var(--surface);color:var(--text);padding:9px 13px;border-radius:10px;cursor:pointer;font-weight:700}.menu-btn{display:none}.btn.primary{background:var(--brand);color:#fff;border-color:var(--brand)}.btn:hover{filter:brightness(.98)}
 .content{max-width:1260px;margin:0 auto;padding:30px 30px 70px}
-.hero{border-radius:28px;padding:44px;color:#fff;overflow:hidden;background:radial-gradient(circle at 82% 16%,rgba(255,255,255,.15),transparent 25%),radial-gradient(circle at 92% 85%,rgba(240,173,33,.16),transparent 25%),linear-gradient(135deg,var(--brand-deep),var(--brand) 68%,#4a83ed);box-shadow:0 24px 60px rgba(24,68,140,.20)}
+.hero{border-radius:28px;padding:44px;color:#fff;overflow:hidden;background:radial-gradient(circle at 82% 16%,rgba(255,255,255,.15),transparent 25%),radial-gradient(circle at 92% 85%,rgba(240,173,33,.16),transparent 25%),linear-gradient(135deg,var(--brand-deep),var(--brand) 68%,#6590A4);box-shadow:0 24px 60px rgba(32,63,88,.20)}
 .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border-radius:999px;background:rgba(255,255,255,.13);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
 .hero h2{font-size:clamp(36px,5.5vw,68px);line-height:1.02;margin:18px 0 15px;max-width:980px}.hero p{max-width:840px;color:#edf4ff;font-size:17px}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px}.stat{padding:15px;border-radius:15px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.14)}.stat strong{display:block;font-size:22px}.stat span{font-size:12px;color:#d8e5fa}

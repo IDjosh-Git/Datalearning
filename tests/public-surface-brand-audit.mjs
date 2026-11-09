@@ -19,9 +19,9 @@ for(const page of shared){
 const coach=read('assets/scripts/learner-companion.js');
 assert(coach.includes("document.querySelector('.dalp-global-header .dalp-global-nav')"),'Coach must be moved inside shared navigation');
 assert(coach.includes("publicNav.querySelector('.dalp-tool-grid')"),'Coach should appear under Study tools instead of repeating a top-level action');
-const css=read('assets/styles/design-system.css');
-for(const str of ['--dalp-header-height:56px','.dalp-public-footer','background:#101d33!important','body.lp-home .lp-trust-strip','body .dalp-global-nav .lc-launch','main a[href]:not(.dalp-themed-hero a):not(.guide-bottom a):not(.finish a):not(.topbar a):not(.account-text-link):not(.card)'])assert(css.includes(str),`theme must contain ${str}`);
+const css=read('assets/styles/design-system.css')+read('assets/styles/premium-unified.css');
+for(const str of ['--dalp-header-height:56px','.dalp-public-footer','--dal-ivory:#F9F7F6','body.lp-home .lp-trust-strip','body .dalp-global-nav .lc-launch','main a[href]:not(.dalp-themed-hero a):not(.guide-bottom a):not(.finish a):not(.topbar a):not(.account-text-link):not(.card)'])assert(css.includes(str),`theme must contain ${str}`);
 const logo=read('assets/icons/da-logo.svg');
-assert(logo.includes('viewBox="0 0 96 96"')&&logo.includes('#15243A')&&logo.includes('#FFBD7A'),'Brand mark uses vector dark-slate palette');
+assert(logo.includes('viewBox="0 0 96 96"')&&logo.includes('#35637C')&&logo.includes('#F69268'),'Brand mark uses the current Blueprint/Melon vector palette');
 assert(!logo.includes('#176B53'),'Old green logo removed');
-console.log(`PASS public surface and brand audit: ${shared.length} shared headers, consistent logos and Coach, dark dashboard footer, plain content links`);
+console.log(`PASS public surface and brand audit: ${shared.length} shared headers, consistent logos and Coach, coherent Blueprint/Melon branding, plain content links`);

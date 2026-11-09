@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 146" role="img" aria-labelledby="t d">
+<title id="t">DataLearning wordmark</title>
+<desc id="d">The DataLearning badge with a Blueprint and Melon wordmark and Learn Build Grow tagline</desc>
+<defs>
+<linearGradient id="badge" x1="8" y1="7" x2="97" y2="106" gradientUnits="userSpaceOnUse"><stop stop-color="#345e78"/><stop offset="1" stop-color="#19394b"/></linearGradient>
+</defs>
+<rect x="5" y="5" width="112" height="112" rx="31" fill="url(#badge)"/>
+<path d="M25 93V70a8 8 0 0 1 8-8h9a8 8 0 0 1 8 8v23Z" fill="#cdebe6"/>
+<path d="M54 93V57a8 8 0 0 1 8-8h9a8 8 0 0 1 8 8v36Z" fill="#f4f4f2"/>
+<path d="M83 93V39a8 8 0 0 1 8-8h9a8 8 0 0 1 8 8v54Z" fill="#f69268"/>
+<path d="M24 62 46 40l16 8 25-27" fill="none" stroke="#fbe5d5" stroke-linecap="round" stroke-linejoin="round" stroke-width="6"/>
+<path d="M77 21h11v11" fill="none" stroke="#fbe5d5" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"/>
+<text x="139" y="78" font-family="Plus Jakarta Sans, DM Sans, Arial, sans-serif" font-weight="800" font-size="61" letter-spacing="-3.4" fill="#244558">data</text>
+<text x="264" y="78" font-family="Plus Jakarta Sans, DM Sans, Arial, sans-serif" font-weight="800" font-size="61" letter-spacing="-3.4" fill="#ad4e23">learning</text>
+<text x="142" y="110" font-family="DM Sans, Arial, sans-serif" font-weight="700" font-size="15" letter-spacing="4.5" fill="#607f8e">LEARN · BUILD · GROW</text>
+</svg>

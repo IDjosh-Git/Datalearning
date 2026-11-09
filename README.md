@@ -1,3 +1,29 @@
+> **Latest UI update (8 Nov 2026):** Premium responsive consistency for phone, tablet, laptop and desktop, including shared adaptive spacing, narrow-screen Tutor improvements, legible Catalogue and Overview headers, course controls and internal table scrolling. See [`docs/PREMIUM_RESPONSIVENESS_AUDIT_20261108.md`](docs/PREMIUM_RESPONSIVENESS_AUDIT_20261108.md). No database migration required.
+
+## Premium brand wordmark and hover design (8 November 2026)
+
+DataLearning now includes a refined accessible Blueprint/Melon live header wordmark and a reusable vector asset (`assets/icons/datalearning-wordmark.svg`). Existing premium logo, course icons, dedicated quiz screens and learning content remain unchanged. Course, catalogue, learning-tool and editorial cards have subtle pointer-hover motion; the brand badge adds a gentle highlight sweep. Touch users do not receive simulated hover effects, and `prefers-reduced-motion` is respected. Changes are maintained in `assets/styles/premium-unified.css`. No database migration is needed.
+
+# Latest release — Guided Weekly Lessons + Dedicated Quiz Pages | 8 November 2026
+
+All 50 technical course weeks and the eight Introduction lessons now receive clear, premium learning guides with practical business context, actionable steps, and separate weekly assessment links. The original question banks and mastery checks now open on responsive, purpose-built quiz pages instead of expanding inside the lesson. Existing lessons, practice activities, progress, and account sync are retained. See `docs/PREMIUM_WEEKLY_LESSON_STANDALONE_QUIZ_20261108.md`. No database migration required.
+
+# Latest release — Unified Premium Assessments | 8 November 2026
+
+All six course question experiences now share Blueprint-and-melon premium gradients, consistent question cards, accessible answer states, refined quiz actions and responsive layouts. Includes weekly knowledge checks, Introduction and course mastery checkpoints. See `docs/PREMIUM_ASSESSMENT_UI_20261108.md`. CSS-only visual update; learner data, quiz logic, accounts and backend remain unchanged.
+
+# Latest release — Premium Surface Finish | 8 November 2026
+
+See `docs/PREMIUM_SURFACE_FINISH_20261108.md`. Consistent premium cards, tonal buttons, quieter edges, intentional shadows, retained focus states and responsive course/Tutor surfaces. No backend or database changes.
+
+## Latest UI update — 8 November 2026
+
+See `docs/PREMIUM_RESPONSIVE_THEME_RELEASE_20261108.md` for the premium responsive theme, centered course video dialog, functioning Learning Coach footer and updated mobile Tutor.
+
+> **Current build: Melon + Blueprint Light Edition (8 November 2026).** The app now uses the six colors in the supplied palette and replaces the old dark navy look with warm light gradients. See [`docs/MELON_BLUE_PALETTE_RELEASE_20261108.md`](docs/MELON_BLUE_PALETTE_RELEASE_20261108.md).
+
+> **Current build:** Premium Navigation & Workspace Audit (8 November 2026). Read `docs/PREMIUM_NAVIGATION_AUDIT_20261108.md`.
+
 **Latest update (8 November 2026):** In-app YouTube video viewer across all six courses, with responsive video dialog, close/fullscreen, and fallback. See [`docs/IN_APP_COURSE_VIDEO_20261108.md`](docs/IN_APP_COURSE_VIDEO_20261108.md).
 
 > **8 November 2026 — Capstone, Profile & Mobile Navigation:** cleaned-up Capstone header, accurate signed-out/submission-loading states with retry, premium editable user profile, private photo uploads, visible account status in top navigation, and animated Discover header. See [`docs/CAPSTONE_PROFILE_MOBILE_20261108.md`](docs/CAPSTONE_PROFILE_MOBILE_20261108.md).

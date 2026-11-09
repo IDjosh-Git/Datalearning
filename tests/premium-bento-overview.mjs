@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import {discoverPages} from './page-assets.mjs';
 const read=path=>fs.readFileSync(path,'utf8');
 const pages=discoverPages();
-assert.equal(pages.length,40,'39 routes including Learning Overview');
+assert.equal(pages.length,41,'40 routes including Learning Overview');
 const publicPages=pages.filter(p=>p.html.includes('class="dalp-global-header"'));
 assert.equal(publicPages.length,30,'Every public header, including the new overview, uses one navigation');
 for(const page of pages){

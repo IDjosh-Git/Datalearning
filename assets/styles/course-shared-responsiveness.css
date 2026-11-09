@@ -1951,7 +1951,7 @@ html[data-theme="light"] body.dlp-course-v29 :is(.hero,.intro-hero,.ai-hero) :is
   --polish-ink: #17233b;
   --polish-muted: #52627a;
   --polish-line: #dce4ef;
-  --polish-indigo: #4f46e5;
+  --polish-indigo: #6590A4;
   --polish-accent: var(--ui-accent);
   --polish-coral: #e66b55;
   --polish-gold: #e2a52b;
@@ -1988,7 +1988,7 @@ body::before, body::after { content: none !important; display: none !important; 
 :where(.lp-primary, .lp-course-cta, .button.primary, .btn.primary, .btn-primary, .button.blue, .ac-button-primary) {
   background: var(--polish-indigo) !important; color: #fff !important; border-color: var(--polish-indigo) !important;
 }
-:where(.lp-primary, .lp-course-cta, .button.primary, .btn.primary, .btn-primary):hover { background: #3930c6 !important; }
+:where(.lp-primary, .lp-course-cta, .button.primary, .btn.primary, .btn-primary):hover { background: #35637C !important; }
 :where(a, button, input, select, textarea, summary):focus-visible { outline: 3px solid #e2a52b !important; outline-offset: 3px !important; }
 :where(h1, h2, h3, h4) { color: var(--polish-ink); text-wrap: balance; }
 :where(p, li) { color: inherit; }

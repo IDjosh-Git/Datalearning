@@ -10,7 +10,7 @@ const groups=manifest.categories;
 const entries=Object.values(groups).flat();
 assert.equal(new Set(entries).size,entries.length,'Route manifest has duplicates');
 assert.deepEqual([...new Set(entries)].sort(),[...routeSet].sort(),'Route manifest misses pages or contains removed routes');
-const isPublic=new Set([...groups.public_pages,...groups.course_players,...groups.course_guides]);
+const isPublic=new Set([...groups.public_pages,...groups.course_players,...groups.course_guides,...(groups.assessment_pages||[])]);
 const privateRoutes=new Set([...groups.learner_account,...groups.admin_only,...groups.admin_diagnostics]);
 let globalHeaders=0;
 let publicNonGated=0;

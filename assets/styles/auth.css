@@ -2,10 +2,10 @@
 :root{
   --app-bg:#f6f7f9;--app-surface:#ffffff;--app-surface-2:#f0f2f5;--app-surface-3:#e9edf2;
   --app-text:#1d2939;--app-muted:#667085;--app-line:#dfe3e8;--app-line-strong:#cbd2da;
-  --app-brand:var(--ui-primary);--app-brand-strong:var(--ui-primary-hover);--app-brand-soft:#eff0ff;--app-brand-text:var(--ui-primary);
+  --app-brand:var(--ui-primary);--app-brand-strong:var(--ui-primary-hover);--app-brand-soft:#E8F1F2;--app-brand-text:var(--ui-primary);
   --app-success:#187653;--app-warning:#9a681a;--app-danger:#a33f54;--app-info:var(--ui-primary-strong);
   --app-shadow:0 14px 40px rgba(24,32,48,.07);--app-shadow-soft:0 7px 22px rgba(24,32,48,.045);
-  --intro-accent:#7955a5;--excel-accent:#168358;--sql-accent:var(--ui-primary-strong);--pbi-accent:#a57912;
+  --intro-accent:#35637C;--excel-accent:#168358;--sql-accent:var(--ui-primary-strong);--pbi-accent:#a57912;
   color-scheme:light;
 }
 .auth-page{min-height:100vh;background:var(--app-bg)!important;color:var(--app-text)!important}
@@ -68,7 +68,7 @@
 .auth-forms{padding:26px 20px}
 .auth-heading h2{font-size:24px}}
 .auth-layout{background:var(--app-surface)!important}
-.auth-story{background:linear-gradient(132deg,#142844 0%,var(--ui-primary-hover) 56%,#4b3b8c 100%)!important}
+.auth-story{background:linear-gradient(132deg,#142844 0%,var(--ui-primary-hover) 56%,#35637C 100%)!important}
 .auth-forms{border-left:1px solid var(--app-line)}
 .auth-field input:hover{border-color:color-mix(in srgb,var(--app-brand) 38%,var(--app-line-strong))!important}
 @media (max-width:860px){.auth-forms{border-left:0;border-top:1px solid var(--app-line)}
@@ -188,7 +188,7 @@
 html[data-theme] body.auth-page{background:linear-gradient(155deg,#edf2ff 0%,#f7f8fc 45%,#e9eefc 100%)!important;color:var(--ui-ink)!important}
 html[data-theme] body.auth-page .auth-shell{width:min(1150px,calc(100% - 30px))}
 html[data-theme] body.auth-page .auth-layout{box-shadow:0 26px 90px rgba(21,36,58,.14),0 4px 20px rgba(21,36,58,.08)!important;border:1px solid #d6deef!important;border-radius:24px!important}
-html[data-theme] body.auth-page .auth-story{background:linear-gradient(135deg,#192b4a 0%,var(--ui-primary-hover) 52%,#50419a 100%)!important;isolation:isolate;position:relative}
+html[data-theme] body.auth-page .auth-story{background:linear-gradient(135deg,#192b4a 0%,var(--ui-primary-hover) 52%,#35637C 100%)!important;isolation:isolate;position:relative}
 html[data-theme] body.auth-page .auth-story::before{z-index:-1;width:350px;height:350px;top:-100px;right:-145px;background:radial-gradient(circle,rgba(255,221,139,.23),transparent 68%);animation:authFloat 12s ease-in-out infinite alternate;pointer-events:none}
 html[data-theme] body.auth-page .auth-story::after{z-index:-1;width:300px;height:300px;bottom:-100px;left:-130px;background:radial-gradient(circle,rgba(139,216,255,.20),transparent 68%);animation:authFloat 15s ease-in-out infinite alternate-reverse;pointer-events:none}
 html[data-theme] body.auth-page .auth-story h1{color:#fff!important;letter-spacing:-.045em}
@@ -198,8 +198,8 @@ html[data-theme] body.auth-page .auth-story .auth-benefit span{color:#edf0ff!imp
 html[data-theme] body.auth-page .auth-story .auth-benefit svg{color:#ffe4a7}
 html[data-theme] body.auth-page .auth-forms{background:#fff!important}
 html[data-theme] body.auth-page .auth-field input{background:#f8faff!important;color:var(--ui-ink)!important;border:1px solid #bfcce2!important}
-html[data-theme] body.auth-page .auth-field input:focus-visible{outline:3px solid #6374ea!important;outline-offset:1px}
-html[data-theme] body.auth-page .auth-submit{background:linear-gradient(110deg,var(--ui-primary-hover),#4b46d4)!important;color:#fff!important;box-shadow:0 9px 22px rgba(48,53,176,.22)!important;transition:transform .18s ease,box-shadow .18s ease}
+html[data-theme] body.auth-page .auth-field input:focus-visible{outline:3px solid #6590A4!important;outline-offset:1px}
+html[data-theme] body.auth-page .auth-submit{background:linear-gradient(110deg,var(--ui-primary-hover),#6590A4)!important;color:#fff!important;box-shadow:0 9px 22px rgba(48,53,176,.22)!important;transition:transform .18s ease,box-shadow .18s ease}
 html[data-theme] body.auth-page .auth-submit:not(:disabled):hover{transform:translateY(-2px);box-shadow:0 14px 25px rgba(48,53,176,.28)!important}
 html[data-theme] body.auth-page .auth-tab.active{color:#202e50!important;box-shadow:0 2px 9px rgba(21,36,58,.09)!important}
 html[data-theme] body.auth-page .auth-topbar{min-height:60px}

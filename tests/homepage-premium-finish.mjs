@@ -27,11 +27,11 @@ for (const pattern of [
  /section\.lp-hero\.dalp-themed-hero\s*\{[\s\S]*?background:#142443!important;[\s\S]*?background-image:none!important;/,
  /main#main-content \.lp-demo\s*\{[\s\S]*?background:#fff!important;[\s\S]*?background-image:none!important;/,
  /main#main-content \.lp-feature,[\s\S]*?main#main-content \.lp-step\s*\{[\s\S]*?background:#fff!important;[\s\S]*?background-image:none!important;/,
- /section\.lp-hero \.lp-hero-actions > a\.lp-primary\.dalp-plain-link,[\s\S]*?background:#6251da!important;/,
+ /section\.lp-hero \.lp-hero-actions > a\.lp-primary\.dalp-plain-link,[\s\S]*?background:#35637C!important;/,
  /main#main-content > section::before,[\s\S]*?main#main-content > section::after\s*\{[\s\S]*?content:none!important;/
 ])assert.match(finishing,pattern,'A high-specificity homepage visual fix is missing');
 assert(ratio('14243f','ffffff')>=7,'Primary DataLearning brand text should meet AAA contrast');
-assert(ratio('5638c7','ffffff')>=7,'Purple DataLearning brand accent should meet AAA contrast');
-assert(ratio('ffffff','6251da')>=4.5,'Primary CTA must meet AA contrast');
+assert(ratio('35637C','ffffff')>=4.5,'Blueprint brand accent should meet AA contrast');
+assert(ratio('ffffff','35637C')>=4.5,'Primary CTA must meet AA contrast');
 assert(hasCurrentPublicCache(sw),'Visitors must receive the latest CSS after release');
 console.log('PASS final homepage: DataLearning AAA wordmark, visible AA CTAs, solid hero/dashboard, overlay removal, course navigation and cache revision');

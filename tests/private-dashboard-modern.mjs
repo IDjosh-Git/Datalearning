@@ -24,7 +24,7 @@ assert.match(account,/await Promise\.all\(\[certificateRequest,capstoneRequest\]
 for(const route of ['practice.html','studio.html','tutor.html','catalog.html','capstone.html','account.html#certificates'])assert(nav.includes(`'${route}'`),`Private sidebar missing ${route}`);
 assert(nav.includes('group.hidden=!admin')&&nav.includes("window.DALP_ROLE==='admin'"),'Admin access remains role-gated');
 assert(!nav.includes('ac-mobile-tabs')&&nav.includes("e.key==='Escape'"),'Single mobile drawer with Escape dismissal');
-assert(shell.includes('.ac-side-nav a.ac-side-link.ac-selected')&&shell.includes('border-left:3px solid #d0c3ff'),'Strong visible selected state');
+assert(shell.includes('.ac-side-nav a.ac-side-link.ac-selected')&&shell.includes('border-left:3px solid #D6E7EA'),'Strong visible selected state');
 assert(shell.includes('@media(max-width:1024px)')&&shell.includes('@media(max-width:700px)'),'Shared responsive shell');
 assert(css.includes('.mld-stat-grid')&&css.includes('.mld-resume')&&css.includes('.course-progress-grid')&&css.includes('.mld-detail-grid'),'Modern learner overview, next action, courses and records');
 assert(!/radial-gradient\(/.test(css),'No decorative dashboard overlay backgrounds');

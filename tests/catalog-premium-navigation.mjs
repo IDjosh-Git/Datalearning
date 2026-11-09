@@ -16,7 +16,7 @@ assert.match(css, /@media\(max-width:680px\)[\s\S]*body\.dlp97-catalog-page \.dl
   'Course cards should stack on narrow mobile screens');
 for (const area of ['dalp-course-menu', 'dalp-tools-menu', 'dalp-course-option', 'dalp-tool-option'])
   assert(css.includes(area), `Premium menu should style ${area}`);
-assert.match(css, /\.dalp-menu-panel a\.dalp-menu-all\{[^}]*background:#292064!important/,
+assert.match(css, /\.dalp-menu-panel a\.dalp-menu-all\{[^}]*background:#203F58!important/,
   'Menu catalogue CTA should have legible dark background');
 assert.match(catalog, /assets\/scripts\/learning-catalog\.js/,
   'Course catalog filtering logic must stay loaded');

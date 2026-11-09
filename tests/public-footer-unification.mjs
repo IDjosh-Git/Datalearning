@@ -7,7 +7,7 @@ import {fileURLToPath} from 'node:url';
 import {discoverPages} from './page-assets.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=(p)=>fs.readFileSync(path.join(root,p),'utf8');
-const restricted=new Set(['admin.html','progress.html','reviewer.html','connection-test.html','sync-test.html','account.html','profile.html','certificate.html']);
+const restricted=new Set(['admin.html','progress.html','reviewer.html','connection-test.html','sync-test.html','account.html','profile.html','certificate.html','quiz.html']);
 const publicPages=discoverPages().filter(page=>!restricted.has(page.route));
 assert.equal(publicPages.length,32,'31 public routes, including the footer-free sign-in route');
 for(const page of publicPages){
@@ -26,7 +26,7 @@ const css=read('assets/styles/design-system.css');
 for(const selector of ['.dalp-public-footer__grid','.dalp-public-footer__bottom','.dalp-public-footer__contact','prefers-reduced-motion']){
  assert(css.includes(selector),`Missing shared footer styling: ${selector}`);
 }
-assert(css.includes('background:#101d33!important'),'The public footer must be dark navy');
+assert(read('assets/styles/public-experience.css').includes('body > .dalp-public-footer{background:#fff!important'),'The public footer must use a light print-safe surface');
 const js=read('assets/scripts/public-footer.js');
 for(const pagePath of ['index.html','courses/sql.html','reference.html']){
  const created=[];

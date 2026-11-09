@@ -12,7 +12,7 @@ const auth=read('auth.html');
 const nav=read('assets/scripts/private-navigation.js');
 const sw=read('service-worker.js');
 const routes=discoverPages();
-assert.equal(routes.length,40,'Full site layout must be covered');
+assert.equal(routes.length,41,'Full site layout must be covered');
 assert.equal((global.match(/BEGIN PREMIUM EXPERIENCE 20261103/g)||[]).length,1,'One global premium stylesheet');
 assert(!privateCss.includes('BEGIN PREMIUM EXPERIENCE 20261103'),'Do not duplicate global theme in private navigation');
 assert(!adminCss.includes('BEGIN PREMIUM EXPERIENCE 20261103'),'Admin skin inherits private navigation rather than duplicating all CSS');
@@ -21,7 +21,7 @@ assert(privateCss.includes('PREMIUM PRIVATE WORKSPACE'),'Private nav gets only f
 assert(global.includes("font-family:'DM Sans'"),'Body font must use modern UI typography');
 assert(global.includes("font-family:'Plus Jakarta Sans'"),'Headings must use the display face');
 assert(global.includes('--ui-control-stroke:#8595ae'),'Input boundaries must have accessible contrast');
-assert(global.includes('linear-gradient(135deg,#6651e4,#4933bf)'),'Accessible premium primary gradient');
+assert(global.includes('linear-gradient(135deg,#6590A4,#35637C)'),'Accessible premium primary gradient');
 assert(global.includes('html[data-theme="light"] body.auth-page .auth-submit'),'Auth premium button must beat legacy specificity');
 assert(global.includes('html[data-theme="light"] body.auth-page .auth-layout'),'Auth layout must beat old auth CSS');
 assert(global.includes('body.auth-page footer{display:none!important}'),'No auth footer');

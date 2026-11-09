@@ -1,7 +1,7 @@
 /* Data Learning Path: one-week-at-a-time learning workspace. No new network requests. */
 (()=>{
  'use strict';
- const course = (document.body.dataset.course || location.pathname.split('/').pop().replace('.html','')).toLowerCase();
+ const course = (document.body.dataset.course || document.body.dataset.uiCourse || location.pathname.split('/').pop().replace('.html','')).toLowerCase();
  const names = {excel:'Excel',sql:'SQL',powerbi:'Power BI',ai:'AI Integration',python:'Python for Data Analytics',introduction:'Data Analysis Foundations'};
  if (!names[course]) return;
  const resources={

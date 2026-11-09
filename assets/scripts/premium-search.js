@@ -26,9 +26,11 @@ const searchIcon='<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke
 function init(){if(document.getElementById('premiumSearchDialog'))return;
  const header=document.querySelector('.dalp-global-header .dalp-global-inner');
  const privateTop=document.querySelector('.ac-topbar .ac-top-actions');
+ const quizTop=document.querySelector('.dl-quiz-nav-actions');
  const trigger=document.createElement('button');trigger.type='button';trigger.className='premium-search-trigger';trigger.setAttribute('aria-label','Search courses and learning tools');trigger.innerHTML=searchIcon+'<span>Search learning</span><kbd>⌘ K</kbd>';
  if(header){const nav=header.querySelector('.dalp-global-nav');header.insertBefore(trigger,header.querySelector('.dalp-global-toggle')||nav||null);}
  else if(privateTop){privateTop.prepend(trigger);}
+ else if(quizTop){quizTop.prepend(trigger);}
  else {trigger.classList.add('premium-search-floating');document.body.append(trigger);}
  const dlg=document.createElement('dialog');dlg.id='premiumSearchDialog';dlg.className='premium-search-dialog';dlg.setAttribute('aria-label','Search the DataLearning platform');
  dlg.innerHTML='<div class="ps-shell"><div class="ps-heading"><div><span class="ps-eyebrow">DATALEARNING · QUICK FIND</span><h2>Where would you like to go?</h2></div><button class="ps-close" type="button" aria-label="Close search">✕</button></div><label class="ps-input-shell">'+searchIcon+'<input id="psInput" type="search" placeholder="Search courses, tools or topics…" autocomplete="off" spellcheck="false" aria-label="Search courses, tools or topics"><kbd>ESC</kbd></label><div class="ps-note"><span>Search across learning destinations</span><span id="psCount" aria-live="polite"></span></div><div class="ps-result-grid" id="psResults" aria-label="Search results"></div><footer class="ps-footer"><span><kbd>↑</kbd><kbd>↓</kbd> Move</span><span><kbd>↵</kbd> Open</span><a href="'+base+'overview.html">Learning overview ↗</a></footer></div>';

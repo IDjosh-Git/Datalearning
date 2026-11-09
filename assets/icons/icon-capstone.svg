@@ -1,1 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="#f9edf2"/><path d="M32 7 51 17v23L32 51 13 40V17Z" fill="#783852"/><path d="m23 30 6 6 13-14" fill="none" stroke="#fbe5d1" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"/><path d="m25 48-5 12 12-5 12 5-5-12" fill="#b67a57"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Capstone project">
+<title>Capstone project</title>
+<defs>
+<linearGradient id="g" x1="8" x2="56" y1="8" y2="56" gradientUnits="userSpaceOnUse"><stop stop-color="#F59E72"/><stop offset="1" stop-color="#A65021"/></linearGradient>
+<filter id="s" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#10202B" flood-opacity="0.18"/></filter>
+</defs>
+<rect x="5" y="5" width="54" height="54" rx="16" fill="url(#g)"/>
+<rect x="6.5" y="6.5" width="51" height="51" rx="14.5" fill="none" stroke="rgba(255,255,255,.2)"/>
+<g filter="url(#s)" fill="none" stroke="#F6FBFC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M32 14 45 19v13c0 7.4-4.8 13.5-13 18-8.2-4.5-13-10.6-13-18V19Z"/><path d="m26.5 31 4 4 7.5-8"/><path d="M25 44.5 22 51l10-3 10 3-3-6.5"/></g>
+</svg>

@@ -1,0 +1,46 @@
+<!doctype html>
+<html class="light" data-theme="light" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta name="theme-color" content="#F9F7F6"/>
+  <meta name="robots" content="noindex,nofollow"/>
+  <meta name="description" content="Practice your DataLearning course knowledge in a focused, accessible quiz workspace."/>
+  <title>Knowledge Check | DataLearning</title>
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml"/>
+  <link rel="icon" href="assets/icons/favicon-32.png" type="image/png" sizes="32x32"/>
+  <link rel="apple-touch-icon" href="assets/icons/favicon-180.png" sizes="180x180"/>
+  <link rel="stylesheet" href="assets/styles/access-guard.css"/>
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0"></script>
+  <script defer src="assets/scripts/supabase-config.js"></script>
+  <script defer src="assets/scripts/supabase-client.js"></script>
+  <script defer src="assets/scripts/server-session.js"></script>
+  <link rel="stylesheet" href="assets/styles/design-system.css"/>
+  <link rel="stylesheet" href="assets/styles/premium-unified.css"/>
+</head>
+<body class="dl-standalone-quiz" data-responsive-page="quiz">
+  <a class="dl-skip-link" href="#main-content">Skip to questions</a>
+  <header class="dl-quiz-nav">
+    <a href="index.html" class="dl-quiz-brand" aria-label="DataLearning dashboard"><span class="dl-quiz-brandmark" aria-hidden="true">D<span>↗</span></span><span><strong>DataLearning</strong><small>Learning workspace</small></span></a>
+    <div class="dl-quiz-nav-actions"><a href="catalog.html">All courses</a><a href="account.html" class="dl-quiz-account">My learning</a></div>
+  </header>
+  <main id="main-content" class="dl-quiz-layout">
+    <nav class="dl-quiz-breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span> / </span><a href="catalog.html" id="dl-quiz-course-crumb">Courses</a><span> / </span><strong id="dl-quiz-crumb-current">Knowledge check</strong></nav>
+    <div class="dl-quiz-hero">
+      <div class="dl-quiz-hero-copy"><span class="dl-quiz-eyebrow">LEARN · PRACTISE · PROVE IT</span><h1 id="dl-quiz-title">Your learning checkpoint</h1><p id="dl-quiz-description">Test what you have learned, review explanations and build confidence at your own pace.</p><div class="dl-quiz-hero-meta"><span id="dl-quiz-counter">Preparing your questions…</span><span>No timer · Retake anytime</span></div></div>
+      <div class="dl-quiz-hero-art" aria-hidden="true"><span class="dl-quiz-art-orbit"></span><span class="dl-quiz-art-check">✓</span><span class="dl-quiz-art-caption">Knowledge<br/>becomes skill.</span></div>
+    </div>
+    <div class="dl-quiz-controlbar"><a id="dl-quiz-back" class="dl-quiz-back" href="catalog.html">← Back to lesson</a><div class="dl-quiz-progress"><span id="dl-quiz-progress-label">0 answered</span><div class="dl-quiz-progress-track" role="progressbar" aria-label="Questions answered" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="dl-quiz-progress-fill"></span></div></div></div>
+    <section class="dl-quiz-learning-note" aria-label="Before you begin"><span class="dl-quiz-note-icon" aria-hidden="true">✦</span><div><strong>Before you start</strong><p>Read each question carefully. Choose the best answer, then select <b>Check my answers</b>. Explanations appear after submission to help you learn—not just see a score.</p></div></section>
+    <div id="dl-weekly-mount"><form id="dl-quiz-form" novalidate><div id="dl-quiz-questions" class="dl-quiz-questions"></div><div class="dl-quiz-actions"><button class="dl-quiz-primary" type="submit" id="dl-grade">Check my answers <span aria-hidden="true">→</span></button><button class="dl-quiz-secondary" type="button" id="dl-retry">Try again</button><a id="dl-quiz-actions-back" class="dl-quiz-subtle" href="catalog.html">Return to lesson</a></div><div class="dl-quiz-results" id="dl-quiz-results" aria-live="polite" role="status" hidden></div></form></div>
+    <div id="dl-master-mount" hidden></div>
+    <div id="dl-quiz-navigation" class="dl-quiz-next-row"><a id="dl-prev-quiz" href="#" hidden>← Previous week</a><a id="dl-next-quiz" href="#" hidden>Next week’s questions →</a></div>
+    <p id="dl-quiz-save-status" class="dl-quiz-save-status" role="status" aria-live="polite">Your quiz is for learning and practice; completing it does not automatically mark the week complete.</p>
+  </main>
+  <footer class="dl-quiz-footer"><span>DataLearning · Learn with confidence, practise with purpose.</span><a href="catalog.html">Explore courses</a></footer>
+  <script defer src="assets/scripts/premium-search.js"></script>
+  <script defer src="assets/scripts/weekly-quiz-bank.js"></script>
+  <script defer src="assets/scripts/premium-quiz-page.js"></script>
+  <script defer src="assets/scripts/course-checkpoints.js"></script>
+<script defer src="/assets/scripts/premium-icon-system.js"></script></body>
+</html>

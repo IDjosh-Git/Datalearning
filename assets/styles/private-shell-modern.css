@@ -6,10 +6,10 @@
  */
 html[data-theme] body[data-private-workspace="true"].ac-ready{
  --ac-deep:#192342;--ac-nav-text:#f5f7ff;--ac-nav-muted:#c5d0e7;
- --ac-nav-border:#354263;--ac-nav-accent:#b7a8ff;
+ --ac-nav-border:#354263;--ac-nav-accent:#D6E7EA;
  --ac-canvas:#f5f7fc;--ac-panel:#fff;--ac-panel-raised:#f7f8fc;
  --ac-text:#1b2946;--ac-muted:#52637b;--ac-stroke:#dee5f0;
- --ac-focus:#9b83fc;
+ --ac-focus:#B8D1D8;
  background:#f5f7fc!important;color:#1b2946;
 }
 html[data-theme] body.ac-ready .ac-shell{display:grid;grid-template-columns:274px minmax(0,1fr)!important;min-height:100dvh;max-width:100%}
@@ -38,7 +38,7 @@ html[data-theme] body.ac-ready .ac-brand strong{
 }
 html[data-theme] body.ac-ready .ac-brand small{
  display:block;margin:5px 0 0;font-size:9.5px!important;font-weight:850;letter-spacing:.11em!important;
- color:#cfc6ff!important;-webkit-text-fill-color:#cfc6ff!important;
+ color:#D6E7EA!important;-webkit-text-fill-color:#D6E7EA!important;
 }
 html[data-theme] body.ac-ready .ac-side-nav{
  flex:1 1 auto!important;min-height:0!important;overflow-y:auto!important;
@@ -67,8 +67,8 @@ html[data-theme] body.ac-ready .ac-side-nav a.ac-side-link:hover{
 }
 html[data-theme] body.ac-ready .ac-side-nav a.ac-side-link.ac-selected,
 html[data-theme] body.ac-ready .ac-side-nav a.ac-side-link[aria-current="page"]{
- background:#493f8a!important;background-image:none!important;
- border-color:#8576d0!important;border-left:3px solid #d0c3ff!important;
+ background:#35637C!important;background-image:none!important;
+ border-color:#6590A4!important;border-left:3px solid #D6E7EA!important;
  color:#fff!important;-webkit-text-fill-color:#fff!important;
  font-weight:800!important;text-decoration:none!important;
  box-shadow:0 4px 14px #080e2a21!important;
@@ -81,7 +81,7 @@ html[data-theme] body.ac-ready .ac-side-icon svg{
  display:block;width:18px;height:18px;stroke:currentColor;stroke-width:1.8;
  fill:none;stroke-linecap:round;stroke-linejoin:round;
 }
-html[data-theme] body.ac-ready .ac-side-link:is(.ac-selected,[aria-current="page"]) .ac-side-icon{background:#7263bc!important;color:#fff!important}
+html[data-theme] body.ac-ready .ac-side-link:is(.ac-selected,[aria-current="page"]) .ac-side-icon{background:#6590A4!important;color:#fff!important}
 html[data-theme] body.ac-ready .ac-side-arrow{margin-left:auto;color:#b5c5e3!important;font-size:18px;font-weight:600}
 html[data-theme] body.ac-ready .ac-side-link.ac-selected .ac-side-arrow{color:#fff!important}
 html[data-theme] body.ac-ready .ac-side-bottom{
@@ -98,7 +98,7 @@ html[data-theme] body.ac-ready .ac-side-account strong{color:#fff!important;-web
 html[data-theme] body.ac-ready .ac-side-account small{color:#c2cee9!important;-webkit-text-fill-color:#c2cee9!important;font-size:10px!important}
 html[data-theme] body.ac-ready .ac-avatar{
  width:36px;height:36px;flex:none;display:grid;place-items:center;
- background:#6556bb!important;color:#fff!important;border:1px solid #8d83dc!important;
+ background:#6590A4!important;color:#fff!important;border:1px solid #B8D1D8!important;
  border-radius:11px!important;font-weight:850;font-size:15px;
 }
 html[data-theme] body.ac-ready .ac-logout{
@@ -122,18 +122,18 @@ html[data-theme] body.ac-ready .ac-topbar{
 html[data-theme] body.ac-ready .ac-breadcrumb{display:flex;align-items:center;gap:10px;min-width:0;color:#67758c!important;font-size:12px!important;line-height:1.4}
 html[data-theme] body.ac-ready .ac-breadcrumb-prefix{color:#69788e!important;font-weight:650!important}
 html[data-theme] body.ac-ready .ac-breadcrumb strong{color:#1b2946!important;-webkit-text-fill-color:#1b2946!important;font-size:13px;font-weight:850;white-space:nowrap}
-html[data-theme] body.ac-ready .ac-topbar-mark{display:grid;place-items:center;flex:none;width:34px;height:34px;border-radius:11px;background:#eeeaff!important;color:#5f49c9!important;font-size:18px}
+html[data-theme] body.ac-ready .ac-topbar-mark{display:grid;place-items:center;flex:none;width:34px;height:34px;border-radius:11px;background:#E9F2F3!important;color:#6590A4!important;font-size:18px}
 html[data-theme] body.ac-ready .ac-top-actions{display:flex;align-items:center;gap:14px;min-width:0;margin-left:auto}
 html[data-theme] body.ac-ready .ac-secure{display:inline-flex;align-items:center;gap:8px;color:#4d617d!important;font-size:11px;font-weight:750;white-space:nowrap}
 html[data-theme] body.ac-ready .ac-secure-dot{width:8px;height:8px;flex:none;border-radius:50%;background:#18a078;box-shadow:0 0 0 3px #d8f4e9}
 html[data-theme] body.ac-ready a.ac-topbar-link{
  display:inline-flex;align-items:center;gap:8px;min-height:39px;padding:9px 15px!important;
- background:#f0edff!important;border:1px solid #d8d0ff!important;
- color:#4b389e!important;-webkit-text-fill-color:#4b389e!important;
+ background:#EDF4F4!important;border:1px solid #E9F2F3!important;
+ color:#35637C!important;-webkit-text-fill-color:#35637C!important;
  border-radius:11px!important;text-decoration:none!important;font-size:12px;font-weight:850;
  box-shadow:none!important;
 }
-html[data-theme] body.ac-ready a.ac-topbar-link:hover{background:#e8e2ff!important;border-color:#aaa0f0!important}
+html[data-theme] body.ac-ready a.ac-topbar-link:hover{background:#E9F2F3!important;border-color:#B8D1D8!important}
 html[data-theme] body.ac-ready .ac-page-area{
  min-width:0;width:100%;max-width:1770px;margin:0 auto;
  padding:0 clamp(16px,2.8vw,38px) 45px;overflow-x:clip;
@@ -147,7 +147,7 @@ html[data-theme] body.ac-ready .ac-utilities-details summary{
 }
 html[data-theme] body.ac-ready .ac-utilities-details summary:hover{background:#2e3b62;color:#fff!important}
 html[data-theme] body.ac-ready :is(.ac-side-link,.ac-logout,.ac-mobile-menu,.ac-drawer-close,.ac-topbar-link):focus-visible{
- outline:3px solid #c1adff!important;outline-offset:2px!important;
+ outline:3px solid #D6E7EA!important;outline-offset:2px!important;
 }
 html[data-theme] body.ac-ready [data-admin-only][hidden]{display:none!important}
 html[data-theme] body.ac-ready .ac-side-nav :is(.ac-side-link,.ac-utilities-details summary){touch-action:manipulation}
@@ -168,7 +168,7 @@ html[data-theme] body.ac-ready .ac-side-nav :is(.ac-side-link,.ac-utilities-deta
  html[data-theme] body.ac-ready .ac-mobile-menu{
   display:flex!important;align-items:center;justify-content:center;flex:none;
   width:44px;height:44px;border:1px solid #d6ddeb!important;border-radius:12px!important;
-  background:#f6f7fc!important;color:#243457!important;font-size:21px;
+  background:#F9F7F6!important;color:#243457!important;font-size:21px;
  }
  html[data-theme] body.ac-ready .ac-drawer-close{
   display:flex!important;align-items:center;justify-content:center;flex:none;

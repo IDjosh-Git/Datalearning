@@ -52,6 +52,9 @@
     "admin_diagnostics": [
       "connection-test.html",
       "sync-test.html"
+    ],
+    "assessment_pages": [
+      "quiz.html"
     ]
   }
 }

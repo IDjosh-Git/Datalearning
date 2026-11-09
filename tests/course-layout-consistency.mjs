@@ -9,5 +9,5 @@ for(const slug of ['introduction','excel','sql','powerbi','python','ai']){
  assert(html.includes(`href="${slug}-extension.html"`),`${slug}: missing curriculum route`);
 }
 const css=fs.readFileSync('assets/styles/course-page-improvements.css','utf8');
-for(const token of ['--course-content-max:1380px','.capstone-requirement-strip','--course-muted:#405c4f','align-items:start!important'])assert(css.includes(token),`Missing ${token}`);
+for(const token of ['--course-content-max:1380px','.capstone-requirement-strip','--course-muted:var(--ui-muted)','align-items:start!important'])assert(css.includes(token),`Missing ${token}`);
 console.log('PASS six consistent course resource bars, compact notices, layout constraints and text contrast.');

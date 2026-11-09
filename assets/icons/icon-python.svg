@@ -1,1 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="t"><title id="t">Python programming</title><rect width="64" height="64" rx="14" fill="#203b64"/><path d="M30 10h10q7 0 7 7v13H26q-7 0-7 7v3H9V31q0-9 9-9h17v-4H25v-3q0-5 5-5Z" fill="#a5d7fc"/><path d="M34 54H24q-7 0-7-7V34h21q7 0 7-7v-3h10v9q0 9-9 9H29v4h10v3q0 5-5 5Z" fill="#ffd166"/><circle cx="38" cy="17" r="2" fill="#172b47"/><circle cx="26" cy="47" r="2" fill="#172b47"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Python course">
+<title>Python course</title>
+<defs>
+<linearGradient id="g" x1="8" x2="56" y1="8" y2="56" gradientUnits="userSpaceOnUse"><stop stop-color="#5CA1E6"/><stop offset="1" stop-color="#233E66"/></linearGradient>
+<filter id="s" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#10202B" flood-opacity="0.18"/></filter>
+</defs>
+<rect x="5" y="5" width="54" height="54" rx="16" fill="url(#g)"/>
+<rect x="6.5" y="6.5" width="51" height="51" rx="14.5" fill="none" stroke="rgba(255,255,255,.2)"/>
+<g filter="url(#s)" fill="none" stroke="#F6FBFC" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m24 24-8 8 8 8"/><path d="m40 24 8 8-8 8"/><path d="m35 18-6 28"/><rect x="16" y="16" width="32" height="32" rx="10" opacity=".12" fill="#fff" stroke="none"/></g>
+</svg>

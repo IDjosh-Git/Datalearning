@@ -1,3 +1,37 @@
+# Latest release — Premium Cross-Device Responsiveness | 8 November 2026
+
+Refined responsive layout consistency across shared public pages, course portals, dedicated weekly quizzes, Tutor Studio, Practice Arena, learner overview, account and administrative views. Added adaptive gutters, flexible card/grid sizing, mobile navigation containment, touch-friendly controls, compact phone typography, safe-area-aware Tutor composer, and scroll-contained data tables. Corrected Catalogue dark-hero text contrast, Overview badges/CTA, Practice Arena breadcrumbs, and a 320px Tutor Send button wrap. Retained the existing premium logo/brand motion, all six learning tracks, and account/progress functions. No backend or database change.
+
+Automated build, lint and complete test suites passed, supplemented by Chromium static rendering audits. See `docs/PREMIUM_RESPONSIVENESS_AUDIT_20261108.md` for coverage and limitations.
+
+# Latest release — Premium Brand Wordmark & Motion | 8 November 2026
+
+See `docs/PREMIUM_BRAND_MOTION_20261108.md`. Premium live wordmark and reusable SVG logo, refined SVG/icon microinteractions and subtle card hover animation. Motion respects user accessibility preferences. No backend or database changes.
+
+# Latest release — Guided Weekly Lessons + Dedicated Quiz Pages | 8 November 2026
+
+All 50 technical course weeks and the eight Introduction lessons now receive clear, premium learning guides with practical business context, actionable steps, and separate weekly assessment links. The original question banks and mastery checks now open on responsive, purpose-built quiz pages instead of expanding inside the lesson. Existing lessons, practice activities, progress, and account sync are retained. See `docs/PREMIUM_WEEKLY_LESSON_STANDALONE_QUIZ_20261108.md`. No database migration required.
+
+# Latest release — Unified Premium Assessments | 8 November 2026
+
+All six course question experiences now share Blueprint-and-melon premium gradients, consistent question cards, accessible answer states, refined quiz actions and responsive layouts. Includes weekly knowledge checks, Introduction and course mastery checkpoints. See `docs/PREMIUM_ASSESSMENT_UI_20261108.md`. CSS-only visual update; learner data, quiz logic, accounts and backend remain unchanged.
+
+# Latest release — Premium Surface Finish | 8 November 2026
+
+See `docs/PREMIUM_SURFACE_FINISH_20261108.md`. Consistent premium cards, tonal buttons, quieter edges, intentional shadows, retained focus states and responsive course/Tutor surfaces. No backend or database changes.
+
+# Latest release — Premium Responsive Theme, Video & Learning Coach | 8 November 2026
+
+See `docs/PREMIUM_RESPONSIVE_THEME_RELEASE_20261108.md`. Retired old visual palette, centered YouTube player on phones, fixed Learning Coach footer, enhanced square-top mobile Tutor, consistent typography, and responsive layout. No backend changes.
+
+# Latest release: Melon + Blueprint Light Edition — 2026-11-08
+
+Full light-theme refresh across public and authenticated pages. Premium gradient private navigation, light course sidebars, consistent buttons and headers, and updated brand mark. Dark navy sections are replaced with warm neutral panels and muted blue accents. No backend, course content, or auth changes. See `docs/MELON_BLUE_PALETTE_RELEASE_20261108.md`.
+
+# Latest release: Premium Navigation & Workspace Audit — 2026-11-08
+
+See `docs/PREMIUM_NAVIGATION_AUDIT_20261108.md` for changes, tests and deployment.
+
 # Current release — 8 November 2026
 
 **In-app YouTube course videos:** all six main courses open their video resource in a premium responsive player without navigating away from the lesson; Close, fullscreen and external fallback remain available. Original reading links preserved. See `docs/IN_APP_COURSE_VIDEO_20261108.md`. No database migration.
@@ -79,3 +113,5 @@ This release builds on `DataLearning_Mobile_Spacing_Tables_Refined_20261106.zip`
 
 ## Deployment
 Unzip into the existing `IDjosh-Git/Datalearning` repository root, replacing the matching files, then deploy through Vercel. No production deployment was triggered in this release.
+
+- Premium icon refresh across the app, including a redesigned logo, updated favicons, unified course icon family, and a global SVG icon system for navigation and action links.

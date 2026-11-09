@@ -54,7 +54,7 @@
             <h2>Stay on track</h2>
             <p>Need guidance with a lesson or your learning account? We're here to help.</p>
             <a class="dalp-public-footer__contact" href="mailto:esoterikjoshua@gmail.com">Contact support <span aria-hidden="true">↗</span></a>
-            <a href="${href('tutor.html')}">Learning Coach</a>
+            <a href="${href('tutor.html')}#learning-coach" data-learning-coach-link="true" aria-label="Open Learning Coach study planner">Learning Coach <span aria-hidden="true">↗</span></a>
             <a href="${href('verify.html')}">Verify a certificate</a>
           </div>
         </div>

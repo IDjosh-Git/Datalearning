@@ -25,7 +25,7 @@ for (const marker of [
  '@media(max-width:380px)',
 ]) assert(css.includes(marker), `Missing responsive repair for ${marker}`);
 assert(catalog.includes('id="dlp97-search"'), 'Catalogue search input missing');
-assert(overview.includes('class="bo-primary"') && overview.includes('background:#6350d1!important'), 'Overview hero action must be legible on dark background');
+assert(overview.includes('class="bo-primary"') && overview.includes('background:#35637C!important'), 'Overview hero action must be legible on dark background');
 assert(account.includes('id="dashContinueLink"'), 'Resume-learning action must remain present');
 assert(practice.includes('id="practiceDetail"'), 'Practice editor mounting point must remain present');
 assert(practice.includes('assets/scripts/practice.js') && practice.includes('assets/scripts/arena-workspace-visibility.js'), 'Practice editor runtime was disconnected');

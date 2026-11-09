@@ -239,9 +239,9 @@ html[data-theme] body.ac-ready .dalp-admin-table-wrap{overscroll-behavior-inline
 }
 
 /* Maintained reporting workspace: responsive width, card hierarchy, and accessible contrast. */
-html[data-theme] body.ac-ready .review-hero{background:#3b365c!important;border-color:#574f80!important}
+html[data-theme] body.ac-ready .review-hero{background:#203F58!important;border-color:#35637C!important}
 html[data-theme] body.ac-ready :is(.ip-secure,.review-secure){display:inline-flex;max-width:100%;border:1px solid #91aacb!important;border-radius:9px;padding:8px 12px;background:#ffffff13!important;color:#f4f8ff!important;-webkit-text-fill-color:#f4f8ff!important;line-height:1.5;font-size:12px}
-html[data-theme] body.ac-ready .review-hero .review-secure{border-color:#b6add5!important}
+html[data-theme] body.ac-ready .review-hero .review-secure{border-color:#B8D1D8!important}
 html[data-theme] body.ac-ready :is(.ip-hero,.review-hero) :is(h1,h2,h3,p,span,strong,small){text-shadow:none}
 html[data-theme] body.ac-ready :is(.ip-hero,.review-hero) .wrap{min-width:0}
 html[data-theme] body.ac-ready .ac-page-area :is(.ip-panel,.ip-detail,.review-inbox,.review-detail,.ac-surface){max-width:100%}
@@ -328,29 +328,29 @@ html[data-theme] body.ac-ready .ac-topbar :is(.ac-mobile-menu,.ac-breadcrumb){mi
 /* PREMIUM PRIVATE WORKSPACE / 2026-11-03
    Only sidebar-specific overrides; common theme lives in design-system.css. */
 /* Private workspace: stable bottom action with its own non-scrolling footer. */
-html[data-theme] body.ac-ready{--ac-canvas:#f6f7fc;--ac-deep:#171a43;--ac-nav-border:#343962;--ac-nav-text:#f7f6ff;--ac-nav-muted:#c6c6e4;--ac-nav-accent:#c3b8ff;--ac-panel:#fff;--ac-panel-raised:#f5f6fc;--ac-stroke:#e1e5f1;--ac-text:#1c2540;--ac-muted:#596783;--ac-accent:#6553e9;--ac-focus:#c3b8ff;font-family:'DM Sans',sans-serif}
+html[data-theme] body.ac-ready{--ac-canvas:#F9F7F6;--ac-deep:#171a43;--ac-nav-border:#343962;--ac-nav-text:#F9F7F6;--ac-nav-muted:#D6E7EA;--ac-nav-accent:#D6E7EA;--ac-panel:#fff;--ac-panel-raised:#f5f6fc;--ac-stroke:#e1e5f1;--ac-text:#102030;--ac-muted:#596783;--ac-accent:#35637C;--ac-focus:#D6E7EA;font-family:'DM Sans',sans-serif}
 html[data-theme] body.ac-ready .ac-sidebar{height:100dvh!important;max-height:100dvh!important;overflow:hidden!important;display:flex!important;flex-direction:column!important;padding:16px 13px max(12px,env(safe-area-inset-bottom))!important;background:linear-gradient(180deg,#191c4c 0%,#171a3c 100%)!important}
 html[data-theme] body.ac-ready .ac-brand{flex:0 0 auto}
 html[data-theme] body.ac-ready .ac-side-nav{flex:1 1 0!important;min-height:0!important;overflow-y:auto!important;overscroll-behavior:contain;padding-bottom:16px!important;scrollbar-width:thin}
 html[data-theme] body.ac-ready .ac-side-bottom{flex:0 0 auto!important;position:relative!important;bottom:auto!important;margin-top:0!important;padding:13px 2px 0!important;border-top:1px solid rgba(255,255,255,.15)!important;background:transparent!important;z-index:2}
-html[data-theme] body.ac-ready .ac-logout{width:100%!important;min-height:48px!important;margin:11px 0 0!important;padding:12px 16px!important;background:#343066!important;border:1px solid #57548c!important;border-radius:13px!important;color:#fff!important;-webkit-text-fill-color:#fff!important;font:750 13px 'DM Sans',sans-serif!important;box-shadow:none!important;white-space:normal!important}
-html[data-theme] body.ac-ready .ac-logout:hover{background:#4c428e!important;border-color:#9385d8!important}
+html[data-theme] body.ac-ready .ac-logout{width:100%!important;min-height:48px!important;margin:11px 0 0!important;padding:12px 16px!important;background:#203F58!important;border:1px solid #35637C!important;border-radius:13px!important;color:#fff!important;-webkit-text-fill-color:#fff!important;font:750 13px 'DM Sans',sans-serif!important;box-shadow:none!important;white-space:normal!important}
+html[data-theme] body.ac-ready .ac-logout:hover{background:#35637C!important;border-color:#B8D1D8!important}
 html[data-theme] body.ac-ready .ac-side-link{border-radius:12px!important;font-size:13px!important}
-html[data-theme] body.ac-ready .ac-side-link.ac-selected{background:rgba(148,128,255,.22)!important;color:#fff!important}
+html[data-theme] body.ac-ready .ac-side-link.ac-selected{background:rgba(53,99,124,.22)!important;color:#fff!important}
 html[data-theme] body.ac-ready .ac-topbar{background:#fff!important;border-color:#e1e5f1!important}
 html[data-theme] body.ac-ready :is(.ac-course-card,.ac-stat-card,.ac-section,.ip-panel,.review-panel){border-radius:20px!important;border-color:var(--ac-stroke)!important;box-shadow:0 12px 34px rgba(27,32,84,.055)!important}
 
 /* Persistent sign-out is never part of the scrolling navigation list. */
 html[data-theme] body.ac-ready .ac-sidebar{box-sizing:border-box}
-html[data-theme] body.ac-ready .ac-side-nav{scrollbar-color:#7d78b6 transparent}
+html[data-theme] body.ac-ready .ac-side-nav{scrollbar-color:#6590A4 transparent}
 html[data-theme] body.ac-ready .ac-side-link:is(:hover,.ac-selected,[aria-current="page"]){
- background:rgba(148,128,255,.22)!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
- border-left-color:#c3b8ff!important;
+ background:rgba(53,99,124,.22)!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
+ border-left-color:#D6E7EA!important;
 }
 html[data-theme] body.ac-ready .ac-logout:focus-visible,
 html[data-theme] body.ac-ready .ac-side-link:focus-visible,
 html[data-theme] body.ac-ready .ac-side-account:focus-visible{
- outline:3px solid #c3b8ff!important;outline-offset:2px!important;
+ outline:3px solid #D6E7EA!important;outline-offset:2px!important;
 }
 @media(max-width:1024px){
  html[data-theme] body.ac-ready .ac-sidebar{height:100dvh!important;max-height:100dvh!important}

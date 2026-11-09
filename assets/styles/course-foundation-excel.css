@@ -3,14 +3,14 @@
 :root{
   --bg:var(--ui-canvas);
   --surface:#ffffff;
-  --surface-soft:#eaf0f8;
+  --surface-soft:#E8F1F2;
   --surface-warm:#fff7e7;
   --text:var(--ui-ink);
   --muted:#526078;
   --green:var(--ui-nav-ink);
   --green-dark:#1d3551;
   --green-deep:var(--ui-ink);
-  --green-light:#eaf0f8;
+  --green-light:#E8F1F2;
   --gold:var(--ui-coral);
   --blue:var(--ui-primary);
   --red:#a12f37;
