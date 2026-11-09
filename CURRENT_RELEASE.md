@@ -138,3 +138,8 @@ Unzip into the existing `IDjosh-Git/Datalearning` repository root, replacing the
 - Rebranded Introduction document title; redundant legacy product title removed from that page.
 - Sign-in page displays the form directly on a clean surface without outer-card overlay, shadows or wash.
 - Contrast refinements for hero panels, summaries, sidebars, question status, and administrative and learning workspaces.
+
+## Sign-in & Create Account field refinement — 9 November 2026
+- Removed the residual inner white authentication panel and its border/shadow across Sign In, Create Account, and password recovery.
+- Expanded the right-hand form region and increased input height to 60px on desktop/tablet and 58px on narrow phones.
+- Preserved accessible input boundaries, clear focus indicators, password visibility controls, and original account/authentication logic.
