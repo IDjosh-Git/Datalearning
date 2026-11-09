@@ -27,10 +27,11 @@ const section=document.createElement('section');
 section.className='study-studio course-mastery';
 section.setAttribute('aria-labelledby','dalp-mastery-title');
 section.innerHTML=`<header class="course-mastery-head">
-  <span class="studio-eyebrow">COURSE MASTERY CHECKPOINT</span>
-  <h2 id="dalp-mastery-title">Check your understanding</h2>
+  <span class="studio-eyebrow">COURSE MASTERY ASSESSMENT</span>
+  <h2 id="dalp-mastery-title">Apply what you have learned</h2>
   <p>Ten practical questions to check how well you can apply this course. Choose one answer for each, then review the explanations. You can try again.</p>
-  <div class="course-mastery-meta"><span>${questions.length} questions · About 12 minutes</span><strong id="dalp-mastery-count" aria-live="polite">0 of ${questions.length} answered</strong></div>
+  <div class="course-mastery-meta"><span>${questions.length} practical questions · Untimed · Retry anytime</span><strong id="dalp-mastery-count" aria-live="polite">0 of ${questions.length} answered</strong></div>
+  <div class="course-mastery-progress" role="progressbar" aria-label="Mastery questions answered" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span class="course-mastery-progress-fill"></span></div>
 </header>
 <form id="dalp-mastery-form" novalidate><div id="dalp-questions" class="course-mastery-questions"></div>
   <div class="course-mastery-actions"><button type="submit" id="dalp-grade" class="studio-done">Check my answers</button><button type="button" id="dalp-retry" class="course-mastery-retry" hidden>Try again</button></div>
@@ -48,16 +49,31 @@ if(course==='introduction'&&!isAssessmentPage){
 }
 const list=section.querySelector('#dalp-questions');
 list.innerHTML=questions.map((q,i)=>`<fieldset class="course-mastery-question" data-question="${i}">
-  <legend><span class="course-mastery-number">${String(i+1).padStart(2,'0')}</span>${escapeHTML(q[0])}</legend>
-  <div class="course-mastery-options">${q[1].map((answer,j)=>`<label class="course-mastery-option"><input type="radio" name="checkpoint${i}" value="${j}"/><span>${escapeHTML(answer)}</span></label>`).join('')}</div>
+  <legend class="course-mastery-sr-legend">Question ${i+1}: ${escapeHTML(q[0])}</legend>
+  <div class="course-mastery-qhead" aria-hidden="true"><span class="course-mastery-number">${String(i+1).padStart(2,'0')}</span><strong>${escapeHTML(q[0])}</strong></div>
+  <div class="course-mastery-options">${q[1].map((answer,j)=>`<label class="course-mastery-option"><input type="radio" name="checkpoint${i}" value="${j}"/><span class="course-mastery-choice-letter" aria-hidden="true">${String.fromCharCode(65+j)}</span><span class="course-mastery-choice-text">${escapeHTML(answer)}</span><span class="course-mastery-choice-indicator" aria-hidden="true"></span></label>`).join('')}</div>
 </fieldset>`).join('');
 const count=section.querySelector('#dalp-mastery-count');
 const outcome=section.querySelector('#dalp-outcome');
 const retry=section.querySelector('#dalp-retry');
 const form=section.querySelector('#dalp-mastery-form');
 const getAnswer=i=>section.querySelector(`input[name="checkpoint${i}"]:checked`);
-function updateCount(){const answered=questions.filter((_,i)=>Boolean(getAnswer(i))).length;count.textContent=`${answered} of ${questions.length} answered`;return answered;}
-form.addEventListener('change',()=>{updateCount();outcome.textContent='';section.querySelectorAll('.course-mastery-question').forEach(node=>node.classList.remove('needs-answer'));});
+function updateCount(){
+ const answered=questions.filter((_,i)=>Boolean(getAnswer(i))).length;
+ count.textContent=`${answered} of ${questions.length} answered`;
+ const progress=section.querySelector('.course-mastery-progress');
+ const percent=Math.round(answered/questions.length*100);
+ if(progress)progress.setAttribute('aria-valuenow',String(percent));
+ const fill=section.querySelector('.course-mastery-progress-fill');
+ if(fill)fill.style.width=percent+'%';
+ if(isAssessmentPage){
+  const topLabel=document.querySelector('#dl-quiz-progress-label');if(topLabel)topLabel.textContent=`${answered} of ${questions.length} answered`;
+  const topTrack=document.querySelector('.dl-quiz-progress-track');if(topTrack)topTrack.setAttribute('aria-valuenow',String(percent));
+  const topFill=document.querySelector('#dl-quiz-progress-fill');if(topFill)topFill.style.width=percent+'%';
+ }
+ return answered;
+}
+form.addEventListener('change',()=>{updateCount();outcome.textContent='';section.querySelectorAll('.course-mastery-question').forEach(node=>{node.classList.remove('needs-answer','is-correct','is-incorrect');node.querySelectorAll('.course-mastery-option').forEach(x=>x.classList.remove('is-answer','is-wrong'));});retry.hidden=true;});
 form.addEventListener('submit',event=>{
  event.preventDefault();
  const answered=updateCount();
@@ -72,6 +88,9 @@ form.addEventListener('submit',event=>{
  let score=0;
  const details=questions.map((q,i)=>{
   const actual=Number(getAnswer(i).value),right=actual===q[2];
+  const item=section.querySelectorAll('.course-mastery-question')[i];
+  item?.classList.toggle('is-correct',right);item?.classList.toggle('is-incorrect',!right);
+  item?.querySelectorAll('.course-mastery-option').forEach((el,j)=>{el.classList.toggle('is-answer',j===q[2]);el.classList.toggle('is-wrong',j===actual&&!right)});
   if(right)score++;
   return `<li class="${right?'is-correct':'needs-review'}"><strong>Question ${i+1}: ${right?'Correct':'Review this'}.</strong> ${escapeHTML(q[3])}<span>Correct answer: ${escapeHTML(q[1][q[2]])}</span></li>`;
  }).join('');
@@ -86,7 +105,7 @@ form.addEventListener('submit',event=>{
  outcome.scrollIntoView({behavior:'auto',block:'nearest'});
 });
 retry.addEventListener('click',()=>{
- form.reset();outcome.textContent='';retry.hidden=true;updateCount();
+ form.reset();outcome.textContent='';retry.hidden=true;section.querySelectorAll('.course-mastery-question').forEach(el=>{el.classList.remove('is-correct','is-incorrect','needs-answer');el.querySelectorAll('.course-mastery-option').forEach(x=>x.classList.remove('is-answer','is-wrong'))});updateCount();
  const first=list.querySelector('input');if(first)first.focus({preventScroll:true});
 });
 updateCount();

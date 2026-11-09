@@ -22,7 +22,7 @@
   $('#dl-quiz-actions-back').href=backUrl;
   $('#dl-quiz-course-crumb').href=courseUrl;
   $('#dl-quiz-course-crumb').textContent=label[slug];
-  const title=week==='mastery'?'Course mastery checkpoint':slug==='introduction'?'Foundation knowledge check':`Week ${week} · Knowledge check`;
+  const title=week==='mastery'?'Course mastery assessment':slug==='introduction'?'Foundation knowledge check':`Week ${week} · Knowledge check`;
   document.title=`${title} | ${label[slug]} · DataLearning`;
   $('#dl-quiz-title').textContent=title;
   $('#dl-quiz-crumb-current').textContent=week==='mastery'?'Mastery checkpoint':week==='final'?'Final knowledge check':`Week ${week}`;
@@ -30,9 +30,9 @@
   if(week==='mastery'){
     $('#dl-weekly-mount').hidden=true;
     $('#dl-master-mount').hidden=false;
-    $('#dl-quiz-counter').textContent='Course-wide checkpoint · Practice';
-    $('#dl-quiz-progress-label').textContent='Answer every question';
-    $('.dl-quiz-progress').hidden=true;
+    $('#dl-quiz-counter').textContent='10 questions · Untimed practice';
+    $('#dl-quiz-progress-label').textContent='0 of 10 answered';
+    document.body.classList.add('dl-mastery-assessment-page');
   } else {
     $('#dl-quiz-counter').textContent=`${data.length} questions · About ${Math.max(4,data.length*2)} minutes`;
     const form=$('#dl-quiz-form'),list=$('#dl-quiz-questions'),progress=$('.dl-quiz-progress-track');

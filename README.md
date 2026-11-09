@@ -1,3 +1,9 @@
+# Latest release — Mastery Assessment, Discover 3D, Navigation & Contrast | 9 November 2026
+
+Premium standalone mastery assessments now have refined question cards, A–D answer options, responsive forms, synced progress indicators, grading feedback and accessible focus treatment. The redundant “Data Analysis Learning Path” heading was removed from the Excel, SQL, Power BI and Python course sidebars; course-specific branding remains. Discover’s hero includes an illustrative, responsive, animated 3D interface panel with reduced-motion support. Desktop navigation uses more of the available width. Reviewed contrast on assessment, Discover, catalogue, and learning-support surfaces. No questions, answer keys, backend accounts or Supabase tables were changed.
+
+See `docs/PREMIUM_MASTERY_DISCOVER_CONTRAST_20261109.md`. Actual deployed browser/device and authenticated workflows should be checked before production rollout.
+
 > **Latest UI update (8 Nov 2026):** Premium responsive consistency for phone, tablet, laptop and desktop, including shared adaptive spacing, narrow-screen Tutor improvements, legible Catalogue and Overview headers, course controls and internal table scrolling. See [`docs/PREMIUM_RESPONSIVENESS_AUDIT_20261108.md`](docs/PREMIUM_RESPONSIVENESS_AUDIT_20261108.md). No database migration required.
 
 ## Premium brand wordmark and hover design (8 November 2026)
@@ -98,3 +104,9 @@ The Tutor uses the entire viewport up to 900px wide. The site-wide navigation an
 - Improved fullscreen mobile AI Tutor: compact controls, improved chat readability and composer; practice controls live in the Tools drawer.
 - Added a 44px Close button to the mobile lesson sidebar for all six courses, keeping backdrop, Escape and focus restoration.
 - No database changes required. See `docs/NAV_TUTOR_SIDEBAR_20261108.md`.
+
+## 9 November 2026 — Premium Sign-in & Full-screen Course Sidebar
+
+- Sign-in uses a clean light premium layout without an overlay background; on smaller screens the sign-in form comes first. Registration, password reset, and account handling are unchanged.
+- All six course sidebars fill the complete screen on mobile and tablet, flush to the top and sides, with a visible close button and internally scrollable lesson list.
+- No Supabase migration is needed.

@@ -1,3 +1,13 @@
+# Latest release — Premium Tutor & Immersive Mobile Challenges | 9 November 2026
+
+Tutor Studio now uses a rectilinear Blueprint design with square-edged chat cards, controls, and a clean message area. Practice Arena opens the challenges library as a true mobile full-screen overlay, with an anchored title/search/footer, collapsible mobile filters, and a separately scrollable challenge list. Fixed a layering conflict with the global navigation and a clipped Tutor header action on 320px phones. Existing challenge scoring, learner progress, and AI modes preserved. See `docs/PREMIUM_TUTOR_ARENA_MOBILE_20261109.md`. No database migration required.
+
+# Latest release — Mastery Assessment, Discover 3D, Navigation & Contrast | 9 November 2026
+
+Premium standalone mastery assessments now have refined question cards, A–D answer options, responsive forms, synced progress indicators, grading feedback and accessible focus treatment. The redundant “Data Analysis Learning Path” heading was removed from the Excel, SQL, Power BI and Python course sidebars; course-specific branding remains. Discover’s hero includes an illustrative, responsive, animated 3D interface panel with reduced-motion support. Desktop navigation uses more of the available width. Reviewed contrast on assessment, Discover, catalogue, and learning-support surfaces. No questions, answer keys, backend accounts or Supabase tables were changed.
+
+See `docs/PREMIUM_MASTERY_DISCOVER_CONTRAST_20261109.md`. Actual deployed browser/device and authenticated workflows should be checked before production rollout.
+
 # Latest release — Premium Cross-Device Responsiveness | 8 November 2026
 
 Refined responsive layout consistency across shared public pages, course portals, dedicated weekly quizzes, Tutor Studio, Practice Arena, learner overview, account and administrative views. Added adaptive gutters, flexible card/grid sizing, mobile navigation containment, touch-friendly controls, compact phone typography, safe-area-aware Tutor composer, and scroll-contained data tables. Corrected Catalogue dark-hero text contrast, Overview badges/CTA, Practice Arena breadcrumbs, and a 320px Tutor Send button wrap. Retained the existing premium logo/brand motion, all six learning tracks, and account/progress functions. No backend or database change.
@@ -115,3 +125,10 @@ This release builds on `DataLearning_Mobile_Spacing_Tables_Refined_20261106.zip`
 Unzip into the existing `IDjosh-Git/Datalearning` repository root, replacing the matching files, then deploy through Vercel. No production deployment was triggered in this release.
 
 - Premium icon refresh across the app, including a redesigned logo, updated favicons, unified course icon family, and a global SVG icon system for navigation and action links.
+
+## Sign-in & Full-screen Course Navigation (9 November 2026)
+- Sign-in restyled as a premium, light, overlay-free two-column experience with polished form controls; mobile places sign-in first.
+- Mobile course sidebar is a full-width, full-height viewport panel without the previous top/side gap, including safe-area-aware close control and scrolling.
+- Existing auth logic, courses, progress, and Supabase integration preserved.
+
+- 2026-11-09: Rectilinear premium Tutor Studio and immersive full-screen mobile Practice Arena challenge browser, with contained challenge-list scrolling and compact mobile filters.
