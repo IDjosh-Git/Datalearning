@@ -153,3 +153,9 @@ Unzip into the existing `IDjosh-Git/Datalearning` repository root, replacing the
 
 ### Excel Formula Lab & formatted floating AI (9 November 2026)
 Expanded offline calculation functions and custom-cell worksheet with independent preview/grading, plus a safe Markdown-rich response renderer for the public floating AI. Updated regressions and responsive control spacing. No schema migration.
+
+### Introduction course sidebar boundary correction · 9 November 2026
+- The Data Analysis introductory course now uses the same bounded `.app` course layout as the other course pages: its sidebar and lesson content are siblings within one shared course shell.
+- On desktops, the wider 320px (298px on smaller desktops) sidebar is sticky **within the lesson layout**, so it yields before the public footer instead of overlapping it. Its lesson list continues to scroll internally.
+- The full-screen mobile/tablet course drawer, close control, focus handling, active lesson links, study resources, and course content remain intact.
+- Added a source regression check and isolated Chromium geometry tests for 320, 390, 768, 1040, 1100, 1280 and 1440 px.
