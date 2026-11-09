@@ -1,3 +1,12 @@
+## 9 November 2026 — Premium weekly curriculum browser
+
+- Redesigned the Courses catalogue with six course selectors and stage-based weekly-module cards.
+- Added a compact, expandable module map within all six course pages.
+- Retained existing lesson content, standalone quiz pages, progress tracking and signed-in permissions.
+- Intro is correctly structured as eight lessons plus the final foundation assessment; five other courses have ten weeks each.
+- Verification: full project checks, 24 isolated selector/viewport checks, no overflow, and valid lesson/quiz destinations.
+- Design-reference limitation: the supplied ChatGPT-hosted site returned 401 Unauthorized, so the update is not a pixel-for-pixel reproduction.
+
 # Latest release — Premium Tutor & Immersive Mobile Challenges | 9 November 2026
 
 Tutor Studio now uses a rectilinear Blueprint design with square-edged chat cards, controls, and a clean message area. Practice Arena opens the challenges library as a true mobile full-screen overlay, with an anchored title/search/footer, collapsible mobile filters, and a separately scrollable challenge list. Fixed a layering conflict with the global navigation and a clipped Tutor header action on 320px phones. Existing challenge scoring, learner progress, and AI modes preserved. See `docs/PREMIUM_TUTOR_ARENA_MOBILE_20261109.md`. No database migration required.

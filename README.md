@@ -1,3 +1,5 @@
+**New: Premium weekly curriculum browser.** The Courses page now lets learners preview the actual modules of all six courses, divided into three learning phases, with direct links to the existing lessons and dedicated question pages. Each course page also includes a compact expandable module navigator. See `docs/WEEKLY_MODULES_PREMIUM_20261109.md` for details.
+
 # Latest release — Mastery Assessment, Discover 3D, Navigation & Contrast | 9 November 2026
 
 Premium standalone mastery assessments now have refined question cards, A–D answer options, responsive forms, synced progress indicators, grading feedback and accessible focus treatment. The redundant “Data Analysis Learning Path” heading was removed from the Excel, SQL, Power BI and Python course sidebars; course-specific branding remains. Discover’s hero includes an illustrative, responsive, animated 3D interface panel with reduced-motion support. Desktop navigation uses more of the available width. Reviewed contrast on assessment, Discover, catalogue, and learning-support surfaces. No questions, answer keys, backend accounts or Supabase tables were changed.
