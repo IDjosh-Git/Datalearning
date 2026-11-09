@@ -132,3 +132,9 @@ Unzip into the existing `IDjosh-Git/Datalearning` repository root, replacing the
 - Existing auth logic, courses, progress, and Supabase integration preserved.
 
 - 2026-11-09: Rectilinear premium Tutor Studio and immersive full-screen mobile Practice Arena challenge browser, with contained challenge-list scrolling and compact mobile filters.
+
+## 9 Nov 2026 – Accessibility & sign-in refinement
+- Wider 320px Data Analysis Foundations desktop sidebar, with matching content clearance.
+- Rebranded Introduction document title; redundant legacy product title removed from that page.
+- Sign-in page displays the form directly on a clean surface without outer-card overlay, shadows or wash.
+- Contrast refinements for hero panels, summaries, sidebars, question status, and administrative and learning workspaces.

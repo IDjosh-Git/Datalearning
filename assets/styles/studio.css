@@ -464,7 +464,7 @@ body.dl-workspace .app{min-height:calc(100dvh - 62px)}}
 @media(max-width:520px){.dl-shell-actions{gap:6px}
 body.dl-workspace .wrap{width:calc(100% - 28px)!important}}
 @media(prefers-reduced-motion:reduce){.dl-shell *{transition:none!important}}
-.ps-page{--ps-bg:#f5f7fa;--ps-card:#fff;--ps-ink:#142839;--ps-muted:#5b6c7b;--ps-line:#dfe7ee;--ps-soft:#edf3f8;--ps-tint:#e7f4f0;--ps-accent:#147b6c;--ps-shadow:0 10px 32px rgba(25,55,79,.055);background:var(--ps-bg);color:var(--ps-ink);font-family:"DM Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.55;margin:0;min-height:100vh}
+.ps-page{--ps-bg:#f5f7fa;--ps-card:#fff;--ps-ink:#142839;--ps-muted:#3e5565;--ps-line:#dfe7ee;--ps-soft:#edf3f8;--ps-tint:#e7f4f0;--ps-accent:#145e51;--ps-shadow:0 10px 32px rgba(25,55,79,.055);background:var(--ps-bg);color:var(--ps-ink);font-family:"DM Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.55;margin:0;min-height:100vh}
 .ps-page *{box-sizing:border-box}
 .ps-page button,.ps-page input,.ps-page select,.ps-page textarea{font:inherit}
 .ps-page a{text-decoration:none;color:inherit}

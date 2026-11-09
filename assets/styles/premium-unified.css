@@ -7845,3 +7845,168 @@ html[data-theme="light"] body[data-responsive-page="practice"] #challengeModal.h
     height:38px!important;padding:0!important;
   }
 }
+
+ 
+/* =======================================================================
+   2026-11-09 — Readability, course rail and sign-in refinement
+   All selectors are scoped to known components so quiz, editor and modal
+   styling is preserved. Contrast targets: WCAG AA normal text (4.5:1).
+   ======================================================================= */
+/* Wider desktop Introduction rail, with corresponding content clearance. */
+@media (min-width:1051px){
+ html[data-theme="light"] body.dlp-course-v29.dl-special-rail[data-ui-course="introduction"]>#sidebar.sidebar.dl-special-lesson-rail{
+  width:320px!important;max-width:320px!important;left:12px!important;
+  background:#f6fafa!important;border-color:#d7e4e6!important;
+  box-shadow:0 18px 35px rgba(27,66,80,.10)!important;
+ }
+ html[data-theme="light"] body.dlp-course-v29.dl-special-rail[data-ui-course="introduction"]>main{
+  margin-left:356px!important;width:calc(100% - 356px)!important;
+  max-width:calc(100% - 356px)!important;min-width:0!important;
+ }
+}
+@media (min-width:1051px) and (max-width:1240px){
+ html[data-theme="light"] body.dlp-course-v29.dl-special-rail[data-ui-course="introduction"]>#sidebar.sidebar.dl-special-lesson-rail{width:298px!important;max-width:298px!important}
+ html[data-theme="light"] body.dlp-course-v29.dl-special-rail[data-ui-course="introduction"]>main{margin-left:331px!important;width:calc(100% - 331px)!important;max-width:calc(100% - 331px)!important}
+}
+/* Visible mobile course-menu text never relies on a pale button background. */
+html[data-theme="light"] body.dlp-course-v29[data-ui-course] .dl-lesson-mobile-bar .dl-lesson-menu-trigger .dl-lesson-menu-copy{
+ color:#203F58!important;-webkit-text-fill-color:#203F58!important;
+}
+html[data-theme="light"] body.dlp-course-v29[data-ui-course] .dl-lesson-mobile-bar .dl-lesson-menu-trigger .dl-lesson-menu-copy small{
+ color:#436073!important;-webkit-text-fill-color:#436073!important;
+}
+/* Library pages: intentional dark hero with fully readable light content. */
+html[data-theme="light"] body :is(.page-hero.dalp-themed-hero,.pl-hero.dalp-themed-hero,.dalp-feature-header.dalp-themed-hero){
+ background:linear-gradient(125deg,#172e42 0%,#203F58 63%,#2b6072 100%)!important;
+ color:#f8fcfd!important;
+}
+html[data-theme="light"] body :is(.page-hero.dalp-themed-hero,.pl-hero.dalp-themed-hero,.dalp-feature-header.dalp-themed-hero) :is(h1,h2,h3,strong){color:#fff!important;-webkit-text-fill-color:#fff!important}
+html[data-theme="light"] body :is(.page-hero.dalp-themed-hero,.pl-hero.dalp-themed-hero,.dalp-feature-header.dalp-themed-hero) :is(p,.eyebrow,.lead,.subtitle){color:#e9f4f5!important;-webkit-text-fill-color:#e9f4f5!important}
+html[data-theme="light"] body :is(.page-hero.dalp-themed-hero,.pl-hero.dalp-themed-hero,.dalp-feature-header.dalp-themed-hero) a{color:#fff!important;-webkit-text-fill-color:#fff!important;text-decoration-color:#F6AD80!important}
+html[data-theme="light"] body .pl-hero .eyebrow,html[data-theme="light"] body .page-hero .eyebrow{color:#FFE0CA!important;-webkit-text-fill-color:#FFE0CA!important}
+/* Public editorial panel with dark ink on a deliberate pale surface. */
+html[data-theme="light"] body.lp-home .dlp-practice-panel{
+ background:linear-gradient(145deg,#eaf4f5,#dfeef0)!important;border-color:#d2e3e6!important;color:#203f58!important;
+}
+html[data-theme="light"] body.lp-home .dlp-practice-panel :is(h3,strong,.dlp-mini-label){color:#203F58!important;-webkit-text-fill-color:#203F58!important}
+html[data-theme="light"] body.lp-home .dlp-practice-panel p{color:#355669!important;-webkit-text-fill-color:#355669!important}
+html[data-theme="light"] body.lp-home .dlp-practice-panel .dlp-text-link{color:#184a62!important;-webkit-text-fill-color:#184a62!important}
+html[data-theme="light"] body.lp-home .dlp-outcome-detail span{color:#52687b!important;-webkit-text-fill-color:#52687b!important}
+/* Learner dashboard: dark brand hero and its actions must agree. */
+html[data-theme="light"] body .account-overview.mld-hero{background:linear-gradient(120deg,#1e3d52,#254f65 65%,#245e64)!important}
+html[data-theme="light"] body .account-overview.mld-hero :is(.mld-greeting,h1,.account-overview-content p,.account-overview-content span,.account-overview-content a){color:#f7fbfc!important;-webkit-text-fill-color:#f7fbfc!important}
+html[data-theme="light"] body .mld-course-percent{color:#75500a!important;-webkit-text-fill-color:#75500a!important}
+/* Reports and reviewer pages: use an unambiguous dark hero behind light text. */
+html[data-theme="light"] body :is(.ip-hero,.review-hero,.profile-hero){
+ background:linear-gradient(124deg,#19354b,#264f67 66%,#235c67)!important;color:#f7fbfc!important;
+}
+html[data-theme="light"] body :is(.ip-hero,.review-hero,.profile-hero) :is(h1,h2,.lp-eyebrow,p,#profileDisplayEmail,#profileAccountStatus){color:#f9fdff!important;-webkit-text-fill-color:#f9fdff!important}
+html[data-theme="light"] body .profile-hero :is(.profile-hero-overline,.profile-hero>p){color:#e8f4f5!important;-webkit-text-fill-color:#e8f4f5!important}
+/* Readable secondary text on white or pale backgrounds. */
+html[data-theme="light"] body .cap-kicker{color:#35637C!important;-webkit-text-fill-color:#35637C!important}
+html[data-theme="light"] body .ps-main :is(.ps-overline,summary){color:#1d5d59!important;-webkit-text-fill-color:#1d5d59!important}
+html[data-theme="light"] body .ps-main :is(.ps-progress-label,.ps-progress-subtitle,.ps-help,.ps-tip){color:#3f5c6c!important;-webkit-text-fill-color:#3f5c6c!important}
+html[data-theme="light"] body .ps-main #ps-progress-label{color:#3f5c6c!important;-webkit-text-fill-color:#3f5c6c!important}
+html[data-theme="light"] body .ps-main .ps-overline{color:#1c5a58!important;-webkit-text-fill-color:#1c5a58!important}
+html[data-theme="light"] body .ps-main .ps-heading p{color:#355669!important;-webkit-text-fill-color:#355669!important}
+html[data-theme="light"] body .dalp-global-header .dalp-brand-copy small{color:#e7f2f3!important;-webkit-text-fill-color:#e7f2f3!important}
+html[data-theme="light"] body .dl-quiz-header .dl-quiz-eyebrow{background:rgba(18,49,66,.83)!important;color:#fff!important;-webkit-text-fill-color:#fff!important}
+html[data-theme="light"] body .dl-quiz-header :is(#dl-quiz-counter,.dl-quiz-meta,.dl-quiz-counter,.dl-quiz-status){color:#fff!important;-webkit-text-fill-color:#fff!important;text-shadow:0 1px 2px rgba(9,33,46,.25)!important}
+/* Sign-in: no overlay, floating wash, surrounding card or extra form backdrop. */
+html[data-theme="light"] body.auth-page,
+html[data-theme="light"] body.auth-page .auth-shell{
+ background:#f7faf9!important;background-image:none!important;
+}
+html[data-theme="light"] body.auth-page::before,html[data-theme="light"] body.auth-page::after,
+html[data-theme="light"] body.auth-page .auth-layout::before,html[data-theme="light"] body.auth-page .auth-layout::after,
+html[data-theme="light"] body.auth-page .auth-forms::before,html[data-theme="light"] body.auth-page .auth-forms::after{
+ content:none!important;display:none!important;background:none!important;
+}
+html[data-theme="light"] body.auth-page .auth-shell{width:min(1160px,calc(100% - 36px))!important;padding-top:22px!important;}
+html[data-theme="light"] body.auth-page .auth-layout{
+ display:grid!important;grid-template-columns:minmax(0,.90fr) minmax(0,1fr)!important;
+ gap:clamp(24px,4vw,62px)!important;align-items:center!important;
+ background:transparent!important;background-image:none!important;
+ border:0!important;border-radius:0!important;box-shadow:none!important;overflow:visible!important;
+}
+html[data-theme="light"] body.auth-page .auth-story{
+ min-height:570px!important;border-radius:24px!important;
+ background:linear-gradient(152deg,#e8f3f3,#e5f0ef 68%,#fff3e9)!important;
+ box-shadow:0 16px 42px rgba(24,57,70,.065)!important;
+}
+html[data-theme="light"] body.auth-page .auth-forms{
+ align-self:center!important;max-width:550px;width:100%;justify-self:center;
+ padding:clamp(16px,3.5vw,44px)!important;
+ background:transparent!important;background-image:none!important;
+ border:0!important;border-radius:0!important;box-shadow:none!important;
+}
+html[data-theme="light"] body.auth-page .auth-tabs{background:#eaf2f3!important;border-color:#d3e3e5!important}
+html[data-theme="light"] body.auth-page .auth-field input{
+ background:#fff!important;border:1px solid #c4d9dc!important;
+ box-shadow:0 4px 14px rgba(23,62,79,.035)!important;
+ color:#1d394a!important;
+}
+html[data-theme="light"] body.auth-page .auth-field input::placeholder{color:#576f7b!important;opacity:1!important}
+html[data-theme="light"] body.auth-page .auth-brand-accent{color:#a3480d!important;-webkit-text-fill-color:#a3480d!important}
+html[data-theme="light"] body.auth-page .dalp-preview-invite span{color:#3e5b67!important;-webkit-text-fill-color:#3e5b67!important}
+html[data-theme="light"] body.auth-page .auth-forms :is(.auth-heading p,.auth-switch,.auth-footer-note,.auth-account-note p){color:#435e6c!important;-webkit-text-fill-color:#435e6c!important}
+html[data-theme="light"] body.auth-page .auth-topbar{border-bottom:1px solid rgba(36,79,96,.10);padding-bottom:15px!important;margin-bottom:clamp(20px,3vw,32px)!important}
+@media(max-width:860px){
+ html[data-theme="light"] body.auth-page .auth-layout{display:flex!important;flex-direction:column!important;gap:18px!important;}
+ html[data-theme="light"] body.auth-page .auth-forms{order:0!important;max-width:560px;padding:clamp(16px,4vw,28px)!important}
+ html[data-theme="light"] body.auth-page .auth-story{order:1!important;min-height:auto!important;width:100%!important;padding:26px!important}
+}
+@media(max-width:560px){
+ html[data-theme="light"] body.auth-page .auth-shell{width:calc(100% - 26px)!important;padding-top:12px!important;}
+ html[data-theme="light"] body.auth-page .auth-forms{padding:12px 2px 16px!important;}
+ html[data-theme="light"] body.auth-page .auth-story{border-radius:16px!important;padding:23px 20px!important;}
+ html[data-theme="light"] body.auth-page .auth-tabs{margin-top:16px!important}
+}
+
+/* Contrast audit follow-up: more specific component selectors win older !important rules. */
+html[data-theme="light"] body.lp-home main .dlp-editorial-practice .dlp-practice-panel h3,
+html[data-theme="light"] body.lp-home main .dlp-editorial-practice .dlp-practice-panel strong{color:#203f58!important;-webkit-text-fill-color:#203f58!important}
+html[data-theme="light"] body.lp-home main .dlp-editorial-practice .dlp-practice-panel .dlp-panel-actions .dlp-text-link{color:#184a62!important;-webkit-text-fill-color:#184a62!important}
+html[data-theme="light"] body.dalp-gradient-public main section.page-hero.dalp-themed-hero h1,
+html[data-theme="light"] body.lp-prompt-page main .pl-hero.dalp-themed-hero h1{color:#fff!important;-webkit-text-fill-color:#fff!important}
+html[data-theme="light"] body.dalp-gradient-public main section.page-hero.dalp-themed-hero p,
+html[data-theme="light"] body.lp-prompt-page main .pl-hero.dalp-themed-hero p{color:#e9f4f5!important;-webkit-text-fill-color:#e9f4f5!important}
+html[data-theme="light"] body.dalp-gradient-public main.cap-guide .dalp-feature-header.dalp-themed-hero p,
+html[data-theme="light"] body.dalp-gradient-public main.cap-guide .dalp-feature-header.dalp-themed-hero a{color:#f5fbfc!important;-webkit-text-fill-color:#f5fbfc!important}
+html[data-theme="light"] body.dlp-course-v29[data-ui-course] .dl-lesson-mobile-bar button.dl-lesson-menu-trigger span.dl-lesson-menu-copy{color:#203f58!important;-webkit-text-fill-color:#203f58!important}
+html[data-theme="light"] body.dlp-course-v29[data-ui-course] .dl-lesson-mobile-bar button.dl-lesson-menu-trigger span.dl-lesson-menu-copy small{color:#426173!important;-webkit-text-fill-color:#426173!important}
+html[data-theme="light"] body .dalp-global-header .dalp-global-brand .dalp-brand-copy small{color:#edf7f8!important;-webkit-text-fill-color:#edf7f8!important}
+html[data-theme="light"] body .account-overview.mld-hero .mld-hero-actions a.mld-btn-outline{
+ color:#203f58!important;-webkit-text-fill-color:#203f58!important;background:#fff!important;border-color:#dae5e7!important
+}
+html[data-theme="light"] body .profile-hero .profile-identity .profile-identity-name strong{color:#fff!important;-webkit-text-fill-color:#fff!important}
+html[data-theme="light"] body.dl-standalone-quiz .dl-quiz-hero .dl-quiz-hero-copy span.dl-quiz-eyebrow{
+ color:#fff!important;-webkit-text-fill-color:#fff!important;background:#1c4558!important;padding:6px 10px!important;border-radius:99px
+}
+html[data-theme="light"] body.dl-standalone-quiz .dl-quiz-hero .dl-quiz-hero-meta span{color:#fff!important;-webkit-text-fill-color:#fff!important}
+html[data-theme="light"] body.ps-page .ps-main .ps-callout p,
+html[data-theme="light"] body.ps-page .ps-main #ps-progress-label{color:#355366!important;-webkit-text-fill-color:#355366!important}
+html[data-theme="light"] body.ps-page .ps-main .ps-callout summary,
+html[data-theme="light"] body.ps-page .ps-main .ps-focus .ps-overline{color:#155e52!important;-webkit-text-fill-color:#155e52!important}
+html[data-theme="light"] body .mld-course-section .progress-card .mld-course-percent{color:#805303!important;-webkit-text-fill-color:#805303!important}
+/* Final verified high-specificity contrast for inherited legacy state rules. */
+html[data-theme="light"] body.lp-home main#main-content .dlp-practice-panel h3,
+html[data-theme="light"] body.lp-home main#main-content .dlp-practice-panel .dlp-panel-actions .dlp-text-link{
+ color:#203f58!important;-webkit-text-fill-color:#203f58!important;
+}
+html[data-theme="light"] body.dlp-course-v29[data-ui-course] button#menuBtn.dl-lesson-menu-trigger span.dl-lesson-menu-copy,
+html[data-theme="light"] body.dlp-course-v29[data-ui-course] button#menuBtn.dl-lesson-menu-trigger span.dl-lesson-menu-copy small{color:#203f58!important;-webkit-text-fill-color:#203f58!important}
+html[data-theme="light"] body.ps-page main#main-content .ps-callout p,
+html[data-theme="light"] body.ps-page main#main-content .ps-focus #ps-progress-label{color:#355366!important;-webkit-text-fill-color:#355366!important}
+html[data-theme="light"] body.ps-page main#main-content .ps-callout summary,
+html[data-theme="light"] body.ps-page main#main-content .ps-focus #ps-course-label{color:#155a50!important;-webkit-text-fill-color:#155a50!important}
+html[data-theme="light"] body.dalp-gradient-public main#main-content.cap-guide .dalp-feature-header.dalp-themed-hero a{color:#fff!important;-webkit-text-fill-color:#fff!important}
+html[data-theme="light"] body[data-public-refresh] > header.dalp-global-header .dalp-global-inner .dalp-brand-copy small{color:#e9f5f5!important;-webkit-text-fill-color:#e9f5f5!important}
+html[data-theme="light"] body.dl-standalone-quiz .dl-quiz-hero .dl-quiz-hero-meta span{
+ background:rgba(18,49,66,.72)!important;border-radius:8px!important;padding:5px 9px!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
+}
+
+/* Practice Studio and public-header typography: validated strong contrast. */
+html[data-theme="light"] body.ps-page .ps-main{--ps-muted:#3e5565!important;--ps-accent:#145e51!important}
+html[data-theme="light"] body[data-responsive-page="studio"] .dalp-global-header .dalp-global-brand .dalp-brand-copy small,
+html[data-theme="light"] body[data-responsive-page="preview"] .dalp-global-header .dalp-global-brand .dalp-brand-copy small{color:#e9f5f5!important;-webkit-text-fill-color:#e9f5f5!important}
