@@ -143,3 +143,10 @@ Unzip into the existing `IDjosh-Git/Datalearning` repository root, replacing the
 - Removed the residual inner white authentication panel and its border/shadow across Sign In, Create Account, and password recovery.
 - Expanded the right-hand form region and increased input height to 60px on desktop/tablet and 58px on narrow phones.
 - Preserved accessible input boundaries, clear focus indicators, password visibility controls, and original account/authentication logic.
+
+## 9 November 2026 — Floating Learning AI, navigation and contrast
+- Small floating coach across 33 learner-facing pages, with guest-safe built-in study guidance and optional authenticated live AI via the existing `/api/tutor` endpoint. No browser API keys or database changes.
+- Mobile/tablet public navigation fills the viewport, with its own visible close button, Escape and keyboard focus controls. The floating launcher hides while the menu is open.
+- Removed the command-search bar from Sign In; search remains accessible elsewhere.
+- Improved text/background contrast for Practice Arena results and code output, the selected capstone button, and all six courses' Roadmap/Extension heroes (12 pages).
+- Browser-tested mobile widths and reviewed text contrast across the 41 HTML routes (computed solid-background checks; gradient/dynamic UI not exhaustively certified).

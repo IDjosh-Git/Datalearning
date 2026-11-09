@@ -110,3 +110,7 @@ The Tutor uses the entire viewport up to 900px wide. The site-wide navigation an
 - Sign-in uses a clean light premium layout without an overlay background; on smaller screens the sign-in form comes first. Registration, password reset, and account handling are unchanged.
 - All six course sidebars fill the complete screen on mobile and tablet, flush to the top and sides, with a visible close button and internally scrollable lesson list.
 - No Supabase migration is needed.
+
+### Latest UI refinements (9 November 2026)
+The public site now includes an always-available floating Learning AI launcher. Guest visitors can ask conceptual questions and receive matched explanations from the bundled offline knowledge base. Live model responses use `/api/tutor` and continue to require both provider configuration and a verified signed-in learner session. There is no free anonymous provider proxy.
+Mobile public navigation opens a full-height panel with a close button; the sign-in page no longer loads the search control. Colour-contrast updates include the Practice Arena feedback surfaces and every course resource page. See `docs/FLOATING_AI_MOBILE_NAV_CONTRAST_20261109.md`.

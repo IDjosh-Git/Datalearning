@@ -11,7 +11,7 @@ for(const page of pages){
   const css=page.links.filter(x=>x.local&&x.path==='assets/styles/premium-unified.css');
   const js=page.scripts.filter(x=>x.local&&x.path==='assets/scripts/premium-search.js');
   assert.equal(css.length,1,`${page.route}: missing or duplicate shared premium CSS`);
-  assert.equal(js.length,1,`${page.route}: missing or duplicate keyboard search`);
+  assert.equal(js.length,page.route==='auth.html'?0:1,`${page.route}: search should be present exactly once except on sign-in`);
   assert.equal(page.links.at(-1).path,'assets/styles/premium-unified.css',`${page.route}: legacy overrides after premium theme`);
   if(page.html.includes('class="dalp-global-header"'))assert(page.html.includes((page.route.startsWith('courses/')?'../':'')+'overview.html'),`${page.route}: Learning Overview not accessible from public nav`);
 }
