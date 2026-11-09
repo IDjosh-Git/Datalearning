@@ -1,6 +1,30 @@
 <!DOCTYPE html>
 
-<html class="light" data-theme="light" lang="en"><head><link crossorigin="anonymous" href="https://cdn.jsdelivr.net" rel="preconnect"/>
+<html class="light" data-theme="light" lang="en"><head>
+<script id="dl-course-navigation-preflight">
+/* Prevent the old ten-week document from flashing before the active weekly workspace mounts.
+   Capture the deep link before layout transformation to avoid scrolling to a hidden week. */
+(() => {
+  'use strict';
+  const hash = window.location.hash;
+  const valid = /^#(?:week(?:10|[1-9])|lesson-[1-8])$/.test(hash);
+  if (valid) {
+    window.DALP_PENDING_LESSON_HASH = hash;
+    try { history.replaceState(history.state, '', location.pathname + location.search); }
+    catch (_) { /* Keep the original deep link if history is restricted. */ }
+  }
+  document.documentElement.classList.add('dl-course-initializing');
+  window.setTimeout(() => {
+    if (!document.documentElement.classList.contains('dl-course-initializing')) return;
+    document.documentElement.classList.remove('dl-course-initializing');
+    if (!document.body?.classList.contains('cw-workspace-ready') &&
+        !document.body?.classList.contains('cw-intro-ready') &&
+        valid && !location.hash) location.hash = hash;
+  }, 4500);
+})();
+</script>
+
+<link crossorigin="anonymous" href="https://cdn.jsdelivr.net" rel="preconnect"/>
 <link href="../assets/styles/course-ai.css" rel="stylesheet"/>
 <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0"></script>
 <script defer src="../assets/scripts/supabase-config.js"></script>

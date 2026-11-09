@@ -21,7 +21,27 @@
  };
  const safeTitle=el=>(el?.textContent||'').replace(/\s+/g,' ').trim();
  const getUserId=()=>window.DALP_AUTH_USER?.id||'';
- function init(){ if(course==='introduction') initIntro(); else initWeekly(); }
+ function finishStartup(anchor) {
+   document.documentElement.classList.remove('dl-course-initializing');
+   // A direct Week/Lesson link points to a node that becomes hidden/repositioned
+   // when the single-week workspace mounts. Scroll to the visible workspace,
+   // not the obsolete pre-hydration fragment position.
+   if (!window.DALP_PENDING_LESSON_HASH) return;
+   window.DALP_PENDING_LESSON_HASH = '';
+   const target = anchor || document.querySelector('.cw-workspace, .cw-intro-nav');
+   if (!target) return;
+   requestAnimationFrame(() => {
+     const top = target.getBoundingClientRect().top + window.scrollY - 84;
+     window.scrollTo({top:Math.max(0,top),behavior:'instant'});
+   });
+ }
+ function init(){
+   if(course==='introduction') initIntro(); else initWeekly();
+   // Fail open rather than leaving a blank course if a legacy page differs.
+   if (document.documentElement.classList.contains('dl-course-initializing') &&
+       !document.body.classList.contains('cw-workspace-ready') &&
+       !document.body.classList.contains('cw-intro-ready')) finishStartup();
+ }
  function initWeekly(){
   const host=document.querySelector(course==='ai'?'.course-wrap':'.app .content');
   if(!host)return;
@@ -116,10 +136,11 @@
   const search=document.getElementById('searchInput');if(search)search.addEventListener('input',()=>{const text=search.value.trim().toLowerCase();if(!text)return;const first=info.find(w=>w.el.textContent.toLowerCase().includes(text)||w.title.toLowerCase().includes(text));if(first&&first.n!==active)openWeek(first.n,{silent:true,keepSearch:true});});
   window.addEventListener('hashchange',()=>{const found=location.hash.match(/^#week(10|[1-9])$/);if(found)openWeek(Number(found[1]),{fromHistory:true})});
   document.body.classList.add('cw-workspace-ready');
-  const fromHash=location.hash.match(/^#week(10|[1-9])$/);const fromQuery=new URLSearchParams(location.search).get('week');let start=fromHash?Number(fromHash[1]):(/^\d+$/.test(fromQuery||'')?Number(fromQuery):0);
+  const fromHash=(window.DALP_PENDING_LESSON_HASH || location.hash).match(/^#week(10|[1-9])$/);const fromQuery=new URLSearchParams(location.search).get('week');let start=fromHash?Number(fromHash[1]):(/^\d+$/.test(fromQuery||'')?Number(fromQuery):0);
   if(!start){try{const id=getUserId();start=Number(id&&localStorage.getItem(`${savedKey}:${id}`))||0}catch{}}
   if(!start){const first=info.find(x=>!checked(x.n));start=first?first.n:1}
   openWeek(start,{silent:true});
+  finishStartup(bar);
   window.addEventListener('dalp:auth-ready',()=>{ // Persist current week only under the verified account ID.
     store();syncIndicators();
   });
@@ -145,7 +166,7 @@
    const url=new URL(location.href);url.hash=ids[active];history.replaceState(null,'',url.pathname+url.search+url.hash);if(!silent&&!starting)window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});starting=false;}
    document.addEventListener('click',e=>{const b=e.target.closest('[data-ci-move]');if(b){open(active+Number(b.dataset.ciMove));return;}const link=e.target.closest('a[href^="#"]');if(link&&ids.includes(link.getAttribute('href').slice(1))){e.preventDefault();open(ids.indexOf(link.getAttribute('href').slice(1)));}});
    window.addEventListener('hashchange',()=>{const i=ids.indexOf(decodeURIComponent(location.hash.slice(1)));if(i!==-1)open(i,true)});
-   document.body.classList.add('cw-intro-ready');const initial=ids.indexOf(decodeURIComponent(location.hash.slice(1)));open(initial===-1?0:initial,true);
+   document.body.classList.add('cw-intro-ready');const initial=ids.indexOf(decodeURIComponent((window.DALP_PENDING_LESSON_HASH || location.hash).slice(1)));open(initial===-1?0:initial,true);finishStartup(nav);
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();

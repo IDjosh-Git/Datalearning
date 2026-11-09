@@ -8483,3 +8483,24 @@ body.dlp97-catalog-page .dlp97-cards {margin-top:0;}
 @media(prefers-reduced-motion:reduce) {
  .dlmx-subject,.dlmx-unit-card,.dlmx-outline-item,.dlmx-progress-track span {transition:none!important;transform:none!important;}
 }
+
+/* Course opening stability: early first-paint to weekly workspace transition */
+/* An intentional first-paint state: do not display the long legacy curriculum
+   that the weekly controller will hide. This is removed once the controller is ready. */
+html.dl-course-initializing .app .hero,
+html.dl-course-initializing .app .content,
+html.dl-course-initializing .intro-hero,
+html.dl-course-initializing .intro-underhero,
+html.dl-course-initializing .intro-body,
+html.dl-course-initializing .ai-hero,
+html.dl-course-initializing .course-wrap { display:none !important; }
+html.dl-course-initializing main { min-height: min(62vh, 560px); }
+html.dl-course-initializing main::before {
+  content:'Opening your learning workspace…';
+  display:block; margin:clamp(30px,6vw,78px) auto; padding:26px 24px;
+  width:min(90%,520px); border:1px solid #dce5ea;
+  border-radius:16px; background:#fff; color:#35637C;
+  font:700 clamp(15px,2vw,18px)/1.55 system-ui,sans-serif;
+  text-align:center; box-shadow:0 16px 48px rgba(37,69,89,.08);
+}
+@media(prefers-reduced-motion:reduce){html.dl-course-initializing main::before {animation:none}}

@@ -1,3 +1,7 @@
+## 9 November 2026 — Course opening stability
+
+Corrected disappearing or jumping course content when entering weekly learning pages. Added stable first-paint behavior and deep-link restoration across all six courses. Existing lessons, quizzes, Excel Lab, AI assistant, Supabase, and mobile navigation are preserved.
+
 ## 9 November 2026 — Premium weekly curriculum browser
 
 - Redesigned the Courses catalogue with six course selectors and stage-based weekly-module cards.
