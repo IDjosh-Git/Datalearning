@@ -150,3 +150,6 @@ Unzip into the existing `IDjosh-Git/Datalearning` repository root, replacing the
 - Removed the command-search bar from Sign In; search remains accessible elsewhere.
 - Improved text/background contrast for Practice Arena results and code output, the selected capstone button, and all six courses' Roadmap/Extension heroes (12 pages).
 - Browser-tested mobile widths and reviewed text contrast across the 41 HTML routes (computed solid-background checks; gradient/dynamic UI not exhaustively certified).
+
+### Excel Formula Lab & formatted floating AI (9 November 2026)
+Expanded offline calculation functions and custom-cell worksheet with independent preview/grading, plus a safe Markdown-rich response renderer for the public floating AI. Updated regressions and responsive control spacing. No schema migration.

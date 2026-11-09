@@ -8227,3 +8227,37 @@ html[data-theme="light"] body[data-public-refresh] .guide-hero.dalp-themed-hero 
 html[data-theme="light"] body[data-public-refresh][data-premium-course-v7="true"][data-learning-subject][data-course-theme] main .guide-hero.dalp-themed-hero p.guide-eyebrow{
  color:#203f58!important;-webkit-text-fill-color:#203f58!important;
 }
+
+
+/* Floating assistant: formatted teaching responses (safe DOM Markdown, no raw markup). */
+html[data-theme="light"] body .dl-float-bubble.is-guide .dl-float-answer{color:#203f58;font-size:.875rem;line-height:1.65;overflow-wrap:anywhere;min-width:0}
+html[data-theme="light"] body .dl-float-bubble.is-guide .dl-float-answer :is(p,li,h3,h4,blockquote){color:#203f58!important;-webkit-text-fill-color:#203f58!important}
+html[data-theme="light"] body .dl-float-bubble.is-guide .dl-float-answer p{white-space:normal!important;margin:0 0 .7rem!important;font-size:.875rem;line-height:1.65}
+html[data-theme="light"] body .dl-float-bubble.is-guide .dl-float-answer p:last-child{margin-bottom:0!important}
+html[data-theme="light"] body .dl-float-bubble.is-guide .dl-float-answer h3{margin:12px 0 6px!important;font-size:1.04rem;line-height:1.3;font-weight:800}
+html[data-theme="light"] body .dl-float-bubble.is-guide .dl-float-answer h4{margin:10px 0 5px!important;font-size:.94rem;line-height:1.35;font-weight:750}
+html[data-theme="light"] body .dl-float-bubble.is-guide .dl-float-answer :is(ul,ol){margin:6px 0 12px!important;padding-left:1.3rem!important;display:block;list-style-position:outside}
+html[data-theme="light"] body .dl-float-bubble.is-guide .dl-float-answer ul{list-style:disc!important}
+html[data-theme="light"] body .dl-float-bubble.is-guide .dl-float-answer ol{list-style:decimal!important}
+html[data-theme="light"] body .dl-float-bubble.is-guide .dl-float-answer li{display:list-item!important;margin:.2rem 0!important;font-size:.875rem;line-height:1.55;white-space:normal}
+html[data-theme="light"] body .dl-float-bubble.is-guide .dl-float-answer strong{display:inline;margin:0;color:#1e4055!important;font-size:inherit;font-weight:800}
+html[data-theme="light"] body .dl-float-bubble.is-guide .dl-float-answer a{color:#145c78!important;text-decoration:underline;font-weight:700}
+html[data-theme="light"] body .dl-float-bubble.is-guide .dl-float-answer :not(pre)>code{display:inline;padding:2px 5px;border-radius:5px;background:#e7f0f3;color:#23445b;font-size:.84em;white-space:normal;overflow-wrap:anywhere}
+html[data-theme="light"] body .dl-float-bubble.is-guide .dl-float-code-wrap{max-width:100%;margin:9px 0 13px;overflow:hidden;border-radius:10px;background:#152f42;border:1px solid #345365}
+html[data-theme="light"] body .dl-float-bubble.is-guide .dl-float-code-lang{padding:7px 12px;background:#21465c;color:#e7f8fd;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.03em}
+html[data-theme="light"] body .dl-float-bubble.is-guide .dl-float-code-wrap pre{overflow-x:auto;max-width:100%;margin:0!important;padding:12px!important;color:#f7fdff!important;background:#152f42!important;font-size:.79rem;line-height:1.6;white-space:pre;tab-size:2}
+html[data-theme="light"] body .dl-float-bubble.is-guide .dl-float-code-wrap code{color:inherit!important;background:transparent!important;font-size:inherit}
+html[data-theme="light"] body .dl-float-bubble.is-guide .dl-float-answer blockquote{margin:10px 0;padding:10px;border-left:3px solid #F69268;background:#eff5f6}
+html[data-theme="light"] body .dl-float-bubble.is-guide .dl-float-answer hr{border:0;border-top:1px solid #d5e4e8;margin:12px 0}
+/* Spreadsheet sandbox: formulas can be saved to cells independently of challenge grading. */
+html[data-theme="light"] body[data-responsive-page="practice"] .ide-worksheet-hint{color:#33556a;background:#eaf3f6;font-size:.78rem;line-height:1.5;padding:9px 12px;border-bottom:1px solid #c7dfe5}
+html[data-theme="light"] body[data-responsive-page="practice"] .ide-worksheet-hint strong{color:#203f58}
+html[data-theme="light"] body[data-responsive-page="practice"] #ideSetCell{background:#e5f0f4!important;color:#203f58!important;border:1px solid #a8c8d5!important;border-radius:9px;padding:9px 12px;font-weight:750;min-height:42px;cursor:pointer}
+html[data-theme="light"] body[data-responsive-page="practice"] .ide-sheet td[data-cell]{cursor:cell;min-width:86px;max-width:220px;overflow:hidden;text-overflow:ellipsis}
+html[data-theme="light"] body[data-responsive-page="practice"] .ide-sheet td[data-cell].ide-selected{background:#dceef4!important;box-shadow:inset 0 0 0 2px #35637c}
+html[data-theme="light"] body[data-responsive-page="practice"] .ide-sheet td[data-cell].ide-cell-error{color:#a43a32!important;background:#fff0ec!important}
+@media(max-width:600px){html[data-theme="light"] body[data-responsive-page="practice"] .ide-editor-toolbar>div{width:100%;justify-content:flex-end}}
+/* Formula Lab toolbar stays legible even when the editor pane is narrow. */
+html[data-theme="light"] body[data-responsive-page="practice"] .ide-editor-toolbar>div{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px!important;width:100%!important;min-width:0!important}
+html[data-theme="light"] body[data-responsive-page="practice"] .ide-editor-toolbar #ideSetCell{grid-column:1/-1;width:100%!important}
+html[data-theme="light"] body[data-responsive-page="practice"] .ide-editor-toolbar :is(#ideRun,#ideReset,#ideSetCell){min-width:0!important;max-width:100%;white-space:nowrap!important;word-break:normal!important;overflow-wrap:normal!important;font-size:.78rem!important;line-height:1.3;padding:10px 8px!important;min-height:44px!important}

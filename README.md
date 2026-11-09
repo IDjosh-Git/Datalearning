@@ -114,3 +114,12 @@ The Tutor uses the entire viewport up to 900px wide. The site-wide navigation an
 ### Latest UI refinements (9 November 2026)
 The public site now includes an always-available floating Learning AI launcher. Guest visitors can ask conceptual questions and receive matched explanations from the bundled offline knowledge base. Live model responses use `/api/tutor` and continue to require both provider configuration and a verified signed-in learner session. There is no free anonymous provider proxy.
 Mobile public navigation opens a full-height panel with a close button; the sign-in page no longer loads the search control. Colour-contrast updates include the Practice Arena feedback surfaces and every course resource page. See `docs/FLOATING_AI_MOBILE_NAV_CONTRAST_20261109.md`.
+
+## 9 November 2026: Excel Formula Lab and floating AI readability
+
+- The Excel Practice Arena now has an independent editable sample worksheet (visible grid A1:H20). Select a cell, enter a value or formula, choose **Save to cell**, and use **Calculate** for a formula preview. References in the offline engine can extend to A1:AZ1000, with a safety limit of 10,000 cells per range; off-grid blanks are empty until referenced/entered.
+- Formula coverage has been expanded with additional statistical, mathematical, text, date, and dynamic-array functions, plus array arithmetic and chained cell formulas. Circular references produce `#CIRC!`; unsupported functions produce `#NAME?`.
+- **Check challenge answer** remains a separate graded action using the unchanged challenge dataset (including hidden test cases). Sandbox cell edits do not change grading reference data.
+- This is **not a complete Microsoft Excel engine**. Macros/VBA, linked workbooks, Power Query, full formatting syntax, spill geometry, financial cube functions and many specialist formulas are not supported; use desktop Excel for full compatibility.
+- The floating coach displays AI Markdown as accessible headings, paragraphs, lists, inline code, and fenced examples rather than raw `**`, `###`, or backtick markers. Rendering uses DOM text nodes (not untrusted HTML), including offline explanations and authenticated live answers.
+- Build and test with `npm run verify:deployment`.

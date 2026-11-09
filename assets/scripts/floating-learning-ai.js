@@ -37,6 +37,55 @@
     }
     return bestScore >= (tokens.length > 1 ? 5 : 4) ? best : null;
   }
+  /** Render a conservative Markdown subset with DOM text nodes only, never provider HTML. */
+  function renderInline(node, text) {
+    const pattern = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)|\*\*([^*\n]+)\*\*|`([^`\n]+)`|\*([^*\n]+)\*/g;
+    let cursor = 0, match;
+    while ((match = pattern.exec(text))) {
+      if (match.index > cursor) node.append(document.createTextNode(text.slice(cursor,match.index)));
+      let element;
+      if (match[1] && match[2]) {
+        element=document.createElement('a');element.textContent=match[1];
+        try {const u=new URL(match[2]);if(!['https:','http:'].includes(u.protocol))throw Error('Invalid URL');element.href=u.href;element.rel='noopener noreferrer';element.target='_blank'}
+        catch{element=document.createElement('span');element.textContent=match[1]}
+      } else if (match[3]) {element=document.createElement('strong');element.textContent=match[3]}
+      else if (match[4]) {element=document.createElement('code');element.textContent=match[4]}
+      else {element=document.createElement('em');element.textContent=match[5]}
+      node.append(element);cursor=pattern.lastIndex;
+    }
+    if(cursor<text.length)node.append(document.createTextNode(text.slice(cursor)));
+  }
+  function renderAnswer(container, input) {
+    const value = sanitize(input).replace(/\r\n?/g,'\n').replace(/[\u200b\u200c\u200d\ufeff]/g,'');
+    const lines = value.split('\n');
+    let i=0;
+    const addParagraph=content=>{if(!content.trim())return;const p=document.createElement('p');renderInline(p,content.trim());container.append(p)};
+    while(i<lines.length){
+      const line=lines[i].trimEnd(), trimmed=line.trim();
+      if(!trimmed){i++;continue}
+      const fence=trimmed.match(/^```\s*([a-zA-Z0-9_+#.-]*)\s*$/);
+      if(fence){const lang=fence[1],body=[];i++;while(i<lines.length&&!/^```\s*$/.test(lines[i].trim())){body.push(lines[i]);i++}if(i<lines.length)i++;
+        const wrap=document.createElement('div');wrap.className='dl-float-code-wrap';
+        if(lang){const header=document.createElement('div');header.className='dl-float-code-lang';header.textContent=lang;wrap.append(header)}
+        const pre=document.createElement('pre'),code=document.createElement('code');code.textContent=body.join('\n');pre.append(code);wrap.append(pre);container.append(wrap);continue;
+      }
+      const heading=trimmed.match(/^(#{1,4})\s+(.+)$/);
+      if(heading){const h=document.createElement(heading[1].length<3?'h3':'h4');renderInline(h,heading[2]);container.append(h);i++;continue}
+      const unordered=/^[-*+]\s+(.+)$/,ordered=/^\d+[.)]\s+(.+)$/;
+      const item=trimmed.match(unordered)||trimmed.match(ordered);
+      if(item){const ol=!!trimmed.match(ordered),list=document.createElement(ol?'ol':'ul');
+        while(i<lines.length){const t=lines[i].trim(),m=t.match(ol?ordered:unordered);if(!m)break;
+          const li=document.createElement('li');renderInline(li,m[1]);list.append(li);i++;
+        }container.append(list);continue;
+      }
+      if(/^>\s+/.test(trimmed)){const quote=document.createElement('blockquote');renderInline(quote,trimmed.replace(/^>\s+/,''));container.append(quote);i++;continue}
+      if(/^(-{3,}|\*{3,})$/.test(trimmed)){container.append(document.createElement('hr'));i++;continue}
+      const paragraph=[];
+      while(i<lines.length){const t=lines[i].trim();if(!t||/^```|^#{1,4}\s|^[-*+]\s|^\d+[.)]\s|^>\s/.test(t))break;paragraph.push(t);i++}
+      if(paragraph.length)addParagraph(paragraph.join(' '));else {addParagraph(trimmed);i++}
+    }
+  }
+  window.DALP_FLOAT_AI_FORMAT = Object.freeze({renderAnswer});
   function init() {
     if (document.getElementById('dl-float-coach')) return;
     const root = document.createElement('aside');
@@ -73,7 +122,9 @@
     function bubble(text, who, heading) {
       const el = document.createElement('div');el.className = 'dl-float-bubble ' + (who === 'user' ? 'is-user' : 'is-guide');
       if (heading) {const name = document.createElement('strong');name.textContent = heading;el.append(name);}
-      const body = document.createElement('p');body.textContent = sanitize(text);el.append(body);log.append(el);
+      if(who==='user') {const body=document.createElement('p');body.textContent=sanitize(text);el.append(body)}
+      else {const body=document.createElement('div');body.className='dl-float-answer';renderAnswer(body,text);el.append(body)}
+      log.append(el);
       log.scrollTop = log.scrollHeight;return el;
     }
     function syncMode() {
@@ -108,9 +159,9 @@
           bubble('I could not find a close enough match in the offline library. Try asking about data cleaning, SQL joins, DAX, Excel formulas, Power BI models or dashboard design. For a more specific question, open Tutor Studio.', 'assistant','Study guide · no close match');return;
         }
         let answer = match.explanation;
-        if (match.example) answer += '\n\nExample: ' + match.example;
-        if (match.practice) answer += '\n\nTry this: ' + match.practice;
-        if (match.pitfall) answer += '\n\nWatch out for: ' + match.pitfall;
+        if (match.example) answer += '\n\n**Example**\n\n' + match.example;
+        if (match.practice) answer += '\n\n**Try this**\n\n' + match.practice;
+        if (match.pitfall) answer += '\n\n**Watch out for**\n\n' + match.pitfall;
         bubble(answer, 'assistant', 'From the DataLearning study guide');
       } catch {bubble('The offline guide could not load. Open Tutor Studio or try again with a connection.', 'assistant', 'Unavailable');}
     }
