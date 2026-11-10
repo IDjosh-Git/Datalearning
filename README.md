@@ -16,7 +16,10 @@ The app also retains **AI Tutor, floating AI, Learning Coach, Learning Lab, Stud
 | Separate weekly questions | `quiz.html` (linked from each week) |
 | Study Tools | `study-tools.html` |
 | Practice Arena and compact Excel Lab | `practice.html` |
-| Learning Coach and Learning Lab | `learning-lab.html` |
+| Learning Coach (seven-session planner) | `learning-coach.html` |
+| Learning Lab (independent lesson review) | `learning-lab.html` |
+| Practice Studio | `studio.html` |
+| Reference Library | `reference.html` |
 | AI Tutor | `tutor.html` |
 | Capstones and certificates | `capstone.html`, `certificate.html` |
 | Learner account | `auth.html`, `account.html`, `profile.html` |
@@ -39,6 +42,10 @@ The current test commands are `npm run test:academy`, `npm run test:security`, `
 The connected DataLearning database was updated previously for the seven paths. **This cleanup does not change the database or require another migration.** See `docs/SUPABASE_SETUP.txt` and `database/` before running any historical migrations in another environment.
 
 The live AI Tutor uses a server-side provider key. Configure `TUTOR_PROVIDER` and either `GROQ_API_KEY` or `OPENAI_API_KEY` in Vercel environment settings (see `.env.example`). Without provider credentials, the bundled offline learning guidance remains available.
+
+## Tutor and consistent public navigation
+
+The AI Tutor now fills the available viewport, keeps the chat composer visible, and scrolls messages independently. On phones, Tools opens a full-screen settings drawer with a close button. Quick Search is a compact header icon on every public page. The floating **Study Pulse** habit tracker sits at the bottom-left, separate from the full **Learning Coach** study-planning page. No AI API, Supabase, or account migration is needed.
 
 ## Deployment on Vercel
 
@@ -64,3 +71,7 @@ The live AI Tutor uses a server-side provider key. Configure `TUTOR_PROVIDER` an
 | `docs/` | Current documentation, route manifest, cleanup report |
 
 See [current release](CURRENT_RELEASE.md), [file cleanup report](docs/CLEANUP_AUDIT_20261110.md), and [route manifest](docs/SITE_ROUTE_MANIFEST.json). The reusable brand wordmark SVG remains in `assets/icons/datalearning-wordmark.svg` as a source design asset.
+
+## Public navigation and Study Pulse
+
+All 31 public pages—including seven current course paths, returning-learner legacy paths, and Study Tools—use a single static public header, compact Search action, full-screen mobile navigation with a close button, and consistent branded links. Protected pages retain their role-aware navigation. The small bottom-left **Study Pulse** shortcut opens the original habit tracking and spaced-repetition widget (daily goals, activity logging, local notes, bookmarks, reviews and export/import); it is intentionally distinct from the seven-session **Learning Coach** page. This redesign does not modify existing progress storage or Supabase schemas.

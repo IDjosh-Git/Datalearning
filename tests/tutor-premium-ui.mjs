@@ -9,9 +9,10 @@ const ai=read('assets/scripts/tutor-ai.js');
 for (const id of ['chatForm','chatQuestion','sendQuestion','tutorTopic','tutorModeAi','tutorModeOffline','tutorFollowups','topReset','clearChat','cancelTutor','chatMessages','practiceTopic']) {
  assert(html.includes('id="'+id+'"'),`Tutor control removed: ${id}`);
 }
-for (const name of ['tutor-hero-steps','tutor-hero-aside','tutor-side-top','tutor-sidebar','tutor-toolbar','tutor-welcome-icon','tutor-compose-icon','tutor-privacy']) {
+for (const name of ['tutor-side-top','tutor-sidebar','tutor-toolbar','tutor-welcome-icon','tutor-compose-icon','tutor-privacy']) {
  assert(html.includes(name),`Premium Tutor region missing: ${name}`);
 }
+assert(!html.includes('class="dlx-v5-tutor-hero"') && !html.includes('class="tutor-intro dalp-themed-hero"'), 'Redundant Tutor introduction cards must be removed');
 assert(html.includes('class="tutor-resource-link" data-action="tutor-resource"'), 'Tutor navigation must remain styled as clickable cards');
 assert.match(css,/Tutor Studio — premium workspace/);
 assert.match(css,/\.tutor-chat \.tutor-composer:focus-within/);
@@ -21,4 +22,4 @@ assert.match(css,/@media\(max-width:600px\)/);
 assert.match(tutor,/form\.addEventListener\('submit'/);
 assert.match(ai,/\.tutor-mode-block/);
 assert.match(ai,/quick\.insertBefore\(el,examples\)/);
-console.log('PASS Tutor Studio premium header, sidebar navigation, accessible composer and preserved live/offline controls');
+console.log('PASS Tutor Studio single immersive workspace, sidebar navigation, accessible composer and preserved live/offline controls');

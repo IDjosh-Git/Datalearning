@@ -5,7 +5,7 @@
  const siteRoot=new URL('../../',source.src);
  const link=path=>new URL(path,siteRoot).href;
  const paths=[['Data Analysis','courses/introduction.html'],['Excel','courses/excel.html'],['SQL','courses/sql.html'],['Power BI','courses/powerbi.html'],['Tableau','courses/tableau.html'],['Power Query','courses/powerquery.html'],['Statistics','courses/statistics.html']];
- const tools=[['Study Tools','study-tools.html'],['Learning Coach','learning-lab.html#study-plan'],['Learning Lab','learning-lab.html#lesson-library'],['AI Tutor','tutor.html'],['Practice Arena','practice.html'],['Practice Studio','studio.html'],['Reference Library','reference.html'],['AI Prompt Library','prompt-library.html']];
+ const tools=[['Study Tools','study-tools.html'],['Learning Coach','learning-coach.html'],['Learning Lab','learning-lab.html'],['AI Tutor','tutor.html'],['Practice Arena','practice.html'],['Practice Studio','studio.html'],['Reference Library','reference.html'],['AI Prompt Library','prompt-library.html']];
  const render=()=>{
   if(document.querySelector('.dalp-public-footer'))return;
   const footer=document.createElement('footer');footer.className='dalp-public-footer dlx-v5-footer';footer.setAttribute('aria-label','DataLearning site footer');

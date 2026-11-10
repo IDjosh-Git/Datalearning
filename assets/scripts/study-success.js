@@ -17,8 +17,8 @@ const pythonSkills=[
  ['Reproducible reporting','Document inputs, assumptions, validation and outputs.','df.to_csv("summary.csv", index=False)','Name four items that make a Python analysis reproducible.','Record source/version, transformation steps, validation results and environment/dependencies.','Sharing only the final chart without a reproducible process.']
 ];
 let catalog={...(window.COURSE_STUDIO_DATA||{}),python:pythonSkills};
-const labels={introduction:'Data analysis foundations',excel:'Excel analytics',sql:'SQL analytics',powerbi:'Power BI & DAX',python:'Python analytics',ai:'AI for analysts'};
-const colors={introduction:'#7258cf',excel:'#137e62',sql:'#246bb6',powerbi:'#94630b',python:'#455dc1',ai:'#8750ac'};
+const labels={introduction:'Data analysis foundations',excel:'Excel analytics',sql:'SQL analytics',powerbi:'Power BI & DAX',tableau:'Tableau visual analytics',powerquery:'Power Query transformations',statistics:'Introductory statistics',python:'Python analytics',ai:'AI for analysts'};
+const colors={introduction:'#7258cf',excel:'#137e62',sql:'#246bb6',powerbi:'#94630b',tableau:'#285E83',powerquery:'#287C79',statistics:'#7355A3',python:'#455dc1',ai:'#8750ac'};
 const stages=['Read and understand the concept','Attempt the guided exercise','Explain the result from memory'];
 const startAt={new:0,some:2,confident:5};
 const initial={course:'introduction',experience:'new',minutes:30};

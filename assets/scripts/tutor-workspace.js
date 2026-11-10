@@ -27,6 +27,7 @@
     }
     trigger.addEventListener('click',()=>{opened=!opened;sync();if(opened){const select=drawer.querySelector('#tutorTopic');(select||drawer.querySelector('summary'))?.focus({preventScroll:true})}});
     backdrop.addEventListener('click',()=>close(true));
+    document.getElementById('tutorCloseSettings')?.addEventListener('click',()=>close(true));
     document.addEventListener('keydown',event=>{
       if(event.key==='Escape'&&opened){event.preventDefault();close(true)}
     });

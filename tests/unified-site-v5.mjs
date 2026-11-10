@@ -26,9 +26,11 @@ const doc={currentScript:{src:'https://example.com/site/assets/scripts/public-fo
 vm.runInNewContext(js,{document:doc,URL,Date});
 assert.equal(created.length,1);
 assert.equal(created[0].className,'dalp-public-footer dlx-v5-footer');
-for(const link of ['courses/tableau.html','courses/powerquery.html','courses/statistics.html','study-tools.html','learning-lab.html','tutor.html','verify.html'])assert(created[0].innerHTML.includes(link),`Footer missing ${link}`);
-const coach=read('learning-lab.html'),tutor=read('tutor.html');
-for(const id of ['ss-plan-form','ss-session-list','ss-reveal','ss-save','labSearch','labCards','study-plan'])assert(coach.includes(id),`Coach/Lab functionality lost: ${id}`);
+for(const link of ['courses/tableau.html','courses/powerquery.html','courses/statistics.html','study-tools.html','learning-coach.html','learning-lab.html','tutor.html','verify.html'])assert(created[0].innerHTML.includes(link),`Footer missing ${link}`);
+const coach=read('learning-coach.html'),lab=read('learning-lab.html'),tutor=read('tutor.html');
+for(const id of ['ss-plan-form','ss-session-list','ss-reveal','ss-save','study-plan'])assert(coach.includes(id),`Coach functionality lost: ${id}`);
+for(const id of ['labSearch','labCards','labGroup','labMode'])assert(lab.includes(id),`Lab functionality lost: ${id}`);
+assert(!lab.includes('id="ss-plan-form"')&&!coach.includes('id="labCards"'),'Coach and Lab must be independent pages');
 for(const id of ['chatForm','chatQuestion','sendQuestion','chatMessages','tutorToolsPanel','tutorModeOffline','tutorModeAi'])assert(tutor.includes(id),`Tutor functionality lost: ${id}`);
 assert(read('assets/scripts/private-navigation.js').includes("['Study Tools','study-tools.html'"),'Protected nav must include Study Tools');
 assert(read('study-tools.html').includes('dlx-tools-grid'),'Dedicated Study Tools hub missing');

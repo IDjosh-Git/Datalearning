@@ -9,13 +9,16 @@ const records=[
  ['courses/excel.html','Excel analytics','Courses','Formulas, XLOOKUP, pivots and dashboards','sumifs spreadsheet pivot tables cleaning'],
  ['courses/sql.html','SQL analytics','Courses','Queries, joins, CTEs and window functions','select group by database joins cte'],
  ['courses/powerbi.html','Power BI & DAX','Courses','Power Query, models and visual reports','bi dashboard star schema dax measures'],
+ ['courses/tableau.html','Tableau visual analytics','Courses','Build calculated fields and interactive dashboards','tableau charts visual storytelling'],
+ ['courses/powerquery.html','Power Query','Courses','Clean and combine repeatable datasets','power query transform M ETL'],
+ ['courses/statistics.html','Statistics','Courses','Descriptive statistics and useful inference','mean median probability correlation hypothesis'],
  ['courses/python.html','Python analytics','Courses','pandas, NumPy and reproducible analysis','coding statistics automation dataframe'],
  ['courses/ai.html','AI integration','Courses','Verified AI workflows for data analysis','prompting automation responsible chatgpt'],
  ['practice.html','Practice Arena','Study tools','SQL, Excel and Python challenges with working editor','challenge editor run code grade skills'],
  ['studio.html','Practice Studio','Study tools','Guided hands-on learning and exercises','studio project'],
  ['tutor.html','AI Learning Tutor','Study tools','Guided explanations, follow-up questions and knowledge checks','coach tutor chat explain'],
  ['reference.html','Reference library','Study tools','Formulas and worked examples across analytics tools','dax formulas excel sql functions'],
- ['learning-lab.html#study-plan','Learning Lab & Study Plan','Study tools','Personal seven-session study routes, active recall and 500+ guided lessons','study plan learning schedule guided recall learning lab weekly goals reflection flashcards recap'],
+ ['learning-coach.html','Learning Coach','Study tools','Personal seven-session study routes and active recall','study plan learning schedule guided recall learning lab weekly goals reflection flashcards recap'],
  ['prompt-library.html','AI prompt library','Study tools','Practical prompts for analysts','ai chatgpt prompts'],
  ['account.html','My learning dashboard','My workspace','Personal course progress and achievements','my courses results certificates'],
  ['capstone.html','Capstone studio','My workspace','Submit projects and review instructor feedback','projects assignments submission'],
@@ -24,11 +27,15 @@ const records=[
  ];
 const searchIcon='<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="7.5"/><path d="m16 16 5 5"/></svg>';
 function init(){if(document.getElementById('premiumSearchDialog'))return;
+ const unifiedHeader=document.querySelector('.dlu-header .dlu-header-actions');
  const header=document.querySelector('.dalp-global-header .dalp-global-inner');
  const privateTop=document.querySelector('.ac-topbar .ac-top-actions');
  const quizTop=document.querySelector('.dl-quiz-nav-actions');
+ const sharedHeader=document.querySelector('.dlx-header-inner,.za-header-inner');
  const trigger=document.createElement('button');trigger.type='button';trigger.className='premium-search-trigger';trigger.setAttribute('aria-label','Search courses and learning tools');trigger.innerHTML=searchIcon+'<span>Search learning</span><kbd>⌘ K</kbd>';
- if(header){const nav=header.querySelector('.dalp-global-nav');header.insertBefore(trigger,header.querySelector('.dalp-global-toggle')||nav||null);}
+ if(unifiedHeader){trigger.classList.add('dlu-search-button');unifiedHeader.prepend(trigger);}
+ else if(header){const nav=header.querySelector('.dalp-global-nav');header.insertBefore(trigger,header.querySelector('.dalp-global-toggle')||nav||null);}
+ else if(sharedHeader){let actions=sharedHeader.querySelector('.dlx-utility-actions');if(!actions){actions=document.createElement('div');actions.className='dlx-utility-actions';actions.setAttribute('aria-label','Quick learning tools');const menu=sharedHeader.querySelector('.dlx-menu-button,.za-menu-open');sharedHeader.insertBefore(actions,menu||null);}trigger.classList.add('dlx-header-search');actions.append(trigger);} 
  else if(privateTop){privateTop.prepend(trigger);}
  else if(quizTop){quizTop.prepend(trigger);}
  else {trigger.classList.add('premium-search-floating');document.body.append(trigger);}

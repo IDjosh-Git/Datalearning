@@ -2,7 +2,7 @@
 (()=>{'use strict';
 if(!document.body.classList.contains('ps-page'))return;
 const catalog=window.COURSE_STUDIO_DATA||{};
-const metadata={introduction:{name:'Foundations',page:'courses/introduction.html',icon:'◈'},excel:{name:'Excel',page:'courses/excel.html',icon:'▦'},sql:{name:'SQL',page:'courses/sql.html',icon:'⌘'},powerbi:{name:'Power BI',page:'courses/powerbi.html',icon:'▤'},ai:{name:'AI Integration',page:'courses/ai.html',icon:'✧'}};
+const metadata={introduction:{name:'Foundations',page:'courses/introduction.html',icon:'◈'},excel:{name:'Excel',page:'courses/excel.html',icon:'▦'},sql:{name:'SQL',page:'courses/sql.html',icon:'⌘'},powerbi:{name:'Power BI',page:'courses/powerbi.html',icon:'▤'},tableau:{name:'Tableau',page:'courses/tableau.html',icon:'▧'},powerquery:{name:'Power Query',page:'courses/powerquery.html',icon:'≋'},statistics:{name:'Statistics',page:'courses/statistics.html',icon:'◫'},ai:{name:'AI Integration',page:'courses/ai.html',icon:'✧'}};
 const allowed=Object.keys(metadata).filter(k=>Array.isArray(catalog[k])&&catalog[k].length);
 if(!allowed.length)return;
 const $=s=>document.querySelector(s);

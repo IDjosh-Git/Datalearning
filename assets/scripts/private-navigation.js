@@ -28,7 +28,7 @@
  ];
  const learnerNav=[
   {caption:'MY LEARNING',items:[
-    ['My dashboard','account.html','account'],['Edit my profile','profile.html','profile'],['Learning overview','overview.html','overview'],['My study plan','learning-lab.html#study-plan','study'],['Browse courses','catalog.html','catalog'],['Study Tools','study-tools.html','study'],
+    ['My dashboard','account.html','account'],['Edit my profile','profile.html','profile'],['Learning overview','overview.html','overview'],['My study plan','learning-coach.html','study'],['Browse courses','catalog.html','catalog'],['Study Tools','study-tools.html','study'],
     ['Practice Arena','practice.html','practice'],['Practice Studio','studio.html','studio'],['AI Learning Tutor','tutor.html','tutor']]},
   {caption:'ACHIEVEMENTS',items:[['Capstone Studio','capstone.html','capstone'],['Certificates','account.html#certificates','certificate']]},
   {caption:'PLATFORM',items:[['Discover new skills','index.html','portal']]}

@@ -37,7 +37,8 @@ const rootPages=['index.html','catalog.html','quiz.html','overview.html'];
 for(const f of rootPages){
  const source=read(f);
  for(const s of ['assets/styles/academy.css','assets/scripts/academy-app.js','assets/scripts/academy-curriculum.js','assets/scripts/progress-cloud.js','assets/scripts/floating-learning-ai.js','assets/scripts/supabase-client.js']) assert(source.includes(s),`${f} missing ${s}`);
- assert(source.includes('zaMenuClose'),`${f} missing close button`);
+ assert(source.includes('dluNavClose'),`${f} missing unified mobile close button`);
+ assert(source.includes('public-header-unified.css')&&source.includes('public-header-unified.js'),`${f} missing unified public navigation`);
 }
 const js=read('assets/scripts/academy-app.js');
 for(const expected of ['saveWeek(slug,week,true)','quiz_results','mastery_results','Questions to Try','aria-expanded','role="group"']) assert(js.includes(expected),`Academy integration missing ${expected}`);
