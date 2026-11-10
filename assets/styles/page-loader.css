@@ -1,0 +1,32 @@
+/* Premium, real page-start loader. Public pages only; protected pages retain the auth gate.
+   The loader is opt-in so pages remain usable when JavaScript is disabled. */
+#dlpPageLoader{display:none;position:fixed;inset:0;z-index:2147483450;isolation:isolate;
+  box-sizing:border-box;padding:24px;align-items:center;justify-content:center;
+  background:radial-gradient(ellipse at 72% 18%,#e2f2f1 0,transparent 43%),
+             radial-gradient(ellipse at 17% 78%,#fff1e8 0,transparent 47%),
+             linear-gradient(155deg,#f9fbfc 0%,#f3f7f8 100%);
+  color:#17394a;font-family:'Plus Jakarta Sans','DM Sans',system-ui,-apple-system,sans-serif;
+  text-align:center;opacity:1;visibility:visible;transition:opacity .24s ease,visibility .24s ease}
+html.dlp-loader-pending #dlpPageLoader{display:flex}
+html.dlp-loader-leaving #dlpPageLoader{display:flex;opacity:0;visibility:hidden;pointer-events:none}
+#dlpPageLoader *{box-sizing:border-box}
+#dlpPageLoader .dlp-loader-content{width:min(100%,340px);display:grid;justify-items:center;gap:13px}
+#dlpPageLoader .dlp-loader-emblem{width:88px;height:88px;display:grid;place-items:center;
+  border:1px solid #d8e5e8;border-radius:25px;
+  background:linear-gradient(145deg,#fff,#edf6f5);
+  box-shadow:0 20px 48px #25455923,0 5px 14px #25455913,inset 0 1px 1px #fff;
+  transform:perspective(400px) rotateX(9deg) rotateY(-11deg);will-change:transform;
+  animation:dlp-loader-tilt 2.2s ease-in-out infinite alternate}
+#dlpPageLoader .dlp-loader-emblem svg{width:61px;height:61px;object-fit:contain;filter:drop-shadow(0 6px 7px #25455922)}
+#dlpPageLoader .dlp-loader-brand{font-size:22px;line-height:1.24;letter-spacing:-.06em;font-weight:850;color:#254559}
+#dlpPageLoader .dlp-loader-brand span{color:#ad4e23}
+#dlpPageLoader .dlp-loader-kicker{font-weight:750;letter-spacing:.16em;font-size:9px;color:#476a7b;text-transform:uppercase}
+#dlpPageLoader .dlp-loader-description{font-size:12px;line-height:1.6;font-weight:550;color:#526979;margin:0}
+#dlpPageLoader .dlp-loader-track{width:186px;height:4px;border-radius:50px;background:#d9e6e8;
+  margin-top:8px;position:relative;overflow:hidden}
+#dlpPageLoader .dlp-loader-track:before{content:'';position:absolute;left:0;top:0;height:100%;width:35%;
+  border-radius:inherit;background:linear-gradient(90deg,#35637c,#f27329);
+  animation:dlp-loader-sweep 1.05s ease-in-out infinite alternate}
+@keyframes dlp-loader-tilt{from{transform:perspective(400px) rotateX(9deg) rotateY(-11deg) translateY(1px)}to{transform:perspective(400px) rotateX(-3deg) rotateY(10deg) translateY(-3px)}}
+@keyframes dlp-loader-sweep{from{transform:translateX(0)}to{transform:translateX(190%)}}
+@media(prefers-reduced-motion:reduce){#dlpPageLoader .dlp-loader-emblem{animation:none;transform:none}#dlpPageLoader .dlp-loader-track:before{animation:none;width:75%}#dlpPageLoader{transition:none}}

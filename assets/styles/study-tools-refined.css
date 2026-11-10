@@ -160,3 +160,244 @@ body[data-study-tool-page=reference] .search-row button#clearSearch{
 body[data-study-tool-page=reference] .search-row button#savedFilter[aria-pressed="true"]{
   color:#173f51!important;background:#e4f4e8!important;border-color:#8fc4b5!important;
 }
+
+/* 2026-11-10 · Practice Studio compact subject controls / untrapped skills panel.
+   Overrides superseded tall cards and nested-scroll layouts, without changing
+   the existing selectors, practice controllers or learner save keys. */
+body.ps-page[data-study-tool-page="studio"] #ps-course-nav.ps-course-nav{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:10px!important;
+  padding:0!important;
+  margin:0 0 23px!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+  max-width:100%!important;
+}
+body.ps-page[data-study-tool-page="studio"] #ps-course-nav .ps-course-pill{
+  display:flex!important;
+  flex:initial!important;
+  min-width:0!important;
+  min-height:62px!important;
+  height:auto!important;
+  gap:10px!important;
+  padding:10px 13px!important;
+  text-decoration:none!important;
+  border-radius:13px!important;
+  border:1px solid #cadfe0!important;
+  color:#1d4859!important;
+  background:linear-gradient(132deg,#ffffff,#f7fbfa)!important;
+  box-shadow:0 5px 17px rgba(22,63,80,.055)!important;
+  transition:background .18s ease,border-color .18s ease,box-shadow .18s ease,transform .18s ease!important;
+  scroll-snap-align:start;
+}
+body.ps-page[data-study-tool-page="studio"] #ps-course-nav .ps-course-pill .ps-course-icon{
+  display:grid!important;place-items:center!important;
+  width:35px!important;height:35px!important;min-width:35px!important;
+  flex:0 0 35px!important;
+  border-radius:10px!important;
+  color:#26566b!important;
+  background:linear-gradient(145deg,#e9f5f2,#ddecf0)!important;
+  border:1px solid #cce2df!important;
+  font-size:1.15rem!important;
+  line-height:1!important;
+}
+body.ps-page[data-study-tool-page="studio"] #ps-course-nav .ps-course-pill span:last-child{
+  min-width:0!important;
+  font-weight:850!important;
+  color:#1d4859!important;
+  font-size:.88rem!important;
+  letter-spacing:-.012em!important;
+  line-height:1.3!important;
+}
+body.ps-page[data-study-tool-page="studio"] #ps-course-nav .ps-course-pill small{
+  display:block!important;
+  margin-top:3px!important;
+  color:#526e7a!important;
+  font-size:.69rem!important;
+  font-weight:650!important;
+  line-height:1.25!important;
+}
+body.ps-page[data-study-tool-page="studio"] #ps-course-nav .ps-course-pill:hover{
+  transform:translateY(-2px)!important;
+  border-color:#74aaa9!important;
+  box-shadow:0 10px 23px rgba(24,74,86,.11)!important;
+}
+body.ps-page[data-study-tool-page="studio"] #ps-course-nav .ps-course-pill.is-active{
+  background:linear-gradient(128deg,#254e65,#183d54)!important;
+  color:#fff!important;
+  border-color:#254e65!important;
+  box-shadow:0 9px 23px rgba(29,76,100,.22)!important;
+}
+body.ps-page[data-study-tool-page="studio"] #ps-course-nav .ps-course-pill.is-active :is(span:last-child,small){color:#fff!important;}
+body.ps-page[data-study-tool-page="studio"] #ps-course-nav .ps-course-pill.is-active small{color:#d2e5ea!important;}
+body.ps-page[data-study-tool-page="studio"] #ps-course-nav .ps-course-pill.is-active .ps-course-icon{
+  background:linear-gradient(135deg,#ffdfc7,#f4a77a)!important;
+  color:#663318!important;
+  border-color:#eec5a5!important;
+}
+body.ps-page[data-study-tool-page="studio"] #ps-course-nav .ps-course-pill:focus-visible{
+  outline:3px solid #ef9a5e!important;
+  outline-offset:3px!important;
+}
+/* Skills sidebar: all skills participate in the document scroll; there is no
+   vertically or horizontally scrollable nested skills window on any device. */
+body.ps-page[data-study-tool-page="studio"] #ps-workspace #ps-rail.ps-rail{
+  position:static!important;
+  top:auto!important;
+  height:auto!important;
+  max-height:none!important;
+  min-height:0!important;
+  overflow:visible!important;
+  overscroll-behavior:auto!important;
+  scrollbar-width:auto!important;
+}
+body.ps-page[data-study-tool-page="studio"] #ps-rail #ps-skill-list.ps-skill-list{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-auto-columns:auto!important;
+  grid-auto-flow:row!important;
+  max-height:none!important;
+  height:auto!important;
+  overflow:visible!important;
+  overscroll-behavior:auto!important;
+  scroll-snap-type:none!important;
+  gap:5px!important;
+  padding:5px 2px 12px!important;
+}
+body.ps-page[data-study-tool-page="studio"] #ps-rail .ps-skill{
+  scroll-snap-align:none!important;
+  min-height:55px!important;
+  border-radius:11px!important;
+  border:1px solid transparent!important;
+  background:transparent!important;
+  transition:background .15s ease,border-color .15s ease!important;
+}
+body.ps-page[data-study-tool-page="studio"] #ps-rail .ps-skill:hover{background:#f0f7f5!important;border-color:#cfe4df!important;}
+body.ps-page[data-study-tool-page="studio"] #ps-rail .ps-skill.is-active{
+  border-color:#a3ceca!important;
+  background:linear-gradient(110deg,#e7f4f1,#f5faf9)!important;
+}
+body.ps-page[data-study-tool-page="studio"] #ps-rail .ps-skill-copy small{
+  white-space:normal!important;
+  overflow:visible!important;
+  display:block!important;
+  text-overflow:clip!important;
+}
+@media(max-width:1020px){
+  body.ps-page[data-study-tool-page="studio"] #ps-course-nav.ps-course-nav{grid-template-columns:repeat(3,minmax(0,1fr))!important;}
+}
+@media(max-width:760px){
+  /* Compact one-row swipeable course strip; only the course strip scrolls, never the sidebar. */
+  body.ps-page[data-study-tool-page="studio"] #ps-course-nav.ps-course-nav{
+    display:flex!important;flex-wrap:nowrap!important;
+    gap:8px!important;
+    overflow-x:auto!important;overflow-y:hidden!important;
+    padding:3px 3px 12px!important;
+    margin-bottom:14px!important;
+    scroll-snap-type:x proximity!important;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:thin;
+  }
+  body.ps-page[data-study-tool-page="studio"] #ps-course-nav .ps-course-pill{
+    flex:0 0 150px!important;
+    width:150px!important;
+    min-height:56px!important;
+    padding:9px 11px!important;
+    gap:8px!important;
+  }
+  body.ps-page[data-study-tool-page="studio"] #ps-course-nav .ps-course-pill .ps-course-icon{
+    width:32px!important;height:32px!important;min-width:32px!important;flex-basis:32px!important;
+  }
+  body.ps-page[data-study-tool-page="studio"] #ps-rail #ps-skill-list.ps-skill-list{grid-auto-flow:row!important;max-height:none!important;overflow:visible!important;}
+  body.ps-page[data-study-tool-page="studio"] #ps-workspace #ps-rail.ps-rail{max-height:none!important;overflow:visible!important;}
+}
+@media(hover:none){body.ps-page[data-study-tool-page="studio"] #ps-course-nav .ps-course-pill:hover{transform:none!important;}}
+@media(prefers-reduced-motion:reduce){body.ps-page[data-study-tool-page="studio"] #ps-course-nav .ps-course-pill{transition:none!important;transform:none!important;}}
+
+/* Learning Lab: a manageable ten-result page with polished, accessible paging. */
+body[data-study-tool-page="lab"] .lab-pagination[hidden]{display:none!important;}
+body[data-study-tool-page="lab"] .lab-pagination{
+  display:grid!important;
+  grid-template-columns:auto minmax(0,1fr) auto;
+  align-items:center;
+  justify-items:center;
+  column-gap:14px;
+  row-gap:12px;
+  margin:22px 0 8px!important;
+  padding:17px 20px!important;
+  border:1px solid #d6e6e6!important;
+  border-radius:17px!important;
+  background:linear-gradient(140deg,#fff,#f1f8f7)!important;
+  box-shadow:0 8px 24px rgba(22,67,84,.055)!important;
+}
+body[data-study-tool-page="lab"] .lab-pagination :is(button,span){font:inherit;}
+body[data-study-tool-page="lab"] .lab-page-step{
+  cursor:pointer;min-width:112px;min-height:44px;
+  border:1px solid #b9d5d7!important;border-radius:10px!important;
+  padding:10px 15px!important;background:#fff!important;color:#214b5f!important;
+  font-size:.86rem!important;font-weight:800!important;
+}
+body[data-study-tool-page="lab"] .lab-page-step:not(:disabled):hover{border-color:#438b85!important;background:#eaf5f2!important;}
+body[data-study-tool-page="lab"] .lab-page-step:disabled{cursor:not-allowed;opacity:.52!important;}
+body[data-study-tool-page="lab"] .lab-page-numbers{display:flex;gap:6px;justify-content:center;align-items:center;flex-wrap:wrap;min-width:0;}
+body[data-study-tool-page="lab"] .lab-page-number{
+  display:grid;place-items:center;min-height:38px;min-width:38px;
+  background:#fff!important;border:1px solid #d1e1e3!important;
+  border-radius:9px!important;color:#315e70!important;
+  font-size:.83rem!important;font-weight:800!important;cursor:pointer;
+}
+body[data-study-tool-page="lab"] .lab-page-number[aria-current=page]{
+  background:#204e64!important;color:#fff!important;border-color:#204e64!important;
+  box-shadow:0 5px 15px rgba(28,70,94,.2)!important;
+}
+body[data-study-tool-page="lab"] .lab-page-number:not([aria-current=page]):hover{background:#e7f2ef!important;}
+body[data-study-tool-page="lab"] .lab-pagination-ellipsis{color:#496a7c;padding:0 2px;}
+body[data-study-tool-page="lab"] .lab-page-summary{
+  grid-column:1/-1;text-align:center;
+  font-size:.78rem;color:#4d7080;font-weight:700;
+}
+body[data-study-tool-page="lab"] .lab-empty-state{
+  grid-column:1/-1;padding:30px!important;border-radius:14px;
+  border:1px dashed #bedbd8!important;background:#f7fbfa!important;
+  color:#365e70!important;text-align:center;
+}
+body[data-study-tool-page="lab"] .dlst-result-count{scroll-margin-top:105px;}
+body[data-study-tool-page="lab"] .lab-pagination button:focus-visible{outline:3px solid #ef9a5e!important;outline-offset:3px!important;}
+@media(max-width:600px){
+  body[data-study-tool-page="lab"] .lab-pagination{column-gap:7px;padding:14px 10px!important;}
+  body[data-study-tool-page="lab"] .lab-page-step{min-width:81px;padding:9px 9px!important;font-size:.79rem!important;}
+  body[data-study-tool-page="lab"] .lab-page-number{min-height:35px;min-width:32px;font-size:.77rem!important;}
+  body[data-study-tool-page="lab"] .lab-page-numbers{gap:4px;}
+}
+@media(max-width:760px){
+  body.ps-page[data-study-tool-page="studio"] #ps-course-nav .ps-course-pill{
+    min-height:52px!important;
+    max-height:56px!important;
+    height:54px!important;
+  }
+  body.ps-page[data-study-tool-page="studio"] #ps-course-nav .ps-course-pill small{display:none!important;}
+  body.ps-page[data-study-tool-page="studio"] #ps-course-nav .ps-course-pill span:last-child{font-size:.83rem!important;}
+}
+/* Remove the large announcement background above Practice Studio's subjects. */
+body.ps-page[data-study-tool-page="studio"] .dlst-helper-strip{
+  background:transparent!important;border:0!important;box-shadow:none!important;
+  padding:2px 0!important;margin:3px 0 19px!important;
+  gap:9px 16px!important;min-height:0!important;
+}
+body.ps-page[data-study-tool-page="studio"] .dlst-helper-strip strong{font-weight:850!important;color:#215669!important;}
+body.ps-page[data-study-tool-page="studio"] .dlst-helper-strip span{font-size:.87rem!important;}
+body.ps-page[data-study-tool-page="studio"] .dlst-helper-strip a{
+  margin-inline-start:auto;color:#215b69!important;font-size:.84rem!important;
+  text-decoration:underline;text-underline-offset:3px;
+}
+@media(max-width:760px){
+  body.ps-page[data-study-tool-page="studio"] .dlst-helper-strip{
+    flex-direction:row!important;align-items:center!important;justify-content:space-between!important;
+    margin:0 0 17px!important;
+  }
+  body.ps-page[data-study-tool-page="studio"] .dlst-helper-strip span{display:none!important;}
+  body.ps-page[data-study-tool-page="studio"] .dlst-helper-strip strong{font-size:.79rem!important;}
+}

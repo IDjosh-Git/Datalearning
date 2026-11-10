@@ -75,3 +75,11 @@ See [current release](CURRENT_RELEASE.md), [file cleanup report](docs/CLEANUP_AU
 ## Public navigation and Study Pulse
 
 All 31 public pages—including seven current course paths, returning-learner legacy paths, and Study Tools—use a single static public header, compact Search action, full-screen mobile navigation with a close button, and consistent branded links. Protected pages retain their role-aware navigation. The small bottom-left **Study Pulse** shortcut opens the original habit tracking and spaced-repetition widget (daily goals, activity logging, local notes, bookmarks, reviews and export/import); it is intentionally distinct from the seven-session **Learning Coach** page. This redesign does not modify existing progress storage or Supabase schemas.
+
+### Practice Arena UI — November 2026
+
+Practice Arena now uses a compact horizontal SQL / Excel / Python chooser and a modern responsive workspace presentation. All existing challenge engines, datasets, grading, local storage, and expandable Excel rows are retained. See `docs/PRACTICE_ARENA_PREMIUM_20261110.md`.
+
+## Practice Studio & Learning Lab refinement (10 November 2026)
+
+Practice Studio course controls are compact and accessible. The skills sidebar has no independent scroll container; the page itself scrolls. On mobile, subject buttons form a slim horizontal row and the skills list is opened with Browse Skills. Learning Lab now paginates its full searchable library in groups of **10** with Previous/Next controls while preserving the same device-saved review states. The release details are in `docs/STUDIO_LAB_PAGINATION_20261110.md`. No database migration is required.
