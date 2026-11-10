@@ -112,5 +112,47 @@
       "destination": "/courses/:course.html"
     }
   ],
-  "outputDirectory": "."
+  "outputDirectory": ".",
+  "redirects": [
+    {
+      "source": "/courses/introduction-roadmap.html",
+      "destination": "/courses/introduction.html",
+      "permanent": false
+    },
+    {
+      "source": "/courses/introduction-extension.html",
+      "destination": "/courses/introduction.html",
+      "permanent": false
+    },
+    {
+      "source": "/courses/excel-roadmap.html",
+      "destination": "/courses/excel.html",
+      "permanent": false
+    },
+    {
+      "source": "/courses/excel-extension.html",
+      "destination": "/courses/excel.html",
+      "permanent": false
+    },
+    {
+      "source": "/courses/sql-roadmap.html",
+      "destination": "/courses/sql.html",
+      "permanent": false
+    },
+    {
+      "source": "/courses/sql-extension.html",
+      "destination": "/courses/sql.html",
+      "permanent": false
+    },
+    {
+      "source": "/courses/powerbi-roadmap.html",
+      "destination": "/courses/powerbi.html",
+      "permanent": false
+    },
+    {
+      "source": "/courses/powerbi-extension.html",
+      "destination": "/courses/powerbi.html",
+      "permanent": false
+    }
+  ]
 }

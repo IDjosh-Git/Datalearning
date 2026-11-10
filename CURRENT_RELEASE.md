@@ -1,11 +1,16 @@
-# Current DataLearning release
+# DataLearning — Clean Unified Premium Release
 
-**Comprehensive Guided Weekly Lessons — 10 November 2026**
+**Updated:** 10 November 2026.
 
-All 70 weeks across seven learning paths now include individually authored concept explanations, a business application, four-step practical walkthroughs, example calculations where useful, worked examples, practice exercises and verification recaps. The existing independent Questions to Try pages, progress, Mastery Assessments, Supabase authentication, Tutor, floating AI, Practice Arena, Learning Coach, capstone and certification workflows are retained. No database migration required.
+Cleaned from the Unified Premium Study Tools / Footer / Tutor / Coach release. Existing functionality, seven-path curriculum, authentication, progress sync, Supabase RLS, AI Tutor, floating AI, Practice Arena, Learning Coach, capstones and certificates are preserved.
 
-Details: `docs/COMPREHENSIVE_WEEKLY_GUIDES_20261110.md`.
+- Removed orphaned CSS/JS, disconnected legacy course-guide pages and obsolete release documentation and tests.
+- Removed hidden duplicate old public navigation markup on pages already using the unified header.
+- Kept bookmarked legacy course-guide routes working through Vercel redirects.
+- Updated the seven-path route manifest and service-worker cache version.
+- Retained current course paths plus AI/Python legacy learning routes and their linked guides.
+- Added an automated link and asset resolution regression check.
 
-## Previous release
+See `docs/CLEANUP_AUDIT_20261110.md` for the exact audit and preserved assets.
 
-Unified Premium Academy V3 — 10 November 2026. The full-site visual system unifies public, account and protected workspaces. See `docs/UNIFIED_ACADEMY_V3.md`.
+**Deployment:** unzip and place the `datalearning/` contents in the repository root; deploy to Vercel. Run `npm run verify:deployment` locally. No Supabase schema changes.

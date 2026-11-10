@@ -1,9 +1,20 @@
 {
-  "description": "Static route inventory and access organization. Do not use this list as an authorization policy; server middleware and database RLS remain authoritative.",
+  "description": "Current deployable route inventory. This is documentation only; middleware, auth and Supabase RLS enforce access.",
+  "learning_paths": [
+    "introduction",
+    "excel",
+    "sql",
+    "powerbi",
+    "tableau",
+    "powerquery",
+    "statistics"
+  ],
   "categories": {
     "public_pages": [
       "index.html",
       "catalog.html",
+      "study-tools.html",
+      "overview.html",
       "preview.html",
       "reference.html",
       "prompt-library.html",
@@ -14,26 +25,22 @@
       "capstone.html",
       "capstone-guide.html",
       "verify.html",
-      "auth.html",
-      "overview.html"
+      "auth.html"
     ],
     "course_players": [
       "courses/introduction.html",
       "courses/excel.html",
       "courses/sql.html",
       "courses/powerbi.html",
+      "courses/tableau.html",
+      "courses/powerquery.html",
+      "courses/statistics.html"
+    ],
+    "legacy_course_players": [
       "courses/python.html",
       "courses/ai.html"
     ],
-    "course_guides": [
-      "courses/introduction-roadmap.html",
-      "courses/introduction-extension.html",
-      "courses/excel-roadmap.html",
-      "courses/excel-extension.html",
-      "courses/sql-roadmap.html",
-      "courses/sql-extension.html",
-      "courses/powerbi-roadmap.html",
-      "courses/powerbi-extension.html",
+    "legacy_course_guides": [
       "courses/python-roadmap.html",
       "courses/python-extension.html",
       "courses/ai-roadmap.html",
@@ -54,7 +61,18 @@
       "sync-test.html"
     ],
     "assessment_pages": [
-      "quiz.html"
+      "quiz.html",
+      "questions.html"
     ]
+  },
+  "redirects": {
+    "/courses/introduction-roadmap.html": "/courses/introduction.html",
+    "/courses/introduction-extension.html": "/courses/introduction.html",
+    "/courses/excel-roadmap.html": "/courses/excel.html",
+    "/courses/excel-extension.html": "/courses/excel.html",
+    "/courses/sql-roadmap.html": "/courses/sql.html",
+    "/courses/sql-extension.html": "/courses/sql.html",
+    "/courses/powerbi-roadmap.html": "/courses/powerbi.html",
+    "/courses/powerbi-extension.html": "/courses/powerbi.html"
   }
 }

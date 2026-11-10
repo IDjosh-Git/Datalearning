@@ -1,70 +1,25 @@
-/* Shared public footer. Injects once; asset URLs resolve from this script's location.
-   Administrative surfaces and the sign-in page intentionally do not import it. */
-(()=>{
-  'use strict';
-  const source=document.currentScript;
-  if(!source)return;
-  const siteRoot=new URL('../../',source.src);
-  const href=(path)=>new URL(path,siteRoot).href;
-  const render=()=>{
-    if(document.querySelector('.dalp-public-footer'))return;
-    const footer=document.createElement('footer');
-    footer.className='dalp-public-footer';
-    footer.setAttribute('aria-label','Site footer');
-    const year=String(new Date().getFullYear());
-    footer.innerHTML=`
-      <div class="dalp-public-footer__inner">
-        <div class="dalp-footer-invite">
-          <div class="dalp-footer-invite__copy">
-            <span class="dalp-footer-invite__eyebrow"><span aria-hidden="true" class="dalp-footer-sparkle">✦</span> LEARN BY BUILDING</span>
-            <h2>Great analysis starts <em>with curiosity.</em></h2>
-            <p>From your first question to a polished project, explore a learning path designed around real practice.</p>
-          </div>
-          <a class="dalp-footer-invite__action" href="${href('catalog.html')}">Explore courses <span aria-hidden="true">↗</span></a>
-          <span class="dalp-footer-invite__orb" aria-hidden="true"></span>
-        </div>
-        <div class="dalp-public-footer__grid">
-          <div class="dalp-public-footer__about">
-            <a class="dalp-public-footer__brand" href="${href('index.html')}" aria-label="DataLearning Discover">
-              <span class="dalp-public-footer__brand-mark"><img src="${href('assets/icons/da-logo.svg')}" alt="" width="42" height="42" loading="lazy"></span>
-              <span><strong>data<span class="dalp-footer-wordmark-accent">learning</span></strong><span>LEARN · BUILD · GROW</span></span>
-            </a>
-            <p>Practical data skills, clear explanations, and room to grow at your own pace.</p>
-            <span class="dalp-footer-brand-detail"><span class="dalp-footer-status-dot" aria-hidden="true"></span> Built for curious minds</span>
-          </div>
-          <nav class="dalp-public-footer__section" aria-label="Footer courses">
-            <h2>Learning paths</h2>
-            <a href="${href('courses/introduction.html')}">Data Analysis</a>
-            <a href="${href('courses/excel.html')}">Excel</a>
-            <a href="${href('courses/sql.html')}">SQL</a>
-            <a href="${href('courses/powerbi.html')}">Power BI &amp; DAX</a>
-            <a href="${href('courses/python.html')}">Python</a>
-            <a href="${href('courses/ai.html')}">AI for Analysts</a>
-          </nav>
-          <nav class="dalp-public-footer__section" aria-label="Footer resources">
-            <h2>Explore</h2>
-            <a href="${href('catalog.html')}">Course catalogue</a>
-            <a href="${href('reference.html')}">Reference library</a>
-            <a href="${href('prompt-library.html')}">Prompt library</a>
-            <a href="${href('learning-lab.html')}">Learning Lab</a>
-            <a href="${href('practice.html')}">Practice Arena</a>
-            <a href="${href('capstone.html')}">Capstone Studio</a>
-          </nav>
-          <div class="dalp-public-footer__section dalp-public-footer__support">
-            <h2>Stay on track</h2>
-            <p>Need guidance with a lesson or your learning account? We're here to help.</p>
-            <a class="dalp-public-footer__contact" href="mailto:esoterikjoshua@gmail.com">Contact support <span aria-hidden="true">↗</span></a>
-            <a href="${href('tutor.html')}#learning-coach" data-learning-coach-link="true" aria-label="Open Learning Coach study planner">Learning Coach <span aria-hidden="true">↗</span></a>
-            <a href="${href('verify.html')}">Verify a certificate</a>
-          </div>
-        </div>
-        <div class="dalp-public-footer__bottom">
-          <span>© ${year} Data Learning. Made for lifelong learners.</span>
-          <div class="dalp-footer-bottom-links"><a href="${href('index.html')}">Discover more</a><a href="${href('catalog.html')}">All courses</a></div>
-        </div>
-      </div>`;
-    document.body.appendChild(footer);
-  };
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',render,{once:true});
-  else render();
+/* DataLearning public footer · one site-wide, accessible component. */
+(()=>{'use strict';
+ const source=document.currentScript;
+ if(!source)return;
+ const siteRoot=new URL('../../',source.src);
+ const link=path=>new URL(path,siteRoot).href;
+ const paths=[['Data Analysis','courses/introduction.html'],['Excel','courses/excel.html'],['SQL','courses/sql.html'],['Power BI','courses/powerbi.html'],['Tableau','courses/tableau.html'],['Power Query','courses/powerquery.html'],['Statistics','courses/statistics.html']];
+ const tools=[['Study Tools','study-tools.html'],['Learning Coach','learning-lab.html#study-plan'],['Learning Lab','learning-lab.html#lesson-library'],['AI Tutor','tutor.html'],['Practice Arena','practice.html'],['Practice Studio','studio.html'],['Reference Library','reference.html'],['AI Prompt Library','prompt-library.html']];
+ const render=()=>{
+  if(document.querySelector('.dalp-public-footer'))return;
+  const footer=document.createElement('footer');footer.className='dalp-public-footer dlx-v5-footer';footer.setAttribute('aria-label','DataLearning site footer');
+  const year=new Date().getFullYear();
+  const links=items=>items.map(([label,path])=>`<a href="${link(path)}">${label}<span aria-hidden="true">↗</span></a>`).join('');
+  footer.innerHTML=`<div class="dlx-v5-footer-container">
+   <div class="dlx-v5-footer-banner"><div class="dlx-v5-footer-banner-copy"><span class="dlx-v5-overline">YOUR NEXT STEP STARTS HERE</span><h2>Turn curiosity into <em>capability.</em></h2><p>Build confidence with guided lessons, hands-on practice and a learning path you can call your own.</p></div><div class="dlx-v5-footer-banner-actions"><a class="dlx-v5-footer-primary" href="${link('catalog.html')}">Explore learning paths <span aria-hidden="true">↗</span></a><a class="dlx-v5-footer-secondary" href="${link('study-tools.html')}">Browse study tools <span aria-hidden="true">↗</span></a></div><span class="dlx-v5-footer-glow" aria-hidden="true"></span></div>
+   <div class="dlx-v5-footer-body"><div class="dlx-v5-footer-identity"><a class="dlx-v5-footer-brand" href="${link('index.html')}" aria-label="DataLearning Discover"><span class="dlx-v5-footer-logo"><img src="${link('assets/icons/da-logo.svg')}" alt="" width="42" height="42" loading="lazy"></span><span><strong>data<span>learning</span></strong><small>LEARN · PRACTISE · GROW</small></span></a><p>Thoughtful lessons, practical exercises and tools that help new analysts learn by doing.</p><div class="dlx-v5-footer-trust"><span aria-hidden="true"></span> Independent learning, real-world practice</div></div>
+   <nav class="dlx-v5-footer-col" aria-label="Footer learning paths"><h3>Learning paths</h3>${links(paths)}</nav>
+   <nav class="dlx-v5-footer-col" aria-label="Footer study tools"><h3>Study tools</h3>${links(tools)}</nav>
+   <nav class="dlx-v5-footer-col" aria-label="Footer account and help"><h3>Account &amp; support</h3>${links([['My progress','overview.html'],['My dashboard','account.html'],['Capstone projects','capstone.html'],['Certificates','certificate.html'],['Verify certificate','verify.html']])}<a href="mailto:esoterikjoshua@gmail.com">Contact support<span aria-hidden="true">↗</span></a></nav></div>
+   <div class="dlx-v5-footer-base"><span>© ${year} DataLearning. Learn, practise, grow.</span><div><a href="${link('index.html')}">Discover</a><a href="${link('catalog.html')}">Courses</a><a href="${link('study-tools.html')}">Study Tools</a></div></div>
+  </div>`;
+  document.body.appendChild(footer);
+ };
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',render,{once:true});else render();
 })();
