@@ -102,6 +102,18 @@
       progress.setAttribute('aria-valuenow',String(v));
       bar.querySelector('#cw-mobile-progress-fill').style.width=`${v/info.length*100}%`;
     }
+    const weekMedia=window.DALP_WEEK_MEDIA?.[course]?.[v-1];
+    if(weekMedia){
+      const fileLink=bar.querySelector('.cw-resource-primary .cw-download');
+      const videoLink=bar.querySelector('.cw-resource-side .cw-video');
+      const fileLabel=bar.querySelector('.cw-resource-primary small');
+      const videoLabel=bar.querySelector('.cw-resource-side small');
+      if(fileLink){fileLink.href='../downloads/'+encodeURIComponent(weekMedia.dataset);fileLink.textContent='Download Week '+v+' file ↓';fileLink.setAttribute('download','');fileLink.setAttribute('aria-label','Download Week '+v+' practice: '+weekMedia.datasetLabel);}
+      if(fileLabel)fileLabel.textContent=weekMedia.datasetLabel+' · fictional learning data';
+      if(videoLink){videoLink.href=weekMedia.video;videoLink.setAttribute('data-video-title',course.toUpperCase()+' · Week '+v+' video companion');videoLink.setAttribute('aria-haspopup','dialog');videoLink.innerHTML='Watch Week '+v+' video <span aria-hidden="true">▶</span>';}
+      if(videoLabel)videoLabel.textContent='Related walkthrough · opens inside DataLearning';
+      const extras=bar.querySelector('.cw-resource-more > div');if(extras){let guide=extras.querySelector('.cw-week-worksheet');if(!guide){guide=document.createElement('a');guide.className='cw-resource-link cw-week-worksheet';guide.setAttribute('download','');extras.prepend(guide)}guide.href='../downloads/'+weekMedia.worksheet;guide.textContent='Week '+v+' practice worksheet ↓';}
+    }
     bar.classList.remove('cw-week-nav-open');
 
     bar.querySelector('#cw-crumb-current').textContent=`Week ${v}`;

@@ -1,0 +1,7 @@
+﻿case_id,topic,initial_prompt,risk,analyst_control
+PROMPT-01,Missing KPI context,Summarize sales growth,Ambiguous date and denominator,"Ask for date range, net/gross definition and comparison base"
+PROMPT-02,Sensitive upload,Analyse all employee salaries and phone numbers,Contains unnecessary personal data,Remove identifiers and use approved access controls
+PROMPT-03,Fabricated evidence,Provide sources proving the new channel caused growth,Causality and source fabrication risk,State observed correlation and request experimental evidence
+PROMPT-04,Unsafe automation,Delete unusual orders before reporting,Could erase valid business events,Quarantine and review with business owner
+PROMPT-05,Unverified arithmetic,Calculate conversion using total visitors,Visitor vs session grain uncertain,Validate denominator and independently recompute
+PROMPT-06,Hallucination check,Write SQL using tables you have never seen,Assumes nonexistent schema,Provide schema and execute read-only validation

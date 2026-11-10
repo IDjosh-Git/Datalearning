@@ -155,7 +155,19 @@
       one('#zaLessonTitle').textContent=record.title;
       one('#zaLessonOutcome').textContent=record.outcome;
       const guide = window.DALP_GUIDED_LESSONS?.[slug]?.[week-1];
-      const lessonMinutes = guide ? Math.max(6,Math.round(`${guide.concept} ${guide.reason} ${guide.steps.join(' ')} ${guide.verify} ${guide.case || ''} ${record.example} ${record.exercise}`.split(/\s+/).length / 165)) : 4;
+      const media = window.DALP_WEEK_MEDIA?.[slug]?.[week-1];
+      const kitHtml = media ? `<section class="dl-week-kit" id="zaLessonResources" aria-labelledby="dl-week-kit-title">
+        <div class="dl-week-kit-heading"><div><span class="dl-eyebrow">WEEK ${num(week)} · PRACTISE & WATCH</span><h2 id="dl-week-kit-title">Your learning resources</h2></div><span class="dl-kit-tip">Included with this lesson</span></div>
+        <div class="dl-week-kit-grid">
+          <article class="dl-kit-card"><span class="dl-kit-top">↓ · DOWNLOADABLE PRACTICE</span><h3>${safe(media.datasetLabel)}</h3><p>Work with a fictional dataset selected for this week's topic. Keep an untouched original, record changes and validate your output.</p><div class="dl-kit-links"><a href="${base}downloads/${encodeURIComponent(media.dataset)}" download>Download practice file <span aria-hidden="true">↓</span></a><a class="dl-kit-secondary" href="${base}downloads/${safe(media.worksheet)}" download>Week ${week} worksheet ↓</a></div></article>
+          <article class="dl-kit-card dl-kit-card--video"><span class="dl-kit-top">▶ · TOPIC-MATCHED VIDEO</span><h3>Watch this week's video walkthrough</h3><p>Opens in the DataLearning player without navigating away. Chapter links begin near the relevant topic when available.</p><a href="${safe(media.video)}" data-dalp-video="true" data-video-title="${safe(path.title)} · Week ${week} video companion" aria-haspopup="dialog">Watch lesson video <span aria-hidden="true">▶</span></a></article>
+        </div></section>` : '';
+      const deepHtml = media ? `<section class="dl-week-deep" aria-label="Detailed tool instruction for this week"><header><span>LEARNING IN DEPTH · WEEK ${num(week)}</span><h2>Apply this skill to a real analysis</h2></header><div class="dl-deep-steps">
+        <article class="dl-deep-step"><span class="dl-deep-number">01 · UNDERSTAND</span><h3>What you are learning</h3><p>${safe(media.why)}</p></article>
+        <article class="dl-deep-step"><span class="dl-deep-number">02 · APPLY</span><h3>Follow along in the tool</h3><p>${safe(media.workthrough)}</p></article>
+        <article class="dl-deep-step"><span class="dl-deep-number">03 · EXPLAIN</span><h3>Present and verify your result</h3><p>${safe(media.evidence)}</p></article>
+        </div><footer><strong>Analyst's quality check:</strong> ${safe(guide?.verify || record.outcome)} Keep the original practice file intact so you can reproduce the result.</footer></section>` : '';
+      const lessonMinutes = guide ? Math.max(6,Math.round(`${guide.concept} ${guide.reason} ${guide.steps.join(' ')} ${guide.verify} ${guide.case || ''} ${record.example} ${record.exercise} ${media?.why || ''} ${media?.workthrough || ''} ${media?.evidence || ''}`.split(/\s+/).length / 165)) : 4;
       const readTime = one('#zaEstimatedTime');
       if(readTime)readTime.textContent=`About ${lessonMinutes} min · guided study`;
       const guideHtml = guide ? `
@@ -185,20 +197,28 @@
       const deepDive = `<section class="za-lesson-block za-career-bridge" id="zaCareerBridge" aria-label="Continue learning at higher proficiency levels">
           <span class="za-block-kicker">WHAT COMES NEXT</span><h2>Continue from core lessons to industry mastery</h2>
           <p>These 10 weekly lessons build your foundation. Extend the same skills through the four-stage DataLearning curriculum, with dedicated examples, case studies and practical exercises.</p>
-          <div class="za-career-links">${(enrichment[slug]||[]).map(([id,title])=>`<a href="${base}catalog.html#pathway-${id}"><span>${safe(id)}</span><strong>${safe(title)}</strong><span aria-hidden="true">↗</span></a>`).join('')}</div>
-          <a class="za-career-all" href="${base}catalog.html#masterLearningPath">View the complete Beginner → Expert roadmap ↗</a>
+          <div class="za-career-links">${(enrichment[slug]||[]).map(([id,title])=>`<a href="${base}career-path.html#pathway-${id}"><span>${safe(id)}</span><strong>${safe(title)}</strong><span aria-hidden="true">↗</span></a>`).join('')}</div>
+          <a class="za-career-all" href="${base}career-path.html#masterLearningPath">View the complete Beginner → Expert roadmap ↗</a>
         </section>`;
+      const journey = window.DALP_TOOL_JOURNEYS?.[slug];
+      const journeyIndex = Math.min(5, Math.floor((week - 1) * 6 / path.weeks.length));
+      const journeyStep = journey?.stages?.[journeyIndex];
+      const journeyHtml = journeyStep ? `<section class="za-lesson-block za-tool-journey" aria-label="End-to-end analysis workflow"><span class="za-block-kicker">TOOL-TO-REPORT LEARNING JOURNEY · STAGE ${journeyIndex+1} OF 6</span><h2>${safe(journeyStep.heading)}</h2><p>${safe(journeyStep.detail)}</p><p class="za-journey-check"><strong>Practical checkpoint:</strong> ${safe(journeyStep.task)}</p><a href="${base}career-path.html">Explore the complete data career path →</a></section>` : '';
       one('#zaLessonBody').innerHTML=`
         <nav class="za-lesson-sections" aria-label="Sections in this lesson">
           <span class="za-section-toc-title">IN THIS WEEK</span>
           <button type="button" data-jump="zaConcepts">Read the concepts</button>
+          <button type="button" data-jump="zaLessonResources">Dataset & video</button>
           <button type="button" data-jump="zaMethod">Guided walkthrough</button>
           <button type="button" data-jump="zaExample">Worked example</button>
           <button type="button" data-jump="zaExercise">Try an exercise</button>
           <button type="button" data-jump="zaRecap">Review & recap</button>
         </nav>
         <section class="za-lesson-block za-lesson-objective" id="zaGoals"><div class="za-block-head"><span class="za-block-ico" aria-hidden="true">◎</span><div><span class="za-block-kicker">01 · LEARNING GOAL</span><h2>What you will understand</h2></div></div><p>${safe(record.outcome)}.</p><div class="za-tip"><b>How to study this module:</b> Read both explanations, follow the guided workflow, examine the example, and solve the exercise before opening its answer. Finish with the separate weekly questions.</div></section>
+        ${kitHtml}
         ${guideHtml}
+        ${deepHtml}
+        ${journeyHtml}
         <section class="za-lesson-block" id="zaExample"><div class="za-block-head"><span class="za-block-ico" aria-hidden="true">▥</span><div><span class="za-block-kicker">02 · WORKED EXAMPLE</span><h2>See the idea in practice</h2></div></div><p class="za-example-intro">Read the scenario. Identify the input, the operation, and what the result means for the business question.</p><div class="za-example">${safe(record.example)}</div>${guide?.case ? `<div class="za-case-study"><div class="za-case-label">APPLY IT TO A REALISTIC CASE</div><p>${safe(guide.case)}</p></div>` : ''}</section>
         <section class="za-lesson-block" id="zaExercise"><div class="za-block-head"><span class="za-block-ico orange" aria-hidden="true">✎</span><div><span class="za-block-kicker">03 · YOUR TURN</span><h2>Try the practical exercise</h2></div></div><p>${safe(record.exercise)}</p><div class="za-exercise-help">Before revealing the answer: identify the correct input fields, state the rule or formula, and check that your result addresses the question.</div><details class="za-exercise-solution"><summary>Reveal the worked answer and compare your reasoning</summary><div class="za-solution">${safe(record.solution)}</div></details><div class="za-tip"><b>Common mistake to avoid:</b> ${safe(record.pitfall)}.</div></section>
         <section class="za-lesson-block za-lesson-recap" id="zaRecap"><div class="za-block-head"><span class="za-block-ico" aria-hidden="true">✓</span><div><span class="za-block-kicker">LEARNING RECAP</span><h2>Check your understanding</h2></div></div><p class="za-recap-lead">Before you move on, explain the main idea in your own words and confirm that your calculations or decisions can be checked independently.</p><div class="za-recap-card"><strong>What a correct result should show</strong><p>${safe(guide?.verify || record.outcome)}</p></div><div class="za-recap-card za-recap-warning"><strong>Remember this limitation</strong><p>${safe(record.pitfall)}.</p></div><p class="za-recap-next">When you are ready, select <b>Questions to Try</b> below. Questions open on a separate assessment page; completing the lesson and submitting a quiz remain separate actions.</p></section>${deepDive}`;

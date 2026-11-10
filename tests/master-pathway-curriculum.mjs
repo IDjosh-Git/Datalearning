@@ -23,8 +23,8 @@ for(const m of data.modules){
 const context={window:{}};
 vm.runInNewContext(read('assets/scripts/master-pathway-data.js'),context,{timeout:4000});
 assert.equal(context.window.DALP_MASTER_PATHWAY.modules.length,31);
-const catalog=read('catalog.html');
-for(const x of ['id="masterLearningPath"','master-pathway-data.js','master-pathway.js','master-pathway.css','Beginner → Expert'])assert(catalog.includes(x),`Catalog missing ${x}`);
+const catalog=read('career-path.html');
+for(const x of ['id="masterLearningPath"','master-pathway-data.js','master-pathway.js','master-pathway.css'])assert(catalog.includes(x),`Catalog missing ${x}`);
 const renderer=read('assets/scripts/master-pathway.js');
 for(const x of ['data-level','aria-pressed','data-jump-module','caseStudy','microProject','modelAnswer','prerequisites','filter(m)','aria-live','Collapse all'])assert(renderer.includes(x),`Pathway explorer missing ${x}`);
 const app=read('assets/scripts/academy-app.js');
@@ -32,7 +32,7 @@ for(const slug of ['introduction','excel','sql','powerbi','tableau','powerquery'
  const link=data.courseBridges[slug];assert(link.length>=3&&link.every(id=>codes.has(id)));
  assert(app.includes(`${slug}:`),`Course reader missing bridge for ${slug}`);
 }
-assert(app.includes('catalog.html#pathway-'));
+assert(app.includes('career-path.html#pathway-'));
 const courses=JSON.parse(read('assets/data/academy-curriculum.json'));
 assert.equal(courses.length,7);assert.equal(courses.reduce((t,x)=>t+x.weeks.length,0),70);
 for(const c of courses)assert(c.weeks.every((w,i)=>w.week===i+1));

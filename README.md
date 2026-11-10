@@ -101,3 +101,7 @@ The eight protected pages now reuse the public academy's branded page loader and
 A further conservative reachability cleanup removed 3,556 unused CSS rules (409,434 uncompressed bytes) and eight superseded release notes. Shared and dynamically generated interfaces, the secure database integration and all current learning controllers remain intact.
 
 Practice Arena's Data Results, Schema Inspector, Console and Hint Assistant tabs now use clear selected/inactive/hover/focus states and a legible dark/light card palette. The active challenge has a **Selected** pill, while the existing progress status remains visible. See [cleanup and contrast audit](docs/CLEANUP_AUDIT_20261110.md). A live browser and authenticated database preview are still required before deployment.
+
+
+## End-to-end learning journeys (November 2026)
+Core course weekly lessons include an additional tool-to-report stage, from interface orientation through report presentation. The four-level career curriculum is on `career-path.html` and no longer stacked beneath the course catalogue. Existing weekly IDs and quizzes are preserved.

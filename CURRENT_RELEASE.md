@@ -1,3 +1,19 @@
+# DataLearning — Comprehensive Weekly Practice & In-App YouTube Lessons (10 November 2026)
+
+**Base:** Tool-to-Report Courses with standalone Data Career Path.
+
+- Added dedicated, topic-relevant practice downloads and curated chapter-timestamped YouTube links for **all 90 weeks across nine courses**.
+- Created **10 additional synthetic CSV datasets**, with cleaning exceptions, business KPIs, experiments, statistics, customer cohorts, forecasting, operations and AI governance review.
+- Published **90 individual downloadable lesson worksheets** containing objectives, guided procedure, business case, independent challenge, quality checks and reference answers for core courses.
+- Expanded the 70 core lesson readers with subject-specific tool workflows and verification tasks; enhanced Python and AI without replacing their detailed mastery content.
+- Replaced the older video overlay with a premium, keyboard-accessible, mobile-responsive, click-to-load YouTube theatre. Accepts valid video/share/Shorts/live/embed/playlist URLs, chapter timestamps and arbitrary learner-pasted public URLs; includes a clear **Open on YouTube** fallback where embedding is restricted.
+- Retained all existing quiz IDs, completion tracking, SQL/Excel/Python practice engines, AI Tutor functionality, standalone Career Path and Supabase integrations. No migrations or live deployment.
+- Full deployment suite and dedicated 90-week media checks pass. Isolated video-modal visual and interaction tests passed at 390px and 1440px; real external video streaming was not available to verify in the isolated test environment.
+
+Detailed handover: `docs/WEEKLY_PRACTICE_VIDEO_EDUCATOR_RELEASE_20261110.md`.
+
+---
+
 # DataLearning — Premium Course Library & Learning Experience (10 November 2026)
 
 **Base:** Four-Level Comprehensive Curriculum — complete project release.

@@ -10,7 +10,7 @@ const app=read('assets/scripts/academy-app.js');
 const explorer=read('assets/scripts/master-pathway.js');
 const courseCSS=read('assets/styles/course-experience-premium.css');
 const specialCSS=read('assets/styles/specialist-course-premium.css');
-for(const marker of ['id="guidedCourses"','dlc-catalog-hero','id="zaCatalogCards"','id="zaCourseSearch"','id="dlcCatalogCount"','id="masterLearningPath"','data-dlc-filter="all"','data-dlc-filter="analytics"','data-dlc-filter="bi"','data-dlc-filter="technical"']) assert(cat.includes(marker),`Catalog missing ${marker}`);
+for(const marker of ['id="guidedCourses"','dlc-catalog-hero','id="zaCatalogCards"','id="zaCourseSearch"','id="dlcCatalogCount"','href="career-path.html"','data-dlc-filter="all"','data-dlc-filter="analytics"','data-dlc-filter="bi"','data-dlc-filter="technical"']) assert(cat.includes(marker),`Catalog missing ${marker}`);
 assert(cat.includes('course-experience-premium.css?v=course-ux-20261110-r1'));
 for(const marker of ['dlc-card-progress','dlc-course-card','dlc-week-number','render();','za-week-peek','window.addEventListener(\'storage\',render)','aria-valuenow','aria-pressed']) assert(app.includes(marker),`Catalog renderer missing ${marker}`);
 for(const marker of ['dlp-outcomes','dlp-outcomes-icon','dlp-table-scroll','data-level','dlp-module','modelAnswer']) assert(explorer.includes(marker),`Curriculum explorer missing ${marker}`);
