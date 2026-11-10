@@ -1,26 +1,9 @@
-# DataLearning — Compact Practice Studio & Paginated Learning Lab (10 November 2026)
+# DataLearning — Premium Private Experience Rebuild (10 November 2026)
 
-**Built from:** `DataLearning_Premium_Page_Loader_Restored_20261110.zip`.
+**Built from:** `DataLearning_Premium_Compact_Practice_Studio_Paginated_Learning_Lab_20261110.zip`.
 
-## Practice Studio
-- Removed the oversized background notice above the course picker.
-- Replaced tall course blocks with premium compact selectable course buttons.
-- Desktop course selection uses a four-column grid; mobile uses a single horizontal row of 54px controls.
-- Removed the internal scrolling region from the skills sidebar; expanded skills participate in normal page scrolling. The existing mobile Browse Skills expander remains functional.
-- Preserved the course/skill controller, self-assessment, current exercise, private device save key, and legacy progress restore control.
+The eight protected workspace routes now share the same premium visual theme, search panel and typography as the public DataLearning academy. The learner sidebar now features five essential destinations, with secondary tools in one expandable group. The admin menu is condensed and role-aware. Dashboard cards, profile, certificate, reports, assessment views, inputs and responsive navigation have been restyled without changing the underlying data or authorization logic.
 
-## Learning Lab
-- Exactly 10 matching lessons render on each page instead of the previous 80-result cap.
-- Added accessible Previous/Next and compact page-number controls, matching counts, and disabled boundary states.
-- Search, subject and review-status filters reset to page 1; review progress updates without losing the selected page, unless a filter eliminates that page.
-- Retained original device-saved review state (`dalp-learning-lab-v1`) and all explanation/example content.
-- The bundled knowledge collection contains 559 items in the tested release; 56 pages expose all items without loading all cards at once.
+The previous release's compact Practice Studio and ten-per-page Learning Lab are retained unchanged. The complete details are in `docs/PRIVATE_EXPERIENCE_REBUILD_20261110.md` and `docs/STUDIO_LAB_PAGINATION_20261110.md`.
 
-## Verification
-- `npm run verify:deployment` passed, including authentication, Supabase source checks, Tutor, Arena, seven-course academy and the new regression test.
-- Eight isolated Chromium layouts at widths 320px, 390px, 768px, 1440px had no page-wide horizontal overflow.
-- Confirmed Studio course switching and skill selection; the mobile sidebar remains internally unscrollable when opened.
-- Confirmed Learning Lab initial page size, Next, Previous, search reset and zero-result state.
-- No database migrations and no changes to the Studio's grading or save controller.
-
-**Scope:** UI/behavior verified in an isolated browser; live signed-in device flows should be checked after deployment.
+**Verification:** Run `npm run verify:deployment`. Deploy only after checking the signed-in account and admin journeys against the production authentication backend.
