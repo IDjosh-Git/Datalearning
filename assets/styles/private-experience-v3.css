@@ -140,3 +140,25 @@ html[data-theme] body.ac-ready :is(.px-utility-panel,.cert-view-panel) :is(h2,h3
 @media(max-width:760px){html[data-theme] body.ac-ready .ac-courses-heading{grid-template-columns:1fr;min-height:0;padding:30px 24px}html[data-theme] body.ac-ready .ac-courses-deco{display:none}html[data-theme] body.ac-ready .ac-chart-row{grid-template-columns:minmax(95px,135px) minmax(20px,1fr) minmax(54px,78px);gap:10px}html[data-theme] body.ac-ready .ac-chart-count span{display:none}html[data-theme] body.ac-ready .ac-course-grid{grid-template-columns:1fr}html[data-theme] body.ac-ready .ac-course-card{min-height:260px}html[data-theme] body.ac-ready .ac-courses-heading-actions a{width:100%}html[data-theme="light"] body.ac-ready.dalp-account-page .mld-progress-ring::before{inset:9px}}
 @media(max-width:530px){html[data-theme] body.ac-ready .ac-insights-metrics{gap:9px}html[data-theme] body.ac-ready .ac-insights-metric{padding:16px 13px}html[data-theme] body.ac-ready .ac-insights-metric strong{font-size:26px}html[data-theme] body.ac-ready .ac-insights-metric p{font-size:11px}html[data-theme] body.ac-ready .ac-analytics-toolbar{grid-template-columns:1fr;padding:16px}html[data-theme] body.ac-ready .ac-filter-intro{grid-column:auto}html[data-theme] body.ac-ready .ac-analytics-toolbar button{width:100%}html[data-theme] body.ac-ready .ac-chart-row{grid-template-columns:1fr auto;gap:7px}html[data-theme] body.ac-ready .ac-chart-track{grid-row:2;grid-column:1/-1}html[data-theme] body.ac-ready .ac-chart-count{grid-column:2;grid-row:1}html[data-theme] body.ac-ready .ac-chart-label{grid-column:1;grid-row:1}html[data-theme] body.ac-ready .ac-analysis-chapter-index{display:none}html[data-theme="light"] body.ac-ready.dalp-account-page .mld-sync-banner{flex-wrap:wrap}html[data-theme="light"] body.ac-ready.dalp-account-page .mld-sync-action{width:100%}}
 @media(prefers-reduced-motion:reduce){html[data-theme] body.ac-ready :is(.ac-course-card,.ac-courses-heading-actions a,.mld-sync-action,.progress-card .fill){transition:none!important}}
+
+/* ADMIN VIEW ISOLATION — one document view per sidebar destination.
+   This overrides competing legacy display rules with a single invariant. */
+html[data-theme] body.dalp-admin-page[data-admin-view] .ac-admin-view:not([data-active]){display:none!important;visibility:hidden!important;}
+html[data-theme] body.dalp-admin-page[data-admin-view="overview"] [data-admin-panel="overview"],
+html[data-theme] body.dalp-admin-page[data-admin-view="courses"] [data-admin-panel="courses"],
+html[data-theme] body.dalp-admin-page[data-admin-view="learners"] [data-admin-panel="learners"]{visibility:visible!important;}
+html[data-theme] body.dalp-admin-page[data-admin-view="courses"] #admin-courses,
+html[data-theme] body.dalp-admin-page[data-admin-view="learners"] #admin-learners{margin:24px 0 38px!important;padding:0!important;scroll-margin-top:0;background:transparent!important;background-image:none!important;box-shadow:none!important;filter:none!important;backdrop-filter:none!important;}
+html[data-theme] body.dalp-admin-page[data-admin-view="courses"] #admin-courses::before,
+html[data-theme] body.dalp-admin-page[data-admin-view="courses"] #admin-courses::after,
+html[data-theme] body.dalp-admin-page[data-admin-view="learners"] #admin-learners::before,
+html[data-theme] body.dalp-admin-page[data-admin-view="learners"] #admin-learners::after,
+html[data-theme] body.dalp-admin-page #admin-courses .ac-courses-heading::before{content:none!important;display:none!important;}
+html[data-theme] body.dalp-admin-page[data-admin-view="courses"] .ac-courses-heading{background:#15394d!important;background-image:linear-gradient(115deg,#123247,#1e5356)!important;box-shadow:none!important;}
+html[data-theme] body.dalp-admin-page[data-admin-view="learners"] .ac-roster>.ac-section-header{padding:clamp(24px,3.4vw,38px);border-radius:23px;background:#15394d!important;color:#fff;box-shadow:none!important;}
+html[data-theme] body.dalp-admin-page[data-admin-view="learners"] .ac-roster>.ac-section-header :is(h2,p,.ac-section-eyebrow){color:#fff!important;-webkit-text-fill-color:#fff!important;}
+html[data-theme] body.dalp-admin-page[data-admin-view="learners"] .ac-roster>.ac-section-header .dalp-admin-tools button{border:1px solid #b0d5ca!important;color:#153b48!important;-webkit-text-fill-color:#153b48!important;background:#f4faf7!important;}
+html[data-theme] body.dalp-admin-page[data-admin-view="learners"] .ac-roster>.ac-section-header .dalp-admin-tools button:hover{background:#dbeee6!important;}
+/* Only a deliberately opened learner record or mobile navigation may have a scrim. */
+html[data-theme] body.dalp-admin-page .ac-detail-backdrop[hidden],
+html[data-theme] body.dalp-admin-page:not(.ac-menu-open) .ac-nav-overlay{display:none!important;}

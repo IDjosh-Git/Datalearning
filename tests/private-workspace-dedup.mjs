@@ -8,7 +8,7 @@ const privateRoutes=['admin','progress','reviewer','account','certificate','conn
 const inherited=['site.js','modern.js','responsive.js','embedded-palette-sync.js','learning-experience.js','experience.js'];
 for(const route of privateRoutes){
  const html=read(`${route}.html`);
- assert.equal((html.match(/src="assets\/scripts\/private-navigation\.js"/g)||[]).length,1,`${route}: one nav component`);
+ assert.equal((html.match(/src="assets\/scripts\/private-navigation\.js(?:\?v=[^\"]+)?"/g)||[]).length,1,`${route}: one nav component`);
  assert.match(html,/data-private-workspace="true"/,`${route}: protected marker`);
  assert.match(html,/auth-gate\.js/,`${route}: identity check retained`);
  for(const name of inherited)assert(!html.includes(`src="assets/scripts/${name}"`),`${route}: redundant public script ${name}`);

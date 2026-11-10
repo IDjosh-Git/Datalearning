@@ -25,13 +25,14 @@ assert(shared.includes('background:#203a57!important'),'Admin toolbar uses dark 
 assert(shared.includes('background:#263d5d!important'),'Admin overview has a dark coloured hero');
 assert(shared.includes('.review-hero{background:#203F58!important'),'Review desk has distinct dark banner');
 assert(shared.includes('background:var(--ui-nav-ink)!important'),'Progress banner has dark slate treatment');
-for(const c of ['auth','progress','reviewer','certificate','connection-test-layout','sync-test-layout']){
+for(const c of ['auth','progress','reviewer','certificate','private-utilities-premium']){
  assert(fs.statSync('assets/styles/'+c+'.css').size<45000,`${c} contains old oversized site-wide styling`);
 }
 for (const page of ['certificate.html','connection-test.html','sync-test.html']) {
  const html=read(page);
  assert(!html.includes('dalp-utility-header'),`${page}: duplicate utility header removed`);
  assert(html.includes('assets/scripts/private-navigation.js'),`${page}: shared private navigation`);
+ if(page!=='certificate.html')assert(html.includes('private-utilities-premium.css'),`${page}: new premium diagnostic theme`);
  assert(nav.includes('account.html') && nav.includes('index.html'),`${page}: shared navigation retains account and learning portal`);
  assert(!/auth-flow\.js/.test(html),`${page}: no duplicate auth page bundle`);
 }
@@ -47,4 +48,4 @@ assert(shared.includes('@media(max-width:760px)') && shared.includes('@media(max
 function lum(hex){return [1,3,5].map(i=>parseInt(hex.slice(i,i+2),16)/255).map(c=>c<=.04045?c/12.92:((c+.055)/1.055)**2.4).reduce((a,v,i)=>a+v*[.2126,.7152,.0722][i],0)}
 function ratio(a,b){const [hi,lo]=[lum(a),lum(b)].sort((x,y)=>y-x);return (hi+.05)/(lo+.05)}
 for(const [fg,bg] of [['#f4f8ff','#203a57'],['#e0eaf6','#263d5d'],['#ffffff','#3b365c'],['#3035b0','#ffffff']])assert(ratio(fg,bg)>=4.5,`Protected colour contrast ${fg}/${bg}`);
-console.log('PASS protected workspace refresh: no duplicated mobile navigation, shared guard, six maintained route styles, distinct readable headers, responsive layouts and correct protected links');
+console.log('PASS protected workspace refresh: no duplicated mobile navigation, shared guard, five maintained route styles (unified premium diagnostics), distinct readable headers, responsive layouts and correct protected links');

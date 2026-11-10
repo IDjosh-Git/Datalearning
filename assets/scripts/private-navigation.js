@@ -35,7 +35,7 @@
  ];
  const moreNav=[['Study Tools','study-tools.html','study'],['Study plan','learning-coach.html','study-plan'],['Practice Studio','studio.html','studio'],['Learning Lab','learning-lab.html','lab'],['Capstone Studio','capstone.html','capstone'],['Certificates','account.html#certificates','certificate']];
  const adminNav=[
-  {caption:'ADMINISTRATION',items:[['Admin overview','admin.html','overview'],['Learners','admin.html#admin-learners','learners'],['Review desk','reviewer.html','reviews']]}
+  {caption:'ADMINISTRATION',items:[['Admin overview','admin.html','overview'],['Student management','admin.html#admin-learners','learners'],['Review desk','reviewer.html','reviews']]}
  ];
  const adminMoreNav=[['Courses analysis','admin.html#admin-courses','courses'],['Progress reports','progress.html','progress'],['Connection check','connection-test.html','connection'],['Progress sync','sync-test.html','sync']];
  const adminPages=new Set(['overview','progress','reviews','connection','sync']);
@@ -84,8 +84,56 @@
  navEl.addEventListener('click',e=>{if(e.target.closest('a'))closeMenu()});
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&root.classList.contains('ac-menu-open'))closeMenu();if(e.key==='Tab'&&root.classList.contains('ac-menu-open')){const items=[...aside.querySelectorAll('a[href],button:not([disabled]),summary')].filter(el=>el.getClientRects().length);if(!items.length)return;const first=items[0],last=items.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}});
  aside.inert=!bp.matches;bp.addEventListener?.('change',()=>{if(bp.matches)closeMenu();else if(!root.classList.contains('ac-menu-open'))aside.inert=true});
- function updateActive(){const h=location.hash;const active=current==='overview'?(h==='#admin-learners'?'learners':h==='#admin-courses'?'courses':h==='#admin-assessments'?'capstones':'overview'):current==='account'&&h==='#certificates'?'certificate':current;if(current==='overview')trail.querySelector('strong').textContent=({learners:'Learner directory',courses:'Courses analysis',capstones:'Assessments',overview:'Academy overview'})[active]||'Academy overview';navEl.querySelectorAll('.ac-side-link').forEach(a=>{const match=a.dataset.section===active;a.classList.toggle('ac-selected',match);if(match)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});if(extras.querySelector('.ac-selected'))extras.open=true;if(adminTools.querySelector('.ac-selected'))adminTools.open=true;bottom.querySelector('.ac-side-account')?.classList.toggle('ac-selected',current==='profile');}
- window.addEventListener('hashchange',updateActive);if(['connection','sync','progress'].includes(current))adminTools.open=true;updateActive();
+ // Admin overview, course analysis and learner management are exclusive views,
+ // not three consecutive anchor sections. No content is recreated and no data is lost.
+ function adminViewForHash(hash){return hash==='#admin-courses'?'courses':hash==='#admin-learners'?'learners':'overview';}
+ let lastAdminView=null;
+ function showAdminView(){
+  if(current!=='overview')return;
+  const next=adminViewForHash(location.hash);
+  const changed=lastAdminView!==next;
+  root.dataset.adminView=next;
+  main.querySelectorAll('[data-admin-panel]').forEach(panel=>{
+   const active=panel.dataset.adminPanel===next;
+   panel.toggleAttribute('data-active',active);
+   panel.setAttribute('aria-hidden',String(!active));
+   if('inert' in panel)panel.inert=!active;
+  });
+  if(changed){
+   // A learner record is a true modal only in the directory, never a persistent overlay.
+   const dialog=document.getElementById('adminLearnerDetail');
+   const shade=document.getElementById('adminDetailBackdrop');
+   if(dialog)dialog.hidden=true;
+   if(shade)shade.hidden=true;
+   root.classList.remove('ac-detail-open');
+  }
+  lastAdminView=next;
+ }
+ function updateActive(){
+  showAdminView();
+  const h=location.hash;
+  const active=current==='overview'?(h==='#admin-learners'?'learners':h==='#admin-courses'?'courses':'overview'):current==='account'&&h==='#certificates'?'certificate':current;
+  if(current==='overview')trail.querySelector('strong').textContent=({learners:'Student management',courses:'Courses analysis',overview:'Admin overview'})[active];
+  navEl.querySelectorAll('.ac-side-link').forEach(a=>{const match=a.dataset.section===active;a.classList.toggle('ac-selected',match);if(match)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
+  if(extras.querySelector('.ac-selected'))extras.open=true;
+  if(adminTools.querySelector('.ac-selected'))adminTools.open=true;
+  bottom.querySelector('.ac-side-account')?.classList.toggle('ac-selected',current==='profile');
+ }
+ // The browser would normally scroll to an anchor buried below other sections;
+ // navigate in-place instead and start each new view at its own top.
+ function switchAdminView(){updateActive();if(current==='overview')requestAnimationFrame(()=>window.scrollTo({top:0,behavior:'instant'}));}
+ navEl.addEventListener('click',event=>{
+  const anchor=event.target.closest('a[href]');if(current!=='overview'||!anchor)return;
+  const target=new URL(anchor.href,location.href);
+  if(target.pathname!==location.pathname||!['','#admin-courses','#admin-learners'].includes(target.hash))return;
+  event.preventDefault();
+  if(location.hash!==target.hash)history.pushState(null,'',target.hash||target.pathname+target.search);
+  switchAdminView();
+ });
+ window.addEventListener('hashchange',switchAdminView);
+ window.addEventListener('popstate',switchAdminView);
+ if(['connection','sync','progress'].includes(current))adminTools.open=true;
+ updateActive();
  function roleUpdate(){const admin=window.DALP_ROLE==='admin';navEl.querySelectorAll('[data-admin-only]').forEach(group=>group.hidden=!admin);if(adminPages.has(current)&&!admin)root.classList.remove('ac-menu-open');right.querySelector('.ac-secure').lastChild.textContent=admin?' Admin access':' Learner space';branding.href=admin?'admin.html':'account.html';branding.querySelector('small').textContent=admin?'ADMIN WORKSPACE':'LEARNING WORKSPACE';const learnerShortcut=right.querySelector('[data-learner-shortcut]');if(learnerShortcut)learnerShortcut.hidden=admin;const shortcut=right.querySelector('[data-admin-shortcut]');shortcut.hidden=!admin;if(admin){shortcut.href=current==='reviews'?'admin.html':'reviewer.html';shortcut.innerHTML=current==='reviews'?'Academy overview <span aria-hidden="true">↗</span>':'Review desk <span aria-hidden="true">↗</span>';}updateActive();}
  window.addEventListener('dalp:auth-ready',roleUpdate);roleUpdate();
  function identity(){const user=window.DALP_AUTH_USER;if(!user)return;const email=user.email||'Secure account',name=user.user_metadata?.full_name||email.split('@')[0]||'Learner';bottom.querySelector('#acUserName').textContent=name;bottom.querySelector('#acUserEmail').textContent=email;const initial=name.trim().charAt(0).toUpperCase()||'A';bottom.querySelector('.ac-avatar').textContent=initial;}

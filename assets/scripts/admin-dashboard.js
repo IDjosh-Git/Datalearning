@@ -182,7 +182,7 @@
   $('adminReload').addEventListener('click',load);$('adminExport').addEventListener('click',exportCSV);
   $('adminPrevPage').addEventListener('click',()=>{page--;render()});$('adminNextPage').addEventListener('click',()=>{page++;render()});
   $('adminCloseDetail').addEventListener('click',()=>{$('adminLearnerDetail').hidden=true});
-  document.addEventListener('keydown',e=>{if(e.key==='/'&&!/input|textarea|select/i.test(document.activeElement?.tagName)&&!e.ctrlKey&&!e.metaKey&&!e.altKey){e.preventDefault();$('adminSearch').focus()}});
+  document.addEventListener('keydown',e=>{if(e.key==='/'&&!/input|textarea|select/i.test(document.activeElement?.tagName)&&!e.ctrlKey&&!e.metaKey&&!e.altKey){e.preventDefault();if(document.body.dataset.adminView!=='learners')location.hash='admin-learners';requestAnimationFrame(()=>$('adminSearch').focus())}});
   await load();
   }catch(e){console.error('Administrator dashboard initialization failed',e);notice('Unable to initialise dashboard: '+(e?.message||'Connection failed')+'. Please retry or refresh.',true)}
  }

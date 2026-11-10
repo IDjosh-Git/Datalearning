@@ -1,3 +1,30 @@
+# DataLearning — Isolated Admin Views & Premium Diagnostics
+
+**Release date:** 10 November 2026  
+**Source:** DataLearning Premium Private Analytics Dashboard Fix (full project, not a patch)
+
+## This release
+
+1. **Admin navigation fixed:** `admin.html` now displays one view at a time: Admin Overview, Courses Analysis or Student Management. Selecting one hides the other two instead of scrolling through all three. The route remains linkable using `#admin-courses` and `#admin-learners`, and the browser back/forward buttons restore the correct view.
+2. **Unwanted overlays removed:** Decorative section-level pseudo-overlay backgrounds were disabled for Courses Analysis and Student Management. The learner-detail backdrop closes when switching views; only an intentionally opened learner dialog or mobile menu uses a functional scrim. Retains the premium navy and teal hero panels.
+3. **Consistent premium diagnostics:** Connection Check and Progress Sync now use a shared responsive utility design with compact dark-teal heroes, clear status tiles and help cards. The two superseded utility CSS files were removed; existing Supabase session, admin permission checks and progress synchronization logic remain unchanged.
+4. **Navigation and accessibility:** Active sidebar/heading are synchronized; inactive view content is hidden from pointer and keyboard focus and marked `aria-hidden`; pressing `/` to search learners opens Student Management before moving focus. Administrator links remain role-gated.
+5. **Release caching and regression checks:** Shared private assets have a new URL revision, the public-only service-worker cache name has advanced, and a new navigation-isolation test is included in the maintained security suite.
+
+## Verification
+
+- `npm run verify:deployment` — all maintained Academy, security, Practice Arena and Tutor suites passed.
+- Offline headless Chromium visual checks at 1440px and 390px confirmed that each Admin view shows only itself (with both backdrops hidden), and Connection Check/Progress Sync have no horizontal viewport overflow. These checks used a simulated authenticated role with diagnostic result placeholders, **not** a real Supabase connection.
+- After deployment, confirm real administrator sign-in, role-scoped learner records and live sync behaviour using authorized test accounts; do not treat the browser mocks as live database verification.
+
+## Deployment
+
+Replace the previous project with the **complete** new ZIP, not only a stylesheet. Verify `admin.html`, `admin.html#admin-courses`, `admin.html#admin-learners`, `connection-test.html`, and `sync-test.html` in a private browser session. No database schema or existing learner records were changed.
+
+---
+
+## Previous release notes
+
 # DataLearning — Premium Private Experience & Dashboard Progress Fix
 
 **Release date:** 10 November 2026  
