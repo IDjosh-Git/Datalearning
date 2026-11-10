@@ -234,7 +234,7 @@ html[data-theme] :is(.prompt-card .category-label,.prompt-details summary,.pl-us
 html[data-theme] .prompt-card :is(.copy-button){
   background:var(--primary)!important;color:var(--on-primary)!important;border-color:var(--primary)!important;
 }
-html[data-theme] .prompt-card .copy-button:hover{background:var(--primary-hover)!important}
+
 html[data-theme] :is(.library-actions button,#clearFilters,.more-row button,.download-all){
   background:var(--surface)!important;color:var(--link)!important;border-color:var(--border-subtle)!important;
 }
@@ -889,30 +889,30 @@ body.dlp97-learning-page{
    responsive workspace navigation. Suppress only the redundant v97 sidebar;
    keep its auth and progress lifecycle intact. */
 body.lp-home.dlp97-learning-page{padding-left:0!important}
-body.lp-home.dlp97-learning-page .dlp97-navigation{display:none}
+
 body.dlp97-catalog-page{font-family:"DM Sans",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--dlp97-ink);background:var(--dlp97-page);line-height:1.55}
-.dlp97-navigation{isolation:isolate}
-.dlp97-side{box-sizing:border-box;position:fixed;inset:0 auto 0 0;width:248px;z-index:9000;overflow-y:auto;overscroll-behavior:contain;padding:22px 12px;background:#172f42;color:#edf7f8;border-right:1px solid #2d4b5c;font:inherit;font-size:14px;line-height:1.45}
-.dlp97-side a{color:#dceaf0;text-decoration:none!important;box-sizing:border-box}
-.dlp97-side-head{display:flex;align-items:center;justify-content:space-between;margin:0 6px 22px}
-.dlp97-brand{display:flex;align-items:center;gap:10px;min-width:0}
-.dlp97-brand span{display:grid;line-height:1.2}.dlp97-brand strong{font-weight:850;font-size:14px;color:#fff}.dlp97-brand small{font-size:12px;color:#b7d0d9;margin-top:3px}
-.dlp97-brand img{border-radius:10px}
-.dlp97-side nav{display:grid;gap:3px;margin:0 0 19px}
-.dlp97-nav-label{color:#aec8d3;font-weight:800;font-size:10px;letter-spacing:.13em;margin:9px 12px 6px}
-.dlp97-primary-nav>a,.dlp97-subject-nav>a{display:flex;align-items:center;gap:10px;border-radius:10px;padding:10px 12px;min-height:43px;transition:background .14s ease,color .14s ease}
-.dlp97-side nav a:hover{background:#2a5061;color:#fff}
-.dlp97-side nav a.is-active,.dlp97-side nav a[aria-current="page"]{background:var(--ui-accent);color:white;box-shadow:inset 3px 0 #bcebe1}
-.dlp97-locked{font-size:12px;opacity:.75;margin-left:auto}
-.dlp97-subject-icon{flex:none;width:30px;height:30px;background:#f0f6f5;border-radius:9px;display:grid;place-items:center}
-.dlp97-subject-nav>a span:last-child{min-width:0;display:grid;gap:1px}
-.dlp97-subject-nav>a small{font-size:10px;font-weight:700;color:#c2d9dd}
-.dlp97-subject-nav>a strong{font-size:12px;font-weight:700;line-height:1.32;color:inherit}
-.dlp97-side-bottom{margin:16px 6px 8px;padding:14px 10px;border-top:1px solid #365264;display:grid;gap:8px}
-.dlp97-side-bottom p{font-size:12px;color:#d2e6ed;margin:0}
-.dlp97-side-bottom>a,.dlp97-side-bottom button{display:flex;align-items:center;justify-content:center;text-align:center;font:inherit;min-height:43px;border:1px solid #72aba9;border-radius:9px;padding:8px 10px;background:#244c5c;color:#f2ffff;font-weight:700;font-size:12px;cursor:pointer;text-decoration:none}
-.dlp97-side-bottom button:hover,.dlp97-side-bottom>a:hover{background:#316677}
-.dlp97-mobile-bar,.dlp97-close,.dlp97-backdrop{display:none}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .dlp97-skip{position:fixed;top:-140px;left:10px;z-index:999999;padding:12px 18px;background:#fff;color:#113f49;border:2px solid var(--ui-accent);border-radius:10px;font-weight:800}
 .dlp97-skip:focus{top:10px}
 .dlp97-learning-page :is(a,button,input,select,textarea):focus-visible{outline:3px solid var(--dlp97-focus)!important;outline-offset:3px!important}
@@ -999,16 +999,16 @@ body.dlp97-learning-page .completeBox:disabled,body.dlp97-learning-page [data-in
  /* Course pages already have the workspace header, bottom tabs and a complete
     course list in its More drawer. Keep the v97 sidebar on desktop and on
     the standalone catalog, but avoid a second mobile navigation bar/drawer. */
- body.dl-workspace.dlp97-learning-page .dlp97-navigation{display:none}
+ 
  body.dlp97-learning-page{padding-left:0!important}
- .dlp97-mobile-bar{position:relative;z-index:8990;display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:59px;padding:8px 17px;background:#172f42;color:white;font-size:14px}
- .dlp97-mobile-bar a{color:#ecf7f8;text-decoration:none;font-weight:800}
- .dlp97-menu-toggle,.dlp97-close{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:44px;border:1px solid #67939d;color:white;background:#244a5b;padding:7px 11px;border-radius:9px;font:inherit;font-size:14px;cursor:pointer}
- .dlp97-close{width:44px;font-size:25px}
- .dlp97-side{width:min(310px,87vw);transform:translateX(-110%);visibility:hidden;transition:transform .18s ease,visibility .18s ease;box-shadow:8px 0 30px #0005}
- .dlp97-nav-open .dlp97-side{transform:translateX(0);visibility:visible}
- .dlp97-nav-open .dlp97-backdrop{display:block;position:fixed;inset:0;z-index:8995;background:#061b24a8}
- .dlp97-nav-open{overflow:hidden}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
 }
 @media(max-width:720px){.dlp97-course-guide{margin:17px auto 24px;width:calc(100% - 22px);padding:17px}}
@@ -1251,16 +1251,10 @@ body.dlp97-learning-page {
   --dlp97-accent:var(--ui-accent);
   --dlp97-panel:var(--surface-alt);
 }
-html[data-theme] body.dlp97-learning-page .dlp97-side {
-  background:linear-gradient(180deg,#0d263a 0%,#16394a 100%);
-  border-right-color:rgb(164 218 215 / .2);
-}
-html[data-theme] body.dlp97-learning-page .dlp97-side nav a.is-active,
-html[data-theme] body.dlp97-learning-page .dlp97-side nav a[aria-current="page"] {
-  background:#176d68!important;color:#fff!important;box-shadow:inset 3px 0 #b3f0e5;
-}
-html[data-theme] body.dlp97-learning-page .dlp97-side nav a:hover {background:#295164}
-html[data-theme] body.dlp97-learning-page .dlp97-mobile-bar {background:#102b3d}
+
+
+
+
 html[data-theme] body.dlp97-learning-page .dlp97-course-guide {
   border-radius:var(--radius-lg);
   box-shadow:var(--shadow-soft);
@@ -1313,7 +1307,7 @@ html[data-theme] body :is(.lp-context-nav,.dlp97-filters,.dlp97-card,.cap-panel,
 /* Compact viewports: generous but controlled padding; avoid sideways overflow. */
 @media(max-width:900px) {
   
-  html[data-theme] body.dlp97-learning-page .dlp97-mobile-bar {box-shadow:0 4px 20px rgb(0 0 0 / .15)}
+  
   html[data-theme] body .tutor-intro {padding-block:15px}
 }
 @media(max-width:640px) {
@@ -1352,7 +1346,7 @@ html[data-theme] body :is(.lp-context-nav,.dlp97-filters,.dlp97-card,.cap-panel,
 
 @media(max-width:950px) and (max-height:480px){
  
- body.dl-workspace .dl-drawer-head{padding-block:10px!important}
+ 
  
  
 }
@@ -2085,4 +2079,4 @@ body{background:#f7f9fa!important}
 @media(max-width:760px){.content{padding-inline:14px!important}.course-portal-links{gap:8px!important}.course-portal-kicker{width:100%}.course-portal-links a{flex:1 1 auto;text-align:center}.hero .stats{grid-template-columns:1fr 1fr!important}.hero,.ai-hero,.intro-hero{border-radius:14px!important}}
 @media(max-width:400px){.hero .stats{grid-template-columns:1fr!important}}
 
-.course-intro-minimal{display:flex!important;gap:8px!important;align-items:center!important;flex-wrap:wrap!important;padding:12px 16px!important;margin:12px 0!important;background:#fff!important;border:1px solid #e2e8e7!important;border-radius:12px!important;box-shadow:none!important;font-size:13px!important}.course-intro-minimal a{text-decoration:underline!important}
+

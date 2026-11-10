@@ -1,10 +1,10 @@
 /* DataLearning 2026 — Unified premium product system.
    Loaded after original page styles. Preserves existing controllers and accessibility.
    Blueprint #173e55 · Melon #F69268 · Ivory #F9F7F6. */
-:root {--dlx-ink:#19384b;--dlx-ink-strong:#102f45;--dlx-muted:#4e6977;--dlx-soft:#e9f2f4;--dlx-line:#d6e4e8;--dlx-orange:#b65728;--dlx-melon:#F69268;--dlx-surface:#fff;--dlx-canvas:#f7f9f9;--dlx-shadow:0 18px 54px rgba(17,57,73,.075);--dlx-radius:20px;--dlx-font:'Plus Jakarta Sans','DM Sans',Inter,system-ui,sans-serif}
+:root {--dlx-ink:#19384b;--dlx-ink-strong:#102f45;--dlx-muted:#4e6977;--dlx-soft:#e9f2f4;--dlx-line:#d6e4e8;--dlx-orange:#b65728;--dlx-melon:#F69268;--dlx-surface:#fff;--dlx-canvas:#f7f9f9;--dlx-shadow:0 18px 54px rgba(17,57,73,.075);--dlx-radius:20px;--dlx-font:"Plus Jakarta Sans","DM Sans",Inter,system-ui,sans-serif}
 html {scroll-padding-top:90px}
 html:has(body.dlx-rebuilt){background:var(--dlx-canvas)}
-body.dlx-rebuilt{font-family:'DM Sans',system-ui,sans-serif!important;background:radial-gradient(ellipse 65% 30% at 96% 6%,#eaf4f2 0%,transparent 75%),linear-gradient(180deg,#fafcfc 0%,#f7f9f9 65%,#f9f7f6 100%)!important;color:var(--dlx-ink)!important;min-width:0;overflow-x:clip}
+body.dlx-rebuilt{font-family:"DM Sans",system-ui,sans-serif!important;background:radial-gradient(ellipse 65% 30% at 96% 6%,#eaf4f2 0%,transparent 75%),linear-gradient(180deg,#fafcfc 0%,#f7f9f9 65%,#f9f7f6 100%)!important;color:var(--dlx-ink)!important;min-width:0;overflow-x:clip}
 body.dlx-rebuilt *, body.dlx-rebuilt *::before,body.dlx-rebuilt *::after{box-sizing:border-box}
 body.dlx-rebuilt main{min-width:0}
 body.dlx-rebuilt main :is(h1,h2,h3,h4){font-family:var(--dlx-font);letter-spacing:-.035em}
@@ -21,32 +21,32 @@ body.dlx-rebuilt main :is(a,button){transition:background-color .18s ease,border
 /* Shared header: same architecture on each legacy page; independent of course controllers. */
 .dlx-header{position:relative;isolation:isolate;z-index:350;background:#fffefdf7;border-bottom:1px solid #dae6e9;box-shadow:0 4px 18px #133a4d08;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
 .dlx-header-inner{max-width:1536px;padding:0 clamp(15px,3vw,44px);min-height:81px;margin:auto;display:flex;align-items:center;gap:25px}
-.dlx-brand{display:flex;align-items:center;gap:10px;text-decoration:none!important;white-space:nowrap;color:#183e53!important;flex-shrink:0}
-.dlx-brand-mark{width:43px;height:43px;display:grid;place-items:center;border-radius:13px;background:#eaf1f2;border:1px solid #d9e5e7;box-shadow:0 5px 13px #183d4f15}
-.dlx-brand-mark img{width:35px;height:35px;object-fit:contain}
-.dlx-brand-words{display:grid;gap:2px}.dlx-brand-name{font-family:var(--dlx-font);letter-spacing:-.065em;font-size:1.27rem;font-weight:850;line-height:1.05;color:#173d53}.dlx-brand-name b{color:#b5562a;font-weight:850}.dlx-brand-words small{font-size:.5rem;letter-spacing:.17em;font-weight:800;color:#587783}
-.dlx-topnav{display:flex;align-items:center;margin-left:auto;gap:clamp(6px,1vw,16px);min-width:0}
-.dlx-topnav a{display:inline-flex;align-items:center;min-height:43px;padding:9px 10px;color:#355768!important;font-size:.79rem;font-weight:750;text-decoration:none!important;white-space:nowrap;border-radius:10px}
+
+
+
+
+
+
 .dlx-topnav a:is(:hover,[aria-current=page]){background:#e9f3f3!important;color:#194758!important}
-.dlx-topnav .dlx-account-link{background:#173e55!important;color:#fff!important;padding:11px 16px;border:1px solid #173e55;box-shadow:0 8px 20px #163c5220}
-.dlx-topnav .dlx-account-link:hover{background:#245971!important;color:white!important;transform:translateY(-1px)}
+
+
 .dlx-menu-button{margin-left:auto;display:none;place-items:center;width:45px;height:45px;border-radius:12px;border:1px solid #cbdde0;background:#f1f6f6;color:#183d53;cursor:pointer;font-weight:900;font-size:1.25rem}
 .dlx-nav-dialog[hidden]{display:none!important}.dlx-nav-dialog{position:fixed;inset:0;z-index:50000;height:100vh;height:100dvh;background:#fbfcfa;overflow:hidden;display:flex;flex-direction:column;color:#193b4c}
-.dlx-nav-top{display:flex;align-items:center;justify-content:space-between;padding:16px clamp(17px,3vw,32px);min-height:80px;border-bottom:1px solid #dae6e8;flex-shrink:0}
-.dlx-nav-close{display:grid;place-items:center;width:47px;height:47px;border:0;border-radius:12px;color:#fff;background:#173e55;cursor:pointer;font-size:1.3rem}
-.dlx-nav-scroll{max-width:700px;width:100%;margin-inline:auto;padding:25px clamp(18px,4vw,35px) calc(50px + env(safe-area-inset-bottom));overflow-y:auto;overscroll-behavior:contain;min-height:0}
-.dlx-nav-label{font-size:.7rem;font-weight:900;color:#9b4e2c;letter-spacing:.13em;margin:17px 0 10px}
-.dlx-nav-scroll a{display:flex;gap:15px;align-items:center;justify-content:space-between;color:#224b60!important;text-decoration:none!important;padding:14px 3px;border-bottom:1px solid #e3eded;font-weight:750;min-height:52px}
+
+
+
+
+
 .dlx-nav-scroll a:is(:hover,[aria-current=page]){color:#a94d22!important}
-.dlx-nav-scroll a .dlx-route-count{display:grid;place-items:center;border-radius:9px;background:#e7f1ee;color:#2a675d;width:30px;height:30px;font-size:.73rem;font-weight:850;flex-shrink:0}
-.dlx-nav-scroll a .dlx-route-title{flex:1}.dlx-nav-scroll a .dlx-arrow{opacity:.6}
-.dlx-nav-scroll a.dlx-nav-signin{margin-top:22px;border:0;justify-content:center;background:#173e55;color:white!important;border-radius:12px}
-.dlx-nav-scroll .dlx-nav-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px 18px}
+
+
+
+
 body.dlx-menu-open{overflow:hidden!important}
 body.dlx-rebuilt > .dalp-global-header,body.dlx-rebuilt .auth-topbar{display:none!important}
 /* Consistent footer, no forced footer in fixed-height working environments. */
-.dlx-footer{margin-top:65px;background:#102f45;color:#e7f1f3!important;padding:45px clamp(18px,4vw,54px) 22px;position:relative;z-index:1}
-.dlx-footer-inner{max-width:1440px;margin:auto;display:flex;align-items:start;justify-content:space-between;gap:30px;flex-wrap:wrap}.dlx-footer h2{font:800 1.35rem var(--dlx-font)!important;color:white;margin:0 0 8px}.dlx-footer h2 span{color:#faa577}.dlx-footer p{font-size:.82rem;color:#bad2da;max-width:320px;margin:0}.dlx-footer-links{display:flex;gap:12px 26px;flex-wrap:wrap;max-width:680px}.dlx-footer a{font-size:.8rem;font-weight:700;color:#dfedf0!important;text-decoration:none!important}.dlx-footer a:hover{color:#f6b587!important}.dlx-footer-bottom{max-width:1440px;margin:30px auto 0;padding-top:15px;border-top:1px solid #ffffff24;color:#a9c6d0;font-size:.74rem}
+
+
 /* Default page width and generous vertical rhythm. */
 body.dlx-rebuilt :is(.wrap,.profile-shell,.auth-shell,.lab-shell,.ps-main,.verify-shell,.cap-guide,.pl-shell,.pc-wrap,.tutor-main,.dalp-admin-main){max-width: min(1440px,calc(100% - 64px));margin-inline:auto}
 body.dlx-rebuilt :is(.wrap,.profile-shell,.cap-guide,.lab-shell,.ps-main,.verify-shell){min-width:0}
@@ -93,8 +93,8 @@ body.dlx-rebuilt.dalp-account-page .course-progress-grid{display:grid!important;
 body.dlx-rebuilt.dalp-account-page .progress-card{min-width:0;padding:23px!important;display:flex;flex-direction:column}
 body.dlx-rebuilt.dalp-account-page .progress-card h3{font-size:1.04rem!important}
 body.dlx-rebuilt.dalp-account-page .progress-card>a:last-child{margin-top:auto;padding-top:16px;color:#21586c!important;font-weight:800!important}
-body.dlx-rebuilt.dalp-account-page .mld-track-archive{margin-top:25px;border-top:1px solid #dce8ea;padding-top:25px}
-body.dlx-rebuilt.dalp-account-page .mld-track-archive-heading{margin:0 0 15px;color:#385c6d;font-size:.83rem}
+
+
 /* The profile and learner records */
 body.dlx-rebuilt.profile-page .profile-shell{padding-top:26px;padding-bottom:35px}
 body.dlx-rebuilt.profile-page .profile-hero{border-radius:25px!important;padding:clamp(28px,4vw,51px)!important}
@@ -154,15 +154,15 @@ body.dlx-rebuilt .pl-hero :is(h1,h1 em){color:white!important}
 body.dlx-rebuilt .pl-hero h1 em{color:#ffb487!important}
 body.dlx-rebuilt .pl-shell{padding:20px 0 30px}
 body.dlx-rebuilt .usage-grid>div{padding:23px!important;min-height:160px}
-body.dlx-rebuilt .page-hero{margin:27px auto;border-radius:24px!important;max-width:min(1440px,calc(100% - 64px))}
+
 body.dlx-rebuilt .page-hero :is(h1,h1 em){color:white!important}
 body.dlx-rebuilt .page-hero :is(p,span){color:#d9eaee!important}
-body.dlx-rebuilt .page-hero h1 em{color:#ffc18c!important}
+
 /* Protected workspaces keep private auth/sidebar controllers; align their palette and surfaces. */
 body.dlx-rebuilt[data-private-workspace=true]{--ac-deep:#102f45;--ac-nav-text:#eef6f7;--ac-nav-muted:#bbd7df;--ac-nav-border:#376174;--ac-nav-accent:#F69268;--ac-canvas:#f7faf9;--ac-panel:#fff;--ac-panel-raised:#eff6f6;--ac-text:#193e51;--ac-muted:#526e7c;--ac-stroke:#d9e6e8;--ac-focus:#73a5b8}
 body.dlx-rebuilt[data-private-workspace=true] .ac-sidebar{background:#122f47!important;background-image:linear-gradient(170deg,#102f45,#173f58)!important;border-color:#2e5669!important}
 body.dlx-rebuilt[data-private-workspace=true] .ac-side-link[aria-current=page]{background:#2b6478!important;color:#fff!important}
-body.dlx-rebuilt[data-private-workspace=true] .ac-content,body.dlx-rebuilt[data-private-workspace=true] .ac-main{min-width:0}
+
 body.dlx-rebuilt[data-private-workspace=true] :is(.ac-page-topbar,.ac-mobile-header){background:#fff!important;border-color:#d9e7e9!important}
 body.dlx-rebuilt[data-private-workspace=true] :is(.ac-card,.ac-panel,.ac-stat,.ac-surface){border:1px solid #d6e5e8!important;border-radius:18px!important;box-shadow:0 12px 34px #173f530b!important;background:#fff!important}
 body.dlx-rebuilt.dalp-admin-page :is(.ac-command-hero,.ac-welcome){border-radius:23px!important;margin-bottom:22px!important;padding:clamp(25px,3vw,42px)!important}
@@ -177,7 +177,7 @@ body.dlx-rebuilt.dalp-utility-page .dalp-cert-viewer,body.dlx-rebuilt .verify-sh
 body.dlx-rebuilt .verify-hero{padding:clamp(23px,3vw,45px)!important;border-radius:23px!important}
 body.dlx-rebuilt .cert-view-header{border:1px solid #dce9eb!important;border-radius:17px!important;background:#fff!important;padding:21px!important}
 body.dlx-rebuilt .cert-view-header :is(h1,p){color:#173e55!important}
-body.dlx-rebuilt .cert-paper{background:#fff!important;color:#16394c!important}
+
 body.dlx-rebuilt .cert-paper :is(h1,h2,p,small){color:#16394c!important}
 /* Badges, controls and colour-contrast consistency for pale surfaces */
 body.dlx-rebuilt :is(.account-eyebrow,.mld-overline,.mld-course-percent,.cap-kicker,.profile-kicker,.ps-overline,.review-kicker,.ip-kicker){color:#23586d}
@@ -188,9 +188,9 @@ body.dlx-rebuilt main :is(.lp-primary,.auth-submit,.mld-btn-primary)[disabled]{o
 body.dlx-rebuilt :is(.account-table-scroll,.ac-table-scroll,.review-table-scroll,.ip-table-wrap){max-width:100%;overflow-x:auto;overscroll-behavior-x:contain}
 body.dlx-rebuilt :is(.account-table-scroll,.ac-table-scroll,.review-table-scroll,.ip-table-wrap) table{min-width:580px}
 @media (hover:hover) and (pointer:fine){body.dlx-rebuilt :is(.progress-card,.profile-card,.mld-stat,.cap-panel,.za-course-card):hover{box-shadow:0 20px 48px #173b5316!important;transform:translateY(-2px)}}
-@media(max-width:1190px){.dlx-topnav{gap:1px}.dlx-topnav a{padding-inline:7px;font-size:.73rem}body.dlx-rebuilt.dalp-account-page .course-progress-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:960px){.dlx-header-inner{min-height:74px}.dlx-topnav{display:none}.dlx-menu-button{display:grid}body.dlx-rebuilt :is(.wrap,.profile-shell,.auth-shell,.lab-shell,.ps-main,.verify-shell,.cap-guide,.pl-shell,.pc-wrap,.tutor-main,.dalp-admin-main){max-width:calc(100% - 38px)}body.dlx-rebuilt.auth-page .auth-layout{grid-template-columns:1fr;max-width:670px;margin:15px auto 38px!important;gap:20px;padding:0 19px}body.dlx-rebuilt.auth-page .auth-forms{order:0;padding:18px 0!important;max-width:620px}body.dlx-rebuilt.auth-page .auth-story{order:1;min-height:0;padding:33px!important}body.dlx-rebuilt.dalp-account-page .mld-container{padding-top:22px}}
-@media(max-width:650px){.dlx-header-inner{padding:0 15px;min-height:69px}.dlx-brand-name{font-size:1.12rem}.dlx-brand-words small{font-size:.44rem}.dlx-brand-mark{width:40px;height:40px}.dlx-brand-mark img{width:33px;height:33px}.dlx-nav-scroll .dlx-nav-grid{grid-template-columns:1fr}.dlx-footer{margin-top:40px;padding:35px 19px 22px}.dlx-footer-inner{display:block}.dlx-footer-links{margin-top:20px;gap:15px 18px}.dlx-footer-links a{font-size:.78rem}body.dlx-rebuilt :is(.wrap,.profile-shell,.auth-shell,.lab-shell,.ps-main,.verify-shell,.cap-guide,.pl-shell,.pc-wrap,.tutor-main,.dalp-admin-main){max-width:calc(100% - 28px)}body.dlx-rebuilt.dalp-account-page .course-progress-grid{grid-template-columns:1fr}body.dlx-rebuilt.dalp-account-page .mld-hero,body.dlx-rebuilt.profile-page .profile-hero{padding:27px 23px!important}body.dlx-rebuilt .cap-hero{border-radius:0 0 18px 18px!important}body.dlx-rebuilt .cap-hero .wrap{padding-block:26px!important}body.dlx-rebuilt .cap-panel{padding:21px!important}body.dlx-rebuilt .cap-track-picker{grid-template-columns:repeat(2,minmax(0,1fr))}body.dlx-rebuilt .pl-hero,body.dlx-rebuilt .page-hero{max-width:calc(100% - 28px);border-radius:18px!important;margin-top:16px}body.dlx-rebuilt .tutor-main{max-width:100%;margin-top:0!important}body.dlx-rebuilt .tutor-main :is(.chat-side,.chat-panel,.tutor-sidebar,.tutor-chat){border-radius:0!important}body.dlx-rebuilt .pc-hero{border-radius:0!important;margin-top:0!important}body.dlx-rebuilt .ps-heading{border-radius:17px!important}body.dlx-rebuilt main :is(button,a,input,textarea,select){min-width:0}body.dlx-rebuilt main :is(.mld-resume,.mld-hero-actions,.cap-actions){flex-wrap:wrap}}
+@media(max-width:1190px){body.dlx-rebuilt.dalp-account-page .course-progress-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:960px){.dlx-header-inner{min-height:74px}.dlx-menu-button{display:grid}body.dlx-rebuilt :is(.wrap,.profile-shell,.auth-shell,.lab-shell,.ps-main,.verify-shell,.cap-guide,.pl-shell,.pc-wrap,.tutor-main,.dalp-admin-main){max-width:calc(100% - 38px)}body.dlx-rebuilt.auth-page .auth-layout{grid-template-columns:1fr;max-width:670px;margin:15px auto 38px!important;gap:20px;padding:0 19px}body.dlx-rebuilt.auth-page .auth-forms{order:0;padding:18px 0!important;max-width:620px}body.dlx-rebuilt.auth-page .auth-story{order:1;min-height:0;padding:33px!important}body.dlx-rebuilt.dalp-account-page .mld-container{padding-top:22px}}
+@media(max-width:650px){.dlx-header-inner{padding:0 15px;min-height:69px}body.dlx-rebuilt :is(.wrap,.profile-shell,.auth-shell,.lab-shell,.ps-main,.verify-shell,.cap-guide,.pl-shell,.pc-wrap,.tutor-main,.dalp-admin-main){max-width:calc(100% - 28px)}body.dlx-rebuilt.dalp-account-page .course-progress-grid{grid-template-columns:1fr}body.dlx-rebuilt.dalp-account-page .mld-hero,body.dlx-rebuilt.profile-page .profile-hero{padding:27px 23px!important}body.dlx-rebuilt .cap-hero{border-radius:0 0 18px 18px!important}body.dlx-rebuilt .cap-hero .wrap{padding-block:26px!important}body.dlx-rebuilt .cap-panel{padding:21px!important}body.dlx-rebuilt .cap-track-picker{grid-template-columns:repeat(2,minmax(0,1fr))}body.dlx-rebuilt .pl-hero,body.dlx-rebuilt .page-hero{max-width:calc(100% - 28px);border-radius:18px!important;margin-top:16px}body.dlx-rebuilt .tutor-main{max-width:100%;margin-top:0!important}body.dlx-rebuilt .tutor-main :is(.chat-side,.chat-panel,.tutor-sidebar,.tutor-chat){border-radius:0!important}body.dlx-rebuilt .pc-hero{border-radius:0!important;margin-top:0!important}body.dlx-rebuilt .ps-heading{border-radius:17px!important}body.dlx-rebuilt main :is(button,a,input,textarea,select){min-width:0}body.dlx-rebuilt main :is(.mld-resume,.mld-hero-actions,.cap-actions){flex-wrap:wrap}}
 @media(prefers-reduced-motion:reduce){body.dlx-rebuilt *,body.dlx-rebuilt *::before,body.dlx-rebuilt *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 /* Auth canonicalisation. Earlier high-specificity legacy declarations should not resurface. */
 html[data-theme] body.dlx-rebuilt.auth-page .auth-shell .auth-topbar{display:none!important;visibility:hidden!important;height:0!important;margin:0!important;padding:0!important}
@@ -268,7 +268,7 @@ html body.dlx-rebuilt #dlxNavDialog.dlx-nav-dialog:not([hidden]){
  border:0!important;border-radius:0!important;box-shadow:none!important;
  z-index:2147483000!important;isolation:isolate!important;
 }
-html body.dlx-rebuilt #dlxNavDialog .dlx-nav-scroll{flex:1 1 auto!important;overflow-y:auto!important;min-height:0!important}
+
 /* Role-aware private navigation now shares the public academy's Blueprint identity. */
 html[data-theme] body.dlx-rebuilt.ac-ready .ac-shell > .ac-sidebar{background:linear-gradient(165deg,#102f45 0%,#173f58 92%)!important;background-image:linear-gradient(165deg,#102f45 0%,#173f58 92%)!important;color:#e8f4f7!important;border-right:1px solid #315f74!important;box-shadow:12px 0 38px #0b28381a!important}
 html[data-theme] body.dlx-rebuilt.ac-ready .ac-sidebar .ac-brand{background:transparent!important;border-bottom:1px solid #ffffff33!important}

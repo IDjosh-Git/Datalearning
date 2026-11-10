@@ -10,8 +10,8 @@ body.dlx-rebuilt[data-responsive-page="practice"] .pc-hero.arena-modern-hero{dis
 body.dlx-rebuilt[data-responsive-page="practice"] .arena-modern-hero-copy{position:relative;z-index:1;min-width:0}
 body.dlx-rebuilt[data-responsive-page="practice"] .pc-hero .arena-modern-eyebrow{display:flex;align-items:center;gap:9px;color:#bce1df!important;font-size:.67rem!important;letter-spacing:.13em;font-weight:900!important;line-height:1.4!important;margin:0 0 13px!important}
 body.dlx-rebuilt[data-responsive-page="practice"] .arena-live-dot{width:8px;height:8px;border-radius:50%;background:#91e7c2;box-shadow:0 0 0 4px #91e7c222;flex:none}
-body.dlx-rebuilt[data-responsive-page="practice"] .arena-modern-separator{color:#79abb2}
-body.dlx-rebuilt[data-responsive-page="practice"] .pc-hero h1{font-family:'Plus Jakarta Sans',system-ui,sans-serif!important;font-size:clamp(2.2rem,4.3vw,4rem)!important;line-height:1.05!important;font-weight:850!important;letter-spacing:-.075em!important;margin:0 0 14px!important;color:#fff!important}
+
+body.dlx-rebuilt[data-responsive-page="practice"] .pc-hero h1{font-family:"Plus Jakarta Sans",system-ui,sans-serif!important;font-size:clamp(2.2rem,4.3vw,4rem)!important;line-height:1.05!important;font-weight:850!important;letter-spacing:-.075em!important;margin:0 0 14px!important;color:#fff!important}
 body.dlx-rebuilt[data-responsive-page="practice"] .pc-hero h1 em{font-style:normal;color:#ffc3a2!important}
 body.dlx-rebuilt[data-responsive-page="practice"] .pc-hero .arena-modern-intro{max-width:650px!important;color:#ddecf0!important;font-size:clamp(.87rem,1.13vw,1.02rem)!important;line-height:1.65!important;margin:0!important}
 body.dlx-rebuilt[data-responsive-page="practice"] .arena-hero-steps{display:flex!important;gap:7px!important;margin:20px 0 0!important;flex-wrap:wrap!important;padding:0!important}
@@ -42,7 +42,7 @@ body.dlx-rebuilt[data-responsive-page="practice"] .arena-chip-bottom{bottom:-16p
 body.dlx-rebuilt[data-responsive-page="practice"] .arena-subject-launcher{margin:0 0 12px!important;padding:16px clamp(16px,2vw,26px)!important;border-radius:16px!important;background:#fff!important;border:1px solid var(--arena-border)!important;box-shadow:var(--arena-shadow)!important}
 body.dlx-rebuilt[data-responsive-page="practice"] .arena-picker-head{display:flex;justify-content:space-between;align-items:center;gap:18px;margin:0 0 13px}
 body.dlx-rebuilt[data-responsive-page="practice"] .arena-picker-eyebrow{margin:0 0 3px!important;color:#a4522c!important;letter-spacing:.14em;font-size:.62rem!important;font-weight:900!important}
-body.dlx-rebuilt[data-responsive-page="practice"] .arena-subject-caption{display:block!important;margin:0!important;font:850 clamp(1.03rem,1.6vw,1.37rem)/1.24 'Plus Jakarta Sans',system-ui,sans-serif!important;letter-spacing:-.035em;color:var(--arena-ink)!important}
+body.dlx-rebuilt[data-responsive-page="practice"] .arena-subject-caption{display:block!important;margin:0!important;font:850 clamp(1.03rem,1.6vw,1.37rem)/1.24 "Plus Jakarta Sans",system-ui,sans-serif!important;letter-spacing:-.035em;color:var(--arena-ink)!important}
 body.dlx-rebuilt[data-responsive-page="practice"] .arena-subject-help{margin:5px 0 0!important;font-size:.80rem!important;line-height:1.45!important;color:#54717c!important}
 body.dlx-rebuilt[data-responsive-page="practice"] .arena-picker-total{display:flex;align-items:center;gap:6px;flex:none;white-space:nowrap;background:#edf6f4;border:1px solid #d5e8e2;border-radius:10px;padding:10px 12px;color:#385b65;font-size:.72rem;font-weight:750}
 body.dlx-rebuilt[data-responsive-page="practice"] .arena-picker-total strong{font-size:1.04rem;color:#1a5060;font-weight:900}
@@ -52,7 +52,7 @@ body.dlx-rebuilt[data-responsive-page="practice"] .arena-subject-options button 
 body.dlx-rebuilt[data-responsive-page="practice"] .arena-subject-options button .arena-count{margin-left:auto!important;flex:none!important;display:inline-block!important;white-space:nowrap!important;font-size:.66rem!important;line-height:1.1!important;padding:7px 8px!important;border-radius:6px!important;border:0!important;background:#edf4f5!important;color:#496774!important}
 body.dlx-rebuilt[data-responsive-page="practice"] .arena-subject-options button:is(:hover,:focus-visible){border-color:#739aa2!important;background:#f3faf9!important;box-shadow:0 9px 21px #1b526021!important}
 body.dlx-rebuilt[data-responsive-page="practice"] .arena-subject-options button:is([aria-pressed="true"],.is-active){border-color:#317787!important;background:#e9f6f4!important;box-shadow:inset 0 0 0 1px #317787,0 5px 16px #31778718!important}
-body.dlx-rebuilt[data-responsive-page="practice"] .arena-subject-options button:is([aria-pressed="true"],.is-active)::after{content:'✓';position:absolute;right:7px;top:5px;display:grid;place-items:center;width:14px;height:14px;background:#2c726b;border-radius:50%;font-size:.57rem;color:#fff}
+body.dlx-rebuilt[data-responsive-page="practice"] .arena-subject-options button:is([aria-pressed="true"],.is-active)::after{content:"✓";position:absolute;right:7px;top:5px;display:grid;place-items:center;width:14px;height:14px;background:#2c726b;border-radius:50%;font-size:.57rem;color:#fff}
 body.dlx-rebuilt[data-responsive-page="practice"] .arena-subject-options button:focus-visible{outline:3px solid #f0a574!important;outline-offset:3px!important}
 /* Active challenge control, code panels and results share one density system. */
 body.dlx-rebuilt[data-responsive-page="practice"] .hub-topbar{display:flex!important;align-items:center!important;justify-content:space-between!important;margin:0 0 12px!important;min-height:73px!important;padding:12px clamp(14px,2vw,24px)!important;border-radius:15px!important;border-color:var(--arena-border)!important;box-shadow:var(--arena-shadow)!important;background:linear-gradient(125deg,#fff,#f6fbfb)!important}
@@ -137,3 +137,119 @@ html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .arena-float-
 html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .arena-display-result-icon{color:#cbf9dc!important;-webkit-text-fill-color:#cbf9dc!important}
 html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .arena-display-check{color:#c6f7d7!important;-webkit-text-fill-color:#c6f7d7!important}
 @media(max-width:720px){html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .dlx-v5-context-strip>a[href="learning-coach.html"]{display:none!important}}
+
+
+/* Practice Arena — single, legible colour contract for each workspace state.
+   Dark ink only on ivory cards; white ink on selected deep-teal controls.
+   These rules intentionally outrank legacy global rules that forced dark tab labels
+   onto selected dark backgrounds. Works for light and dark document themes. */
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .ide-results-tabs{
+  display:flex!important;align-items:stretch!important;gap:8px!important;
+  background:#edf4f5!important;border-bottom:1px solid #ccdee2!important;
+  padding:11px!important;scrollbar-color:#91aeb8 transparent;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .ide-results-tabs > button[data-ide-tab]{
+  flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;
+  min-height:42px;padding:9px 14px!important;border:1px solid #c5d9df!important;
+  border-radius:10px!important;background:#fff!important;color:#24485c!important;
+  -webkit-text-fill-color:#24485c!important;font-size:.79rem!important;
+  font-weight:800!important;line-height:1.35!important;letter-spacing:.005em!important;
+  text-shadow:none!important;box-shadow:0 2px 6px rgba(18,53,69,.035)!important;
+  opacity:1!important;cursor:pointer;transition:background .16s,border-color .16s,box-shadow .16s!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .ide-results-tabs > button[data-ide-tab]:hover:not(.is-active):not([aria-selected="true"]){
+  background:#e3f0f0!important;color:#153d50!important;
+  -webkit-text-fill-color:#153d50!important;border-color:#6e99a5!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .ide-results-tabs > button[data-ide-tab].is-active,
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .ide-results-tabs > button[data-ide-tab][aria-selected="true"]{
+  background:#173e55!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
+  border-color:#173e55!important;box-shadow:inset 0 -3px 0 #9ce2ca,0 4px 12px rgba(17,56,73,.17)!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .ide-results-tabs > button[data-ide-tab]:focus-visible,
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] :is(.ide-modes button,.arena-subject-options button,.pc-item,#challengeModal select):focus-visible{
+  outline:3px solid #b65e20!important;outline-offset:3px!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .ide-modes button.is-active{
+  background:#173e55!important;border-color:#173e55!important;color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .ide-modes button:not(.is-active){
+  background:#f8fbfc!important;color:#24485c!important;-webkit-text-fill-color:#24485c!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .ide-secondary .ide-panel{
+  background:#fff!important;color:#173e55!important;-webkit-text-fill-color:#173e55!important;
+  border-color:#d4e3e7!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .ide-secondary .ide-panel .ide-inspector{
+  padding:12px 14px;border:1px solid #cddfe2;border-radius:12px;
+  background:#f5f9f9!important;color:#25495a!important;-webkit-text-fill-color:#25495a!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .ide-secondary .ide-inspector h3{
+  color:#184f61!important;-webkit-text-fill-color:#184f61!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .ide-secondary .ide-inspector p{
+  color:#25495a!important;-webkit-text-fill-color:#25495a!important;border-color:#d1e2e5!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .ide-secondary .ide-panel :is(#ideConsoleMount,#arenaConsole){
+  background:#142e42!important;color:#f3fbfe!important;-webkit-text-fill-color:#f3fbfe!important;
+  border:1px solid #466d81!important;border-radius:11px!important;
+  padding:15px!important;min-height:96px;overflow-wrap:anywhere;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .ide-secondary .ide-panel :is(#ideConsoleMount,#arenaConsole) *{
+  color:inherit!important;-webkit-text-fill-color:inherit!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .ide-secondary .ide-hints{
+  padding:15px!important;border:1px solid #c8dfe1!important;border-radius:12px!important;
+  background:#f2f8f7!important;color:#24485a!important;-webkit-text-fill-color:#24485a!important;
+  font-family:inherit;line-height:1.6!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .ide-secondary .ide-hints :is(strong,p,#ideHintText){
+  color:#24485a!important;-webkit-text-fill-color:#24485a!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .ide-secondary .ide-hints button{
+  background:#173e55!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
+  border:1px solid #173e55!important;min-height:42px;padding:10px 14px!important;
+  font-family:inherit;font-weight:800!important;
+}
+/* Selected subject and selected challenge both show a readable selected state. */
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .arena-subject-options button[data-arena-subject][aria-pressed="true"]{
+  background:#e0f3ef!important;border-color:#2f737a!important;color:#173e55!important;
+  -webkit-text-fill-color:#173e55!important;box-shadow:inset 0 0 0 1px #2f737a!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .arena-subject-options button[aria-pressed="true"] .arena-count{
+  background:#c8e9e1!important;color:#184c42!important;-webkit-text-fill-color:#184c42!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #challengeModal .pc-item.selected,
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #challengeModal .pc-item[aria-pressed="true"]{
+  border-color:#357b80!important;background:#ecf7f3!important;color:#1b4051!important;
+  -webkit-text-fill-color:#1b4051!important;box-shadow:inset 4px 0 0 #357b80,0 5px 18px #153e5412!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #challengeModal .pc-card-status-group{
+  display:inline-flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:6px;max-width:100%;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #challengeModal .pc-card-selection{
+  display:inline-flex;align-items:center;justify-content:center;min-height:25px;
+  padding:4px 9px!important;border-radius:999px!important;background:#173e55!important;
+  color:#fff!important;-webkit-text-fill-color:#fff!important;font-size:.65rem!important;font-weight:900!important;
+  letter-spacing:.015em!important;white-space:nowrap;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #challengeModal .pc-filter-row label,
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #challengeModal .hub-search-label{
+  color:#24485a!important;-webkit-text-fill-color:#24485a!important;font-weight:800!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #challengeModal :is(.pc-filter-row select,#hubSearch){
+  background:#fff!important;color:#213f53!important;-webkit-text-fill-color:#213f53!important;
+  border:1px solid #aecbd2!important;border-radius:9px!important;min-height:42px;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #challengeModal :is(.pc-filter-row select,#hubSearch):focus-visible{
+  outline:3px solid #b65e20!important;outline-offset:2px!important;
+}
+@media(max-width:720px){
+  html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .ide-results-tabs{gap:6px!important;padding:8px!important}
+  html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .ide-results-tabs > button[data-ide-tab]{min-height:40px;padding:8px 11px!important;font-size:.74rem!important}
+  html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #challengeModal .pc-card-status-group{justify-content:flex-start}
+}
+@media(prefers-reduced-motion:reduce){
+  html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .ide-results-tabs > button[data-ide-tab]{transition:none!important}
+}

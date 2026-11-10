@@ -50,7 +50,7 @@
 .auth-msg{display:none;margin-top:13px;padding:11px 12px;border:1px solid color-mix(in srgb,var(--app-info) 24%,var(--app-line));border-radius:10px;background:color-mix(in srgb,var(--app-info) 8%,var(--app-surface));color:var(--app-text);font-size:11px;line-height:1.55}
 .auth-msg.warn{border-color:color-mix(in srgb,var(--app-danger) 34%,var(--app-line));background:color-mix(in srgb,var(--app-danger) 9%,var(--app-surface));color:var(--app-text)}
 .auth-msg.success{border-color:color-mix(in srgb,var(--app-success) 34%,var(--app-line));background:color-mix(in srgb,var(--app-success) 9%,var(--app-surface))}
-.auth-footer-note{margin:22px 0 0;text-align:center;color:var(--app-muted);font-size:10px}
+
 @media (max-width:860px){.auth-layout{grid-template-columns:1fr}
 .auth-story{min-height:auto;padding:34px}
 .auth-story h1{font-size:38px}
@@ -149,7 +149,7 @@
 .auth-account-note{display:flex;align-items:flex-start;gap:10px;background:var(--app-surface-2);border:1px solid var(--app-line);border-radius:13px;margin-top:28px;padding:14px}
 .auth-account-note>span{font-size:18px;color:var(--app-brand-text)}
 .auth-account-note p{color:var(--app-muted);line-height:1.65;margin:0;font-size:11px}
-.auth-footer-note{margin-top:17px;line-height:1.65;text-align:left;font-size:10.5px}
+
 .auth-msg[hidden],.auth-google[hidden],.auth-tabs[hidden]{display:none!important}
 .auth-separator{display:flex;align-items:center;gap:12px;color:var(--app-muted);font-size:11px;margin:17px 0}
 .auth-separator:before,.auth-separator:after{content:"";flex:1;height:1px;background:var(--app-line)}
@@ -177,7 +177,7 @@
 .auth-story>div>p{font-size:12px}
 .auth-benefits{grid-template-columns:1fr}
 .auth-benefit:nth-child(n/**/+2){display:none}
-.auth-footer-note{font-size:10px}}
+}
 @media (max-width:370px){.auth-shell{width:calc(100% - 12px)}
 .auth-forms{padding:24px 16px!important}
 .auth-story{padding:22px 16px!important}

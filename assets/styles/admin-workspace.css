@@ -37,11 +37,11 @@ html[data-theme] body.ac-ready .ac-side-link:is(:hover,.ac-selected,[aria-curren
 html[data-theme] body.ac-ready .ac-side-icon{width:30px;height:30px;display:grid;place-items:center;flex:none;border-radius:9px;color:#bdcafa;background:#ffffff0b}
 html[data-theme] body.ac-ready .ac-side-icon svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;overflow:visible}
 html[data-theme] body.ac-ready .ac-side-link:is(.ac-selected,[aria-current="page"]) .ac-side-icon{background:#a18eff2e;color:#fff}
-html[data-theme] body.ac-ready .ac-side-arrow{color:#8091b7;font-size:17px}
-html[data-theme] body.ac-ready .ac-side-link.ac-selected .ac-side-arrow{color:#fff}
-html[data-theme] body.ac-ready .ac-utilities-details{border-top:1px solid rgba(255,255,255,.10);margin-top:15px;padding-top:10px}
-html[data-theme] body.ac-ready .ac-utilities-details summary{border-radius:11px;min-height:42px;padding:10px 12px;color:#c7d2ea;font-size:12px;font-weight:700;cursor:pointer}
-html[data-theme] body.ac-ready .ac-utilities-details summary:hover{background:#ffffff14}
+
+
+
+
+
 html[data-theme] body.ac-ready .ac-side-bottom{margin-top:14px;padding-top:15px;border-top-color:#ffffff23}
 html[data-theme] body.ac-ready .ac-side-account{border-radius:13px;background:#ffffff0b!important;padding:10px 8px!important}
 html[data-theme] body.ac-ready .ac-avatar{width:37px;height:37px;background:linear-gradient(140deg,#B8D1D8,#3c8fc9);border:1px solid #D6E7EA;border-radius:11px}
@@ -54,7 +54,7 @@ html[data-theme] body.ac-ready .ac-topbar{
 }
 html[data-theme] body.ac-ready .ac-breadcrumb{gap:11px;color:#78859c;font-size:12px;font-weight:600}
 html[data-theme] body.ac-ready .ac-breadcrumb strong{color:#172442;font:800 14px/1.25 "Plus Jakarta Sans",sans-serif}
-html[data-theme] body.ac-ready .ac-topbar-mark{display:grid;place-items:center;width:32px;height:32px;color:#6590A4;border-radius:10px;background:#EDF4F4}
+
 html[data-theme] body.ac-ready .ac-breadcrumb-prefix{color:#8090a8;font-weight:650}
 html[data-theme] body.ac-ready .ac-secure{display:flex;gap:8px;align-items:center;color:#3b557b;border:1px solid #dae6f1;background:#f5f8fc;border-radius:999px;padding:8px 11px;font-weight:750}
 html[data-theme] body.ac-ready .ac-secure:before{content:"";width:7px;height:7px;background:#20bf91;border-radius:50%;box-shadow:0 0 0 3px #20bf9122}

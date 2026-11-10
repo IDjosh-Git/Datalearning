@@ -12,7 +12,7 @@ body.dlx-rebuilt[data-responsive-page="practice"] .arena-hero-steps{display:flex
 body.dlx-rebuilt[data-responsive-page="practice"] .arena-hero-steps li{min-height:40px;display:flex;align-items:center;gap:9px;padding:9px 13px;background:#ffffff12;border:1px solid #ffffff30;border-radius:10px;color:#eff9f8!important;font-size:.77rem;line-height:1.35;font-weight:700;backdrop-filter:blur(6px)}
 body.dlx-rebuilt[data-responsive-page="practice"] .arena-hero-steps b{display:grid;place-items:center;border-radius:7px;width:25px;height:25px;background:#f9d0b6;color:#713718;font-size:.73rem;flex-shrink:0}
 body.dlx-rebuilt[data-responsive-page="practice"] .arena-subject-launcher{padding:clamp(18px,2.8vw,31px)!important;border:1px solid var(--dlp-line)!important;background:linear-gradient(135deg,#fff 0%,#f7fbfa 100%)!important;border-radius:21px!important;box-shadow:var(--dlp-surface-shadow)!important;margin:17px 0 20px!important;color:var(--dlp-text)!important}
-body.dlx-rebuilt[data-responsive-page="practice"] .arena-subject-caption{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(1.06rem,1.75vw,1.33rem)!important;font-weight:850!important;letter-spacing:-.035em;color:var(--dlp-night)!important}
+body.dlx-rebuilt[data-responsive-page="practice"] .arena-subject-caption{font-family:"Plus Jakarta Sans",system-ui,sans-serif;font-size:clamp(1.06rem,1.75vw,1.33rem)!important;font-weight:850!important;letter-spacing:-.035em;color:var(--dlp-night)!important}
 body.dlx-rebuilt[data-responsive-page="practice"] .arena-subject-help{color:var(--dlp-muted)!important;line-height:1.65!important;font-size:.88rem!important}
 body.dlx-rebuilt[data-responsive-page="practice"] .arena-subject-options{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px!important}
 body.dlx-rebuilt[data-responsive-page="practice"] .arena-subject-options button{display:flex!important;align-items:center!important;justify-content:flex-start!important;gap:13px!important;min-width:0;min-height:81px!important;padding:15px!important;background:#fff!important;color:var(--dlp-text)!important;border:1px solid #cbdee1!important;border-radius:14px!important;font-weight:850!important;font-size:.96rem!important;box-shadow:0 5px 15px #163c5108!important;text-align:left;transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease!important}
@@ -47,7 +47,7 @@ body.dlx-rebuilt[data-responsive-page="practice"] .ide-worksheet-hint{padding:10
 body.dlx-rebuilt[data-responsive-page="practice"] .ide-grid-scroll{width:100%!important;min-width:0!important;max-width:100%!important;max-height:340px!important;overflow:auto!important;overscroll-behavior:contain;border:0!important;background:#fff!important;scrollbar-width:thin}
 body.dlx-rebuilt[data-responsive-page="practice"] .ide-grid-scroll::before{display:none!important}
 body.dlx-rebuilt[data-responsive-page="practice"] .ide-sheet{border-collapse:separate!important;border-spacing:0!important;min-width:580px!important;width:100%!important;table-layout:fixed!important;color:var(--dlp-text)!important}
-body.dlx-rebuilt[data-responsive-page="practice"] .ide-sheet th,body.dlx-rebuilt[data-responsive-page="practice"] .ide-sheet td{padding:7px 10px!important;height:39px!important;font:600 .78rem 'DM Sans',system-ui,sans-serif!important;text-align:left!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;border-bottom:1px solid #e4ecee!important;color:#224654!important;background:#fff!important}
+body.dlx-rebuilt[data-responsive-page="practice"] .ide-sheet th,body.dlx-rebuilt[data-responsive-page="practice"] .ide-sheet td{padding:7px 10px!important;height:39px!important;font:600 .78rem "DM Sans",system-ui,sans-serif!important;text-align:left!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;border-bottom:1px solid #e4ecee!important;color:#224654!important;background:#fff!important}
 body.dlx-rebuilt[data-responsive-page="practice"] .ide-sheet thead th{position:sticky!important;top:0!important;z-index:2;background:#e6eff0!important;color:#16465a!important;text-align:center!important;font-weight:850!important}
 body.dlx-rebuilt[data-responsive-page="practice"] .ide-sheet tbody th{position:sticky!important;left:0!important;z-index:1;background:#f1f6f5!important;text-align:center!important;font-weight:750!important}
 body.dlx-rebuilt[data-responsive-page="practice"] .ide-sheet tr:nth-child(even) td{background:#fcfdfd!important}
@@ -84,7 +84,7 @@ body.dlx-rebuilt[data-responsive-page="practice"] #challengeModal .pc-item{backg
 body.dlx-rebuilt[data-responsive-page="practice"] #challengeModal .pc-item.selected{background:#ecf6f3!important;border-color:#367a83!important;box-shadow:inset 4px 0 0 #367a83!important}
 body.dlx-rebuilt[data-responsive-page="practice"] #challengeModal .pc-item :is(strong,small,span,p){color:var(--dlp-text)!important}
 /* Public + authenticated workspace controls: same clarity, touch size and semantic colours. */
-body.dlx-rebuilt :is(.ps-main,.tutor-main,.lab-shell,.cap-guide,.profile-shell,.ac-content,.ip-main,.dalp-admin-main) :is(button,input,select,textarea){font-family:'DM Sans',system-ui,sans-serif}
+body.dlx-rebuilt :is(.ps-main,.tutor-main,.lab-shell,.cap-guide,.profile-shell,.ac-content,.ip-main,.dalp-admin-main) :is(button,input,select,textarea){font-family:"DM Sans",system-ui,sans-serif}
 body.dlx-rebuilt :is(.ps-main,.tutor-main,.lab-shell,.cap-guide,.profile-shell,.ac-content,.ip-main,.dalp-admin-main) :is(button,input,select,textarea):focus-visible{outline:3px solid #ea9b69!important;outline-offset:2px!important}
 body.dlx-rebuilt :is(.ps-main,.tutor-main,.lab-shell,.cap-guide,.profile-shell,.ac-content,.ip-main,.dalp-admin-main) :is(.ps-course-card,.ps-rail,.tutor-sidebar,.tutor-chat,.lab-card,.cap-panel,.ac-section,.ip-panel){border-color:#d5e5e9!important;box-shadow:var(--dlp-surface-shadow)!important}
 body.dlx-rebuilt :is(.ps-main,.tutor-main,.lab-shell,.cap-guide,.profile-shell,.ac-content,.ip-main,.dalp-admin-main) :is(.muted,.subtle,.section-help,.field-help){color:#4d6673!important}
@@ -118,7 +118,7 @@ body.dlx-rebuilt :is(.ps-main,.tutor-main,.lab-shell,.cap-guide,.profile-shell,.
 /* Companion Practice Studio: match the same selection → explanation → application rhythm. */
 body.dlx-rebuilt .ps-main{padding-bottom:34px!important}
 body.dlx-rebuilt .ps-heading{border-radius:22px!important;padding:clamp(23px,3.3vw,44px)!important;margin-top:18px!important}
-body.dlx-rebuilt .ps-callout{background:#ebf5f1!important;border:1px solid #cce4dc!important;color:#17483e!important;border-radius:13px!important;box-shadow:none!important}
+
 body.dlx-rebuilt .ps-callout :is(strong,p,span){color:#17483e!important}
 body.dlx-rebuilt .ps-course-nav{gap:11px!important;margin:16px 0!important}
 body.dlx-rebuilt .ps-course-pill{border:1px solid #cbdfe2!important;background:#fff!important;color:#234a5c!important;border-radius:13px!important;box-shadow:0 6px 18px #143c5010!important;min-height:70px!important}

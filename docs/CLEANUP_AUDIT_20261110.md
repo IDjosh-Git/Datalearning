@@ -1,27 +1,29 @@
-# DataLearning cleanup audit — 10 November 2026
+# DataLearning — source cleanup and Practice Arena contrast audit
 
-This cleanup begins with `DataLearning_Unified_Premium_StudyTools_Footer_Tutor_Coach_20261110.zip`. It removes unreferenced frontend styles and scripts, retired tests and old release notes. It does **not** remove core learning or access-control features.
+**Date:** 10 November 2026  
+**Input:** `DataLearning_Unified_Premium_Private_Workspace_20261110.zip`
 
-## Removed files
+## Source cleanup
 
-- **orphan CSS:** 8 files (883,229 uncompressed bytes)
-- **orphan JS:** 9 files (108,804 uncompressed bytes)
-- **legacy course pages:** 8 files (105,506 uncompressed bytes)
-- **retired tests:** 99 files (246,215 uncompressed bytes)
-- **historic docs:** 22 files (53,314 uncompressed bytes)
-- **orphan icons:** 1 file (915 uncompressed bytes; unused capstone icon)
-- **Hidden old duplicate navigation headers:** 9 removed from pages already using the new navigation.
+The input archive had already removed unreferenced standalone CSS/JS files, retired routes/tests and hidden duplicate navigation. We retained the working application structure and performed an additional **conservative CSS reachability cleanup**:
 
-The eight old Intro, Excel, SQL and Power BI roadmap/extension URLs redirect on Vercel to their active current course players instead of returning 404. The AI and Python legacy course pages and their referenced guides remain available for returning learners. The active seven paths, quizzes, learning materials, downloads, tutors, Arena, Learning Coach, capstone, certificates, auth/API handlers, database scripts, and secure role-based controls are retained.
+- Removed **3,556 whole CSS rules**, totalling **409,434 uncompressed bytes**, from **31 active stylesheets**.
+- A rule was removed only when it required a literal class or ID not present in authored HTML, JavaScript, JSON or maintained tests. Complex logical selectors (`:is()`, `:not()`, `:has()` etc.) were kept if static reachability was uncertain.
+- All stylesheets referenced by current pages remain in place. Shared, dynamically constructed, and authenticated UI must not be deleted merely because stylesheet filenames seem old.
+- Removed **8 superseded release-note files** from `docs/`, retaining essential setup, route, teaching and permission documentation.
+- Left all user-data controllers, Supabase configuration, RLS and database migration scripts, learning assets, tests, course routes, worker files and Vercel configuration intact.
+- Preserved service-worker no-cache treatment of mutable HTML, JS and CSS. Changed its static-image cache namespace for this release.
 
-## Styling choices
+**Limit:** Source-text reachability cannot prove that every stylesheet selector is used or unused during every runtime state. In particular, classes assembled dynamically or injected by external libraries may need visual verification on a deployed preview. CSS was not aggressively consolidated across all files because cascade ordering is part of the design contract.
 
-Eight standalone CSS files no longer referenced by any current HTML or JS were deleted. **Still-referenced CSS remains**; deleting it merely because a filename sounds old would risk breaking dynamic overlays, legacy AI/Python lessons and authenticated workspaces. This is a conservative reachability cleanup, not a claim that every selector in every large stylesheet has been proven live.
+## Practice Arena contrast and selection
 
-## Tests
+- Removed a site-wide rule that overrode active output-tab text with dark ink.
+- Unified the **Data Results**, **Schema Inspector**, **Console** and **Hint Assistant** tabs under accessible inactive, hover, focused and selected states. The selected deep-teal tab uses white text and explicitly sets `-webkit-text-fill-color`.
+- Refined the output, schema inspector, console and hint cards, selected SQL/Excel/Python subject cards and challenge-selector form labels.
+- Added a visible **Selected** pill to the active challenge card without replacing its existing Passed/Featured/progress status or `aria-pressed` state.
+- Added eight representative WCAG AA colour-pair checks to `tests/arena-contrast.mjs` and included that test in `npm run test:arena`.
 
-`npm run verify:deployment` covers the maintained Academy, security, Arena and Tutor suites, plus JavaScript syntax and the new HTML resource-audit test. Previous optional `test:legacy` assumptions were already failing before this cleanup (41 expected pages against 46 actual); stale tests are removed rather than falsifying their assertions.
+## Test results and deployment limitations
 
-## Verification and limitations
-
-Run `npm run verify:deployment` locally before deployment; review the Vercel redirects after deployment. Real signed-in flows should be checked in staging. Database migrations are unchanged.
+Run `npm run verify:deployment`. This checks maintained Academy, authentication/security, Practice Arena, Tutor and asset reachability suites; all passed on the cleaned source. Live browser visual testing and authenticated Supabase traffic were **not** completed in this environment. Confirm typography, cards and keyboard focus at 390px, tablet and desktop widths in a Vercel preview; use permitted learner/admin test accounts to verify live data and role-based navigation.

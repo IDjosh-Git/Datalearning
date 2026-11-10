@@ -1,6 +1,6 @@
 # DataLearning — Seven-Path Academy
 
-**Maintained release: 10 November 2026 — cleaned and unified premium site.**
+**Maintained release: 10 November 2026 — streamlined source and unified premium site.**
 
 DataLearning is a responsive learning app for practical data analysis. It contains seven current learning paths: **Data Analysis, Excel, SQL, Power BI, Tableau, Power Query, and Introductory Statistics**. The 70 weekly modules include concept explanations, worked examples, hands-on exercises and separate **Questions to Try** pages. Learners can track course progress and attempt mastery assessments.
 
@@ -33,7 +33,7 @@ Current course slugs: `introduction`, `excel`, `sql`, `powerbi`, `tableau`, `pow
 3. Run `npm run verify:deployment` before publishing. This executes curriculum, source/syntax, static asset reachability, authentication/security, Practice Arena and Tutor regression checks.
 4. Serve the project from a local HTTP server or Vercel preview to check interactions. Do not open pages directly as `file://` when testing authentication.
 
-The current test commands are `npm run test:academy`, `npm run test:security`, `npm run test:arena`, and `npm run test:tutor`. The obsolete pre-rebuild `test:legacy` contract was removed; it assumed old pages and styles that no longer match the app.
+The current test commands are `npm run test:academy`, `npm run test:security`, `npm run test:arena` (including a static WCAG colour-pair check), and `npm run test:tutor`. The obsolete pre-rebuild `test:legacy` contract was removed; it assumed old pages and styles that no longer match the app.
 
 ## Supabase integration
 
@@ -87,3 +87,10 @@ Practice Studio course controls are compact and accessible. The skills sidebar h
 ## Premium private workspace update (10 November 2026)
 
 The eight protected pages now reuse the public academy's branded page loader and search panel, with a single header profile control. The sidebar is streamlined into a four-link **Academy** group available to every signed-in user and a verified-admin-only **Administration** group with collapsible reporting and diagnostic links. See [current release](CURRENT_RELEASE.md) and [implementation/permission checklist](docs/PRIVATE_WORKSPACE_REFINEMENT_20261110.md). Existing database schemas and records were not changed; live authenticated Supabase checks must be completed in a deployment preview.
+
+
+## Source cleanup and Practice Arena contrast (10 November 2026)
+
+A further conservative reachability cleanup removed 3,556 unused CSS rules (409,434 uncompressed bytes) and eight superseded release notes. Shared and dynamically generated interfaces, the secure database integration and all current learning controllers remain intact.
+
+Practice Arena's Data Results, Schema Inspector, Console and Hint Assistant tabs now use clear selected/inactive/hover/focus states and a legible dark/light card palette. The active challenge has a **Selected** pill, while the existing progress status remains visible. See [cleanup and contrast audit](docs/CLEANUP_AUDIT_20261110.md). A live browser and authenticated database preview are still required before deployment.
