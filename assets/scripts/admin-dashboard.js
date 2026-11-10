@@ -2,7 +2,7 @@
    No privileged credentials or mutation operations appear in the browser. */
 (function(){'use strict';
  const $=id=>document.getElementById(id);
- const COURSE={introduction:['Introduction',8,'01'],excel:['Excel',10,'XL'],sql:['SQL',10,'SQL'],powerbi:['Power BI',10,'BI'],ai:['AI Integration',10,'AI'],python:['Python',10,'PY']};
+ const COURSE={introduction:['Introduction',10,'DA'],excel:['Excel',10,'XL'],sql:['SQL',10,'SQL'],powerbi:['Power BI',10,'BI'],tableau:['Tableau',10,'TB'],powerquery:['Power Query',10,'PQ'],statistics:['Statistics',10,'ST'],python:['Python',10,'PY'],ai:['AI Integration',10,'AI']};
  const PENDING=new Set(['submitted','processing','review_error','needs_manual_review']);
  let profiles=[],progress=[],quizzes=[],submissions=[],certificates=[],appUsage=[],filtered=[],page=0,busy=false;
  const timeout=(promise,ms,label)=>new Promise((resolve,reject)=>{const timer=setTimeout(()=>reject(new Error(label+' timed out after '+Math.round(ms/1000)+' seconds')),ms);Promise.resolve(promise).then(value=>{clearTimeout(timer);resolve(value)},error=>{clearTimeout(timer);reject(error)});});
@@ -56,8 +56,16 @@
   const from=$('adminFrom').value,to=$('adminTo').value;
   $('adminPeriod').textContent=from||to?'Activity period: '+(from||'earliest available')+' to '+(to||'latest available'):'All recorded activity';
   const counts=Object.keys(COURSE).map(slug=>({slug,count:courseEvents(slug).size}));
+  const validCourses=new Set(Object.keys(COURSE)),administratorId=window.DALP_AUTH_USER?.id;
+  const engaged=new Set([...progress.filter(r=>validCourses.has(r.course_slug)&&isWithin(r.updated_at||r.completed_at)),...quizzes.filter(r=>validCourses.has(r.course_slug)&&isWithin(r.submitted_at)),...submissions.filter(r=>validCourses.has(r.course_slug)&&isWithin(r.created_at))].filter(r=>r.user_id&&r.user_id!==administratorId).map(r=>r.user_id));
+  const completedLessons=progress.filter(r=>validCourses.has(r.course_slug)&&r.completed&&r.user_id!==administratorId&&isWithin(r.completed_at||r.updated_at)).length;
+  const quizAttempts=quizzes.filter(r=>validCourses.has(r.course_slug)&&r.user_id!==administratorId&&isWithin(r.submitted_at)).length;
+  $('adminInsightPaths').textContent=validCourses.size.toLocaleString();
+  $('adminInsightLearners').textContent=engaged.size.toLocaleString();
+  $('adminInsightLessons').textContent=completedLessons.toLocaleString();
+  $('adminInsightQuizzes').textContent=quizAttempts.toLocaleString();
   const max=Math.max(1,...counts.map(c=>c.count));
-  for(const {slug,count} of counts){const el=document.createElement('div');el.className='ac-chart-row';el.setAttribute('role','listitem');const label=COURSE[slug][0];el.innerHTML='<span>'+esc(label)+'</span><div class="ac-chart-track" aria-hidden="true"><span style="width:'+Math.round(count/max*100)+'%"></span></div><strong>'+count+' learner'+(count===1?'':'s')+'</strong>';el.setAttribute('aria-label',label+': '+count+' active learners in selected period');chart.append(el)}
+  for(const {slug,count} of counts){const el=document.createElement('div');el.className='ac-chart-row';el.setAttribute('role','listitem');const label=COURSE[slug][0];el.innerHTML='<span class="ac-chart-label">'+esc(label)+'</span><div class="ac-chart-track" aria-hidden="true"><span style="width:'+Math.round(count/max*100)+'%"></span></div><strong class="ac-chart-count">'+count+' <span>learner'+(count===1?'':'s')+'</span></strong>';el.setAttribute('aria-label',label+': '+count+' active learners in selected period');chart.append(el)}
   const outstanding=submissions.filter(s=>PENDING.has(s.status)&&s.user_id!==window.DALP_AUTH_USER?.id).sort((a,b)=>String(a.created_at||'').localeCompare(String(b.created_at||'')));
   if(!outstanding.length) attention.innerHTML='<div class="ac-task"><span class="ac-task-badge">✓</span><div class="ac-task-copy"><strong>Your assessment queue is clear</strong><small>New capstone submissions will appear here when received.</small></div></div>';
   outstanding.slice(0,4).forEach(s=>{
@@ -76,7 +84,8 @@
    const units=progress.filter(r=>r.course_slug===slug&&r.completed&&owners.has(r.user_id)&&(!selectedPeriod()||isWithin(r.completed_at||r.updated_at))).length;
    const average=owners.size?Math.min(100,Math.round(units/(total*owners.size)*100)):0;
    const card=document.createElement('article');card.className='ac-course-card';
-   card.innerHTML='<span class="ac-course-symbol">'+abbr+'</span><h3>'+esc(label)+'</h3><small>'+owners.size+' learner'+(owners.size===1?'':'s')+' started</small><strong>'+average+'%</strong><small>Average units completed</small><div class="ac-course-bar"><span style="width:'+average+'%"></span></div><button type="button" data-course="'+slug+'">View enrolled learners →</button>';
+   card.dataset.course=slug;
+   card.innerHTML='<div class="ac-course-card-top"><span class="ac-course-symbol">'+abbr+'</span><span class="ac-course-card-tag">LEARNING PATH</span></div><h3>'+esc(label)+'</h3><p class="ac-course-enrolled"><span class="ac-course-enrolled-dot" aria-hidden="true"></span>'+owners.size+' learner'+(owners.size===1?'':'s')+' with activity</p><div class="ac-course-score"><strong>'+average+'%</strong><span>Average lesson<br>completion</span></div><div class="ac-course-meter-head"><span>Learning progress</span><span>'+average+'% of units</span></div><div class="ac-course-bar" role="progressbar" aria-label="'+esc(label)+' average lesson completion" aria-valuemin="0" aria-valuemax="100" aria-valuenow="'+average+'"><span style="width:'+average+'%"></span></div><button type="button" data-course="'+slug+'">View learner records <span aria-hidden="true">↗</span></button>';
    card.querySelector('button').addEventListener('click',()=>{$('adminCourse').value=slug;page=0;render();location.hash='admin-learners';});courses.append(card);
   }
  }

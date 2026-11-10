@@ -1,0 +1,142 @@
+/* DataLearning premium private experience — November 2026.
+   Single final layer for authenticated pages; no auth, query or business logic here.
+   Brand: deep navy / blue-teal, warm orange, ivory; WCAG AA body copy. */
+:root{--px-ink:#163849;--px-muted:#4d6976;--px-line:#d5e5e4;--px-canvas:#f6faf8;--px-orange:#f27329;--px-teal:#276a6a;--px-radius:22px;--px-shadow:0 16px 43px rgba(20,56,69,.085)}
+html[data-theme] body[data-private-workspace="true"].ac-ready .ac-page-area{padding-bottom:80px;background:radial-gradient(ellipse at 96% -10%,#dcefe8 0%,transparent 43%),transparent!important}
+html[data-theme] body.ac-ready :is(.ac-page-area,.mld-container,.ip-content,.review-content,.profile-container){min-width:0}
+html[data-theme] body.ac-ready :is(.ac-page-area,.mld-container,.ip-content,.review-content,.profile-container) :is(button,a,input,select,textarea):focus-visible{outline:3px solid #e68144!important;outline-offset:3px!important}
+html[data-theme] body.ac-ready :is(.ac-page-area,.mld-container,.ip-content,.review-content,.profile-container) :is(input,select,textarea){accent-color:#286c69}
+/* Admin / Courses analysis: editorial hero, data hierarchy and filters */
+html[data-theme] body.ac-ready .ac-course-analytics{min-width:0;margin:38px 0 52px!important;scroll-margin-top:92px}
+html[data-theme] body.ac-ready .ac-courses-heading{position:relative;isolation:isolate;display:grid;grid-template-columns:minmax(0,1fr) minmax(160px,260px);align-items:center;gap:30px;overflow:hidden;min-height:292px;margin-bottom:20px;padding:clamp(28px,4.1vw,58px);border:1px solid #265768;border-radius:28px;background:radial-gradient(ellipse at 95% 4%,#348b8b73,transparent 50%),linear-gradient(116deg,#102f45 0%,#1c465a 55%,#21575c 100%)!important;box-shadow:0 22px 52px #1239472a}
+html[data-theme] body.ac-ready .ac-courses-heading:before{content:"";position:absolute;inset:auto -90px -210px 18%;height:290px;border-radius:50%;background:radial-gradient(ellipse,#d8863b44,transparent 69%);pointer-events:none;z-index:-1}
+html[data-theme] body.ac-ready .ac-courses-heading-copy{position:relative;z-index:2;max-width:760px;min-width:0}
+html[data-theme] body.ac-ready .ac-courses-kicker{display:inline-flex;align-items:center;gap:10px;color:#dbf3ea!important;-webkit-text-fill-color:#dbf3ea!important;font-size:10px;font-weight:850;letter-spacing:.16em}
+html[data-theme] body.ac-ready .ac-courses-pulse{display:inline-block;width:8px;height:8px;background:#ffae70;border-radius:50%;box-shadow:0 0 0 5px #ffae7030}
+html[data-theme] body.ac-ready .ac-courses-heading h2{font:800 clamp(37px,4.3vw,65px)/1.07 "Plus Jakarta Sans",sans-serif!important;letter-spacing:-.065em!important;margin:17px 0!important;color:#fff!important;-webkit-text-fill-color:#fff!important}
+html[data-theme] body.ac-ready .ac-courses-heading h2 em{font-style:normal;color:#ffb684!important;-webkit-text-fill-color:#ffb684!important}
+html[data-theme] body.ac-ready .ac-courses-heading p{max-width:58ch;line-height:1.8;font-size:13px;color:#d7e9e7!important;-webkit-text-fill-color:#d7e9e7!important}
+html[data-theme] body.ac-ready .ac-courses-heading-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+html[data-theme] body.ac-ready .ac-courses-heading-actions a{min-height:45px;display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:11px 17px;border-radius:12px;font-size:12px;font-weight:800;text-decoration:none!important;transition:transform .16s ease,border-color .16s ease}
+html[data-theme] body.ac-ready .ac-courses-heading-actions a:hover{transform:translateY(-2px)}
+html[data-theme] body.ac-ready .ac-courses-hero-link{background:#ffb787!important;color:#183748!important;-webkit-text-fill-color:#183748!important;border:1px solid #ffb787!important}
+html[data-theme] body.ac-ready .ac-courses-hero-outline{background:#fff1!important;color:#fff!important;-webkit-text-fill-color:#fff!important;border:1px solid #b2d5d4aa!important}
+html[data-theme] body.ac-ready .ac-courses-deco{position:relative;z-index:1;width:228px;height:217px;place-self:center;display:grid;place-items:center;border:1px solid #bddbd155;border-radius:31px;transform:rotate(-7deg);background:linear-gradient(145deg,#e1f2ea19,#e5f8f909);box-shadow:0 20px 60px #0f2d3e44}
+html[data-theme] body.ac-ready .ac-deco-ring{position:absolute;border:1px solid #b0d9d266;border-radius:50%;inset:26px}
+html[data-theme] body.ac-ready .ac-deco-ring-two{inset:48px;border-style:dashed;border-color:#ffbb865e}
+html[data-theme] body.ac-ready .ac-deco-bars{position:absolute;display:flex;align-items:flex-end;gap:9px;height:104px;bottom:60px;transform:rotate(7deg)}
+html[data-theme] body.ac-ready .ac-deco-bars i{display:block;width:16px;border-radius:6px 6px 4px 4px;background:linear-gradient(#fdb880,#e67938);box-shadow:0 7px 19px #1b33395a}
+html[data-theme] body.ac-ready .ac-deco-bars i:nth-child(1){height:33px;background:#b0d9d2}
+html[data-theme] body.ac-ready .ac-deco-bars i:nth-child(2){height:61px;background:#90c6b8}
+html[data-theme] body.ac-ready .ac-deco-bars i:nth-child(3){height:47px}
+html[data-theme] body.ac-ready .ac-deco-bars i:nth-child(4){height:84px}
+html[data-theme] body.ac-ready .ac-deco-bars i:nth-child(5){height:70px;background:#c2dacf}
+html[data-theme] body.ac-ready .ac-deco-bars i:nth-child(6){height:99px}
+html[data-theme] body.ac-ready .ac-deco-caption{position:absolute;bottom:18px;color:#e3f4ef;font-size:9px;font-weight:850;letter-spacing:.11em;transform:rotate(7deg)}
+html[data-theme] body.ac-ready .ac-deco-caption b{color:#ffb885;margin-left:6px}
+html[data-theme] body.ac-ready .ac-insights-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:0 0 20px}
+html[data-theme] body.ac-ready .ac-insights-metric{position:relative;min-width:0;padding:22px 22px 19px;border:1px solid #dbe8e4;border-radius:19px;background:#fff!important;box-shadow:var(--px-shadow);overflow:hidden}
+html[data-theme] body.ac-ready .ac-insights-metric:before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#297373,#88c4b3)}
+html[data-theme] body.ac-ready .ac-insights-metric:nth-child(2):before{background:linear-gradient(90deg,#2e6e97,#a6c9d9)}
+html[data-theme] body.ac-ready .ac-insights-metric:nth-child(3):before{background:linear-gradient(90deg,#1f826b,#c4d9bd)}
+html[data-theme] body.ac-ready .ac-insights-metric:nth-child(4):before{background:linear-gradient(90deg,#e58542,#f6ce8e)}
+html[data-theme] body.ac-ready .ac-insights-icon{width:39px;height:39px;display:grid;place-items:center;border-radius:12px;background:#e5f3ed;color:#1a635e;font-size:19px;font-weight:900}
+html[data-theme] body.ac-ready .ac-insights-metric:nth-child(4) .ac-insights-icon{background:#fff2e6;color:#a05b23}
+html[data-theme] body.ac-ready .ac-insights-metric p{margin:16px 0 4px;color:#4c6774!important;-webkit-text-fill-color:#4c6774!important;font-size:12px;font-weight:780}
+html[data-theme] body.ac-ready .ac-insights-metric strong{display:block;color:#153849!important;-webkit-text-fill-color:#153849!important;font:850 clamp(27px,3vw,38px) "Plus Jakarta Sans",sans-serif;letter-spacing:-.055em}
+html[data-theme] body.ac-ready .ac-insights-metric small{color:#5d737c!important;-webkit-text-fill-color:#5d737c!important;font-size:11px;line-height:1.6}
+html[data-theme] body.ac-ready .ac-analytics-toolbar{display:grid;grid-template-columns:minmax(190px,1.5fr) repeat(2,minmax(135px,1fr)) auto;align-items:end;gap:14px;margin:0 0 34px;padding:21px;border:1px solid #dae7e4;border-radius:18px;background:linear-gradient(120deg,#fff,#f2f8f5)!important;box-shadow:0 8px 27px #173c4d0b}
+html[data-theme] body.ac-ready .ac-filter-intro{align-self:center;display:grid;gap:3px}
+html[data-theme] body.ac-ready .ac-filter-eyebrow{font-size:10px;letter-spacing:.13em;font-weight:850;color:#276a68}
+html[data-theme] body.ac-ready .ac-filter-intro strong{color:#173e51!important;font-weight:850;font-size:14px}
+html[data-theme] body.ac-ready .ac-filter-intro small{color:#54717d;font-size:11px;line-height:1.5}
+html[data-theme] body.ac-ready .ac-analytics-toolbar label{display:grid;gap:6px;font-size:11px;font-weight:750;color:#3b6069}
+html[data-theme] body.ac-ready .ac-analytics-toolbar input{width:100%;min-height:44px;padding:11px!important;font:600 12px "DM Sans",sans-serif;color:#193e4c!important;background:#fff!important;border:1px solid #c4dad8!important;border-radius:11px}
+html[data-theme] body.ac-ready .ac-analytics-toolbar button{min-height:44px;background:#173f50!important;color:#fff!important;-webkit-text-fill-color:#fff!important;border:1px solid #173f50!important;border-radius:11px;font-weight:750;padding:10px 16px!important}
+html[data-theme] body.ac-ready .ac-analytics-toolbar button:hover{background:#28636c!important;border-color:#28636c!important}
+html[data-theme] body.ac-ready .ac-period-status{grid-column:1/-1;margin:0!important;padding:8px 0 0;font-size:11px;color:#53707d!important;border-top:1px solid #e1ebe7}
+html[data-theme] body.ac-ready .ac-analysis-chapter{display:flex;align-items:center;justify-content:space-between;gap:15px;margin:0 0 17px}
+html[data-theme] body.ac-ready .ac-analysis-chapter h3{margin:6px 0 5px;font:800 clamp(21px,2.3vw,28px) "Plus Jakarta Sans",sans-serif;color:#183e51!important;letter-spacing:-.04em}
+html[data-theme] body.ac-ready .ac-analysis-chapter p{margin:0;color:#54717c!important;font-size:12px;line-height:1.65}
+html[data-theme] body.ac-ready .ac-analysis-chapter-index{flex:none;color:#6c888c;font-size:11px;letter-spacing:.1em;font-weight:850}
+html[data-theme] body.ac-ready .ac-analysis-chapter-second{margin-top:34px}
+html[data-theme] body.ac-ready .ac-analytics-chart{padding:25px!important;border:1px solid #d9e8e5!important;border-radius:21px!important;background:#fff!important;box-shadow:var(--px-shadow)!important}
+html[data-theme] body.ac-ready .ac-chart-head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;border-bottom:1px solid #e5eeeb;padding-bottom:18px;margin-bottom:19px}
+html[data-theme] body.ac-ready .ac-chart-head h3{color:#173e51!important;font-size:17px;letter-spacing:-.025em;margin:0 0 7px}
+html[data-theme] body.ac-ready .ac-chart-description{color:#55727b!important;max-width:67ch;font-size:12px;line-height:1.6;margin:0}
+html[data-theme] body.ac-ready .ac-chart-legend{display:inline-flex;gap:8px;align-items:center;color:#37616a!important;font-size:11px;font-weight:700;white-space:nowrap}
+html[data-theme] body.ac-ready .ac-chart-legend i{width:9px;height:9px;border-radius:100%;background:#e58542}
+html[data-theme] body.ac-ready #adminActivityChart{display:grid;gap:16px}
+html[data-theme] body.ac-ready .ac-chart-row{display:grid;grid-template-columns:minmax(116px,175px) minmax(40px,1fr) minmax(84px,112px);align-items:center;gap:18px;min-width:0}
+html[data-theme] body.ac-ready .ac-chart-label{color:#294b58!important;font-size:12px;font-weight:800}
+html[data-theme] body.ac-ready .ac-chart-track{height:13px;border-radius:99px;overflow:hidden;background:#e8f1ef!important}
+html[data-theme] body.ac-ready .ac-chart-track>span{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#286d75,#e8a36f)!important;min-width:0}
+html[data-theme] body.ac-ready .ac-chart-count{font:850 17px "Plus Jakarta Sans",sans-serif;color:#173e51!important;text-align:right}
+html[data-theme] body.ac-ready .ac-chart-count span{font:600 10px "DM Sans",sans-serif;color:#5a747c!important}
+html[data-theme] body.ac-ready .ac-course-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+html[data-theme] body.ac-ready .ac-course-card{display:flex;flex-direction:column;min-width:0;min-height:285px;padding:23px!important;border:1px solid #d8e7e2!important;border-radius:21px!important;background:linear-gradient(160deg,#fff 0%,#f9fcfb 100%)!important;box-shadow:0 9px 29px #1840560c!important;transition:transform .2s,border-color .2s,box-shadow .2s}
+html[data-theme] body.ac-ready .ac-course-card:hover{transform:translateY(-3px);border-color:#99c5bc!important;box-shadow:0 19px 45px #1840561a!important}
+html[data-theme] body.ac-ready .ac-course-card-top{display:flex;justify-content:space-between;gap:10px;align-items:center}
+html[data-theme] body.ac-ready .ac-course-symbol{display:grid;place-items:center;min-width:46px;height:46px;padding:0 6px;border-radius:13px;background:#e6f3ec!important;color:#1d6767!important;font:850 13px "Plus Jakarta Sans",sans-serif!important}
+html[data-theme] body.ac-ready .ac-course-card:nth-child(3n+2) .ac-course-symbol{background:#e7f0f9!important;color:#295c82!important}
+html[data-theme] body.ac-ready .ac-course-card:nth-child(3n) .ac-course-symbol{background:#fff0e3!important;color:#97551e!important}
+html[data-theme] body.ac-ready .ac-course-card-tag{font:850 9px "DM Sans",sans-serif;color:#54727c!important;letter-spacing:.12em}
+html[data-theme] body.ac-ready .ac-course-card h3{font:850 21px "Plus Jakarta Sans",sans-serif;letter-spacing:-.04em;color:#173e51!important;margin:16px 0 7px}
+html[data-theme] body.ac-ready .ac-course-enrolled{font:650 11px "DM Sans",sans-serif;color:#4c6e79!important;display:flex;align-items:center;gap:7px}
+html[data-theme] body.ac-ready .ac-course-enrolled-dot{width:6px;height:6px;flex:none;border-radius:50%;background:#23856b}
+html[data-theme] body.ac-ready .ac-course-score{display:flex;align-items:center;gap:11px;margin-top:18px}
+html[data-theme] body.ac-ready .ac-course-score strong{font:850 36px "Plus Jakarta Sans",sans-serif;color:#164a59!important;letter-spacing:-.06em}
+html[data-theme] body.ac-ready .ac-course-score span{color:#5b7680!important;font:650 11px/1.5 "DM Sans",sans-serif}
+html[data-theme] body.ac-ready .ac-course-meter-head{display:flex;justify-content:space-between;gap:8px;margin:11px 0 8px;color:#4d6e78!important;font-size:10.5px;font-weight:750}
+html[data-theme] body.ac-ready .ac-course-bar{height:9px;overflow:hidden;background:#e6efeb!important;border-radius:999px}
+html[data-theme] body.ac-ready .ac-course-bar>span{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#28696b,#ea9458)!important}
+html[data-theme] body.ac-ready .ac-course-card button{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto;padding:15px 0 0!important;border:0!important;background:transparent!important;color:#1e6665!important;-webkit-text-fill-color:#1e6665!important;font-size:12px;font-weight:850;text-align:left;cursor:pointer}
+html[data-theme] body.ac-ready .ac-course-card button:hover{color:#aa4b1c!important;-webkit-text-fill-color:#aa4b1c!important;text-decoration:underline}
+html[data-theme] body.ac-ready .ac-analysis-footnote{display:flex;gap:10px;align-items:flex-start;margin-top:17px;padding:15px 17px;border-radius:13px;background:#eaf4f1!important;border:1px solid #cee4dc;color:#365d65!important;font:650 11px/1.65 "DM Sans",sans-serif}
+/* Learner home: distinct immersive hero, properly visible ring and responsive meters. */
+html[data-theme="light"] body.ac-ready.dalp-account-page{background:radial-gradient(ellipse at 102% 5%,#dfeee8 0%,transparent 39%),#f7faf8!important}
+html[data-theme="light"] body.ac-ready.dalp-account-page .account-overview{border:1px solid #315e65!important;border-radius:26px!important;background:radial-gradient(ellipse at 91% 23%,#2c777a93 0%,transparent 44%),linear-gradient(113deg,#103246 0%,#1a4458 59%,#225a60 100%)!important;box-shadow:0 21px 50px #143c5324!important}
+html[data-theme="light"] body.ac-ready.dalp-account-page .account-overview h1{font-size:clamp(32px,3.75vw,53px)!important;max-width:21ch}
+html[data-theme="light"] body.ac-ready.dalp-account-page .mld-hero-progress{border:1px solid #8ac5b259!important;border-radius:20px!important;background:linear-gradient(160deg,#194b57,#123e4a)!important}
+html[data-theme="light"] body.ac-ready.dalp-account-page .mld-progress-ring{background:conic-gradient(#fca96f var(--dash-complete),#416772 var(--dash-complete))!important;box-shadow:0 0 0 1px #b6d4c831}
+html[data-theme="light"] body.ac-ready.dalp-account-page .mld-progress-ring::before{content:""!important;display:block!important;inset:12px;background:#183f4e!important;z-index:0!important}
+html[data-theme="light"] body.ac-ready.dalp-account-page .mld-progress-ring>div{position:relative;z-index:1}
+html[data-theme="light"] body.ac-ready.dalp-account-page .mld-progress-ring strong{color:#fff!important;-webkit-text-fill-color:#fff!important}
+html[data-theme="light"] body.ac-ready.dalp-account-page .mld-progress-ring small{color:#c7e1df!important;-webkit-text-fill-color:#c7e1df!important}
+html[data-theme="light"] body.ac-ready.dalp-account-page .mld-stat{position:relative;overflow:hidden;border:1px solid #d7e7e1!important;border-radius:20px!important;box-shadow:0 10px 30px #153f5110!important;background:#fff!important}
+html[data-theme="light"] body.ac-ready.dalp-account-page .mld-stat:before{content:"";position:absolute;inset:0 0 auto;height:4px;background:linear-gradient(90deg,#276e76,#c0dfd2)}
+html[data-theme="light"] body.ac-ready.dalp-account-page .mld-stat:nth-child(2):before{background:linear-gradient(90deg,#326d9d,#a7cad8)}
+html[data-theme="light"] body.ac-ready.dalp-account-page .mld-stat:nth-child(3):before{background:linear-gradient(90deg,#23876d,#8dceb9)}
+html[data-theme="light"] body.ac-ready.dalp-account-page .mld-stat:nth-child(4):before{background:linear-gradient(90deg,#e47733,#ffca8e)}
+html[data-theme="light"] body.ac-ready.dalp-account-page .mld-sync-banner{display:flex;gap:15px;align-items:center;border:1px solid #cae2db!important;border-radius:15px!important;background:#edf7f3!important;box-shadow:none!important;padding:16px 18px!important}
+html[data-theme="light"] body.ac-ready.dalp-account-page .mld-sync-banner>div{min-width:0;flex:1}
+html[data-theme="light"] body.ac-ready.dalp-account-page .mld-sync-banner p{color:#3d6068!important;line-height:1.5}
+html[data-theme="light"] body.ac-ready.dalp-account-page .mld-sync-action{flex:none;display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:40px;padding:9px 14px;border:1px solid #b1d8ce;border-radius:11px;background:#fff;color:#1a5d59;font:800 11.5px "DM Sans",sans-serif;cursor:pointer}
+html[data-theme="light"] body.ac-ready.dalp-account-page .mld-sync-action:hover{border-color:#508d85;background:#f7fbf9}
+html[data-theme="light"] body.ac-ready.dalp-account-page .mld-sync-action:disabled{opacity:.65;cursor:progress}
+html[data-theme="light"] body.ac-ready.dalp-account-page .mld-resume{border:1px solid #d1e6dd!important;border-radius:20px!important;background:linear-gradient(115deg,#fff 0%,#edf7f2 100%)!important;box-shadow:var(--px-shadow)!important}
+html[data-theme="light"] body.ac-ready.dalp-account-page .progress-card{border-radius:19px!important;box-shadow:0 9px 27px #163c4e12!important}
+html[data-theme="light"] body.ac-ready.dalp-account-page .progress-card .bar{height:11px!important;background:#e5efeb!important;border:1px solid #d3e5df}
+html[data-theme="light"] body.ac-ready.dalp-account-page .progress-card .bar .fill{height:100%!important;max-width:100%;background:linear-gradient(90deg,var(--track),#f29a62)!important;transition:width .25s ease}
+html[data-theme="light"] body.ac-ready.dalp-account-page .progress-card .mld-course-percent{background:#eaf5f1!important;border:1px solid #d1e7de!important;color:#1a625f!important;-webkit-text-fill-color:#1a625f!important}
+html[data-theme="light"] body.ac-ready.dalp-account-page :is(.mld-record-card,.account-guide){border-radius:19px!important;box-shadow:0 7px 26px #153e4d0d!important}
+/* Shared remaining private pages: progress reports, reviewer, profile and utility cards. */
+html[data-theme] body.ac-ready :is(.ip-hero,.review-hero,.profile-hero,.px-utility-hero){position:relative;overflow:hidden;border-radius:0 0 26px 26px;background:radial-gradient(ellipse at 88% 17%,#37848083,transparent 43%),linear-gradient(112deg,#12384b,#255e64)!important;box-shadow:0 15px 38px #12435816}
+html[data-theme] body.ac-ready :is(.ip-hero,.review-hero,.profile-hero,.px-utility-hero) h1{color:#fff!important;-webkit-text-fill-color:#fff!important;letter-spacing:-.055em;line-height:1.13}
+html[data-theme] body.ac-ready :is(.ip-hero,.review-hero,.profile-hero,.px-utility-hero) p{color:#d8ebe9!important;-webkit-text-fill-color:#d8ebe9!important}
+html[data-theme] body.ac-ready :is(.ip-panel,.ip-detail,.review-inbox,.review-detail,.profile-card,.px-utility-panel,.cert-view-panel){border:1px solid #d6e7e1!important;border-radius:21px!important;background:#fff!important;box-shadow:var(--px-shadow)!important}
+html[data-theme] body.ac-ready :is(.ip-stats article,.review-stat){border:1px solid #d7e7e3!important;border-radius:18px!important;background:#fff!important;box-shadow:0 11px 30px #153f5111!important}
+html[data-theme] body.ac-ready :is(.ip-filters,.review-filters,.profile-fields) :is(input,select,textarea){background:#f8fbf9!important;border:1px solid #c8dad8!important;color:#163d4c!important;min-height:44px;border-radius:10px}
+html[data-theme] body.ac-ready .ip-table th{background:#eaf5ef!important;color:#305a65!important;font-weight:850}
+html[data-theme] body.ac-ready .ip-table tbody tr:hover{background:#f6faf8}
+html[data-theme] body.ac-ready .ip-progress{height:10px;background:#e0efeb!important}
+html[data-theme] body.ac-ready .ip-progress>span{background:linear-gradient(90deg,#247474,#ed9b64)!important}
+html[data-theme] body.ac-ready .review-inbox-head{background:linear-gradient(130deg,#f2faf5,#fff);border-bottom:1px solid #dcece5}
+html[data-theme] body.ac-ready .profile-card-heading .profile-section-icon{background:#e6f4ee;color:#1e6768}
+html[data-theme] body.ac-ready .profile-btn-primary{background:#1f6463!important;color:#fff!important;-webkit-text-fill-color:#fff!important}
+html[data-theme] body.ac-ready :is(.px-utility-panel,.cert-view-panel){padding:clamp(20px,2.7vw,32px)!important}
+html[data-theme] body.ac-ready :is(.px-utility-panel,.cert-view-panel) :is(h2,h3){color:#173e51!important}
+@media(max-width:1130px){html[data-theme] body.ac-ready .ac-insights-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}html[data-theme] body.ac-ready .ac-course-grid{grid-template-columns:repeat(2,minmax(0,1fr))}html[data-theme] body.ac-ready .ac-analytics-toolbar{grid-template-columns:repeat(2,minmax(0,1fr))}html[data-theme] body.ac-ready .ac-filter-intro{grid-column:1/-1}html[data-theme] body.ac-ready .ac-analytics-toolbar button{justify-self:start}}
+@media(max-width:760px){html[data-theme] body.ac-ready .ac-courses-heading{grid-template-columns:1fr;min-height:0;padding:30px 24px}html[data-theme] body.ac-ready .ac-courses-deco{display:none}html[data-theme] body.ac-ready .ac-chart-row{grid-template-columns:minmax(95px,135px) minmax(20px,1fr) minmax(54px,78px);gap:10px}html[data-theme] body.ac-ready .ac-chart-count span{display:none}html[data-theme] body.ac-ready .ac-course-grid{grid-template-columns:1fr}html[data-theme] body.ac-ready .ac-course-card{min-height:260px}html[data-theme] body.ac-ready .ac-courses-heading-actions a{width:100%}html[data-theme="light"] body.ac-ready.dalp-account-page .mld-progress-ring::before{inset:9px}}
+@media(max-width:530px){html[data-theme] body.ac-ready .ac-insights-metrics{gap:9px}html[data-theme] body.ac-ready .ac-insights-metric{padding:16px 13px}html[data-theme] body.ac-ready .ac-insights-metric strong{font-size:26px}html[data-theme] body.ac-ready .ac-insights-metric p{font-size:11px}html[data-theme] body.ac-ready .ac-analytics-toolbar{grid-template-columns:1fr;padding:16px}html[data-theme] body.ac-ready .ac-filter-intro{grid-column:auto}html[data-theme] body.ac-ready .ac-analytics-toolbar button{width:100%}html[data-theme] body.ac-ready .ac-chart-row{grid-template-columns:1fr auto;gap:7px}html[data-theme] body.ac-ready .ac-chart-track{grid-row:2;grid-column:1/-1}html[data-theme] body.ac-ready .ac-chart-count{grid-column:2;grid-row:1}html[data-theme] body.ac-ready .ac-chart-label{grid-column:1;grid-row:1}html[data-theme] body.ac-ready .ac-analysis-chapter-index{display:none}html[data-theme="light"] body.ac-ready.dalp-account-page .mld-sync-banner{flex-wrap:wrap}html[data-theme="light"] body.ac-ready.dalp-account-page .mld-sync-action{width:100%}}
+@media(prefers-reduced-motion:reduce){html[data-theme] body.ac-ready :is(.ac-course-card,.ac-courses-heading-actions a,.mld-sync-action,.progress-card .fill){transition:none!important}}

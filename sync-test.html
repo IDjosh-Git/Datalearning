@@ -16,7 +16,7 @@
 <link href="assets/icons/favicon-180.png" rel="apple-touch-icon" sizes="180x180"/>
 <link href="assets/styles/sync-test-layout.css" rel="stylesheet"/>
 <link href="assets/styles/design-system.css" rel="stylesheet"/>
-<link href="assets/styles/private-workspace.css" rel="stylesheet"/><link href="assets/styles/private-shell-modern.css" rel="stylesheet"/><link rel="stylesheet" href="assets/styles/premium-unified.css"><link rel="stylesheet" href="assets/styles/unified-academy-v3.css" data-dlx-style="v3"><link rel="stylesheet" href="assets/styles/unified-site-v5.css"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"/><link rel="stylesheet" href="assets/styles/public-search-premium.css"/><link rel="stylesheet" href="assets/styles/private-premium-rebuild.css?v=unified-20261110-r2"/></head>
+<link href="assets/styles/private-workspace.css" rel="stylesheet"/><link href="assets/styles/private-shell-modern.css" rel="stylesheet"/><link rel="stylesheet" href="assets/styles/premium-unified.css"><link rel="stylesheet" href="assets/styles/unified-academy-v3.css" data-dlx-style="v3"><link rel="stylesheet" href="assets/styles/unified-site-v5.css"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"/><link rel="stylesheet" href="assets/styles/public-search-premium.css"/><link rel="stylesheet" href="assets/styles/private-premium-rebuild.css?v=unified-20261110-r2"/><link rel="stylesheet" href="assets/styles/private-experience-v3.css?v=premium-20261110-r4"/></head>
 <body class="dalp-utility-page dlx-rebuilt" data-admin-console="sync" data-private-workspace="true" data-responsive-page="sync-test"><div id="dlxPageLoader" class="dlx-page-loader" role="status" aria-live="polite" aria-label="Loading DataLearning">
   <div class="dlx-loader-ambient dlx-loader-ambient-one" aria-hidden="true"></div>
   <div class="dlx-loader-ambient dlx-loader-ambient-two" aria-hidden="true"></div>
@@ -45,21 +45,20 @@
     <p class="dlx-loader-signoff">LEARN <span>·</span> PRACTISE <span>·</span> GROW</p>
   </div>
 </div><script src="assets/scripts/page-loader.js?v=unified-20261110-r2"></script>
-<main id="main-content"><div class="card">
-<h1>Check saved learning progress</h1>
-<p>Check saved progress across all six learning paths. Retry any course that has not finished syncing.</p>
-<div class="row wait" id="user">Checking learner account…</div>
-<div class="row wait" id="introduction">Foundations: waiting…</div>
-<div class="row wait" id="excel">Excel: waiting…</div>
-<div class="row wait" id="sql">SQL: waiting…</div>
-<div class="row wait" id="powerbi">Power BI: waiting…</div>
-<div class="row wait" id="python">Python: waiting…</div>
-<div class="row wait" id="ai">AI Integration: waiting…</div>
-<button id="retry" class="lp-primary" type="button">Sync all six courses</button>
-<a href="account.html">My Account</a>
-<a href="index.html">Learning Portal</a>
-</div>
-</main>
+<main id="main-content" class="px-utility-main px-sync">
+ <section class="px-utility-hero"><div class="px-utility-hero-copy"><span class="px-utility-overline"><i aria-hidden="true"></i> WORKSPACE / CLOUD PROGRESS</span><h1>Learning <em>sync.</em></h1><p>A clear status report for your supported cloud-synced learning paths. Recheck anytime to confirm the latest recorded lessons.</p><div class="px-utility-hero-links"><a href="account.html">Back to my dashboard ↗</a><a href="catalog.html">Explore learning paths ↗</a></div></div><div class="px-utility-hero-art" aria-hidden="true"><span>↻</span><small>DATA IN SYNC</small></div></section>
+ <div class="px-utility-grid"><section class="card px-utility-panel" aria-labelledby="syncPanelTitle"><div class="px-panel-heading"><span class="px-panel-symbol" aria-hidden="true">↻</span><div><span class="px-panel-kicker">LIVE PROGRESS</span><h2 id="syncPanelTitle">Saved course activity</h2><p>Six legacy cloud-sync paths currently supported by this checker.</p></div></div>
+ <div class="px-sync-list" aria-label="Per-course sync status">
+ <div class="row wait" id="user">Checking learner account…</div>
+ <div class="row wait" id="introduction">Foundations: waiting…</div>
+ <div class="row wait" id="excel">Excel: waiting…</div>
+ <div class="row wait" id="sql">SQL: waiting…</div>
+ <div class="row wait" id="powerbi">Power BI: waiting…</div>
+ <div class="row wait" id="python">Python: waiting…</div>
+ <div class="row wait" id="ai">AI Integration: waiting…</div></div>
+ <div class="px-utility-actions"><button id="retry" class="lp-primary" type="button">Sync all six courses</button><a href="account.html">Return to dashboard →</a></div></section>
+ <aside class="px-guide-panel" aria-label="Understanding your saved progress"><span class="px-panel-kicker">YOUR DATA</span><h2>Pick up where you left off.</h2><p>Completed learning units appear here after your session is verified and each supported course has been checked.</p><div class="px-guide-tip"><strong>Something looks outdated?</strong><span>Use the sync action again. If your network is unavailable, your existing local learning progress remains on this device.</span></div><a href="connection-test.html">Check connection ↗</a></aside></div>
+ </main>
 <script defer src="assets/scripts/progress-cloud.js"></script>
 <script>
 async function run(){
