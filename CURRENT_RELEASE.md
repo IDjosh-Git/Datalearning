@@ -1,3 +1,33 @@
+# DataLearning — Premium Course Library & Learning Experience (10 November 2026)
+
+**Base:** Four-Level Comprehensive Curriculum — complete project release.
+
+- Redesigned the Courses catalogue into a premium, clearly structured landing page: learning route, seven guided paths, four-level specialization explorer and direct progress entry.
+- Seven course cards now show focus area, weekly lessons, worked examples, practice quizzes, and local completion progress, plus a context-aware Start / Continue / Review link.
+- Added lightweight course filters for Data foundations, Dashboards & BI, Data preparation, and keyword search. Full 10-week outlines stay in accessible on-demand disclosures.
+- Seven core lesson readers now show progress and current week above the lesson; working Previous / Next buttons; improved reading hierarchy, lesson jump links, sidebar clarity, and mobile spacing.
+- The 31-module specialist explorer retains all four levels and mobile-friendly cases; its large curriculum comparison table is now optional and collapsed by default.
+- Applied consistent premium treatments to the Python and AI specialist courses, their roadmaps, and curriculum extensions; improved mobile link and card contrast.
+- Kept original 70 week identifiers and quizzes, 31 specialist modules, sign-in, grading, saved progress and Supabase database operations intact. No migrations or data changes.
+- Added `assets/styles/course-experience-premium.css`, `assets/styles/specialist-course-premium.css`, and `tests/premium-course-experience.mjs` with cache-versioned page references.
+
+**Verification:** `npm run verify:deployment` passed. Isolated Chromium render/interaction checks covered catalogue filters and course search, 31 specialist modules, weekly navigation and progress at 320/390/768/1440px without horizontal overflow. Python/AI resource layouts passed static responsive rendering at 390/768/1440px. Live browser navigation and authenticated Supabase operations were not verified in this environment.
+
+---
+
+# DataLearning — Clean Practice Arena / Premium Editor Cards (10 November 2026)
+
+- Removed more than 1,000 unused legacy CSS rule groups from Practice Arena without deleting required site-wide styles.
+- Introduced `assets/styles/practice-arena-refined.css` as the single design source for the Excel, SQL and Python editor cards and the optional Challenge Brief.
+- The Challenge Brief starts **closed** for every challenge; open with **Show brief** and close with **Hide brief**. The challenge title and question remain visible.
+- Premium three-column editor selector on desktop, stacked selections on mobile, with readable selected/hover/focus states.
+- Preserved existing compact editors, collapsible Excel/SQL data, results, answer feedback, challenge selector and execution engines.
+- Full deployment suite passed; isolated Chromium layout checks passed at 320/390/768/1440px. Live deployment and database not changed.
+
+Details: `docs/PRACTICE_ARENA_CLEAN_CSS_BRIEF_EDITOR_20261110.md`.
+
+---
+
 # DataLearning — Compact, Content-Sized Practice Arena (10 November 2026)
 
 **Base:** DataLearning Premium Practice Arena Collapsible Editors, full-project ZIP.
@@ -106,3 +136,12 @@ Deploy the full ZIP over the previous version. Refresh an admin session and veri
 - New `tests/sidebar-unified-audit.mjs` checks shared sidebar links, styles and close behaviour contracts across all relevant routes.
 
 **Limits:** Browser checks use isolated local UI fixtures. These do not substitute for authentication or real learner progress testing against live Supabase, nor deployment-specific mobile device testing. No data tables, RLS policies, API credentials or learner records were changed.
+
+## Four-Level Curriculum Expansion — 10 November 2026
+
+- Seven existing core courses and 70 week identifiers remain unchanged.
+- 31 specialist modules in four proficiency levels now appear on `catalog.html`, with a premium, mobile-responsive explorer, filters and learning modules.
+- Each existing course reader links to foundation, applied and advanced pathways.
+- The detailed source and instructor blueprint: `assets/data/master-learning-pathway.json`, `curriculum/build_master_pathway.py`, `docs/MASTER_FOUR_LEVEL_CURRICULUM_20261110.md`.
+- No database changes, credentials, or migration. Specialist content is instructional and does not grant progress/certificates without assessment.
+

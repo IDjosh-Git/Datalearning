@@ -61,3 +61,16 @@ body.za-page .za-btn{display:inline-flex;align-items:center;justify-content:cent
 @media(prefers-reduced-motion:reduce){.za-lesson-sections button{transition:none}}
 
 .za-case-study{background:linear-gradient(135deg,#ebf5f3,#f9fcfb);border:1px solid #cee3dd;border-radius:13px;padding:20px 22px;margin-top:18px}.za-case-label{font-size:.67rem;font-weight:900;letter-spacing:.09em;color:#276e5e;margin-bottom:10px}.za-case-study p{color:#284e51;font-size:.94rem;line-height:1.85;margin:0;max-width:76ch}@media(max-width:640px){.za-case-study{padding:15px}.za-case-study p{font-size:.9rem}}
+
+/* Career pathways attached to the seven existing weekly course readers. */
+.za-career-bridge{border:1px solid #bdddd3!important;background:linear-gradient(155deg,#f3faf8,#fff)!important;padding:clamp(20px,3vw,32px)!important}
+.za-career-bridge h2{color:#143d48!important;font-size:clamp(20px,2.4vw,28px)!important;line-height:1.25!important;margin:9px 0 10px!important}
+.za-career-bridge>p{color:#385d66!important;line-height:1.7;max-width:64ch}
+.za-career-links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:18px 0}
+.za-career-links a{display:flex;gap:9px;align-items:center;flex-wrap:wrap;padding:15px 12px;border:1px solid #c5ded8;border-radius:13px;background:#fff;color:#183f49!important;text-decoration:none!important;min-width:0}
+.za-career-links a>span:first-child{background:#d9f0e8;color:#10675d;font-size:11px;font-weight:900;padding:6px 8px;border-radius:9px}
+.za-career-links a strong{flex:1;min-width:80px;font-size:12px;line-height:1.4}
+.za-career-links a:hover{background:#e1f3ed!important;border-color:#207b74!important;color:#103b40!important}
+.za-career-all{display:inline-flex;border-radius:11px;background:#154f53;color:#fff!important;padding:11px 15px;text-decoration:none!important;font-weight:800;font-size:13px}
+.za-career-all:hover{background:#0d3a40!important;color:#fff!important}
+@media(max-width:700px){.za-career-links{grid-template-columns:1fr}.za-career-links a{padding:12px}.za-career-bridge{padding:18px!important}}

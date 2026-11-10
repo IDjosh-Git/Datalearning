@@ -3,7 +3,7 @@ import fs from 'node:fs';
 
 // Static palette and state-contract regression check. Browser pixel tests still
 // belong in a deployed preview (or local browser test environment).
-const root = fs.readFileSync('assets/styles/practice-arena-modern.css', 'utf8');
+const root = fs.readFileSync('assets/styles/practice-arena-modern.css', 'utf8') + '\n' + fs.readFileSync('assets/styles/practice-arena-refined.css', 'utf8');
 const global = fs.readFileSync('assets/styles/premium-unified.css', 'utf8');
 const code = fs.readFileSync('assets/scripts/practice.js', 'utf8');
 const ide = fs.readFileSync('assets/scripts/arena-ide.js', 'utf8');
@@ -28,7 +28,7 @@ const pairs = {
   'console diagnostics': ['#f3fbfe', '#142e42'],
   'selected challenge': ['#1b4051', '#ecf7f3'],
   'selection badge': ['#ffffff', '#173e55'],
-  'selected subject': ['#173e55', '#e0f3ef'],
+  'selected subject': ['#ffffff', '#173f54'],
   'challenge filter label': ['#24485a', '#ffffff'],
 };
 for (const [label,[fg,bg]] of Object.entries(pairs)) {

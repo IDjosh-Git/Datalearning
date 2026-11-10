@@ -1,10 +1,17 @@
 # DataLearning — Seven-Path Academy
 
-**Maintained release: 10 November 2026 — streamlined source and unified premium site.**
+**Maintained release: 10 November 2026 — four-level comprehensive career curriculum and premium learning experience.**
 
 DataLearning is a responsive learning app for practical data analysis. It contains seven current learning paths: **Data Analysis, Excel, SQL, Power BI, Tableau, Power Query, and Introductory Statistics**. The 70 weekly modules include concept explanations, worked examples, hands-on exercises and separate **Questions to Try** pages. Learners can track course progress and attempt mastery assessments.
 
 The app also retains **AI Tutor, floating AI, Learning Coach, Learning Lab, Study Tools, Practice Arena, Practice Studio, capstone submission/review, verified certificates, account management and protected administration**. Older Python and AI learning paths remain available for returning learners.
+
+
+## New: complete Beginner → Expert learning pathway (10 November 2026)
+
+The **Courses** page now includes a searchable, four-stage master curriculum with **31 newly authored specialist modules** across Analytics, Data Engineering, Business Intelligence, Data Science and AI. Each includes prerequisites, four key topics, a substantial explanation, a worked business case, four-step practical workflow, a phone-friendly micro-project, its answer and a quality warning. The levels are Beginner (7 modules), Intermediate (8), Advanced (8) and Expert (8). The original seven active courses (70 weekly lessons) now link learners to relevant next-stage topics. See [full curriculum blueprint](docs/MASTER_FOUR_LEVEL_CURRICULUM_20261110.md).
+
+**Scope:** New cloud, streaming and MLOps topics are illustrated through synthetic mini-cases and design exercises; the app does not execute Spark, Kafka, Snowflake or cloud accounts through these lessons. Existing 70 weekly course IDs, quiz results, sign-in, certificate rules and Supabase progress logic are unchanged. Run `node tests/master-pathway-curriculum.mjs` to verify the added material.
 
 ## Where to start
 

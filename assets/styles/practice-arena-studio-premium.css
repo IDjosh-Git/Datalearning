@@ -19,9 +19,9 @@ html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .pc-detail::b
 html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail>.pc-overline{display:inline-flex!important;align-items:center;letter-spacing:.11em!important;font-weight:850!important;font-size:.68rem!important;text-transform:uppercase;color:#276e70!important;margin:0 0 8px!important;}
 html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail>h2{font-size:clamp(1.4rem,2.2vw,2.25rem)!important;line-height:1.18!important;letter-spacing:-.045em!important;font-weight:850!important;color:var(--ap-ink)!important;max-width:900px!important;margin:0 0 12px!important;}
 html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail>.pc-question{background:#f2f8f8!important;border:1px solid #d8e8e8!important;border-left:4px solid var(--ap-teal)!important;border-radius:13px!important;padding:17px 20px!important;font-size:.94rem!important;line-height:1.7!important;color:#264a58!important;box-shadow:none!important;}
-html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .arena-learning-brief{margin:15px 0 20px!important;border-radius:14px!important;border:1px solid #deeaec!important;background:#fff!important;padding:15px 18px!important;box-shadow:0 4px 14px rgba(14,54,69,.035)!important;}
-html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .arena-learning-brief .arena-brief-header{padding-bottom:8px!important;}
-html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .arena-learning-brief .arena-brief-columns{gap:18px!important;}
+
+
+
 html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .arena-small-kicker{display:block!important;color:#39817d!important;letter-spacing:.13em!important;font-size:.61rem!important;font-weight:900!important;text-transform:uppercase;line-height:1.4;}
 /* SQL reference and Excel worksheet start collapsed. Formula input remains operable. */
 html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .pc-schema.arena-reference-ready{padding:0!important;background:#f8fbfb!important;border:1px solid var(--ap-border)!important;border-radius:15px!important;overflow:hidden;box-shadow:none!important;margin:15px 0!important;}
@@ -154,7 +154,7 @@ html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] :is(.ide-resu
  html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .pc-wrap{width:calc(100% - 22px)!important;max-width:calc(100% - 22px)!important;}
  html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .pc-detail{padding:15px!important;border-radius:16px!important;}
  html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail>.pc-question{padding:14px!important;font-size:.87rem!important;}
- html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .arena-learning-brief{padding:12px!important;}
+ 
  html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] :is(.arena-reference-heading,.arena-table-disclosure){align-items:flex-start!important;flex-wrap:wrap!important;padding:13px!important;}
  html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .arena-table-toggle{width:100%!important;justify-content:space-between!important;}
  html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .arena-workspace-heading{align-items:flex-start;flex-direction:column;gap:9px;margin-top:14px;padding-bottom:12px;}
