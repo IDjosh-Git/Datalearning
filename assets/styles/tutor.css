@@ -4109,3 +4109,6 @@ html[data-theme] body[data-responsive-page="tutor"] .tutor-side-top{
  html[data-theme] body[data-responsive-page="tutor"] :is(.tutor-sidebar,.tutor-chat){border-radius:18px!important}
  html[data-theme] body[data-responsive-page="tutor"] main .tutor-intro.dalp-themed-hero .dalp-context-note{font-size:11px!important;line-height:1.6!important}
 }
+
+/* Tutor Studio already includes full AI; suppress a legacy floating coach on all viewports. */
+body[data-responsive-page="tutor"] #dl-float-coach,body[data-responsive-page="tutor"] .dl-float-coach{display:none!important;visibility:hidden!important;pointer-events:none!important}

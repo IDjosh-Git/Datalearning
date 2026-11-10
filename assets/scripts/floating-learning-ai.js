@@ -1,6 +1,8 @@
 /** DataLearning site-wide assistant: guest-safe offline guide plus authenticated provider AI. */
 (() => {
   'use strict';
+  // Tutor Studio already provides its own full AI interface. Do not create a second coach.
+  if (/(?:^|\/)tutor\.html$/i.test(location.pathname) || document.body?.dataset.responsivePage === 'tutor') return;
   const BASE = location.pathname.includes('/courses/') ? '../' : '';
   const CHAT_URL = '/api/tutor';
   const ICON = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3 14.4 9.6 21 12l-6.6 2.4L12 21l-2.4-6.6L3 12l6.6-2.4L12 3z"/><path d="M19 3v4M17 5h4"/></svg>';

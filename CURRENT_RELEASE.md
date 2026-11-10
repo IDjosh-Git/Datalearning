@@ -1,3 +1,30 @@
+# DataLearning — Practice Arena Premium Studio & Collapsible Datasets
+
+**Release:** 10 November 2026  
+**Base:** DataLearning Excel LET / Premium Challenges / Tutor Fix — complete site package
+
+## New in this release
+
+- **Excel Formula Studio:** the editable worksheet table starts **collapsed**. A labelled **Show table** button opens the cell grid on demand; **Hide table** collapses it without clearing the current formula or workbook values. The existing **Show extra rows** control still works inside the expanded worksheet. **Reset** returns the table to its collapsed state.
+- **SQL Query Studio:** the table-schema reference also starts collapsed, with accessible **Show schema / Hide schema** controls. Its normal read-only execution and Schema Inspector remain available.
+- **All three editors:** applied a modern two-column editor/output workspace on desktop with responsive stacked panels on mobile, more legible tools, distinct active results tabs, improved Python code and console surfaces, and consistent focus/hover contrast. Editors and results preserve their existing implementations and grading behavior.
+- **Answer and grading cards:** premium success/retry assessment surfaces, side-by-side expected/actual values where available, a refined on-demand hint/solution card, and a user-invoked **Copy answer** control. The worked solution still appears **only** after selecting **View worked answer**.
+- **Challenge navigation:** previous challenge-selector, learner history, authentication, content and Supabase wiring remain unchanged. A new route-scoped stylesheet and small presentation controller are used rather than changes to the database.
+
+## Validation and limitations
+
+- `npm run verify:deployment` passed (Academy, security, Practice Arena and AI Tutor suites).
+- New `tests/practice-arena-workspace-v2.mjs` verifies the generated Excel worksheet disclosure, hidden-by-default table, accessible toggle markup, separate formula bar, unchanged extra-row control, SQL schema disclosure and answer-card wiring.
+- CSS parsed without top-level errors; source JavaScript syntax checks passed.
+- Browser-based local visual verification **could not be completed**: this environment blocks Chromium navigation to both local and file URLs. Confirm desktop and mobile appearance, showing/hiding tables, and result rendering in a deployed preview before production launch.
+- No new SQL dialect or Excel calculation functions are added in this release. The existing `LET` evaluation stays available; Python execution and SQL runtime capabilities remain those of the previous package.
+
+## Deployment
+
+Deploy the **complete project ZIP**, not just the CSS. On the Practice Arena test each subject, expand/collapse Excel data, verify query output and challenge assessment, then check a worked answer. Live database behavior was not retested in this environment.
+
+---
+
 # DataLearning — Private Sidebar Consolidation & Hover Contrast
 
 **Release:** 10 November 2026  
