@@ -21,10 +21,11 @@
  function paint(kind='loading'){
   if(!document.body)return;
   if(!gate){gate=document.createElement('div');gate.id='dalp-auth-gate';gate.setAttribute('role','status');gate.setAttribute('aria-live','polite');document.body.prepend(gate);}
-  const isError=kind==='error',denied=kind==='denied';gate.className=(isError?'dalp-gate-error':denied?'dalp-gate-denied':'');
+  const isError=kind==='error',denied=kind==='denied';gate.className=(isError?'dalp-gate-error':denied?'dalp-gate-denied':'dalp-gate-loading');
   const h=denied?'This area is for administrators':isError?'Unable to verify your access':'Checking your learning account';
   const desc=denied?'You are signed in as a learner. Your courses and saved progress remain available. Contact your platform administrator if you need a different role.':isError?'We could not finish checking your account. Please check your connection and select Retry. You can also return to sign-in without losing your selected page.':'Validating your session and permissions before opening the page.';
-  gate.innerHTML='<section class="dalp-gate-box"><div class="dalp-gate-brand"><img src="'+toPage('assets/icons/da-logo.svg').href+'" alt=""><span>Data Analysis Learning Path<small>Secure '+(denied?'admin':'learning')+' area</small></span></div><span class="dalp-gate-spin" aria-hidden="true"></span><h2>'+h+'</h2><p>'+desc+'</p>'+(denied?'<a class="dalp-gate-go" href="'+toPage('index.html').href+'">Return to learner dashboard →</a>':isError?'<div class="dalp-gate-actions"><button type="button" id="dalpGateRetry">Retry connection</button><a class="dalp-gate-go" href="'+loginDestination()+'">Return to sign-in</a></div>':'')+'</section>';
+  gate.innerHTML='<section class="dalp-gate-box"><div class="dalp-gate-brand"><img src="'+toPage('assets/icons/da-logo.svg').href+'" alt=""><span>Data Analysis Learning Path<small>Secure '+(denied?'admin':'learning')+' area</small></span></div><h2>'+h+'</h2><p>'+desc+'</p>'+(denied?'<a class="dalp-gate-go" href="'+toPage('index.html').href+'">Return to learner dashboard →</a>':isError?'<div class="dalp-gate-actions"><button type="button" id="dalpGateRetry">Retry connection</button><a class="dalp-gate-go" href="'+loginDestination()+'">Return to sign-in</a></div>':'')+'</section>';
+  window.dispatchEvent?.(new CustomEvent('dalp:auth-gate-state',{detail:{state:kind}}));
   if(isError)gate.querySelector('#dalpGateRetry').addEventListener('click',check);
  }
  function showError(){paint('error');}

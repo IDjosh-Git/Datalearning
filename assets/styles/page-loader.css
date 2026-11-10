@@ -1,39 +1,45 @@
-/* Premium, real page-start loader. Shared by public and protected pages; protected pages also retain the auth gate.
-   The loader is opt-in so pages remain usable when JavaScript is disabled. */
-#dlpPageLoader{display:none;position:fixed;inset:0;z-index:2147483450;isolation:isolate;
-  box-sizing:border-box;padding:24px;align-items:center;justify-content:center;
-  background:radial-gradient(ellipse at 72% 18%,#e2f2f1 0,transparent 43%),
-             radial-gradient(ellipse at 17% 78%,#fff1e8 0,transparent 47%),
-             linear-gradient(155deg,#f9fbfc 0%,#f3f7f8 100%);
-  color:#17394a;font-family:'Plus Jakarta Sans','DM Sans',system-ui,-apple-system,sans-serif;
-  text-align:center;opacity:1;visibility:visible;transition:opacity .24s ease,visibility .24s ease}
-html.dlp-loader-pending #dlpPageLoader{display:flex}
-html.dlp-loader-leaving #dlpPageLoader{display:flex;opacity:0;visibility:hidden;pointer-events:none}
-#dlpPageLoader *{box-sizing:border-box}
-#dlpPageLoader .dlp-loader-content{width:min(100%,340px);display:grid;justify-items:center;gap:13px}
-#dlpPageLoader .dlp-loader-emblem{width:88px;height:88px;display:grid;place-items:center;
-  border:1px solid #d8e5e8;border-radius:25px;
-  background:linear-gradient(145deg,#fff,#edf6f5);
-  box-shadow:0 20px 48px #25455923,0 5px 14px #25455913,inset 0 1px 1px #fff;
-  transform:perspective(400px) rotateX(9deg) rotateY(-11deg);will-change:transform;
-  animation:dlp-loader-tilt 2.2s ease-in-out infinite alternate}
-#dlpPageLoader .dlp-loader-emblem svg{width:61px;height:61px;object-fit:contain;filter:drop-shadow(0 6px 7px #25455922)}
-#dlpPageLoader .dlp-loader-brand{font-size:22px;line-height:1.24;letter-spacing:-.06em;font-weight:850;color:#254559}
-#dlpPageLoader .dlp-loader-brand span{color:#ad4e23}
-#dlpPageLoader .dlp-loader-kicker{font-weight:750;letter-spacing:.16em;font-size:9px;color:#476a7b;text-transform:uppercase}
-#dlpPageLoader .dlp-loader-description{font-size:12px;line-height:1.6;font-weight:550;color:#526979;margin:0}
-#dlpPageLoader .dlp-loader-track{width:186px;height:4px;border-radius:50px;background:#d9e6e8;
-  margin-top:8px;position:relative;overflow:hidden}
-#dlpPageLoader .dlp-loader-track:before{content:'';position:absolute;left:0;top:0;height:100%;width:35%;
-  border-radius:inherit;background:linear-gradient(90deg,#35637c,#f27329);
-  animation:dlp-loader-sweep 1.05s ease-in-out infinite alternate}
-@keyframes dlp-loader-tilt{from{transform:perspective(400px) rotateX(9deg) rotateY(-11deg) translateY(1px)}to{transform:perspective(400px) rotateX(-3deg) rotateY(10deg) translateY(-3px)}}
-@keyframes dlp-loader-sweep{from{transform:translateX(0)}to{transform:translateX(190%)}}
-@media(prefers-reduced-motion:reduce){#dlpPageLoader .dlp-loader-emblem{animation:none;transform:none}#dlpPageLoader .dlp-loader-track:before{animation:none;width:75%}#dlpPageLoader{transition:none}}
-/* During a private auth check, present the identical branded loader rather than
-   revealing protected markup. The auth gate remains active behind this overlay
-   and becomes visible if verification takes longer or fails. */
-html.dalp-auth-checking.dlp-loader-pending body > #dlpPageLoader{
-  display:flex!important;
-  z-index:2147483645!important;
-}
+/* Unified DataLearning insight loader — a single visual language across all routes.
+   The authenticated shell keeps this visible during the session check; it never exposes private content. */
+#dlxPageLoader{position:fixed;inset:0;z-index:2147483450;display:none;place-items:center;
+  isolation:isolate;overflow:hidden;padding:24px;box-sizing:border-box;text-align:center;
+  background:radial-gradient(ellipse at 52% 65%,#1e5660 0%,transparent 44%),
+             radial-gradient(ellipse at 5% 8%,#18405a 0%,transparent 45%),
+             linear-gradient(154deg,#091f31 0%,#103345 58%,#092838 100%);
+  color:#f5faf8;font-family:'Plus Jakarta Sans','DM Sans',system-ui,sans-serif;
+  opacity:1;visibility:visible;transition:opacity .34s ease,visibility .34s ease}
+html.dlx-loader-pending #dlxPageLoader{display:grid}
+html.dlx-loader-leaving #dlxPageLoader{display:grid;opacity:0;visibility:hidden;pointer-events:none}
+#dlxPageLoader *,#dlxPageLoader *::before,#dlxPageLoader *::after{box-sizing:border-box}
+#dlxPageLoader .dlx-loader-ambient{position:absolute;width:min(78vw,690px);aspect-ratio:1;border-radius:50%;border:1px solid #a8d6ce14;pointer-events:none}
+#dlxPageLoader .dlx-loader-ambient-one{transform:translate(-48%,-49%) rotate(-20deg)}
+#dlxPageLoader .dlx-loader-ambient-two{width:min(100vw,870px);transform:translate(43%,29%);border-color:#ffca9e12}
+#dlxPageLoader .dlx-loader-content{position:relative;z-index:1;width:min(100%,360px);display:grid;justify-items:center;gap:0}
+#dlxPageLoader .dlx-loader-art{width:192px;height:192px;display:grid;place-items:center;position:relative;
+  margin-bottom:15px;filter:drop-shadow(0 16px 30px #020f1d60)}
+#dlxPageLoader .dlx-loader-art svg{width:104px;height:104px;position:relative;z-index:2;filter:drop-shadow(0 4px 12px #00111b8a)}
+#dlxPageLoader .dlx-loader-orbit{position:absolute;inset:12px;border-radius:50%;border:1px solid #8fc9c65b}
+#dlxPageLoader .dlx-loader-orbit-outer{border-top-color:#f29a67;border-right-color:#f29a6726;
+  animation:dlx-orbit-spin 5.6s linear infinite}
+#dlxPageLoader .dlx-loader-orbit-inner{inset:31px;border-color:#a7d5cb35;border-left-color:#e3f6ed91;
+  animation:dlx-orbit-spin 6s linear infinite reverse}
+#dlxPageLoader .dlx-loader-orbit-spark{position:absolute;width:8px;height:8px;border-radius:50%;z-index:3;box-shadow:0 0 20px currentColor}
+#dlxPageLoader .dlx-loader-orbit-spark-one{top:17px;left:52px;background:#f6a172;color:#f6a172}
+#dlxPageLoader .dlx-loader-orbit-spark-two{bottom:26px;right:32px;background:#a1d8c9;color:#a1d8c9;width:6px;height:6px}
+#dlxPageLoader .dlx-loader-eyebrow{color:#b8dbd9;font-size:9px;line-height:1.5;letter-spacing:.18em;
+  font-weight:850;margin:0 0 12px;white-space:nowrap}
+#dlxPageLoader .dlx-loader-wordmark{color:#fff;font-size:clamp(27px,5vw,34px);line-height:1.2;
+  letter-spacing:-.062em;font-weight:850;white-space:nowrap}
+#dlxPageLoader .dlx-loader-wordmark>span:first-child{color:#ffad79}
+#dlxPageLoader .dlx-loader-wordmark-stop{color:#a8dcd1}
+#dlxPageLoader .dlx-loader-message{margin:12px 0 24px;color:#d5e5e5;line-height:1.6;font-size:13px;font-weight:550}
+#dlxPageLoader .dlx-loader-track{position:relative;width:186px;height:3px;border-radius:30px;background:#8ba9aa4b;overflow:hidden}
+#dlxPageLoader .dlx-loader-track span{display:block;width:45%;height:100%;border-radius:30px;
+ background:linear-gradient(90deg,#a0ded2,#f79b63);animation:dlx-track 1.35s ease-in-out infinite alternate}
+#dlxPageLoader .dlx-loader-signoff{margin:19px 0 0;color:#a9c7c7;font-size:9px;letter-spacing:.16em;font-weight:800}
+#dlxPageLoader .dlx-loader-signoff span{color:#f6a171;margin:0 7px}
+@keyframes dlx-orbit-spin{to{transform:rotate(360deg)}}
+@keyframes dlx-track{0%{transform:translateX(-10%)}100%{transform:translateX(138%)}}
+@media(max-width:420px){#dlxPageLoader .dlx-loader-art{width:170px;height:170px}#dlxPageLoader .dlx-loader-eyebrow{font-size:8px}}
+@media(prefers-reduced-motion:reduce){#dlxPageLoader{transition:none}#dlxPageLoader .dlx-loader-orbit,#dlxPageLoader .dlx-loader-track span{animation:none}#dlxPageLoader .dlx-loader-track span{width:75%}}
+/* The auth gate is still fail-closed. This is the sole loading overlay during verification. */
+html.dalp-auth-checking.dlx-loader-pending body>#dlxPageLoader{display:grid!important;z-index:2147483645!important}

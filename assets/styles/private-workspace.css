@@ -207,7 +207,6 @@ html.dalp-auth-checking body[data-admin-console] #dalp-auth-gate,
 html[data-theme] body[data-admin-console] #dalp-auth-gate {background:var(--ui-canvas)!important;color:var(--ui-ink)!important}
 html[data-theme] body[data-admin-console] .dalp-gate-box {background:#ffffff!important;color:var(--ui-ink)!important;border:1px solid #ccd8e7!important;box-shadow:none!important}
 html[data-theme] body[data-admin-console] .dalp-gate-box :is(h2,p,strong,small) {color:var(--ui-ink)!important;-webkit-text-fill-color:var(--ui-ink)!important}
-html[data-theme] body[data-admin-console] .dalp-gate-spin{border-color:#ccd8e7!important;border-top-color:#ccd8e7!important}
 html[data-theme] body[data-admin-console] .dalp-gate-box :is(button,.dalp-gate-go){background:var(--ui-primary)!important;color:#ffffff!important;border:1px solid var(--ui-primary)!important}
 
 /* Layout integrity for phone, tablet and narrow desktop devices. */

@@ -1,5 +1,5 @@
 /* Fast public responses, current published assets first; never cache private records. */
-const CACHE = 'dalp-public-seven-path-clean-20261110-v3';
+const CACHE = 'dalp-public-seven-path-unified-loader-20261110-v4';
 const PRIVATE = /(?:^|\/)(?:api|admin(?:-workspace)?|auth|account|progress|reviewer|capstone|certificate|verify|connection-test|sync-test)(?:\/|\.|$)/i;
 const PUBLIC = /\.(?:svg|ico|png|webp|jpg|jpeg|woff2?)$/i; // Never cache mutable HTML, CSS, or JavaScript.
 self.addEventListener('install', event => {event.waitUntil(self.skipWaiting());});

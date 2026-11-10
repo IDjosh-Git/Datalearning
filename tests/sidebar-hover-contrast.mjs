@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+const css=fs.readFileSync('assets/styles/private-premium-rebuild.css','utf8');
+const hover=css.split('html[data-theme] body.ac-ready .ac-side-nav a.ac-side-link:hover{')[1]?.split('}')[0]||'';
+assert(hover.includes('#ecf7f1')&&hover.includes('#173e51'),'Hovered light sidebar cards must use dark ink');
+assert(hover.includes('-webkit-text-fill-color:#173e51'),'Hovered link resists inherited light text');
+assert(css.includes('.ac-side-link:hover :is(.ac-side-name,.ac-side-icon)'),'Icons/labels must switch to dark ink on hover');
+assert(css.includes('.ac-more-details>summary:hover')&&css.includes('background:#edf7f0!important;color:#173e51'),'Expanders use readable light-hover state');
+assert(css.includes('.ac-side-account:is(:hover,.ac-selected) :is(strong,small,.ac-account-chevron)'),'Account hover labels switch to dark ink');
+const luminance=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16)/255).map(c=>c<=0.04045?c/12.92:((c+.055)/1.055)**2.4).reduce((s,c,i)=>s+c*[.2126,.7152,.0722][i],0);
+const ratio=(fg,bg)=>{const [hi,lo]=[luminance(fg),luminance(bg)].sort((a,b)=>b-a);return (hi+.05)/(lo+.05)};
+for(const [fg,bg] of [['#173e51','#ecf7f1'],['#173e51','#fdfbf5'],['#173e51','#edf7f0'],['#164859','#e4f4eb'],['#e0f0f0','#123d50']])assert(ratio(fg,bg)>=4.5,`WCAG AA sidebar ${fg} on ${bg} contrast ${ratio(fg,bg).toFixed(2)}`);
+console.log('PASS sidebar navigation: all hover/selected/background label combinations AA-readable');

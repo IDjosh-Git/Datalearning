@@ -36,7 +36,7 @@ for (const page of ['certificate.html','connection-test.html','sync-test.html'])
  assert(!/auth-flow\.js/.test(html),`${page}: no duplicate auth page bundle`);
 }
 assert(shared.includes('.ac-topbar'),'Utility pages now use the single private topbar');
-assert(guard.includes('html.dalp-auth-checking body > *:not(#dalp-auth-gate)'),'Fail-closed hidden private content retained');
+assert(guard.includes('html.dalp-auth-checking body > *:not(#dalp-auth-gate):not(#dlxPageLoader)'),'Fail-closed hidden private content retained');
 assert(read('assets/scripts/private-navigation.js').includes('group.hidden=!admin'),'Admin account links require verified role');
 for(const type of ['admin','progress','reviewer','certificate']){
  assert(!read(`assets/styles/${type}.css`).includes('radial-gradient('),`${type}: retired decorative gradients remain`);
