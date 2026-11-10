@@ -19,7 +19,7 @@ for(const url of ['admin.html','admin.html#admin-learners','admin.html#admin-cou
  assert(nav.includes(`'${url}'`)||nav.includes(`href=\\"${url}\\"`)||nav.includes(`href="${url}"`),`Private nav route missing: ${url}`);
  const clean=url.split('#')[0];assert(fs.existsSync(path.join(base,clean)),`${url} destination missing`);
 }
-assert(nav.includes('ac-utilities-details')&&nav.includes('data-admin-only'),'Admin diagnostics available only via an expandable admin section');
+assert(nav.includes('ac-admin-more-details')&&nav.includes('data-admin-only'),'Admin diagnostics available only via an expandable admin section');
 assert(nav.includes('group.hidden=!admin')&&nav.includes("window.DALP_ROLE==='admin'"),'No learner exposure of admin links');
 assert(nav.includes('ac-mobile-menu')&&nav.includes("e.key==='Escape'"),'Accessible single mobile drawer');
 assert.equal((nav.match(/className='ac-logout'/g)||[]).length,1,'One sign-out control per private workspace');

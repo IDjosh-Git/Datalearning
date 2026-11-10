@@ -92,9 +92,18 @@ html[data-theme] body.ac-ready a.ac-topbar-link{
   font:800 11.5px/1.25 'Plus Jakarta Sans',system-ui,sans-serif!important;
 }
 html[data-theme] body.ac-ready a.ac-topbar-link:hover{background:#ddefe8!important;border-color:#93c4b6!important}
-html[data-theme] body.ac-ready .ac-header-profile{display:grid!important;place-items:center!important;min-width:41px!important;width:41px!important;height:41px!important;padding:4px!important;
-  border-radius:13px!important;border:1px solid #beddd6!important;background:#f1f8f5!important;text-decoration:none!important}
-html[data-theme] body.ac-ready .ac-header-initial{display:grid;place-items:center;width:31px;height:31px;border-radius:10px;background:#225d67;color:#fff;font:850 13px 'Plus Jakarta Sans',system-ui}
+/* The shared profile-navigation controller is the only topbar profile shortcut. */
+html[data-theme] body.ac-ready .ac-top-actions .dl-profile-control{margin:0!important;flex:none!important}
+html[data-theme] body.ac-ready .ac-top-actions .dl-profile-button{
+ min-height:43px!important;padding:4px 10px 4px 5px!important;gap:9px!important;border:1px solid #beddd6!important;
+ border-radius:12px!important;background:#f1f8f5!important;box-shadow:none!important;white-space:nowrap!important;
+}
+html[data-theme] body.ac-ready .ac-top-actions .dl-profile-button:hover{background:#e6f3ed!important;border-color:#90beb4!important}
+html[data-theme] body.ac-ready .ac-top-actions .dl-profile-avatar{height:34px!important;width:34px!important;border-radius:10px!important;background:#235d68!important;color:#fff!important;border-color:#63938f!important}
+html[data-theme] body.ac-ready .ac-top-actions .dl-profile-button-copy strong{color:#173e51!important;-webkit-text-fill-color:#173e51!important}
+html[data-theme] body.ac-ready .ac-top-actions .dl-profile-button-copy small{color:#5d7780!important;-webkit-text-fill-color:#5d7780!important}
+html[data-theme] body.ac-ready .ac-admin-more-details{margin-top:1px!important;border-top:0!important}
+html[data-theme] body.ac-ready .ac-admin-more-details>summary{background:#ffffff0b!important;border:1px solid #ffffff1d!important}
 /* Match the public search bar and reuse precisely the same search-dialog CSS. */
 html[data-theme] body.ac-ready .ac-top-actions .premium-search-trigger{
   display:inline-flex!important;align-items:center!important;justify-content:flex-start!important;gap:10px!important;
@@ -145,7 +154,7 @@ html[data-theme] body.ac-ready .profile-card-heading h2{color:#163f53!important;
 html[data-theme] body.ac-ready .cert-view-wrap{max-width:100%!important;padding-top:28px!important}
 html[data-theme] body.ac-ready .cert-view-header{border-radius:18px!important}
 html[data-theme] body.ac-ready .ac-drawer-close{color:#fff!important;background:#ffffff18!important;border-color:#ffffff55!important}
-html[data-theme] body.ac-ready :is(.ac-side-link,.ac-logout,.ac-drawer-close,.ac-mobile-menu,.ac-topbar-link,.ac-header-profile,.premium-search-trigger,summary):focus-visible{outline:3px solid #efad82!important;outline-offset:3px!important}
+html[data-theme] body.ac-ready :is(.ac-side-link,.ac-logout,.ac-drawer-close,.ac-mobile-menu,.ac-topbar-link,.dl-profile-button,.premium-search-trigger,summary):focus-visible{outline:3px solid #efad82!important;outline-offset:3px!important}
 @media(max-width:1360px){
  html[data-theme] body.ac-ready .ac-secure{display:none!important}
  html[data-theme] body.ac-ready .ac-top-actions .premium-search-trigger{min-width:190px!important;width:210px!important}
@@ -165,13 +174,14 @@ html[data-theme] body.ac-ready :is(.ac-side-link,.ac-logout,.ac-drawer-close,.ac
  html[data-theme] body.ac-ready .ac-top-actions{gap:7px!important}
  html[data-theme] body.ac-ready .ac-top-actions .premium-search-trigger{width:43px!important;min-width:43px!important;height:43px!important;justify-content:center!important;padding:0!important}
  html[data-theme] body.ac-ready .ac-top-actions .premium-search-trigger :is(span,kbd){display:none!important}
- html[data-theme] body.ac-ready .ac-header-profile{height:41px!important;width:41px!important}
+ html[data-theme] body.ac-ready .ac-top-actions .dl-profile-button{width:43px!important;min-width:43px!important;height:43px!important;padding:4px!important;justify-content:center!important}
+ html[data-theme] body.ac-ready .ac-top-actions .dl-profile-button-copy{display:none!important}
  html[data-theme] body.ac-ready .ac-page-area{padding:0 13px 32px!important}
  html[data-theme] body.ac-ready :is(.account-overview,.profile-hero,.ac-welcome,.ip-hero,.review-hero){border-radius:18px!important}
  html[data-theme] body.ac-ready .mld-stat-grid{gap:10px!important}
 }
 @media(max-width:370px){
  html[data-theme] body.ac-ready .ac-breadcrumb strong{font-size:11.5px!important}
- html[data-theme] body.ac-ready .ac-header-profile{display:none!important}
+ html[data-theme] body.ac-ready .ac-top-actions .dl-profile-button-copy{display:none!important}
 }
-@media(prefers-reduced-motion:reduce){html[data-theme] body.ac-ready :is(.ac-side-link,.ac-header-profile,.ac-topbar-link,.ac-sidebar){animation:none!important;transition:none!important;transform:none!important}}
+@media(prefers-reduced-motion:reduce){html[data-theme] body.ac-ready :is(.ac-side-link,.dl-profile-button,.ac-topbar-link,.ac-sidebar){animation:none!important;transition:none!important;transform:none!important}}

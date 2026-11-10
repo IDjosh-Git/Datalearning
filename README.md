@@ -83,3 +83,7 @@ Practice Arena now uses a compact horizontal SQL / Excel / Python chooser and a 
 ## Practice Studio & Learning Lab refinement (10 November 2026)
 
 Practice Studio course controls are compact and accessible. The skills sidebar has no independent scroll container; the page itself scrolls. On mobile, subject buttons form a slim horizontal row and the skills list is opened with Browse Skills. Learning Lab now paginates its full searchable library in groups of **10** with Previous/Next controls while preserving the same device-saved review states. The release details are in `docs/STUDIO_LAB_PAGINATION_20261110.md`. No database migration is required.
+
+## Premium private workspace update (10 November 2026)
+
+The eight protected pages now reuse the public academy's branded page loader and search panel, with a single header profile control. The sidebar is streamlined into a four-link **Academy** group available to every signed-in user and a verified-admin-only **Administration** group with collapsible reporting and diagnostic links. See [current release](CURRENT_RELEASE.md) and [implementation/permission checklist](docs/PRIVATE_WORKSPACE_REFINEMENT_20261110.md). Existing database schemas and records were not changed; live authenticated Supabase checks must be completed in a deployment preview.

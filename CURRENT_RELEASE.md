@@ -1,9 +1,9 @@
-# DataLearning — Premium Private Experience Rebuild (10 November 2026)
+# DataLearning — Unified Premium Private Workspace (10 November 2026)
 
-**Built from:** `DataLearning_Premium_Compact_Practice_Studio_Paginated_Learning_Lab_20261110.zip`.
+**Based on:** `DataLearning_Premium_Private_Pages_Rebuild_20261110.zip`.
 
-The eight protected workspace routes now share the same premium visual theme, search panel and typography as the public DataLearning academy. The learner sidebar now features five essential destinations, with secondary tools in one expandable group. The admin menu is condensed and role-aware. Dashboard cards, profile, certificate, reports, assessment views, inputs and responsive navigation have been restyled without changing the underlying data or authorization logic.
+All eight authenticated pages now use the same branded initial page loader and public search dialog as the public academy. The protected sidebar has an uncluttered **Academy** group for all signed-in users, plus a verified-admin-only **Administration** group and collapsed secondary tool menus. The duplicate profile control is removed in favour of the one shared profile-photo-aware shortcut. The deep-teal/sage/ivory theme, responsive drawer, accessible focus states, card layouts and existing controllers are retained.
 
-The previous release's compact Practice Studio and ten-per-page Learning Lab are retained unchanged. The complete details are in `docs/PRIVATE_EXPERIENCE_REBUILD_20261110.md` and `docs/STUDIO_LAB_PAGINATION_20261110.md`.
+**Database/security:** Existing Supabase queries, authentication, database rows and row-level security are unchanged. No migration or secret was introduced. `site_admins` controls the admin menu and restricted pages. Some instructor reports also require `capstone_reviewers` membership; verify that authorised administrators have the appropriate roles before deployment. Live Supabase sign-in and data reads still require an authenticated staging/production test.
 
-**Verification:** Run `npm run verify:deployment`. Deploy only after checking the signed-in account and admin journeys against the production authentication backend.
+**Verification:** `npm run verify:deployment`, plus signed-in learner/admin checks on the deployed preview. See `docs/PRIVATE_WORKSPACE_REFINEMENT_20261110.md`.

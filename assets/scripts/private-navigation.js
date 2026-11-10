@@ -18,19 +18,26 @@
   practice:'<path d="m8 8-4 4 4 4m8-8 4 4-4 4M14 4l-4 16"/>',
   studio:'<rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 9v12M13 13h5m-5 4h3"/>',
   study:'<path d="M4 6h16M4 12h10M4 18h7"/><path d="m16 17 2 2 4-5"/>',
+  'study-plan':'<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 3v4m10-4v4M3 10h18m-14 5h4m-4 3h7"/>',
+  lab:'<path d="M9 3h6m-5 0v7l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/><path d="M8 16h8"/>',
+  connection:'<path d="M6 8a6 6 0 0 1 11-2m1 10a6 6 0 0 1-11 2"/><path d="m17 3 1 3 3-1M7 21l-1-3-3 1"/><circle cx="12" cy="12" r="2"/>',
+  sync:'<path d="M20 7v5h-5M4 17v-5h5"/><path d="M5.8 9A7 7 0 0 1 18 7l2 5M4 12l2 5a7 7 0 0 0 12-2"/>',
   tutor:'<path d="M12 3 14 9l6 2-6 2-2 6-2-6-6-2 6-2 2-6Z"/><path d="M19 18v4m-2-2h4"/>',
   certificate:'<circle cx="12" cy="8" r="5"/><path d="m8 13-1 8 5-2.5 5 2.5-1-8"/>',
   capstone:'<path d="m12 2 9 5-9 5-9-5 9-5ZM5 11v6c4.5 3 9.5 3 14 0v-6"/>'
  };
  const icon=id=>'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">'+(icons[id]||icons.overview)+'</svg>';
- // Five high-frequency learner destinations; useful extras remain in one collapsed section.
- const adminNav=[
-  {caption:'ACADEMY',items:[['Overview','admin.html','overview'],['Learners','admin.html#admin-learners','learners'],['Course analytics','admin.html#admin-courses','courses'],['Progress reports','progress.html','progress'],['Review desk','reviewer.html','reviews']]}
- ];
+ // Four high-frequency Academy destinations; additional tools are collapsed.
+ // Academy remains available to every signed-in learner, including administrators.
+ // Administration only appears after the server-backed site_admins role is verified.
  const learnerNav=[
-  {caption:'LEARNING SPACE',items:[['Dashboard','account.html','account'],['Explore courses','catalog.html','catalog'],['Practice Arena','practice.html','practice'],['Study Tools','study-tools.html','study'],['AI Tutor','tutor.html','tutor']]}
+  {caption:'ACADEMY',items:[['My dashboard','account.html','account'],['Explore courses','catalog.html','catalog'],['Practice Arena','practice.html','practice'],['AI Tutor','tutor.html','tutor']]}
  ];
- const moreNav=[['Learning overview','overview.html','overview'],['Study plan','learning-coach.html','study-plan'],['Practice Studio','studio.html','studio'],['Learning Lab','learning-lab.html','lab'],['Capstone Studio','capstone.html','capstone'],['Certificates','account.html#certificates','certificate']];
+ const moreNav=[['Study Tools','study-tools.html','study'],['Study plan','learning-coach.html','study-plan'],['Practice Studio','studio.html','studio'],['Learning Lab','learning-lab.html','lab'],['Capstone Studio','capstone.html','capstone'],['Certificates','account.html#certificates','certificate']];
+ const adminNav=[
+  {caption:'ADMINISTRATION',items:[['Admin overview','admin.html','overview'],['Learners','admin.html#admin-learners','learners'],['Review desk','reviewer.html','reviews']]}
+ ];
+ const adminMoreNav=[['Course analytics','admin.html#admin-courses','courses'],['Progress reports','progress.html','progress'],['Connection check','connection-test.html','connection'],['Progress sync','sync-test.html','sync']];
  const adminPages=new Set(['overview','progress','reviews','connection','sync']);
  const shell=document.createElement('div');shell.className='ac-shell';
  const aside=document.createElement('aside');aside.className='ac-sidebar';aside.id='acSidebar';aside.setAttribute('aria-label','Private learning navigation');
@@ -41,12 +48,18 @@
  const navEl=document.createElement('nav');navEl.className='ac-side-nav';navEl.setAttribute('aria-label','Workspace sections');
  function navLink([label,href,id]){const a=document.createElement('a');a.className='ac-side-link';a.href=href;a.dataset.section=id;a.innerHTML='<span class="ac-side-icon">'+icon(icons[id]?id:'study')+'</span><span class="ac-side-name"></span>';a.querySelector('.ac-side-name').textContent=label;return a;}
  function appendGroup(group,adminOnly=false){const wrap=document.createElement('div');wrap.className='ac-nav-group';if(adminOnly){wrap.dataset.adminOnly='';wrap.hidden=true;}const heading=document.createElement('p');heading.className='ac-side-label';heading.textContent=group.caption;wrap.append(heading);group.items.forEach(item=>wrap.append(navLink(item)));navEl.append(wrap);}
- adminNav.forEach(group=>appendGroup(group,true));learnerNav.forEach(group=>appendGroup(group));navEl.querySelectorAll('.ac-nav-group:not([data-admin-only])').forEach(group=>group.dataset.learnerOnly='');
- const extras=document.createElement('details');extras.className='ac-more-details';extras.dataset.learnerOnly='';const moreSummary=document.createElement('summary');moreSummary.textContent='More learning tools';const extraLinks=document.createElement('div');extraLinks.className='ac-more-links';moreNav.forEach(item=>extraLinks.append(navLink(item)));extras.append(moreSummary,extraLinks);navEl.append(extras);
+ learnerNav.forEach(group=>appendGroup(group));
+ const extras=document.createElement('details');extras.className='ac-more-details';
+ const moreSummary=document.createElement('summary');moreSummary.textContent='More learning tools';
+ const extraLinks=document.createElement('div');extraLinks.className='ac-more-links';
+ moreNav.forEach(item=>extraLinks.append(navLink(item)));extras.append(moreSummary,extraLinks);navEl.append(extras);
+ adminNav.forEach(group=>appendGroup(group,true));
+ const adminTools=document.createElement('details');adminTools.className='ac-more-details ac-admin-more-details';adminTools.dataset.adminOnly='';adminTools.hidden=true;
+ const adminSummary=document.createElement('summary');adminSummary.textContent='Reports & admin tools';
+ const adminLinks=document.createElement('div');adminLinks.className='ac-more-links';
+ adminMoreNav.forEach(item=>adminLinks.append(navLink(item)));adminTools.append(adminSummary,adminLinks);navEl.append(adminTools);
  const academyLink=navLink(['Back to public academy','index.html','portal']);academyLink.classList.add('ac-academy-link');navEl.append(academyLink);
- const utilities=document.createElement('div');utilities.className='ac-nav-group ac-nav-utilities';utilities.dataset.adminOnly='';utilities.hidden=true;
- utilities.innerHTML='<details class="ac-utilities-details"><summary>Diagnostics</summary><div class="ac-utilities-links"><a class="ac-side-link" data-section="connection" href="connection-test.html"><span class="ac-side-name">Connection check</span></a><a class="ac-side-link" data-section="sync" href="sync-test.html"><span class="ac-side-name">Progress check</span></a></div></details>';
- navEl.append(utilities);aside.append(navEl);
+ aside.append(navEl);
  const bottom=document.createElement('div');bottom.className='ac-side-bottom';
  bottom.innerHTML='<a class="ac-side-account" href="profile.html" title="Edit your learner profile"><span class="ac-avatar" aria-hidden="true">A</span><span class="ac-account-copy"><strong id="acUserName">My account</strong><small id="acUserEmail">Manage profile</small></span><span class="ac-account-chevron" aria-hidden="true">›</span></a>';
  const logout=document.createElement('button');logout.className='ac-logout';logout.type='button';logout.innerHTML='<span aria-hidden="true">↪</span> Sign out';
@@ -59,7 +72,7 @@
  const titles={overview:'Academy overview',progress:'Progress reports',reviews:'Assessment desk',account:'My dashboard',profile:'My profile',certificate:'My certificate',connection:'Connection test',sync:'Progress sync'};
  const trail=document.createElement('div');trail.className='ac-breadcrumb';trail.innerHTML='<span class="ac-breadcrumb-prefix">Workspace</span><span class="ac-crumb-divider" aria-hidden="true">/</span><strong>'+(titles[current]||'My learning')+'</strong>';
  const right=document.createElement('div');right.className='ac-top-actions';
- right.innerHTML='<span class="ac-secure"><span class="ac-secure-dot" aria-hidden="true"></span> Learner space</span><a class="ac-topbar-link" data-learner-shortcut href="catalog.html">Browse courses <span aria-hidden="true">↗</span></a><a class="ac-topbar-link" data-admin-shortcut href="reviewer.html" hidden>Review desk <span aria-hidden="true">↗</span></a><a class="ac-header-profile" href="profile.html" aria-label="Open your profile"><span class="ac-header-initial" aria-hidden="true">A</span></a>';
+ right.innerHTML='<span class="ac-secure"><span class="ac-secure-dot" aria-hidden="true"></span> Learner space</span><a class="ac-topbar-link" data-learner-shortcut href="catalog.html">Browse courses <span aria-hidden="true">↗</span></a><a class="ac-topbar-link" data-admin-shortcut href="reviewer.html" hidden>Review desk <span aria-hidden="true">↗</span></a>';
  header.append(mobileToggle,trail,right);
  const area=document.createElement('div');area.className='ac-page-area';
  main.parentNode.insertBefore(shell,main);shell.append(aside,backdrop,frame);frame.append(header,area);area.append(main);
@@ -71,10 +84,10 @@
  navEl.addEventListener('click',e=>{if(e.target.closest('a'))closeMenu()});
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&root.classList.contains('ac-menu-open'))closeMenu();if(e.key==='Tab'&&root.classList.contains('ac-menu-open')){const items=[...aside.querySelectorAll('a[href],button:not([disabled]),summary')].filter(el=>el.getClientRects().length);if(!items.length)return;const first=items[0],last=items.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}});
  aside.inert=!bp.matches;bp.addEventListener?.('change',()=>{if(bp.matches)closeMenu();else if(!root.classList.contains('ac-menu-open'))aside.inert=true});
- function updateActive(){const h=location.hash;const active=current==='overview'?(h==='#admin-learners'?'learners':h==='#admin-courses'?'courses':h==='#admin-assessments'?'capstones':'overview'):current==='account'&&h==='#certificates'?'certificate':current;navEl.querySelectorAll('.ac-side-link').forEach(a=>{const match=a.dataset.section===active;a.classList.toggle('ac-selected',match);if(match)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});if(extras.querySelector('.ac-selected'))extras.open=true;bottom.querySelector('.ac-side-account')?.classList.toggle('ac-selected',current==='profile');}
- window.addEventListener('hashchange',updateActive);if(['connection','sync'].includes(current))utilities.querySelector('details').open=true;updateActive();
- function roleUpdate(){const admin=window.DALP_ROLE==='admin';navEl.querySelectorAll('[data-admin-only]').forEach(group=>group.hidden=!admin);navEl.querySelectorAll('[data-learner-only]').forEach(group=>group.hidden=admin);if(adminPages.has(current)&&!admin)root.classList.remove('ac-menu-open');right.querySelector('.ac-secure').lastChild.textContent=admin?' Admin access':' Learner space';branding.href=admin?'admin.html':'account.html';branding.querySelector('small').textContent=admin?'ADMIN WORKSPACE':'LEARNING WORKSPACE';const learnerShortcut=right.querySelector('[data-learner-shortcut]');if(learnerShortcut)learnerShortcut.hidden=admin;const shortcut=right.querySelector('[data-admin-shortcut]');shortcut.hidden=!admin;if(admin){shortcut.href=current==='reviews'?'admin.html':'reviewer.html';shortcut.innerHTML=current==='reviews'?'Academy overview <span aria-hidden="true">↗</span>':'Review desk <span aria-hidden="true">↗</span>';}updateActive();}
+ function updateActive(){const h=location.hash;const active=current==='overview'?(h==='#admin-learners'?'learners':h==='#admin-courses'?'courses':h==='#admin-assessments'?'capstones':'overview'):current==='account'&&h==='#certificates'?'certificate':current;navEl.querySelectorAll('.ac-side-link').forEach(a=>{const match=a.dataset.section===active;a.classList.toggle('ac-selected',match);if(match)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});if(extras.querySelector('.ac-selected'))extras.open=true;if(adminTools.querySelector('.ac-selected'))adminTools.open=true;bottom.querySelector('.ac-side-account')?.classList.toggle('ac-selected',current==='profile');}
+ window.addEventListener('hashchange',updateActive);if(['connection','sync','progress'].includes(current))adminTools.open=true;updateActive();
+ function roleUpdate(){const admin=window.DALP_ROLE==='admin';navEl.querySelectorAll('[data-admin-only]').forEach(group=>group.hidden=!admin);if(adminPages.has(current)&&!admin)root.classList.remove('ac-menu-open');right.querySelector('.ac-secure').lastChild.textContent=admin?' Admin access':' Learner space';branding.href=admin?'admin.html':'account.html';branding.querySelector('small').textContent=admin?'ADMIN WORKSPACE':'LEARNING WORKSPACE';const learnerShortcut=right.querySelector('[data-learner-shortcut]');if(learnerShortcut)learnerShortcut.hidden=admin;const shortcut=right.querySelector('[data-admin-shortcut]');shortcut.hidden=!admin;if(admin){shortcut.href=current==='reviews'?'admin.html':'reviewer.html';shortcut.innerHTML=current==='reviews'?'Academy overview <span aria-hidden="true">↗</span>':'Review desk <span aria-hidden="true">↗</span>';}updateActive();}
  window.addEventListener('dalp:auth-ready',roleUpdate);roleUpdate();
- function identity(){const user=window.DALP_AUTH_USER;if(!user)return;const email=user.email||'Secure account',name=user.user_metadata?.full_name||email.split('@')[0]||'Learner';bottom.querySelector('#acUserName').textContent=name;bottom.querySelector('#acUserEmail').textContent=email;const initial=name.trim().charAt(0).toUpperCase()||'A';bottom.querySelector('.ac-avatar').textContent=initial;right.querySelector('.ac-header-initial').textContent=initial;}
+ function identity(){const user=window.DALP_AUTH_USER;if(!user)return;const email=user.email||'Secure account',name=user.user_metadata?.full_name||email.split('@')[0]||'Learner';bottom.querySelector('#acUserName').textContent=name;bottom.querySelector('#acUserEmail').textContent=email;const initial=name.trim().charAt(0).toUpperCase()||'A';bottom.querySelector('.ac-avatar').textContent=initial;}
  window.addEventListener('dalp:auth-ready',identity);identity();
 })();

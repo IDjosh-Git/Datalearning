@@ -1,3 +1,5 @@
+> **Historical design record.** For the newer four-link Academy + Administration navigation, shared page-loader integration and single-profile fix, see `PRIVATE_WORKSPACE_REFINEMENT_20261110.md`.
+
 # DataLearning — Premium Private Experience Rebuild (10 November 2026)
 
 **Base release:** `DataLearning_Premium_Compact_Practice_Studio_Paginated_Learning_Lab_20261110.zip`.

@@ -1,4 +1,4 @@
-/* Premium, real page-start loader. Public pages only; protected pages retain the auth gate.
+/* Premium, real page-start loader. Shared by public and protected pages; protected pages also retain the auth gate.
    The loader is opt-in so pages remain usable when JavaScript is disabled. */
 #dlpPageLoader{display:none;position:fixed;inset:0;z-index:2147483450;isolation:isolate;
   box-sizing:border-box;padding:24px;align-items:center;justify-content:center;
@@ -30,3 +30,10 @@ html.dlp-loader-leaving #dlpPageLoader{display:flex;opacity:0;visibility:hidden;
 @keyframes dlp-loader-tilt{from{transform:perspective(400px) rotateX(9deg) rotateY(-11deg) translateY(1px)}to{transform:perspective(400px) rotateX(-3deg) rotateY(10deg) translateY(-3px)}}
 @keyframes dlp-loader-sweep{from{transform:translateX(0)}to{transform:translateX(190%)}}
 @media(prefers-reduced-motion:reduce){#dlpPageLoader .dlp-loader-emblem{animation:none;transform:none}#dlpPageLoader .dlp-loader-track:before{animation:none;width:75%}#dlpPageLoader{transition:none}}
+/* During a private auth check, present the identical branded loader rather than
+   revealing protected markup. The auth gate remains active behind this overlay
+   and becomes visible if verification takes longer or fails. */
+html.dalp-auth-checking.dlp-loader-pending body > #dlpPageLoader{
+  display:flex!important;
+  z-index:2147483645!important;
+}

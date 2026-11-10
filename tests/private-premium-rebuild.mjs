@@ -1,29 +1,41 @@
-/* Private-v5 release invariants: one premium theme, lean nav, same search system. */
+/* Private experience regression contract: public design parity and role-safe navigation. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 const read=file=>fs.readFileSync(file,'utf8');
 const protectedPages=['admin','progress','reviewer','account','profile','certificate','connection-test','sync-test'];
+const publicHome=read('index.html');
+const publicLoader=publicHome.slice(publicHome.indexOf('<div id="dlpPageLoader"'),publicHome.indexOf('<script src="assets/scripts/page-loader.js"></script>')+'<script src="assets/scripts/page-loader.js"></script>'.length);
 for(const page of protectedPages){
  const markup=read(`${page}.html`);
- assert.match(markup,/data-private-workspace="true"/,`${page}: retains protection marker`);
- assert.equal((markup.match(/private-navigation\.js/g)||[]).length,1,`${page}: one private navigation`);
- assert.equal((markup.match(/premium-search\.js/g)||[]).length,1,`${page}: one functional search controller`);
- assert.equal((markup.match(/public-search-premium\.css/g)||[]).length,1,`${page}: public search panel styling`);
- assert.equal((markup.match(/private-premium-rebuild\.css/g)||[]).length,1,`${page}: private premium finish`);
+ assert.match(markup,/data-private-workspace="true"/,`${page}: protected marker`);
+ for(const script of ['private-navigation.js','premium-search.js','profile-navigation.js','page-loader.js'])
+   assert.equal((markup.match(new RegExp(script.replaceAll('.','\\.'),'g'))||[]).length,1,`${page}: one ${script}`);
+ for(const stylesheet of ['public-search-premium.css','private-premium-rebuild.css','page-loader.css'])
+   assert.equal((markup.match(new RegExp(stylesheet.replaceAll('.','\\.'),'g'))||[]).length,1,`${page}: one ${stylesheet}`);
+ assert.equal((markup.match(/id="dlpPageLoader"/g)||[]).length,1,`${page}: one shared loader`);
+ assert(markup.includes(publicLoader),`${page}: loader must match the public academy`);
+ assert(markup.includes("classList.add('dlp-loader-pending')"),`${page}: display loader immediately`);
  const searchAt=markup.indexOf('public-search-premium.css'),premiumAt=markup.indexOf('private-premium-rebuild.css'),endHead=markup.indexOf('</head>');
- assert(searchAt>=0&&premiumAt>searchAt&&premiumAt<endHead,`${page}: private finishing layer must be last`);
- assert(markup.includes('auth-gate.js'),`${page}: no auth bypass`);
+ assert(searchAt>=0&&premiumAt>searchAt&&premiumAt<endHead,`${page}: finishing CSS is last`);
+ assert(markup.includes('auth-gate.js'),`${page}: no authentication bypass`);
 }
 const nav=read('assets/scripts/private-navigation.js');
-for(const href of ['account.html','catalog.html','practice.html','study-tools.html','tutor.html','profile.html','learning-coach.html','studio.html','learning-lab.html','capstone.html','admin.html#admin-learners','admin.html#admin-courses','progress.html','reviewer.html'])assert(nav.includes(`'${href}'`),`missing accessible destination ${href}`);
-assert.match(nav,/const learnerNav=\[\s*\{caption:'LEARNING SPACE'/,'five learner primary destinations');
-const primaryBlock=nav.split('const learnerNav=')[1].split('const moreNav=')[0];
-assert.equal((primaryBlock.match(/\['[^']+','[^']+\.html','[^']+'\]/g)||[]).length,5,'sidebar should show only five core learner links');
-assert(nav.includes('ac-more-details')&&nav.includes('ac-more-links'),'secondary links collapsed');
-assert(nav.includes("window.DALP_ROLE==='admin'")&&nav.includes('group.hidden=!admin')&&nav.includes('group.hidden=admin'),'strict role-aware menus');
-assert(nav.includes('aria-expanded')&&nav.includes("e.key==='Escape'"),'accessible mobile drawer');
+assert.match(nav,/const learnerNav=\[\s*\{caption:'ACADEMY'/,'Academy group for all authenticated roles');
+assert.match(nav,/const adminNav=\[\s*\{caption:'ADMINISTRATION'/,'Admin section clearly separated');
+const academy=nav.split('const learnerNav=')[1].split('const moreNav=')[0];
+assert.equal((academy.match(/\['[^']+','[^']+\.html','[^']+'\]/g)||[]).length,4,'four compact core Academy routes');
+const admin=nav.split('const adminNav=')[1].split('const adminMoreNav=')[0];
+assert.equal((admin.match(/\['[^']+','[^']+\.html(?:#[^']+)?','[^']+'\]/g)||[]).length,3,'three primary admin routes');
+for(const href of ['account.html','catalog.html','practice.html','tutor.html','study-tools.html','learning-coach.html','studio.html','learning-lab.html','capstone.html','admin.html#admin-learners','admin.html#admin-courses','progress.html','reviewer.html','connection-test.html','sync-test.html']) assert(nav.includes(`'${href}'`),`missing accessible route ${href}`);
+assert(nav.includes('ac-more-details')&&nav.includes('ac-admin-more-details'),'secondary menus collapse by default');
+assert(nav.includes("window.DALP_ROLE==='admin'")&&nav.includes('group.hidden=!admin'),'admin navigation role-gated');
+assert(!nav.includes('data-learner-only'),'admin still needs Academy access');
+assert(!nav.includes('ac-header-profile')&&!nav.includes('ac-header-initial'),'duplicate topbar profile control removed');
+assert(nav.includes('aria-expanded')&&nav.includes("e.key==='Escape'"),'accessible drawer');
+const profile=read('assets/scripts/profile-navigation.js');
+assert(profile.includes('if(host.querySelector(\'.dl-profile-control\'))return'),'one reusable profile control');
 const css=read('assets/styles/private-premium-rebuild.css');
-for(const token of ['#123d50','#f2a675','.ac-top-actions .premium-search-trigger','.ac-more-details','@media(max-width:740px)','prefers-reduced-motion:reduce'])assert(css.includes(token),`missing premium UI contract: ${token}`);
-const publicSearch=read('assets/styles/public-search-premium.css');
-assert(publicSearch.includes('dialog.premium-search-dialog')&&publicSearch.includes('.ps-result-grid'),'shared search panel retained');
-console.log('PASS private rebuild: eight protected pages, shared search panel, five primary learner routes, compact admin menu, role separation and responsive theme');
+for(const token of ['#123d50','#f2a675','.ac-top-actions .premium-search-trigger','.ac-admin-more-details','.ac-top-actions .dl-profile-control','@media(max-width:740px)','prefers-reduced-motion:reduce']) assert(css.includes(token),`missing private styling: ${token}`);
+assert(read('assets/styles/public-search-premium.css').includes('dialog.premium-search-dialog'),'shared search panel retained');
+assert(read('assets/styles/page-loader.css').includes('html.dalp-auth-checking.dlp-loader-pending body > #dlpPageLoader'),'branded loader stays visible during private auth verification');
+console.log('PASS protected workspace: 8 page loaders match public, one profile control, grouped role-safe navigation, shared search and responsive theme');
