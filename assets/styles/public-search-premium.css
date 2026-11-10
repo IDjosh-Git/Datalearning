@@ -1,0 +1,145 @@
+/* DataLearning public search system and Study Tools card actions — 2026-11-10.
+   This stylesheet loads AFTER all page CSS across every public route. */
+:root{--dl-search-navy:#153d54;--dl-search-orange:#f27329;--dl-search-ink:#254559;--dl-search-line:#c9dde0}
+/* Unified search action. Labels appear where the full desktop navigation has room. */
+html body .dlu-header .dlu-header-actions .premium-search-trigger.dlu-search-button{
+ position:relative!important;inset:auto!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ gap:8px!important;box-sizing:border-box!important;width:44px!important;min-width:44px!important;max-width:none!important;height:44px!important;min-height:44px!important;
+ flex:0 0 auto!important;margin:0!important;padding:0 11px!important;white-space:nowrap!important;
+ background:linear-gradient(145deg,#e4f3f1,#fffaf4)!important;color:#173e55!important;-webkit-text-fill-color:#173e55!important;
+ border:1px solid #a9ccca!important;border-radius:13px!important;
+ box-shadow:inset 0 1px 0 #fff,0 4px 12px #153d5415!important;
+ font:800 12px/1.15 'Plus Jakarta Sans',system-ui,sans-serif!important;
+ transition:background .2s,box-shadow .2s,transform .2s,border-color .2s!important;cursor:pointer!important;
+}
+html body .dlu-header .dlu-header-actions .dlu-search-button svg{display:block!important;width:20px!important;height:20px!important;flex:none!important;stroke:#1e5a66!important;stroke-width:2.3!important}
+html body .dlu-header .dlu-header-actions .dlu-search-button :is(span,kbd){display:none!important}
+html body .dlu-header .dlu-header-actions .dlu-search-button:hover,
+html body .dlu-header .dlu-header-actions .dlu-search-button[aria-expanded="true"]{
+ background:linear-gradient(145deg,#d3ebe7,#fff3e8)!important;border-color:#6daba7!important;
+ box-shadow:0 7px 18px #153d5425!important;transform:translateY(-1px)!important;
+}
+html body .dlu-header .dlu-header-actions .dlu-search-button:focus-visible{outline:3px solid var(--dl-search-orange)!important;outline-offset:3px!important}
+@media(min-width:1510px){
+ html body .dlu-header .dlu-header-actions .premium-search-trigger.dlu-search-button{width:auto!important;min-width:106px!important;max-width:145px!important;padding-inline:15px!important}
+ html body .dlu-header .dlu-header-actions .dlu-search-button>span{display:inline!important;font:inherit!important;color:#173e55!important;-webkit-text-fill-color:#173e55!important}
+}
+@media(max-width:375px){html body .dlu-header .dlu-header-actions .premium-search-trigger.dlu-search-button{width:40px!important;min-width:40px!important;height:40px!important;min-height:40px!important;padding:0!important}}
+/* Dialog: a single isolated component, unaffected by Practice Studio / legacy .ps-* classes. */
+html body dialog.premium-search-dialog{position:fixed!important;inset:0!important;margin:auto!important;padding:0!important;
+ box-sizing:border-box!important;width:min(760px,calc(100vw - 28px))!important;max-width:760px!important;
+ max-height:min(88dvh,820px)!important;overflow:hidden!important;
+ background:#fff!important;background-image:none!important;color:var(--dl-search-ink)!important;
+ border:1px solid #c4dadc!important;border-radius:23px!important;
+ box-shadow:0 32px 100px #071c2d7a!important;transform:none!important;animation:dl-search-arrive .2s both;
+ z-index:65000!important;isolation:isolate!important;
+}
+html body dialog.premium-search-dialog::backdrop{background:rgba(9,30,46,.68)!important;backdrop-filter:blur(5px)!important}
+html body dialog.premium-search-dialog .ps-shell{display:flex!important;flex-direction:column!important;gap:0!important;
+ box-sizing:border-box!important;width:100%!important;max-width:none!important;height:auto!important;max-height:min(88dvh,820px)!important;
+ margin:0!important;padding:0!important;overflow:hidden!important;border:0!important;border-radius:0!important;
+ background:#fff!important;box-shadow:none!important;color:var(--dl-search-ink)!important}
+html body dialog.premium-search-dialog .ps-heading{flex:0 0 auto!important;display:flex!important;align-items:center!important;justify-content:space-between!important;
+ gap:15px!important;padding:24px clamp(19px,3.4vw,29px) 22px!important;margin:0!important;
+ background:linear-gradient(115deg,#123b53 0%,#235969 75%,#2c6b6b 100%)!important;color:#fff!important;
+ border-radius:0!important;border:0!important;box-shadow:none!important;position:relative!important;isolation:isolate!important;overflow:hidden!important;
+}
+html body dialog.premium-search-dialog .ps-heading::before{content:"";position:absolute;right:-65px;top:-118px;width:250px;height:250px;
+ pointer-events:none;border-radius:50%;background:radial-gradient(circle,#f8b78945,transparent 68%);z-index:-1}
+html body dialog.premium-search-dialog .ps-eyebrow{font:850 10px/1.5 'Plus Jakarta Sans',system-ui,sans-serif!important;color:#d3e8e7!important;
+ letter-spacing:.14em!important;text-transform:uppercase;margin:0 0 7px!important}
+html body dialog.premium-search-dialog .ps-heading h2{font:850 clamp(21px,3vw,30px)/1.2 'Plus Jakarta Sans',system-ui,sans-serif!important;
+ color:#fff!important;-webkit-text-fill-color:#fff!important;letter-spacing:-.04em!important;margin:0!important}
+html body dialog.premium-search-dialog .ps-close{display:grid!important;place-items:center!important;flex:0 0 43px!important;
+ width:43px!important;height:43px!important;min-width:43px!important;min-height:43px!important;padding:0!important;
+ background:#ffffff20!important;color:#fff!important;-webkit-text-fill-color:#fff!important;border:1px solid #ffffff5e!important;
+ border-radius:13px!important;font:750 21px/1 system-ui!important;cursor:pointer!important;box-shadow:none!important}
+html body dialog.premium-search-dialog .ps-close:hover{background:#ffffff36!important}
+html body dialog.premium-search-dialog .ps-search-zone{flex:0 0 auto!important;padding:20px clamp(17px,3.4vw,29px) 10px!important;
+ background:linear-gradient(#fbfdfc,#fff)!important}
+html body dialog.premium-search-dialog .ps-input-shell{display:flex!important;align-items:center!important;gap:12px!important;
+ box-sizing:border-box!important;width:100%!important;min-height:58px!important;padding:0 15px!important;margin:0!important;
+ border:1.5px solid #abcacc!important;border-radius:14px!important;background:#f5faf9!important;box-shadow:inset 0 1px 3px #0c40510a!important}
+html body dialog.premium-search-dialog .ps-input-shell:focus-within{border-color:#418a8c!important;outline:3px solid #d7eeea!important;background:#fff!important}
+html body dialog.premium-search-dialog .ps-input-shell svg{display:block!important;flex:none!important;width:21px!important;height:21px!important;stroke:#24566a!important}
+html body dialog.premium-search-dialog #psInput{box-sizing:border-box!important;flex:1 1 auto!important;min-width:0!important;width:100%!important;
+ font:650 15px/1.45 'DM Sans',system-ui,sans-serif!important;min-height:54px!important;margin:0!important;padding:13px 0!important;
+ border:0!important;border-radius:0!important;outline:0!important;box-shadow:none!important;background:transparent!important;
+ color:#1a4359!important;-webkit-text-fill-color:#1a4359!important}
+html body dialog.premium-search-dialog #psInput::placeholder{color:#617b86!important;-webkit-text-fill-color:#617b86!important}
+html body dialog.premium-search-dialog .ps-input-shell kbd{font:750 10px/1 system-ui!important;background:#fff!important;color:#365b6b!important;border:1px solid #cfe1e1!important}
+html body dialog.premium-search-dialog .ps-filter-list{display:flex!important;align-items:center!important;flex-wrap:wrap!important;gap:7px!important;
+ padding:14px 0 2px!important;margin:0!important}
+html body dialog.premium-search-dialog .ps-filter{display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ min-height:36px!important;padding:7px 13px!important;margin:0!important;border-radius:100px!important;
+ border:1px solid #d3e2e2!important;background:#fff!important;color:#315769!important;-webkit-text-fill-color:#315769!important;
+ font:800 11px/1.2 'Plus Jakarta Sans',system-ui,sans-serif!important;cursor:pointer!important;box-shadow:none!important}
+html body dialog.premium-search-dialog .ps-filter:hover{border-color:#83b1ad!important;background:#f1f8f6!important}
+html body dialog.premium-search-dialog .ps-filter[aria-pressed="true"]{border-color:#1b5866!important;background:#20566a!important;color:#fff!important;-webkit-text-fill-color:#fff!important}
+html body dialog.premium-search-dialog .ps-note{display:flex!important;justify-content:space-between!important;gap:12px!important;
+ margin:0!important;padding:10px clamp(17px,3.4vw,29px) 11px!important;background:#fff!important;
+ color:#5b7581!important;font:750 11px/1.4 'DM Sans',system-ui,sans-serif!important}
+html body dialog.premium-search-dialog #psCount{color:#1e655f!important;font-weight:800!important;white-space:nowrap!important}
+html body dialog.premium-search-dialog .ps-result-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ gap:10px!important;flex:1 1 auto!important;min-height:0!important;max-height:none!important;
+ padding:0 clamp(17px,3.4vw,29px) 17px!important;margin:0!important;overflow:auto!important;
+ overscroll-behavior:contain;align-content:start!important;background:#fff!important}
+html body dialog.premium-search-dialog .ps-card{position:relative!important;display:flex!important;align-items:center!important;gap:11px!important;
+ box-sizing:border-box!important;min-width:0!important;min-height:87px!important;padding:13px!important;margin:0!important;
+ border:1px solid #dce8e8!important;border-radius:14px!important;background:#f9fcfb!important;color:#24475a!important;
+ text-decoration:none!important;box-shadow:0 4px 13px #15384f0b!important;transform:none!important}
+html body dialog.premium-search-dialog .ps-card:hover,html body dialog.premium-search-dialog .ps-card:focus-visible{
+ border-color:#90bfb7!important;background:#edf7f4!important;box-shadow:0 7px 19px #1749591b!important}
+html body dialog.premium-search-dialog .ps-icon{display:grid!important;place-items:center!important;flex:0 0 42px!important;
+ width:42px!important;height:42px!important;border:1px solid #d2e6e3!important;border-radius:12px!important;
+ background:#e5f3ef!important;color:#1c655f!important;font:850 19px/1 'Plus Jakarta Sans',system-ui!important}
+html body dialog.premium-search-dialog .ps-copy{display:flex!important;flex-direction:column!important;gap:4px!important;min-width:0!important;flex:1 1 auto!important}
+html body dialog.premium-search-dialog .ps-copy small{font:850 10px/1.3 'DM Sans',system-ui,sans-serif!important;
+ text-transform:uppercase!important;letter-spacing:.075em!important;color:#3f746f!important}
+html body dialog.premium-search-dialog .ps-copy strong{font:850 13px/1.4 'Plus Jakarta Sans',system-ui,sans-serif!important;
+ color:#21475c!important;-webkit-text-fill-color:#21475c!important;overflow-wrap:anywhere!important}
+html body dialog.premium-search-dialog .ps-copy>span{font:500 11px/1.4 'DM Sans',system-ui,sans-serif!important;
+ color:#58727d!important;-webkit-text-fill-color:#58727d!important}
+html body dialog.premium-search-dialog .ps-arrow{flex:none!important;color:#b15c2b!important;font-size:20px!important}
+html body dialog.premium-search-dialog .ps-empty{grid-column:1/-1!important;padding:30px 16px!important;color:#526d79!important;text-align:center!important}
+html body dialog.premium-search-dialog .ps-footer{flex:0 0 auto!important;display:flex!important;align-items:center!important;
+ justify-content:space-between!important;gap:9px!important;flex-wrap:wrap!important;
+ margin:0!important;padding:13px clamp(17px,3.4vw,29px)!important;border-top:1px solid #dce9e9!important;
+ background:#f6faf9!important;color:#4e6d78!important;font:700 11px/1.3 'DM Sans',system-ui,sans-serif!important}
+html body dialog.premium-search-dialog .ps-footer a{color:#206760!important;text-decoration:none!important;font-weight:800!important}
+html body dialog.premium-search-dialog .ps-footer kbd{display:inline-block!important;margin-inline:2px!important;color:#28556a!important;
+ background:#fff!important;border:1px solid #cfe2e2!important;border-radius:5px!important;padding:3px 5px!important}
+html body dialog.premium-search-dialog :is(button,a,input):focus-visible{outline:3px solid #f27329!important;outline-offset:2px!important}
+@keyframes dl-search-arrive{from{opacity:.94;translate:0 10px}to{opacity:1;translate:0 0}}
+@media(max-width:640px){
+ html body dialog.premium-search-dialog{inset:auto 0 0 0!important;margin:auto auto 0!important;width:100vw!important;max-width:100vw!important;
+  max-height:min(92dvh,860px)!important;border-radius:23px 23px 0 0!important;border-bottom:0!important}
+ html body dialog.premium-search-dialog .ps-shell{max-height:min(92dvh,860px)!important}
+ html body dialog.premium-search-dialog .ps-heading{padding:20px 18px!important}
+ html body dialog.premium-search-dialog .ps-search-zone{padding:16px 16px 10px!important}
+ html body dialog.premium-search-dialog .ps-filter-list{flex-wrap:nowrap!important;overflow-x:auto!important;padding-bottom:3px!important}
+ html body dialog.premium-search-dialog .ps-filter{flex:0 0 auto!important}
+ html body dialog.premium-search-dialog .ps-result-grid{grid-template-columns:1fr!important;padding-inline:16px!important;gap:9px!important}
+ html body dialog.premium-search-dialog .ps-note{padding-inline:16px!important}
+ html body dialog.premium-search-dialog .ps-footer{padding:12px 16px calc(12px + env(safe-area-inset-bottom))!important}
+ html body dialog.premium-search-dialog .ps-footer>span{display:none!important}
+ html body dialog.premium-search-dialog .ps-card{min-height:76px!important}
+}
+@media(prefers-reduced-motion:reduce){html body dialog.premium-search-dialog{animation:none!important;translate:none!important}html body .dlu-header .dlu-header-actions .dlu-search-button{transition:none!important;transform:none!important}}
+/* Study Tools: the primary action link covers the complete card, while preserving a real link for keyboard and screen-reader users. */
+body .dlx-tools-grid>.dlx-tools-card{position:relative!important;isolation:isolate!important;overflow:visible!important;
+ border:1px solid #cbdfe0!important;background:linear-gradient(155deg,#fff 60%,#f6fbf9)!important;
+ box-shadow:0 12px 30px #163c5410!important;transition:transform .2s,box-shadow .2s,border-color .2s!important}
+body .dlx-tools-grid>.dlx-tools-card.dlx-tools-feature{background:linear-gradient(155deg,#eaf6f1 0%,#fff 76%)!important}
+body .dlx-tools-grid>.dlx-tools-card:has(>a:hover),body .dlx-tools-grid>.dlx-tools-card:has(>a:focus-visible){
+ transform:translateY(-3px)!important;border-color:#8bbdb7!important;box-shadow:0 17px 40px #173c5422!important}
+body .dlx-tools-grid>.dlx-tools-card::before,body .dlx-tools-grid>.dlx-tools-card::after{pointer-events:none!important}
+body .dlx-tools-grid>.dlx-tools-card>a{position:static!important;z-index:auto!important;display:flex!important;min-height:49px!important;
+ background:linear-gradient(120deg,#20566a,#183e55)!important;border:1px solid #1e5062!important;
+ color:#fff!important;-webkit-text-fill-color:#fff!important;border-radius:12px!important;
+ box-shadow:0 7px 17px #12384c22!important;font:850 12px/1.35 'Plus Jakarta Sans',system-ui,sans-serif!important}
+body .dlx-tools-grid>.dlx-tools-card>a>span{color:#ffd6b9!important}
+body .dlx-tools-grid>.dlx-tools-card>a::after{content:"";position:absolute!important;inset:0!important;z-index:4!important;cursor:pointer!important}
+body .dlx-tools-grid>.dlx-tools-card>a:focus-visible{outline:3px solid #f27329!important;outline-offset:4px!important}
+body .dlx-tools-grid>.dlx-tools-card:has(>a:focus-visible){outline:3px solid #f27329!important;outline-offset:4px!important}
+@media(prefers-reduced-motion:reduce){body .dlx-tools-grid>.dlx-tools-card{transition:none!important;transform:none!important}}

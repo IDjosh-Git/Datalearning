@@ -16,6 +16,10 @@ const records=[
  ['courses/ai.html','AI integration','Courses','Verified AI workflows for data analysis','prompting automation responsible chatgpt'],
  ['practice.html','Practice Arena','Study tools','SQL, Excel and Python challenges with working editor','challenge editor run code grade skills'],
  ['studio.html','Practice Studio','Study tools','Guided hands-on learning and exercises','studio project'],
+ ['study-tools.html','Study Tools hub','Study tools','Find the right study and practice tool','all learning tools study hub planner'],
+ ['learning-lab.html','Learning Lab','Study tools','Review explanations and save understanding status','study review reading confidence library'],
+ ['certificate.html','Certificates','My workspace','View and verify completed course achievements','certificate award completion verification'],
+ ['progress.html','My progress','My workspace','See saved completion across learning paths','progress performance score'],
  ['tutor.html','AI Learning Tutor','Study tools','Guided explanations, follow-up questions and knowledge checks','coach tutor chat explain'],
  ['reference.html','Reference library','Study tools','Formulas and worked examples across analytics tools','dax formulas excel sql functions'],
  ['learning-coach.html','Learning Coach','Study tools','Personal seven-session study routes and active recall','study plan learning schedule guided recall learning lab weekly goals reflection flashcards recap'],
@@ -32,7 +36,7 @@ function init(){if(document.getElementById('premiumSearchDialog'))return;
  const privateTop=document.querySelector('.ac-topbar .ac-top-actions');
  const quizTop=document.querySelector('.dl-quiz-nav-actions');
  const sharedHeader=document.querySelector('.dlx-header-inner,.za-header-inner');
- const trigger=document.createElement('button');trigger.type='button';trigger.className='premium-search-trigger';trigger.setAttribute('aria-label','Search courses and learning tools');trigger.innerHTML=searchIcon+'<span>Search learning</span><kbd>⌘ K</kbd>';
+ const trigger=document.createElement('button');trigger.type='button';trigger.className='premium-search-trigger';trigger.setAttribute('aria-label','Search courses and learning tools');trigger.setAttribute('aria-haspopup','dialog');trigger.setAttribute('aria-controls','premiumSearchDialog');trigger.setAttribute('aria-expanded','false');trigger.innerHTML=searchIcon+'<span>Search</span><kbd>⌘ K</kbd>';
  if(unifiedHeader){trigger.classList.add('dlu-search-button');unifiedHeader.prepend(trigger);}
  else if(header){const nav=header.querySelector('.dalp-global-nav');header.insertBefore(trigger,header.querySelector('.dalp-global-toggle')||nav||null);}
  else if(sharedHeader){let actions=sharedHeader.querySelector('.dlx-utility-actions');if(!actions){actions=document.createElement('div');actions.className='dlx-utility-actions';actions.setAttribute('aria-label','Quick learning tools');const menu=sharedHeader.querySelector('.dlx-menu-button,.za-menu-open');sharedHeader.insertBefore(actions,menu||null);}trigger.classList.add('dlx-header-search');actions.append(trigger);} 
@@ -40,20 +44,25 @@ function init(){if(document.getElementById('premiumSearchDialog'))return;
  else if(quizTop){quizTop.prepend(trigger);}
  else {trigger.classList.add('premium-search-floating');document.body.append(trigger);}
  const dlg=document.createElement('dialog');dlg.id='premiumSearchDialog';dlg.className='premium-search-dialog';dlg.setAttribute('aria-label','Search the DataLearning platform');
- dlg.innerHTML='<div class="ps-shell"><div class="ps-heading"><div><span class="ps-eyebrow">DATALEARNING · QUICK FIND</span><h2>Where would you like to go?</h2></div><button class="ps-close" type="button" aria-label="Close search">✕</button></div><label class="ps-input-shell">'+searchIcon+'<input id="psInput" type="search" placeholder="Search courses, tools or topics…" autocomplete="off" spellcheck="false" aria-label="Search courses, tools or topics"><kbd>ESC</kbd></label><div class="ps-note"><span>Search across learning destinations</span><span id="psCount" aria-live="polite"></span></div><div class="ps-result-grid" id="psResults" aria-label="Search results"></div><footer class="ps-footer"><span><kbd>↑</kbd><kbd>↓</kbd> Move</span><span><kbd>↵</kbd> Open</span><a href="'+base+'overview.html">Learning overview ↗</a></footer></div>';
+ dlg.innerHTML='<div class="ps-shell"><div class="ps-heading"><div><span class="ps-eyebrow">DATALEARNING · QUICK FIND</span><h2>Find your next learning step.</h2></div><button class="ps-close" type="button" aria-label="Close search">×</button></div><div class="ps-search-zone"><label class="ps-input-shell">'+searchIcon+'<input id="psInput" type="search" placeholder="Search courses, tools or topics…" autocomplete="off" spellcheck="false" aria-label="Search courses, tools or topics"><kbd>ESC</kbd></label><div class="ps-filter-list" aria-label="Filter destinations"><button type="button" class="ps-filter" data-filter="all" aria-pressed="true">All results</button><button type="button" class="ps-filter" data-filter="Courses" aria-pressed="false">Courses</button><button type="button" class="ps-filter" data-filter="Study tools" aria-pressed="false">Study Tools</button><button type="button" class="ps-filter" data-filter="My workspace" aria-pressed="false">My Learning</button></div></div><div class="ps-note"><span>Quick links and practical resources</span><span id="psCount" aria-live="polite"></span></div><div class="ps-result-grid" id="psResults" aria-label="Search results"></div><footer class="ps-footer"><span><kbd>↑</kbd><kbd>↓</kbd> Navigate</span><span><kbd>↵</kbd> Open</span><a href="'+base+'study-tools.html">Explore Study Tools ↗</a></footer></div>';
  document.body.append(dlg);
- const inp=dlg.querySelector('#psInput'),results=dlg.querySelector('#psResults'),count=dlg.querySelector('#psCount');let cards=[];
+ const inp=dlg.querySelector('#psInput'),results=dlg.querySelector('#psResults'),count=dlg.querySelector('#psCount');let cards=[],activeFilter='all';
+ const filterButtons=[...dlg.querySelectorAll('.ps-filter')];
+ filterButtons.forEach(button=>button.addEventListener('click',()=>{activeFilter=button.dataset.filter;filterButtons.forEach(b=>b.setAttribute('aria-pressed',String(b===button)));render();inp.focus({preventScroll:true});}));
  function render(){const q=inp.value.trim().toLowerCase(),parts=q.split(/\s+/).filter(Boolean);
   const scored=records.map((r,i)=>{const search=(r[1]+' '+r[2]+' '+r[3]+' '+r[4]).toLowerCase();let score=0;for(const term of parts){if(!search.includes(term))return null;score+=r[1].toLowerCase().startsWith(term)?8:r[1].toLowerCase().includes(term)?5:2;}return {...{r,i,score}};}).filter(Boolean).sort((a,b)=>b.score-a.score||a.i-b.i);
-  const visible=(q?scored:scored.filter(x=>['Courses','Study tools'].includes(x.r[2])||x.i===0||x.i===15)).slice(0,14);
+  const filtered=activeFilter==='all'?scored:scored.filter(x=>x.r[2]===activeFilter);
+  const visible=(q?filtered:filtered.filter(x=>activeFilter!=='all'||['Courses','Study tools'].includes(x.r[2])||x.r[0]==='index.html')).slice(0,20);
   results.replaceChildren();cards=[];
   for(const {r} of visible){const a=document.createElement('a');a.className='ps-card';a.href=base+r[0];const left=document.createElement('span');left.className='ps-icon';left.textContent=({Courses:'▦','Study tools':'✦','My workspace':'◉',Explore:'◎'})[r[2]]||'◎';const copy=document.createElement('span');copy.className='ps-copy';const badge=document.createElement('small');badge.textContent=r[2];const name=document.createElement('strong');name.textContent=r[1];const note=document.createElement('span');note.textContent=r[3];copy.append(badge,name,note);const arrow=document.createElement('span');arrow.className='ps-arrow';arrow.textContent='↗';a.append(left,copy,arrow);results.append(a);cards.push(a);}
   if(!cards.length){const empty=document.createElement('p');empty.className='ps-empty';empty.textContent='No matching destination. Try “Excel”, “SQL”, “Tutor”, “Practice” or “DAX”.';results.append(empty);}
   count.textContent=cards.length+' result'+(cards.length===1?'':'s');
  }
- function open(){render();dlg.showModal();inp.focus();}
- function close(){dlg.close();trigger.focus({preventScroll:true});}
+ function open(){if(dlg.open)return;render();dlg.showModal();trigger.setAttribute('aria-expanded','true');inp.focus({preventScroll:true});}
+ function close(){if(dlg.open)dlg.close();trigger.setAttribute('aria-expanded','false');trigger.focus({preventScroll:true});}
  trigger.addEventListener('click',open);dlg.querySelector('.ps-close').addEventListener('click',close);
+ dlg.addEventListener('cancel',()=>{trigger.setAttribute('aria-expanded','false')});
+ dlg.addEventListener('close',()=>{trigger.setAttribute('aria-expanded','false')});
  dlg.addEventListener('click',e=>{if(e.target===dlg)close()});
  inp.addEventListener('input',render);
  inp.addEventListener('keydown',e=>{if(e.key==='ArrowDown'&&cards.length){e.preventDefault();cards[0].focus()}else if(e.key==='Enter'&&cards.length){e.preventDefault();location.assign(cards[0].href)}});
