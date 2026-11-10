@@ -115,10 +115,43 @@
       one('#zaLessonKicker').textContent=`${path.title.toUpperCase()} · WEEK ${num(week)}`;
       one('#zaLessonTitle').textContent=record.title;
       one('#zaLessonOutcome').textContent=record.outcome;
+      const guide = window.DALP_GUIDED_LESSONS?.[slug]?.[week-1];
+      const lessonMinutes = guide ? Math.max(6,Math.round(`${guide.concept} ${guide.reason} ${guide.steps.join(' ')} ${guide.verify} ${guide.case || ''} ${record.example} ${record.exercise}`.split(/\s+/).length / 165)) : 4;
+      const readTime = one('#zaEstimatedTime');
+      if(readTime)readTime.textContent=`About ${lessonMinutes} min · guided study`;
+      const guideHtml = guide ? `
+        <section class="za-lesson-block za-lesson-reading" id="zaConcepts" aria-labelledby="zaConceptsTitle">
+          <div class="za-block-head"><span class="za-block-ico" aria-hidden="true">◈</span><div><span class="za-block-kicker">CONCEPTS · PART ONE</span><h2 id="zaConceptsTitle">Understand the idea</h2></div></div>
+          <div class="za-teaching-copy"><p>${safe(guide.concept)}</p></div>
+        </section>
+        <section class="za-lesson-block za-lesson-reading" id="zaWhy" aria-labelledby="zaWhyTitle">
+          <div class="za-block-head"><span class="za-block-ico" aria-hidden="true">✧</span><div><span class="za-block-kicker">CONCEPTS · PART TWO</span><h2 id="zaWhyTitle">Why it matters in a real analysis</h2></div></div>
+          <div class="za-teaching-copy"><p>${safe(guide.reason)}</p></div>
+        </section>
+        <section class="za-lesson-block za-lesson-method" id="zaMethod" aria-labelledby="zaMethodTitle">
+          <div class="za-block-head"><span class="za-block-ico orange" aria-hidden="true">➜</span><div><span class="za-block-kicker">GUIDED WORKFLOW</span><h2 id="zaMethodTitle">Follow these steps</h2></div></div>
+          <p class="za-guided-intro">Work through the steps in order. Try each one with your own sample data before continuing.</p>
+          <ol class="za-guided-steps">${guide.steps.map((item,i)=>`<li><span class="za-step-no" aria-hidden="true">${num(i+1)}</span><p>${safe(item)}</p></li>`).join('')}</ol>
+          ${guide.artifact ? `<div class="za-formula-header"><span>EXAMPLE TO STUDY</span><span>Illustrative · adapt to your data</span></div><pre class="za-guided-code"><code>${safe(guide.artifact)}</code></pre>` : ''}
+        </section>` : '';
       one('#zaLessonBody').innerHTML=`
-        <section class="za-lesson-block"><div class="za-block-head"><span class="za-block-ico" aria-hidden="true">◎</span><div><span class="za-block-kicker">01 · LEARNING GOAL</span><h2>What you will understand</h2></div></div><p>${safe(record.outcome)}.</p><div class="za-tip"><b>Learning approach:</b> Read the explanation, follow the example, then attempt the exercise before revealing the answer.</div></section>
-        <section class="za-lesson-block"><div class="za-block-head"><span class="za-block-ico" aria-hidden="true">▥</span><div><span class="za-block-kicker">02 · WORKED EXAMPLE</span><h2>See the idea in practice</h2></div></div><div class="za-example">${safe(record.example)}</div></section>
-        <section class="za-lesson-block"><div class="za-block-head"><span class="za-block-ico orange" aria-hidden="true">✎</span><div><span class="za-block-kicker">03 · YOUR TURN</span><h2>Try the practical exercise</h2></div></div><p>${safe(record.exercise)}</p><details class="za-exercise-solution"><summary>Reveal a model answer and explanation</summary><div class="za-solution">${safe(record.solution)}</div></details><div class="za-tip"><b>Common mistake to avoid:</b> ${safe(record.pitfall)}.</div></section>`;
+        <nav class="za-lesson-sections" aria-label="Sections in this lesson">
+          <span class="za-section-toc-title">IN THIS WEEK</span>
+          <button type="button" data-jump="zaConcepts">Read the concepts</button>
+          <button type="button" data-jump="zaMethod">Guided walkthrough</button>
+          <button type="button" data-jump="zaExample">Worked example</button>
+          <button type="button" data-jump="zaExercise">Try an exercise</button>
+          <button type="button" data-jump="zaRecap">Review & recap</button>
+        </nav>
+        <section class="za-lesson-block za-lesson-objective" id="zaGoals"><div class="za-block-head"><span class="za-block-ico" aria-hidden="true">◎</span><div><span class="za-block-kicker">01 · LEARNING GOAL</span><h2>What you will understand</h2></div></div><p>${safe(record.outcome)}.</p><div class="za-tip"><b>How to study this module:</b> Read both explanations, follow the guided workflow, examine the example, and solve the exercise before opening its answer. Finish with the separate weekly questions.</div></section>
+        ${guideHtml}
+        <section class="za-lesson-block" id="zaExample"><div class="za-block-head"><span class="za-block-ico" aria-hidden="true">▥</span><div><span class="za-block-kicker">02 · WORKED EXAMPLE</span><h2>See the idea in practice</h2></div></div><p class="za-example-intro">Read the scenario. Identify the input, the operation, and what the result means for the business question.</p><div class="za-example">${safe(record.example)}</div>${guide?.case ? `<div class="za-case-study"><div class="za-case-label">APPLY IT TO A REALISTIC CASE</div><p>${safe(guide.case)}</p></div>` : ''}</section>
+        <section class="za-lesson-block" id="zaExercise"><div class="za-block-head"><span class="za-block-ico orange" aria-hidden="true">✎</span><div><span class="za-block-kicker">03 · YOUR TURN</span><h2>Try the practical exercise</h2></div></div><p>${safe(record.exercise)}</p><div class="za-exercise-help">Before revealing the answer: identify the correct input fields, state the rule or formula, and check that your result addresses the question.</div><details class="za-exercise-solution"><summary>Reveal the worked answer and compare your reasoning</summary><div class="za-solution">${safe(record.solution)}</div></details><div class="za-tip"><b>Common mistake to avoid:</b> ${safe(record.pitfall)}.</div></section>
+        <section class="za-lesson-block za-lesson-recap" id="zaRecap"><div class="za-block-head"><span class="za-block-ico" aria-hidden="true">✓</span><div><span class="za-block-kicker">LEARNING RECAP</span><h2>Check your understanding</h2></div></div><p class="za-recap-lead">Before you move on, explain the main idea in your own words and confirm that your calculations or decisions can be checked independently.</p><div class="za-recap-card"><strong>What a correct result should show</strong><p>${safe(guide?.verify || record.outcome)}</p></div><div class="za-recap-card za-recap-warning"><strong>Remember this limitation</strong><p>${safe(record.pitfall)}.</p></div><p class="za-recap-next">When you are ready, select <b>Questions to Try</b> below. Questions open on a separate assessment page; completing the lesson and submitting a quiz remain separate actions.</p></section>`;
+      all('.za-lesson-sections button',one('#zaLessonBody')).forEach(button=>button.addEventListener('click',()=>{
+        const section=document.getElementById(button.dataset.jump);
+        section?.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+      }));
       const next=path.weeks[week]?`${courseHref(slug)}?week=${week+1}`:base+'capstone.html?course='+encodeURIComponent(slug);
       const done=!!readProgress(slug)[String(week)];
       one('#zaLessonActions').innerHTML=`<button id="zaMarkWeek" type="button" class="za-btn za-btn-line">${done?'✓ Marked as complete':'✓ Mark week complete'}</button><a class="za-btn za-btn-primary" href="${quizHref(slug,week)}">Questions to Try ↗</a><a class="za-btn za-btn-line" href="${next}">${week===path.weeks.length?'Capstone project ↗':'Next week →'}</a>${week===path.weeks.length?`<a class="za-btn za-btn-line" href="${quizHref(slug,'mastery')}">Mastery Assessment ↗</a>`:''}<span class="za-save-status" id="zaSaveStatus" role="status" aria-live="polite"></span>`;

@@ -19,7 +19,7 @@
     "test:tutor": "node tests/tutor.mjs && node tests/tutor-favicon-account.mjs && node tests/tutor-premium-ui.mjs && node tests/tutor-fullscreen-mobile.mjs",
     "verify:deployment": "npm run build && npm run lint && npm test",
     "test:legacy": "npm run test:core && npm run test:responsive && npm run test:learning && npm run test:security && npm run test:arena && npm run test:tutor",
-    "test:academy": "node tests/academy-release.mjs"
+    "test:academy": "node tests/academy-release.mjs && node tests/unified-academy-v3.mjs && node tests/academy-guided-lessons.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.57.0",

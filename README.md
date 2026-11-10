@@ -1,6 +1,8 @@
+> **Current release:** Comprehensive Guided Weekly Lessons (10 November 2026). Every module now includes original, substantial conceptual teaching, a practical workflow, an applied case, an exercise with answer and a recap. See [current release notes](docs/COMPREHENSIVE_WEEKLY_GUIDES_20261110.md).
+
 # DataLearning · Seven-Path Premium Academy
 
-**Current release: 10 November 2026.** The site now presents seven data learning paths with 70 weekly modules, practical examples, separate Questions to Try pages, a mobile-first interface and authenticated Supabase progress/quiz tracking. The current release notes and deployment guidance are in [CURRENT_RELEASE.md](CURRENT_RELEASE.md). Existing Tutor, floating AI, Practice Arena, Learning Coach, capstone, review and certification workflows remain included.
+**Current release: 10 November 2026.** The site presents seven data learning paths with 70 individually expanded weekly modules, multi-section teaching explanations, practical examples, guided steps, separate Questions to Try pages, a mobile-first interface and authenticated Supabase progress/quiz tracking. The current release notes and deployment guidance are in [CURRENT_RELEASE.md](CURRENT_RELEASE.md). Existing Tutor, floating AI, Practice Arena, Learning Coach, capstone, review and certification workflows remain included.
 
 ---
 

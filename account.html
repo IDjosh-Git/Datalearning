@@ -20,8 +20,8 @@
 <link href="assets/styles/design-system.css" rel="stylesheet"/>
 <link href="assets/styles/private-workspace.css" rel="stylesheet"/>
 <link href="assets/styles/private-shell-modern.css" rel="stylesheet"/>
-<link rel="stylesheet" href="assets/styles/premium-unified.css"></head>
-<body class="dalp-account-page" data-admin-console="account" data-private-workspace="true" data-responsive-page="account">
+<link rel="stylesheet" href="assets/styles/premium-unified.css"><link rel="stylesheet" href="assets/styles/unified-academy-v3.css" data-dlx-style="v3"></head>
+<body class="dalp-account-page dlx-rebuilt" data-admin-console="account" data-private-workspace="true" data-responsive-page="account">
 <main id="main-content"><div class="wrap mld-container">
 <section class="account-overview mld-hero" aria-labelledby="account-heading">
   <div class="account-overview-content">
@@ -35,11 +35,11 @@
   <aside class="mld-hero-progress" aria-label="Overall course progress">
     <p class="mld-widget-eyebrow">YOUR LEARNING JOURNEY</p>
     <div class="mld-progress-ring" id="dashProgressRing" role="progressbar" aria-label="Overall curriculum completion" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div><strong id="dashHeroCompletion">0%</strong><small>Overall progress</small></div></div>
-    <p class="mld-widget-caption" id="dashHeroUnits">0 of 58 lessons / weeks</p>
+    <p class="mld-widget-caption" id="dashHeroUnits">0 of 70 weeks</p>
   </aside>
 </section>
 <section class="mld-stat-grid" aria-label="Learning at a glance">
-  <article class="mld-stat mld-stat-violet"><span class="mld-stat-icon"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 9 5-9 5-9-5 9-5Zm-9 10 9 5 9-5M3 17l9 5 9-5"/></svg></span><span class="mld-stat-label">Courses started</span><strong id="dashCourseCount">0</strong><small>Across six learning tracks</small></article>
+  <article class="mld-stat mld-stat-violet"><span class="mld-stat-icon"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 9 5-9 5-9-5 9-5Zm-9 10 9 5 9-5M3 17l9 5 9-5"/></svg></span><span class="mld-stat-label">Courses started</span><strong id="dashCourseCount">0</strong><small>Across your seven current learning paths</small></article>
   <article class="mld-stat mld-stat-blue"><span class="mld-stat-icon"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="mld-stat-label">Lessons completed</span><strong id="dashUnitCount">0</strong><small>Completed lesson / week units</small></article>
   <article class="mld-stat mld-stat-teal"><span class="mld-stat-icon"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V9m6 10V4m6 15v-7m4 7H2"/></svg></span><span class="mld-stat-label">Average quiz score</span><strong id="dashQuizAverage">—</strong><small>Across your recorded quizzes</small></article>
   <article class="mld-stat mld-stat-orange"><span class="mld-stat-icon"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="m8.2 13-1 8 4.8-2.5 4.8 2.5-1-8"/></svg></span><span class="mld-stat-label">Certificates earned</span><strong id="dashCertificateCount">0</strong><small>Issued learning certificates</small></article>
@@ -47,11 +47,11 @@
 <div class="mld-status" role="status" aria-live="polite"><span class="mld-status-icon"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/></svg></span><div><strong>Progress sync</strong><p id="accountSyncStatus">Checking your latest progress…</p></div></div>
 <section class="mld-resume" aria-labelledby="dashContinueHeading"><div class="mld-resume-intro"><span class="mld-resume-icon"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></span><div><span class="mld-overline">PICK UP WHERE YOU LEFT OFF</span><h2 id="dashContinueHeading">Continue learning</h2><p><strong id="dashContinueTitle">Introduction to Data</strong> <span aria-hidden="true">·</span> <span id="dashContinueDetail">Your next lesson is ready</span></p></div></div><a class="mld-btn mld-btn-primary" href="courses/introduction.html" id="dashContinueLink">Resume course <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></section>
 <section aria-labelledby="course-progress-heading" class="progress-collection full mld-course-section">
- <div class="account-section-heading"><div><span class="mld-overline">MY COURSES</span><h2 id="course-progress-heading">Your learning tracks</h2><p>Keep your momentum going, one milestone at a time.</p></div><a href="catalog.html" class="mld-text-action">View course catalogue <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div>
+ <div class="account-section-heading"><div><span class="mld-overline">MY COURSES</span><h2 id="course-progress-heading">Your seven learning paths</h2><p>Keep your momentum going, one milestone at a time.</p></div><a href="catalog.html" class="mld-text-action">View course catalogue <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div>
  <div class="course-progress-grid"><article class="card progress-card" data-track="introduction">
 <div class="mld-course-top"><span class="mld-course-icon"><img src="assets/icons/icon-intro.svg" alt="" loading="lazy"></span><span class="mld-course-percent" id="introductionPercent">0%</span></div>
 <h3>Introduction to Data</h3><p class="mld-course-subtitle">Foundations and core concepts</p>
-<div class="mld-progress-meta"><span id="introductionText">0 of 8 lessons</span><span class="mld-progress-caption">Completed</span></div>
+<div class="mld-progress-meta"><span id="introductionText">0 of 10 weeks</span><span class="mld-progress-caption">Completed</span></div>
 <div aria-label="Introduction to Data progress" aria-valuemax="100" aria-valuemin="0" aria-valuenow="0" class="bar" role="progressbar"><div class="fill" id="introductionBar" style="width:0%"></div></div>
 <a href="courses/introduction.html">Open Introduction →</a>
 </article><article class="card progress-card" data-track="excel">
@@ -72,13 +72,13 @@
 <div class="mld-progress-meta"><span id="powerbiText">0 of 10 weeks</span><span class="mld-progress-caption">Completed</span></div>
 <div aria-label="Power BI progress" aria-valuemax="100" aria-valuemin="0" aria-valuenow="0" class="bar" role="progressbar"><div class="fill" id="powerbiBar" style="width:0%"></div></div>
 <a href="courses/powerbi.html">Open Power BI Course →</a>
-</article><article class="card progress-card" data-track="python">
+</article><article class="card progress-card" data-track="tableau"><div class="mld-course-top"><span class="mld-course-icon dlx-course-icon" aria-hidden="true">◫</span><span class="mld-course-percent" id="tableauPercent">0%</span></div><h3>Tableau</h3><p class="mld-course-subtitle">Build clear interactive charts</p><div class="mld-progress-meta"><span id="tableauText">0 of 10 weeks</span><span class="mld-progress-caption">Completed</span></div><div class="bar" role="progressbar" aria-label="Tableau progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="fill" id="tableauBar" style="width:0%"></div></div><a href="courses/tableau.html">Open Tableau course ↗</a></article><article class="card progress-card" data-track="powerquery"><div class="mld-course-top"><span class="mld-course-icon dlx-course-icon" aria-hidden="true">⇆</span><span class="mld-course-percent" id="powerqueryPercent">0%</span></div><h3>Power Query</h3><p class="mld-course-subtitle">Clean and transform your data</p><div class="mld-progress-meta"><span id="powerqueryText">0 of 10 weeks</span><span class="mld-progress-caption">Completed</span></div><div class="bar" role="progressbar" aria-label="Power Query progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="fill" id="powerqueryBar" style="width:0%"></div></div><a href="courses/powerquery.html">Open Power Query course ↗</a></article><article class="card progress-card" data-track="statistics"><div class="mld-course-top"><span class="mld-course-icon dlx-course-icon" aria-hidden="true">Σ</span><span class="mld-course-percent" id="statisticsPercent">0%</span></div><h3>Introductory Statistics</h3><p class="mld-course-subtitle">Describe data and test assumptions</p><div class="mld-progress-meta"><span id="statisticsText">0 of 10 weeks</span><span class="mld-progress-caption">Completed</span></div><div class="bar" role="progressbar" aria-label="Introductory Statistics progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="fill" id="statisticsBar" style="width:0%"></div></div><a href="courses/statistics.html">Open Introductory Statistics course ↗</a></article><div class="dlx-course-archive-label">Additional / legacy learning paths</div><article class="card progress-card dlx-legacy-path" data-track="python">
 <div class="mld-course-top"><span class="mld-course-icon"><img src="assets/icons/icon-python.svg" alt="" loading="lazy"></span><span class="mld-course-percent" id="pythonPercent">0%</span></div>
 <h3>Python for Data Analytics</h3><p class="mld-course-subtitle">Analyse and automate with code</p>
 <div class="mld-progress-meta"><span id="pythonText">0 of 10 weeks</span><span class="mld-progress-caption">Completed</span></div>
 <div aria-label="Python for Data Analytics progress" aria-valuemax="100" aria-valuemin="0" aria-valuenow="0" class="bar" role="progressbar"><div class="fill" id="pythonBar" style="width:0%"></div></div>
 <a href="courses/python.html">Open Python Course →</a>
-</article><article class="card progress-card" data-track="ai">
+</article><article class="card progress-card dlx-legacy-path" data-track="ai">
 <div class="mld-course-top"><span class="mld-course-icon"><img src="assets/icons/icon-ai.svg" alt="" loading="lazy"></span><span class="mld-course-percent" id="aiPercent">0%</span></div>
 <h3>AI Integration</h3><p class="mld-course-subtitle">Work smarter with AI tools</p>
 <div class="mld-progress-meta"><span id="aiText">0 of 10 weeks</span><span class="mld-progress-caption">Completed</span></div>
@@ -123,9 +123,9 @@
  const syncResult=await window.ZAHProgressCloud.syncAll();
  const successful=Object.values(syncResult.courses||{}).filter(c=>c?.ok).length;
  if(syncStatus){
-   syncStatus.textContent=successful===6
+   syncStatus.textContent=successful===Object.keys(window.ZAHProgressCloud.COURSE_MAP).length
      ? 'Your progress is up to date. You can pick up your lessons on any device.'
-     : `Your progress was updated for ${successful} of 6 courses. Open any remaining course and try again.`;
+     : `Your progress was updated for ${successful} of ${Object.keys(window.ZAHProgressCloud.COURSE_MAP).length} courses. Open any remaining course and try again.`;
  }
 
  const {data:p,error:pErr}=await window.ZAH_DB.client
@@ -134,32 +134,33 @@
    .eq('user_id',user.id);
  if(pErr && syncStatus) syncStatus.textContent='We couldn’t load your latest progress. Please refresh this page or try again later.';
 
- const trackUnits={introduction:8,excel:10,sql:10,powerbi:10,python:10,ai:10};
+ const trackUnits={introduction:10,excel:10,sql:10,powerbi:10,tableau:10,powerquery:10,statistics:10,python:10,ai:10};
+ const primaryTracks=new Set(["introduction","excel","sql","powerbi","tableau","powerquery","statistics"]);
  Object.entries(trackUnits).forEach(([c,total])=>{
    const done=(p||[]).filter(r=>r.course_slug===c&&r.completed).length,pct=Math.round(done/total*100);
-   document.getElementById(c+'Text').textContent=`${done} of ${total} ${c==='introduction'?'lessons':'weeks'}`;
+   document.getElementById(c+'Text').textContent=`${done} of ${total} weeks`;
    const progressFill=document.getElementById(c+'Bar');
    progressFill.style.width=pct+'%';
    progressFill.parentElement.setAttribute('aria-valuenow',String(pct));
-   progressFill.parentElement.setAttribute('aria-valuetext',`${done} of ${total} ${c==='introduction'?'lessons':'weeks'}`);
+   progressFill.parentElement.setAttribute('aria-valuetext',`${done} of ${total} weeks`);
    const percentText=document.getElementById(c+'Percent');if(percentText)percentText.textContent=pct+'%';
  });
 
 
- const completedUnits=(p||[]).filter(r=>r.completed && Object.hasOwn(trackUnits,r.course_slug)).length;
- const started=new Set((p||[]).filter(r=>Object.hasOwn(trackUnits,r.course_slug)).map(r=>r.course_slug));
- const overallPct=Math.min(100,Math.round(completedUnits/58*100));
+ const completedUnits=(p||[]).filter(r=>r.completed && primaryTracks.has(r.course_slug)).length;
+ const started=new Set((p||[]).filter(r=>primaryTracks.has(r.course_slug)).map(r=>r.course_slug));
+ const overallPct=Math.min(100,Math.round(completedUnits/70*100));
  const updateText=(id,value)=>{const node=document.getElementById(id);if(node)node.textContent=String(value)};
  updateText('dashCourseCount',started.size);
  updateText('dashUnitCount',completedUnits);
  updateText('dashHeroCompletion',overallPct+'%');
- updateText('dashHeroUnits',completedUnits+' of 58 lessons / weeks');
+ updateText('dashHeroUnits',completedUnits+' of 70 weeks');
  const ring=document.getElementById('dashProgressRing');
  if(ring){ring.style.setProperty('--dash-complete',overallPct+'%');ring.setAttribute('aria-valuenow',String(overallPct));}
- const labels={introduction:'Introduction',excel:'Excel analytics',sql:'SQL analytics',powerbi:'Power BI',python:'Python for data',ai:'AI integration'};
- const latestProgress=(p||[]).filter(r=>r.course_slug in trackUnits&&r.updated_at).sort((a,b)=>new Date(b.updated_at)-new Date(a.updated_at));
+ const labels={introduction:'Data Analysis',excel:'Excel analytics',sql:'SQL analytics',powerbi:'Power BI',tableau:'Tableau',powerquery:'Power Query',statistics:'Introductory Statistics',python:'Python for data',ai:'AI integration'};
+ const latestProgress=(p||[]).filter(r=>primaryTracks.has(r.course_slug)&&r.updated_at).sort((a,b)=>new Date(b.updated_at)-new Date(a.updated_at));
  let resumeSlug=latestProgress.find(r=>((p||[]).filter(x=>x.course_slug===r.course_slug&&x.completed).length)<trackUnits[r.course_slug])?.course_slug;
- if(!resumeSlug)resumeSlug=Object.keys(trackUnits).find(s=>!started.has(s))||'introduction';
+ if(!resumeSlug)resumeSlug=Array.from(primaryTracks).find(s=>!started.has(s))||'introduction';
  const resumeDone=(p||[]).filter(r=>r.course_slug===resumeSlug&&r.completed).length;
  updateText('dashContinueTitle',labels[resumeSlug]);
  updateText('dashContinueDetail',`${resumeDone} of ${trackUnits[resumeSlug]} ${resumeSlug==='introduction'?'lessons':'weeks'} complete`);
@@ -187,7 +188,7 @@
  const capHost=document.getElementById('accountCapstones');
  if(capError)capHost.textContent='Your assessment records are unavailable right now. Please try again later or contact your instructor.';
  else if(!submissions?.length)capHost.textContent='No capstones submitted yet.';
- else{const capLabels={excel:'Excel',sql:'SQL',powerbi:'Power BI',ai:'AI Integration',python:'Python',introduction:'Introduction'};capHost.replaceChildren();submissions.forEach(r=>{const line=document.createElement('p'),a=document.createElement('a');a.textContent=(capLabels[r.course_slug]||String(r.course_slug||'').toUpperCase())+' · '+r.project_title+' · '+String(r.status||'pending').replaceAll('_',' ')+(r.score!=null?' · '+r.score+'/100':'');a.href='capstone.html?course='+encodeURIComponent(r.course_slug);a.className='account-text-link';line.append(a);capHost.append(line)})}
+ else{const capLabels={excel:'Excel',sql:'SQL',powerbi:'Power BI',tableau:'Tableau',powerquery:'Power Query',statistics:'Statistics',ai:'AI Integration',python:'Python',introduction:'Data Analysis'};capHost.replaceChildren();submissions.forEach(r=>{const line=document.createElement('p'),a=document.createElement('a');a.textContent=(capLabels[r.course_slug]||String(r.course_slug||'').toUpperCase())+' · '+r.project_title+' · '+String(r.status||'pending').replaceAll('_',' ')+(r.score!=null?' · '+r.score+'/100':'');a.href='capstone.html?course='+encodeURIComponent(r.course_slug);a.className='account-text-link';line.append(a);capHost.append(line)})}
  const escapeHTML = value => String(value ?? '').replace(/[&<>\"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[c]));
  document.getElementById('certBody').innerHTML=(c||[]).map(r=>`<tr><td>${escapeHTML(r.certificate_id)}</td><td>${escapeHTML(r.course_title)}</td><td>${escapeHTML(r.completion_date)}</td><td>${escapeHTML(r.status)}</td><td><a href="certificate.html?id=${encodeURIComponent(r.certificate_id)}" class="account-text-link">View &amp; download ↗</a></td></tr>`).join('')||'<tr><td colspan="5">No completion records registered yet.</td></tr>';
 },{once:true});
