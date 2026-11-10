@@ -1,7 +1,7 @@
 /* Privacy-first learner overview. RPC provides ONLY suppressed aggregate data; no raw learner rows. */
 (()=>{'use strict';const $=s=>document.querySelector(s);
-const names={introduction:'Data foundations',excel:'Excel',sql:'SQL',powerbi:'Power BI',python:'Python',ai:'AI integration'};
-const colors={introduction:'#8067d9',excel:'#1b916f',sql:'#3179c5',powerbi:'#b7811b',python:'#4e64bf',ai:'#ad5bb0'};
+const names={introduction:'Data foundations',excel:'Excel',sql:'SQL',powerbi:'Power BI',tableau:'Tableau',powerquery:'Power Query',statistics:'Statistics',python:'Python',ai:'AI integration'};
+const colors={introduction:'#8067d9',excel:'#1b916f',sql:'#3179c5',powerbi:'#b7811b',tableau:'#2d7c86',powerquery:'#28735f',statistics:'#a95a2d',python:'#4e64bf',ai:'#ad5bb0'};
 const state=$('#boDataState'),ranking=$('#boRanking');
 function message(text){state.textContent=text}
 function render(rows){const reportable=rows.filter(r=>Number.isInteger(r.learners_total)&&r.learners_total>=5).sort((a,b)=>b.learners_total-a.learners_total);

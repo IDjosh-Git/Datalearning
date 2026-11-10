@@ -1,3 +1,9 @@
+# DataLearning · Seven-Path Premium Academy
+
+**Current release: 10 November 2026.** The site now presents seven data learning paths with 70 weekly modules, practical examples, separate Questions to Try pages, a mobile-first interface and authenticated Supabase progress/quiz tracking. The current release notes and deployment guidance are in [CURRENT_RELEASE.md](CURRENT_RELEASE.md). Existing Tutor, floating AI, Practice Arena, Learning Coach, capstone, review and certification workflows remain included.
+
+---
+
 **New: Premium weekly curriculum browser.** The Courses page now lets learners preview the actual modules of all six courses, divided into three learning phases, with direct links to the existing lessons and dedicated question pages. Each course page also includes a compact expandable module navigator. See `docs/WEEKLY_MODULES_PREMIUM_20261109.md` for details.
 
 # Latest release — Mastery Assessment, Discover 3D, Navigation & Contrast | 9 November 2026

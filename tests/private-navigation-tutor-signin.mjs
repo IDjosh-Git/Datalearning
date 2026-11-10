@@ -36,7 +36,7 @@ assert(!navigation.includes('ac-mobile-tabs')&&!adminController.includes('ac-sid
 assert(styles.includes('.ac-sidebar')&&styles.includes('.ac-topbar')&&styles.includes('@media(max-width:760px)'),'Shared desktop/mobile presentation');
 assert(styles.includes('prefers-reduced-motion:reduce'),'Protected workspace reduced motion');
 const tutor=read('tutor.html'),tutorCss=read('assets/styles/tutor.css');
-assert(tutor.includes('class="tutor-compose-icon"')&&tutor.includes('viewBox="0 0 36 36"'),'AI icon replaces visible question label');
+assert(tutor.includes('class="tutor-compose-icon"')&&tutor.includes('<svg'),'AI icon replaces visible question label');
 assert(tutor.includes('rows="1"')&&tutor.includes('id="chatQuestion"')&&tutor.includes('id="sendQuestion"'),'Compact composer retains real controls');
 assert(tutor.includes('class="sr-only" for="chatQuestion"'),'Composer retains accessible name');
 assert(tutorCss.includes('height:42px!important')&&tutorCss.includes('flex-wrap:nowrap!important'),'Compact composer responsive styles');

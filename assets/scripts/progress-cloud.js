@@ -1,10 +1,13 @@
 (function(){
   'use strict';
   const COURSE_MAP = {
-    introduction: { key:'dalpIntroductionProgressV1', title:'Introduction to Data Analysis', units:8, unitLabel:'lessons' },
+    introduction: { key:'dalpIntroductionProgressV1', title:'Data Analysis', units:10, unitLabel:'weeks' },
     excel:        { key:'excelRoadmapProgress', title:'Excel Data Analysis', units:10, unitLabel:'weeks' },
     sql:          { key:'sqlRoadmapProgress', title:'SQL for Data Analytics', units:10, unitLabel:'weeks' },
     powerbi:      { key:'powerbiRoadmapProgress', title:'Power BI', units:10, unitLabel:'weeks' },
+    tableau:      { key:'tableauAcademyProgress', title:'Tableau', units:10, unitLabel:'weeks' },
+    powerquery:   { key:'powerqueryAcademyProgress', title:'Power Query', units:10, unitLabel:'weeks' },
+    statistics:   { key:'statisticsAcademyProgress', title:'Introductory Statistics', units:10, unitLabel:'weeks' },
     python:       { key:'pythonRoadmapProgress', title:'Python for Data Analytics', units:10, unitLabel:'weeks' },
     ai:           { key:'aiRoadmapProgress', title:'AI Integration in Data Analysis', units:10, unitLabel:'weeks' }
   };

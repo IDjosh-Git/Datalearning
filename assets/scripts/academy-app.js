@@ -1,0 +1,246 @@
+/** DataLearning Academy: course browser, weekly lessons, progress and assessments. */
+(() => {
+  'use strict';
+  const catalog = Array.isArray(window.DALP_ACADEMY) ? window.DALP_ACADEMY : [];
+  const courses = Object.fromEntries(catalog.map(path => [path.slug, path]));
+  const root = document.documentElement;
+  const base = root.dataset.base || '';
+  const page = root.dataset.academyPage || '';
+  const one = (s, context=document) => context.querySelector(s);
+  const all = (s, context=document) => [...context.querySelectorAll(s)];
+  const safe = input => String(input ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const courseHref = slug => base + 'courses/' + encodeURIComponent(slug) + '.html';
+  const quizHref = (slug, week) => base + 'quiz.html?course=' + encodeURIComponent(slug) + '&week=' + encodeURIComponent(week);
+  const pathFor = slug => courses[slug];
+  const num = week => String(week).padStart(2,'0');
+  const labelFor = slug => slug === 'introduction' ? 'Data Analysis' : courses[slug]?.title || slug;
+  const icon = slug => ({introduction:'◉',excel:'▦',sql:'⌗',powerbi:'▥',tableau:'◫',powerquery:'⇆',statistics:'Σ'})[slug] || '◈';
+  const track = slug => window.ZAHProgressCloud?.COURSE_MAP?.[slug];
+  const readProgress = slug => {
+    const map = track(slug);
+    if (!map) return {};
+    try { return window.ZAHProgressCloud.readLocal(map.key) || {}; } catch (_) {return {};}
+  };
+  const completedCount = slug => Object.values(readProgress(slug)).filter(v => v === true).length;
+  const percent = slug => Math.min(100, Math.round(completedCount(slug) * 100 / (courses[slug]?.weeks.length || 10)));
+  const user = async () => {
+    try {return (await window.ZAH_DB?.client?.auth?.getUser())?.data?.user || null;} catch (_) {return null;}
+  };
+  async function syncCourse(slug, onUpdate) {
+    if (!window.ZAHProgressCloud?.syncCourse || !window.ZAH_DB?.client) return;
+    try {
+      if (!(await user())) return;
+      const result = await window.ZAHProgressCloud.syncCourse(slug);
+      if (result?.ok) onUpdate?.(result);
+    } catch (error) {console.warn('Course progress sync is temporarily unavailable:',error?.message || error);}
+  }
+  function renderCard(path, details=false) {
+    const s=safe(path.slug),name=safe(path.title);
+    const staticPart = `<div class="za-card-top"><span class="za-card-icon" aria-hidden="true">${icon(path.slug)}</span><span class="za-card-index">PATH ${safe(path.number)}</span></div><h3>${name}</h3><p>${safe(path.tagline)}</p>`;
+    return `<article class="za-course-card">${staticPart}<div class="za-card-bottom"><small>10 weeks · Hands-on practice</small><a href="${courseHref(path.slug)}" aria-label="Explore ${name}">Explore ↗</a></div></article>`;
+  }
+  function attachMenu(){
+    const open=one('#zaMenuOpen'),close=one('#zaMenuClose'),overlay=one('#zaMenuOverlay');
+    if(!open||!close||!overlay)return;
+    let before=null;
+    function toggle(on){
+      overlay.hidden=!on;open.setAttribute('aria-expanded',String(on));document.body.classList.toggle('za-menu-opened',on);
+      document.body.style.overflow=on?'hidden':'';
+      if(on){before=document.activeElement;close.focus();}
+      else (before?.isConnected?before:open).focus();
+    }
+    open.addEventListener('click',()=>toggle(true));close.addEventListener('click',()=>toggle(false));
+    overlay.addEventListener('click',event=>{if(event.target===overlay)toggle(false)});
+    document.addEventListener('keydown',event=>{
+      if(event.key==='Escape'&&!overlay.hidden)toggle(false);
+      if(event.key!=='Tab'||overlay.hidden)return;
+      const focusables=all('a[href],button:not([disabled])',overlay).filter(el=>el.getClientRects().length);
+      if(!focusables.length)return;
+      const first=focusables[0],last=focusables[focusables.length-1];
+      if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}
+      else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
+    });
+  }
+  function discover(){const node=one('#zaDiscoverCards');if(!node)return;node.innerHTML=catalog.map(path=>renderCard(path)).join('');}
+  function catalogPage(){
+    const box=one('#zaCatalogCards'),search=one('#zaCourseSearch'),empty=one('#zaCatalogEmpty');
+    if(!box||!search)return;
+    function render(){
+      const q=search.value.trim().toLowerCase();
+      const shown=catalog.filter(path=> (path.title+' '+path.tagline+' '+path.weeks.map(w=>w.title+' '+w.outcome).join(' ')).toLowerCase().includes(q));
+      box.innerHTML=shown.map(path => `<article class="za-catalog-item"><div class="za-catalog-intro"><div class="za-catalog-meta"><span class="za-card-icon" aria-hidden="true">${icon(path.slug)}</span><span class="za-card-index">PATH ${safe(path.number)} / 07</span></div><h3>${safe(path.title)}</h3><p>${safe(path.tagline)}</p><div class="za-catalog-stats"><span>10 weekly modules</span><span>Practical examples</span><span>Weekly quizzes</span></div><div class="za-catalog-links"><a class="za-btn za-btn-primary" href="${courseHref(path.slug)}">Start learning ↗</a><a href="${quizHref(path.slug,1)}">Questions to Try ↗</a></div></div><div class="za-catalog-weeks"><details><summary>Explore the 10-week curriculum <span aria-hidden="true">⌄</span></summary><div class="za-week-peek">${path.weeks.map(w=>`<a href="${courseHref(path.slug)}?week=${w.week}"><b>Week ${num(w.week)} · ${safe(w.title)}</b><span>Study lesson ↗</span></a>`).join('')}</div></details></div></article>`).join('');
+      empty.hidden=shown.length>0;
+    }
+    search.addEventListener('input',render);render();
+  }
+  function lessonPage(){
+    const slug=document.body.dataset.course;
+    const path=pathFor(slug);
+    if(!path){one('#zaLessonTitle').textContent='Course unavailable';return;}
+    const list=one('#zaWeekList'),open=one('#zaAsideOpen'),close=one('#zaAsideClose'),aside=one('#zaCourseAside');
+    const currentUrl=()=>{
+      const params=new URLSearchParams(location.search);
+      const n=Number(params.get('week'));
+      if(Number.isInteger(n)&&n>=1&&n<=path.weeks.length)return n;
+      const h=location.hash.match(/^#(?:week|lesson)-?(\d+)$/i);
+      return h&&Number(h[1])>=1&&Number(h[1])<=path.weeks.length?Number(h[1]):1;
+    };
+    let current=currentUrl();
+    const setAside=show=>{
+      if(!aside||!open)return;
+      aside.classList.toggle('is-open',show);
+      open.setAttribute('aria-expanded',String(show));
+      document.body.classList.toggle('za-sidebar-opened',show);
+      document.body.style.overflow=show?'hidden':'';
+      if(show)close?.focus();else open.focus();
+    };
+    open?.addEventListener('click',()=>setAside(true));close?.addEventListener('click',()=>setAside(false));
+    document.addEventListener('keydown',event=>{if(event.key==='Escape'&&aside.classList.contains('is-open'))setAside(false)});
+    function progressView(){
+      const count=completedCount(slug);
+      one('#zaAsideProgressLabel').textContent=`${count} of ${path.weeks.length} completed`;
+      one('#zaAsideProgressFill').style.width=`${percent(slug)}%`;
+      all('.za-week-link',list).forEach(button=>{
+        const w=Number(button.dataset.week);
+        const done=!!readProgress(slug)[String(w)];
+        button.querySelector('.za-week-info small').textContent=done?'Completed':'Ready to study';
+        button.querySelector('.za-week-done').textContent=done?'✓':'';
+      });
+    }
+    function showLesson(week,updateUrl=true){
+      const record=path.weeks[week-1];if(!record)return;
+      current=week;
+      list.innerHTML=path.weeks.map(w=>`<button type="button" class="za-week-link" data-week="${w.week}" aria-current="${w.week===week?'true':'false'}"><span class="za-week-num">${num(w.week)}</span><span class="za-week-info"><strong>${safe(w.title)}</strong><small>Ready to study</small></span><span class="za-week-done" aria-label="Completion indicator"></span></button>`).join('');
+      one('#zaWeekCounter').textContent=`WEEK ${num(week)} / ${path.weeks.length}`;
+      one('#zaLessonKicker').textContent=`${path.title.toUpperCase()} · WEEK ${num(week)}`;
+      one('#zaLessonTitle').textContent=record.title;
+      one('#zaLessonOutcome').textContent=record.outcome;
+      one('#zaLessonBody').innerHTML=`
+        <section class="za-lesson-block"><div class="za-block-head"><span class="za-block-ico" aria-hidden="true">◎</span><div><span class="za-block-kicker">01 · LEARNING GOAL</span><h2>What you will understand</h2></div></div><p>${safe(record.outcome)}.</p><div class="za-tip"><b>Learning approach:</b> Read the explanation, follow the example, then attempt the exercise before revealing the answer.</div></section>
+        <section class="za-lesson-block"><div class="za-block-head"><span class="za-block-ico" aria-hidden="true">▥</span><div><span class="za-block-kicker">02 · WORKED EXAMPLE</span><h2>See the idea in practice</h2></div></div><div class="za-example">${safe(record.example)}</div></section>
+        <section class="za-lesson-block"><div class="za-block-head"><span class="za-block-ico orange" aria-hidden="true">✎</span><div><span class="za-block-kicker">03 · YOUR TURN</span><h2>Try the practical exercise</h2></div></div><p>${safe(record.exercise)}</p><details class="za-exercise-solution"><summary>Reveal a model answer and explanation</summary><div class="za-solution">${safe(record.solution)}</div></details><div class="za-tip"><b>Common mistake to avoid:</b> ${safe(record.pitfall)}.</div></section>`;
+      const next=path.weeks[week]?`${courseHref(slug)}?week=${week+1}`:base+'capstone.html?course='+encodeURIComponent(slug);
+      const done=!!readProgress(slug)[String(week)];
+      one('#zaLessonActions').innerHTML=`<button id="zaMarkWeek" type="button" class="za-btn za-btn-line">${done?'✓ Marked as complete':'✓ Mark week complete'}</button><a class="za-btn za-btn-primary" href="${quizHref(slug,week)}">Questions to Try ↗</a><a class="za-btn za-btn-line" href="${next}">${week===path.weeks.length?'Capstone project ↗':'Next week →'}</a>${week===path.weeks.length?`<a class="za-btn za-btn-line" href="${quizHref(slug,'mastery')}">Mastery Assessment ↗</a>`:''}<span class="za-save-status" id="zaSaveStatus" role="status" aria-live="polite"></span>`;
+      one('#zaMarkWeek').addEventListener('click', async function(){
+        this.disabled=true;one('#zaSaveStatus').textContent='Saving your week…';
+        try{
+          const result=await window.ZAHProgressCloud.saveWeek(slug,week,true);
+          this.textContent='✓ Marked as complete';
+          one('#zaSaveStatus').textContent=result.ok?'Week completed and synced to your account.':result.reason==='signed_out'?'Saved on this device. Sign in to sync on other devices.':'Saved locally. Cloud sync is currently unavailable.';
+          progressView();
+        }catch(error){one('#zaSaveStatus').textContent='Unable to save this week right now. Please retry.';}
+        finally{this.disabled=false;}
+      });
+      all('.za-week-link',list).forEach(button=>button.addEventListener('click',()=>{
+        const n=Number(button.dataset.week);showLesson(n);if(aside.classList.contains('is-open'))setAside(false);
+        if(window.matchMedia('(max-width:960px)').matches)one('.za-lesson-hero')?.scrollIntoView({block:'start',behavior:'smooth'});
+      }));
+      progressView();
+      if(updateUrl){const url=new URL(location.href);url.searchParams.set('week',String(week));url.hash='';history.replaceState(null,'',url.pathname+url.search);}
+    }
+    showLesson(current,false);
+    window.addEventListener('popstate',()=>showLesson(currentUrl(),false));
+    syncCourse(slug,progressView);
+  }
+  function quizPage(){
+    const params=new URLSearchParams(location.search);
+    const slug=params.get('course')||'';
+    const rawWeek=params.get('week')||'1';
+    const path=pathFor(slug);
+    const isMastery=rawWeek==='mastery';
+    const week=Number(rawWeek);
+    if(!path || (!isMastery&&(!Number.isInteger(week)||week<1||week>path.weeks.length))){
+      one('#zaQuizTitle').textContent='Questions not found';one('#zaQuizForm').textContent='Select a learning path and week from the course catalogue.';
+      one('#zaQuizSubmit').hidden=true;return;
+    }
+    const questions=isMastery?path.weeks.map((w,i)=>({...w.questions[0],week:i+1})):path.weeks[week-1].questions;
+    const label=isMastery?'Course Mastery Assessment':`Week ${num(week)} · Questions to Try`;
+    one('#zaQuizEyebrow').textContent=isMastery?'FINAL COURSE CHECKPOINT':`${path.title.toUpperCase()} · KNOWLEDGE CHECK`;
+    one('#zaQuizTitle').textContent=label;
+    one('#zaQuizIntro').textContent=isMastery?`Review your ${path.title} knowledge across all ten modules. Every result includes a worked explanation.`:`You have learned about ${path.weeks[week-1].title.toLowerCase()}. Try these questions and review what the best answers mean.`;
+    one('#zaQuizBread').textContent=isMastery?'Mastery assessment':`Week ${num(week)}`;
+    one('#zaQuizCount').textContent=String(questions.length).padStart(2,'0');
+    one('#zaQuizCourseLink').href=courseHref(slug);one('#zaQuizCourseLink').textContent=path.title;
+    one('#zaQuizBack').href=isMastery?courseHref(slug):courseHref(slug)+`?week=${week}`;
+    document.title=`${label} | ${path.title} · DataLearning`;
+    const form=one('#zaQuizForm'),submit=one('#zaQuizSubmit'),retry=one('#zaQuizRetry'),result=one('#zaQuizResult'),message=one('#zaQuizSaveStatus');
+    function count(){
+      const n=questions.filter((_,i)=>!!one(`input[name="q-${i}"]:checked`,form)).length;
+      one('#zaQuizProgressText').textContent=`${n} of ${questions.length} answered`;
+      one('#zaQuizProgressFill').style.width=`${Math.round(n/questions.length*100)}%`;
+      return n;
+    }
+    function render(){
+      form.innerHTML=questions.map((q,i)=>`<section class="za-question" data-index="${i}"><div class="za-q-index"><span>${num(i+1)}</span>${isMastery?'WEEK '+num(q.week):'QUESTION '+num(i+1)+' OF '+num(questions.length)}</div><h2 id="za-q-title-${i}">${safe(q.q)}</h2><div class="za-choice-list" role="group" aria-labelledby="za-q-title-${i}">${q.choices.map((choice,j)=>`<label class="za-choice"><input type="radio" name="q-${i}" value="${j}" aria-label="Option ${String.fromCharCode(65+j)}: ${safe(choice)}"><span class="za-choice-letter" aria-hidden="true">${String.fromCharCode(65+j)}</span><span>${safe(choice)}</span></label>`).join('')}</div><div class="za-feedback" hidden></div></section>`).join('');
+      result.hidden=true;retry.hidden=true;submit.hidden=false;message.textContent='';count();
+    }
+    form.addEventListener('change',count);
+    async function save(score){
+      const u=await user();
+      const localKey=`dalp-academy-quiz:${u?.id||'guest'}:${slug}:${rawWeek}`;
+      try{const prior=JSON.parse(localStorage.getItem(localKey)||'{}');localStorage.setItem(localKey,JSON.stringify({best:Math.max(prior.best||0,score),latest:score,total:questions.length,at:new Date().toISOString()}));}catch(_){/* storage optional */}
+      if(!u || !window.ZAH_DB?.client){message.textContent='Quiz result saved on this device. Sign in to store results in Supabase.';return;}
+      const percentage=Math.round(100*score/questions.length);
+      let table,record,conflict;
+      if(isMastery){table='mastery_results';conflict='user_id,course_slug';record={user_id:u.id,course_slug:slug,score,total:10,percentage,submitted_at:new Date().toISOString()};}
+      else{table='quiz_results';conflict='user_id,course_slug,week_no';record={user_id:u.id,course_slug:slug,week_no:week,score,answered:questions.length,total:questions.length,percentage,submitted_at:new Date().toISOString()};}
+      try{
+        const {error}=await window.ZAH_DB.client.from(table).upsert(record,{onConflict:conflict});if(error)throw error;
+        message.textContent=isMastery?'Mastery Assessment saved to your DataLearning account.':'Weekly quiz result synced to your DataLearning account.';
+      }catch(error){console.warn('Quiz result sync unavailable',error?.message);message.textContent='Your result is saved locally; cloud sync could not be completed. You can retry later.';}
+    }
+    submit.addEventListener('click',async()=>{
+      if(count()<questions.length){
+        const first=questions.findIndex((_,i)=>!one(`input[name="q-${i}"]:checked`,form));
+        result.hidden=false;result.className='za-quiz-result is-warning';result.textContent=`Answer all ${questions.length} questions before checking your score.`;
+        all('.za-question',form)[first]?.scrollIntoView({block:'center',behavior:'smooth'});return;
+      }
+      let score=0;
+      questions.forEach((q,i)=>{
+        const section=all('.za-question',form)[i],picked=Number(one(`input[name="q-${i}"]:checked`,form).value);
+        const good=picked===q.answer;if(good)score++;
+        section.classList.add(good?'is-correct':'is-incorrect');
+        all('input',section).forEach(input=>input.disabled=true);
+        const feedback=one('.za-feedback',section);feedback.hidden=false;
+        feedback.classList.toggle('is-wrong',!good);
+        feedback.textContent=`${good?'Correct.':'Review this answer.'} ${q.why} Correct option: ${String.fromCharCode(65+q.answer)}.`;
+      });
+      result.hidden=false;result.className='za-quiz-result';
+      result.innerHTML=`<h2>${score} / ${questions.length} correct · ${Math.round(score/questions.length*100)}%</h2><p>${score===questions.length?'Excellent work! Every answer is correct.':'Read the explanations above, then try again to strengthen your understanding.'}</p>`;
+      submit.hidden=true;retry.hidden=false;
+      message.textContent='Saving your result…';await save(score);
+      result.scrollIntoView({block:'start',behavior:'smooth'});
+    });
+    retry.addEventListener('click',()=>{render();form.scrollIntoView({block:'start',behavior:'smooth'});});
+    render();
+  }
+  function progressPage(){
+    const summary=one('#zaProgressSummary'),cards=one('#zaProgressCards'),status=one('#zaProgressStatus');
+    if(!summary||!cards)return;
+    function render(){
+      const completed=catalog.reduce((n,p)=>n+completedCount(p.slug),0);
+      const inProgress=catalog.filter(p=>completedCount(p.slug)>0).length;
+      const total=catalog.reduce((n,p)=>n+p.weeks.length,0);
+      summary.innerHTML=`<div class="za-stat-card"><span>WEEKS COMPLETED</span><strong>${completed}</strong><small>Out of ${total} structured modules</small></div><div class="za-stat-card"><span>LEARNING PATHS STARTED</span><strong>${inProgress}</strong><small>Across seven available paths</small></div><div class="za-stat-card"><span>OVERALL PROGRESS</span><strong>${Math.round(completed/total*100)}%</strong><small>Your completed course units</small></div>`;
+      cards.innerHTML=catalog.map(path=>`<article class="za-progress-card"><div class="za-progress-card-head"><span class="za-card-icon" aria-hidden="true">${icon(path.slug)}</span><div><h3>${safe(path.title)}</h3><small>${completedCount(path.slug)} of ${path.weeks.length} weeks complete</small></div></div><div class="za-bar"><span style="width:${percent(path.slug)}%"></span></div><div class="za-progress-card-footer"><b>${percent(path.slug)}% complete</b><a href="${courseHref(path.slug)}">Continue learning ↗</a></div></article>`).join('');
+    }
+    render();
+    (async()=>{
+      const u=await user();
+      if(!u){status.textContent='You are viewing progress saved on this device. Sign in to securely sync across devices.';return;}
+      status.textContent='Checking your synced course progress…';
+      await Promise.all(catalog.map(p=>syncCourse(p.slug,render)));
+      render();status.textContent='Synced with your signed-in DataLearning account where a connection was available.';
+    })();
+  }
+  function init(){attachMenu();
+    if(page==='discover')discover();
+    if(page==='courses')catalogPage();
+    if(page==='lesson')lessonPage();
+    if(page==='quiz')quizPage();
+    if(page==='progress')progressPage();
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
+  window.DALP_ACADEMY_APP={catalog,percent,readProgress};
+})();

@@ -15,5 +15,5 @@ const shared=fs.readFileSync(path.join(root,'assets/scripts/accessibility.js'),'
 assert(shared.includes('data-private-workspace'), 'Shared accessibility script must not inject skip links into private pages');
 assert(shared.includes('.dalp-skip-link, .dlp-skip-link'), 'Shared accessibility script must not duplicate public skip links');
 const publicPage=fs.readFileSync(path.join(root,'index.html'),'utf8');
-assert.match(publicPage,/<a\b[^>]*class="dalp-skip-link"/, 'Public keyboard skip link must remain');
+assert.match(publicPage,/<a\b[^>]*class="(?:dalp-skip-link|za-skip)"/, 'Public keyboard skip link must remain');
 console.log(`PASS private skip removal: ${privatePages.length} protected routes; public skip link preserved`);
