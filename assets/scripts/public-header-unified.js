@@ -3,6 +3,7 @@
  function init(){
    const open=document.getElementById('dluNavOpen'),close=document.getElementById('dluNavClose'),panel=document.getElementById('dluNavPanel');
    if(!open||!close||!panel)return;
+   close.innerHTML='<span aria-hidden="true">&#215;</span><span>Close</span>';
    let previous=null;
    const focusable=()=>[...panel.querySelectorAll('a[href],button:not([disabled])')].filter(e=>e.getClientRects().length);
    function toggle(show){

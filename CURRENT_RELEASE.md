@@ -1,50 +1,54 @@
-# DataLearning — Isolated Admin Views & Premium Diagnostics
+# DataLearning — Private Sidebar Consolidation & Hover Contrast
 
-**Release date:** 10 November 2026  
-**Source:** DataLearning Premium Private Analytics Dashboard Fix (full project, not a patch)
+**Release:** 10 November 2026  
+**Base:** DataLearning Private Navigation Isolated Premium Diagnostics (full project)
 
-## This release
+## What changed
 
-1. **Admin navigation fixed:** `admin.html` now displays one view at a time: Admin Overview, Courses Analysis or Student Management. Selecting one hides the other two instead of scrolling through all three. The route remains linkable using `#admin-courses` and `#admin-learners`, and the browser back/forward buttons restore the correct view.
-2. **Unwanted overlays removed:** Decorative section-level pseudo-overlay backgrounds were disabled for Courses Analysis and Student Management. The learner-detail backdrop closes when switching views; only an intentionally opened learner dialog or mobile menu uses a functional scrim. Retains the premium navy and teal hero panels.
-3. **Consistent premium diagnostics:** Connection Check and Progress Sync now use a shared responsive utility design with compact dark-teal heroes, clear status tiles and help cards. The two superseded utility CSS files were removed; existing Supabase session, admin permission checks and progress synchronization logic remain unchanged.
-4. **Navigation and accessibility:** Active sidebar/heading are synchronized; inactive view content is hidden from pointer and keyboard focus and marked `aria-hidden`; pressing `/` to search learners opens Student Management before moving focus. Administrator links remain role-gated.
-5. **Release caching and regression checks:** Shared private assets have a new URL revision, the public-only service-worker cache name has advanced, and a new navigation-isolation test is included in the maintained security suite.
+- Administration displays **Admin overview**, **Progress reports**, and **Review desk** as its three main destinations. The secondary **Reports & admin tools** list now includes Courses analysis, Connection check, and Progress sync; it does **not** repeat Progress reports.
+- The redundant **Student management** sidebar link was removed. **Admin overview → Learner management** remains a functional shortcut to `admin.html#admin-learners`; it continues to show the existing learner directory and management operations without deleting data or database permissions.
+- The Admin Overview view remains visually selected in the sidebar while the user drills into the directory through its shortcut. The independent Courses Analysis view and browser history handling remain unchanged.
+- A stronger, shared private-page interaction style overrides older conflicting legacy rules. Unselected sidebar links have readable light text on the dark navy background. Hovering or selecting a link shows a pale mint surface with dark navy text and matching icons. The **selected** page retains a distinct orange indicator while hovering a different entry does not create a second selected indicator.
+- Expandable menus, profile footer, dark Sign out button, topbar actions and light-background Admin Overview actions have appropriate foreground/background contrast, including keyboard focus. No font, authentication or Supabase controller changes.
+- Updated the private JS/CSS URL revision on all eight protected HTML pages to invalidate older browser asset versions. Updated the public service-worker cache namespace; HTML, CSS and JS remain network-only, and private data are never cached by this service worker.
 
 ## Verification
 
-- `npm run verify:deployment` — all maintained Academy, security, Practice Arena and Tutor suites passed.
-- Offline headless Chromium visual checks at 1440px and 390px confirmed that each Admin view shows only itself (with both backdrops hidden), and Connection Check/Progress Sync have no horizontal viewport overflow. These checks used a simulated authenticated role with diagnostic result placeholders, **not** a real Supabase connection.
-- After deployment, confirm real administrator sign-in, role-scoped learner records and live sync behaviour using authorized test accounts; do not treat the browser mocks as live database verification.
+- `npm run verify:deployment` — Academy, security, Practice Arena and Tutor suites pass.
+- Headless Chromium with an isolated, simulated admin identity: eight desktop pages (1440px) checked for keyboard/hover contrast on sidebar navigation, expandable panels, profile controls and sign-out. Eight mobile pages (390px) checked for the shared drawer, one progress destination and no Learners sidebar entry. Selected/hover contrast combinations exceed WCAG AA 4.5:1 for the sampled controls.
+- These were **local UI tests**, not a live Supabase login, RLS audit or production deployment check.
 
-## Deployment
+## Deploying
 
-Replace the previous project with the **complete** new ZIP, not only a stylesheet. Verify `admin.html`, `admin.html#admin-courses`, `admin.html#admin-learners`, `connection-test.html`, and `sync-test.html` in a private browser session. No database schema or existing learner records were changed.
+Deploy the full ZIP over the previous version. Refresh an admin session and verify sidebar destinations, hover/selected labels and Admin Overview → Learner management. No database migrations or edits to existing learner records are included.
 
----
+## AI Tutor mobile drawer refinement — 10 November 2026
 
-## Previous release notes
+- Redesigned the AI Tutor mobile tools panel with a premium navy/teal sticky header, a labelled **Close** button, clear learning-mode selection, tidier tool cards, and dark readable labels on light hover backgrounds.
+- Fixed the mobile drawer's stacking position so the close control is not hidden behind the site's global header. The backdrop now covers the full interface.
+- Improved keyboard and screen-reader behavior: dialog semantics only while open, initial focus on Close, trapped Tab navigation, Escape/backdrop close, restored trigger focus, and inert hidden controls.
+- Added the scoped `assets/styles/tutor-mobile-drawer.css` stylesheet after the legacy Tutor styles (while retaining the required public-search stylesheet as the final link) and regression assertions in `tests/tutor-mobile-drawer-premium.mjs`.
+- Kept desktop Tutor layout, live AI/offline learning modes, starter prompts, and saved progress behavior unchanged.
 
-# DataLearning — Premium Private Experience & Dashboard Progress Fix
+## All-sidebar mobile polish and parity — 10 November 2026
 
-**Release date:** 10 November 2026  
-**Source:** Unified Loader and Sidebar Contrast release (same existing DataLearning app)
+**Base:** Premium AI Tutor Mobile Sidebar release. This is a full-project update, not a standalone CSS patch.
 
-## Included in this release
+### Corrections
 
-1. Redesigned **Administrator → Courses Analysis** with a premium dark-navy/teal editorial hero, warm-orange highlights, four live summary metrics, a responsive course activity chart, clear date filters and nine detailed learning-path cards. All nine paths are tracked (seven core courses plus Python and AI); figures are derived from the existing role-protected Supabase reads.
-2. Updated **My Learning dashboard** with a cohesive premium hero, accessible progress ring, higher-contrast course meters, refined cards and a manual **Refresh progress** button. **Functional fix:** the dashboard no longer waits for all nine cloud sync operations to finish before displaying progress. It first presents previously verified user-specific cached rows (when available), loads authoritative cloud rows, then syncs queued edits and refreshes the figures again. A failed cloud query displays a status message rather than silently treating the result as 0%.
-3. The circular dashboard progress indicator is visibly fixed: the inner layer sits **above** the conic track, not behind its background. The percentage uses the seven **core** 10-week paths (70 units); the Python and AI course cards show their own 10-week percentages.
-4. Added one final premium styling layer for all **eight** protected pages: admin, account, reviewer, progress reports, profile, certificate viewer and both connection/sync diagnostics. Kept the shared public/private loader, role-specific sidebar, search panel and contrast repairs.
-5. Extended the administrator course filter to include Tableau, Power Query and Statistics. Corrected the Introduction path denominator from 8 to 10 in the Courses Analysis cards to match the actual learner modules.
-6. Added `tests/private-page-finish.mjs` to the normal automated suite; bumped visual asset revision and service-worker cache namespace. No database migrations or live account data were changed.
+- **Eight protected Academy and Administration routes:** one compact slide-in drawer (maximum 360px wide), premium navy-to-teal fixed header, legible **Close** button, scrollable Academy/Admin groups, visible backdrop, consistent focus/hover colour. Previous 100vw mobile sidebar rule is overridden; the menu no longer covers the entire tablet screen.
+- **Python and AI course lesson rails:** removed the old forced full-screen/mobile drawer geometry; introduced the same compact inset width, a contrasting labelled Close button, sticky header and backdrop. Existing lesson highlights, deep links, resource links and auth/progress handling are preserved.
+- **Practice Studio skills rail:** retains the appropriate inline expanding panel on phones, with a clearly labelled Close button and Escape-to-close; no unnecessary full-screen modal.
+- **AI Tutor:** retained the previously verified premium tools drawer, with its persistent Close action, independent scroll area, focus trapping and backdrop.
+- **Public mobile navigation and Study Pulse:** labelled their close controls and aligned hover colours with the overall light-on-dark/dark-on-light design system.
+- **Practice Arena challenge selector:** improved the close action on narrow screens without modifying the SQL, Excel or Python practice engines.
+- **Cache:** updated the public image-cache namespace; CSS, JS and HTML remain network-only in the service worker. Sidebar UI assets have release-specific URL revisions.
 
-## Quality checks
+### Validation
 
-- `npm run verify:deployment` — **passes** all maintained suites (Academy, security, Arena, Tutor and responsive UI checks).
-- Headless Chromium with **mock Supabase records** — validated desktop/mobile layout, 9 analysis cards, learner Excel completion of 3/10 showing **30%**, core completion of 4/70 showing **6%**, and refresh after adding an Excel completion showing **40%**. No client runtime errors in the tested mock session.
-- Real sign-in, Supabase RLS, and production deployment must be verified using an actual test learner and an authorized admin account. Mock browser checks do **not** establish production database connectivity.
+- `npm run verify:deployment` (Academy, security, Arena and Tutor suites).
+- Browser interaction checks at 320px, 390px, 768px, 1024px and desktop 1280px, covering representative protected drawers, AI and Python lesson rails, and their Close/Escape actions.
+- Public navigation and Practice Studio interaction checks at 320px–1280px.
+- New `tests/sidebar-unified-audit.mjs` checks shared sidebar links, styles and close behaviour contracts across all relevant routes.
 
-## Deployment
-
-Deploy the **complete project** and open a fresh session. Test `account.html` (progress and refresh) and `admin.html#admin-courses` (nine cards, date filters and learner actions) after authentication. If content looks stale, confirm `private-experience-v3.css?v=premium-20261110-r4` is served and refresh the client. No credentials should be placed in this ZIP.
+**Limits:** Browser checks use isolated local UI fixtures. These do not substitute for authentication or real learner progress testing against live Supabase, nor deployment-specific mobile device testing. No data tables, RLS policies, API credentials or learner records were changed.

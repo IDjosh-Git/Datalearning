@@ -134,3 +134,15 @@ html body .dlu-nav-panel:not([hidden]){
 }
 /* The Study Pulse sheet must sit above its backdrop even on pages with older dialog styles. */
 html body .lc-panel.lc-pulse-panel:not([hidden]){z-index:30001!important;transform:none!important;animation:none!important}
+
+/* Audit: labelled close and legible hover for shared full-screen mobile navigation. */
+.dlu-nav-close{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:7px!important;min-width:83px!important;width:auto!important;min-height:44px!important;padding:0 12px!important;background:#173e55!important;color:#fff!important;-webkit-text-fill-color:#fff!important;font:800 12px/1 "DM Sans",system-ui,sans-serif!important}
+.dlu-nav-close>span:first-child{font-size:21px;line-height:1}
+.dlu-nav-close:is(:hover,:focus-visible){background:#235e69!important;color:#fff!important;-webkit-text-fill-color:#fff!important}
+.dlu-nav-group a:is(:hover,:focus-visible),.dlu-nav-group a:is(:hover,:focus-visible) span{background-color:#e8f5ef!important;color:#163d4b!important;-webkit-text-fill-color:#163d4b!important}
+@media(max-width:390px){.dlu-nav-head{padding-inline:12px!important;gap:8px!important}.dlu-nav-head .dlu-brand{min-width:0!important}.dlu-nav-head .dlu-brand-name{font-size:17px!important}.dlu-nav-close{min-width:73px!important;padding-inline:9px!important}}
+
+/* Study Pulse follows the same legible mobile close-button convention. */
+html body .lc-panel.lc-pulse-panel .lc-top .lc-close{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:6px!important;width:auto!important;min-width:77px!important;min-height:42px!important;padding:0 11px!important;border:1px solid #c0dad2!important;border-radius:11px!important;background:#f1faf6!important;color:#153e4e!important;-webkit-text-fill-color:#153e4e!important;font:800 12px/1 "DM Sans",system-ui,sans-serif!important;cursor:pointer!important}
+html body .lc-panel.lc-pulse-panel .lc-top .lc-close>span:first-child{font-size:20px!important;line-height:1!important}
+html body .lc-panel.lc-pulse-panel .lc-top .lc-close:is(:hover,:focus-visible){background:#d9f0e8!important;border-color:#8fbfb4!important;color:#153e4e!important;-webkit-text-fill-color:#153e4e!important}

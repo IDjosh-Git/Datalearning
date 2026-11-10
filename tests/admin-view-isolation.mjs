@@ -19,7 +19,7 @@ assert.match(nav,/history\.pushState\(null,'',target\.hash\|\|target\.pathname\+
 for (const page of ['connection-test.html','sync-test.html']) {
  const contents=read(page);
  assert.match(contents,/private-utilities-premium\.css/,'Both private diagnostics use the same premium design system');
- assert.match(contents,/private-navigation\.js\?v=nav-20261110-r5/,'Updated shared sidebar is cache busted');
+ assert.match(contents,/private-navigation\.js\?v=sidebar-audit-20261110-r1/,'Updated shared sidebar is cache busted');
  assert.match(contents,/auth-gate\.js/,'Utility operations remain authenticated');
  assert.match(contents,/px-utility-hero/,'Premium banner is maintained');
 }

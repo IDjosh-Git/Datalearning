@@ -41,7 +41,7 @@
 <link href="../assets/styles/course-shared-responsiveness.css" rel="stylesheet"/>
 <link href="../assets/styles/design-system.css" rel="stylesheet"/>
 <link href="../assets/styles/public-experience.css" rel="stylesheet"/>
-<link href="../assets/styles/premium-unified.css" rel="stylesheet"/><link href="../assets/styles/unified-site-v5.css" rel="stylesheet"/><link href="../assets/styles/public-header-unified.css" rel="stylesheet"/><link href="../assets/styles/public-search-premium.css" rel="stylesheet"/></head>
+<link href="../assets/styles/premium-unified.css" rel="stylesheet"/><link href="../assets/styles/unified-site-v5.css" rel="stylesheet"/><link href="../assets/styles/public-header-unified.css" rel="stylesheet"/><link rel="stylesheet" href="../assets/styles/sidebar-consistency.css?v=sidebar-audit-20261110-r1"/><link href="../assets/styles/public-search-premium.css" rel="stylesheet"/></head>
 <body class="dlp-course-v29 dlp97-learning-page" data-course="python" data-course-theme="python" data-dalp-header-tone="slate" data-gradient-public="true" data-learning-subject="python" data-premium-course-v7="true" data-public-refresh="20261103" data-responsive-page="courses/python" data-ui-course="python"><div id="dlxPageLoader" class="dlx-page-loader" role="status" aria-live="polite" aria-label="Loading DataLearning">
   <div class="dlx-loader-ambient dlx-loader-ambient-one" aria-hidden="true"></div>
   <div class="dlx-loader-ambient dlx-loader-ambient-two" aria-hidden="true"></div>
@@ -525,7 +525,7 @@ print(summary.loc['East'].to_dict())</code></pre>
 </main></div><div class="toast" id="toast">Progress saved.</div>
 <script>
 const sidebar=document.getElementById('sidebar');
-// Premium course lesson navigation is managed by course-premium-sidebar.js.
+// Premium course lesson navigation is managed by course-premium-sidebar.js?v=sidebar-audit-20261110-r1.
 document.querySelectorAll('.nav-link').forEach(a=>a.addEventListener('click',()=>sidebar.classList.remove('open')));
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.classList.remove('show'),1800);}
 const courseKey=document.body.dataset.course+'RoadmapProgress';
@@ -553,7 +553,7 @@ sections.forEach(s=>observer.observe(s));loadProgress();
 <script defer="" src="../assets/scripts/accessibility.js"></script><script defer="" src="../assets/scripts/course-polish.js"></script>
 <script defer="" src="../assets/scripts/course-experience.js"></script>
 <script defer="" src="../assets/scripts/course-sidebar-header-offset.js"></script>
-<script defer="" src="../assets/scripts/course-premium-sidebar.js"></script>
+<script defer="" src="../assets/scripts/course-premium-sidebar.js?v=sidebar-audit-20261110-r1"></script>
 <script defer="" src="../assets/scripts/embedded-palette-sync.js"></script><script defer="" src="../assets/scripts/week10-capstone-python.js"></script><script defer="" src="../assets/scripts/learning-experience.js"></script><script defer="" src="../assets/scripts/catalog-data.js"></script><script defer="" src="../assets/scripts/learning-catalog.js"></script><script defer="" src="../assets/scripts/course-module-explorer.js"></script><script defer="" src="../assets/scripts/experience.js"></script>
 <script defer="" src="../assets/scripts/public-footer.js"></script>
 <script defer="" src="../assets/scripts/course-reading-tables.js"></script>

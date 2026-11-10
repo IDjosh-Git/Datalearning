@@ -162,3 +162,85 @@ html[data-theme] body.dalp-admin-page[data-admin-view="learners"] .ac-roster>.ac
 /* Only a deliberately opened learner record or mobile navigation may have a scrim. */
 html[data-theme] body.dalp-admin-page .ac-detail-backdrop[hidden],
 html[data-theme] body.dalp-admin-page:not(.ac-menu-open) .ac-nav-overlay{display:none!important;}
+
+/* 2026-11-10 — final protected-workspace interaction contract.
+   High-specificity historic academy rules were making nav labels dark on the
+   dark sidebar, and leaving other hover targets pale with white labels.
+   Scope this final override to the eight private pages only. */
+html[data-theme] body.dlx-rebuilt.ac-ready[data-private-workspace="true"] .ac-sidebar .ac-side-nav a.ac-side-link:not(:hover):not(:focus-visible):not(.ac-selected):not([aria-current="page"]){
+ background:transparent!important;background-image:none!important;
+ color:#e4f1f4!important;-webkit-text-fill-color:#e4f1f4!important;
+ border-color:transparent!important;
+}
+html[data-theme] body.dlx-rebuilt.ac-ready[data-private-workspace="true"] .ac-sidebar .ac-side-nav a.ac-side-link:not(:hover):not(:focus-visible):not(.ac-selected):not([aria-current="page"]) :is(.ac-side-name,.ac-side-icon,.ac-side-arrow){
+ color:#e4f1f4!important;-webkit-text-fill-color:#e4f1f4!important;
+}
+html[data-theme] body.dlx-rebuilt.ac-ready[data-private-workspace="true"] .ac-sidebar .ac-side-nav a.ac-side-link:is(:hover,:focus-visible,.ac-selected,[aria-current="page"]){
+ background:#edf7f0!important;background-image:none!important;
+ border:1px solid #a5cec5!important;border-left:3px solid #e88a51!important;
+ color:#173e51!important;-webkit-text-fill-color:#173e51!important;
+ text-decoration:none!important;box-shadow:0 5px 16px #031d2722!important;
+}
+html[data-theme] body.dlx-rebuilt.ac-ready[data-private-workspace="true"] .ac-sidebar .ac-side-nav a.ac-side-link:is(:hover,:focus-visible,.ac-selected,[aria-current="page"]) :is(.ac-side-name,.ac-side-icon,.ac-side-arrow){
+ color:#173e51!important;-webkit-text-fill-color:#173e51!important;
+}
+html[data-theme] body.dlx-rebuilt.ac-ready[data-private-workspace="true"] .ac-sidebar .ac-side-nav a.ac-side-link:is(:hover,:focus-visible,.ac-selected,[aria-current="page"]) .ac-side-icon{
+ background:#d7ebe3!important;color:#27645e!important;-webkit-text-fill-color:#27645e!important;
+}
+html[data-theme] body.dlx-rebuilt.ac-ready[data-private-workspace="true"] .ac-sidebar .ac-side-nav .ac-more-details>summary{
+ background:transparent!important;background-image:none!important;
+ color:#c4e1dd!important;-webkit-text-fill-color:#c4e1dd!important;
+}
+html[data-theme] body.dlx-rebuilt.ac-ready[data-private-workspace="true"] .ac-sidebar .ac-side-nav .ac-more-details>summary:is(:hover,:focus-visible){
+ background:#edf7f0!important;background-image:none!important;
+ color:#173e51!important;-webkit-text-fill-color:#173e51!important;
+ border-color:#a5cec5!important;
+}
+html[data-theme] body.dlx-rebuilt.ac-ready[data-private-workspace="true"] .ac-sidebar .ac-side-account:is(:hover,:focus-visible,.ac-selected){
+ background:#edf7f0!important;border-color:#a5cec5!important;
+ color:#173e51!important;-webkit-text-fill-color:#173e51!important;
+}
+html[data-theme] body.dlx-rebuilt.ac-ready[data-private-workspace="true"] .ac-sidebar .ac-side-account:is(:hover,:focus-visible,.ac-selected) :is(strong,small,.ac-account-chevron,.ac-avatar){
+ color:#173e51!important;-webkit-text-fill-color:#173e51!important;
+}
+/* A dark sign-out control retains a light label.  Light buttons get dark ink. */
+html[data-theme] body.dlx-rebuilt.ac-ready[data-private-workspace="true"] .ac-sidebar .ac-logout:is(:hover,:focus-visible){
+ background:#325569!important;border-color:#87c3bc!important;
+ color:#fff!important;-webkit-text-fill-color:#fff!important;
+}
+html[data-theme] body.dlx-rebuilt.ac-ready[data-private-workspace="true"] .ac-topbar :is(a.ac-topbar-link,.dl-profile-button,.premium-search-trigger):is(:hover,:focus-visible){
+ background:#e3f2ed!important;color:#173e51!important;-webkit-text-fill-color:#173e51!important;
+ border-color:#9ac6b9!important;
+}
+html[data-theme] body.dlx-rebuilt.ac-ready[data-private-workspace="true"] .ac-page-area :is(.ac-hero-secondary,.ac-action-card,.cap-outline,.mld-sync-action,.mld-btn-outline,.profile-btn-outline,.profile-btn-quiet,.ac-pager button,.dalp-admin-tools button):is(:hover,:focus-visible){
+ background:#e3f2ed!important;background-image:none!important;
+ border-color:#a4cfc4!important;
+ color:#173e51!important;-webkit-text-fill-color:#173e51!important;
+}
+html[data-theme] body.dlx-rebuilt.ac-ready[data-private-workspace="true"] .ac-page-area .ac-hero-secondary:is(:hover,:focus-visible),
+html[data-theme] body.dlx-rebuilt.ac-ready[data-private-workspace="true"] .ac-page-area .ac-hero-secondary{
+ background:#e3f2ed!important;color:#173e51!important;-webkit-text-fill-color:#173e51!important;
+ border-color:#b7d6d2!important;
+}
+html[data-theme] body.dlx-rebuilt.ac-ready[data-private-workspace="true"] .ac-page-area .ac-action-card:is(:hover,:focus-visible) :is(strong,small,.ac-action-arrow){
+ color:#173e51!important;-webkit-text-fill-color:#173e51!important;
+}
+html[data-theme] body.dlx-rebuilt.ac-ready[data-private-workspace="true"] .ac-page-area :is(.ac-course-analytics,.ip-content,.review-content,.mld-container,.profile-shell,.px-utility-main) :is(a,button,summary):focus-visible{
+ outline:3px solid #e88a51!important;outline-offset:3px!important;
+}
+@media(prefers-reduced-motion:reduce){html[data-theme] body.dlx-rebuilt.ac-ready[data-private-workspace="true"] .ac-sidebar .ac-side-nav a.ac-side-link{transition:none!important;transform:none!important}}
+/* Do not tween from dark to ivory *after* switching to dark text. */
+html[data-theme] body.dlx-rebuilt.ac-ready[data-private-workspace="true"] .ac-sidebar .ac-side-nav a.ac-side-link{transition:transform .15s ease,box-shadow .15s ease!important}
+html[data-theme] body.dlx-rebuilt.ac-ready[data-private-workspace="true"] .ac-sidebar :is(.ac-more-details>summary,.ac-side-account){transition:none!important}
+html[data-theme] body.dlx-rebuilt.ac-ready[data-private-workspace="true"] .ac-sidebar .ac-side-bottom button.ac-logout:is(:hover,:focus-visible){
+ background:#325569!important;background-image:none!important;border-color:#87c3bc!important;
+ color:#fff!important;-webkit-text-fill-color:#fff!important;
+}
+html[data-theme] body.dlx-rebuilt.ac-ready[data-private-workspace="true"] .ac-sidebar .ac-side-bottom button.ac-logout{transition:none!important}
+/* Active page has a distinct orange locator; hovering another page never looks selected. */
+html[data-theme] body.dlx-rebuilt.ac-ready[data-private-workspace="true"] .ac-sidebar .ac-side-nav a.ac-side-link:is(:hover,:focus-visible):not(.ac-selected):not([aria-current="page"]){
+ border-left:1px solid #a5cec5!important;
+}
+html[data-theme] body.dlx-rebuilt.ac-ready[data-private-workspace="true"] .ac-sidebar .ac-side-nav a.ac-side-link:is(.ac-selected,[aria-current="page"]){
+ background:#d9ebe3!important;border-left:3px solid #e88a51!important;font-weight:850!important;
+}

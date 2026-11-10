@@ -1,0 +1,171 @@
+/* DataLearning | sidebar audit — mobile-first parity across all real sidebars.
+   Loaded AFTER legacy route styles; does not alter auth, learner data or desktop grids. */
+:root{--dal-sidebar-navy:#12394c;--dal-sidebar-deep:#102e42;--dal-sidebar-mint:#eaf6f0;--dal-sidebar-ink:#143b4b;--dal-sidebar-orange:#ed995f}
+/* Private Academy / Admin: one bounded mobile drawer, not a full-screen clone. */
+html[data-theme] body.dlx-rebuilt.ac-ready .ac-sidebar .ac-drawer-header{position:relative;display:flex;flex:none;align-items:center;justify-content:space-between;gap:8px;min-width:0}
+html[data-theme] body.dlx-rebuilt.ac-ready .ac-sidebar .ac-drawer-header .ac-brand{min-width:0;flex:1 1 auto}
+html[data-theme] body.dlx-rebuilt.ac-ready .ac-sidebar .ac-drawer-close{font:800 12px/1.1 "DM Sans",system-ui,sans-serif!important;gap:6px!important}
+html[data-theme] body.dlx-rebuilt.ac-ready .ac-sidebar .ac-drawer-close .ac-close-label{display:inline!important;color:inherit!important;-webkit-text-fill-color:inherit!important}
+html[data-theme] body.dlx-rebuilt.ac-ready .ac-sidebar .ac-drawer-close>span:first-child{font-size:21px;line-height:1}
+@media(max-width:1024px){
+ html[data-theme] body.dlx-rebuilt.ac-ready .ac-shell>.ac-sidebar,
+ html[data-theme] body.dlx-rebuilt.ac-ready.ac-menu-open .ac-shell>.ac-sidebar{
+   box-sizing:border-box!important;width:min(360px,calc(100vw - 20px))!important;
+   min-width:0!important;max-width:min(360px,calc(100vw - 20px))!important;
+   top:0!important;left:0!important;right:auto!important;bottom:0!important;
+   height:100dvh!important;max-height:100dvh!important;
+   padding:0 12px max(12px,env(safe-area-inset-bottom))!important;
+   border-radius:0 22px 22px 0!important;z-index:30010!important;
+   box-shadow:15px 0 55px rgba(5,22,34,.42)!important;
+ }
+ html[data-theme] body.dlx-rebuilt.ac-ready .ac-shell>.ac-sidebar .ac-drawer-header{
+   position:sticky!important;top:0!important;z-index:5!important;
+   min-height:79px!important;margin:0 -12px 8px!important;
+   padding:calc(12px + env(safe-area-inset-top)) 13px 11px!important;
+   background:linear-gradient(112deg,#14354b,#205966)!important;
+   border-bottom:2px solid var(--dal-sidebar-orange)!important;
+   box-shadow:0 8px 21px rgba(4,25,38,.18)!important;
+ }
+ html[data-theme] body.dlx-rebuilt.ac-ready .ac-sidebar .ac-drawer-header .ac-brand{
+   display:flex!important;align-items:center!important;padding:0!important;margin:0!important;
+   border:0!important;min-width:0!important;gap:9px!important;
+ }
+ html[data-theme] body.dlx-rebuilt.ac-ready .ac-sidebar .ac-drawer-header .ac-brand img{width:38px!important;height:38px!important;flex:none!important}
+ html[data-theme] body.dlx-rebuilt.ac-ready .ac-sidebar .ac-drawer-header .ac-brand strong{font-size:15px!important}
+ html[data-theme] body.dlx-rebuilt.ac-ready .ac-sidebar .ac-drawer-header .ac-brand small{font-size:8px!important}
+ html[data-theme] body.dlx-rebuilt.ac-ready .ac-sidebar .ac-drawer-close{
+   position:static!important;float:none!important;flex:0 0 auto!important;
+   display:inline-flex!important;align-items:center!important;justify-content:center!important;
+   width:auto!important;min-width:74px!important;height:42px!important;min-height:42px!important;
+   margin:0!important;padding:0 11px!important;
+   border-radius:12px!important;border:1px solid #b9d8d0!important;
+   background:#f0faf6!important;color:#173f4e!important;-webkit-text-fill-color:#173f4e!important;
+   box-shadow:0 5px 16px #0a293c36!important;cursor:pointer!important;
+ }
+ html[data-theme] body.dlx-rebuilt.ac-ready .ac-sidebar .ac-drawer-close:hover{
+   background:#d7efe6!important;border-color:#7faeaa!important;color:#103947!important;-webkit-text-fill-color:#103947!important;
+ }
+ html[data-theme] body.dlx-rebuilt.ac-ready .ac-sidebar .ac-drawer-close,
+ html[data-theme] body.dlx-rebuilt.ac-ready .ac-sidebar .ac-drawer-close *{
+   color:#173f4e!important;-webkit-text-fill-color:#173f4e!important;
+ }
+ html[data-theme] body.dlx-rebuilt.ac-ready .ac-sidebar .ac-side-nav{
+   flex:1 1 auto!important;min-height:0!important;overflow-y:auto!important;overflow-x:hidden!important;
+   overscroll-behavior:contain!important;padding-top:6px!important;
+ }
+ html[data-theme] body.dlx-rebuilt.ac-ready .ac-nav-overlay{z-index:30009!important}
+ html[data-theme] body.dlx-rebuilt.ac-ready .ac-sidebar .ac-drawer-close:focus-visible,
+ html[data-theme] body.dlx-rebuilt.ac-ready .ac-sidebar :is(a,button,summary):focus-visible{outline:3px solid #f3b17e!important;outline-offset:2px!important}
+}
+/* All private links: enforce dark ink on pale hover and selected states; no white label inheritance. */
+html[data-theme] body.dlx-rebuilt.ac-ready[data-private-workspace="true"] .ac-sidebar .ac-side-nav .ac-side-link:is(:hover,:focus-visible,.ac-selected,[aria-current="page"]){
+ background:var(--dal-sidebar-mint)!important;background-image:none!important;
+ color:var(--dal-sidebar-ink)!important;-webkit-text-fill-color:var(--dal-sidebar-ink)!important;
+ border-color:#a8d1c6!important;
+}
+html[data-theme] body.dlx-rebuilt.ac-ready[data-private-workspace="true"] .ac-sidebar .ac-side-nav .ac-side-link:is(:hover,:focus-visible,.ac-selected,[aria-current="page"]) :is(.ac-side-name,.ac-side-icon,.ac-side-arrow,svg){
+ color:var(--dal-sidebar-ink)!important;-webkit-text-fill-color:var(--dal-sidebar-ink)!important;stroke:currentColor!important;
+}
+html[data-theme] body.dlx-rebuilt.ac-ready[data-private-workspace="true"] .ac-sidebar .ac-side-nav .ac-side-link:is(.ac-selected,[aria-current="page"]){border-left:3px solid var(--dal-sidebar-orange)!important}
+html[data-theme] body.dlx-rebuilt.ac-ready[data-private-workspace="true"] .ac-sidebar .ac-more-details>summary:is(:hover,:focus-visible),
+html[data-theme] body.dlx-rebuilt.ac-ready[data-private-workspace="true"] .ac-sidebar .ac-side-account:is(:hover,:focus-visible){background:#e9f6ef!important;color:#173f4e!important;-webkit-text-fill-color:#173f4e!important;border-color:#a2cbc0!important}
+html[data-theme] body.dlx-rebuilt.ac-ready[data-private-workspace="true"] .ac-sidebar .ac-more-details>summary:is(:hover,:focus-visible) *,
+html[data-theme] body.dlx-rebuilt.ac-ready[data-private-workspace="true"] .ac-sidebar .ac-side-account:is(:hover,:focus-visible) :is(strong,small,span){color:#173f4e!important;-webkit-text-fill-color:#173f4e!important}
+/* Course lesson rails (AI and Python): premium mobile dismiss, dark ink on pale controls. */
+html body.dlp-course-v29[data-ui-course] #sidebar .dl-lesson-drawer-heading{isolation:isolate}
+@media(max-width:1050px){
+ html body.dlp-course-v29[data-ui-course] #sidebar .dl-lesson-drawer-heading{
+   top:0!important;z-index:70!important;min-height:72px!important;
+   margin:0 0 13px!important;padding:11px 7px 12px!important;
+   background:linear-gradient(115deg,#143b52,#1d5b64)!important;
+   border-bottom:2px solid var(--dal-sidebar-orange)!important;
+   border-radius:13px 13px 0 0!important;
+ }
+ html body.dlp-course-v29[data-ui-course] #sidebar .dl-lesson-drawer-caption{color:#e9f8f4!important;-webkit-text-fill-color:#e9f8f4!important;font-size:14px!important}
+ html body.dlp-course-v29[data-ui-course] #sidebar button.dl-lesson-drawer-dismiss{
+   position:static!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:6px!important;
+   width:auto!important;min-width:77px!important;min-height:44px!important;height:44px!important;
+   padding:0 10px!important;border:1px solid #a9d4c8!important;border-radius:12px!important;
+   background:#f1faf6!important;color:#183f4c!important;-webkit-text-fill-color:#183f4c!important;
+   font:800 12px/1 "DM Sans",system-ui,sans-serif!important;
+ }
+ html body.dlp-course-v29[data-ui-course] #sidebar button.dl-lesson-drawer-dismiss *{color:#183f4c!important;-webkit-text-fill-color:#183f4c!important}
+ html body.dlp-course-v29[data-ui-course] #sidebar button.dl-lesson-drawer-dismiss>span:first-child{font-size:23px!important;line-height:1!important}
+ html body.dlp-course-v29[data-ui-course] #sidebar button.dl-lesson-drawer-dismiss:hover{background:#d4eee5!important;border-color:#71a69b!important;transform:none!important}
+ html body.dlp-course-v29[data-ui-course] #sidebar button.dl-lesson-drawer-dismiss:focus-visible{outline:3px solid #f4b07c!important;outline-offset:2px!important}
+}
+/* Practice Studio: an inline skills rail is not a modal; keep a clear close action on mobile. */
+.ps-rail .ps-rail-close{display:none!important}
+@media(max-width:780px){
+ body.ps-page .ps-rail.is-open{border:1px solid #bcdcd4!important;border-radius:18px!important;background:#f9fcfb!important;box-shadow:0 12px 28px #103d4d16!important;overflow:hidden!important}
+ body.ps-page .ps-rail .ps-rail-head{background:linear-gradient(115deg,#143d53,#215c65)!important;border-bottom:2px solid var(--dal-sidebar-orange)!important;border-radius:17px 17px 0 0!important;padding:14px!important;gap:9px!important}
+ body.ps-page .ps-rail .ps-rail-head :is(h2,small,.ps-overline,.ps-total){color:#fff!important;-webkit-text-fill-color:#fff!important}
+ body.ps-page .ps-rail .ps-rail-head h2{font-size:15px!important}
+ body.ps-page .ps-rail .ps-rail-head .ps-total{display:none!important}
+ body.ps-page .ps-rail .ps-rail-close{
+   display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:5px!important;flex:none!important;
+   min-width:75px!important;min-height:42px!important;padding:0 10px!important;border:1px solid #b7d7cb!important;border-radius:11px!important;
+   background:#edf9f4!important;color:#183f4c!important;-webkit-text-fill-color:#183f4c!important;
+   font:800 12px/1 "DM Sans",system-ui,sans-serif!important;cursor:pointer!important;
+ }
+ body.ps-page .ps-rail .ps-rail-close span:first-child{font-size:20px!important}
+ body.ps-page .ps-rail .ps-rail-close:hover{background:#d6efe7!important;color:#133846!important}
+ body.ps-page .ps-rail .ps-rail-close:focus-visible{outline:3px solid var(--dal-sidebar-orange)!important;outline-offset:2px!important}
+ body.ps-page .ps-mobile-browse:is(:hover,:focus-visible){background:#e5f4ee!important;border-color:#8fbeb4!important;color:#143b4b!important;-webkit-text-fill-color:#143b4b!important}
+}
+@media(prefers-reduced-motion:reduce){.ac-sidebar,.dl-lesson-rail,.ps-rail{transition:none!important;animation:none!important}}
+/* Stronger than the historical light-theme full-screen lesson-index rules.
+   Those rules hardcode a 100vw drawer and a 44px icon control. */
+@media(max-width:1050px){
+ html[data-theme="light"] body.dlp-course-v29[data-ui-course] #sidebar.sidebar.dl-lesson-rail,
+ html[data-theme="light"] body.dlp-course-v29[data-ui-course] .app>#sidebar.sidebar.dl-lesson-rail,
+ html[data-theme="light"] body.dlp-course-v29[data-ui-course].dl-special-rail>#sidebar.sidebar.dl-lesson-rail{
+  inset:0 auto 0 0!important;top:0!important;right:auto!important;bottom:0!important;left:0!important;
+  width:min(360px,calc(100vw - 20px))!important;
+  min-width:0!important;max-width:min(360px,calc(100vw - 20px))!important;
+  height:100dvh!important;min-height:100dvh!important;max-height:100dvh!important;
+  border:0!important;border-right:1px solid #bcd8d3!important;border-radius:0 22px 22px 0!important;
+  box-shadow:16px 0 56px rgba(6,27,39,.29)!important;
+ }
+ html[data-theme="light"] body.dlp-course-v29[data-ui-course] #sidebar .dl-lesson-drawer-heading{
+  top:0!important;min-height:73px!important;
+  padding:calc(12px + env(safe-area-inset-top)) 15px 12px!important;
+  margin:0 -18px 14px!important;background:linear-gradient(120deg,#13374c,#21626a)!important;
+  border:0!important;border-bottom:2px solid #ef9c65!important;border-radius:0!important;
+  color:#e9f8f4!important;box-shadow:0 7px 20px #113b4c25!important;
+ }
+ html[data-theme="light"] body.dlp-course-v29[data-ui-course] #sidebar .dl-lesson-drawer-caption{
+  color:#e9f8f4!important;-webkit-text-fill-color:#e9f8f4!important;font-size:14px!important;
+ }
+ html[data-theme="light"] body.dlp-course-v29[data-ui-course] #sidebar button.dl-lesson-drawer-dismiss{
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;flex:none!important;gap:6px!important;
+  width:auto!important;min-width:78px!important;max-width:none!important;height:43px!important;min-height:43px!important;
+  padding:0 11px!important;border:1px solid #b8d8cf!important;border-radius:12px!important;
+  background:#f2faf6!important;color:#173f4e!important;-webkit-text-fill-color:#173f4e!important;
+  font:800 12px/1 "DM Sans",system-ui,sans-serif!important;box-shadow:0 5px 17px #06253335!important;
+ }
+ html[data-theme="light"] body.dlp-course-v29[data-ui-course] #sidebar button.dl-lesson-drawer-dismiss *{color:#173f4e!important;-webkit-text-fill-color:#173f4e!important}
+ html[data-theme="light"] body.dlp-course-v29[data-ui-course] #sidebar button.dl-lesson-drawer-dismiss>span:first-child{font-size:23px!important;line-height:1!important}
+ html[data-theme="light"] body.dlp-course-v29[data-ui-course] #sidebar button.dl-lesson-drawer-dismiss:hover{
+  background:#d8f0e7!important;border-color:#76aaa1!important;color:#173f4e!important;-webkit-text-fill-color:#173f4e!important;
+ }
+ html[data-theme="light"] body.dlp-course-v29[data-ui-course] #lessonRailBackdrop:not([hidden]){
+  position:fixed!important;inset:0!important;display:block!important;visibility:visible!important;
+  pointer-events:auto!important;background:rgba(7,28,42,.68)!important;
+  backdrop-filter:blur(3px)!important;z-index:2147482998!important;
+ }
+}
+
+/* Practice Arena challenge selector: a usable close action on the mobile sheet. */
+@media(max-width:900px){
+ html[data-theme] body[data-responsive-page="practice"] #hubClose.hub-close{
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:6px!important;
+  width:auto!important;min-width:76px!important;min-height:43px!important;height:43px!important;max-width:none!important;
+  padding:0 11px!important;border:1px solid #a9d4c8!important;border-radius:11px!important;
+  background:#edf9f4!important;color:#173f4e!important;-webkit-text-fill-color:#173f4e!important;
+  font:800 12px/1 "DM Sans",system-ui,sans-serif!important;cursor:pointer!important;
+ }
+ html[data-theme] body[data-responsive-page="practice"] #hubClose.hub-close span:first-child{font-size:21px!important;line-height:1!important}
+ html[data-theme] body[data-responsive-page="practice"] #hubClose.hub-close:hover{background:#d6efe6!important;color:#173f4e!important;-webkit-text-fill-color:#173f4e!important;border-color:#79a99d!important}
+ html[data-theme] body[data-responsive-page="practice"] #hubClose.hub-close:focus-visible{outline:3px solid #ed995f!important;outline-offset:2px!important}
+}

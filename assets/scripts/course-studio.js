@@ -25,6 +25,17 @@ const count=()=>data().filter((_,i)=>done(i)).length;
 const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const status=s=>{$('#ps-status').textContent=s;};
 const mobileBrowse=$('#ps-browse-mobile'),skillRail=$('#ps-rail');
+const railClose=document.createElement('button');
+railClose.type='button';railClose.id='ps-rail-close';railClose.className='ps-rail-close';
+railClose.setAttribute('aria-label','Close skills list');
+railClose.innerHTML='<span aria-hidden="true">&#215;</span><span>Close</span>';
+skillRail.querySelector('.ps-rail-head')?.append(railClose);
+railClose.addEventListener('click',()=>{setBrowse(false);mobileBrowse.focus({preventScroll:true})});
+document.addEventListener('keydown',event=>{
+ if(event.key==='Escape'&&skillRail.classList.contains('is-open')&&matchMedia('(max-width:780px)').matches){
+  event.preventDefault();setBrowse(false);mobileBrowse.focus({preventScroll:true});
+ }
+});
 function setBrowse(open){skillRail.classList.toggle('is-open',Boolean(open));mobileBrowse.setAttribute('aria-expanded',String(Boolean(open)));}
 mobileBrowse.addEventListener('click',()=>{const opening=!skillRail.classList.contains('is-open');setBrowse(opening);if(opening)skillRail.scrollIntoView({behavior:'smooth',block:'nearest'});});
 function validIndexes(){return data().map((_,i)=>i).filter(i=>{let u=data()[i];return (!query||u.join(' ').toLowerCase().includes(query))&&(filter==='all'||(filter==='done'?done(i):!done(i)));});}

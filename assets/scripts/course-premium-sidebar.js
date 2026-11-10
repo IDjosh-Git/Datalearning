@@ -37,7 +37,7 @@
    dismiss.setAttribute('aria-label','Close course sidebar');
    dismiss.setAttribute('title','Close course sidebar');
    dismiss.setAttribute('aria-controls','sidebar');
-   dismiss.innerHTML='<span aria-hidden="true">&#215;</span>';
+   dismiss.innerHTML='<span aria-hidden="true">&#215;</span><span>Close</span>';
    dismiss.addEventListener('click',()=>setOpen(false,{returnFocus:true}));
    drawerHeading.append(heading,dismiss);
    sidebar.prepend(drawerHeading);
