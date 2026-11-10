@@ -185,3 +185,149 @@ html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] :is(.ide-resu
  html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #pythonOutput{margin:0 12px 12px!important;}
 }
 @media(prefers-reduced-motion:reduce){html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] :is(.arena-table-chevron,.arena-table-toggle){transition:none!important;}}
+
+/* Compact, intrinsic-height Practice Arena — 10 Nov 2026.
+   Historical public-experience.css pinned the editor, right result card, grid rows,
+   and input host to 410–575px. Use #practiceDetail specificity to undo those
+   obsolete layout constraints without changing the execution engines. */
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail .ide-shell {
+  height:auto!important;min-height:0!important;overflow:visible!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail .ide-content {
+  display:grid!important;grid-template-columns:minmax(0,1.1fr) minmax(285px,.9fr)!important;
+  grid-template-rows:auto!important;align-items:start!important;gap:14px!important;
+  padding:0!important;min-height:0!important;height:auto!important;max-height:none!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail .ide-content > :is(.ide-primary,.ide-secondary) {
+  grid-row:auto!important;grid-column:auto!important;align-self:start!important;
+  width:100%!important;height:auto!important;min-height:0!important;max-height:none!important;
+  flex:0 1 auto!important;overflow:hidden!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail .ide-primary #ideEditorSlot {
+  display:block!important;flex:0 1 auto!important;height:auto!important;min-height:0!important;
+  max-height:none!important;overflow:visible!important;padding:12px!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail .ide-editor-toolbar {
+  flex:0 0 auto!important;margin-top:0!important;padding:11px 13px!important;
+}
+/* Excel mode: an unopened dataset consumes no space at all. */
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="Excel"] :is(.ide-sheet-editor,.ide-formula-bar,.ide-worksheet-hint,.arena-table-disclosure) {
+  flex:0 0 auto!important;min-height:0!important;height:auto!important;max-height:none!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="Excel"] .ide-sheet-editor {
+  display:block!important;overflow:hidden!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="Excel"] .ide-formula-bar {padding:10px 12px!important;}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="Excel"] #ideFormulaBar {
+  min-height:43px!important;height:auto!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="Excel"] .ide-worksheet-hint {
+  margin:0!important;padding:10px 12px!important;line-height:1.45!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="Excel"] .arena-dataset-content[hidden] {
+  display:none!important;height:0!important;min-height:0!important;margin:0!important;padding:0!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="Excel"] .arena-dataset-content:not([hidden]) {
+  display:block!important;height:auto!important;min-height:0!important;
+}
+/* SQL keeps a usable code surface, but no artificial full-screen editor height. */
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .ide-primary :is(.arena-workspace,.arena-grid,.arena-editor-pane) {
+  display:block!important;flex:0 1 auto!important;height:auto!important;min-height:0!important;
+  max-height:none!important;overflow:visible!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .ide-primary .arena-editor {
+  --ap-editor-height:250px;
+  display:grid!important;grid-template-columns:42px minmax(0,1fr)!important;
+  grid-template-rows:var(--ap-editor-height)!important;
+  flex:0 0 auto!important;height:var(--ap-editor-height)!important;
+  min-height:var(--ap-editor-height)!important;max-height:none!important;overflow:hidden!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .ide-primary .arena-editor :is(#arenaLines,.arena-lines,.arena-code,#arenaInputHost,#practiceAnswer.sql-editor-textarea) {
+  min-height:0!important;height:100%!important;max-height:none!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .ide-primary .arena-editor :is(#arenaLines,.arena-lines) {
+  grid-row:1!important;grid-column:1!important;overflow:hidden!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .ide-primary .arena-editor .arena-code {
+  grid-row:1!important;grid-column:2!important;position:relative!important;overflow:hidden!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .ide-primary .arena-editor #arenaInputHost {
+  position:relative!important;inset:auto!important;width:100%!important;overflow:hidden!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .ide-primary .arena-editor #practiceAnswer.sql-editor-textarea {
+  position:absolute!important;inset:0!important;box-sizing:border-box!important;
+  width:100%!important;resize:none!important;overflow:auto!important;
+}
+/* Results, assessment and worked-answer sections should be as tall as their content. */
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail .ide-secondary {
+  display:block!important;height:auto!important;min-height:0!important;max-height:none!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail .ide-secondary .ide-panel:not([hidden]) {
+  display:block!important;flex:none!important;height:auto!important;min-height:0!important;
+  max-height:none!important;overflow:visible!important;padding:13px!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail .ide-secondary .ide-panel[hidden] {
+  display:none!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail .ide-secondary :is(.ide-welcome,.ide-calc-result,.ide-console,.ide-hints) {
+  min-height:0!important;height:auto!important;max-height:none!important;margin:0!important;padding:14px!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail .ide-secondary #practiceFeedback {
+  flex:none!important;min-height:0!important;height:auto!important;max-height:none!important;
+  overflow:visible!important;margin:0!important;padding:0 13px 13px!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail .ide-secondary #practiceFeedback:empty {display:none!important;}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail :is(.pc-feedback,.arena-grade,.arena-support,.arena-support-card) {
+  min-height:0!important;height:auto!important;max-height:none!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail .arena-worked-code {
+  min-height:0!important;height:auto!important;max-height:280px!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail .ide-secondary :is(.ide-grid-scroll,#arenaResults,.ide-inspector) {
+  min-width:0!important;max-width:100%!important;overflow-x:auto!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail .arena-grade {
+  display:block!important;overflow:visible!important;padding-bottom:12px!important;
+}
+@media(max-width:1060px){
+  html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail .ide-content,
+  html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail .ide-shell.is-editor-expanded .ide-content {
+    display:flex!important;flex-direction:column!important;grid-template-columns:none!important;
+    gap:12px!important;
+  }
+  html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail .ide-content > :is(.ide-primary,.ide-secondary) {
+    flex:0 0 auto!important;align-self:stretch!important;min-height:0!important;
+  }
+}
+@media(max-width:700px){
+  html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail .ide-primary #ideEditorSlot {padding:9px!important;}
+  html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .ide-primary .arena-editor {
+    --ap-editor-height:210px;
+  }
+  html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail .ide-secondary .ide-panel:not([hidden]) {padding:11px!important;}
+}
+/* Respect the existing expand-editor action while allowing compact default height. */
+@media(min-width:1061px){
+ html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail .ide-shell.is-editor-expanded .ide-content {
+   grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr)!important;
+ }
+ html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .ide-shell.is-editor-expanded .arena-editor {
+   --ap-editor-height:340px;
+ }
+}
+/* Python has the same compact default, but its textarea remains user-resizable. */
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="Python"] .python-lab {
+  min-height:0!important;height:auto!important;max-height:none!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="Python"] #pythonCode {
+  height:250px!important;min-height:220px!important;max-height:none!important;
+  resize:vertical!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="Python"] #pythonOutput {
+  min-height:55px!important;height:auto!important;max-height:300px!important;overflow:auto!important;
+}
+@media(max-width:700px){
+ html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="Python"] #pythonCode {
+   height:210px!important;min-height:190px!important;
+ }
+}

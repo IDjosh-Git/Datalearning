@@ -1,3 +1,30 @@
+# DataLearning — Compact, Content-Sized Practice Arena (10 November 2026)
+
+**Base:** DataLearning Premium Practice Arena Collapsible Editors, full-project ZIP.
+
+## Changes
+
+- Removed the old forced 410–575px row, editor-slot, worksheet and output heights that remained after hiding the Excel dataset.
+- Excel: worksheet stays collapsed by default, with Show table / Hide table; the formula editor, cell selection, populated extra rows and grading logic remain intact. The editor becomes taller only when the worksheet is expanded.
+- SQL: a compact 250px desktop / 210px mobile query area; the existing expand-editor state can use a taller 340px desktop editor. Query processing and SQLite restrictions are unchanged.
+- Python: more compact 250px desktop / 210px mobile code input, still resizable vertically; output adapts to text, with scrolling for long output.
+- Results and Answer: removed forced height and equal-column stretching. Results panel, feedback cards and worked answer now fit the content, with bounded scrolling for very long output/code.
+- Moved the challenge grading section out of the hidden Console tab and into the visible, independent Results card, so learners can read feedback without switching tabs.
+- Updated the Practice Arena stylesheet and controller URLs to avoid stale browser cache; no database schema, user records, challenge data or authentication logic changed.
+
+## Verification
+
+- `npm run verify:deployment` passed: Academy, security, Practice Arena (including new intrinsic-height regression test) and AI Tutor test suites.
+- Rendered layout/CSS checks at 320px, 390px, 768px and 1440px using headless Chromium and the project's full stylesheet order. The 1440px Excel editor is roughly 354px when collapsed and grows with the expanded worksheet. Results panel retains its own shorter intrinsic height.
+- Independent rendered-content check verified the Results card grows for longer grading text without horizontal overflow at 390px and 1440px.
+- **Limitation:** Full site navigation is blocked by the local browser environment, so visual testing used a faithful isolated layout fixture with the actual stylesheet stack. Verify the full deployed Practice Arena in-browser before publishing to all learners.
+
+## Deployment
+
+Deploy the entire ZIP. Test an Excel challenge (table collapsed/expanded), a SQL query, a Python run, a passed/failed assessment, and View worked answer on desktop and mobile. Live Supabase operation was not retested.
+
+---
+
 # DataLearning — Practice Arena Premium Studio & Collapsible Datasets
 
 **Release:** 10 November 2026  
