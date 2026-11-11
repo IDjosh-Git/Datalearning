@@ -1,3 +1,16 @@
+## November 11, 2026 — Premium paginated Formula & Code / Prompt Libraries
+
+- Replaced the former library-only layouts with a shared, theme-aligned responsive design.
+- Removed unused `assets/styles/reference.css` (227 KB) and `assets/styles/prompt-library.css` (223 KB) entirely; both pages load only `assets/styles/learning-libraries-premium.css` with route-scoped selectors. Other public pages are unaffected.
+- Formula & Code Lab retains all 639 existing references and deep links (`?group=...&q=...`), category/difficulty filters, saved bookmarks and code copy, with an accessible full-example dialog.
+- Prompt Library retains all 300 prompts, topic/level search, existing saved prompts, exports, downloadable Markdown, AI course links and accessible full-prompt dialog.
+- Replaced unbounded cards / incremental load-more with 12-card page navigation (Previous and Next); standard desktop uses 3 columns, very wide desktop 4, tablet 2, mobile 1. Filters reset to the first page; page changes return focus to the results viewport.
+- Improved keyboard focus states, reduced-motion behaviour, modal focus return, code scroll, small-phone sizing and empty-state help.
+- No course progress, assessment, capstone, Supabase schema or application-routing changes.
+- Added `tests/library-premium-pagination.mjs` and ran the complete deployment regression suite. Full browser navigation is restricted; interactive behaviour was verified in an isolated browser rendering with actual library content and scripts.
+
+---
+
 # DataLearning — Formula & Code Lab and five-question specialist quizzes (11 November 2026)
 
 - AI and Python: each weekly quiz is **five questions**; both final mastery checks now use five representative weeks. Python gained two topic-specific questions per week. Other courses keep their existing quizzes and progress IDs.

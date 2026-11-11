@@ -1,14 +1,14 @@
+/** DataLearning Prompt Library – responsive, paginated, accessible 300-prompt catalogue. */
 (() => {
   'use strict';
-
   const all = Array.isArray(window.DALP_PROMPTS) ? window.DALP_PROMPTS : [];
-  const $ = (id) => document.getElementById(id);
+  const $ = id => document.getElementById(id);
   const grid = $('promptGrid');
+  if (!grid) return;
   const search = $('promptSearch');
   const category = $('categorySelect');
   const level = $('levelSelect');
   const count = $('resultCount');
-  const more = $('loadMore');
   const savedToggle = $('savedToggle');
   const favCount = $('favCount');
   const modal = $('promptPreviewDialog');
@@ -18,11 +18,16 @@
   const modalContent = $('promptModalContent');
   const modalScroll = $('promptModalScroll');
   const modalCopy = $('promptModalCopy');
+  const previous = $('promptPrev');
+  const next = $('promptNext');
+  const pageInfo = $('promptPageInfo');
+  const pageRange = $('promptPageRange');
+  const pager = $('promptPagination');
   const KEY = 'dalp:prompt-library:favorites:v1';
-
+  const PAGE_SIZE = 12;
   let saved = new Set();
   let savedOnly = false;
-  let visibleLimit = 24;
+  let page = 1;
   let matching = [];
   let openPrompt = null;
   let returnFocus = null;
@@ -31,20 +36,21 @@
   try {
     const arr = JSON.parse(localStorage.getItem(KEY) || '[]');
     if (Array.isArray(arr)) saved = new Set(arr.filter(v => typeof v === 'string'));
-  } catch {}
+  } catch { /* Storage optional. */ }
 
-  [...new Set(all.map(p => p.category))].forEach((cat) => {
+  [...new Set(all.map(prompt => prompt.category))].sort().forEach(name => {
     const option = document.createElement('option');
-    option.value = cat;
-    option.textContent = cat;
+    option.value = name;
+    option.textContent = name;
     category.append(option);
   });
 
-  const params = new URLSearchParams(location.search);
-  if (params.has('category') && [...category.options].some(o => o.value === params.get('category'))) {
-    category.value = params.get('category');
+  function make(tag, className, value) {
+    const element = document.createElement(tag);
+    if (className) element.className = className;
+    if (value !== undefined) element.textContent = String(value);
+    return element;
   }
-
   function toast(message) {
     const element = $('promptToast');
     element.textContent = message;
@@ -52,174 +58,146 @@
     clearTimeout(toastHandle);
     toastHandle = setTimeout(() => element.classList.remove('show'), 2400);
   }
-
   function remember() {
-    try { localStorage.setItem(KEY, JSON.stringify([...saved])); } catch {}
+    try { localStorage.setItem(KEY, JSON.stringify([...saved])); } catch { /* Storage optional. */ }
     favCount.textContent = String(saved.size);
   }
-
-  function textNode(tag, className, value) {
-    const element = document.createElement(tag);
-    if (className) element.className = className;
-    element.textContent = value;
-    return element;
-  }
-
-  async function copyPrompt(text, id) {
+  async function copyPrompt(value) {
     try {
-      if (!navigator.clipboard || !navigator.clipboard.writeText) throw new Error('Clipboard API unavailable');
-      await navigator.clipboard.writeText(text);
+      if (!navigator.clipboard?.writeText) throw new Error('Clipboard API unavailable');
+      await navigator.clipboard.writeText(value);
+      return true;
     } catch {
-      // The fallback must be INSIDE an open dialog; everything outside it is inert.
-      const field = document.createElement('textarea');
-      field.value = text;
-      field.setAttribute('readonly', '');
-      field.style.cssText = 'position:fixed;left:-9999px;top:0;opacity:0';
-      (modal.open ? modal : document.body).append(field);
-      field.select();
+      const input = make('textarea');
+      input.value = value;
+      input.setAttribute('readonly', '');
+      input.style.cssText = 'position:fixed;left:-9999px;top:0;opacity:0';
+      (modal.open ? modal : document.body).append(input);
+      input.select();
       let copied = false;
-      try { copied = document.execCommand('copy'); } catch {}
-      field.remove();
-      if (!copied) {
-        toast('Copy unavailable. Select and copy the prompt text.');
-        modalScroll.focus();
-        return;
-      }
+      try { copied = document.execCommand('copy'); } catch { /* Clipboard unavailable. */ }
+      input.remove();
+      return copied;
     }
-    toast(`${id} copied — customize the placeholders`);
-    modalCopy.textContent = 'Copied ✓';
-    modalCopy.classList.add('is-copied');
   }
-
   function openPreview(item, trigger) {
-    if (!modal || !item) return;
     openPrompt = item;
     returnFocus = trigger;
     modalReference.textContent = `PROMPT ${item.id} · ${item.category}`;
     modalTitle.textContent = item.title;
-    modalMeta.replaceChildren(textNode('span', '', item.tool), textNode('span', '', item.level));
-    // Text only: prompts can contain HTML-like placeholders and must not execute markup.
+    modalMeta.replaceChildren(make('span', '', item.tool), make('span', '', item.level));
+    // Use textContent. Prompt data may contain markup-like placeholders and must never execute.
     modalContent.textContent = item.prompt;
     modalCopy.textContent = 'Copy full prompt ↗';
-    modalCopy.classList.remove('is-copied');
     modalScroll.scrollTop = 0;
-    document.body.classList.add('pl-preview-open');
+    document.body.classList.add('dl-lib-dialog-open');
     if (!modal.open) modal.showModal();
     $('promptModalCloseIcon').focus();
   }
-
-  function closePreview() {
-    if (modal.open) modal.close();
-  }
-
+  function closePreview() { if (modal.open) modal.close(); }
   $('promptModalClose').addEventListener('click', closePreview);
   $('promptModalCloseIcon').addEventListener('click', closePreview);
-  modalCopy.addEventListener('click', () => {
-    if (openPrompt) void copyPrompt(openPrompt.prompt, openPrompt.id);
+  modalCopy.addEventListener('click', async () => {
+    if (!openPrompt) return;
+    if (await copyPrompt(openPrompt.prompt)) {
+      modalCopy.textContent = 'Copied ✓';
+      toast(`${openPrompt.id} copied — customise and verify the output`);
+    } else {
+      toast('Select the full prompt text to copy');
+      modalScroll.focus();
+    }
   });
   modal.addEventListener('close', () => {
-    document.body.classList.remove('pl-preview-open');
+    document.body.classList.remove('dl-lib-dialog-open');
     openPrompt = null;
-    if (returnFocus && returnFocus.isConnected) returnFocus.focus();
+    if (returnFocus?.isConnected) returnFocus.focus();
     returnFocus = null;
   });
-  modal.addEventListener('click', (event) => {
-    // Native <dialog> dispatches backdrop clicks on the element itself.
-    if (event.target === modal) closePreview();
-  });
+  modal.addEventListener('click', event => { if (event.target === modal) closePreview(); });
 
   function card(item) {
-    const article = document.createElement('article');
-    article.className = 'prompt-card';
-    const head = document.createElement('div');
-    head.className = 'card-top';
-    head.append(textNode('span', 'prompt-id', item.id));
-
-    const fav = document.createElement('button');
-    fav.type = 'button';
-    fav.className = 'favorite' + (saved.has(item.id) ? ' is-saved' : '');
-    fav.setAttribute('aria-label', saved.has(item.id) ? 'Remove saved prompt' : 'Save prompt');
-    fav.setAttribute('aria-pressed', String(saved.has(item.id)));
-    fav.textContent = saved.has(item.id) ? '★' : '☆';
-    fav.addEventListener('click', () => {
-      if (saved.has(item.id)) saved.delete(item.id);
-      else saved.add(item.id);
-      remember();
-      render();
+    const article = make('article', 'dl-lib-card prompt-card');
+    const head = make('div', 'dl-lib-card-head');
+    const id = make('span', 'dl-lib-prompt-id', item.id);
+    const favorite = make('button', 'dl-lib-save', saved.has(item.id) ? '★' : '☆');
+    favorite.type = 'button';
+    favorite.setAttribute('aria-label', saved.has(item.id) ? `Remove saved prompt ${item.id}` : `Save prompt ${item.id}`);
+    favorite.setAttribute('aria-pressed', String(saved.has(item.id)));
+    favorite.addEventListener('click', () => {
+      if (saved.has(item.id)) saved.delete(item.id); else saved.add(item.id);
+      remember(); render();
       toast(saved.has(item.id) ? 'Prompt saved' : 'Prompt removed');
     });
-    head.append(fav);
-    article.append(head);
-    article.append(textNode('span', 'category-label', item.category));
-    article.append(textNode('h3', '', item.title));
-
-    const tags = document.createElement('div');
-    tags.className = 'prompt-tags';
-    tags.append(textNode('span', '', item.tool), textNode('span', '', item.level));
-    article.append(tags);
-
-    // Reading a prompt no longer adds any DOM content to the card.
-    const actions = document.createElement('div');
-    actions.className = 'card-actions';
-    const read = document.createElement('button');
-    read.type = 'button';
-    read.className = 'prompt-preview-trigger';
-    read.textContent = 'Read full prompt';
-    read.setAttribute('aria-haspopup', 'dialog');
-    read.setAttribute('aria-controls', 'promptPreviewDialog');
-    read.addEventListener('click', () => openPreview(item, read));
-    actions.append(read);
-    article.append(actions);
+    const topic = make('span', 'dl-lib-tag', item.category);
+    head.append(id, topic, favorite);
+    const heading = make('h3', '', item.title);
+    const summary = make('p', 'dl-lib-card-description', item.prompt);
+    const tags = make('div', 'dl-lib-card-tags');
+    tags.append(make('span', 'dl-lib-tag subtle', item.tool), make('span', 'dl-lib-tag subtle', item.level));
+    const footer = make('div', 'dl-lib-card-actions');
+    const open = make('button', 'dl-lib-open', 'Read full prompt ↗');
+    open.type = 'button';
+    open.setAttribute('aria-haspopup', 'dialog');
+    open.setAttribute('aria-controls', 'promptPreviewDialog');
+    open.addEventListener('click', () => openPreview(item, open));
+    footer.append(open);
+    article.append(head, heading, summary, tags, footer);
     return article;
   }
-
   function render() {
-    grid.replaceChildren();
-    const query = search.value.trim().toLocaleLowerCase();
-    matching = all.filter(p =>
-      (!savedOnly || saved.has(p.id)) &&
-      (!category.value || p.category === category.value) &&
-      (!level.value || p.level === level.value) &&
-      (!query || (p.title + ' ' + p.category + ' ' + p.tool + ' ' + p.prompt).toLocaleLowerCase().includes(query))
+    const query = search.value.trim().toLowerCase();
+    matching = all.filter(item =>
+      (!savedOnly || saved.has(item.id)) &&
+      (!category.value || item.category === category.value) &&
+      (!level.value || item.level === level.value) &&
+      (!query || [item.id, item.title, item.category, item.tool, item.prompt].join(' ').toLowerCase().includes(query))
     );
-    matching.slice(0, visibleLimit).forEach(p => grid.append(card(p)));
-    count.textContent = `${matching.length} of ${all.length} prompts found · ${Math.min(matching.length, visibleLimit)} displayed`;
-    more.hidden = matching.length <= visibleLimit;
+    const totalPages = Math.max(1, Math.ceil(matching.length / PAGE_SIZE));
+    page = Math.min(Math.max(1, page), totalPages);
+    const offset = (page - 1) * PAGE_SIZE;
+    grid.replaceChildren();
+    matching.slice(offset, offset + PAGE_SIZE).forEach(item => grid.append(card(item)));
+    count.textContent = `${matching.length} of ${all.length} prompts`;
     $('emptyState').hidden = matching.length !== 0;
+    pageInfo.textContent = `Page ${page} of ${totalPages}`;
+    pageRange.textContent = matching.length ? `Showing ${offset + 1}–${Math.min(offset + PAGE_SIZE, matching.length)}` : 'No matching items';
+    previous.disabled = page <= 1;
+    next.disabled = page >= totalPages;
+    pager.hidden = matching.length <= PAGE_SIZE;
     savedToggle.setAttribute('aria-pressed', String(savedOnly));
     savedToggle.classList.toggle('active', savedOnly);
+    savedToggle.firstChild.textContent = savedOnly ? '★ Saved ' : '☆ Saved ';
     favCount.textContent = String(saved.size);
   }
-
-  function resetLimit() { visibleLimit = 24; render(); }
-  search.addEventListener('input', resetLimit);
-  category.addEventListener('change', resetLimit);
-  level.addEventListener('change', resetLimit);
-  savedToggle.addEventListener('click', () => { savedOnly = !savedOnly; resetLimit(); });
-  more.addEventListener('click', () => { visibleLimit += 24; render(); });
+  function resetPage() { page = 1; render(); }
+  function goToPage(target) {
+    page = target; render();
+    $('results').scrollIntoView({block:'start', behavior:matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
+  }
+  previous.addEventListener('click', () => goToPage(page - 1));
+  next.addEventListener('click', () => goToPage(page + 1));
+  search.addEventListener('input', resetPage);
+  category.addEventListener('change', resetPage);
+  level.addEventListener('change', resetPage);
+  savedToggle.addEventListener('click', () => { savedOnly = !savedOnly; resetPage(); });
   $('clearFilters').addEventListener('click', () => {
-    search.value = '';
-    category.value = '';
-    level.value = '';
-    savedOnly = false;
-    resetLimit();
+    search.value = ''; category.value = ''; level.value = ''; savedOnly = false;
+    resetPage(); search.focus();
   });
   $('downloadBtn').addEventListener('click', () => {
-    const chosen = all.filter(p => saved.has(p.id));
-    if (!chosen.length) { toast('Save one or more prompts before exporting'); return; }
-    const text = chosen.map(p => `${p.id} — ${p.category}\n${p.title}\n\n${p.prompt}\n\n${'-'.repeat(72)}`).join('\n\n');
-    const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+    const chosen = all.filter(prompt => saved.has(prompt.id));
+    if (!chosen.length) { toast('Save a prompt before exporting'); return; }
+    const text = chosen.map(item => `${item.id} — ${item.category}\n${item.title}\n\n${item.prompt}\n\n${'-'.repeat(72)}`).join('\n\n');
+    const blob = new Blob([text], {type:'text/plain;charset=utf-8'});
     const url = URL.createObjectURL(blob);
-    const anchor = document.createElement('a');
-    anchor.href = url;
-    anchor.download = 'DALP_saved_AI_prompts.txt';
-    document.body.append(anchor);
-    anchor.click();
-    anchor.remove();
+    const anchor = make('a'); anchor.href = url; anchor.download = 'DataLearning_saved_AI_prompts.txt';
+    document.body.append(anchor); anchor.click(); anchor.remove();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
     toast('Saved prompts exported');
   });
-
+  const params = new URLSearchParams(location.search);
+  if (params.has('category') && [...category.options].some(opt => opt.value === params.get('category'))) category.value = params.get('category');
+  if (params.has('q')) search.value = params.get('q').slice(0, 150);
   remember();
   render();
 })();
