@@ -16,7 +16,7 @@ for(const slug of slugs){
  }
 }
 const app=read('assets/scripts/academy-app.js');for(const token of ['${kitHtml}','${deepHtml}','data-dalp-video="true"','downloads/${encodeURIComponent(media.dataset)}','media.worksheet'])assert.ok(app.includes(token),token);
-const specialist=read('assets/scripts/weekly-workspace.js');for(const token of ['weekMedia.video','weekMedia.dataset','weekMedia.worksheet'])assert.ok(specialist.includes(token));
+const academy=read('assets/scripts/academy-app.js');for(const token of ['media.video','media.dataset','media.worksheet'])assert.ok(academy.includes(token));
 const fakeDoc={body:{dataset:{course:'excel'}},baseURI:'https://example.com/',addEventListener(){}};
 const fakeWindow={addEventListener(){}};
 vm.runInNewContext(read('assets/scripts/course-video-player.js'),{window:fakeWindow,document:fakeDoc,URL,URLSearchParams});
@@ -32,6 +32,6 @@ const checks=[
 for(const [src,start] of checks){const v=parse(src);assert.ok(v,src);assert.equal(v.start,start);assert.match(v.embed,/^https:\/\/www\.youtube-nocookie\.com\/embed\//);assert.match(v.canonical,/^https:\/\/www\.youtube\.com\//);}
 assert.equal(parse('https://evil.example/watch?v=HXV3zeQKqGY'),null);assert.equal(parse('javascript:alert(1)'),null);
 assert.equal(parse('https://www.youtube.com/watch?v=AAA'),null);
-for(const slug of ['python','ai'])assert.match(read(`courses/${slug}.html`),/specialist-week-deep\.js/);
+for(const slug of ['python','ai'])assert.match(read(`courses/${slug}.html`),/specialist-course-data\.js/);
 const guide=read('downloads/WEEKLY_PRACTICE_DATA_GUIDE.md');assert.match(guide,/synthetic/);assert.ok(fs.readdirSync('downloads').filter(s=>s.startsWith('learning_')&&s.endsWith('.csv')).length>=10);
 console.log('PASS week learning resources:',lessons,'dataset links, 90 full practice briefs, verified lesson-player URL variants and all nine courses');

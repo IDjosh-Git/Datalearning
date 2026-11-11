@@ -1,33 +1,38 @@
+/** Regression: Python and AI are genuine Academy pages, not legacy HTML with CSS overrides. */
 import assert from 'node:assert/strict';
-import {readFileSync,existsSync} from 'node:fs';
-import {join,dirname} from 'node:path';
-import {fileURLToPath} from 'node:url';
-const root=join(dirname(fileURLToPath(import.meta.url)),'..');
-const read=path=>readFileSync(join(root,path),'utf8');
-const css=read('assets/styles/specialist-unified-course.css');
-const script=read('assets/scripts/specialist-unified-course.js');
-for(const name of ['python','ai']){
- const html=read(`courses/${name}.html`);
- assert.equal((html.match(/specialist-unified-course\.css/g)||[]).length,1,`${name}: one new CSS include`);
- assert.equal((html.match(/specialist-unified-course\.js/g)||[]).length,1,`${name}: one new JS include`);
- assert.ok(html.indexOf('specialist-unified-course.css')<html.indexOf('public-search-premium.css'),`${name}: shared search CSS remains last`);
- for(let n=1;n<=10;n++){
-  assert.match(html,new RegExp(`id="week${n}"`),`${name}: week ${n} retained`);
+import fs from 'node:fs';
+import vm from 'node:vm';
+const read=p=>fs.readFileSync(new URL('../'+p,import.meta.url),'utf8');
+const modules=JSON.parse(read('assets/data/ten-week-tool-to-report.json'));
+const ctx={window:{DALP_ACADEMY:JSON.parse(read('assets/data/academy-curriculum.json'))}};
+vm.runInNewContext(read('assets/scripts/specialist-course-data.js'),ctx);
+const paths=ctx.window.DALP_ACADEMY;
+assert.equal(paths.length,9);
+for(const slug of ['ai','python']){
+ const html=read(`courses/${slug}.html`);
+ const reference=read('courses/excel.html');
+ const course=paths.find(p=>p.slug===slug);
+ assert(course,`${slug} should be in native nine-course data`);
+ assert.equal(course.weeks.length,10);
+ for(const [i,week] of course.weeks.entries()){
+  assert.equal(week.title,modules[slug][i].title);
+  assert.equal(week.outcome,modules[slug][i].goal);
+  assert.equal(week.questions.length,5);
+  assert(week.questions.every(q=>q.answer>=0&&q.answer<q.choices.length));
  }
- assert.ok(html.includes('weekly-workspace.js'),`${name}: original week navigation retained`);
- assert.ok(html.includes('week10-capstone-'+name+'.js'),`${name}: Week 10 capstone retained`);
- assert.ok(html.includes('week-learning-resources.js'),`${name}: lesson media resources retained`);
- assert.ok(html.includes('course-premium-sidebar.js'),`${name}: accessible course drawer retained`);
- assert.ok(html.includes('course-video-player.js'),`${name}: in-app video retained`);
- assert.ok(html.includes('ten-week-masterclass.js'),`${name}: comprehensive lessons retained`);
- assert.match(css,new RegExp(`body\\.sxl-unified-course\\[data-course="${name}"\\]`),`${name}: course-aware stylesheet`);
- assert.match(script,new RegExp(`${name}: \\{name:`),`${name}: dedicated course identity`);
+ for(const marker of ['data-academy-page="lesson"','id="zaLessonBody"','id="zaWeekList"','id="dlcOverviewBar"','id="zaLessonActions"','id="dlcNextWeek"','academy-app.js','specialist-course-data.js','week-learning-resources.js','course-video-player.js','ten-week-masterclass.js'])assert(html.includes(marker),`${slug}: missing modern Academy feature ${marker}`);
+ for(const marker of ['course-ai.css','course-python-overrides.css','specialist-unified-course','weekly-workspace.js','course-premium-sidebar.js','course-mastery','class="week searchable"','id="week1"'])assert(!html.includes(marker),`${slug}: legacy UI survived ${marker}`);
+ assert(html.includes(`data-course="${slug}"`));
+ assert(html.includes(`data-brand-course="${slug}"`));
+ assert.equal((html.match(/id="zaLessonBody"/g)||[]).length,1);
+ assert(html.length<24000,`${slug}: legacy monolithic source still present`);
+ assert(html.includes('course-experience-premium.css'),`${slug}: does not use the same theme as Excel`);
+ assert(html.includes('public-search-premium.css'));
+ assert(html.indexOf('specialist-course-data.js')<html.indexOf('academy-app.js'));
+ assert(reference.includes('id="zaLessonBody"'));
 }
-for(const asset of ['icon-python.svg','icon-ai.svg'])assert.ok(existsSync(join(root,'assets/icons',asset)),`${asset}: image is bundled`);
-for(const selector of ['.sxl-course-hero','.sxl-week-toolbar','.sxl-rail-brand','.sxl-hero-meter','.sxl-course-options','.cw-module-tabs','.cw-resources'])assert.ok(css.includes(selector),`expected premium design ${selector}`);
-for(const behavior of ['sxlWeekSelect','hashchange','aria-valuenow','completeBox','dalp:','course-top-actions'])assert.ok(script.includes(behavior.replace('dalp:','zah:')),`expected interaction ${behavior}`);
-assert.match(css,/@media\(max-width:720px\)/,'Mobile single-column study resources');
-assert.match(css,/@media\(max-width:400px\)/,'Small phone layout');
-assert.match(css,/@media\(prefers-reduced-motion:reduce\)/,'Reduced motion');
-assert.match(css,/grid-row:2/,'Resource grid has explicit second row');
-console.log('PASS unified specialist courses: AI/Python branding, responsive reading workspace, progress and week control, preserved quizzes/videos/capstone');
+assert(read('courses/ai.html').includes('href="../prompt-library.html"'),'AI prompt links present');
+assert(read('assets/scripts/ten-week-masterclass.js').includes('renderSpecialist:specialist'));
+assert(read('assets/scripts/academy-app.js').includes('renderSpecialist?.(rebuiltModule,base)'));
+for(const obsolete of ['assets/styles/course-ai.css','assets/styles/course-python-overrides.css','assets/styles/specialist-unified-course.css','assets/scripts/specialist-unified-course.js','assets/scripts/weekly-workspace.js','assets/scripts/week10-capstone-ai.js','assets/scripts/week10-capstone-python.js'])assert(!fs.existsSync(new URL('../'+obsolete,import.meta.url)),`obsolete ${obsolete} was not removed`);
+console.log('PASS native AI/Python: one shared Academy layout, 20 weekly quizzes, 100 assessment questions, course icons, capstones, no old pages or CSS overrides');

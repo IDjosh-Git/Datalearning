@@ -13,7 +13,8 @@ function launch(page){
        empty={hidden:false},count={textContent:''},discover={innerHTML:''};
  const filters=['all','analytics','bi','technical','specialist'].map(dl=>({dataset:{dlcFilter:dl},listeners:{},addEventListener(type,fn){this.listeners[type]=fn},setAttribute(){}}));
  const items={ '#zaCatalogCards':box,'#zaCourseSearch':search,'#zaCatalogEmpty':empty,'#dlcCatalogCount':count,'#zaDiscoverCards':discover };
- const win={DALP_ACADEMY:curriculum,addEventListener(){}};
+ const win={DALP_ACADEMY:JSON.parse(JSON.stringify(curriculum)),addEventListener(){}};
+ vm.runInNewContext(read('assets/scripts/specialist-course-data.js'),{window:win});
  const doc={readyState:'complete',documentElement:{dataset:{academyPage:page,base:''}},querySelector(selector){return items[selector]||null},querySelectorAll(selector){return selector==='[data-dlc-filter]'?filters:[]},addEventListener(){}};
  vm.runInNewContext(src,{window:win,document:doc,console},{timeout:5000,filename:'academy-app.js'});
  return {win,box,search,empty,count,discover,filters};
@@ -24,8 +25,8 @@ assert.equal((app.box.innerHTML.match(/class="za-catalog-item dlc-course-card"/g
 for(const slug of ['ai','python']){
  assert(app.box.innerHTML.includes(`data-course="${slug}"`),`${slug} must have a catalogue card`);
  assert(app.box.innerHTML.includes(`href="courses/${slug}.html"`),`${slug} course route must be clickable`);
- assert(app.box.innerHTML.includes(`href="courses/${slug}.html#week10"`),`${slug} capstone week must be discoverable`);
- assert(read(`courses/${slug}.html`).includes('id="week10"'),`${slug} Week 10 route missing`);
+ assert(app.box.innerHTML.includes(`href="courses/${slug}.html?week=10"`),`${slug} capstone week must be discoverable`);
+ assert(read(`courses/${slug}.html`).includes('id="zaLessonBody"'),`${slug} interactive Week 10 route missing`);
 }
 assert.equal(app.count.textContent,'9 courses shown');
 app.filters.find(f=>f.dataset.dlcFilter==='specialist').listeners.click();

@@ -22,5 +22,6 @@ Use Node.js 24 (`.nvmrc`). Run `npm install` followed by `npm run verify:deploym
 
 See [release notes](CURRENT_RELEASE.md), [the active file map](docs/PROJECT_FILE_MAP.md), and [the cleanup and Tutor audit](docs/LEAN_APP_CLEANUP_TUTOR_20261111.md).
 
-### AI and Python specialist course design
-The Python (`courses/python.html`) and AI (`courses/ai.html`) courses now use a consistent premium weekly workspace through `assets/scripts/specialist-unified-course.js` and `assets/styles/specialist-unified-course.css`. They retain the original ten-week content, deep links, progress controls, quizzes, in-app video player and capstone routes. The week selector uses the existing hash-based week controller; course progress uses the existing checkboxes and sync events.
+### AI and Python courses: same native reader as all other courses
+
+Python (`courses/python.html`) and AI (`courses/ai.html`) are now first-class Academy routes using `assets/scripts/academy-app.js` and the same lesson structure/styles as the other seven courses. The previous standalone AI/Python lesson page markup, legacy sidebar controllers and course-only CSS have been removed. `assets/scripts/specialist-course-data.js` provides current week metadata and preserves the original 80 quiz questions; the masterclass renderer supplies deeper explanations and the Week 10 capstone. The original progress keys, Supabase course slugs, media, Prompt Library and capstone routes remain intact. The roadmap and extension pages are optional supplemental resources, not alternate course screens.

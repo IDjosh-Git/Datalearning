@@ -49,7 +49,7 @@ for (const slug of ['introduction','excel','sql','powerbi','tableau','powerquery
   assert(fs.existsSync(path.join(pagesDir, slug + '.html')), `Missing current course ${slug}`);
 }
 for (const slug of ['ai','python']) {
-  assert(fs.existsSync(path.join(pagesDir, slug + '.html')), `Missing legacy course ${slug}`);
+  assert(fs.existsSync(path.join(pagesDir, slug + '.html')), `Missing native specialist course ${slug}`);
   for(const suffix of ['roadmap','extension']) {
     assert(fs.existsSync(path.join(pagesDir, slug + '-' + suffix + '.html')), `Missing still-linked legacy guide ${slug}-${suffix}`);
   }

@@ -45,7 +45,7 @@ for(const slug of ordered){
   count++;
  }
  if(['python','ai'].includes(slug)){
-  assert(read(`assets/scripts/week10-capstone-${slug}.js`).includes('DALP_REBUILT_CAPSTONE'),`${slug}: no duplicate Week 10 brief`);
+  assert(read(`courses/${slug}.html`).includes('specialist-course-data.js'),`${slug}: native specialist course data missing`);
  }
 }
 assert.equal(count,90);
@@ -55,7 +55,7 @@ for(const original of curriculum){
 }
 for(const slug of ['python','ai'])assert(read('capstone.html').includes(`data-course="${slug}"`),`Missing capstone chooser ${slug}`);
 const renderer=read('assets/scripts/ten-week-masterclass.js');
-for(const x of ['renderCore','renderCapstone','specialists','dlm-layout-sample','capstone.html?course=','70/100'])assert(renderer.includes(x));
+for(const x of ['renderCore','renderSpecialist','renderCapstone','dlm-layout-sample','capstone.html?course=','70/100'])assert(renderer.includes(x));
 const css=read('assets/styles/ten-week-masterclass.css');
 for(const x of ['@media(max-width:540px)','dlm-topic-grid','dlm-capstone','dlm-image-top','focus-visible'])assert(css.includes(x));
 console.log(`PASS: ${count} rewritten 10-week modules, ~${Math.round(words/count)} instructional words/week, 90 worksheets and datasets, 18 dashboard/report images, 9 capstone routes and preserved identifiers`);

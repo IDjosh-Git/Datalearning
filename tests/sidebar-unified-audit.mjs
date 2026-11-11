@@ -14,11 +14,11 @@ const common=read('assets/styles/sidebar-consistency.css');
 for(const required of ['max-width:1024px','min(360px,calc(100vw - 20px))','.ac-drawer-header','.ac-more-details>summary',':focus-visible','@media(max-width:1050px)','#lessonRailBackdrop:not([hidden])','max-width:780px','.ps-rail-close','prefers-reduced-motion:reduce'])assert(common.includes(required),`Shared sidebar CSS missing ${required}`);
 for(const page of ['python','ai']){
  const html=read('courses/'+page+'.html');
- assert.match(html,/sidebar-consistency\.css\?v=sidebar-audit-20261110-r1/,`${page}: lesson drawer stylesheet missing`);
- assert.match(html,/course-premium-sidebar\.js\?v=sidebar-audit-20261110-r1/,`${page}: updated lesson drawer JS required`);
+ for(const marker of ['id="zaCourseAside"','id="zaAsideOpen"','id="zaAsideClose"','id="zaAsideBackdrop"','course-experience-premium.css','academy-app.js'])assert(html.includes(marker),`${page}: Academy lesson drawer ${marker} missing`);
+ assert(!html.includes('course-premium-sidebar.js'),`${page}: obsolete specialist drawer should be removed`);
 }
-const lessons=read('assets/scripts/course-premium-sidebar.js');
-assert(lessons.includes('<span>Close</span>')&&lessons.includes('returnFocus:true')&&lessons.includes("e.key==='Escape'"),'Course rail must close by button and Escape and restore keyboard focus');
+const sharedLesson=read('assets/scripts/academy-app.js');
+for(const required of ["open?.addEventListener('click'","close?.addEventListener('click'","event.key==='Escape'","const setAside=show=>","close?.focus()"] )assert(sharedLesson.includes(required),`Modern Academy lesson drawer missing ${required}`);
 const studio=read('assets/scripts/course-studio.js');
 assert(studio.includes("railClose.setAttribute('aria-label','Close skills list')")&&studio.includes('railClose.addEventListener(\'click\'')&&studio.includes("event.key==='Escape'"),'Studio rail needs labelled close and Escape');
 for(const p of ['studio.html','tutor.html','practice.html'])assert.match(read(p),/sidebar-consistency\.css\?v=sidebar-audit-20261110-r1/);
@@ -27,4 +27,4 @@ assert(read('assets/scripts/public-header-unified.js').includes("close.innerHTML
 assert(read('assets/scripts/learner-companion.js').includes('<span>Close</span>'),'Study Pulse needs a labelled close');
 assert(read('assets/styles/public-header-unified.css').includes('Study Pulse follows the same legible mobile close-button convention'));
 assert(read('assets/scripts/tutor-workspace.js').includes("closeButton?.addEventListener('click',()=>close(true))"),'Keep existing premium Tutor drawer');
-console.log('PASS sidebar consolidation: eight private routes, two lesson rails, Studio skills, AI Tutor, public navigation and Study Pulse');
+console.log('PASS sidebar consolidation: eight private routes, two native Academy lesson drawers, Studio skills, AI Tutor, public navigation and Study Pulse');

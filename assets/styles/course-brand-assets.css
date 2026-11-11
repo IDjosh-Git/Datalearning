@@ -18,3 +18,7 @@ body.ps-page .ps-course-icon:has(img.dl-course-logo){background:#fff!important;}
 .dl-specialist-brand{display:inline-flex;align-items:center;gap:12px;margin-bottom:18px;padding:8px 16px 8px 8px;border-radius:18px;background:#ffffff12;border:1px solid #a6cec144;color:inherit;font-size:12px;font-weight:850;letter-spacing:.018em;}
 .dl-specialist-brand img{width:55px;height:55px;object-fit:contain;background:#fff;border-radius:14px;padding:7px;box-shadow:0 5px 14px #142f3620;}
 @media(max-width:520px){.dl-specialist-brand{font-size:11px;padding-right:11px}.dl-specialist-brand img{width:43px;height:43px;}}
+
+/* Keep the product badge and the week eyebrow on distinct lines, including wide displays. */
+body.za-lesson .za-lesson-hero .dl-brand-hero-mark{display:flex;width:max-content;max-width:100%;margin:0 0 14px;}
+body.za-lesson .za-lesson-hero .za-eyebrow{display:block;max-width:100%;clear:both;}

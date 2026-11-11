@@ -65,7 +65,7 @@
     if(!module)return '';
     const guide=module.guide;
     const s=esc;
-    return `<section class="dlm-specialist dlm-masterclass" aria-label="New comprehensive week ${module.week} learning experience">
+    return `<section class="dlm-specialist dlm-masterclass" id="zaMasterclass" aria-label="New comprehensive week ${module.week} learning experience">
       <header class="dlm-masterclass-head"><div><span class="dlm-kicker">TEN-WEEK TOOL-TO-REPORT MASTERCLASS · WEEK ${two(module.week)}</span><h2>${s(module.title)}</h2><p>${s(module.goal)}. Learn using the interface, reproduce an example, then create evidence you can present.</p></div><span class="dlm-week-stamp">${two(module.week)}<small>/10</small></span></header>
       <div class="dlm-where"><div class="dlm-where-icon" aria-hidden="true">⌘</div><div><h3>01 · Find the tool controls</h3><p>${s(module.where)}</p><p class="dlm-context">Keep the tool open as you read. Locate every named control before running the example so that you can repeat the task independently.</p></div></div>
       ${dataDictionary(module)}
@@ -79,44 +79,5 @@
       ${module.week===10?capstone(module,base):''}
     </section>`;
   }
-  function specialists(){
-    const slug=document.body?.dataset?.course;
-    if(!['python','ai'].includes(slug))return;
-    const modules=window.DALP_TOOL_TO_REPORT?.[slug];if(!modules)return;
-    const pageBase='../';
-    modules.forEach(m=>{
-      const weekRoot=document.getElementById(`week${m.week}`);
-      const container=weekRoot?.querySelector('.week-body') || weekRoot;
-      if(!container || container.querySelector('.dlm-specialist'))return;
-      const head=weekRoot.querySelector('.week-header, .unit-head');
-      if(container===weekRoot && head)head.insertAdjacentHTML('afterend',specialist(m,pageBase));
-      else container.insertAdjacentHTML('afterbegin',specialist(m,pageBase));
-      const header=weekRoot.querySelector('.week-title, .unit-head');
-      const heading=header?.querySelector('h3,h2');if(heading)heading.textContent=m.title;
-      const synopsis=header?.querySelector('p');
-      if(synopsis){
-        if(synopsis.classList.contains('goal'))synopsis.innerHTML='<strong>Learning outcome:</strong> '+esc(m.goal);
-        else synopsis.textContent=m.goal;
-      }
-      // Keep sidebar labels consistent with the new curriculum without changing week IDs or hash links.
-      document.querySelectorAll(`a.nav-link[href="#week${m.week}"]`).forEach(link=>{
-        const text=link.querySelector('.dl-lesson-link-title');
-        if(text){text.textContent=m.title;return;}
-        const lastText=[...link.childNodes].reverse().find(node=>node.nodeType===Node.TEXT_NODE);
-        if(lastText)lastText.textContent=' '+m.title;
-      });
-      // Existing advanced reference material remains available for continuity and persisted interactions.
-      const legacy=container.querySelector('.course-mastery, .expanded-lessons, .cw-module');
-      if(legacy){
-        legacy.classList.add('dlm-extended-reference');
-        const kicker=document.createElement('div');kicker.className='dlm-reference-kicker';
-        kicker.innerHTML='<strong>Extended examples and original practice</strong><span>Continue below for additional reference code and knowledge checks.</span>';
-        legacy.before(kicker);
-      }
-    });
-    document.body.classList.add('dlm-masterclass-ready');
-  }
-  window.DALP_REBUILT_CAPSTONE = true;
-  window.DALP_TEN_WEEK_UI={renderCore:core,renderCapstone:capstone};
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',specialists,{once:true});else specialists();
+  window.DALP_TEN_WEEK_UI={renderCore:core,renderSpecialist:specialist,renderCapstone:capstone};
 })();

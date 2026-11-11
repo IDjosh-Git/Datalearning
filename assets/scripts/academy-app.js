@@ -2,33 +2,8 @@
 (() => {
   'use strict';
   const catalog = Array.isArray(window.DALP_ACADEMY) ? window.DALP_ACADEMY : [];
-  // Python and AI have their own ten-week readers. Keep their existing lesson and
-  // progress systems; expose them in the shared course discovery experience.
-  const specialistCatalog = [
-    {
-      slug:'python',title:'Python for Data Analytics',number:'08',specialist:true,
-      tagline:'Learn the Python workspace, pandas, cleaning, analysis, visualisation, forecasting, and a complete analytics capstone.',
-      weeks:[
-        'Python setup, files and analyst mindset','Variables, types and control flow',
-        'Functions, collections and reusable scripts','pandas selection and filtering',
-        'Cleaning, nulls, typing and joins','groupby, pivot and business KPI reporting',
-        'Statistics and uncertainty','NumPy vectors and matrix intuition',
-        'Time series, charts and testable forecasts','Python analytics capstone'
-      ].map((title,i)=>({week:i+1,title,outcome:title}))
-    },
-    {
-      slug:'ai',title:'AI for Data Analysis',number:'09',specialist:true,
-      tagline:'Use AI tools responsibly for prompting, Excel, SQL, Python, Power BI, verified analytics, and a governed capstone.',
-      weeks:[
-        'AI literacy for analysts','Prompt engineering and analytical questions',
-        'Data security, privacy and responsible AI','AI-assisted Excel and Power Query',
-        'AI-assisted SQL and database analysis','AI-assisted Python analytics',
-        'AI-assisted Power BI, DAX and storytelling','Statistical reasoning, ML and forecasting',
-        'Automation, agents and workflow efficiency','Capstone: governed AI-augmented analytics'
-      ].map((title,i)=>({week:i+1,title,outcome:title}))
-    }
-  ];
-  const completeCatalog = [...catalog,...specialistCatalog];
+  // Every course, including Python and AI, is a first-class Academy record.
+  const completeCatalog = catalog;
   const courses = Object.fromEntries(catalog.map(path => [path.slug, path]));
   const root = document.documentElement;
   const base = root.dataset.base || '';
@@ -38,6 +13,8 @@
   const safe = input => String(input ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const courseHref = slug => base + 'courses/' + encodeURIComponent(slug) + '.html';
   const quizHref = (slug, week) => base + 'quiz.html?course=' + encodeURIComponent(slug) + '&week=' + encodeURIComponent(week);
+  const masteryHref = slug => quizHref(slug, 'mastery');
+  const masteryCount = path => path?.specialist ? 5 : (path?.weeks.length || 10);
   const pathFor = slug => courses[slug];
   const num = week => String(week).padStart(2,'0');
   const labelFor = slug => slug === 'introduction' ? 'Data Analysis' : courses[slug]?.title || slug;
@@ -107,15 +84,15 @@
         const next=path.weeks.find(w=>progress[String(w.week)]!==true)?.week || 1;
         const value=Math.min(100,Math.round(done*100/path.weeks.length));
         const label=done===path.weeks.length?'Review course':done?'Continue week '+num(next):'Start learning';
-        const href=courseHref(path.slug)+(done?(path.specialist?'#week'+next:'?week='+next):'');
+        const href=courseHref(path.slug)+(done?'?week='+next:'');
         return `<article class="za-catalog-item dlc-course-card" data-course="${safe(path.slug)}">
           <div class="za-catalog-intro"><div class="za-catalog-meta"><span class="za-card-icon" aria-hidden="true">${icon(path.slug)}</span><span class="za-card-index">PATH ${safe(path.number)} / 09</span></div>
           <span class="dlc-card-category">${safe(focusNames[focus[path.slug]])}</span><h3>${safe(path.title)}</h3><p>${safe(path.tagline)}</p>
           <div class="za-catalog-stats"><span>10 weekly modules</span><span>Worked examples</span><span>Practice quizzes</span></div>
           <div class="dlc-card-progress"><div class="dlc-progress-heading"><strong>${done===path.weeks.length?'Course complete':done?'Your learning progress':'Ready when you are'}</strong><span>${done} / ${path.weeks.length} weeks</span></div><div class="dlc-progress-track" role="progressbar" aria-label="${safe(path.title)} progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${value}"><span style="width:${value}%"></span></div></div>
-          <div class="za-catalog-links"><a class="za-btn za-btn-primary" href="${href}">${label} <span aria-hidden="true">↗</span></a><a class="dlc-quiz-link" href="${path.specialist?courseHref(path.slug)+'#week1':quizHref(path.slug,1)}">${path.specialist?'Practise in course':'Questions to Try'} <span aria-hidden="true">↗</span></a></div></div>
+          <div class="za-catalog-links"><a class="za-btn za-btn-primary" href="${href}">${label} <span aria-hidden="true">↗</span></a><a class="dlc-quiz-link" href="${quizHref(path.slug,1)}">Questions to Try <span aria-hidden="true">↗</span></a></div></div>
           <div class="za-catalog-weeks"><details><summary>Explore the 10-week curriculum <span class="dlc-disclosure-indicator" aria-hidden="true">⌄</span></summary>
-          <div class="za-week-peek">${path.weeks.map(w=>`<a href="${courseHref(path.slug)}${path.specialist?'#week'+w.week:'?week='+w.week}"><span class="dlc-week-number">${num(w.week)}</span><span class="dlc-week-title">${safe(w.title)}</span><span class="dlc-week-status">${progress[String(w.week)]===true?'✓ Completed':'Study lesson ↗'}</span></a>`).join('')}</div></details></div>
+          <div class="za-week-peek">${path.weeks.map(w=>`<a href="${courseHref(path.slug)}?week=${w.week}"><span class="dlc-week-number">${num(w.week)}</span><span class="dlc-week-title">${safe(w.title)}</span><span class="dlc-week-status">${progress[String(w.week)]===true?'✓ Completed':'Study lesson ↗'}</span></a>`).join('')}</div><div class="dlc-mastery-row"><div><strong>Course mastery assessment</strong><small>${masteryCount(path)} review questions · Recommended after Week 10</small></div><a href="${masteryHref(path.slug)}" aria-label="Open ${safe(path.title)} mastery assessment">Start assessment <span aria-hidden="true">↗</span></a></div></details></div>
         </article>`;
       }).join('');
       empty.hidden=shown.length>0;
@@ -144,6 +121,11 @@
       return h&&Number(h[1])>=1&&Number(h[1])<=path.weeks.length?Number(h[1]):1;
     };
     let current=currentUrl();
+    // Shared final checkpoint: the same premium element appears for all nine courses.
+    const asideBottom=one('.za-aside-bottom',aside);
+    if(asideBottom){
+      asideBottom.insertAdjacentHTML('beforebegin',`<section class="za-mastery-aside-card" aria-label="Course mastery assessment"><div class="za-mastery-aside-top"><span class="za-mastery-medal" aria-hidden="true">✦</span><span class="za-mastery-kicker">FINAL KNOWLEDGE CHECK</span></div><a href="${masteryHref(slug)}" class="za-mastery-aside-link">Mastery assessment <span aria-hidden="true">↗</span></a><p>${masteryCount(path)} questions · Recommended after completing Week 10</p></section>`);
+    }
     const setAside=show=>{
       if(!aside||!open)return;
       aside.classList.toggle('is-open',show);
@@ -184,8 +166,8 @@
       const guide = window.DALP_GUIDED_LESSONS?.[slug]?.[week-1];
       const media = window.DALP_WEEK_MEDIA?.[slug]?.[week-1];
       const rebuiltModule = window.DALP_TOOL_TO_REPORT?.[slug]?.[week-1];
-      const masterclassHtml = window.DALP_TEN_WEEK_UI?.renderCore?.(rebuiltModule,base) || '';
-      const capstoneProjectHtml = week === 10 ? (window.DALP_TEN_WEEK_UI?.renderCapstone?.(rebuiltModule,base) || '') : '';
+      const masterclassHtml = path.specialist ? (window.DALP_TEN_WEEK_UI?.renderSpecialist?.(rebuiltModule,base) || '') : (window.DALP_TEN_WEEK_UI?.renderCore?.(rebuiltModule,base) || '');
+      const capstoneProjectHtml = week === 10 && !path.specialist ? (window.DALP_TEN_WEEK_UI?.renderCapstone?.(rebuiltModule,base) || '') : '';
       const kitHtml = media ? `<section class="dl-week-kit" id="zaLessonResources" aria-labelledby="dl-week-kit-title">
         <div class="dl-week-kit-heading"><div><span class="dl-eyebrow">WEEK ${num(week)} · PRACTISE & WATCH</span><h2 id="dl-week-kit-title">Your learning resources</h2></div><span class="dl-kit-tip">Included with this lesson</span></div>
         <div class="dl-week-kit-grid">
@@ -222,7 +204,9 @@
         powerbi:[['F07','Visual decision-making'],['I05','Power BI and DAX'],['A02','Governed data marts']],
         tableau:[['F07','Chart foundations'],['I06','Tableau storytelling'],['A06','Advanced experiments']],
         powerquery:[['F06','Data cleaning'],['I03','Refreshable ETL'],['A03','Pipeline orchestration']],
-        statistics:[['F05','Statistics foundations'],['I07','Inference and experiments'],['A05','Machine learning']]
+        statistics:[['F05','Statistics foundations'],['I07','Inference and experiments'],['A05','Machine learning']],
+        python:[['F04','Python fundamentals'],['I04','pandas analysis'],['A05','Machine learning']],
+        ai:[['A05','Machine learning'],['E05','Deep learning'],['E06','Data governance']]
       };
       const deepDive = `<section class="za-lesson-block za-career-bridge" id="zaCareerBridge" aria-label="Continue learning at higher proficiency levels">
           <span class="za-block-kicker">WHAT COMES NEXT</span><h2>Continue from core lessons to industry mastery</h2>
@@ -230,6 +214,20 @@
           <div class="za-career-links">${(enrichment[slug]||[]).map(([id,title])=>`<a href="${base}career-path.html#pathway-${id}"><span>${safe(id)}</span><strong>${safe(title)}</strong><span aria-hidden="true">↗</span></a>`).join('')}</div>
           <a class="za-career-all" href="${base}career-path.html#masterLearningPath">View the complete Beginner → Expert roadmap ↗</a>
         </section>`;
+      const formulaWeeks = {
+        excel:{3:'SUM',4:'TRIM',5:'SUMIFS',6:'LET',7:'chart',8:'SUMIFS',9:'SUMIFS',10:'XLOOKUP'},
+        powerbi:{4:'CALCULATE',5:'DATEADD',6:'RANKX',7:'measure',8:'CALCULATE',9:'measure',10:'CALCULATE'},
+        sql:{2:'SELECT',3:'GROUP BY',4:'JOIN',5:'CASE',6:'CTE',7:'ROW_NUMBER',8:'GROUP BY',9:'EXPLAIN',10:'JOIN'},
+        python:{1:'variables',2:'function',3:'read_csv',4:'missing',5:'groupby',6:'merge',7:'plot',8:'dashboard',9:'report',10:'pipeline'},
+        powerquery:{2:'type',3:'null',4:'Text',5:'Table.AddColumn',6:'Table.Combine',7:'Table.NestedJoin',8:'Table.Group',9:'let',10:'Table.TransformColumnTypes'},
+        ai:{4:'IF',5:'SELECT',6:'read_csv'}
+      };
+      const groupForFormula = slug => ({excel:'Excel',powerbi:'DAX',sql:'SQL',python:'Python',powerquery:'Power Query M',ai:week===4?'Excel':week===5?'SQL':'Python'})[slug];
+      const formulaSearch = formulaWeeks[slug]?.[week];
+      const referenceGroup = formulaSearch ? groupForFormula(slug) : '';
+      const formulaHref = formulaSearch ? `${base}reference.html?group=${encodeURIComponent(referenceGroup)}&q=${encodeURIComponent(formulaSearch)}#referenceSearch` : '';
+      const formulaHtml = formulaSearch ? `<section class="za-lesson-block za-formula-companion" id="zaFormulaCompanion" aria-labelledby="zaFormulaCompanionTitle"><div class="za-formula-companion-copy"><span class="za-block-kicker">STUDY COMPANION · ${safe(referenceGroup.toUpperCase())}</span><h2 id="zaFormulaCompanionTitle">Practise the formulas and code from this week</h2><p>Open the Formula &amp; Code Lab for a worked ${safe(referenceGroup)} example. Read the explanation, copy the sample and adapt it to your practice dataset. Examples are reference material, not a live execution environment.</p></div><a class="za-btn za-btn-primary" href="${formulaHref}" aria-label="Open Formula and Code Lab for ${safe(referenceGroup)}, week ${week}">Explore ${safe(referenceGroup)} examples <span aria-hidden="true">↗</span></a></section>` : '';
+      const aiPromptHtml = slug==='ai' ? `<section class="za-lesson-block za-ai-prompt-guide" aria-label="AI Prompt Library"><div class="za-block-head"><span class="za-block-ico" aria-hidden="true">✧</span><div><span class="za-block-kicker">PRACTICAL AI RESOURCE</span><h2>Prompt Library for Data Analysis</h2></div></div><p>Use curated prompts alongside the weekly exercise. Replace sample business facts with your own non-sensitive data and independently verify any AI-generated calculation.</p><a class="za-btn za-btn-primary" href="${base}prompt-library.html">Explore Prompt Library ↗</a></section>` : '';
       const journey = window.DALP_TOOL_JOURNEYS?.[slug];
       const journeyIndex = Math.min(5, Math.floor((week - 1) * 6 / path.weeks.length));
       const journeyStep = journey?.stages?.[journeyIndex];
@@ -237,20 +235,23 @@
       one('#zaLessonBody').innerHTML=`
         <nav class="za-lesson-sections" aria-label="Sections in this lesson">
           <span class="za-section-toc-title">IN THIS WEEK</span>
-          <button type="button" data-jump="zaConcepts">Read the concepts</button>
+          ${guide?'<button type="button" data-jump="zaConcepts">Read the concepts</button>':''}
           <button type="button" data-jump="zaMasterclass">Tool masterclass</button>
           <button type="button" data-jump="zaLessonResources">Dataset & video</button>
-          <button type="button" data-jump="zaMethod">Guided walkthrough</button>
+          ${formulaHtml?'<button type="button" data-jump="zaFormulaCompanion">Formula & code lab</button>':''}
+          ${guide?'<button type="button" data-jump="zaMethod">Guided walkthrough</button>':''}
           <button type="button" data-jump="zaExample">Worked example</button>
           <button type="button" data-jump="zaExercise">Try an exercise</button>
           <button type="button" data-jump="zaRecap">Review & recap</button>
         </nav>
         <section class="za-lesson-block za-lesson-objective" id="zaGoals"><div class="za-block-head"><span class="za-block-ico" aria-hidden="true">◎</span><div><span class="za-block-kicker">01 · LEARNING GOAL</span><h2>What you will understand</h2></div></div><p>${safe(record.outcome)}.</p><div class="za-tip"><b>How to study this module:</b> Read both explanations, follow the guided workflow, examine the example, and solve the exercise before opening its answer. Finish with the separate weekly questions.</div></section>
         ${kitHtml}
+        ${formulaHtml}
         ${masterclassHtml}
         ${guideHtml}
         ${deepHtml}
         ${journeyHtml}
+        ${aiPromptHtml}
         <section class="za-lesson-block" id="zaExample"><div class="za-block-head"><span class="za-block-ico" aria-hidden="true">▥</span><div><span class="za-block-kicker">02 · WORKED EXAMPLE</span><h2>See the idea in practice</h2></div></div><p class="za-example-intro">Read the scenario. Identify the input, the operation, and what the result means for the business question.</p><div class="za-example">${safe(record.example)}</div>${guide?.case ? `<div class="za-case-study"><div class="za-case-label">APPLY IT TO A REALISTIC CASE</div><p>${safe(guide.case)}</p></div>` : ''}</section>
         <section class="za-lesson-block" id="zaExercise"><div class="za-block-head"><span class="za-block-ico orange" aria-hidden="true">✎</span><div><span class="za-block-kicker">03 · YOUR TURN</span><h2>Try the practical exercise</h2></div></div><p>${safe(record.exercise)}</p><div class="za-exercise-help">Before revealing the answer: identify the correct input fields, state the rule or formula, and check that your result addresses the question.</div><details class="za-exercise-solution"><summary>Reveal the worked answer and compare your reasoning</summary><div class="za-solution">${safe(record.solution)}</div></details><div class="za-tip"><b>Common mistake to avoid:</b> ${safe(record.pitfall)}.</div></section>
         <section class="za-lesson-block za-lesson-recap" id="zaRecap"><div class="za-block-head"><span class="za-block-ico" aria-hidden="true">✓</span><div><span class="za-block-kicker">LEARNING RECAP</span><h2>Check your understanding</h2></div></div><p class="za-recap-lead">Before you move on, explain the main idea in your own words and confirm that your calculations or decisions can be checked independently.</p><div class="za-recap-card"><strong>What a correct result should show</strong><p>${safe(guide?.verify || record.outcome)}</p></div><div class="za-recap-card za-recap-warning"><strong>Remember this limitation</strong><p>${safe(record.pitfall)}.</p></div><p class="za-recap-next">When you are ready, select <b>Questions to Try</b> below. Questions open on a separate assessment page; completing the lesson and submitting a quiz remain separate actions.</p></section>${capstoneProjectHtml}${deepDive}`;
@@ -260,7 +261,7 @@
       }));
       const next=path.weeks[week]?`${courseHref(slug)}?week=${week+1}`:base+'capstone.html?course='+encodeURIComponent(slug);
       const done=!!readProgress(slug)[String(week)];
-      one('#zaLessonActions').innerHTML=`<button id="zaMarkWeek" type="button" class="za-btn za-btn-line">${done?'✓ Marked as complete':'✓ Mark week complete'}</button><a class="za-btn za-btn-primary" href="${quizHref(slug,week)}">Questions to Try ↗</a><a class="za-btn za-btn-line" href="${next}">${week===path.weeks.length?'Capstone project ↗':'Next week →'}</a>${week===path.weeks.length?`<a class="za-btn za-btn-line" href="${quizHref(slug,'mastery')}">Mastery Assessment ↗</a>`:''}<span class="za-save-status" id="zaSaveStatus" role="status" aria-live="polite"></span>`;
+      one('#zaLessonActions').innerHTML=`<button id="zaMarkWeek" type="button" class="za-btn za-btn-line">${done?'✓ Marked as complete':'✓ Mark week complete'}</button><a class="za-btn za-btn-primary" href="${quizHref(slug,week)}">Questions to Try ↗</a><a class="za-btn za-btn-line" href="${next}">${week===path.weeks.length?'Capstone project ↗':'Next week →'}</a>${week===path.weeks.length?`<a class="za-btn za-btn-mastery" href="${masteryHref(slug)}">✦ Mastery Assessment · ${masteryCount(path)} Questions ↗</a>`:''}<span class="za-save-status" id="zaSaveStatus" role="status" aria-live="polite"></span>`;
       one('#zaMarkWeek').addEventListener('click', async function(){
         this.disabled=true;one('#zaSaveStatus').textContent='Saving your week…';
         try{
@@ -295,11 +296,12 @@
       one('#zaQuizTitle').textContent='Questions not found';one('#zaQuizForm').textContent='Select a learning path and week from the course catalogue.';
       one('#zaQuizSubmit').hidden=true;return;
     }
-    const questions=isMastery?path.weeks.map((w,i)=>({...w.questions[0],week:i+1})):path.weeks[week-1].questions;
+    const masteryWeeks=path.specialist?[1,3,5,7,10]:path.weeks.map(w=>w.week);
+    const questions=isMastery?masteryWeeks.map(n=>({...path.weeks[n-1].questions[0],week:n})):path.weeks[week-1].questions;
     const label=isMastery?'Course Mastery Assessment':`Week ${num(week)} · Questions to Try`;
     one('#zaQuizEyebrow').textContent=isMastery?'FINAL COURSE CHECKPOINT':`${path.title.toUpperCase()} · KNOWLEDGE CHECK`;
     one('#zaQuizTitle').textContent=label;
-    one('#zaQuizIntro').textContent=isMastery?`Review your ${path.title} knowledge across all ten modules. Every result includes a worked explanation.`:`You have learned about ${path.weeks[week-1].title.toLowerCase()}. Try these questions and review what the best answers mean.`;
+    one('#zaQuizIntro').textContent=isMastery?`Take ${masteryCount(path)} review questions ${path.specialist?'from key milestones across the ten-week course':'covering all ten weeks'} in ${path.title}. Every result includes a worked explanation.`:`You have learned about ${path.weeks[week-1].title.toLowerCase()}. Try these questions and review what the best answers mean.`;
     one('#zaQuizBread').textContent=isMastery?'Mastery assessment':`Week ${num(week)}`;
     one('#zaQuizCount').textContent=String(questions.length).padStart(2,'0');
     one('#zaQuizCourseLink').href=courseHref(slug);one('#zaQuizCourseLink').textContent=path.title;
@@ -324,7 +326,7 @@
       if(!u || !window.ZAH_DB?.client){message.textContent='Quiz result saved on this device. Sign in to store results in Supabase.';return;}
       const percentage=Math.round(100*score/questions.length);
       let table,record,conflict;
-      if(isMastery){table='mastery_results';conflict='user_id,course_slug';record={user_id:u.id,course_slug:slug,score,total:10,percentage,submitted_at:new Date().toISOString()};}
+      if(isMastery){table='mastery_results';conflict='user_id,course_slug';record={user_id:u.id,course_slug:slug,score:Math.round(score*10/questions.length),total:10,percentage,submitted_at:new Date().toISOString()};}
       else{table='quiz_results';conflict='user_id,course_slug,week_no';record={user_id:u.id,course_slug:slug,week_no:week,score,answered:questions.length,total:questions.length,percentage,submitted_at:new Date().toISOString()};}
       try{
         const {error}=await window.ZAH_DB.client.from(table).upsert(record,{onConflict:conflict});if(error)throw error;
@@ -360,11 +362,11 @@
     const summary=one('#zaProgressSummary'),cards=one('#zaProgressCards'),status=one('#zaProgressStatus');
     if(!summary||!cards)return;
     function render(){
-      const completed=catalog.reduce((n,p)=>n+completedCount(p.slug),0);
-      const inProgress=catalog.filter(p=>completedCount(p.slug)>0).length;
-      const total=catalog.reduce((n,p)=>n+p.weeks.length,0);
-      summary.innerHTML=`<div class="za-stat-card"><span>WEEKS COMPLETED</span><strong>${completed}</strong><small>Out of ${total} structured modules</small></div><div class="za-stat-card"><span>LEARNING PATHS STARTED</span><strong>${inProgress}</strong><small>Across seven available paths</small></div><div class="za-stat-card"><span>OVERALL PROGRESS</span><strong>${Math.round(completed/total*100)}%</strong><small>Your completed course units</small></div>`;
-      cards.innerHTML=completeCatalog.map(path=>`<article class="za-progress-card"><div class="za-progress-card-head"><span class="za-card-icon" aria-hidden="true">${icon(path.slug)}</span><div><h3>${safe(path.title)}</h3><small>${completedCount(path.slug)} of ${path.weeks.length} weeks complete</small></div></div><div class="za-bar"><span style="width:${percent(path.slug)}%"></span></div><div class="za-progress-card-footer"><b>${percent(path.slug)}% complete</b><a href="${courseHref(path.slug)}">Continue learning ↗</a></div></article>`).join('');
+      const completed=completeCatalog.reduce((n,p)=>n+completedCount(p.slug),0);
+      const inProgress=completeCatalog.filter(p=>completedCount(p.slug)>0).length;
+      const total=completeCatalog.reduce((n,p)=>n+p.weeks.length,0);
+      summary.innerHTML=`<div class="za-stat-card"><span>WEEKS COMPLETED</span><strong>${completed}</strong><small>Out of ${total} structured modules</small></div><div class="za-stat-card"><span>LEARNING PATHS STARTED</span><strong>${inProgress}</strong><small>Across nine available paths</small></div><div class="za-stat-card"><span>OVERALL PROGRESS</span><strong>${Math.round(completed/total*100)}%</strong><small>Your completed course units</small></div>`;
+      cards.innerHTML=completeCatalog.map(path=>`<article class="za-progress-card"><div class="za-progress-card-head"><span class="za-card-icon" aria-hidden="true">${icon(path.slug)}</span><div><h3>${safe(path.title)}</h3><small>${completedCount(path.slug)} of ${path.weeks.length} weeks complete</small></div></div><div class="za-bar"><span style="width:${percent(path.slug)}%"></span></div><div class="za-progress-card-footer"><b>${percent(path.slug)}% complete</b><a href="${courseHref(path.slug)}">Continue learning ↗</a><a class="za-mastery-progress-link" href="${masteryHref(path.slug)}" aria-label="Open ${safe(path.title)} mastery assessment">Mastery · ${masteryCount(path)} questions ↗</a></div></article>`).join('');
     }
     render();
     (async()=>{

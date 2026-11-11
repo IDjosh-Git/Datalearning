@@ -74,3 +74,7 @@ body.za-page .za-btn{display:inline-flex;align-items:center;justify-content:cent
 .za-career-all{display:inline-flex;border-radius:11px;background:#154f53;color:#fff!important;padding:11px 15px;text-decoration:none!important;font-weight:800;font-size:13px}
 .za-career-all:hover{background:#0d3a40!important;color:#fff!important}
 @media(max-width:700px){.za-career-links{grid-template-columns:1fr}.za-career-links a{padding:12px}.za-career-bridge{padding:18px!important}}
+
+/* Mastery checkpoint access on learner Progress cards. */
+body.za-progress .za-progress-card-footer .za-mastery-progress-link{display:inline-flex;align-items:center;gap:5px;color:#1c655d!important;font-size:12px;font-weight:850;text-decoration:underline;text-underline-offset:3px}
+body.za-progress .za-progress-card-footer .za-mastery-progress-link:focus-visible{outline:3px solid #eea36b;outline-offset:3px;border-radius:3px}

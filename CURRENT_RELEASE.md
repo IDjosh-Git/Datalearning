@@ -1,21 +1,18 @@
-# DataLearning — AI and Python unified premium learning experience (11 November 2026)
+# DataLearning — Formula & Code Lab and five-question specialist quizzes (11 November 2026)
 
-This release builds on the nine-course public catalogue and aligns the two specialist course readers — `courses/python.html` and `courses/ai.html` — with the premium teaching interface used by the seven core courses. No existing course content or user records have been removed.
+- AI and Python: each weekly quiz is **five questions**; both final mastery checks now use five representative weeks. Python gained two topic-specific questions per week. Other courses keep their existing quizzes and progress IDs.
+- The Reference Library now includes real **Python/pandas** and **Power Query M** examples as well as Excel, DAX, SQL and the existing Power Query examples. Its search accepts prefiltered links from the lessons.
+- Week-specific **Formula & Code Lab** shortcuts are shown in the relevant Excel, Power BI/DAX, SQL, Python, Power Query and AI-generation lessons. The link includes category and topic filtering, without creating a duplicate lab page.
+- Snippets explain why they work and how to validate them; the reference is for copying/study, not code execution. Use the Practice Arena for supported execution; M and DAX must be run in compatible tools.
+- The existing `mastery_results` database requires `total=10`. The five-question specialist mastery result is **normalized to a ten-point score** when saved to the cloud; the learner-facing quiz and local record still show five questions. No database migration is required.
+- Public cached imagery stays intact; old HTML/JS/CSS caches are purged by the updated service worker version. All existing course pages, progress, datasets, quizzes and capstones are preserved.
 
-## What's new
 
-- A shared navy/teal course identity and lesson hero with locally bundled subject logos, clearer objectives and course context.
-- Live course-completion meter, based on the existing ten week-completion checkboxes and the normal cloud-progress sync event; no additional progress store.
-- Accessible **Jump to a week** selector synchronized with the existing week navigation and deep links.
-- Compact quick links for Python setup or AI Prompt Library, Practice Arena / AI Tutor, and the appropriate capstone submission page.
-- More coherent dataset/video panels, expandable reference resources and optional account/course actions.
-- Unified three-step **Learn / Practise / Check knowledge** lesson tabs, readable teaching surfaces, responsive typography and capstone-friendly navigation.
-- Improved local course rail identity and clearer active states while retaining the existing mobile drawer and its keyboard/focus controls.
+## 11 November 2026 — all nine mastery assessment links
 
-## Preserved features and compatibility
+- Verified AI and Python course pages share the same `academy-app.js` lesson renderer and course stylesheet as the other seven courses, rather than using legacy course HTML.
+- All nine courses now show their actual final assessment in the course sidebar. The Week 10 mastery button has a refined premium treatment and the catalogue's expanded curriculum and learner progress cards include direct mastery links.
+- Existing mastery assessments remain unchanged: 10 review questions for the seven core courses and 5 for AI and Python. Results continue using the existing `mastery_results` database table and ten-point scoring format.
+- Added a regression test covering all nine course pages, links, quiz counts, and shared CSS. No migration or course data modifications.
 
-Both original ten-week lesson IDs, substantive instruction, quizzes, downloads, YouTube popup integration, saved completion state, Supabase integration, Prompt Library, Python practice environment, and instructor-reviewed capstone flows remain intact. The other seven courses and the public catalogue are not modified by the new scoped stylesheet. The Python **Sign In**, **Print / Save PDF**, and **Reset Progress** controls remain accessible inside **Account & course options**.
-
-## Verification
-
-Run `node tests/specialist-unified-course.mjs` and `npm run verify:deployment`. Isolated responsive render checks covered 320px, 390px, 768px and 1440px, including the course-hero and resource grid; direct browser navigation of the complete site was denied by the environment's browser policy. Authenticate, verify cloud completion sync, run quizzes and test YouTube playback in a deployed preview before live release.
+- Updated course stylesheet query strings on all active course readers and the Courses catalogue to prevent stale premium styling after deployment. Verified CSS parsing and JavaScript syntax.
