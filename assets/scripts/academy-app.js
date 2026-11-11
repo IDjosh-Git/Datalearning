@@ -2,6 +2,33 @@
 (() => {
   'use strict';
   const catalog = Array.isArray(window.DALP_ACADEMY) ? window.DALP_ACADEMY : [];
+  // Python and AI have their own ten-week readers. Keep their existing lesson and
+  // progress systems; expose them in the shared course discovery experience.
+  const specialistCatalog = [
+    {
+      slug:'python',title:'Python for Data Analytics',number:'08',specialist:true,
+      tagline:'Learn the Python workspace, pandas, cleaning, analysis, visualisation, forecasting, and a complete analytics capstone.',
+      weeks:[
+        'Python setup, files and analyst mindset','Variables, types and control flow',
+        'Functions, collections and reusable scripts','pandas selection and filtering',
+        'Cleaning, nulls, typing and joins','groupby, pivot and business KPI reporting',
+        'Statistics and uncertainty','NumPy vectors and matrix intuition',
+        'Time series, charts and testable forecasts','Python analytics capstone'
+      ].map((title,i)=>({week:i+1,title,outcome:title}))
+    },
+    {
+      slug:'ai',title:'AI for Data Analysis',number:'09',specialist:true,
+      tagline:'Use AI tools responsibly for prompting, Excel, SQL, Python, Power BI, verified analytics, and a governed capstone.',
+      weeks:[
+        'AI literacy for analysts','Prompt engineering and analytical questions',
+        'Data security, privacy and responsible AI','AI-assisted Excel and Power Query',
+        'AI-assisted SQL and database analysis','AI-assisted Python analytics',
+        'AI-assisted Power BI, DAX and storytelling','Statistical reasoning, ML and forecasting',
+        'Automation, agents and workflow efficiency','Capstone: governed AI-augmented analytics'
+      ].map((title,i)=>({week:i+1,title,outcome:title}))
+    }
+  ];
+  const completeCatalog = [...catalog,...specialistCatalog];
   const courses = Object.fromEntries(catalog.map(path => [path.slug, path]));
   const root = document.documentElement;
   const base = root.dataset.base || '';
@@ -36,8 +63,8 @@
   }
   function renderCard(path, details=false) {
     const s=safe(path.slug),name=safe(path.title);
-    const staticPart = `<div class="za-card-top"><span class="za-card-icon" aria-hidden="true">${icon(path.slug)}</span><span class="za-card-index">PATH ${safe(path.number)}</span></div><h3>${name}</h3><p>${safe(path.tagline)}</p>`;
-    return `<article class="za-course-card">${staticPart}<div class="za-card-bottom"><small>10 weeks · Hands-on practice</small><a href="${courseHref(path.slug)}" aria-label="Explore ${name}">Explore ↗</a></div></article>`;
+    const staticPart = `<div class="za-card-top"><span class="za-card-icon" aria-hidden="true">${icon(path.slug)}</span><span class="za-card-index">LEARNING PATH ${safe(path.number)} / 09</span></div><div class="za-discover-eyebrow">BEGINNER → PRACTICAL SKILLS</div><h3>${name}</h3><p>${safe(path.tagline)}</p>`;
+    return `<article class="za-course-card" data-course="${s}">${staticPart}<div class="za-card-bottom"><small><span aria-hidden="true">◷</span> 10 weeks · Guided practice</small><a href="${courseHref(path.slug)}" aria-label="Explore ${name}">Explore course <span aria-hidden="true">↗</span></a></div></article>`;
   }
   function attachMenu(){
     const open=one('#zaMenuOpen'),close=one('#zaMenuClose'),overlay=one('#zaMenuOverlay');
@@ -61,18 +88,18 @@
       else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
     });
   }
-  function discover(){const node=one('#zaDiscoverCards');if(!node)return;node.innerHTML=catalog.map(path=>renderCard(path)).join('');}
+  function discover(){const node=one('#zaDiscoverCards');if(!node)return;node.innerHTML=completeCatalog.map(path=>renderCard(path)).join('');}
   function catalogPage(){
     const box=one('#zaCatalogCards'),search=one('#zaCourseSearch'),empty=one('#zaCatalogEmpty');
     if(!box||!search)return;
     const countLabel=one('#dlcCatalogCount');
     const filters=all('[data-dlc-filter]');
-    const focus={introduction:'analytics',excel:'analytics',statistics:'analytics',powerbi:'bi',tableau:'bi',sql:'technical',powerquery:'technical'};
-    const focusNames={analytics:'Data foundations',bi:'Dashboards & BI',technical:'Data preparation'};
+    const focus={introduction:'analytics',excel:'analytics',statistics:'analytics',powerbi:'bi',tableau:'bi',sql:'technical',powerquery:'technical',python:'specialist',ai:'specialist'};
+    const focusNames={analytics:'Data foundations',bi:'Dashboards & BI',technical:'Data preparation',specialist:'Python & AI'};
     let selected='all';
     function render(){
       const q=search.value.trim().toLocaleLowerCase();
-      const shown=catalog.filter(path=>(selected==='all'||focus[path.slug]===selected) &&
+      const shown=completeCatalog.filter(path=>(selected==='all'||focus[path.slug]===selected) &&
         (path.title+' '+path.tagline+' '+path.weeks.map(w=>w.title+' '+w.outcome).join(' ')).toLocaleLowerCase().includes(q));
       box.innerHTML=shown.map(path=>{
         const progress=readProgress(path.slug);
@@ -80,15 +107,15 @@
         const next=path.weeks.find(w=>progress[String(w.week)]!==true)?.week || 1;
         const value=Math.min(100,Math.round(done*100/path.weeks.length));
         const label=done===path.weeks.length?'Review course':done?'Continue week '+num(next):'Start learning';
-        const href=courseHref(path.slug)+(done?'?week='+next:'');
+        const href=courseHref(path.slug)+(done?(path.specialist?'#week'+next:'?week='+next):'');
         return `<article class="za-catalog-item dlc-course-card" data-course="${safe(path.slug)}">
-          <div class="za-catalog-intro"><div class="za-catalog-meta"><span class="za-card-icon" aria-hidden="true">${icon(path.slug)}</span><span class="za-card-index">PATH ${safe(path.number)} / 07</span></div>
+          <div class="za-catalog-intro"><div class="za-catalog-meta"><span class="za-card-icon" aria-hidden="true">${icon(path.slug)}</span><span class="za-card-index">PATH ${safe(path.number)} / 09</span></div>
           <span class="dlc-card-category">${safe(focusNames[focus[path.slug]])}</span><h3>${safe(path.title)}</h3><p>${safe(path.tagline)}</p>
           <div class="za-catalog-stats"><span>10 weekly modules</span><span>Worked examples</span><span>Practice quizzes</span></div>
           <div class="dlc-card-progress"><div class="dlc-progress-heading"><strong>${done===path.weeks.length?'Course complete':done?'Your learning progress':'Ready when you are'}</strong><span>${done} / ${path.weeks.length} weeks</span></div><div class="dlc-progress-track" role="progressbar" aria-label="${safe(path.title)} progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${value}"><span style="width:${value}%"></span></div></div>
-          <div class="za-catalog-links"><a class="za-btn za-btn-primary" href="${href}">${label} <span aria-hidden="true">↗</span></a><a class="dlc-quiz-link" href="${quizHref(path.slug,1)}">Questions to Try <span aria-hidden="true">↗</span></a></div></div>
+          <div class="za-catalog-links"><a class="za-btn za-btn-primary" href="${href}">${label} <span aria-hidden="true">↗</span></a><a class="dlc-quiz-link" href="${path.specialist?courseHref(path.slug)+'#week1':quizHref(path.slug,1)}">${path.specialist?'Practise in course':'Questions to Try'} <span aria-hidden="true">↗</span></a></div></div>
           <div class="za-catalog-weeks"><details><summary>Explore the 10-week curriculum <span class="dlc-disclosure-indicator" aria-hidden="true">⌄</span></summary>
-          <div class="za-week-peek">${path.weeks.map(w=>`<a href="${courseHref(path.slug)}?week=${w.week}"><span class="dlc-week-number">${num(w.week)}</span><span class="dlc-week-title">${safe(w.title)}</span><span class="dlc-week-status">${progress[String(w.week)]===true?'✓ Completed':'Study lesson ↗'}</span></a>`).join('')}</div></details></div>
+          <div class="za-week-peek">${path.weeks.map(w=>`<a href="${courseHref(path.slug)}${path.specialist?'#week'+w.week:'?week='+w.week}"><span class="dlc-week-number">${num(w.week)}</span><span class="dlc-week-title">${safe(w.title)}</span><span class="dlc-week-status">${progress[String(w.week)]===true?'✓ Completed':'Study lesson ↗'}</span></a>`).join('')}</div></details></div>
         </article>`;
       }).join('');
       empty.hidden=shown.length>0;
@@ -337,14 +364,14 @@
       const inProgress=catalog.filter(p=>completedCount(p.slug)>0).length;
       const total=catalog.reduce((n,p)=>n+p.weeks.length,0);
       summary.innerHTML=`<div class="za-stat-card"><span>WEEKS COMPLETED</span><strong>${completed}</strong><small>Out of ${total} structured modules</small></div><div class="za-stat-card"><span>LEARNING PATHS STARTED</span><strong>${inProgress}</strong><small>Across seven available paths</small></div><div class="za-stat-card"><span>OVERALL PROGRESS</span><strong>${Math.round(completed/total*100)}%</strong><small>Your completed course units</small></div>`;
-      cards.innerHTML=catalog.map(path=>`<article class="za-progress-card"><div class="za-progress-card-head"><span class="za-card-icon" aria-hidden="true">${icon(path.slug)}</span><div><h3>${safe(path.title)}</h3><small>${completedCount(path.slug)} of ${path.weeks.length} weeks complete</small></div></div><div class="za-bar"><span style="width:${percent(path.slug)}%"></span></div><div class="za-progress-card-footer"><b>${percent(path.slug)}% complete</b><a href="${courseHref(path.slug)}">Continue learning ↗</a></div></article>`).join('');
+      cards.innerHTML=completeCatalog.map(path=>`<article class="za-progress-card"><div class="za-progress-card-head"><span class="za-card-icon" aria-hidden="true">${icon(path.slug)}</span><div><h3>${safe(path.title)}</h3><small>${completedCount(path.slug)} of ${path.weeks.length} weeks complete</small></div></div><div class="za-bar"><span style="width:${percent(path.slug)}%"></span></div><div class="za-progress-card-footer"><b>${percent(path.slug)}% complete</b><a href="${courseHref(path.slug)}">Continue learning ↗</a></div></article>`).join('');
     }
     render();
     (async()=>{
       const u=await user();
       if(!u){status.textContent='You are viewing progress saved on this device. Sign in to securely sync across devices.';return;}
       status.textContent='Checking your synced course progress…';
-      await Promise.all(catalog.map(p=>syncCourse(p.slug,render)));
+      await Promise.all(completeCatalog.map(p=>syncCourse(p.slug,render)));
       render();status.textContent='Synced with your signed-in DataLearning account where a connection was available.';
     })();
   }
@@ -356,5 +383,5 @@
     if(page==='progress')progressPage();
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
-  window.DALP_ACADEMY_APP={catalog,percent,readProgress};
+  window.DALP_ACADEMY_APP={catalog:completeCatalog,percent,readProgress};
 })();
