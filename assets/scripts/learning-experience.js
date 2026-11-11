@@ -12,7 +12,7 @@
   python:{title:'Python for Data Analytics',href:'courses/python.html',units:10,local:'pythonRoadmapProgress',kind:'modules',intro:'Work with pandas, statistics, data quality and reproducible analysis.'},
   ai:{title:'AI Integration in Data Analysis',href:'courses/ai.html',units:10,local:'aiRoadmapProgress',kind:'weeks',intro:'Apply AI to analytical workflows while protecting sensitive data and verifying outputs.'}
  };
- const getProgress=(c)=>{try{const data=JSON.parse(localStorage.getItem(c.local)||'{}');return data&&typeof data==='object'?data:{};}catch{return {};}};
+ const getProgress=(c)=>{try{const data=JSON.parse(window.DALP_STORAGE.getItem(c.local)||'{}');return data&&typeof data==='object'?data:{};}catch{return {};}};
  const nextUnit=c=>{const p=getProgress(c);return Array.from({length:c.units},(_,i)=>i+1).find(i=>p[String(i)]!==true)||0;};
  const introHash=['lesson-1','lesson-2','lesson-3','lesson-4','lesson-5','lesson-6','case-study','lesson-8'];
  function nextHref(id){const c=courses[id],n=nextUnit(c);const anchor=n?(id==='introduction'?introHash[n-1]:'week'+n):'';return c.href+(anchor?'#'+anchor:'');}

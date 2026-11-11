@@ -17,8 +17,8 @@
   const courseWriteLanes=new Map();
 
   function safeParse(value, fallback={}){ try { return JSON.parse(value || '') ?? fallback; } catch { return fallback; } }
-  function readLocal(key){ try{return safeParse(localStorage.getItem(key), {});}catch{return {};} }
-  function writeLocal(key, progress){ try{ localStorage.setItem(key,JSON.stringify(progress||{})); }catch(_){} }
+  function readLocal(key){ try{return safeParse(window.DALP_STORAGE.getItem(key), {});}catch{return {};} }
+  function writeLocal(key, progress){ try{ window.DALP_STORAGE.setItem(key,JSON.stringify(progress||{})); }catch(_){} }
   function normalizedProgress(rows,totalUnits=10){
     const result={}; for(let w=1;w<=totalUnits;w++) result[String(w)]=false;
     (rows||[]).forEach(r=>{ const w=Number(r.week_no); if(w>=1&&w<=totalUnits) result[String(w)]=!!r.completed; });
@@ -27,8 +27,8 @@
   const pendingKey=(userId,slug)=>`zahPending:${userId}:${slug}`;
   const anonPendingKey=slug=>`zahPendingAnonymous:${slug}`;
   const migratedKey=(userId,slug)=>`zahCloudMigration:${MIGRATION_VERSION}:${userId}:${slug}`;
-  function readPending(key){ try{return safeParse(localStorage.getItem(key),{});}catch{return {};} }
-  function writePending(key,value){ try{ if(value&&Object.keys(value).length)localStorage.setItem(key,JSON.stringify(value)); else localStorage.removeItem(key); }catch(_){} }
+  function readPending(key){ try{return safeParse(window.DALP_STORAGE.getItem(key),{});}catch{return {};} }
+  function writePending(key,value){ try{ if(value&&Object.keys(value).length)window.DALP_STORAGE.setItem(key,JSON.stringify(value)); else window.DALP_STORAGE.removeItem(key); }catch(_){} }
   function clearSettledPending(key,submitted){
     const current=readPending(key);
     for(const [week,change] of Object.entries(submitted||{})){
@@ -83,7 +83,7 @@
     let remoteRows=await fetchCourseRows(user.id,slug);
     const remoteByWeek=new Map(remoteRows.map(r=>[String(r.week_no),r]));
     const pending=readPending(pendingKey(user.id,slug));
-    let migrated=false; try{migrated=localStorage.getItem(migratedKey(user.id,slug))==='1';}catch(_){}
+    let migrated=false; try{migrated=window.DALP_STORAGE.getItem(migratedKey(user.id,slug))==='1';}catch(_){}
     const rowsToPush=[];
 
     // Explicit unsynced actions always win first, including deliberate unchecks.
@@ -102,12 +102,12 @@
       // Only re-fetch when pending or recovered work changed the remote rows.
       remoteRows=await fetchCourseRows(user.id,slug); }
     clearSettledPending(pendingKey(user.id,slug),pending);
-    try{ localStorage.setItem(migratedKey(user.id,slug),'1'); }catch(_){}
+    try{ window.DALP_STORAGE.setItem(migratedKey(user.id,slug),'1'); }catch(_){}
 
     // Cloud becomes the shared source of truth after recovery.
     const progress=normalizedProgress(remoteRows,info.units); writeLocal(info.key,progress);
     const latest=(remoteRows||[]).map(r=>r.updated_at).filter(Boolean).sort().at(-1)||new Date().toISOString();
-    try{ localStorage.setItem(`zahLastSync:${user.id}:${slug}`,latest); }catch(_){}
+    try{ window.DALP_STORAGE.setItem(`zahLastSync:${user.id}:${slug}`,latest); }catch(_){}
     return {ok:true,reason:'synced',user,progress,completed:Object.values(progress).filter(Boolean).length,percent:Math.round(Object.values(progress).filter(Boolean).length/info.units*100),lastSync:latest};
   }
 
@@ -123,7 +123,7 @@
     try{
       await upsertRows([rowFor(user.id,slug,week,completed,captured?.changed_at)]);
       clearSettledPending(pendingKeyForCourse,{[String(week)]:captured});
-      const now=new Date().toISOString(); try{localStorage.setItem(`zahLastSync:${user.id}:${slug}`,now)}catch(_){}
+      const now=new Date().toISOString(); try{window.DALP_STORAGE.setItem(`zahLastSync:${user.id}:${slug}`,now)}catch(_){}
       return {ok:true,reason:'saved',user,lastSync:now,progress:local};
     }catch(error){ console.error('Cloud week save failed',error); return {ok:false,reason:'network_or_database',error,user,progress:local}; }
   }
@@ -135,7 +135,7 @@
     const now=new Date().toISOString(),rows=[];
     for(let w=1;w<=info.units;w++){ const value=!!progress[String(w)]; queueForUser(user.id,slug,w,value); rows.push(rowFor(user.id,slug,w,value,now)); }
     const captured=readPending(pendingKey(user.id,slug));
-    try{ await upsertRows(rows); clearSettledPending(pendingKey(user.id,slug),captured); try{localStorage.setItem(`zahLastSync:${user.id}:${slug}`,now)}catch(_){} return {ok:true,reason:'saved',lastSync:now}; }
+    try{ await upsertRows(rows); clearSettledPending(pendingKey(user.id,slug),captured); try{window.DALP_STORAGE.setItem(`zahLastSync:${user.id}:${slug}`,now)}catch(_){} return {ok:true,reason:'saved',lastSync:now}; }
     catch(error){ console.error('Cloud snapshot save failed',error); return {ok:false,reason:'network_or_database',error}; }
   }
 

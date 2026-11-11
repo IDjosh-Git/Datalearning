@@ -14,13 +14,15 @@ async function getPython(){
 }
 let activeId=0;
 self.addEventListener('message',async({data})=>{
-  if(!data || !['run','grade'].includes(data.type) || typeof data.code!=='string')return;
-  const {id,code,type}=data;activeId=id;
+  if(!data || !['run','grade','prepare'].includes(data.type))return;
+  const {id,code='',type}=data;activeId=id;
+  if(type==='prepare'){try{await getPython();self.postMessage({type:'status',id,ready:true,message:'Python ready for your first run.'})}catch(e){self.postMessage({type:'status',id,message:'Python setup will retry when you run code.'})}return;}
+  if(typeof code!=='string')return;
   try{
     const python=await getPython();
     const test=type==='grade' ? String(data.test??'') : '';
     // Load optional modules only when the current example needs them; Pyodide caches them.
-    if(/^\s*(?:from|import)\s+/m.test(code+'\n'+test)){
+    if(/^(?:from|import)\s+(?:pandas|numpy|matplotlib|scipy|sklearn|seaborn|pillow|PIL|statsmodels)\b/m.test(code+'\n'+test)){
       self.postMessage({type:'status',id,ready:true,message:'Loading required Python packages…'});
       await python.loadPackagesFromImports(code+'\n'+test);
     }

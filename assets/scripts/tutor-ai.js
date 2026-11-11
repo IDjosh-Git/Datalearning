@@ -148,7 +148,7 @@
  }
  if(mobile.addEventListener)mobile.addEventListener('change',arrange);else mobile.addListener?.(arrange);
  arrange();
- // Clear is intentionally session-only: chat messages are never saved to localStorage.
+ // Clear is intentionally session-only: chat messages are never saved to window.DALP_STORAGE.
  const qp=new URLSearchParams(location.search);if(qp.get('topic')&&[...topic.options].some(o=>o.value===qp.get('topic')))topic.value=qp.get('topic');
  topic.addEventListener('change',()=>{history=[];followups.hidden=true;statusText(`Context changed to ${topic.options[topic.selectedIndex].text}`)});
  void inspect();

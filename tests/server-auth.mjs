@@ -34,13 +34,13 @@ assert.equal((await verifyAdmin(token(),userId,mockFetchFor(userId,true))).ok,tr
 assert.equal((await verifyAdmin(token(),learnerId,mockFetchFor(learnerId,false))).ok,false);
 assert.equal((await verifyAdmin(token(),userId,mockFetchFor(userId,true,true))).status,503);
 const realToken=token();
-const req={method:'POST',headers:{origin:'https://school.example','host':'school.example',authorization:'Bearer '+realToken}};
+const req={method:'POST',headers:{origin:'https://school.example','host':'school.example',authorization:'Bearer '+realToken},body:{refresh_token:'test-refresh-session-value'}};
 try{
  global.fetch=mockFetchFor(userId);
- let res=fakeRes();await handler(req,res);assert.equal(res.statusCode,200);assert.equal(res.body.ok,true);assert.ok(res.headers['Set-Cookie'].includes('HttpOnly'));
+ let res=fakeRes();await handler(req,res);assert.equal(res.statusCode,200);assert.equal(res.body.ok,true);assert.equal(res.headers['Set-Cookie'].length,2);assert(res.headers['Set-Cookie'].every(s=>s.includes('HttpOnly')));
  res=fakeRes();await handler({...req,headers:{...req.headers,origin:'https://evil.example'}},res);assert.equal(res.statusCode,403);assert.ok(!res.headers['Set-Cookie']);
  res=fakeRes();await handler({...req,headers:{...req.headers,authorization:'Bearer '+token(-5)}},res);assert.equal(res.statusCode,401);
- res=fakeRes();await handler({...req,method:'DELETE'},res);assert.equal(res.statusCode,200);assert.equal(res.headers['Set-Cookie'].length,2);
- res=fakeRes();await handler({...req,method:'GET'},res);assert.equal(res.statusCode,405);
+ res=fakeRes();await handler({...req,method:'DELETE'},res);assert.equal(res.statusCode,200);assert.equal(res.headers['Set-Cookie'].length,4);
+ res=fakeRes();await handler({...req,method:'GET',headers:{...req.headers,cookie:'__Host-dalp_session='+realToken+'; __Host-dalp_refresh=test-refresh-session-value'}},res);assert.equal(res.statusCode,200);assert.equal(res.body.refresh_token,'test-refresh-session-value');
 }finally{global.fetch=oldFetch}
 console.log('Server-side authorization, session cookie, expiry, role separation, and CSRF regression tests passed.');

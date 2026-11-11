@@ -18,9 +18,10 @@ function make(authStatus,previousOwner,{page="courses/sql.html",admin=false,role
   getUser:async()=>({data:{user:authStatus==='signed_in'?{id:'new-user',email:'student@test.com'}:null},error:null}),
   onAuthStateChange:()=>({data:{subscription:{unsubscribe(){}}}})};
  const from=()=>({select:()=>({eq:()=>({maybeSingle:async()=>({data:admin?{user_id:"new-user"}:null,error:roleError?{message:"permission denied"}:null})})})});
+ const memory={getItem:k=>store.get(k)||null,setItem:(k,v)=>store.set(k,v),removeItem:k=>store.delete(k)};
  const context={document:doc,location:{pathname:url.pathname,search:url.search,hash:url.hash,href:url.href,replace:val=>{redirect=val}},URL,
  console,setTimeout,clearTimeout,localStorage:{getItem:k=>store.get(k)||null,setItem:(k,v)=>store.set(k,v),removeItem:k=>store.delete(k)},
- sessionStorage:{removeItem:()=>{}},window:{ZAH_DB:{configured:true,client:{auth,from}}}};
+ sessionStorage:{removeItem:()=>{}},window:{DALP_STORAGE:memory,DALP_CLOUD_WORKSPACE:{setOwner:(id)=>{if(previousOwner&&previousOwner!==id){store.clear();}}},ZAH_DB:{configured:true,client:{auth,from}}}};
  vm.runInNewContext(source,context);
  return {async finish(){await new Promise(r=>setTimeout(r,40));return {redirect,classes,store,user:context.window.DALP_AUTH_USER,gate:context.window.DALP_AUTH_GATE}},listeners};
 }
@@ -34,7 +35,7 @@ assert(!r.classes.has('dalp-auth-checking'),'Valid learner can see page');
 assert(r.user?.id==='new-user','Valid user must be available');
 assert(!r.store.has('excelRoadmapProgress'),'Previous learner progress cleared');
 assert(!r.store.has('zahPendingAnonymous:excel'),'Anonymous queue cleared on learner change');
-assert(r.store.get('dalpLastLearnerId')==='new-user','Signed-in user becomes owner');
+assert(!r.store.has('dalpLastLearnerId'),'No persistent browser ownership marker');
 a=make('signed_in',null,{page:'admin.html'});r=await a.finish();assert(r.classes.has('dalp-auth-checking'),'Learner denied admin route');
 a=make('signed_in',null,{page:'admin.html',admin:true});r=await a.finish();assert(!r.classes.has('dalp-auth-checking'),'Administrator can open admin route');
 a=make('signed_in',null,{page:'index.html',roleError:true});r=await a.finish();assert(!r.classes.has('dalp-auth-checking'),'Role-service errors must not block verified learner pages');

@@ -1,8 +1,8 @@
 /* Practice Arena stability and adaptive mobile workspace. */
 (()=>{'use strict';
 const root=document.getElementById('practiceDetail');if(!root)return;
-const KEY='dalp-arena-ui-v2';let prefs={};try{const restored=JSON.parse(localStorage.getItem(KEY)||'{}');prefs=restored&&typeof restored==='object'&&!Array.isArray(restored)?restored:{}}catch{prefs={}}
-const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(prefs))}catch(e){console.warn('Arena UI preferences cannot be saved:',e.message)}};
+const KEY='dalp-arena-ui-v2';let prefs={};try{const restored=JSON.parse(window.DALP_STORAGE.getItem(KEY)||'{}');prefs=restored&&typeof restored==='object'&&!Array.isArray(restored)?restored:{}}catch{prefs={}}
+const save=()=>{try{window.DALP_STORAGE.setItem(KEY,JSON.stringify(prefs))}catch(e){console.warn('Arena UI preferences cannot be saved:',e.message)}};
 let scheduled=false,lastShell=null;
 function apply(){scheduled=false;try{
  const shell=root.querySelector('.ide-shell');if(!shell||shell===lastShell)return;lastShell=shell;

@@ -20,7 +20,7 @@
   // Only a real authenticated DataLearning session can register an app user.
   // Merely creating a Supabase Auth account or opening a public page anonymously
   // never adds a learner. The RPC derives identity from a verified JWT.
-  const usageKey = 'dalp-app-use-record';
+  let lastUsageId='',lastUsageAt=0;
   window.DALP_APP_USAGE = {
     async record(event = 'use') {
       if (!window.ZAH_DB.client || !['use', 'sign_in'].includes(event)) return false;
@@ -29,14 +29,12 @@
         const { data: verified, error: verifyError } = await client.auth.getUser();
         if (verifyError || !verified?.user?.id || verified.user.is_anonymous) return false;
         if (event === 'use') {
-          let cached;
-          try { cached = JSON.parse(sessionStorage.getItem(usageKey) || 'null'); } catch { cached = null; }
-          if (cached?.id === verified.user.id && Date.now() - Number(cached.time || 0) < 300000) return true;
+          if(lastUsageId===verified.user.id && Date.now()-lastUsageAt<300000)return true;
         }
         const { data, error } = await client.rpc('record_datalearning_use', { p_event: event });
         if (error) throw error;
         if (data === true) {
-          try { sessionStorage.setItem(usageKey, JSON.stringify({ id: verified.user.id, time: Date.now() })); } catch { /* Storage optional */ }
+          lastUsageId=verified.user.id;lastUsageAt=Date.now();
         }
         return data === true;
       } catch (error) {
@@ -56,13 +54,14 @@
       cfg.publishableKey,
       {
         auth:{
-          persistSession:true,
+          persistSession:false,
           autoRefreshToken:true,
           detectSessionInUrl:true
         }
       }
     );
-    const registerActualVisit = () => { void window.DALP_APP_USAGE.record('use'); };
+    window.DALP_AUTH_RESTORE=(async()=>{try{return await window.DALP_SERVER_SESSION?.restore?.()||false;}catch{return false}})();
+    const registerActualVisit = () => { Promise.resolve(window.DALP_AUTH_RESTORE).then(()=>window.DALP_APP_USAGE.record('use')); }; 
     if (document.readyState === 'loading')
       document.addEventListener('DOMContentLoaded', registerActualVisit, { once: true });
     else registerActualVisit();

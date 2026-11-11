@@ -31,5 +31,5 @@ for(const path of paths){
  }
 }
 for(const page of ['overview.html','catalog.html','index.html'])assert(read(page).includes('mastery-premium-20261111-r3'),`${page}: stale academy renderer cache`);
-assert(read('service-worker.js').includes('mastery-50-guided-20261111'));
+assert(read('service-worker.js').includes('offline caching retired'), 'Offline cache must stay disabled');
 console.log('PASS course mastery: all 9 courses share Academy UI; 50 mastery questions per course, across every week; catalogue, sidebar, progress and Week 10 links');

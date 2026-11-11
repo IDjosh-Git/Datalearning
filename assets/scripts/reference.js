@@ -26,7 +26,7 @@
   let previousFocus = null;
   let toastTimer;
   try {
-    const stored = JSON.parse(localStorage.getItem(STORAGE) || '[]');
+    const stored = JSON.parse(window.DALP_STORAGE.getItem(STORAGE) || '[]');
     if (Array.isArray(stored)) bookmarks = new Set(stored.filter(value => typeof value === 'string'));
   } catch { /* Browser storage may be disabled. */ }
 
@@ -46,7 +46,7 @@
     toastTimer = setTimeout(() => toast.classList.remove('show'), 2400);
   }
   function persist() {
-    try { localStorage.setItem(STORAGE, JSON.stringify([...bookmarks])); } catch { /* Optional saving. */ }
+    try { window.DALP_STORAGE.setItem(STORAGE, JSON.stringify([...bookmarks])); } catch { /* Optional saving. */ }
   }
   async function copyText(value) {
     try {

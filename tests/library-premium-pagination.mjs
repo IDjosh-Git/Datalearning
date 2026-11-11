@@ -25,7 +25,7 @@ for(const s of scenarios){
  assert(logic.includes('PAGE_SIZE = 12'),`Incorrect page size: ${s.script}`);
  assert(logic.includes('slice(')&&logic.includes('previous.disabled')&&logic.includes('next.disabled'),'Page navigation must be bounded');
  assert(logic.includes('modal.showModal()')||logic.includes('dialog.showModal()'),'Modal must use native dialog');
- assert(logic.includes('localStorage')&&logic.includes('clipboard')&&logic.includes('aria-pressed'),'Saved/copy/accessibility regression');
+ assert(logic.includes('window.DALP_STORAGE')&&logic.includes('clipboard')&&logic.includes('aria-pressed'),'Saved/copy/accessibility regression');
  assert(html.includes('public-search-premium.css'),'Maintain application header styling');
  assert(html.includes('href="study-tools.html"'),'Keep Study Tools navigation');
 }

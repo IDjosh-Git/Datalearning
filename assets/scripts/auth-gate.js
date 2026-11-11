@@ -15,9 +15,9 @@
  });
  const page=location.pathname.split('/').pop().toLowerCase()||'index.html';
  function loginDestination(){const u=toPage('auth.html');u.searchParams.set('return',location.pathname+location.search+location.hash);return u.href;}
- function clearLocalCourseCache(){try{courseKeys.forEach(k=>localStorage.removeItem(k));['introduction','excel','sql','powerbi','python','ai'].forEach(k=>localStorage.removeItem('zahPendingAnonymous:'+k));}catch(_){}}
- function prepareWorkspace(user){if(!user?.id)return;try{const owner=localStorage.getItem(ownerKey);if(owner&&owner!==user.id)clearLocalCourseCache();localStorage.setItem(ownerKey,user.id);}catch(_){}}
- function exit(clearCache=true){if(clearCache)clearLocalCourseCache();try{sessionStorage.removeItem('dalpGateUser')}catch(_){}location.replace(loginDestination());}
+ function clearLocalCourseCache(){courseKeys.forEach(k=>window.DALP_STORAGE?.removeItem(k));['introduction','excel','sql','powerbi','python','ai'].forEach(k=>window.DALP_STORAGE?.removeItem('zahPendingAnonymous:'+k));}
+ function prepareWorkspace(user){if(user?.id){window.DALP_WORKSPACE_OWNER=user.id;window.DALP_CLOUD_WORKSPACE?.setOwner?.(user.id);}}
+ function exit(clearCache=true){if(clearCache)clearLocalCourseCache();location.replace(loginDestination());}
  function paint(kind='loading'){
   if(!document.body)return;
   if(!gate){gate=document.createElement('div');gate.id='dalp-auth-gate';gate.setAttribute('role','status');gate.setAttribute('aria-live','polite');document.body.prepend(gate);}
@@ -50,9 +50,10 @@
   try{
    const client=window.ZAH_DB?.client;
    if(!window.ZAH_DB?.configured||!client){showError();return;}
+   await deadline(window.DALP_AUTH_RESTORE||Promise.resolve(false));
    const {data:session,error:sessionError}=await deadline(client.auth.getSession());
    if(sessionError){if(/refresh|invalid|session.*missing/i.test(sessionError.message||'')){exit();return;}showError();return;}
-   if(!session?.session){let owned=false;try{owned=!!localStorage.getItem(ownerKey)}catch(_){}exit(owned);return;}
+   if(!session?.session){exit(false);return;}
    const sessionId=session.session.user?.id;
    const verified=await deadline(client.auth.getUser());
    const {data,error}=verified;

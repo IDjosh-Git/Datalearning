@@ -14,6 +14,7 @@
   if(worker)return worker;
   worker=new Worker(workerUrl);
   worker.onmessage=({data})=>{
+   if(data?.id===0){if(data.ready)ready=true;window.dispatchEvent?.(new CustomEvent('dalp:python-warm-status',{detail:{ready,message:data.message}}));return;}
    const task=pending;if(!task||data?.id!==task.id)return;
    if(data.type==='status'){
     if(data.ready)ready=true;
@@ -42,5 +43,7 @@
    catch(error){dispose(error?.message||'Unable to start Python.');}
   });
  }
- window.DALP_PY_RUNTIME={execute,stop:()=>dispose('Python execution stopped.'),get busy(){return !!pending;},get ready(){return ready;}};
+ let warmed=false;
+ function warm(){if(warmed)return;warmed=true;try{ensure().postMessage({type:'prepare',id:0});}catch(e){warmed=false;}}
+ window.DALP_PY_RUNTIME={execute,warm,stop:()=>{warmed=false;dispose('Python execution stopped.');},get busy(){return !!pending;},get ready(){return ready;}};
 })();

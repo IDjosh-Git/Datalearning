@@ -2104,3 +2104,22 @@ html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDeta
   color:#234f62!important;
   -webkit-text-fill-color:#234f62!important;
 }
+
+/* Current Practice Arena: single selected editor identity, clean worksheet and focus. */
+body[data-responsive-page="practice"] .ide-topline .ide-modes>button:not(.is-active){display:none!important}
+body[data-responsive-page="practice"] .ide-topline .ide-modes{display:flex!important;align-items:center!important;gap:0!important;width:auto!important;max-width:100%!important}
+body[data-responsive-page="practice"] .ide-topline .ide-modes>button.is-active{display:inline-flex!important;align-items:center!important;gap:9px!important;border:1px solid rgba(255,255,255,.25)!important;border-radius:12px!important;padding:8px 12px!important;max-width:100%!important;box-shadow:none!important;pointer-events:none!important}
+body[data-responsive-page="practice"] #practiceDetail[data-active-editor="Excel"]>.pc-sheet{display:none!important}
+body[data-responsive-page="practice"] #practiceDetail[data-active-editor="Excel"] .ide-primary{border:1px solid #d5e4e5!important;border-radius:16px!important;background:#ffffff!important;box-shadow:0 8px 32px rgba(16,65,61,.055)!important;min-width:0!important}
+body[data-responsive-page="practice"] #practiceDetail[data-active-editor="Excel"] :is(.ide-formula-bar,.ide-sheet-editor,.ide-worksheet-hint,.arena-table-disclosure,.ide-sheet-foot){background:#f7faf9!important;color:#1c3b43!important}
+body[data-responsive-page="practice"] #practiceDetail[data-active-editor="Excel"] .ide-formula-bar{display:flex!important;gap:9px!important;border:1px solid #d9e7e6!important;border-radius:12px!important;margin:9px!important;min-width:0!important;flex-wrap:wrap!important;box-shadow:none!important}
+body[data-responsive-page="practice"] #practiceDetail[data-active-editor="Excel"] .ide-formula-bar input{flex:1 1 160px!important;min-width:0!important;max-width:100%!important;color:#152f3e!important;background:#fff!important;border:1px solid #cbdcda!important;border-radius:8px!important;padding:11px 12px!important}
+body[data-responsive-page="practice"] #practiceDetail[data-active-editor="Excel"] .ide-name-box{display:inline-flex!important;justify-content:center!important;align-items:center!important;min-width:55px!important;max-width:70px!important;border:1px solid #d5e4e4!important;border-radius:8px!important;background:#eaf2ef!important;color:#1e6352!important;font-weight:800!important}
+body[data-responsive-page="practice"] #practiceDetail[data-active-editor="Excel"] .ide-sheet-editor{border-radius:12px!important;overflow:hidden!important;margin:0 8px 8px!important}
+body[data-responsive-page="practice"] #practiceDetail[data-active-editor="Excel"] :is(.ide-grid-scroll,.ide-results-tabs){max-width:100%!important;overflow-x:auto!important;overscroll-behavior-x:contain!important}
+body[data-responsive-page="practice"] #practiceDetail[data-active-editor="Excel"] .ide-sheet{min-width:650px!important;border-collapse:separate!important;border-spacing:0!important}
+body[data-responsive-page="practice"] #practiceDetail[data-active-editor="Excel"] .ide-sheet th{background:#e6f1ed!important;color:#205241!important;font-weight:800!important}
+body[data-responsive-page="practice"] #practiceDetail[data-active-editor="Excel"] .ide-sheet td{background:#fff!important;color:#284d52!important;border-color:#e1eaea!important}
+body[data-responsive-page="practice"] #practiceDetail[data-active-editor="Excel"] .ide-sheet td.ide-selected{background:#e3f5eb!important;outline:2px solid #26966e!important;outline-offset:-2px!important}
+body[data-responsive-page="practice"] #practiceDetail[data-active-editor="Excel"] .ide-editor-toolbar{padding:10px 12px!important;gap:12px!important;flex-wrap:wrap!important}
+@media(max-width:480px){body[data-responsive-page="practice"] .ide-runtime>span:last-child{display:none!important}body[data-responsive-page="practice"] #practiceDetail[data-active-editor="Excel"] .ide-formula-bar{margin:6px!important;padding:8px!important}body[data-responsive-page="practice"] #practiceDetail[data-active-editor="Excel"] .ide-primary{border-radius:12px!important}}

@@ -183,10 +183,10 @@
       // complement rather than duplicate the original guided steps and weekly practice.
       const deeperLearningHtml = rebuiltModule ? `<section class="za-lesson-block za-learning-depth" id="zaDeeperLearning" aria-labelledby="zaDeeperLearningTitle">
         <div class="za-block-head"><span class="za-block-ico orange" aria-hidden="true">✦</span><div><span class="za-learning-depth-kicker">DEEPER LEARNING · STUDY THE WHY</span><h2 id="zaDeeperLearningTitle">Understand, practise and explain this week's skill</h2></div></div>
-        <p>${safe(rebuiltModule.goal)}. The goal is not merely to follow a set of clicks: you should understand how each part of the method changes the evidence, why it matters to the question, and which assumptions you must check.</p>
-        <div class="za-learning-depth-case"><strong>BUSINESS CASE · PUT THE THEORY INTO CONTEXT</strong><p>${safe(rebuiltModule.business)} Start by identifying who needs the result, what decision they are making, which records represent the business activity, and what a successful outcome would look like.</p></div>
+        <p>${safe(rebuiltModule.goal)}. </p>
+        <div class="za-learning-depth-case"><strong>BUSINESS CASE · PUT THE THEORY INTO CONTEXT</strong><p>${safe(rebuiltModule.business)}</p></div>
         <h3>Four core ideas to understand</h3>
-        <div class="za-learning-concepts">${rebuiltModule.topics.map((t,i)=>`<article class="za-learning-concept"><span>CONCEPT ${num(i+1)}</span><h4>${safe(t.heading)}</h4><p>${safe(t.explanation)}. Explain this idea in your own words, then identify where you would apply it in the business case above. Check that its use is consistent with the dataset's grain, types and reporting definitions.</p></article>`).join('')}</div>
+        <div class="za-learning-concepts">${rebuiltModule.topics.map((t,i)=>`<article class="za-learning-concept"><span>CONCEPT ${num(i+1)}</span><h4>${safe(t.heading)}</h4><p>${safe(t.explanation)}.</p></article>`).join('')}</div>
         <h3>Guided real-world walkthrough</h3>
         <ol class="za-learning-process">
           <li><span><strong>Locate your starting point.</strong> ${safe(rebuiltModule.where)}. Inspect the available inputs before changing anything; keep an untouched original so your work remains auditable.</span></li>
@@ -196,7 +196,6 @@
         </ol>
         <h3>Worked example · inspect the actual inputs and output</h3>
         <pre class="za-learning-depth-worked"><code>${safe(rebuiltModule.worked)}</code></pre>
-        <p>Read this as an analytical story: the source values are the <strong>inputs</strong>, the formula, query or transformation is the <strong>method</strong>, and the resulting number, category or table is the <strong>output</strong>. The output only becomes a useful insight when you interpret it using the correct period, units and source definitions.</p>
         <div class="za-learning-interpretation"><div><strong>✓ What a good answer demonstrates</strong><p>${safe(rebuiltModule.check)}. A second person should be able to reproduce your work from the same inputs.</p></div><div><strong>! A realistic mistake to prevent</strong><p>${safe(rebuiltModule.trap)}. If that happens, identify the affected records and correct the method before drawing conclusions.</p></div></div>
         <div class="za-learning-depth-next"><strong>Independent practice:</strong> ${safe(rebuiltModule.task)}. Try without looking at the solution, record your assumptions, and use the separate quiz to test whether you can explain the reasoning.</div>
       </section>` : '';
@@ -257,6 +256,7 @@
         <nav class="za-lesson-sections" aria-label="Sections in this lesson">
           <span class="za-section-toc-title">IN THIS WEEK</span>
           ${guide?'<button type="button" data-jump="zaConcepts">Read the concepts</button>':''}
+          <button type="button" data-jump="zaVisualGuide">Visual interface guide</button>
           <button type="button" data-jump="zaMasterclass">Tool masterclass</button>
           <button type="button" data-jump="zaLessonResources">Dataset & video</button>
           ${formulaHtml?'<button type="button" data-jump="zaFormulaCompanion">Formula & code lab</button>':''}
@@ -267,6 +267,11 @@
           <button type="button" data-jump="zaRecap">Review & recap</button>
         </nav>
         <section class="za-lesson-block za-lesson-objective" id="zaGoals"><div class="za-block-head"><span class="za-block-ico" aria-hidden="true">◎</span><div><span class="za-block-kicker">01 · LEARNING GOAL</span><h2>What you will understand</h2></div></div><p>${safe(record.outcome)}.</p><div class="za-tip"><b>How to study this module:</b> Read both explanations, follow the guided workflow, examine the example, and solve the exercise before opening its answer. Finish with the separate weekly questions.</div></section>
+        <figure class="za-week-interface-visual" id="zaVisualGuide">
+          <div class="za-week-interface-head"><div><span>VISUAL LEARNING GUIDE · WEEK ${num(week)}</span><h2>Find the tools as you learn</h2></div><span class="za-visual-badge">Illustrative interface</span></div>
+          <img src="${base}assets/images/lesson-interfaces/${safe(slug)}-week-${week}.${slug==='excel'&&week===1?'png':'svg'}" alt="Illustrated interface for ${safe(path.title)} Week ${week}: ${safe(record.title)}" width="1200" height="600" loading="lazy" decoding="async" />
+          <figcaption><strong>Explore, then practise:</strong> ${safe(record.outcome)}. Use the labelled controls and example interface to find the corresponding tools in your own application.</figcaption>
+        </figure>
         ${kitHtml}
         ${formulaHtml}
         ${masterclassHtml}
@@ -319,14 +324,14 @@
     let index=0, answers=Array(total).fill(null), reviewed=Array(total).fill(false);
     let finished=false;
     try {
-      const draft=JSON.parse(sessionStorage.getItem(draftKey)||'null');
+      const draft=JSON.parse(window.DALP_STORAGE.getItem(draftKey)||'null');
       if(draft?.version===2&&Array.isArray(draft.answers)&&draft.answers.length===total&&Array.isArray(draft.reviewed)&&draft.reviewed.length===total){
         answers=draft.answers.map((a,i)=>Number.isInteger(a)&&a>=0&&a<questions[i].choices.length?a:null);
         reviewed=draft.reviewed.map((v,i)=>v===true&&answers[i]!==null);
         index=Math.max(0,Math.min(total-1,Number(draft.index)||0));
       }
     } catch(_) {/* Browser storage is optional. */}
-    const remember=()=>{try{sessionStorage.setItem(draftKey,JSON.stringify({version:2,index,answers,reviewed}));}catch(_){}};
+    const remember=()=>{try{window.DALP_STORAGE.setItem(draftKey,JSON.stringify({version:2,index,answers,reviewed}));}catch(_){}};
     const rich=value=>safe(value).replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
     const percentage=n=>Math.round(n/total*100);
     check.textContent='Check answer';check.disabled=true;
@@ -366,10 +371,10 @@
     async function saveMastery(score){
       const u=await user();
       try{const key=`dalp-academy-quiz:${u?.id||'guest'}:${slug}:mastery`;
-        const prior=JSON.parse(localStorage.getItem(key)||'{}');
-        localStorage.setItem(key,JSON.stringify({best:Math.max(prior.best||0,score),latest:score,total,percentage:percentage(score),at:new Date().toISOString()}));
+        const prior=JSON.parse(window.DALP_STORAGE.getItem(key)||'{}');
+        window.DALP_STORAGE.setItem(key,JSON.stringify({best:Math.max(prior.best||0,score),latest:score,total,percentage:percentage(score),at:new Date().toISOString()}));
       }catch(_) {/* Storage is optional. */}
-      if(!u||!window.ZAH_DB?.client){message.textContent='Your 50-question result is saved on this device. Sign in to sync it with your account.';return;}
+      if(!u||!window.ZAH_DB?.client){message.textContent='Sign in to save your result to your DataLearning account. Unsaved results disappear when you close this page.';return;}
       try {
         // Existing mastery_results schema requires an integer 0–10 score and total=10.
         // Keep the accurate 50-item percentage; normalize the stored legacy score only.
@@ -379,7 +384,7 @@
         },{onConflict:'user_id,course_slug'});
         if(error)throw error;
         message.textContent='Your 50-question mastery result has been synced to your DataLearning account.';
-      }catch(error){console.warn('Mastery sync unavailable:',error?.message||error);message.textContent='Your score is saved locally; cloud sync is currently unavailable.';}
+      }catch(error){console.warn('Mastery sync unavailable:',error?.message||error);message.textContent='Cloud save failed. Your result is only held in memory; retry when your connection returns.';}
     }
     async function finish(){
       if(!reviewed.every(Boolean))return;
@@ -391,7 +396,7 @@
       one('#zaQuizProgressFill').style.width='100%';
       result.hidden=false;result.className='za-quiz-result za-mastery-summary';
       result.innerHTML=`<span class="za-mastery-kicker">MASTERY ASSESSMENT COMPLETED</span><h2>${score} / ${total} correct · ${percentage(score)}%</h2><p>${score>=40?'Strong result. Use your explanations to consolidate the remaining gaps.':'You completed the exam. Review the weaker weeks below and study the worked solutions before trying again.'}</p><h3>Performance by learning week</h3><div class="za-mastery-breakdown">${rows.map(row=>`<div><span>Week ${num(row.week)}</span><strong>${row.score} / 5</strong><span class="za-mastery-mini-bar" aria-label="${row.score} of 5 correct"><i style="width:${row.score*20}%"></i></span></div>`).join('')}</div><p class="za-mastery-summary-note">Each question was checked with a worked explanation. Your course mastery percentage is calculated from all 50 questions.</p>`;
-      try{sessionStorage.removeItem(draftKey);}catch(_){}
+      try{window.DALP_STORAGE.removeItem(draftKey);}catch(_){}
       message.textContent='Saving your 50-question result…';
       result.scrollIntoView({block:'start',behavior:'smooth'});
       await saveMastery(score);
@@ -414,6 +419,16 @@
       check.hidden=false;previous.hidden=false;next.hidden=false;retry.hidden=true;result.hidden=true;message.textContent='';
       remember();paint();form.scrollIntoView({block:'start'});
     });
+    // Restore an interrupted attempt after authenticated cloud state finishes hydrating.
+    window.addEventListener('dalp:cloud-hydrated',()=>{
+      if(finished||answers.some(a=>a!==null))return;
+      try{const draft=JSON.parse(window.DALP_STORAGE.getItem(draftKey)||'null');
+        if(draft?.version===2&&Array.isArray(draft.answers)&&draft.answers.length===total&&Array.isArray(draft.reviewed)&&draft.reviewed.length===total){
+          answers=draft.answers.map((a,i)=>Number.isInteger(a)&&a>=0&&a<questions[i].choices.length?a:null);
+          reviewed=draft.reviewed.map((v,i)=>v===true&&answers[i]!==null);
+          index=Math.max(0,Math.min(total-1,Number(draft.index)||0));paint();}
+      }catch(_){}
+    },{once:true});
     paint();
   }
   function masteryCourseSelection(){
@@ -496,7 +511,7 @@
     async function save(score){
       const u=await user();
       const localKey=`dalp-academy-quiz:${u?.id||'guest'}:${slug}:${rawWeek}`;
-      try{const prior=JSON.parse(localStorage.getItem(localKey)||'{}');localStorage.setItem(localKey,JSON.stringify({best:Math.max(prior.best||0,score),latest:score,total:questions.length,at:new Date().toISOString()}));}catch(_){/* storage optional */}
+      try{const prior=JSON.parse(window.DALP_STORAGE.getItem(localKey)||'{}');window.DALP_STORAGE.setItem(localKey,JSON.stringify({best:Math.max(prior.best||0,score),latest:score,total:questions.length,at:new Date().toISOString()}));}catch(_){/* storage optional */}
       if(!u || !window.ZAH_DB?.client){message.textContent='Quiz result saved on this device. Sign in to store results in Supabase.';return;}
       const percentage=Math.round(100*score/questions.length);
       let table,record,conflict;

@@ -11,13 +11,13 @@ let course=allowed.includes(qparam)?qparam:'introduction';let focus=0,filter='al
 let uid='',records={};
 const scopedKey=id=>'data-learning-studio-v3:'+id;
 const legacyKey='data-learning-studio-v2';
-const getUser=()=>window.DALP_AUTH_USER?.id||'';
-const load=()=>{uid=getUser();try{records=uid?JSON.parse(localStorage.getItem(scopedKey(uid))||'{}'):{};}catch{records={}};
+const getUser=()=>window.DALP_CLOUD_WORKSPACE?.userId||window.DALP_AUTH_USER?.id||'';
+const load=()=>{uid=getUser();try{records=uid?JSON.parse(window.DALP_STORAGE.getItem(scopedKey(uid))||'{}'):{};}catch{records={}};
  if(!records||typeof records!=='object'||Array.isArray(records))records={};
- const restore=$('#ps-restore');let old={};try{old=JSON.parse(localStorage.getItem(legacyKey)||'{}')}catch{}
+ const restore=$('#ps-restore');let old={};try{old=JSON.parse(window.DALP_STORAGE.getItem(legacyKey)||'{}')}catch{}
  const canRestore=uid&&Object.keys(old).some(k=>allowed.some(c=>k.startsWith(c+':')))&&!Object.keys(records).length;
  restore.hidden=!canRestore;};
-const save=()=>{if(!uid)return;try{localStorage.setItem(scopedKey(uid),JSON.stringify(records))}catch{status('Device storage is unavailable. Your practice may not remain after closing this page.')}};
+const save=()=>{if(!uid)return;try{window.DALP_STORAGE.setItem(scopedKey(uid),JSON.stringify(records))}catch{status('Cloud storage is unavailable. Unsynced practice may be lost when closing this page.')}};
 const data=()=>catalog[course]||[];
 const key=i=>course+':'+i;
 const done=i=>!!records[key(i)]?.done;
@@ -79,14 +79,15 @@ $('#ps-filter').addEventListener('change',e=>{filter=e.target.value;$('#ps-focus
 $('#ps-prev').addEventListener('click',()=>{let a=validIndexes(),i=a.indexOf(focus);if(i>0)select(a[i-1],{scroll:true})});
 $('#ps-next').addEventListener('click',()=>{let a=validIndexes(),i=a.indexOf(focus);if(i>=0&&i<a.length-1)select(a[i+1],{scroll:true})});
 $('#ps-reveal').addEventListener('click',()=>{reveal=!reveal;$('#ps-solution').hidden=!reveal;$('#ps-reveal').textContent=reveal?'Hide explanation':'Check explanation'});
-$('#ps-answer').addEventListener('input',e=>{if(!uid)return;let k=key(focus);records[k]={...(records[k]||{}),answer:e.target.value,updated:new Date().toISOString()};save();status('Your draft is saved on this device.')});
+$('#ps-answer').addEventListener('input',e=>{if(!uid)return;let k=key(focus);records[k]={...(records[k]||{}),answer:e.target.value,updated:new Date().toISOString()};save();status('Draft held in memory. Syncing with your DataLearning account…');window.DALP_CLOUD_WORKSPACE?.flush?.().then(ok=>status(ok?'Draft synced to your DataLearning account.':'Cloud sync unavailable. Draft is not saved after closing this page.'))});
 $('#ps-complete').addEventListener('click',()=>{if(!uid){status('Sign in to save your progress.');return;}let k=key(focus);records[k]={...(records[k]||{}),done:!records[k]?.done,updated:new Date().toISOString()};save();refresh();status(done(focus)?'Skill complete. Nice work!':'Moved back to your practice list.')});
-$('#ps-restore').addEventListener('click',()=>{if(!uid)return;let legacy={};try{legacy=JSON.parse(localStorage.getItem(legacyKey)||'{}')}catch{}
+$('#ps-restore').addEventListener('click',()=>{if(!uid)return;let legacy={};try{legacy=JSON.parse(window.DALP_STORAGE.getItem(legacyKey)||'{}')}catch{}
  if(!window.confirm('Only restore these saved exercises if this device previously belonged to your own learner account. On a shared device, the old practice may belong to someone else. Continue?'))return;
  for(const [k,v] of Object.entries(legacy)){if(allowed.some(c=>k.startsWith(c+':'))&&/^\w+:\d+$/.test(k)&&v&&typeof v==='object')records[k]={done:!!v.done,updated:v.updated||''};}
  save();$('#ps-restore').hidden=true;refresh();status('Previous device practice has been restored to this account.');});
 function init(){load();const requested=Number(new URL(location.href).searchParams.get('skill'));focus=Number.isInteger(requested)&&requested>=1&&requested<=data().length?requested-1:Math.max(0,data().findIndex((_,i)=>!done(i)));
- refresh();$('#ps-focus-area').hidden=false;status('Practice work is saved privately on this device.');}
+ refresh();$('#ps-focus-area').hidden=false;status('Practice work syncs securely with your DataLearning account after sign-in.');}
 window.addEventListener('dalp:auth-ready',()=>{let last=uid;load();if(last!==uid)init();else refresh()});
+window.addEventListener('dalp:cloud-hydrated',()=>{load();refresh();});
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();

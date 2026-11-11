@@ -12,18 +12,10 @@
    const status=document.createElement('div');status.setAttribute('role','status');status.setAttribute('aria-live','polite');status.className='dlp-network-status';
    status.style.cssText='position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)';document.body.append(status);
    let last=navigator.onLine;
-   function update(){ if(last===navigator.onLine)return;last=navigator.onLine;status.textContent=last?'Connection restored. Your progress can synchronize.':'You are offline. Cached lessons may still be available.';if(last)window.dispatchEvent(new Event('dalp:online')); }
+   function update(){ if(last===navigator.onLine)return;last=navigator.onLine;status.textContent=last?'Connection restored. Your progress can synchronize.':'You are offline. Your progress will synchronize when the connection returns.';if(last)window.dispatchEvent(new Event('dalp:online')); }
    window.addEventListener('online',update);window.addEventListener('offline',update);
    document.querySelectorAll('button:not([aria-label])').forEach(b=>{if(b.textContent.trim()||b.getAttribute('title'))return;const img=b.querySelector('img[alt]');if(img?.alt)b.setAttribute('aria-label',img.alt);});
-   if('serviceWorker' in navigator && location.protocol==='https:'){
-      // Resolve from the shared script asset so nested course pages use the root worker.
-      const asset=document.querySelector('script[src*="accessibility.js"]');
-      if(asset){
-        const worker=new URL('../../service-worker.js',asset.src);
-        const scope=new URL('../../',asset.src).pathname;
-        window.addEventListener('load',()=>navigator.serviceWorker.register(worker.href,{scope}).catch(error=>console.warn('Offline caching unavailable',error)),{once:true});
-      }
-   }
+   // Offline service-worker caching disabled: learning state is cloud-backed.
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();

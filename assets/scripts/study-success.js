@@ -22,22 +22,22 @@ const colors={introduction:'#7258cf',excel:'#137e62',sql:'#246bb6',powerbi:'#946
 const stages=['Read and understand the concept','Attempt the guided exercise','Explain the result from memory'];
 const startAt={new:0,some:2,confident:5};
 const initial={course:'introduction',experience:'new',minutes:30};
-const storedGoal=(()=>{try{return localStorage.getItem('dalp-discover-goal-v1')}catch{return null}})();
+const storedGoal=(()=>{try{return window.DALP_STORAGE.getItem('dalp-discover-goal-v1')}catch{return null}})();
 const discovered={foundation:'introduction',excel:'excel',sql:'sql',powerbi:'powerbi',python:'python',ai:'ai'}[storedGoal];
 let storageKey='',model={},prefs={...initial,course:discovered||'introduction'},focus=0,shown=false;
 const validCourse=c=>Object.hasOwn(labels,c)&&Array.isArray(catalog[c])&&catalog[c].length>0;
 const safeState=s=>s&&typeof s==='object'&&!Array.isArray(s)?s:{};
-function learnerId(){return window.DALP_AUTH_USER?.id||'guest'}
-function restore(){storageKey='dalp-study-success-v1:'+learnerId();let saved={};try{saved=safeState(JSON.parse(localStorage.getItem(storageKey)||'{}'))}catch{}
+function learnerId(){return window.DALP_CLOUD_WORKSPACE?.userId||window.DALP_AUTH_USER?.id||'guest'}
+function restore(){storageKey='dalp-study-success-v1:'+learnerId();let saved={};try{saved=safeState(JSON.parse(window.DALP_STORAGE.getItem(storageKey)||'{}'))}catch{}
  model={plans:safeState(saved.plans),preferences:safeState(saved.preferences)};
  const p=model.preferences;
  prefs={course:validCourse(p.course)?p.course:(validCourse(discovered)?discovered:'introduction'),experience:Object.hasOwn(startAt,p.experience)?p.experience:'new',minutes:[15,30,60].includes(Number(p.minutes))?Number(p.minutes):30};
  $('ss-course').value=prefs.course;$('ss-experience').value=prefs.experience;$('ss-minutes').value=String(prefs.minutes);focus=0;shown=false;
  render();
- if(learnerId()!=='guest')setStatus('Your signed-in study plan is separate from other learners on this device.');
+ if(learnerId()!=='guest')setStatus('Your signed-in study plan is separate from other learners in this learning account.');
 }
 function setStatus(message){$('ss-status').textContent=message;}
-function persist(){model.preferences={...prefs};try{localStorage.setItem(storageKey,JSON.stringify(model));return true}catch{setStatus('Browser storage is unavailable. Keep a copy of your reflections using Export.');return false}}
+function persist(){model.preferences={...prefs};try{window.DALP_STORAGE.setItem(storageKey,JSON.stringify(model));return true}catch{setStatus('Cloud storage is unavailable. Export a backup to preserve unsynced reflections.');return false}}
 const activeId=()=>prefs.course+':'+prefs.experience;
 function activePlan(){const id=activeId();if(!model.plans[id]||typeof model.plans[id]!=='object'||Array.isArray(model.plans[id]))model.plans[id]={};return model.plans[id]}
 function session(i){const data=catalog[prefs.course]||[];const base=Math.min(startAt[prefs.experience]||0,Math.max(0,data.length-7));return {index:Math.min(base+i,Math.max(0,data.length-1)),unit:data[Math.min(base+i,Math.max(0,data.length-1))]||['Getting started','Begin with the lesson and revisit the key idea.','','Explain what you learned.','Describe the main concept in your own words.','']}}
@@ -83,13 +83,14 @@ $('ss-import-file').addEventListener('change',async e=>{
    sanitized[id]={entries:clean};
   }
   if(!Object.keys(sanitized).length)throw Error('No valid study sessions');
-  if(!window.confirm('Replace your saved study plan on this device with the selected backup? Export your current plan first if you want to keep it.'))return;
+  if(!window.confirm('Replace your saved study plan in this learning account with the selected backup? Export your current plan first if you want to keep it.'))return;
   const p=backup.preferences;
   model={plans:sanitized,preferences:{course:validCourse(p.course)?p.course:'introduction',experience:Object.hasOwn(startAt,p.experience)?p.experience:'new',minutes:[15,30,60].includes(Number(p.minutes))?Number(p.minutes):30}};
-  prefs={...model.preferences};persist();restore();setStatus('Study plan imported. Your previous plan on this device was replaced.');
+  prefs={...model.preferences};persist();restore();setStatus('Study plan imported. Your previous plan in this learning account was replaced.');
  }catch{setStatus('Unable to import: choose a valid DataLearning study-plan JSON backup.');}
 });
 window.addEventListener('dalp:auth-ready',()=>{if(storageKey!=='dalp-study-success-v1:'+learnerId())restore();});
+window.addEventListener('dalp:cloud-hydrated',restore);
 function prepare(){
  if(window.COURSE_STUDIO_DATA){catalog={...window.COURSE_STUDIO_DATA,python:pythonSkills};restore();return;}
  const candidate=document.createElement('script');candidate.src='assets/scripts/course-studio-data.js';candidate.async=true;

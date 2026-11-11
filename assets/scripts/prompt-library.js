@@ -34,7 +34,7 @@
   let toastHandle;
 
   try {
-    const arr = JSON.parse(localStorage.getItem(KEY) || '[]');
+    const arr = JSON.parse(window.DALP_STORAGE.getItem(KEY) || '[]');
     if (Array.isArray(arr)) saved = new Set(arr.filter(v => typeof v === 'string'));
   } catch { /* Storage optional. */ }
 
@@ -59,7 +59,7 @@
     toastHandle = setTimeout(() => element.classList.remove('show'), 2400);
   }
   function remember() {
-    try { localStorage.setItem(KEY, JSON.stringify([...saved])); } catch { /* Storage optional. */ }
+    try { window.DALP_STORAGE.setItem(KEY, JSON.stringify([...saved])); } catch { /* Storage optional. */ }
     favCount.textContent = String(saved.size);
   }
   async function copyPrompt(value) {

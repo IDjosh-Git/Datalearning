@@ -17,12 +17,12 @@
   const PAGE_SIZE = 10;
   let currentPage = 1;
   let store;
-  try { store = JSON.parse(localStorage.getItem('dalp-learning-lab-v1') || '{}'); }
+  try { store = JSON.parse(window.DALP_STORAGE.getItem('dalp-learning-lab-v1') || '{}'); }
   catch { store = {}; }
   if (!store || typeof store !== 'object' || Array.isArray(store)) store = {};
   const today = () => new Date().toISOString().slice(0, 10);
   const save = () => {
-    try { localStorage.setItem('dalp-learning-lab-v1', JSON.stringify(store)); }
+    try { window.DALP_STORAGE.setItem('dalp-learning-lab-v1', JSON.stringify(store)); }
     catch { /* The library remains usable without browser storage. */ }
   };
   const groups = [...new Set(all.map(x => x.group))].sort();

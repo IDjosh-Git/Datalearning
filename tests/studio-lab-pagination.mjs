@@ -21,6 +21,6 @@ assert.match(logic, /found\.slice\(start, start \+ PAGE_SIZE\)/);
 assert.match(logic, /currentPage = 1/);
 assert.match(logic, /previous\.addEventListener\('click'/);
 assert.match(logic, /next\.addEventListener\('click'/);
-assert.match(logic, /localStorage\.setItem\('dalp-learning-lab-v1'/);
+assert.match(logic, /window\.DALP_STORAGE\.setItem\('dalp-learning-lab-v1'/);
 assert(read('assets/scripts/course-studio.js').includes('data-learning-studio-v3'), 'Studio save key changed');
 console.log('PASS compact eight-course Studio selector, non-scrolling skill rail, ten-item Lab paging and saved progress');
