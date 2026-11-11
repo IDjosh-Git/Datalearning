@@ -30,9 +30,9 @@ assert(logic.includes("r.group.startsWith('Power Query')?'powerquery'"),'M cards
 assert(logic.includes("'Power Query M'"),'Prefiltered M-category URLs must be accepted');
 for(const key of ["excel:{3:'SUM'","powerbi:{4:'CALCULATE'","sql:{2:'SELECT'","python:{1:'variables'","powerquery:{2:'type'","ai:{4:'IF'"]){assert(academy.includes(key),`${key}: weekly lab lookup missing`);}
 assert(academy.includes('id="zaFormulaCompanion"')&&academy.includes('reference.html?group='),'Reference companion must be in lesson reader');
-assert(academy.includes('const masteryWeeks=path.specialist?[1,3,5,7,10]'),'Specialist mastery must have exactly 5 questions');
-assert(academy.includes('score:Math.round(score*10/questions.length),total:10'),'Keep database total=10 compatibility for mastery results');
+assert(academy.includes('window.DALP_MASTERY_EXAMS?.[slug]'),'Specialist mastery must use the standalone 50-item bank');
+assert(academy.includes('score:Math.round(score/5),total:10'),'Keep database total=10 compatibility for 50-item mastery results');
 for(const course of ['excel','sql','powerbi','powerquery','python','ai']) assert(read(`courses/${course}.html`).includes('formula-code-companion.css'),'Course-specific styling missing');
 const queries=[['Python','read_csv'],['Power Query M','Table.AddColumn'],['SQL','JOIN'],['DAX','CALCULATE'],['Excel','SUMIFS']];
 for(const [group,q] of queries)assert(ref.some(r=>r.group===group&&[r.title,r.meaning,r.code,r.watch].join(' ').toLowerCase().includes(q.toLowerCase())),`Prefilter ${group} / ${q} must return an example`);
-console.log('PASS Formula & Code Lab: 6 reference groups, 36 new snippets, 100 weekly AI/Python questions, five-question masteries, context-linked lessons and cloud schema compatibility');
+console.log('PASS Formula & Code Lab: 6 reference groups, 36 new snippets, 100 weekly AI/Python questions, 50-question masteries, context-linked lessons and cloud schema compatibility');

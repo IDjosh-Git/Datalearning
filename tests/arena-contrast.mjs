@@ -3,7 +3,7 @@ import fs from 'node:fs';
 
 // Static palette and state-contract regression check. Browser pixel tests still
 // belong in a deployed preview (or local browser test environment).
-const root = fs.readFileSync('assets/styles/practice-arena-modern.css', 'utf8') + '\n' + fs.readFileSync('assets/styles/practice-arena-refined.css', 'utf8');
+const root = fs.readFileSync('assets/styles/practice-arena-premium-final.css', 'utf8') + '\n' + fs.readFileSync('assets/styles/practice-arena-premium-final.css', 'utf8');
 const global = fs.readFileSync('assets/styles/premium-unified.css', 'utf8');
 const code = fs.readFileSync('assets/scripts/practice.js', 'utf8');
 const ide = fs.readFileSync('assets/scripts/arena-ide.js', 'utf8');

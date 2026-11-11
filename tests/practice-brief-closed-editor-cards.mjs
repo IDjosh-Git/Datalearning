@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 const html=fs.readFileSync('practice.html','utf8');
 const practice=fs.readFileSync('assets/scripts/practice.js','utf8');
-const css=fs.readFileSync('assets/styles/practice-arena-refined.css','utf8');
+const css=fs.readFileSync('assets/styles/practice-arena-premium-final.css','utf8');
 const old=fs.readFileSync('assets/styles/practice.css','utf8');
 assert(practice.includes('<details class="arena-learning-brief"'), 'Challenge guidance must be a native details disclosure');
 assert(practice.includes('<summary class="arena-brief-header"'), 'Disclosure must have an accessible summary');

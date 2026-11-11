@@ -14,7 +14,7 @@
   const courseHref = slug => base + 'courses/' + encodeURIComponent(slug) + '.html';
   const quizHref = (slug, week) => base + 'quiz.html?course=' + encodeURIComponent(slug) + '&week=' + encodeURIComponent(week);
   const masteryHref = slug => quizHref(slug, 'mastery');
-  const masteryCount = path => path?.specialist ? 5 : (path?.weeks.length || 10);
+  const masteryCount = path => Array.isArray(window.DALP_MASTERY_EXAMS?.[path?.slug]) ? window.DALP_MASTERY_EXAMS[path.slug].length : 50;
   const pathFor = slug => courses[slug];
   const num = week => String(week).padStart(2,'0');
   const labelFor = slug => slug === 'introduction' ? 'Data Analysis' : courses[slug]?.title || slug;
@@ -179,7 +179,28 @@
         <article class="dl-deep-step"><span class="dl-deep-number">02 · APPLY</span><h3>Follow along in the tool</h3><p>${safe(media.workthrough)}</p></article>
         <article class="dl-deep-step"><span class="dl-deep-number">03 · EXPLAIN</span><h3>Present and verify your result</h3><p>${safe(media.evidence)}</p></article>
         </div><footer><strong>Analyst's quality check:</strong> ${safe(guide?.verify || record.outcome)} Keep the original practice file intact so you can reproduce the result.</footer></section>` : '';
-      const lessonMinutes = guide ? Math.max(6,Math.round(`${guide.concept} ${guide.reason} ${guide.steps.join(' ')} ${guide.verify} ${guide.case || ''} ${record.example} ${record.exercise} ${media?.why || ''} ${media?.workthrough || ''} ${media?.evidence || ''}`.split(/\s+/).length / 165)) : 4;
+      // Concept-by-concept teaching, a vivid source example, and independent validation
+      // complement rather than duplicate the original guided steps and weekly practice.
+      const deeperLearningHtml = rebuiltModule ? `<section class="za-lesson-block za-learning-depth" id="zaDeeperLearning" aria-labelledby="zaDeeperLearningTitle">
+        <div class="za-block-head"><span class="za-block-ico orange" aria-hidden="true">✦</span><div><span class="za-learning-depth-kicker">DEEPER LEARNING · STUDY THE WHY</span><h2 id="zaDeeperLearningTitle">Understand, practise and explain this week's skill</h2></div></div>
+        <p>${safe(rebuiltModule.goal)}. The goal is not merely to follow a set of clicks: you should understand how each part of the method changes the evidence, why it matters to the question, and which assumptions you must check.</p>
+        <div class="za-learning-depth-case"><strong>BUSINESS CASE · PUT THE THEORY INTO CONTEXT</strong><p>${safe(rebuiltModule.business)} Start by identifying who needs the result, what decision they are making, which records represent the business activity, and what a successful outcome would look like.</p></div>
+        <h3>Four core ideas to understand</h3>
+        <div class="za-learning-concepts">${rebuiltModule.topics.map((t,i)=>`<article class="za-learning-concept"><span>CONCEPT ${num(i+1)}</span><h4>${safe(t.heading)}</h4><p>${safe(t.explanation)}. Explain this idea in your own words, then identify where you would apply it in the business case above. Check that its use is consistent with the dataset's grain, types and reporting definitions.</p></article>`).join('')}</div>
+        <h3>Guided real-world walkthrough</h3>
+        <ol class="za-learning-process">
+          <li><span><strong>Locate your starting point.</strong> ${safe(rebuiltModule.where)}. Inspect the available inputs before changing anything; keep an untouched original so your work remains auditable.</span></li>
+          <li><span><strong>Define the operation.</strong> Identify exactly which fields, rules, calculations or relationships this example uses. Name the expected output and its business units. If there is a filter or exclusion, explain why it exists.</span></li>
+          <li><span><strong>Reproduce the calculation or transformation.</strong> Work through the example below one step at a time. Trace where every number or label comes from, and try changing one input to understand what should change in the result.</span></li>
+          <li><span><strong>Validate and communicate.</strong> ${safe(rebuiltModule.check)}. Then describe the result to a colleague in plain language, state one limitation, and link the finding back to the original business question.</span></li>
+        </ol>
+        <h3>Worked example · inspect the actual inputs and output</h3>
+        <pre class="za-learning-depth-worked"><code>${safe(rebuiltModule.worked)}</code></pre>
+        <p>Read this as an analytical story: the source values are the <strong>inputs</strong>, the formula, query or transformation is the <strong>method</strong>, and the resulting number, category or table is the <strong>output</strong>. The output only becomes a useful insight when you interpret it using the correct period, units and source definitions.</p>
+        <div class="za-learning-interpretation"><div><strong>✓ What a good answer demonstrates</strong><p>${safe(rebuiltModule.check)}. A second person should be able to reproduce your work from the same inputs.</p></div><div><strong>! A realistic mistake to prevent</strong><p>${safe(rebuiltModule.trap)}. If that happens, identify the affected records and correct the method before drawing conclusions.</p></div></div>
+        <div class="za-learning-depth-next"><strong>Independent practice:</strong> ${safe(rebuiltModule.task)}. Try without looking at the solution, record your assumptions, and use the separate quiz to test whether you can explain the reasoning.</div>
+      </section>` : '';
+      const lessonMinutes = guide ? Math.max(6,Math.round(`${guide.concept} ${guide.reason} ${guide.steps.join(' ')} ${guide.verify} ${guide.case || ''} ${record.example} ${record.exercise} ${media?.why || ''} ${media?.workthrough || ''} ${media?.evidence || ''} ${rebuiltModule?.business || ''} ${rebuiltModule?.worked || ''} ${rebuiltModule?.task || ''} ${rebuiltModule?.check || ''} ${rebuiltModule?.topics?.map(t=>t.heading+' '+t.explanation).join(' ') || ''}`.split(/\s+/).length / 165)) : 4;
       const readTime = one('#zaEstimatedTime');
       if(readTime)readTime.textContent=`About ${lessonMinutes} min · guided study`;
       const guideHtml = guide ? `
@@ -231,7 +252,7 @@
       const journey = window.DALP_TOOL_JOURNEYS?.[slug];
       const journeyIndex = Math.min(5, Math.floor((week - 1) * 6 / path.weeks.length));
       const journeyStep = journey?.stages?.[journeyIndex];
-      const journeyHtml = journeyStep ? `<section class="za-lesson-block za-tool-journey" aria-label="End-to-end analysis workflow"><span class="za-block-kicker">TOOL-TO-REPORT LEARNING JOURNEY · STAGE ${journeyIndex+1} OF 6</span><h2>${safe(journeyStep.heading)}</h2><p>${safe(journeyStep.detail)}</p><p class="za-journey-check"><strong>Practical checkpoint:</strong> ${safe(journeyStep.task)}</p><a href="${base}career-path.html">Explore the complete data career path →</a></section>` : '';
+      const journeyHtml = journeyStep ? `<section class="za-lesson-block za-tool-journey" aria-label="End-to-end analysis workflow"><span class="za-block-kicker">TOOL-TO-REPORT LEARNING JOURNEY · STAGE ${journeyIndex+1} OF 6</span><h2>${safe(journeyStep.heading)}</h2><p>${safe(journeyStep.detail)}</p><p class="za-journey-check"><strong>Practical checkpoint:</strong> ${safe(journeyStep.task)}</p>${['python','ai'].includes(slug)?'':`<a href="${base}career-path.html">Explore the complete data career path →</a>`}</section>` : '';
       one('#zaLessonBody').innerHTML=`
         <nav class="za-lesson-sections" aria-label="Sections in this lesson">
           <span class="za-section-toc-title">IN THIS WEEK</span>
@@ -240,6 +261,7 @@
           <button type="button" data-jump="zaLessonResources">Dataset & video</button>
           ${formulaHtml?'<button type="button" data-jump="zaFormulaCompanion">Formula & code lab</button>':''}
           ${guide?'<button type="button" data-jump="zaMethod">Guided walkthrough</button>':''}
+          ${rebuiltModule?'<button type="button" data-jump="zaDeeperLearning">In-depth case study</button>':''}
           <button type="button" data-jump="zaExample">Worked example</button>
           <button type="button" data-jump="zaExercise">Try an exercise</button>
           <button type="button" data-jump="zaRecap">Review & recap</button>
@@ -250,11 +272,12 @@
         ${masterclassHtml}
         ${guideHtml}
         ${deepHtml}
+        ${deeperLearningHtml}
         ${journeyHtml}
         ${aiPromptHtml}
         <section class="za-lesson-block" id="zaExample"><div class="za-block-head"><span class="za-block-ico" aria-hidden="true">▥</span><div><span class="za-block-kicker">02 · WORKED EXAMPLE</span><h2>See the idea in practice</h2></div></div><p class="za-example-intro">Read the scenario. Identify the input, the operation, and what the result means for the business question.</p><div class="za-example">${safe(record.example)}</div>${guide?.case ? `<div class="za-case-study"><div class="za-case-label">APPLY IT TO A REALISTIC CASE</div><p>${safe(guide.case)}</p></div>` : ''}</section>
         <section class="za-lesson-block" id="zaExercise"><div class="za-block-head"><span class="za-block-ico orange" aria-hidden="true">✎</span><div><span class="za-block-kicker">03 · YOUR TURN</span><h2>Try the practical exercise</h2></div></div><p>${safe(record.exercise)}</p><div class="za-exercise-help">Before revealing the answer: identify the correct input fields, state the rule or formula, and check that your result addresses the question.</div><details class="za-exercise-solution"><summary>Reveal the worked answer and compare your reasoning</summary><div class="za-solution">${safe(record.solution)}</div></details><div class="za-tip"><b>Common mistake to avoid:</b> ${safe(record.pitfall)}.</div></section>
-        <section class="za-lesson-block za-lesson-recap" id="zaRecap"><div class="za-block-head"><span class="za-block-ico" aria-hidden="true">✓</span><div><span class="za-block-kicker">LEARNING RECAP</span><h2>Check your understanding</h2></div></div><p class="za-recap-lead">Before you move on, explain the main idea in your own words and confirm that your calculations or decisions can be checked independently.</p><div class="za-recap-card"><strong>What a correct result should show</strong><p>${safe(guide?.verify || record.outcome)}</p></div><div class="za-recap-card za-recap-warning"><strong>Remember this limitation</strong><p>${safe(record.pitfall)}.</p></div><p class="za-recap-next">When you are ready, select <b>Questions to Try</b> below. Questions open on a separate assessment page; completing the lesson and submitting a quiz remain separate actions.</p></section>${capstoneProjectHtml}${deepDive}`;
+        <section class="za-lesson-block za-lesson-recap" id="zaRecap"><div class="za-block-head"><span class="za-block-ico" aria-hidden="true">✓</span><div><span class="za-block-kicker">LEARNING RECAP</span><h2>Check your understanding</h2></div></div><p class="za-recap-lead">Before you move on, explain the main idea in your own words and confirm that your calculations or decisions can be checked independently.</p><div class="za-recap-card"><strong>What a correct result should show</strong><p>${safe(guide?.verify || record.outcome)}</p></div><div class="za-recap-card za-recap-warning"><strong>Remember this limitation</strong><p>${safe(record.pitfall)}.</p></div><p class="za-recap-next">When you are ready, select <b>Questions to Try</b> below. Questions open on a separate assessment page; completing the lesson and submitting a quiz remain separate actions.</p></section>${capstoneProjectHtml}${['python','ai'].includes(slug)?'':deepDive}`;
       all('.za-lesson-sections button',one('#zaLessonBody')).forEach(button=>button.addEventListener('click',()=>{
         const section=document.getElementById(button.dataset.jump);
         section?.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
@@ -285,28 +308,179 @@
     window.addEventListener('popstate',()=>showLesson(currentUrl(),false));
     syncCourse(slug,progressView);
   }
+  /* A standalone guided exam: 50 original questions, exactly one visible at a time.
+     Only a chosen answer enables Check Answer. Results are never revealed early. */
+  function masteryPage(path, questions, slug){
+    const form=one('#zaQuizForm'),check=one('#zaQuizSubmit'),retry=one('#zaQuizRetry');
+    const result=one('#zaQuizResult'),message=one('#zaQuizSaveStatus');
+    const actions=one('.za-quiz-actions');
+    const total=questions.length;
+    const draftKey=`dalp:mastery:draft:v2:${slug}`;
+    let index=0, answers=Array(total).fill(null), reviewed=Array(total).fill(false);
+    let finished=false;
+    try {
+      const draft=JSON.parse(sessionStorage.getItem(draftKey)||'null');
+      if(draft?.version===2&&Array.isArray(draft.answers)&&draft.answers.length===total&&Array.isArray(draft.reviewed)&&draft.reviewed.length===total){
+        answers=draft.answers.map((a,i)=>Number.isInteger(a)&&a>=0&&a<questions[i].choices.length?a:null);
+        reviewed=draft.reviewed.map((v,i)=>v===true&&answers[i]!==null);
+        index=Math.max(0,Math.min(total-1,Number(draft.index)||0));
+      }
+    } catch(_) {/* Browser storage is optional. */}
+    const remember=()=>{try{sessionStorage.setItem(draftKey,JSON.stringify({version:2,index,answers,reviewed}));}catch(_){}};
+    const rich=value=>safe(value).replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
+    const percentage=n=>Math.round(n/total*100);
+    check.textContent='Check answer';check.disabled=true;
+    check.hidden=false;retry.hidden=true;result.hidden=true;
+    actions.classList.add('is-mastery-actions');
+    check.insertAdjacentHTML('afterend',`<div class="za-mastery-navigation" aria-label="Question navigation"><button id="zaMasteryPrevious" class="za-btn za-btn-line" type="button">← Previous</button><button id="zaMasteryNext" class="za-btn za-btn-primary" type="button">Next question →</button></div>`);
+    const previous=one('#zaMasteryPrevious'),next=one('#zaMasteryNext');
+    const formatAnswer=q=>String.fromCharCode(65+q.answer);
+    const resultFeedback=(q,picked,correct)=>`<div class="za-mastery-feedback ${correct?'is-correct':'is-incorrect'}" aria-live="polite" tabindex="-1">
+      <div class="za-mastery-feedback-heading"><span class="za-mastery-feedback-mark" aria-hidden="true">${correct?'✓':'↗'}</span><div><span class="za-mastery-kicker">QUESTION REVIEW · WEEK ${num(q.week)}</span><h3>${correct?'Correct — well reasoned':'Review the reasoning'}</h3><p>Best answer: <strong>${formatAnswer(q)}. ${safe(q.choices[q.answer])}</strong></p></div></div>
+      <div class="za-mastery-feedback-section"><h4>Why this is the best answer</h4><p>${safe(q.why)}</p></div>
+      <div class="za-mastery-feedback-section"><h4>Understand every option</h4><ol class="za-mastery-option-review">${q.optionNotes.map((note,i)=>`<li class="${i===q.answer?'is-best-option':''}"><strong>${String.fromCharCode(65+i)}</strong><span>${safe(note)}</span></li>`).join('')}</ol></div>
+      <div class="za-mastery-feedback-section"><h4>Worked example · apply the reasoning</h4><pre class="za-mastery-worked"><code>${safe(q.worked)}</code></pre><p><strong>How to validate your work:</strong> ${safe(q.validation)}</p></div>
+      <div class="za-mastery-feedback-foot"><p><strong>Common trap:</strong> ${safe(q.pitfall)}</p><p><strong>Try independently:</strong> ${safe(q.practice)}</p></div></div>`;
+    function paint(){
+      if(finished)return;
+      const q=questions[index];const picked=answers[index],checked=reviewed[index];
+      const correct=checked&&picked===q.answer;
+      const reviewedCount=reviewed.filter(Boolean).length;
+      one('#zaQuizProgressText').textContent=`Question ${index+1} of ${total} · ${reviewedCount} reviewed`;
+      one('#zaQuizProgressFill').style.width=percentage(reviewedCount)+'%';
+      one('#zaQuizCount').textContent=String(total);
+      form.hidden=false;result.hidden=true;
+      form.innerHTML=`<section class="za-question za-mastery-question ${checked?(correct?'is-correct':'is-incorrect'):''}" data-question-id="${safe(q.id)}" aria-label="Question ${index+1} of ${total}">
+        <div class="za-mastery-question-top"><span class="za-q-index"><span>${num(index+1)}</span> QUESTION ${index+1} OF ${total}</span><span class="za-mastery-topic">WEEK ${num(q.week)} · ${safe(q.topic)}</span></div>
+        <h2 tabindex="-1" id="za-mastery-question-heading">${rich(q.q)}</h2>
+        <p class="za-mastery-question-instruction">Choose the strongest answer. The explanation unlocks after you select and check your choice.</p>
+        <div class="za-choice-list" role="radiogroup" aria-labelledby="za-mastery-question-heading">${q.choices.map((choice,j)=>`<label class="za-choice za-mastery-choice ${checked&&j===q.answer?'is-best':''} ${checked&&j===picked&&j!==q.answer?'is-missed':''}"><input type="radio" name="mastery-option" value="${j}" ${picked===j?'checked':''} ${checked?'disabled':''} aria-label="Option ${String.fromCharCode(65+j)}: ${safe(choice)}"><span class="za-choice-letter" aria-hidden="true">${String.fromCharCode(65+j)}</span><span>${safe(choice)}</span>${checked&&j===q.answer?'<span class="za-mastery-choice-status">Correct</span>':''}</label>`).join('')}</div>
+        ${checked?resultFeedback(q,picked,correct):'<p class="za-mastery-locked-note" role="status">Select an option to enable <strong>Check answer</strong>.</p>'}
+      </section>`;
+      check.disabled=picked===null||checked;
+      check.hidden=checked;
+      previous.disabled=index===0;next.disabled=!checked;
+      next.textContent=index===total-1?'Finish assessment ✓':'Next question →';
+      retry.hidden=true;
+    }
+    async function saveMastery(score){
+      const u=await user();
+      try{const key=`dalp-academy-quiz:${u?.id||'guest'}:${slug}:mastery`;
+        const prior=JSON.parse(localStorage.getItem(key)||'{}');
+        localStorage.setItem(key,JSON.stringify({best:Math.max(prior.best||0,score),latest:score,total,percentage:percentage(score),at:new Date().toISOString()}));
+      }catch(_) {/* Storage is optional. */}
+      if(!u||!window.ZAH_DB?.client){message.textContent='Your 50-question result is saved on this device. Sign in to sync it with your account.';return;}
+      try {
+        // Existing mastery_results schema requires an integer 0–10 score and total=10.
+        // Keep the accurate 50-item percentage; normalize the stored legacy score only.
+        const {error}=await window.ZAH_DB.client.from('mastery_results').upsert({
+          user_id:u.id,course_slug:slug,score:Math.round(score/5),total:10,
+          percentage:percentage(score),submitted_at:new Date().toISOString()
+        },{onConflict:'user_id,course_slug'});
+        if(error)throw error;
+        message.textContent='Your 50-question mastery result has been synced to your DataLearning account.';
+      }catch(error){console.warn('Mastery sync unavailable:',error?.message||error);message.textContent='Your score is saved locally; cloud sync is currently unavailable.';}
+    }
+    async function finish(){
+      if(!reviewed.every(Boolean))return;
+      finished=true;
+      const score=questions.reduce((sum,q,i)=>sum+Number(answers[i]===q.answer),0);
+      const rows=Array.from({length:10},(_,i)=>({week:i+1,score:questions.reduce((n,q,j)=>n+Number(q.week===i+1&&answers[j]===q.answer),0)}));
+      form.hidden=true;check.hidden=true;previous.hidden=true;next.hidden=true;retry.hidden=false;
+      one('#zaQuizProgressText').textContent=`Completed · ${total} of ${total} answers reviewed`;
+      one('#zaQuizProgressFill').style.width='100%';
+      result.hidden=false;result.className='za-quiz-result za-mastery-summary';
+      result.innerHTML=`<span class="za-mastery-kicker">MASTERY ASSESSMENT COMPLETED</span><h2>${score} / ${total} correct · ${percentage(score)}%</h2><p>${score>=40?'Strong result. Use your explanations to consolidate the remaining gaps.':'You completed the exam. Review the weaker weeks below and study the worked solutions before trying again.'}</p><h3>Performance by learning week</h3><div class="za-mastery-breakdown">${rows.map(row=>`<div><span>Week ${num(row.week)}</span><strong>${row.score} / 5</strong><span class="za-mastery-mini-bar" aria-label="${row.score} of 5 correct"><i style="width:${row.score*20}%"></i></span></div>`).join('')}</div><p class="za-mastery-summary-note">Each question was checked with a worked explanation. Your course mastery percentage is calculated from all 50 questions.</p>`;
+      try{sessionStorage.removeItem(draftKey);}catch(_){}
+      message.textContent='Saving your 50-question result…';
+      result.scrollIntoView({block:'start',behavior:'smooth'});
+      await saveMastery(score);
+    }
+    form.addEventListener('change',event=>{
+      if(finished||reviewed[index]||event.target.name!=='mastery-option')return;
+      answers[index]=Number(event.target.value);
+      check.disabled=false;
+      remember();
+    });
+    check.addEventListener('click',()=>{
+      if(finished||reviewed[index]||answers[index]===null)return;
+      reviewed[index]=true;remember();paint();
+      one('.za-mastery-feedback',form)?.focus({preventScroll:true});
+    });
+    previous.addEventListener('click',()=>{if(index>0){index--;remember();paint();one('#za-mastery-question-heading')?.focus({preventScroll:true});form.scrollIntoView({block:'start'});}});
+    next.addEventListener('click',()=>{if(!reviewed[index])return;if(index===total-1){finish();return;}index++;remember();paint();one('#za-mastery-question-heading')?.focus({preventScroll:true});form.scrollIntoView({block:'start'});});
+    retry.addEventListener('click',()=>{
+      finished=false;answers=Array(total).fill(null);reviewed=Array(total).fill(false);index=0;
+      check.hidden=false;previous.hidden=false;next.hidden=false;retry.hidden=true;result.hidden=true;message.textContent='';
+      remember();paint();form.scrollIntoView({block:'start'});
+    });
+    paint();
+  }
+  function masteryCourseSelection(){
+    const pageRoot=one('.za-quiz-page');
+    pageRoot?.classList.add('za-mastery-selection-page');
+    one('#zaQuizEyebrow').textContent='DATALEARNING · EXAM READINESS';
+    one('#zaQuizTitle').textContent='Mastery Assessment';
+    one('#zaQuizIntro').textContent='Choose a course to begin. Your exam stays closed until you select a learning path.';
+    one('#zaQuizCount').textContent='50';
+    one('#zaQuizBread').textContent='Choose a course';
+    one('#zaQuizCourseLink').textContent='Learning paths';
+    one('#zaQuizCourseLink').href=base+'catalog.html';
+    one('#zaQuizProgressText').textContent='Your assessment has not started';
+    one('#zaQuizProgressFill').style.width='0%';
+    one('#zaQuizBack').href=base+'catalog.html';
+    one('#zaQuizBack').textContent='← Explore courses';
+    const form=one('#zaQuizForm');
+    const actions=one('.za-quiz-actions');
+    one('#zaQuizSubmit').hidden=true;
+    one('#zaQuizRetry').hidden=true;
+    one('#zaQuizResult').hidden=true;
+    actions?.classList.add('za-mastery-selection-actions');
+    document.title='Choose Your Mastery Assessment · DataLearning';
+    const cards=completeCatalog.map(path=>`<button type="button" class="za-mastery-course-card" data-mastery-course="${safe(path.slug)}" aria-label="Select ${safe(path.title)} for the 50-question mastery assessment">
+      <span class="za-mastery-course-icon">${icon(path.slug)}</span>
+      <span class="za-mastery-course-copy"><strong>${safe(path.title)}</strong><small>10 weeks · 50 questions · Detailed answer review</small></span>
+      <span class="za-mastery-course-arrow" aria-hidden="true">↗</span></button>`).join('');
+    form.innerHTML=`<section class="za-mastery-launch" aria-labelledby="za-mastery-launch-title">
+      <div class="za-mastery-launch-head"><span class="za-mastery-launch-symbol" aria-hidden="true">✦</span><div><span class="za-mastery-kicker">READY FOR YOUR FINAL CHECKPOINT?</span><h2 id="za-mastery-launch-title">Choose what you want to master.</h2><p>Each assessment tests knowledge from Weeks 01–10. You will receive one question per screen, immediate feedback after checking your answer, worked examples and a final breakdown by week.</p></div></div>
+      <div class="za-mastery-launch-stats" aria-label="Assessment at a glance"><span><b>50</b> questions</span><span><b>10</b> learning weeks</span><span><b>1</b> question per page</span><span><b>4</b> answer options</span></div>
+      <div class="za-mastery-select-heading"><div><span class="za-mastery-kicker">STEP 01 · SELECT A COURSE</span><h3>Available mastery exams</h3></div><span class="za-mastery-course-total">${completeCatalog.length} courses</span></div>
+      <div class="za-mastery-course-grid">${cards}</div>
+      <div class="za-mastery-how"><div><span class="za-mastery-how-index">01</span><strong>Select a course</strong><p>No questions appear before you choose your exam.</p></div><div><span class="za-mastery-how-index">02</span><strong>Answer and check</strong><p>Check Answer unlocks only after you select a choice.</p></div><div><span class="za-mastery-how-index">03</span><strong>Learn from feedback</strong><p>Review why each option works or does not before moving ahead.</p></div></div>
+    </section>`;
+    form.addEventListener('click',event=>{const button=event.target.closest('[data-mastery-course]');if(!button)return;
+      location.href=masteryHref(button.dataset.masteryCourse);
+    });
+  }
   function quizPage(){
     const params=new URLSearchParams(location.search);
     const slug=params.get('course')||'';
-    const rawWeek=params.get('week')||'1';
+    const rawWeek=params.get('week')||(slug?'1':'mastery');
+    if(!slug&&rawWeek==='mastery'){masteryCourseSelection();return;}
     const path=pathFor(slug);
     const isMastery=rawWeek==='mastery';
     const week=Number(rawWeek);
+    if(isMastery&&!path){masteryCourseSelection();return;}
     if(!path || (!isMastery&&(!Number.isInteger(week)||week<1||week>path.weeks.length))){
       one('#zaQuizTitle').textContent='Questions not found';one('#zaQuizForm').textContent='Select a learning path and week from the course catalogue.';
       one('#zaQuizSubmit').hidden=true;return;
     }
-    const masteryWeeks=path.specialist?[1,3,5,7,10]:path.weeks.map(w=>w.week);
-    const questions=isMastery?masteryWeeks.map(n=>({...path.weeks[n-1].questions[0],week:n})):path.weeks[week-1].questions;
+    const questions=isMastery?window.DALP_MASTERY_EXAMS?.[slug]:path.weeks[week-1].questions;
+    if(isMastery&&(!Array.isArray(questions)||questions.length!==50)){one('#zaQuizTitle').textContent='Mastery assessment unavailable';one('#zaQuizForm').textContent='The 50-question assessment could not be loaded. Refresh the page and try again.';one('#zaQuizSubmit').hidden=true;return;}
     const label=isMastery?'Course Mastery Assessment':`Week ${num(week)} · Questions to Try`;
     one('#zaQuizEyebrow').textContent=isMastery?'FINAL COURSE CHECKPOINT':`${path.title.toUpperCase()} · KNOWLEDGE CHECK`;
     one('#zaQuizTitle').textContent=label;
-    one('#zaQuizIntro').textContent=isMastery?`Take ${masteryCount(path)} review questions ${path.specialist?'from key milestones across the ten-week course':'covering all ten weeks'} in ${path.title}. Every result includes a worked explanation.`:`You have learned about ${path.weeks[week-1].title.toLowerCase()}. Try these questions and review what the best answers mean.`;
+    one('#zaQuizIntro').textContent=isMastery?`Complete ${masteryCount(path)} exam-style questions across all ten weeks in ${path.title}. One question appears at a time; select an answer to unlock the detailed explanation and continue.`:`You have learned about ${path.weeks[week-1].title.toLowerCase()}. Try these questions and review what the best answers mean.`;
     one('#zaQuizBread').textContent=isMastery?'Mastery assessment':`Week ${num(week)}`;
     one('#zaQuizCount').textContent=String(questions.length).padStart(2,'0');
     one('#zaQuizCourseLink').href=courseHref(slug);one('#zaQuizCourseLink').textContent=path.title;
     one('#zaQuizBack').href=isMastery?courseHref(slug):courseHref(slug)+`?week=${week}`;
     document.title=`${label} | ${path.title} · DataLearning`;
+    if(isMastery){
+      one('#zaQuizIntro').insertAdjacentHTML('afterend',`<a class="za-mastery-switch" href="${base}quiz.html?week=mastery" aria-label="Change mastery assessment course">↔ Change course</a>`);
+      one('.za-quiz-page')?.classList.add('za-mastery-active-page');
+      masteryPage(path,questions,slug);return;
+    }
     const form=one('#zaQuizForm'),submit=one('#zaQuizSubmit'),retry=one('#zaQuizRetry'),result=one('#zaQuizResult'),message=one('#zaQuizSaveStatus');
     function count(){
       const n=questions.filter((_,i)=>!!one(`input[name="q-${i}"]:checked`,form)).length;

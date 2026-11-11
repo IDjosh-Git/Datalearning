@@ -29,3 +29,30 @@
 - Added a regression test covering all nine course pages, links, quiz counts, and shared CSS. No migration or course data modifications.
 
 - Updated course stylesheet query strings on all active course readers and the Courses catalogue to prevent stale premium styling after deployment. Verified CSS parsing and JavaScript syntax.
+
+## Practice Arena unified workspace — 11 November 2026
+
+- SQL, Excel and Python now use the same compact, responsive editor/output shell; the existing SQL engine, spreadsheet evaluator, Pyodide worker and Python challenge grader are unchanged.
+- The Python editor, Run/Stop controls, grading button, runtime status and output are presented in the same first-class layout as SQL/Excel; live controls are moved rather than cloned.
+- Switching a workspace tab changes subject immediately. The dedicated Browse Challenges button still opens the full challenge selector.
+- Academy navy, orange, off-white and shared UI tokens now style the Practice Arena shell, results, tables, editor controls, cards and mobile action dock; the layout avoids page-level horizontal overflow down to 320px.
+- One collapsible Challenge Brief remains above the editor. Hints, worked answers, grading and per-task drafts remain available.
+- The secondary mobile Run control now calls Python Run when Python is selected instead of incorrectly displaying/calling SQL Run.
+- Added `tests/practice-unified-three-workspaces.mjs` to the Arena regression suite.
+
+Deployment: Upload the contents of this `datalearning/` project to the existing host using normal deployment procedures. This ZIP is project source, not a claim of production deployment.
+
+## Mastery 50-question assessment & deeper weekly learning (11 Nov 2026)
+- Nine course mastery assessments now include 50 course-specific questions each (five items from each of ten weeks). One visible question at a time; Check Answer disabled until a choice is made. Detailed answer rationale, every distractor, worked example, validation and pitfalls are shown after checking.
+- Added Previous / Next navigation and per-week exam score report, with optional same-tab draft restoration. Existing weekly quizzes remain unchanged.
+- Expanded every weekly module with business context, four core concepts, a guided analytical walkthrough, a worked scenario and verification notes.
+- The existing Supabase mastery_results table requires a legacy 0–10 score and total=10; the UI displays and stores locally the true raw score out of 50, while cloud sync sends the accurate percentage and compatible normalized score. No schema changes are required.
+- Changes are source-only and not deployed to a live domain.
+
+
+## 11 November — Mastery selection and visual consolidation
+- A course-less mastery assessment URL (`quiz.html?week=mastery` or `quiz.html`) opens a premium course-selection landing page and never displays questions until a course is chosen. Deep links with course parameters remain valid selections.
+- A Change course control returns to the course selector. Existing 50-question exams, validation, explanations, and progress storage are preserved.
+- The redundant advanced career/roadmap end-of-lesson section was removed from Python and AI core lessons; practical teaching material remains.
+- The Reference Library hero heading and actions are centered across desktop, tablet and mobile.
+- The Practice Arena loads a consolidated `practice-arena-premium-final.css` instead of six legacy override layers. The legacy mobile action dock was removed and a single canonical Run Query or Calculate button is used across screen sizes; the original SQL challenge action remains wired invisibly for execution.

@@ -6,9 +6,9 @@ const page=fs.readFileSync('practice.html','utf8');
 const ide=fs.readFileSync('assets/scripts/arena-ide.js','utf8');
 const work=fs.readFileSync('assets/scripts/arena-premium-experience.js','utf8');
 const practice=fs.readFileSync('assets/scripts/practice.js','utf8');
-const css=fs.readFileSync('assets/styles/practice-arena-studio-premium.css','utf8');
-for(const asset of ['assets/styles/practice-arena-studio-premium.css','assets/scripts/arena-premium-experience.js'])assert(page.includes(asset),`Missing new arena asset: ${asset}`);
-assert(page.indexOf('practice-arena-studio-premium.css')>page.indexOf('practice-arena-modern.css'),'Latest arena styling must load after existing theme');
+const css=fs.readFileSync('assets/styles/practice-arena-premium-final.css','utf8');
+for(const asset of ['assets/styles/practice-arena-premium-final.css','assets/scripts/arena-premium-experience.js'])assert(page.includes(asset),`Missing new arena asset: ${asset}`);
+assert(!page.includes('practice-arena-modern.css')&&!page.includes('practice-arena-studio-premium.css'),'Legacy layers must not be loaded');
 for(const js of ['practice.js','arena-ide.js','arena-premium-experience.js'])assert(page.includes(js),`Editor controller lost: ${js}`);
 for(const token of ['id="ideTableToggle"','id="ideWorksheetDataset"','aria-expanded="false"','aria-controls="ideWorksheetDataset"','<div id="ideWorksheetDataset" class="arena-dataset-content" hidden>','wire(\'#ideTableToggle\'','label.textContent=show?\'Hide table\':\'Show table\''])assert(ide.includes(token),`Missing worksheet disclosure: ${token}`);
 for(const token of ['arenaSqlReference','arena-reference-ready','content.hidden=true','aria-controls','Hide schema','aria-reference-content']){
