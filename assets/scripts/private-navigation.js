@@ -30,7 +30,7 @@
  // Academy remains available to every signed-in learner, including administrators.
  // Administration only appears after the server-backed site_admins role is verified.
  const learnerNav=[
-  {caption:'ACADEMY',items:[['My dashboard','account.html','account'],['Explore courses','catalog.html','catalog'],['Practice Arena','practice.html','practice'],['AI Tutor','tutor.html','tutor']]}
+  {caption:'ACADEMY',items:[['Learning Dashboard','account.html','account'],['Explore courses','catalog.html','catalog'],['Practice Arena','practice.html','practice'],['AI Tutor','tutor.html','tutor']]}
  ];
  const moreNav=[['Study Tools','study-tools.html','study'],['Study plan','learning-coach.html','study-plan'],['Practice Studio','studio.html','studio'],['Learning Lab','learning-lab.html','lab'],['Capstone Studio','capstone.html','capstone'],['Certificates','account.html#certificates','certificate']];
  const adminNav=[
@@ -68,7 +68,7 @@
  const header=document.createElement('header');header.className='ac-topbar';
  const mobileToggle=document.createElement('button');mobileToggle.type='button';mobileToggle.className='ac-mobile-menu';mobileToggle.setAttribute('aria-label','Open navigation');mobileToggle.setAttribute('aria-controls','acSidebar');mobileToggle.setAttribute('aria-expanded','false');mobileToggle.innerHTML='<span aria-hidden="true">☰</span>';
  const titles={overview:'Academy overview',progress:'Progress reports',reviews:'Assessment desk',account:'My dashboard',profile:'My profile',certificate:'My certificate',connection:'Connection test',sync:'Progress sync'};
- const trail=document.createElement('div');trail.className='ac-breadcrumb';trail.innerHTML='<span class="ac-breadcrumb-prefix">Workspace</span><span class="ac-crumb-divider" aria-hidden="true">/</span><strong>'+(titles[current]||'My learning')+'</strong>';
+ const trail=document.createElement('div');trail.className='ac-breadcrumb';trail.innerHTML='<span class="ac-breadcrumb-prefix">Workspace</span><span class="ac-crumb-divider" aria-hidden="true">/</span><strong>'+(titles[current]||'Learning Dashboard')+'</strong>';
  const right=document.createElement('div');right.className='ac-top-actions';
  right.innerHTML='<span class="ac-secure"><span class="ac-secure-dot" aria-hidden="true"></span> Learner space</span><a class="ac-topbar-link" data-learner-shortcut href="catalog.html">Browse courses <span aria-hidden="true">↗</span></a><a class="ac-topbar-link" data-admin-shortcut href="reviewer.html" hidden>Review desk <span aria-hidden="true">↗</span></a>';
  header.append(mobileToggle,trail,right);

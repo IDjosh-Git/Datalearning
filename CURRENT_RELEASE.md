@@ -1,3 +1,24 @@
+## 11 November 2026 — Current release: administrator access and stylesheet hygiene
+
+- **Learners cannot open administrator pages.** The `site_admins` table is checked through Supabase, administrator navigation is hidden by default, and Vercel middleware denies direct access to administration pages and their protected assets. A signed-in learner receives HTTP 403 for a protected admin URL; no CSS-only access control is used.
+- Removed **10 unnecessary Practice Studio stylesheet requests** from learner, Tutor, capstone and administrative pages. The genuine `studio.html` still loads `practice-workspace-premium.css`; `practice.html` continues using its consolidated Arena stylesheet. Shared styles required by other features remain installed.
+- Cleaned **820 identical repeat CSS declarations** and 127 empty rule blocks from 15 stylesheets, using exact selector and media-context matching to preserve effective cascade behavior. The stylesheet audit found no whole CSS file that was safe to delete: all 51 stylesheets have a runtime reference. The deletion of truly unused older stylesheet files was handled in earlier releases.
+- Added an explicit display safeguard for hidden administrator navigation to prevent generic card/display rules from inadvertently showing an Admin group while role verification runs.
+- Updated the Studio layout regression test to enforce route-appropriate styles, plus a new stylesheet hygiene and administrator navigation test. No page, challenge, teaching image, user record, or database schema was removed.
+- Automated tests passed. This is **source code only**, not a live deployment; administrator access and performance should be smoke-tested after publishing. Previous entries below are historical change notes, not descriptions of the current state when newer changes supersede them (for example, course cards now use compact icons, while lesson visuals remain).
+
+---
+
+## 11 November 2026 — One sign-in across Learning Dashboard and every app page
+
+- Fixed a race on `account.html` where the dashboard checked Supabase before `DALP_AUTH_RESTORE` completed and incorrectly sent signed-in learners back to `auth.html`. Dashboard data now waits for the shared `DALP_AUTH_GATE.whenReady` signal, which only resolves after user verification.
+- The profile editor and public/private profile-navigation controls now also respect the existing verified session instead of briefly treating a restoring account as a guest.
+- Added a server-side renewal continuation for a valid HttpOnly Supabase refresh cookie when the short-lived access cookie expires. Navigation securely renews the cookie then resumes the requested local app page; missing/invalid refresh credentials still require normal sign-in. No access tokens are placed in redirect URLs and all protected routes remain gated.
+- Renamed **My Learning** to **Learning Dashboard** on the dashboard, public header, mobile navigation, private sidebar and search/navigation copy. The dashboard link now uses a premium two-line card with an accessible icon; the dashboard's progress widget has refined styling.
+- Added/updated tests covering deferred readiness, premium dashboard links, session expiry renewal, private assets and open-redirect prevention. Full project automated suite passed. Isolated Chromium layout checks passed at phone, tablet and desktop widths. No live deployment or live-account authentication smoke test has been performed.
+
+---
+
 ## 11 November 2026 — Study Pulse cloud-save status correction
 
 - Removed the obsolete Study Pulse footer claiming notes and study history stay in local browser storage, plus the inaccurate "auto-saved on this device" note.

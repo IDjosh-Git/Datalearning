@@ -20,6 +20,11 @@ for(const token of ['sheetExpanded=!sheetExpanded','updateSheetVisibility(shell)
 const styles=fs.readFileSync('assets/styles/practice-workspace-premium.css','utf8');
 for(const token of ['.ide-sheet tr[hidden]','ide-grid-scroll','ide-sheet-foot','.arena-subject-options','.ps-course-pill','data-private-workspace','@media(max-width:700px)'])assert(styles.includes(token),`Missing premium responsive style: ${token}`);
 const pages=['practice','studio','tutor','learning-lab','account','profile','progress','capstone','certificate','admin','reviewer'];
-for(const page of pages)assert(fs.readFileSync(`${page}.html`,'utf8').includes(page==='practice'?'assets/styles/practice-arena-premium-final.css':'assets/styles/practice-workspace-premium.css'),`Missing unified workspace styles: ${page}`);
+for(const page of pages){
+  const html=fs.readFileSync(`${page}.html`,'utf8');
+  const required=page==='practice'?'assets/styles/practice-arena-premium-final.css':page==='studio'?'assets/styles/practice-workspace-premium.css':'assets/styles/premium-unified.css';
+  assert(html.includes(required),`Missing applicable workspace styles: ${page}`);
+  if(!['practice','studio'].includes(page))assert(!html.includes('assets/styles/practice-workspace-premium.css'),`Unused Practice Studio CSS loaded on ${page}`);
+}
 assert(fs.readFileSync('practice.html','utf8').includes('arena-hero-steps'),'Missing practice guide');
-console.log('PASS Practice premium: seven visible rows, thirteen hidden rows, accessible expansion, preservation of populated custom rows, unified styling on 12 public/private routes');
+console.log('PASS Practice premium: compact worksheet, responsive Arena/Studio styles, no practice-only CSS on unrelated pages');

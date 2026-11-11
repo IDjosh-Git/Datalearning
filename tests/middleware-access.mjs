@@ -40,5 +40,14 @@ try{
  assert.equal((await middleware(req('/catalog.html',sessionCookie(token('invalid'),300)))).status,302);
  global.fetch=mock(false,false,false,true);
  assert.equal((await middleware(req('/catalog.html',sessionCookie(token('anon'),300)))).status,302);
+ // Signed-in visitors renew their server session without a second login.
+ const expired='x.'+Buffer.from(JSON.stringify({exp:Math.floor(Date.now()/1000)-10})).toString('base64url')+'.'+('z'.repeat(64));
+ const renewable=sessionCookie(expired,300)+'; __Host-dalp_refresh=valid-refresh-token';
+ const renewed=await middleware(req('/account.html?tab=courses',renewable));
+ assert.equal(renewed.status,303);
+ const renewalUrl=new URL(renewed.headers.get('location'));
+ assert.equal(renewalUrl.pathname,'/api/auth/session');
+ assert.equal(renewalUrl.searchParams.get('continue'),'/account.html?tab=courses');
+ assert.equal((await middleware(req('/assets/scripts/academy-app.js',renewable))).status,403,'assets remain private until renewal');
 }finally{global.fetch=originalFetch}
 console.log('PASS app-wide server gate: homepage, courses, API and assets protected; login public; admin role isolated; fail-closed');

@@ -9,6 +9,10 @@
  const ownerKey='dalpLastLearnerId';
  const courseKeys=['dalpIntroductionProgressV1','excelRoadmapProgress','sqlRoadmapProgress','powerbiRoadmapProgress','pythonRoadmapProgress','aiRoadmapProgress'];
  let gate,working=false,authenticated=false;
+ let resolveReady;
+ // Account and learning pages must await the same verified login instead of
+ // asking Supabase for a user before the HttpOnly cookie has been restored.
+ const whenReady = new Promise(resolve=>{resolveReady=resolve});
  const deadline=(promise,ms=14000)=>new Promise((resolve,reject)=>{
    const timer=setTimeout(()=>reject(new Error('Session verification timed out')),ms);
    Promise.resolve(promise).then(value=>{clearTimeout(timer);resolve(value)},error=>{clearTimeout(timer);reject(error)});
@@ -96,7 +100,7 @@
        }catch(_){console.warn('Optional role lookup unavailable; learner page remains accessible')}
      })();
    }
-   authenticated=true;document.documentElement.classList.remove('dalp-auth-checking');
+   authenticated=true;resolveReady(data.user);document.documentElement.classList.remove('dalp-auth-checking');
    if(gate){gate.remove();gate=null;}
    const init=()=>{addSignOut();enhanceRoleUI();};
    if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
@@ -104,7 +108,7 @@
   }catch(e){console.warn('Unable to validate permissions',e);showError();}
   finally{working=false;}
  }
- window.DALP_AUTH_GATE={prepareWorkspace,clearLocalCourseCache,loginDestination,restrictedPages:Array.from(restricted)};
+ window.DALP_AUTH_GATE={prepareWorkspace,clearLocalCourseCache,loginDestination,restrictedPages:Array.from(restricted),whenReady};
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{if(!authenticated&&!gate)paint()},{once:true});
  check();
 })();

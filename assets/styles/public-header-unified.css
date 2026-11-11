@@ -152,3 +152,32 @@ html body .lc-panel.lc-pulse-panel .lc-privacy{display:flex!important;gap:9px;al
 html body .lc-panel.lc-pulse-panel .lc-privacy-icon{font-size:16px;line-height:1.3;color:#41758a;flex:none}
 html body .lc-panel.lc-pulse-panel [data-lc-sync-status][data-state="synced"],html body .lc-panel.lc-pulse-panel [data-lc-sync-status][data-state="ready"]{color:#216954!important}
 html body .lc-panel.lc-pulse-panel [data-lc-sync-status][data-state="unsynced"],html body .lc-panel.lc-pulse-panel [data-lc-sync-status][data-state="unsigned"]{color:#8b4c23!important}
+
+/* Premium Learning Dashboard entry. Uses compact dimensions in the busy header. */
+.dlu-header-actions a.dlu-dashboard-card{
+ box-sizing:border-box;display:inline-flex;align-items:center;justify-content:flex-start;gap:9px;
+ min-height:51px;padding:7px 12px 7px 8px;border-radius:14px;
+ color:#fff!important;background:linear-gradient(130deg,#17374e 0%,#24566c 68%,#286d70 100%)!important;
+ border:1px solid #294e61;box-shadow:0 7px 17px rgba(19,52,71,.18);text-decoration:none!important;
+ transition:transform .18s ease,box-shadow .18s ease;
+}
+.dlu-header-actions a.dlu-dashboard-card:hover{transform:translateY(-1px);box-shadow:0 10px 21px rgba(19,52,71,.23)}
+.dlu-header-actions a.dlu-dashboard-card:focus-visible,.dlu-nav-panel .dlu-dashboard-drawer-link:focus-visible{outline:3px solid #f27329;outline-offset:3px}
+.dlu-dashboard-icon{flex:0 0 33px;width:33px;height:33px;border-radius:10px;display:grid;place-items:center;background:rgba(255,255,255,.14)}
+.dlu-dashboard-icon svg{width:19px;height:19px;stroke:#f6ffff}
+.dlu-dashboard-copy{display:flex;flex-direction:column;gap:3px;text-align:left;min-width:0}
+.dlu-dashboard-copy strong{font:800 11.5px/1.15 "Plus Jakarta Sans",system-ui,sans-serif;color:#fff;white-space:nowrap}
+.dlu-dashboard-copy small{font:650 9.5px/1.1 "DM Sans",system-ui,sans-serif;color:#bde7e1;white-space:nowrap}
+.dlu-nav-panel .dlu-dashboard-drawer-link{
+ display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:17px;
+ border:1px solid #c9e3e0;background:linear-gradient(132deg,#edf8f5,#f8fcff);
+ box-shadow:0 8px 19px rgba(20,68,77,.07);min-height:73px;text-decoration:none!important;
+}
+.dlu-dashboard-drawer-link .dlu-drawer-dash-icon{width:42px;height:42px;border-radius:13px;flex:none;display:grid;place-items:center;color:#fff;background:linear-gradient(130deg,#214d62,#2d7373)}
+.dlu-drawer-dash-icon svg{width:22px;height:22px}
+.dlu-drawer-dash-copy{min-width:0;flex:1;display:flex;flex-direction:column;gap:4px}
+.dlu-drawer-dash-copy strong{color:#1b4355;font-size:14px;font-weight:850}
+.dlu-drawer-dash-copy small{color:#587b82;font-size:11px;font-weight:600}
+@media(max-width:1280px) and (min-width:1101px){.dlu-dashboard-copy small{display:none}.dlu-header-actions a.dlu-dashboard-card{min-height:45px;padding:6px 10px 6px 7px}}
+@media(max-width:600px){.dlu-header-actions a.dlu-dashboard-card{display:none}}
+@media(prefers-reduced-motion:reduce){.dlu-header-actions a.dlu-dashboard-card{transition:none}}

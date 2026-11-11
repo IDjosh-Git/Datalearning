@@ -1589,7 +1589,7 @@ html[data-theme="light"] body[data-public-refresh] > .dalp-global-header a.dalp-
 html[data-theme="light"] body.lp-home[data-public-refresh]{
  --hm-ink:#12233f;--hm-body:#455675;--hm-line:#e0e7f1;--hm-purple:#6590A4;
  --hm-paper:#f7f9fd;--hm-shadow:0 12px 32px rgba(24,41,83,.07);
- background:var(--hm-paper)!important;background-image:none!important;color:var(--hm-ink)!important;
+ background:var(--hm-paper)!important;color:var(--hm-ink)!important;
 }
 html[data-theme="light"] body.lp-home main{background:transparent!important;background-image:none!important;overflow:clip}
 html[data-theme="light"] body.lp-home main > :is(section,div)::before,

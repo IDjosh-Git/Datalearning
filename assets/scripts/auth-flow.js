@@ -26,7 +26,7 @@
     const labels={
       'practice.html':'Practice Arena', 'studio.html':'Practice Studio',
       'tutor.html':'Tutor Studio', 'capstone.html':'Capstone Studio',
-      'account.html':'your learning dashboard', 'reference.html':'Reference Library'
+      'account.html':'your Learning Dashboard', 'reference.html':'Reference Library'
     };
     const filename=intended.pathname.split('/').pop();
     const route=labels[filename]||(/\/courses\/.+\.html$/.test(intended.pathname)?'your selected course':null);

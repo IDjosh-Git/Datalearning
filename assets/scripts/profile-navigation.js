@@ -7,12 +7,13 @@
   if(host.querySelector('.dl-profile-control'))return;
   const base=location.pathname.includes('/courses/')?'../':'';
   const node=document.createElement('div');node.className='dl-profile-control';
-  node.innerHTML='<a class="dl-profile-button" href="'+base+'auth.html" aria-label="Sign in to your DataLearning account"><span class="dl-profile-avatar"><span data-profile-initial>↗</span></span><span class="dl-profile-button-copy"><strong data-profile-label>Sign in</strong><small data-profile-state>Guest</small></span><span class="dl-profile-live" aria-hidden="true"></span></a>';
+  node.innerHTML='<a class="dl-profile-button" href="'+base+'account.html" aria-label="Open Learning Dashboard"><span class="dl-profile-avatar"><span data-profile-initial>↗</span></span><span class="dl-profile-button-copy"><strong data-profile-label>Dashboard</strong><small data-profile-state>Checking account…</small></span><span class="dl-profile-live" aria-hidden="true"></span></a>';
   const toggle=document.querySelector('.dalp-global-toggle');
   if(pub&&toggle)pub.insertBefore(node,toggle);else host.append(node);
   const link=node.querySelector('a');
   let currentUser=null;
   const sync=async()=>{
+   if(!window.DALP_AUTH_USER)return;
    const client=window.ZAH_DB?.client;
    if(!client){node.classList.add('dl-profile-guest');return}
    let user=null;
@@ -31,7 +32,10 @@
       else {avatar.textContent='↗';}
    }
   };
-  void sync();
+  // On protected pages, an un-restored Supabase session is not a signed-out
+  // visitor. Keep the link within the app until the verified gate is ready.
+  void Promise.resolve(window.DALP_AUTH_GATE?.whenReady).then(sync);
+  window.addEventListener('dalp:auth-ready',sync);
   window.ZAH_DB?.client?.auth.onAuthStateChange(()=>{setTimeout(sync,0)});
   window.addEventListener('dalp:profile-updated',sync);
  };

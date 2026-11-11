@@ -20,3 +20,17 @@ const flow=read('assets/scripts/auth-flow.js');
 for(const key of ['signInWithPassword','signUp','resetPasswordForEmail','updateUser','signInWithOAuth','location.replace(target)','DALP_SERVER_SESSION.establish','PASSWORD_RECOVERY'])assert(flow.includes(key),`Missing auth flow ${key}`);
 assert(flow.includes('Secure session timed out'),'Cookie must be established before entering');
 console.log(`PASS app-wide authenticated HTML: ${pages.length-1} guarded pages; only sign-in public; secure session required`);
+
+const dashboard=read('account.html'), gate=read('assets/scripts/auth-gate.js');
+assert(dashboard.includes('const user=await window.DALP_AUTH_GATE?.whenReady'), 'Dashboard must wait for the single shared verified session');
+assert(!dashboard.includes("location.href='auth.html';return"),'Dashboard must not implement a second premature login redirect');
+assert(gate.includes('resolveReady(data.user)'),'Shared auth gate must resolve ready state after validation');
+assert(read('assets/scripts/profile-editor.js').includes('window.DALP_AUTH_GATE?.whenReady'),'Profile must reuse app sign-in');
+for(const page of pages.filter(f=>f!=='auth.html')){
+ const html=read(page);
+ if(html.includes('dlu-account')){
+  assert(html.includes('Learning Dashboard'),`${page}: premium dashboard card needs new name`);
+  assert(!html.includes('>My learning <'),`${page}: legacy header label remains`);
+ }
+}
+console.log('PASS one sign-in across learning pages and premium Learning Dashboard navigation');

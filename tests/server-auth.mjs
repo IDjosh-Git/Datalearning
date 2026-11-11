@@ -11,7 +11,7 @@ function mockFetchFor(id,isAdmin=true,fail=false){return async (url,init)=>{
  if(String(url).includes('/rest/v1/site_admins'))return new Response(JSON.stringify(isAdmin?[{user_id:id}]:[]),{status:200});
  throw Error('Unexpected URL '+url);
 };}
-function fakeRes(){return {headers:{},statusCode:0,setHeader(k,v){this.headers[k]=v},end(v){this.body=JSON.parse(v)}}}
+function fakeRes(){return {headers:{},statusCode:0,setHeader(k,v){this.headers[k]=v},end(v){this.body=v===undefined?undefined:JSON.parse(v)}}}
 assert.equal(restrictedKind('/admin.html'),'adminPage');
 assert.equal(restrictedKind('/reviewer'),'adminPage');
 assert.equal(restrictedKind('/progress.html'),'adminPage');
@@ -38,6 +38,12 @@ assert.equal((await verifyAdmin(token(),userId,mockFetchFor(userId,true))).ok,tr
 assert.equal((await verifyAdmin(token(),learnerId,mockFetchFor(learnerId,false))).ok,false);
 assert.equal((await verifyAdmin(token(),userId,mockFetchFor(userId,true,true))).status,503);
 const realToken=token();
+// A redirect after cookie renewal must be same-origin and must not leak tokens.
+function refreshMock(id){return async (url,init)=>{
+ if(String(url).includes('/auth/v1/token'))return new Response(JSON.stringify({access_token:token(),refresh_token:'rotated-refresh'}),{status:200});
+ return mockFetchFor(id)(url,init);
+};}
+
 const req={method:'POST',headers:{origin:'https://school.example','host':'school.example',authorization:'Bearer '+realToken},body:{refresh_token:'test-refresh-session-value'}};
 try{
  global.fetch=mockFetchFor(userId);
@@ -46,5 +52,13 @@ try{
  res=fakeRes();await handler({...req,headers:{...req.headers,authorization:'Bearer '+token(-5)}},res);assert.equal(res.statusCode,401);
  res=fakeRes();await handler({...req,method:'DELETE'},res);assert.equal(res.statusCode,200);assert.equal(res.headers['Set-Cookie'].length,4);
  res=fakeRes();await handler({...req,method:'GET',headers:{...req.headers,cookie:'__Host-dalp_session='+realToken+'; __Host-dalp_refresh=test-refresh-session-value'}},res);assert.equal(res.statusCode,200);assert.equal(res.body.refresh_token,'test-refresh-session-value');
+ res=fakeRes();await handler({...req,method:'GET',url:'/api/auth/session?continue=%2Faccount.html%3Ftab%3Dprogress',headers:{...req.headers,cookie:'__Host-dalp_session='+realToken+'; __Host-dalp_refresh=test-refresh-session-value'}},res);
+ assert.equal(res.statusCode,303);assert.equal(res.headers.Location,'/account.html?tab=progress');assert.equal(res.body,undefined);
+ res=fakeRes();await handler({...req,method:'GET',url:'/api/auth/session?continue=https%3A%2F%2Fevil.example%2Fleak',headers:{...req.headers,cookie:'__Host-dalp_session='+realToken+'; __Host-dalp_refresh=test-refresh-session-value'}},res);
+ assert.equal(res.statusCode,303);assert.equal(res.headers.Location,'/index.html','open redirects must not be possible');
+ global.fetch=refreshMock(userId);
+ res=fakeRes();await handler({...req,method:'GET',url:'/api/auth/session?continue=%2Faccount.html',headers:{...req.headers,cookie:'__Host-dalp_session='+token(-10)+'; __Host-dalp_refresh=test-refresh-session-value'}},res);
+ assert.equal(res.statusCode,303);assert.equal(res.headers.Location,'/account.html');assert.equal(res.headers['Set-Cookie'].length,2);
+ assert(res.headers['Set-Cookie'].every(s=>s.includes('HttpOnly')));
 }finally{global.fetch=oldFetch}
 console.log('Server-side authorization, session cookie, expiry, role separation, and CSRF regression tests passed.');

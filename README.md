@@ -1,3 +1,5 @@
+> **Latest release (11 November 2026):** App-wide sign-in remains mandatory. Learners do not see administrator navigation and cannot access admin-only pages; the server verifies the `site_admins` role. Styles have been audited and route-scoped, unnecessary Practice Studio CSS loads removed, and repeated declarations consolidated. See `CURRENT_RELEASE.md` and `docs/STYLE_CLEANUP_AUDIT_20261111.json`. This ZIP has not been deployed.
+
 # DataLearning — current application (11 November 2026)
 
 DataLearning is a responsive analytics learning app with **nine 10-week learning courses**: Data Analysis Foundations, Excel, SQL, Power BI, Tableau, Power Query, Applied Statistics, Python for Data Analysis, and AI for Data Analysis. It also includes a separate four-level [Career Path](career-path.html) with 31 specialist modules.

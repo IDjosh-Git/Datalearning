@@ -19,11 +19,12 @@
   avatarPath=m.dalp_avatar_path||'';
  }
  async function verify(){const db=client();if(!db){status('profileSaveStatus','Could not connect to DataLearning. Refresh and try again.','error');return null}
-  try{const {data:session,error:sessionError}=await db.auth.getSession();if(sessionError)throw sessionError;
-   if(!session?.session){location.replace('auth.html?return='+encodeURIComponent('profile.html'));return null}
-   const {data,error}=await db.auth.getUser();if(error)throw error;
-   if(!data?.user||data.user.is_anonymous){location.replace('auth.html?return='+encodeURIComponent('profile.html'));return null}
-   return data.user;
+  // The page-wide gate verifies login and restores the cloud session first.
+  // An additional immediate getSession() check caused valid users to be sent
+  // back to sign-in when navigating from the Academy into the profile.
+  try{const verified=await window.DALP_AUTH_GATE?.whenReady;
+   if(!verified||verified.is_anonymous)throw new Error('Your account verification is still pending.');
+   return verified;
   }catch(e){status('profileSaveStatus','Unable to verify your session. Check your connection and refresh.','error');console.warn('Profile authentication:',e);return null}
  }
  async function readPhoto(){

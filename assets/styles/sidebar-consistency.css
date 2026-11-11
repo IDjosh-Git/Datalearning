@@ -169,3 +169,6 @@ html body.dlp-course-v29[data-ui-course] #sidebar .dl-lesson-drawer-heading{isol
  html[data-theme] body[data-responsive-page="practice"] #hubClose.hub-close:hover{background:#d6efe6!important;color:#173f4e!important;-webkit-text-fill-color:#173f4e!important;border-color:#79a99d!important}
  html[data-theme] body[data-responsive-page="practice"] #hubClose.hub-close:focus-visible{outline:3px solid #ed995f!important;outline-offset:2px!important}
 }
+
+/* Role-aware navigation: hidden admin groups must never become visible through display utilities. */
+[data-admin-only][hidden], [data-admin-shortcut][hidden] { display: none !important; }

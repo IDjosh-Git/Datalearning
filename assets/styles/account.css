@@ -70,8 +70,7 @@ html[data-theme="light"] body.dalp-account-page .account-studio-link{
 }
 html[data-theme="light"] body.dalp-account-page .account-studio-link span{color:#d7e1f6!important;-webkit-text-fill-color:#d7e1f6!important}
 html[data-theme="light"] body.dalp-account-page .account-studio-link a{color:#fff!important;-webkit-text-fill-color:#fff!important;text-underline-offset:4px;font-weight:850;text-decoration:underline!important}
-html[data-theme="light"] body.dalp-account-page .mld-hero-progress{
- min-width:0;display:grid;justify-items:center;gap:11px;padding:23px 13px;
+html[data-theme="light"] body.dalp-account-page .mld-hero-progress{display:grid;justify-items:center;gap:11px;padding:23px 13px;
  background:#243963!important;background-image:none!important;border:1px solid #455c85;border-radius:20px;
 }
 html[data-theme="light"] body.dalp-account-page .mld-widget-eyebrow{
@@ -209,3 +208,13 @@ html[data-theme="light"] body.dalp-account-page [hidden]{display:none!important}
  html[data-theme="light"] body.dalp-account-page .mld-resume-intro{align-items:flex-start}
  html[data-theme="light"] body.dalp-account-page .mld-course-section{margin-bottom:24px}
 }
+
+/* Learning Dashboard identity card – softly elevated, without extra page height. */
+html[data-theme="light"] body.dalp-account-page .mld-hero-progress{
+ border-radius:20px!important;border:1px solid rgba(255,255,255,.23)!important;
+ background:linear-gradient(145deg,rgba(255,255,255,.13),rgba(255,255,255,.045))!important;
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 12px 27px rgba(6,21,39,.12)!important;
+ backdrop-filter:blur(9px);min-width:0;
+}
+html[data-theme="light"] body.dalp-account-page #account-heading{max-width:19ch;overflow-wrap:normal}
+@media(max-width:720px){html[data-theme="light"] body.dalp-account-page #account-heading{max-width:100%}}

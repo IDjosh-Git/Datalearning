@@ -2,31 +2,21 @@
 /* Unified visual system | Data Analysis Learning Path | 2026-11
    One shared final-layer stylesheet, intentionally loaded once on every HTML page.
    No business logic, routes, access rules or course content are changed. */
-:root,html,html[data-theme="light"]{
- color-scheme:light;
- --ui-canvas:#F9F7F6;--ui-paper:#fff;--ui-ink:#102030;--ui-strong:#102030;
- --ui-muted:#465E6D;--ui-stroke:#D8E2E6;--ui-stroke-strong:#B8CDD5;--ui-control-stroke:#798ba2;
- --ui-primary:#35637C;--ui-primary-hover:#274F66;--ui-primary-soft:#E8F1F2;
- --ui-accent:var(--ui-nav-ink);--ui-accent-hover:#1d3657;--ui-accent-soft:#E8F1F2;--ui-accent-border:#C4D8DF;--ui-coral:#B85E3B;
+:root,html,html[data-theme="light"]{--ui-strong:#102030;--ui-control-stroke:#798ba2;
+ --ui-accent:var(--ui-nav-ink);--ui-accent-hover:#1d3657;
  --ui-gold:#a56a08;--ui-shadow:0 3px 14px rgba(18,37,65,.055);
  --ui-radius:14px;--ui-focus:#A94F2F;
- --experience-ink:var(--ui-ink);--experience-muted:var(--ui-muted);
- --experience-brand:var(--ui-primary);--experience-border:var(--ui-stroke);
- --experience-wash:var(--ui-canvas);--experience-card:var(--ui-paper);
- --experience-glow:var(--ui-primary-soft);--experience-accent:var(--ui-coral);
+ --experience-ink:var(--ui-ink);--experience-muted:var(--ui-muted);--experience-border:var(--ui-stroke);--experience-card:var(--ui-paper);--experience-accent:var(--ui-coral);
  --experience-shadow:var(--ui-shadow);
- --dlp29-canvas:var(--ui-canvas);--dlp29-surface:var(--ui-paper);
- --dlp29-surface-soft:var(--ui-primary-soft);--dlp29-ink:var(--ui-ink);
- --dlp29-muted:var(--ui-muted);--dlp29-line:var(--ui-stroke);
- --dlp29-primary:var(--ui-primary);--dlp29-primary-on:#fff;
+ --dlp29-canvas:var(--ui-canvas);--dlp29-surface:var(--ui-paper);--dlp29-ink:var(--ui-ink);
+ --dlp29-muted:var(--ui-muted);--dlp29-line:var(--ui-stroke);--dlp29-primary-on:#fff;
  --dlp29-glow:transparent;--dlp29-grid:transparent;--dlp29-shadow:var(--ui-shadow);
  --dlp29-shadow-hover:0 10px 24px rgba(18,37,65,.1);
  font-family:"DM Sans","Plus Jakarta Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
 }
 html,html[data-theme="light"]{scroll-padding-top:84px;scroll-behavior:auto!important}
 html body,html[data-theme="light"] body,html[data-theme="light"] body.dlp-course-v29{
- font-family:"DM Sans","Plus Jakarta Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif!important;
- color:var(--ui-ink)!important;background:var(--ui-canvas)!important;
+ font-family:"DM Sans","Plus Jakarta Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif!important;background:var(--ui-canvas)!important;
  background-image:none!important;text-rendering:optimizeLegibility;
 }
 html body::before,html body::after{pointer-events:none}
@@ -36,7 +26,7 @@ html[data-theme="light"] :is(.muted,.subtitle,.subtle,.helper-text,.card-descrip
 html[data-theme="light"] :is(a,button,input,select,textarea,summary){font-family:inherit}
 html[data-theme="light"] a{ text-underline-offset:3px }
 html[data-theme="light"] :is(a,button,input,select,textarea,summary,[role="button"]):focus-visible{
- outline:3px solid var(--ui-focus)!important;outline-offset:3px!important;
+ outline:3px solid var(--ui-focus)!important;
 }
 html[data-theme="light"] :is(.nav-shell,.ac-topbar,header.nav-shell){
  
@@ -56,7 +46,7 @@ html[data-theme="light"] :is(.card,.lp-course,.dlp97-card,.admin-card,.panel):ho
 /* Buttons and actions: flat, predictable, high-contrast. */
 html[data-theme="light"] :is(.btn-primary,.button-primary,.primary-btn,.dlp29-button-primary,.lp-btn-primary,.auth-submit,.primary-action){
  background:var(--ui-primary)!important;background-image:none!important;
- border-color:var(--ui-primary)!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
+ border-color:var(--ui-primary)!important;
  box-shadow:none!important;border-radius:10px!important;
 }
 html[data-theme="light"] :is(.btn-primary,.button-primary,.primary-btn,.dlp29-button-primary,.lp-btn-primary,.auth-submit,.primary-action):hover{
@@ -68,7 +58,7 @@ html[data-theme="light"] :is(.btn-secondary,.button-secondary,.secondary-btn,.lp
 }
 html[data-theme="light"] :is(.badge,.status-pill,.tag,.chip,.eyebrow){box-shadow:none!important;background-image:none!important}
 html[data-theme="light"] :is(.progress-track,.track){background:#e1e7f1!important;background-image:none!important}
-html[data-theme="light"] :is(.progress-fill,.progress-bar .fill,.track .fill){background:var(--ui-accent)!important;background-image:none!important}
+html[data-theme="light"] :is(.progress-fill,.progress-bar .fill,.track .fill){background-image:none!important}
 html[data-theme="light"] :is(input:not([type="checkbox"]):not([type="radio"]),textarea,select){
  color:var(--ui-ink);background:#fff;border-color:var(--ui-control-stroke);max-width:100%;
 }
@@ -1559,7 +1549,7 @@ html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-secondary,.bt
 html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-filter,.cap-track,.prompt-chip,.tutor-mode-button,.tutor-toolbar-btn) {border-radius:12px!important;transition:background .2s ease,transform .2s var(--g-ease),border-color .2s ease!important}
 html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-filter.active,.cap-track.active,.tutor-mode-button[aria-pressed="true"]) {background:linear-gradient(125deg,#304f96,#283b79)!important;color:#fff!important;-webkit-text-fill-color:#fff!important}
 html[data-theme="light"] body[data-gradient-public="true"] :is(.dlp97-filters,.lp-pathfinder-layout) :is(input,select) {background:#f9fbff!important;border:1px solid #a8bcd9!important;color:#1d2f4c!important}
-html[data-theme="light"] body[data-gradient-public="true"] :is(button,a[role="button"],.lp-course-cta,.dlp97-primary):focus-visible {outline:3px solid #c56712!important;outline-offset:3px!important}
+html[data-theme="light"] body[data-gradient-public="true"] :is(button,a[role="button"],.lp-course-cta,.dlp97-primary):focus-visible {outline:3px solid #c56712!important}
 @media(hover:hover) and (prefers-reduced-motion:no-preference) {
   html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-feature,.lp-step,.cap-panel,.ref-card):hover {transform:translateY(-3px);box-shadow:0 17px 32px rgba(28,54,96,.12)!important}
 }
@@ -1768,12 +1758,9 @@ html[data-theme="light"] body[data-gradient-public="true"] :is(.lp-course,.dlp97
 /* DALP premium visual system, 2026-11-03.
  * Final global theme on all routes. Protected workspace navigation has a local, scoped layer.
  * Shared tokens are the authoritative surface/interaction palette. */
-:root,html,html[data-theme="light"]{
- --ui-canvas:#F9F7F6;--ui-paper:#fff;--ui-ink:#102030;--ui-strong:#101831;
- --ui-muted:#596783;--ui-stroke:#e2e7f2;--ui-stroke-strong:#ccd5e7;--ui-control-stroke:#8595ae;
- --ui-primary:#35637C;--ui-primary-hover:#274F66;--ui-primary-soft:#EDF4F4;
- --ui-accent:#286b9c;--ui-accent-hover:#1d5279;--ui-accent-soft:#e8f5ff;--ui-accent-border:#cce7fa;
- --ui-coral:#B85E3B;--ui-gold:#956018;--ui-focus:#6590A4;
+:root,html,html[data-theme="light"]{--ui-paper:#fff;--ui-strong:#101831;
+ --ui-muted:#596783;--ui-stroke:#e2e7f2;--ui-stroke-strong:#ccd5e7;--ui-control-stroke:#8595ae;--ui-primary-soft:#EDF4F4;
+ --ui-accent:#286b9c;--ui-accent-hover:#1d5279;--ui-accent-soft:#e8f5ff;--ui-accent-border:#cce7fa;--ui-gold:#956018;--ui-focus:#6590A4;
  --ui-night:#161b38;--ui-nav-ink:#26365a;--ui-primary-strong:#274F66;
  --ui-surface-soft:#f8f9fd;--ui-content-width:1320px;
  --ui-easing:cubic-bezier(.2,.75,.25,1);
@@ -1821,7 +1808,7 @@ html[data-theme="light"] body.auth-page .auth-tab{border-radius:11px!important;f
 html[data-theme="light"] body.auth-page .auth-tab.active{background:#fff!important;color:#35637C!important;box-shadow:0 4px 14px rgba(32,63,88,.1)!important}
 html[data-theme="light"] body.auth-page .auth-field{margin-bottom:19px}
 html[data-theme="light"] body.auth-page .auth-field label{font-size:12px;color:#26334e!important}
-html[data-theme="light"] body.auth-page .auth-field input{height:52px!important;background:#fbfcff!important;border:1px solid #dce2f0!important;border-radius:13px!important;font-size:14px!important;padding:0 16px!important}
+html[data-theme="light"] body.auth-page .auth-field input{height:52px!important;border:1px solid #dce2f0!important;border-radius:13px!important;font-size:14px!important;padding:0 16px!important}
 html[data-theme="light"] body.auth-page .auth-field input:focus{border-color:#35637C!important;box-shadow:0 0 0 4px #E9F2F3!important}
 html[data-theme="light"] body.auth-page .auth-submit{height:52px!important;border-radius:14px!important;font-size:14px!important;letter-spacing:.01em}
 html[data-theme="light"] body.auth-page .auth-account-note{border-radius:16px!important;background:#F9F7F6!important;border-color:#E9F2F3!important}

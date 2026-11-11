@@ -9,7 +9,7 @@ body.dlx-rebuilt[data-responsive-page="practice"] .pc-wrap{width:min(1500px,calc
 body.dlx-rebuilt[data-responsive-page="practice"] .pc-hero{margin:22px 0 20px!important;border-radius:24px!important;padding:clamp(23px,3.6vw,48px)!important;background:radial-gradient(circle at 90% 10%,rgba(246,146,104,.17),transparent 34%),linear-gradient(124deg,#12364b,#1e5165 70%,#346b71)!important}
 body.dlx-rebuilt[data-responsive-page="practice"] .pc-hero>p:first-child{font-size:.76rem;letter-spacing:.02em;color:#dceff1!important}
 body.dlx-rebuilt[data-responsive-page="practice"] .pc-hero>p:first-child a{color:#f5fafa!important;font-weight:750;text-decoration:underline;text-decoration-color:#b7d4d470;text-underline-offset:4px}
-body.dlx-rebuilt[data-responsive-page="practice"] .pc-hero h1{font-size:clamp(2rem,4vw,3.6rem)!important;line-height:1.09!important;letter-spacing:-.06em!important;margin:10px 0 14px!important;color:#fff!important}
+body.dlx-rebuilt[data-responsive-page="practice"] .pc-hero h1{font-size:clamp(2rem,4vw,3.6rem)!important;line-height:1.09!important;letter-spacing:-.06em!important;margin:10px 0 14px!important}
 body.dlx-rebuilt[data-responsive-page="practice"] .pc-hero>p:not(:first-child){max-width:910px;font-size:clamp(.83rem,1.2vw,.96rem);line-height:1.75;color:#e3f2f3!important}
 body.dlx-rebuilt[data-responsive-page="practice"] .arena-hero-steps{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0 0;padding:0;list-style:none}
 body.dlx-rebuilt[data-responsive-page="practice"] .arena-hero-steps li{min-height:40px;display:flex;align-items:center;gap:9px;padding:9px 13px;background:#ffffff12;border:1px solid #ffffff30;border-radius:10px;color:#eff9f8!important;font-size:.77rem;line-height:1.35;font-weight:700;backdrop-filter:blur(6px)}
@@ -603,7 +603,7 @@ html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] {
   --ap-orange:#ed8552;--ap-cloud:#f4f9fa;--ap-border:#d7e5e9;
   --ap-focus:#e9844d;--ap-shadow:0 16px 44px rgba(17,57,74,.09);
 }
-html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .pc-wrap{width:min(1460px,calc(100% - 44px))!important;max-width:1460px!important;}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .pc-wrap{width:min(1460px,calc(100% - 44px))!important;}
 html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .arena-subject-launcher{margin-bottom:14px!important;}
 html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .hub-topbar{margin-bottom:14px!important;}
 html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .pc-layout{display:block!important;width:100%!important;max-width:100%!important;}
@@ -616,7 +616,7 @@ html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .pc-detail{
 html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .pc-detail::before{content:"";display:block!important;width:66px;height:4px;border-radius:12px;background:linear-gradient(90deg,#ef935e,#267e79);margin:0 0 18px;}
 html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail>.pc-overline{display:inline-flex!important;align-items:center;letter-spacing:.11em!important;font-weight:850!important;font-size:.68rem!important;text-transform:uppercase;color:#276e70!important;margin:0 0 8px!important;}
 html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail>h2{font-size:clamp(1.4rem,2.2vw,2.25rem)!important;line-height:1.18!important;letter-spacing:-.045em!important;font-weight:850!important;color:var(--ap-ink)!important;max-width:900px!important;margin:0 0 12px!important;}
-html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail>.pc-question{background:#f2f8f8!important;border:1px solid #d8e8e8!important;border-left:4px solid var(--ap-teal)!important;border-radius:13px!important;padding:17px 20px!important;font-size:.94rem!important;line-height:1.7!important;color:#264a58!important;box-shadow:none!important;}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail>.pc-question{background:#f2f8f8!important;border:1px solid #d8e8e8!important;border-left:4px solid var(--ap-teal)!important;border-radius:13px!important;padding:17px 20px!important;font-size:.94rem!important;line-height:1.7!important;color:#264a58!important;}
 
 
 
@@ -788,13 +788,10 @@ html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] :is(.ide-resu
    Historical public-experience.css pinned the editor, right result card, grid rows,
    and input host to 410–575px. Use #practiceDetail specificity to undo those
    obsolete layout constraints without changing the execution engines. */
-html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail .ide-shell {
-  height:auto!important;min-height:0!important;overflow:visible!important;
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail .ide-shell {min-height:0!important;
 }
-html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail .ide-content {
-  display:grid!important;grid-template-columns:minmax(0,1.1fr) minmax(285px,.9fr)!important;
-  grid-template-rows:auto!important;align-items:start!important;gap:14px!important;
-  padding:0!important;min-height:0!important;height:auto!important;max-height:none!important;
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail .ide-content {grid-template-columns:minmax(0,1.1fr) minmax(285px,.9fr)!important;gap:14px!important;
+  padding:0!important;min-height:0!important;height:auto!important;
 }
 html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail .ide-content > :is(.ide-primary,.ide-secondary) {
   grid-row:auto!important;grid-column:auto!important;align-self:start!important;
@@ -847,7 +844,7 @@ html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDeta
   grid-row:1!important;grid-column:1!important;overflow:hidden!important;
 }
 html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .ide-primary .arena-editor .arena-code {
-  grid-row:1!important;grid-column:2!important;position:relative!important;overflow:hidden!important;
+  grid-row:1!important;grid-column:2!important;overflow:hidden!important;
 }
 html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .ide-primary .arena-editor #arenaInputHost {
   position:relative!important;inset:auto!important;width:100%!important;overflow:hidden!important;
@@ -863,9 +860,6 @@ html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDeta
 html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail .ide-secondary .ide-panel:not([hidden]) {
   display:block!important;flex:none!important;height:auto!important;min-height:0!important;
   max-height:none!important;overflow:visible!important;padding:13px!important;
-}
-html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail .ide-secondary .ide-panel[hidden] {
-  display:none!important;
 }
 html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail .ide-secondary :is(.ide-welcome,.ide-calc-result,.ide-console,.ide-hints) {
   min-height:0!important;height:auto!important;max-height:none!important;margin:0!important;padding:14px!important;
@@ -1210,7 +1204,7 @@ html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDeta
 
 /* Editor mode switch — deliberate, legible selection states inside the workbench. */
 html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .ide-modes {
-  display:flex!important;flex-wrap:wrap!important;align-items:center!important;gap:7px!important;min-width:0!important;
+  display:flex!important;flex-wrap:wrap!important;align-items:center!important;min-width:0!important;
 }
 html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .ide-modes>button {
   display:inline-flex!important;align-items:center!important;gap:8px!important;
@@ -1759,9 +1753,6 @@ html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .arena-trust>
 }
 /* The optional narrow-screen runner now mirrors the selected language rather
    than showing SQL actions in Python. Keep it compact and clearly secondary. */
-html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail .arena-mobile-action{
- display:none!important;
-}
 @media(max-width:650px){
  html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail .arena-mobile-action{
   display:grid!important;grid-template-columns:minmax(0,1fr) auto minmax(0,1.22fr)!important;
