@@ -1,5 +1,6 @@
 /* Data Learning Path tutor. Only this serverless function sees AI credentials. */
 import { instructionFor, allowedTopics, resourcesFor } from '../lib/tutor-context.js';
+import {appContextFor, appResourceFor} from '../lib/tutor-app-knowledge.js';
 import {readServerToken, verifyAccount} from '../lib/server-auth.js';
 
 const buckets = new Map();
@@ -44,7 +45,7 @@ function allow(userId){
 }
 async function requestModel(config,question,history,topic){
  const headers={'Content-Type':'application/json','Authorization':`Bearer ${config.key}`};
- const instructions=instructionFor(topic);
+ const instructions=instructionFor(topic)+appContextFor(question,topic);
  const input=[...history,{role:'user',content:question}];
  const groq=config.name==='groq';
  const url=groq?'https://api.groq.com/openai/v1/chat/completions':'https://api.openai.com/v1/responses';
@@ -80,7 +81,10 @@ export default async function handler(req,res){
  if(!allow(verified.userId))return reply(res,429,{error:'Tutor request limit reached. Try again later or use the offline guide.',code:'app_limit'},{'Retry-After':'60'});
  try{
   const answer=await requestModel(config,question.trim(),history,topic);
-  return reply(res,200,{answer,provider:config.name,model:config.model,topic,resources:resourcesFor(topic).map(x=>({title:x.title,href:x.href})),disclaimer:'AI assistance is not a course grade or capstone review.'});
+  const appResource=appResourceFor(question,topic);
+  const resources=[...resourcesFor(topic).map(x=>({title:x.title,href:x.href}))];
+  if(appResource&&!resources.some(x=>x.href===appResource.href))resources.push(appResource);
+  return reply(res,200,{answer,provider:config.name,model:config.model,topic,resources,disclaimer:'AI assistance is not a course grade or capstone review.'});
  }catch(e){
   if(e?.kind==='rate_limit')return reply(res,429,{error:'The AI provider has reached its current usage limit. Try later or switch to the offline guide.',code:'provider_limit'},{'Retry-After':'60'});
   if(e?.kind==='setup')return reply(res,503,{error:'The AI provider configuration needs attention. Please use the offline guide for now.',code:'provider_setup'});

@@ -1,51 +1,77 @@
-# Excel · Week 04 · SUMIFS and COUNTIFS
+# Microsoft Excel · Week 04 · Cleaning text, dates, duplicates and errors
 
-> DataLearning practice brief — synthetic training material. Keep your original source file unchanged and make a copy for transformations.
+> DataLearning comprehensive practical lesson. Data is fictional. This worksheet supports the full in-app explanation and independent practice. Do not overwrite your raw source file.
 
 ## Learning outcome
-Aggregate records across multiple criteria
+Fix dirty source data while keeping an auditable record of what changed.
 
-## Before you begin: open the right file
-- Download: `learning_sales_2026.csv` in `/downloads/` of your DataLearning project.
-- Important fields / tables: order_id, order_date, region, category, quantity, unit_price_ngn, unit_cost_ngn, status, customer_id, channel.
-- Related video (opens within the lesson page): https://www.youtube.com/watch?v=PSNXoAs2FtQ&t=17175s.
-- Use Excel / Power BI / Tableau / Power Query for CSV sources, a SQLite-compatible reader for `.sqlite` files, or Python/pandas for code-based analysis as the week requires.
+## Where to begin in the tool
+Use Data > Remove Duplicates carefully, Data > Text to Columns, and helper columns beside the raw Table.
 
-## Understand the analytical method
-SUMIFS adds values that satisfy every specified condition. The first argument is the range of amounts to sum; each later pair supplies a criteria range and its criterion. COUNTIFS counts qualifying records instead of adding amounts. With Sales[Region] and Sales[Status], SUMIFS can calculate completed revenue in the East without first filtering rows manually. Every criteria range must cover the same number of records as the sum range.
 
-Text criteria need quotation marks, while operators used with cell values require concatenation: ">="&G2. Dates should be true Excel dates, not ambiguous text. SUMIFS evaluates conditions as AND; an OR condition usually needs separate results combined or a different approach. Validate formulas against a filtered subset and be explicit about whether missing values count as zero, omitted or unknown.
+## Source data dictionary · exact practice file fields
+The linked CSV uses these **exact header names**. Import the file before attempting examples. If an exercise uses a friendly or calculated name, map or create it first.
 
-## Guided walkthrough in the tool
-1. Create columns Region, Status, Date and Revenue in an Excel Table.
-2. Write a SUMIFS for completed East revenue and COUNTIFS for the corresponding order count.
-3. Add a date boundary with criteria such as ">="&DATE(2026,11,1).
-4. Filter the source to the same rows and reconcile total and count manually.
+`order_id, order_date, region, category, quantity, unit_price_ngn, unit_cost_ngn, status, customer_id, channel`
 
-### Additional hands-on instruction
-Use completed rows in the sales CSV. Calculate regional revenue with SUMIFS on a calculated line-revenue column.
+Available `status` values: `Cancelled`, `Completed`, `Returned`
 
-## Business case
-The finance team needs sales from East completed orders in November. Sum the Revenue field with Region = East, Status = Completed and dates inside the November window. Verify a few filtered orders manually. A surprisingly low total could mean dates were imported as text or “East ” contains a trailing space.
+The worked example may introduce derived fields or example tables. Create or rename those fields explicitly and verify results against these original source columns. Source status values are Cancelled, Completed, Returned.
+
+## Dataset and companion video
+- **Download the dataset:** [`learning_sales_2026.csv`](../learning_sales_2026.csv)
+- **Video companion:** https://www.youtube.com/watch?v=PSNXoAs2FtQ&t=17175s (the in-app Watch button opens the YouTube player when embedding is permitted).
+- **Reading order:** first identify controls, then read the four concepts, reproduce the example, try an independent case, and validate your evidence.
+
+## Explain the four essential concepts
+### 1. Whitespace
+TRIM removes extra spaces but must be checked before overwriting source values
+
+### 2. Text standardisation
+UPPER and PROPER create consistent labels without changing definitions
+
+### 3. Validation
+COUNTBLANK and conditional formatting reveal missing fields
+
+### 4. Duplicate review
+identify the genuine transaction key before deciding which records to exclude.
+
+## Why this skill matters
+Why this skill matters: An operations team exports inconsistent region spellings and occasional missing order dates from a point-of-sale device. The method is not only about producing an attractive figure. Validation: COUNTBLANK and conditional formatting reveal missing fields Duplicate review: identify the genuine transaction key before deciding which records to exclude. When preparing an output for another person, specify the reporting period, units, selection rules and known limitations. An analyst should be able to explain why a calculation or chart answers the actual business question and reproduce the result.
+
+## Guided practice · follow all four steps
+1. Open the correct workspace and identify the controls before entering commands. Use Data > Remove Duplicates carefully, Data > Text to Columns, and helper columns beside the raw Table. Keep an untouched source or backup version so a mistake is reversible.
+2. Apply the first two concepts on a small example: Whitespace — TRIM removes extra spaces but must be checked before overwriting source values Then test text standardisation with at least two contrasting inputs.
+3. Reproduce the worked example below exactly, then change one input or filter. Explain which value changes and why. After that, apply validation and inspect the output for errors.
+4. Complete the independent challenge: Create cleaned Region and Status fields, flag blank order dates and suspect amounts, then document how many rows changed. Before moving on, check the result against the acceptance criteria: A label of '  north ' becomes 'North'; missing dates remain flagged rather than silently fabricated.
+
+## Study this worked example
+```text
+=TRIM(A2)
+=PROPER(TRIM(C2))
+=IF(OR(D2="",D2<0),"Review","OK")
+```
+
+**How to interpret the output:** Cleaning text, dates, duplicates and errors begins with a practical objective: Fix dirty source data while keeping an auditable record of what changed. In Microsoft Excel, begin by understanding the workspace and the data rather than memorising a command. Whitespace: TRIM removes extra spaces but must be checked before overwriting source values Text standardisation: UPPER and PROPER create consistent labels without changing definitions Practice these ideas on a small synthetic sample first. Notice where the tool shows inputs, intermediate results and errors; then describe in plain language what each operation does and what it does not prove. Keep original records separate from working calculations so you can trace any surprising result back to its source.
+
+## Business case study
+Business case: An operations team exports inconsistent region spellings and occasional missing order dates from a point-of-sale device. Your role is to deliver a result that a manager can trust and act upon, not merely a screenshot. First describe what records are included and excluded. Next perform the method described in this week, and record any changes to the source. Use the worked example as a starting point but test it with different values; finally communicate one relevant observation, one limitation and a follow-up.
 
 ## Independent practical challenge
-Count rows where Region=West and Status=Won in Sales.
+Create cleaned Region and Status fields, flag blank order dates and suspect amounts, then document how many rows changed.
 
-**Deliverable:** Compare two region totals with a PivotTable and disclose that cancelled orders were excluded.
+**What you should hand in:** A label of '  north ' becomes 'North'; missing dates remain flagged rather than silently fabricated.
 
-## Verify your work
-A result of zero may mean no matching rows, a mismatched category spelling or amounts stored as text. Compare the criteria values to source rows before changing the formula.
+## Check your result (after attempting)
+Expected evidence: A label of '  north ' becomes 'North'; missing dates remain flagged rather than silently fabricated. To validate it, compare a small hand-checked sample with the final output, test an alternative filter or a changed input, and record any unmatched, missing or suspicious data. If results differ, review the original data, formula or query, aggregation grain and selected filters before sharing the report. Avoid this common error: Deleting repeated product rows even though different orders can contain the same product.
 
-- Confirm the number of records used and explain any excluded records.
-- Check date, currency, percentage and unit formats.
-- Recalculate at least one sample manually or using another method.
-- Separate observed results from assumptions about why they occurred.
-- Include source, period, filters and limitations in the presentation.
+**Common failure:** Deleting repeated product rows even though different orders can contain the same product.
 
-## Compare with the suggested solution (after attempting the task)
-=COUNTIFS(Sales[Region],"West",Sales[Status],"Won")
-
-**Common pitfall:** Using different-sized criteria ranges.
+## Reflect and explain the result
+- Which menu, editor or pane did you use, and why?
+- What is the data grain, metric definition or calculated rule?
+- Can a second learner reproduce your output using the dataset and your instructions?
+- Which number, chart or limitation must be mentioned when presenting your result?
 
 ---
-The lesson content and model answers are intended for study. Completing the worksheet does not automatically mark the app quiz or progress as complete.
+**Progress note:** Completing this worksheet is practice. Marking a week complete, passing an assessment and submitting an instructor-reviewed capstone are separate actions in DataLearning.

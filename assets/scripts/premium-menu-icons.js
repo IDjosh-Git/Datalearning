@@ -21,6 +21,17 @@
  function init(){const header=document.querySelector('.dalp-global-header');if(!header)return;
   const courseIcons=['book','table','database','chart','code','brain'];
   header.querySelectorAll('.dalp-course-option').forEach((link,i)=>{const slot=link.querySelector('.dalp-course-number');if(!slot||slot.querySelector('svg'))return;slot.textContent='';slot.classList.add('dalp-menu-symbol');slot.append(icon(courseIcons[i%courseIcons.length]));});
+  // Product / subject imagery for course choices. Keep earlier SVG fallback in the DOM.
+  header.querySelectorAll('.dalp-course-option').forEach(link=>{
+   const href=link.getAttribute('href')||'';
+   const slug=href.match(/(?:^|\/)courses\/(introduction|excel|sql|powerbi|tableau|powerquery|statistics|python|ai)\.html(?:[?#]|$)/)?.[1];
+   const slot=link.querySelector('.dalp-course-number');
+   if(!slug||!slot||slot.querySelector('img'))return;
+   const logo=document.createElement('img');logo.className='dl-course-logo';logo.dataset.brandCourse=slug;
+   const base=document.documentElement.dataset.base??(location.pathname.includes('/courses/')?'../':'');
+   logo.src=base+'assets/icons/icon-'+slug+'.svg';logo.width=24;logo.height=24;logo.alt='';
+   slot.append(logo);
+  });
   const toolIcons=['library','sparkle','code','flask','chat','target'];
   header.querySelectorAll('.dalp-tool-option').forEach((link,i)=>{const slot=link.querySelector('.dalp-tool-dot');if(!slot||slot.querySelector('svg'))return;slot.textContent='';slot.classList.add('dalp-menu-symbol');slot.append(icon(toolIcons[i%toolIcons.length]));});
   header.querySelectorAll('.dalp-nav-group>summary').forEach((summary,i)=>{if(summary.querySelector('.dalp-nav-summary-icon'))return;const span=document.createElement('span');span.className='dalp-nav-summary-icon';span.append(icon(i===0?'book':'sparkle'));summary.prepend(span);});

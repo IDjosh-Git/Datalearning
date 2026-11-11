@@ -1,51 +1,81 @@
-# Power Query · Week 08 · Group By and aggregate
+# Power Query · Week 08 · Grouping and reshaping dashboard-ready data
 
-> DataLearning practice brief — synthetic training material. Keep your original source file unchanged and make a copy for transformations.
+> DataLearning comprehensive practical lesson. Data is fictional. This worksheet supports the full in-app explanation and independent practice. Do not overwrite your raw source file.
 
 ## Learning outcome
-Reconcile totals and build summary tables
+Use Group By and Unpivot to produce tidy monthly KPI data for visual analytics.
 
-## Before you begin: open the right file
-- Download: `learning_sales_2026.csv` in `/downloads/` of your DataLearning project.
-- Important fields / tables: order_id, order_date, region, category, quantity, unit_price_ngn, unit_cost_ngn, status, customer_id, channel.
-- Related video (opens within the lesson page): https://www.youtube.com/watch?v=VO-MyVMKUC4.
-- Use Excel / Power BI / Tableau / Power Query for CSV sources, a SQLite-compatible reader for `.sqlite` files, or Python/pandas for code-based analysis as the week requires.
+## Where to begin in the tool
+Choose Transform > Group By then Unpivot Columns where months are incorrectly stored as headers.
 
-## Understand the analytical method
-Group By summarises rows at a selected grain, such as one row per Region with Sum of Revenue and Count Rows. You can add multiple aggregations to the same grouping. Before doing so, define what each result represents. Count Rows differs from a distinct count of OrderID if the source contains several lines per order. Where necessary, deduplicate a key in a separate query or use an explicit aggregation strategy.
 
-Aggregation is also a validation tool. Comparing summed revenue by category to the overall source total helps detect missing groups and transformation mistakes. Null categories should be handled deliberately so valid records are not lost. Group By can make a report much smaller, but once detail rows are aggregated you cannot inspect individual transactions in that output; preserve the original query for drill-through and audit.
+## Source data dictionary · exact practice file fields
+The linked CSV uses these **exact header names**. Import the file before attempting examples. If an exercise uses a friendly or calculated name, map or create it first.
 
-## Guided walkthrough in the tool
-1. Choose one grouping dimension (Region) and two measures (Revenue Sum, Row Count).
-2. Apply Group By and verify one row per unique Region.
-3. Compute the source revenue total independently and compare with the sum of grouped totals.
-4. Repeat with an additional dimension (Month) and describe how the output grain changed.
+`order_id, order_date, region, category, quantity, unit_price_ngn, unit_cost_ngn, status, customer_id, channel`
 
-### Additional hands-on instruction
-Group completed orders by region and compute total quantity, row count and average unit price.
+Available `status` values: `Cancelled`, `Completed`, `Returned`
 
-## Business case
-A source contains one row per order, and grouping by Region creates four summary rows. The total Sum of Amount across groups should still match the original total unless rows were filtered. Count Rows shows orders only if one source row actually represents one order. State the grain before choosing a Group By aggregation.
+The worked example may introduce derived fields or example tables. Create or rename those fields explicitly and verify results against these original source columns. Source status values are Cancelled, Completed, Returned.
+
+## Dataset and companion video
+- **Download the dataset:** [`learning_sales_2026.csv`](../learning_sales_2026.csv)
+- **Video companion:** https://www.youtube.com/watch?v=VO-MyVMKUC4 (the in-app Watch button opens the YouTube player when embedding is permitted).
+- **Reading order:** first identify controls, then read the four concepts, reproduce the example, try an independent case, and validate your evidence.
+
+## Explain the four essential concepts
+### 1. Group By
+returns one row per chosen category with sums or counts
+
+### 2. Multiple aggregations
+distinguish orders, revenue and distinct customer metrics
+
+### 3. Unpivot
+converts monthly columns into Month and Value rows
+
+### 4. Tidy output
+each field must have one well-defined meaning for charting.
+
+## Why this skill matters
+Why this skill matters: A Power BI developer needs a consistent fact table that supports month slicers and region charts. The method is not only about producing an attractive figure. Unpivot: converts monthly columns into Month and Value rows Tidy output: each field must have one well-defined meaning for charting. When preparing an output for another person, specify the reporting period, units, selection rules and known limitations. An analyst should be able to explain why a calculation or chart answers the actual business question and reproduce the result.
+
+## Guided practice · follow all four steps
+1. Open the correct workspace and identify the controls before entering commands. Choose Transform > Group By then Unpivot Columns where months are incorrectly stored as headers. Keep an untouched source or backup version so a mistake is reversible.
+2. Apply the first two concepts on a small example: Group By — returns one row per chosen category with sums or counts Then test multiple aggregations with at least two contrasting inputs.
+3. Reproduce the worked example below exactly, then change one input or filter. Explain which value changes and why. After that, apply unpivot and inspect the output for errors.
+4. Complete the independent challenge: Make a long-format monthly revenue table and sketch a trend chart and regional KPI panel using it. Before moving on, check the result against the acceptance criteria: Summing the tidy output must reproduce the source figures; each Month value should be a valid period.
+
+## Study this worked example
+```text
+Group by Region → Sum Revenue, Count Rows
+Unpivot Jan,Feb,Mar columns → Month,Revenue rows
+```
+
+**How to interpret the output:** Grouping and reshaping dashboard-ready data begins with a practical objective: Use Group By and Unpivot to produce tidy monthly KPI data for visual analytics. In Power Query, begin by understanding the workspace and the data rather than memorising a command. Group By: returns one row per chosen category with sums or counts Multiple aggregations: distinguish orders, revenue and distinct customer metrics Practice these ideas on a small synthetic sample first. Notice where the tool shows inputs, intermediate results and errors; then describe in plain language what each operation does and what it does not prove. Keep original records separate from working calculations so you can trace any surprising result back to its source.
+
+## Business case study
+Business case: A Power BI developer needs a consistent fact table that supports month slicers and region charts. Your role is to deliver a result that a manager can trust and act upon, not merely a screenshot. First describe what records are included and excluded. Next perform the method described in this week, and record any changes to the source. Use the worked example as a starting point but test it with different values; finally communicate one relevant observation, one limitation and a follow-up.
 
 ## Independent practical challenge
-If East has ₦2,000 and ₦3,500 in paid sales, what is its grouped revenue?
+Make a long-format monthly revenue table and sketch a trend chart and regional KPI panel using it.
 
-**Deliverable:** Check that aggregate totals match the ungrouped dataset after the same filter.
+**What you should hand in:** Summing the tidy output must reproduce the source figures; each Month value should be a valid period.
 
-## Verify your work
-An aggregation should not change the grand total when groups partition the same records and the same measure is used. Investigate missing, excluded or duplicated categories.
+## Check your result (after attempting)
+Expected evidence: Summing the tidy output must reproduce the source figures; each Month value should be a valid period. To validate it, compare a small hand-checked sample with the final output, test an alternative filter or a changed input, and record any unmatched, missing or suspicious data. If results differ, review the original data, formula or query, aggregation grain and selected filters before sharing the report. Avoid this common error: Reporting counts of rows as distinct orders in a dataset containing multiple lines per order.
 
-- Confirm the number of records used and explain any excluded records.
-- Check date, currency, percentage and unit formats.
-- Recalculate at least one sample manually or using another method.
-- Separate observed results from assumptions about why they occurred.
-- Include source, period, filters and limitations in the presentation.
+**Common failure:** Reporting counts of rows as distinct orders in a dataset containing multiple lines per order.
 
-## Compare with the suggested solution (after attempting the task)
-₦5,500.
+## Reflect and explain the result
+- Which menu, editor or pane did you use, and why?
+- What is the data grain, metric definition or calculated rule?
+- Can a second learner reproduce your output using the dataset and your instructions?
+- Which number, chart or limitation must be mentioned when presenting your result?
 
-**Common pitfall:** Summing an aggregated table after a fanout join.
+## Dashboard design reference
+![Example Power Query dashboard layout](../../assets/images/dashboard-samples/powerquery-dashboard-wireframe.svg)
+
+Study the KPI strip, timeline, ranking, filters and notes. It is an illustrative wireframe, not a working dashboard or calculated analysis.
 
 ---
-The lesson content and model answers are intended for study. Completing the worksheet does not automatically mark the app quiz or progress as complete.
+**Progress note:** Completing this worksheet is practice. Marking a week complete, passing an assessment and submitting an instructor-reviewed capstone are separate actions in DataLearning.

@@ -1,51 +1,74 @@
-# Introduction · Week 01 · The analyst mindset
+# Data Analysis · Week 01 · The data analyst's workspace and way of thinking
 
-> DataLearning practice brief — synthetic training material. Keep your original source file unchanged and make a copy for transformations.
+> DataLearning comprehensive practical lesson. Data is fictional. This worksheet supports the full in-app explanation and independent practice. Do not overwrite your raw source file.
 
 ## Learning outcome
-Convert ambiguous requests into measurable questions
+Learn the full analysis workflow and recognise the interfaces analysts commonly use before specialising.
 
-## Before you begin: open the right file
-- Download: `kiosk_week.csv` in `/downloads/` of your DataLearning project.
-- Important fields / tables: date, day, units_sold, price_per_meal, unit_cost_per_meal, daily_fixed_cost, weather.
-- Related video (opens within the lesson page): https://www.youtube.com/watch?v=PSNXoAs2FtQ&t=70s.
-- Use Excel / Power BI / Tableau / Power Query for CSV sources, a SQLite-compatible reader for `.sqlite` files, or Python/pandas for code-based analysis as the week requires.
+## Where to begin in the tool
+Open a spreadsheet or supplied dataset viewer, locate file tabs, fields and rows, and identify where Excel, SQL and BI fit.
 
-## Understand the analytical method
-A data analyst does not start with a chart. Start by translating a decision into a question that can be answered with observed data. “Sales are bad” is a feeling; “Which region had a lower net revenue this month than last month, adjusted for returns?” specifies a measure, grouping, comparison period and adjustment. Ask who will use the result and what action they could take. Write down the population and the meaning of each metric before touching the data.
 
-The same number can tell several stories if its definition changes. Revenue can mean gross sales, net sales after returns, or collected cash. A 10% drop in net revenue might arise from fewer orders, smaller order sizes or more refunds. These are different operational problems requiring different actions. A good analysis separates the observation (what happened) from a proposed explanation (why it happened), then looks for evidence that tests the explanation.
+## Source data dictionary · exact practice file fields
+The linked CSV uses these **exact header names**. Import the file before attempting examples. If an exercise uses a friendly or calculated name, map or create it first.
 
-## Guided walkthrough in the tool
-1. Interview the stakeholder: name the decision, audience, time period and acceptable level of detail.
-2. Rewrite the request as one primary measurable question and two diagnostic sub-questions.
-3. List the minimum fields needed: transaction date, region, order ID, amount and refund amount.
-4. Sketch the comparison table before calculating it: region, previous month, current month, change and notes.
+`date, day, units_sold, price_per_meal, unit_cost_per_meal, daily_fixed_cost, weather`
 
-### Additional hands-on instruction
-In the kiosk data, distinguish an observable revenue change from a hypothesis about staffing or pricing.
+The worked example may introduce derived fields or example tables. Create or rename those fields explicitly and verify results against these original source columns.
 
-## Business case
-A regional sales manager sees a decline but asks for “a sales chart”. Start with monthly net sales and order count by region. If revenue fell while order count stayed steady, investigate basket size or discounts. If both fell, investigate demand or fulfilment. The chart should lead to a testable next question, not a prematurely confident explanation.
+## Dataset and companion video
+- **Download the dataset:** [`kiosk_week.csv`](../kiosk_week.csv)
+- **Video companion:** https://www.youtube.com/watch?v=PSNXoAs2FtQ&t=70s (the in-app Watch button opens the YouTube player when embedding is permitted).
+- **Reading order:** first identify controls, then read the four concepts, reproduce the example, try an independent case, and validate your evidence.
+
+## Explain the four essential concepts
+### 1. Business questions
+start from the decision and identify a measurable outcome
+
+### 2. Tool roles
+Excel handles small tables, SQL retrieves data, and BI tools show dashboards
+
+### 3. Data lifecycle
+collect, clean, analyse, visualise and communicate
+
+### 4. Evidence
+distinguish observation, hypotheses and decisions.
+
+## Why this skill matters
+Why this skill matters: A new analyst is asked why last month's sales dipped and needs a safe, structured investigation plan. The method is not only about producing an attractive figure. Data lifecycle: collect, clean, analyse, visualise and communicate Evidence: distinguish observation, hypotheses and decisions. When preparing an output for another person, specify the reporting period, units, selection rules and known limitations. An analyst should be able to explain why a calculation or chart answers the actual business question and reproduce the result.
+
+## Guided practice · follow all four steps
+1. Open the correct workspace and identify the controls before entering commands. Open a spreadsheet or supplied dataset viewer, locate file tabs, fields and rows, and identify where Excel, SQL and BI fit. Keep an untouched source or backup version so a mistake is reversible.
+2. Apply the first two concepts on a small example: Business questions — start from the decision and identify a measurable outcome Then test tool roles with at least two contrasting inputs.
+3. Reproduce the worked example below exactly, then change one input or filter. Explain which value changes and why. After that, apply data lifecycle and inspect the output for errors.
+4. Complete the independent challenge: Write a focused business question and identify which tools and dataset fields can answer it. Before moving on, check the result against the acceptance criteria: Your question names a metric, comparison period, audience and decision that could follow.
+
+## Study this worked example
+```text
+Question: 'Which region had the largest decline in paid revenue this quarter?'
+Plan: data source → quality check → KPI → chart → explanation
+```
+
+**How to interpret the output:** The data analyst's workspace and way of thinking begins with a practical objective: Learn the full analysis workflow and recognise the interfaces analysts commonly use before specialising. In Data Analysis, begin by understanding the workspace and the data rather than memorising a command. Business questions: start from the decision and identify a measurable outcome Tool roles: Excel handles small tables, SQL retrieves data, and BI tools show dashboards Practice these ideas on a small synthetic sample first. Notice where the tool shows inputs, intermediate results and errors; then describe in plain language what each operation does and what it does not prove. Keep original records separate from working calculations so you can trace any surprising result back to its source.
+
+## Business case study
+Business case: A new analyst is asked why last month's sales dipped and needs a safe, structured investigation plan. Your role is to deliver a result that a manager can trust and act upon, not merely a screenshot. First describe what records are included and excluded. Next perform the method described in this week, and record any changes to the source. Use the worked example as a starting point but test it with different values; finally communicate one relevant observation, one limitation and a follow-up.
 
 ## Independent practical challenge
-Write a measurable question for a declining delivery service.
+Write a focused business question and identify which tools and dataset fields can answer it.
 
-**Deliverable:** Hand in a one-sentence question, its measure, timeframe and two alternative explanations.
+**What you should hand in:** Your question names a metric, comparison period, audience and decision that could follow.
 
-## Verify your work
-A measurable question identifies a unit of comparison, a calculation and a time boundary. Before presenting a cause, test alternative explanations and any missing data. Write one sentence saying what the current figures cannot establish.
+## Check your result (after attempting)
+Expected evidence: Your question names a metric, comparison period, audience and decision that could follow. To validate it, compare a small hand-checked sample with the final output, test an alternative filter or a changed input, and record any unmatched, missing or suspicious data. If results differ, review the original data, formula or query, aggregation grain and selected filters before sharing the report. Avoid this common error: Opening a dashboard tool before checking what is being measured and why.
 
-- Confirm the number of records used and explain any excluded records.
-- Check date, currency, percentage and unit formats.
-- Recalculate at least one sample manually or using another method.
-- Separate observed results from assumptions about why they occurred.
-- Include source, period, filters and limitations in the presentation.
+**Common failure:** Opening a dashboard tool before checking what is being measured and why.
 
-## Compare with the suggested solution (after attempting the task)
-Which region had the largest month-on-month decline in on-time delivery rate?
-
-**Common pitfall:** Treating correlation as proof of cause.
+## Reflect and explain the result
+- Which menu, editor or pane did you use, and why?
+- What is the data grain, metric definition or calculated rule?
+- Can a second learner reproduce your output using the dataset and your instructions?
+- Which number, chart or limitation must be mentioned when presenting your result?
 
 ---
-The lesson content and model answers are intended for study. Completing the worksheet does not automatically mark the app quiz or progress as complete.
+**Progress note:** Completing this worksheet is practice. Marking a week complete, passing an assessment and submitting an instructor-reviewed capstone are separate actions in DataLearning.

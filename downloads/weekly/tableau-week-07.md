@@ -1,51 +1,74 @@
-# Tableau · Week 07 · Table calculations
+# Tableau · Week 07 · Table calculations for running totals and comparisons
 
-> DataLearning practice brief — synthetic training material. Keep your original source file unchanged and make a copy for transformations.
+> DataLearning comprehensive practical lesson. Data is fictional. This worksheet supports the full in-app explanation and independent practice. Do not overwrite your raw source file.
 
 ## Learning outcome
-Create running totals and percent of total
+Add running sums, ranks and percent-of-total calculations to an existing visual.
 
-## Before you begin: open the right file
-- Download: `learning_monthly_kpis.csv` in `/downloads/` of your DataLearning project.
-- Important fields / tables: month, region, net_sales_ngn, sales_target_ngn, gross_profit_ngn, order_count, late_shipments, returned_orders.
-- Related video (opens within the lesson page): https://www.youtube.com/watch?v=3_DeQdE25Bc.
-- Use Excel / Power BI / Tableau / Power Query for CSV sources, a SQLite-compatible reader for `.sqlite` files, or Python/pandas for code-based analysis as the week requires.
+## Where to begin in the tool
+Right-click the measure pill and select Quick Table Calculation; configure Compute Using explicitly.
 
-## Understand the analytical method
-Table calculations operate over the marks in the current view after much of the underlying query work has been completed. RUNNING_SUM builds a cumulative measure across ordered marks; a percent-of-total calculation divides a mark by the relevant visible total. These calculations depend on addressing and partitioning: the direction in which Tableau traverses marks and where it restarts.
 
-A running total across months should accumulate in chronological order. If the compute-using setting runs down Regions instead of across Months, the same formula can return a different answer. Filters can also alter the visible marks over which a table calculation operates. Validate the first, middle and final running totals against a hand-calculated list before using the chart to tell a business story.
+## Source data dictionary · exact practice file fields
+The linked CSV uses these **exact header names**. Import the file before attempting examples. If an exercise uses a friendly or calculated name, map or create it first.
 
-## Guided walkthrough in the tool
-1. Create monthly Revenue as a line or table view sorted chronologically.
-2. Add a Running Total quick table calculation.
-3. Inspect Compute Using and confirm that it addresses Month rather than an unintended dimension.
-4. Compare the first three running values and the final total with a manual sum.
+`month, region, net_sales_ngn, sales_target_ngn, gross_profit_ngn, order_count, late_shipments, returned_orders`
 
-### Additional hands-on instruction
-Create a running total over month and percent-of-total by region. Compare table direction settings.
+The worked example may introduce derived fields or example tables. Create or rename those fields explicitly and verify results against these original source columns.
 
-## Business case
-Revenue is 100 in January, 150 in February and 125 in March. A running total should display 100, 250 and 375. If Tableau computes along Regions instead of Months, it will produce a different sequence. Inspect the table calculation direction and compare the three displayed values against the manual totals.
+## Dataset and companion video
+- **Download the dataset:** [`learning_monthly_kpis.csv`](../learning_monthly_kpis.csv)
+- **Video companion:** https://www.youtube.com/watch?v=3_DeQdE25Bc (the in-app Watch button opens the YouTube player when embedding is permitted).
+- **Reading order:** first identify controls, then read the four concepts, reproduce the example, try an independent case, and validate your evidence.
+
+## Explain the four essential concepts
+### 1. Running totals
+accumulate values in displayed sort order
+
+### 2. Ranking
+compare marks with chosen partition and order
+
+### 3. Table calculation direction
+controls which neighbouring marks contribute
+
+### 4. Verification
+manually test the first three visible months before trusting the entire line.
+
+## Why this skill matters
+Why this skill matters: A sales planner wants to track progress against a year-to-date target. The method is not only about producing an attractive figure. Table calculation direction: controls which neighbouring marks contribute Verification: manually test the first three visible months before trusting the entire line. When preparing an output for another person, specify the reporting period, units, selection rules and known limitations. An analyst should be able to explain why a calculation or chart answers the actual business question and reproduce the result.
+
+## Guided practice · follow all four steps
+1. Open the correct workspace and identify the controls before entering commands. Right-click the measure pill and select Quick Table Calculation; configure Compute Using explicitly. Keep an untouched source or backup version so a mistake is reversible.
+2. Apply the first two concepts on a small example: Running totals — accumulate values in displayed sort order Then test ranking with at least two contrasting inputs.
+3. Reproduce the worked example below exactly, then change one input or filter. Explain which value changes and why. After that, apply table calculation direction and inspect the output for errors.
+4. Complete the independent challenge: Build a running-revenue view and a rank by product category, then identify the addressing direction. Before moving on, check the result against the acceptance criteria: The cumulative sequence must be 10,25,37 for the sample; ranking should honour the intended metric.
+
+## Study this worked example
+```text
+RUNNING_SUM(SUM([Revenue]))
+January 10; February 15; March 12 → cumulative 10,25,37
+```
+
+**How to interpret the output:** Table calculations for running totals and comparisons begins with a practical objective: Add running sums, ranks and percent-of-total calculations to an existing visual. In Tableau, begin by understanding the workspace and the data rather than memorising a command. Running totals: accumulate values in displayed sort order Ranking: compare marks with chosen partition and order Practice these ideas on a small synthetic sample first. Notice where the tool shows inputs, intermediate results and errors; then describe in plain language what each operation does and what it does not prove. Keep original records separate from working calculations so you can trace any surprising result back to its source.
+
+## Business case study
+Business case: A sales planner wants to track progress against a year-to-date target. Your role is to deliver a result that a manager can trust and act upon, not merely a screenshot. First describe what records are included and excluded. Next perform the method described in this week, and record any changes to the source. Use the worked example as a starting point but test it with different values; finally communicate one relevant observation, one limitation and a follow-up.
 
 ## Independent practical challenge
-Calculate the cumulative sales for 12, 8 and 10, ordered January to March.
+Build a running-revenue view and a rank by product category, then identify the addressing direction.
 
-**Deliverable:** Explain what changes when the table calc is computed across versus down.
+**What you should hand in:** The cumulative sequence must be 10,25,37 for the sample; ranking should honour the intended metric.
 
-## Verify your work
-The final running total should match the eligible revenue total for the same filtered period. If it restarts unexpectedly, inspect partitioning and sort order.
+## Check your result (after attempting)
+Expected evidence: The cumulative sequence must be 10,25,37 for the sample; ranking should honour the intended metric. To validate it, compare a small hand-checked sample with the final output, test an alternative filter or a changed input, and record any unmatched, missing or suspicious data. If results differ, review the original data, formula or query, aggregation grain and selected filters before sharing the report. Avoid this common error: Using Table Down when the logical date order runs across columns.
 
-- Confirm the number of records used and explain any excluded records.
-- Check date, currency, percentage and unit formats.
-- Recalculate at least one sample manually or using another method.
-- Separate observed results from assumptions about why they occurred.
-- Include source, period, filters and limitations in the presentation.
+**Common failure:** Using Table Down when the logical date order runs across columns.
 
-## Compare with the suggested solution (after attempting the task)
-12, 20 and 30.
-
-**Common pitfall:** Using an incorrect table-calculation addressing direction.
+## Reflect and explain the result
+- Which menu, editor or pane did you use, and why?
+- What is the data grain, metric definition or calculated rule?
+- Can a second learner reproduce your output using the dataset and your instructions?
+- Which number, chart or limitation must be mentioned when presenting your result?
 
 ---
-The lesson content and model answers are intended for study. Completing the worksheet does not automatically mark the app quiz or progress as complete.
+**Progress note:** Completing this worksheet is practice. Marking a week complete, passing an assessment and submitting an instructor-reviewed capstone are separate actions in DataLearning.

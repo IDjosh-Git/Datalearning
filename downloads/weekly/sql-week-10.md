@@ -1,51 +1,95 @@
-# Sql · Week 10 · SQL validation
+# SQL and SQLite · Week 10 · SQL capstone: end-to-end analytical reporting dataset
 
-> DataLearning practice brief — synthetic training material. Keep your original source file unchanged and make a copy for transformations.
+> DataLearning comprehensive practical lesson. Data is fictional. This worksheet supports the full in-app explanation and independent practice. Do not overwrite your raw source file.
 
 ## Learning outcome
-Reconcile before presenting outputs
+Design, test and submit a repeatable SQL project for a complete business question.
 
-## Before you begin: open the right file
-- Download: `retail_practice.sqlite` in `/downloads/` of your DataLearning project.
-- Important fields / tables: customers(customer_id, customer_name, segment, region, signup_date), orders(order_id, order_date, customer_id, region, category, product, quantity, unit_price, unit_cost, discount_pct, status, sales_rep), targets(month_start, region, sales_target).
-- Related video (opens within the lesson page): https://www.youtube.com/watch?v=PSNXoAs2FtQ&t=8209s.
-- Use Excel / Power BI / Tableau / Power Query for CSV sources, a SQLite-compatible reader for `.sqlite` files, or Python/pandas for code-based analysis as the week requires.
+## Where to begin in the tool
+Start from the supplied SQLite database; inspect tables and document their keys and the reporting grain.
 
-## Understand the analytical method
-SQL validation asks whether a query’s answer can be trusted, not simply whether it runs successfully. Start with an expected output specification: grain, eligible population, formula and reporting period. Cross-check record counts and totals against a source extract or an independent query. Include unmatched keys, duplicate keys, null counts and boundary-date cases in the review.
 
-Reconciliation differences must be explained. A 1% variance can be acceptable under one documented definition and completely wrong under another. Build test cases for zero records, duplicated IDs, late-arriving transactions and currency inconsistencies. Keep a record of query version, dataset snapshot and assumptions so a reviewer can reproduce the numbers later. A final dashboard should never be the first place the metric is checked.
+## Source data dictionary · exact practice file fields
+The SQL database contains the following **real tables and columns**. Use these names in your queries rather than assuming fields that do not exist.
 
-## Guided walkthrough in the tool
-1. Write the specification and expected grain for three business measures.
-2. Create independent control queries for total rows, distinct IDs and total amount.
-3. Test known exceptions, including missing dates, duplicate keys and records at period boundaries.
-4. Prepare a validation log describing each difference, its cause and the resolution.
+- `customers (customer_id, customer_name, segment, region, signup_date)`
+- `orders (order_id, order_date, customer_id, region, category, product, quantity, unit_price, unit_cost, discount_pct, status, sales_rep)`
+- `targets (month_start, region, sales_target)`
 
-### Additional hands-on instruction
-Build a monthly revenue-by-region query and reconcile summed detail totals to the published summary.
+Available `status` values: `Completed`, `Returned`, `Cancelled`
 
-## Business case
-A monthly revenue query returns 3.2 million, but the finance export lists 3.1 million. Before changing the query, check differences in returns, currency, date cutoffs, status and duplicated joins. Build an exception table for unmatched transactions. The audit should explain the 0.1 million variance rather than silently making totals agree.
+The worked example may introduce derived fields or example tables. Create or rename those fields explicitly and verify results against these original source columns. Source status values are Completed, Returned, Cancelled.
+
+## Dataset and companion video
+- **Download the dataset:** [`retail_practice.sqlite`](../retail_practice.sqlite)
+- **Video companion:** https://www.youtube.com/watch?v=PSNXoAs2FtQ&t=8209s (the in-app Watch button opens the YouTube player when embedding is permitted).
+- **Reading order:** first identify controls, then read the four concepts, reproduce the example, try an independent case, and validate your evidence.
+
+## Explain the four essential concepts
+### 1. Database review
+document source columns, business rules and identifiers
+
+### 2. Analytical queries
+demonstrate filters, joins, aggregations, CTE and a window function
+
+### 3. Dashboard handoff
+export a tidy results table and illustrate suitable KPIs and charts
+
+### 4. Verification
+record count, revenue reconciliation, missing joins and query assumptions.
+
+## Why this skill matters
+Why this skill matters: A fictional retail chain requests a validated dataset and concise management insight pack from its transactional database. The method is not only about producing an attractive figure. Dashboard handoff: export a tidy results table and illustrate suitable KPIs and charts Verification: record count, revenue reconciliation, missing joins and query assumptions. When preparing an output for another person, specify the reporting period, units, selection rules and known limitations. An analyst should be able to explain why a calculation or chart answers the actual business question and reproduce the result.
+
+## Guided practice · follow all four steps
+1. Open the correct workspace and identify the controls before entering commands. Start from the supplied SQLite database; inspect tables and document their keys and the reporting grain. Keep an untouched source or backup version so a mistake is reversible.
+2. Apply the first two concepts on a small example: Database review — document source columns, business rules and identifiers Then test analytical queries with at least two contrasting inputs.
+3. Reproduce the worked example below exactly, then change one input or filter. Explain which value changes and why. After that, apply dashboard handoff and inspect the output for errors.
+4. Complete the independent challenge: Submit the SQL script, exported reporting dataset, validation notes and a dashboard mockup or results presentation. Before moving on, check the result against the acceptance criteria: An independent reviewer should rerun the SELECT queries and reproduce your metrics; provide screenshots of the editor and output.
+
+## Study this worked example
+```text
+Deliverables: .sql file containing queries + exported CSV
+KPI controls: completed total, distinct orders, return count, MoM delta
+```
+
+**How to interpret the output:** SQL capstone: end-to-end analytical reporting dataset begins with a practical objective: Design, test and submit a repeatable SQL project for a complete business question. In SQL and SQLite, begin by understanding the workspace and the data rather than memorising a command. Database review: document source columns, business rules and identifiers Analytical queries: demonstrate filters, joins, aggregations, CTE and a window function Practice these ideas on a small synthetic sample first. Notice where the tool shows inputs, intermediate results and errors; then describe in plain language what each operation does and what it does not prove. Keep original records separate from working calculations so you can trace any surprising result back to its source.
+
+## Business case study
+Business case: A fictional retail chain requests a validated dataset and concise management insight pack from its transactional database. Your role is to deliver a result that a manager can trust and act upon, not merely a screenshot. First describe what records are included and excluded. Next perform the method described in this week, and record any changes to the source. Use the worked example as a starting point but test it with different values; finally communicate one relevant observation, one limitation and a follow-up.
 
 ## Independent practical challenge
-How do you detect duplicate order IDs?
+Submit the SQL script, exported reporting dataset, validation notes and a dashboard mockup or results presentation.
 
-**Deliverable:** Export a stakeholder-ready table with definitions and one suggested chart.
+**What you should hand in:** An independent reviewer should rerun the SELECT queries and reproduce your metrics; provide screenshots of the editor and output.
 
-## Verify your work
-The final metric should reconcile with the independently calculated control for the same population and timeframe. When it does not, report the difference instead of concealing it.
+## Check your result (after attempting)
+Expected evidence: An independent reviewer should rerun the SELECT queries and reproduce your metrics; provide screenshots of the editor and output. To validate it, compare a small hand-checked sample with the final output, test an alternative filter or a changed input, and record any unmatched, missing or suspicious data. If results differ, review the original data, formula or query, aggregation grain and selected filters before sharing the report. Avoid this common error: Submitting only code with no analysis, no schema, no evidence and no conclusion.
 
-- Confirm the number of records used and explain any excluded records.
-- Check date, currency, percentage and unit formats.
-- Recalculate at least one sample manually or using another method.
-- Separate observed results from assumptions about why they occurred.
-- Include source, period, filters and limitations in the presentation.
+**Common failure:** Submitting only code with no analysis, no schema, no evidence and no conclusion.
 
-## Compare with the suggested solution (after attempting the task)
-GROUP BY order_id HAVING COUNT(*) > 1
+## Reflect and explain the result
+- Which menu, editor or pane did you use, and why?
+- What is the data grain, metric definition or calculated rule?
+- Can a second learner reproduce your output using the dataset and your instructions?
+- Which number, chart or limitation must be mentioned when presenting your result?
 
-**Common pitfall:** Accepting a plausible number without independent checks.
+## Dashboard design reference
+![Example SQL and SQLite dashboard layout](../../assets/images/dashboard-samples/sql-dashboard-wireframe.svg)
+
+Study the KPI strip, timeline, ranking, filters and notes. It is an illustrative wireframe, not a working dashboard or calculated analysis.
+
+## Management report presentation layout
+![Example management presentation storyboard](../../assets/images/dashboard-samples/sql-report-storyboard.svg)
+
+Follow the order: decision question, verified evidence, interpretation and recommended action.
+
+## Final Capstone Project · required note
+You have reached Week 10. Complete a reproducible end-to-end analysis and submit evidence for your instructor to review. Identify the audience and business question; document the source, cleaning, transformations and checks; present useful visuals and findings; and write recommendations with limitations.
+
+**Submission:** [Open your SQL and SQLite capstone submission page](../../capstone.html?course=sql). Sign in and synchronise all ten completed weeks before uploading. Attach your native project file and readable dashboard/report screenshots (up to four files; 12 MB per file, 32 MB total).
+
+**Rubric (100 points):** problem/objectives 25, data quality 20, technical implementation 20, evidence-based findings 20, communication/evidence 15. An instructor reviews each submission; 70/100 is the pass threshold. Never upload personal or confidential business information.
 
 ---
-The lesson content and model answers are intended for study. Completing the worksheet does not automatically mark the app quiz or progress as complete.
+**Progress note:** Completing this worksheet is practice. Marking a week complete, passing an assessment and submitting an instructor-reviewed capstone are separate actions in DataLearning.

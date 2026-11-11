@@ -1,16 +1,12 @@
-# DataLearning documentation — maintained release
+# DataLearning — current maintenance documents (11 November 2026)
 
-This directory contains documentation needed to maintain and deploy the current app, not historical release diaries.
+- [Current release](../CURRENT_RELEASE.md): deployed-source scope, feature notes and verification limitations.
+- [Clean-up and app-aware Tutor audit](LEAN_APP_CLEANUP_TUTOR_20261111.md): deletion evidence, preserved routes and Tutor guidance boundaries.
+- [Project file map](PROJECT_FILE_MAP.md): active directory responsibilities.
+- [Route inventory](SITE_ROUTE_MANIFEST.json): current pages and historical URL redirects.
+- [Database setup](SUPABASE_SETUP.txt): configuration and migration caution.
+- [Four-level curriculum blueprint](MASTER_FOUR_LEVEL_CURRICULUM_20261110.md): source-aligned teaching structure.
+- [Tool-to-report weekly lessons](TEN_WEEK_TOOL_TO_REPORT_LEARNING_20261111.md): 90-week teaching programme.
+- [Weekly resources and video companion](WEEKLY_PRACTICE_VIDEO_EDUCATOR_RELEASE_20261110.md): datasets, worksheets and embedded YouTube limits.
 
-- [Current release](../CURRENT_RELEASE.md) — release summary, checks and preview limitations.
-- [Cleanup and contrast audit](CLEANUP_AUDIT_20261110.md) — conservative stylesheet pruning and Practice Arena colour contract.
-- [Runtime file map](PROJECT_FILE_MAP.md) — maintained folder and asset responsibilities.
-- [Route manifest](SITE_ROUTE_MANIFEST.json) — published routes and compatibility pages.
-- [Supabase setup](SUPABASE_SETUP.txt) — configuration and historical migration guidance.
-- [Authenticated workspace](PRIVATE_WORKSPACE_REFINEMENT_20261110.md) — access gates and navigation checks.
-- [Practice Arena](PRACTICE_ARENA_PREMIUM_20261110.md) — controllers and exercise model.
-- [Comprehensive weekly guides](COMPREHENSIVE_WEEKLY_GUIDES_20261110.md) — learning content design.
-- [Learning Lab and Studio](STUDIO_LAB_PAGINATION_20261110.md) — current paging behaviour.
-- [Seven-path Academy](UNIFIED_ACADEMY_V3.md) — course structure and design.
-
-Check `tests/` and `package.json` for the maintained automated verification commands.
+This directory no longer contains historical UI release diaries or the superseded Python curriculum generation scripts.

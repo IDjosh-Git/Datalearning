@@ -1,46 +1,75 @@
-# Ai · Week 04 · AI-assisted Excel and Power Query
+# AI for Data Analysis · Week 04 · Generating and checking Excel formulas with AI
 
-> DataLearning practice brief — synthetic training material. Keep your original source file unchanged and make a copy for transformations.
+> DataLearning comprehensive practical lesson. Data is fictional. This worksheet supports the full in-app explanation and independent practice. Do not overwrite your raw source file.
 
 ## Learning outcome
-AI can suggest formulas or transformation steps but may invent fields and change business meaning.
+Use AI to draft formulas while personally verifying references and edge cases.
 
-## Before you begin: open the right file
-- Download: `learning_sales_quality_lab.csv` in `/downloads/` of your DataLearning project.
-- Important fields / tables: order_id, order_date, region, category, quantity, unit_price_ngn, unit_cost_ngn, status, customer_id, channel.
-- Related video (opens within the lesson page): https://www.youtube.com/watch?v=DLpz6V_4SpA&t=205s.
-- Use Excel / Power BI / Tableau / Power Query for CSV sources, a SQLite-compatible reader for `.sqlite` files, or Python/pandas for code-based analysis as the week requires.
-
-## Understand the analytical method
-AI can suggest formulas or transformation steps but may invent fields and change business meaning.
+## Where to begin in the tool
+Ask for the target Excel version, table fields, criteria and three test cases before accepting a generated formula.
 
 
+## Source data dictionary · exact practice file fields
+The linked CSV uses these **exact header names**. Import the file before attempting examples. If an exercise uses a friendly or calculated name, map or create it first.
 
-## Guided walkthrough in the tool
-1. Identify the input schema, grain and business metric.
-2. Apply the technique demonstrated in the lesson using the selected practice dataset.
-3. Reconcile the output with the source and document assumptions.
-4. Turn the result into a concise report with one defensible recommendation.
+`order_id, order_date, region, category, quantity, unit_price_ngn, unit_cost_ngn, status, customer_id, channel`
 
-### Additional hands-on instruction
-Provide the dirty sales CSV schema and request a Power Query cleanup plan; review each suggested transformation.
+Available `status` values: `Cancelled`, `Completed`, `Returned`, `complete`
 
-## Business case
-AI can suggest formulas or transformation steps but may invent fields and change business meaning.
+The worked example may introduce derived fields or example tables. Create or rename those fields explicitly and verify results against these original source columns. Source status values are Cancelled, Completed, Returned, complete.
+
+## Dataset and companion video
+- **Download the dataset:** [`learning_sales_quality_lab.csv`](../learning_sales_quality_lab.csv)
+- **Video companion:** https://www.youtube.com/watch?v=DLpz6V_4SpA&t=205s (the in-app Watch button opens the YouTube player when embedding is permitted).
+- **Reading order:** first identify controls, then read the four concepts, reproduce the example, try an independent case, and validate your evidence.
+
+## Explain the four essential concepts
+### 1. Structured references
+table column names are safer than hardcoded ranges
+
+### 2. Condition logic
+SUMIFS and IF must match business inclusion rules
+
+### 3. Lookup behaviour
+XLOOKUP should handle missing keys
+
+### 4. Testing
+compare generated output with a hand-calculated three-row sample.
+
+## Why this skill matters
+Why this skill matters: A finance analyst wants to accelerate spreadsheet construction without weakening controls. The method is not only about producing an attractive figure. Lookup behaviour: XLOOKUP should handle missing keys Testing: compare generated output with a hand-calculated three-row sample. When preparing an output for another person, specify the reporting period, units, selection rules and known limitations. An analyst should be able to explain why a calculation or chart answers the actual business question and reproduce the result.
+
+## Guided practice · follow all four steps
+1. Open the correct workspace and identify the controls before entering commands. Ask for the target Excel version, table fields, criteria and three test cases before accepting a generated formula. Keep an untouched source or backup version so a mistake is reversible.
+2. Apply the first two concepts on a small example: Structured references — table column names are safer than hardcoded ranges Then test condition logic with at least two contrasting inputs.
+3. Reproduce the worked example below exactly, then change one input or filter. Explain which value changes and why. After that, apply lookup behaviour and inspect the output for errors.
+4. Complete the independent challenge: Ask AI for a SUMIFS and XLOOKUP formula, then test both on a small synthetic table. Before moving on, check the result against the acceptance criteria: The Paid North result matches hand arithmetic; an unknown product ID returns an explicit missing value.
+
+## Study this worked example
+```text
+Prompt: 'Write an Excel SUMIFS formula for tblSales Revenue where Status=Paid and Region=North. Explain each argument and add a test.'
+```
+
+**How to interpret the output:** Generating and checking Excel formulas with AI begins with a practical objective: Use AI to draft formulas while personally verifying references and edge cases. In AI for Data Analysis, begin by understanding the workspace and the data rather than memorising a command. Structured references: table column names are safer than hardcoded ranges Condition logic: SUMIFS and IF must match business inclusion rules Practice these ideas on a small synthetic sample first. Notice where the tool shows inputs, intermediate results and errors; then describe in plain language what each operation does and what it does not prove. Keep original records separate from working calculations so you can trace any surprising result back to its source.
+
+## Business case study
+Business case: A finance analyst wants to accelerate spreadsheet construction without weakening controls. Your role is to deliver a result that a manager can trust and act upon, not merely a screenshot. First describe what records are included and excluded. Next perform the method described in this week, and record any changes to the source. Use the worked example as a starting point but test it with different values; finally communicate one relevant observation, one limitation and a follow-up.
 
 ## Independent practical challenge
-Provide the dirty sales CSV schema and request a Power Query cleanup plan; review each suggested transformation.
+Ask AI for a SUMIFS and XLOOKUP formula, then test both on a small synthetic table.
 
-**Deliverable:** Reject any suggestion that deletes exceptional records without documenting why.
+**What you should hand in:** The Paid North result matches hand arithmetic; an unknown product ID returns an explicit missing value.
 
-## Verify your work
-Reject any suggestion that deletes exceptional records without documenting why.
+## Check your result (after attempting)
+Expected evidence: The Paid North result matches hand arithmetic; an unknown product ID returns an explicit missing value. To validate it, compare a small hand-checked sample with the final output, test an alternative filter or a changed input, and record any unmatched, missing or suspicious data. If results differ, review the original data, formula or query, aggregation grain and selected filters before sharing the report. Avoid this common error: Pasting a formula whose workbook/table names do not exist, then assuming a #NAME? error is harmless.
 
-- Confirm the number of records used and explain any excluded records.
-- Check date, currency, percentage and unit formats.
-- Recalculate at least one sample manually or using another method.
-- Separate observed results from assumptions about why they occurred.
-- Include source, period, filters and limitations in the presentation.
+**Common failure:** Pasting a formula whose workbook/table names do not exist, then assuming a #NAME? error is harmless.
+
+## Reflect and explain the result
+- Which menu, editor or pane did you use, and why?
+- What is the data grain, metric definition or calculated rule?
+- Can a second learner reproduce your output using the dataset and your instructions?
+- Which number, chart or limitation must be mentioned when presenting your result?
 
 ---
-The lesson content and model answers are intended for study. Completing the worksheet does not automatically mark the app quiz or progress as complete.
+**Progress note:** Completing this worksheet is practice. Marking a week complete, passing an assessment and submitting an instructor-reviewed capstone are separate actions in DataLearning.

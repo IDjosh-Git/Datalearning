@@ -1,163 +1,27 @@
-# DataLearning — Comprehensive Weekly Practice & In-App YouTube Lessons (10 November 2026)
+## Course imagery refresh — November 11, 2026
 
-**Base:** Tool-to-Report Courses with standalone Data Career Path.
+- Course catalogue, course explorer, lesson hero/sidebar, progress cards, studio selection, and course dropdown use image-based identifiers instead of font glyphs.
+- Excel, Power BI and Tableau use locally bundled product-symbol images. Python and Power Query prefer the official images online, falling back to the local icon without breaking offline access. SQL, statistics, AI and data analysis use descriptive subject icons; no fictitious vendor association.
+- Brand use and links: `assets/icons/COURSE_ICON_SOURCES.md`.
+- Learner history, datasets, course IDs, tests, quizzes, capstone and Tutor unchanged.
 
-- Added dedicated, topic-relevant practice downloads and curated chapter-timestamped YouTube links for **all 90 weeks across nine courses**.
-- Created **10 additional synthetic CSV datasets**, with cleaning exceptions, business KPIs, experiments, statistics, customer cohorts, forecasting, operations and AI governance review.
-- Published **90 individual downloadable lesson worksheets** containing objectives, guided procedure, business case, independent challenge, quality checks and reference answers for core courses.
-- Expanded the 70 core lesson readers with subject-specific tool workflows and verification tasks; enhanced Python and AI without replacing their detailed mastery content.
-- Replaced the older video overlay with a premium, keyboard-accessible, mobile-responsive, click-to-load YouTube theatre. Accepts valid video/share/Shorts/live/embed/playlist URLs, chapter timestamps and arbitrary learner-pasted public URLs; includes a clear **Open on YouTube** fallback where embedding is restricted.
-- Retained all existing quiz IDs, completion tracking, SQL/Excel/Python practice engines, AI Tutor functionality, standalone Career Path and Supabase integrations. No migrations or live deployment.
-- Full deployment suite and dedicated 90-week media checks pass. Isolated video-modal visual and interaction tests passed at 390px and 1440px; real external video streaming was not available to verify in the isolated test environment.
+# Current DataLearning release — 11 November 2026
 
-Detailed handover: `docs/WEEKLY_PRACTICE_VIDEO_EDUCATOR_RELEASE_20261110.md`.
+## Active application
 
----
+Nine guided 10-week courses with datasets, weekly practice worksheets, linked lesson videos and design/report examples. A separate four-level Career Path, Practice Arena, Prompt Library, offline/live Tutor, learner progress and instructor-reviewed capstone submissions remain available. All existing progress keys and database tables are unchanged.
 
-# DataLearning — Premium Course Library & Learning Experience (10 November 2026)
+## App-aware Tutor
 
-**Base:** Four-Level Comprehensive Curriculum — complete project release.
+- One curated public guide (`assets/data/tutor-app-guide.json`) documents course navigation, the nine weekly syllabuses, resource downloads, Practice Arena limitations, videos, prompt library, progress, capstone eligibility, certificates and privacy.
+- The offline Tutor checks that guide before falling back to the existing knowledge library.
+- Authenticated live AI receives only relevant guide entries as its verified app context. Server credentials and private learner records are not included in this context.
+- This is retrieval/instruction grounding, **not** retraining, and provider configuration is still required for live AI.
 
-- Redesigned the Courses catalogue into a premium, clearly structured landing page: learning route, seven guided paths, four-level specialization explorer and direct progress entry.
-- Seven course cards now show focus area, weekly lessons, worked examples, practice quizzes, and local completion progress, plus a context-aware Start / Continue / Review link.
-- Added lightweight course filters for Data foundations, Dashboards & BI, Data preparation, and keyword search. Full 10-week outlines stay in accessible on-demand disclosures.
-- Seven core lesson readers now show progress and current week above the lesson; working Previous / Next buttons; improved reading hierarchy, lesson jump links, sidebar clarity, and mobile spacing.
-- The 31-module specialist explorer retains all four levels and mobile-friendly cases; its large curriculum comparison table is now optional and collapsed by default.
-- Applied consistent premium treatments to the Python and AI specialist courses, their roadmaps, and curriculum extensions; improved mobile link and card contrast.
-- Kept original 70 week identifiers and quizzes, 31 specialist modules, sign-in, grading, saved progress and Supabase database operations intact. No migrations or data changes.
-- Added `assets/styles/course-experience-premium.css`, `assets/styles/specialist-course-premium.css`, and `tests/premium-course-experience.mjs` with cache-versioned page references.
+## Cleanup
 
-**Verification:** `npm run verify:deployment` passed. Isolated Chromium render/interaction checks covered catalogue filters and course search, 31 specialist modules, weekly navigation and progress at 320/390/768/1440px without horizontal overflow. Python/AI resource layouts passed static responsive rendering at 390/768/1440px. Live browser navigation and authenticated Supabase operations were not verified in this environment.
+Old dated release diaries, obsolete curriculum generation sources and an orphan SVG were removed. All HTML routes and all actually referenced browser CSS/JS, lesson data and downloadable datasets remain intact. Retained database migrations and test files are build/maintenance resources, not duplicate learner pages. A fresh service-worker cache version discards old public caches on activation.
 
----
+## Validation
 
-# DataLearning — Clean Practice Arena / Premium Editor Cards (10 November 2026)
-
-- Removed more than 1,000 unused legacy CSS rule groups from Practice Arena without deleting required site-wide styles.
-- Introduced `assets/styles/practice-arena-refined.css` as the single design source for the Excel, SQL and Python editor cards and the optional Challenge Brief.
-- The Challenge Brief starts **closed** for every challenge; open with **Show brief** and close with **Hide brief**. The challenge title and question remain visible.
-- Premium three-column editor selector on desktop, stacked selections on mobile, with readable selected/hover/focus states.
-- Preserved existing compact editors, collapsible Excel/SQL data, results, answer feedback, challenge selector and execution engines.
-- Full deployment suite passed; isolated Chromium layout checks passed at 320/390/768/1440px. Live deployment and database not changed.
-
-Details: `docs/PRACTICE_ARENA_CLEAN_CSS_BRIEF_EDITOR_20261110.md`.
-
----
-
-# DataLearning — Compact, Content-Sized Practice Arena (10 November 2026)
-
-**Base:** DataLearning Premium Practice Arena Collapsible Editors, full-project ZIP.
-
-## Changes
-
-- Removed the old forced 410–575px row, editor-slot, worksheet and output heights that remained after hiding the Excel dataset.
-- Excel: worksheet stays collapsed by default, with Show table / Hide table; the formula editor, cell selection, populated extra rows and grading logic remain intact. The editor becomes taller only when the worksheet is expanded.
-- SQL: a compact 250px desktop / 210px mobile query area; the existing expand-editor state can use a taller 340px desktop editor. Query processing and SQLite restrictions are unchanged.
-- Python: more compact 250px desktop / 210px mobile code input, still resizable vertically; output adapts to text, with scrolling for long output.
-- Results and Answer: removed forced height and equal-column stretching. Results panel, feedback cards and worked answer now fit the content, with bounded scrolling for very long output/code.
-- Moved the challenge grading section out of the hidden Console tab and into the visible, independent Results card, so learners can read feedback without switching tabs.
-- Updated the Practice Arena stylesheet and controller URLs to avoid stale browser cache; no database schema, user records, challenge data or authentication logic changed.
-
-## Verification
-
-- `npm run verify:deployment` passed: Academy, security, Practice Arena (including new intrinsic-height regression test) and AI Tutor test suites.
-- Rendered layout/CSS checks at 320px, 390px, 768px and 1440px using headless Chromium and the project's full stylesheet order. The 1440px Excel editor is roughly 354px when collapsed and grows with the expanded worksheet. Results panel retains its own shorter intrinsic height.
-- Independent rendered-content check verified the Results card grows for longer grading text without horizontal overflow at 390px and 1440px.
-- **Limitation:** Full site navigation is blocked by the local browser environment, so visual testing used a faithful isolated layout fixture with the actual stylesheet stack. Verify the full deployed Practice Arena in-browser before publishing to all learners.
-
-## Deployment
-
-Deploy the entire ZIP. Test an Excel challenge (table collapsed/expanded), a SQL query, a Python run, a passed/failed assessment, and View worked answer on desktop and mobile. Live Supabase operation was not retested.
-
----
-
-# DataLearning — Practice Arena Premium Studio & Collapsible Datasets
-
-**Release:** 10 November 2026  
-**Base:** DataLearning Excel LET / Premium Challenges / Tutor Fix — complete site package
-
-## New in this release
-
-- **Excel Formula Studio:** the editable worksheet table starts **collapsed**. A labelled **Show table** button opens the cell grid on demand; **Hide table** collapses it without clearing the current formula or workbook values. The existing **Show extra rows** control still works inside the expanded worksheet. **Reset** returns the table to its collapsed state.
-- **SQL Query Studio:** the table-schema reference also starts collapsed, with accessible **Show schema / Hide schema** controls. Its normal read-only execution and Schema Inspector remain available.
-- **All three editors:** applied a modern two-column editor/output workspace on desktop with responsive stacked panels on mobile, more legible tools, distinct active results tabs, improved Python code and console surfaces, and consistent focus/hover contrast. Editors and results preserve their existing implementations and grading behavior.
-- **Answer and grading cards:** premium success/retry assessment surfaces, side-by-side expected/actual values where available, a refined on-demand hint/solution card, and a user-invoked **Copy answer** control. The worked solution still appears **only** after selecting **View worked answer**.
-- **Challenge navigation:** previous challenge-selector, learner history, authentication, content and Supabase wiring remain unchanged. A new route-scoped stylesheet and small presentation controller are used rather than changes to the database.
-
-## Validation and limitations
-
-- `npm run verify:deployment` passed (Academy, security, Practice Arena and AI Tutor suites).
-- New `tests/practice-arena-workspace-v2.mjs` verifies the generated Excel worksheet disclosure, hidden-by-default table, accessible toggle markup, separate formula bar, unchanged extra-row control, SQL schema disclosure and answer-card wiring.
-- CSS parsed without top-level errors; source JavaScript syntax checks passed.
-- Browser-based local visual verification **could not be completed**: this environment blocks Chromium navigation to both local and file URLs. Confirm desktop and mobile appearance, showing/hiding tables, and result rendering in a deployed preview before production launch.
-- No new SQL dialect or Excel calculation functions are added in this release. The existing `LET` evaluation stays available; Python execution and SQL runtime capabilities remain those of the previous package.
-
-## Deployment
-
-Deploy the **complete project ZIP**, not just the CSS. On the Practice Arena test each subject, expand/collapse Excel data, verify query output and challenge assessment, then check a worked answer. Live database behavior was not retested in this environment.
-
----
-
-# DataLearning — Private Sidebar Consolidation & Hover Contrast
-
-**Release:** 10 November 2026  
-**Base:** DataLearning Private Navigation Isolated Premium Diagnostics (full project)
-
-## What changed
-
-- Administration displays **Admin overview**, **Progress reports**, and **Review desk** as its three main destinations. The secondary **Reports & admin tools** list now includes Courses analysis, Connection check, and Progress sync; it does **not** repeat Progress reports.
-- The redundant **Student management** sidebar link was removed. **Admin overview → Learner management** remains a functional shortcut to `admin.html#admin-learners`; it continues to show the existing learner directory and management operations without deleting data or database permissions.
-- The Admin Overview view remains visually selected in the sidebar while the user drills into the directory through its shortcut. The independent Courses Analysis view and browser history handling remain unchanged.
-- A stronger, shared private-page interaction style overrides older conflicting legacy rules. Unselected sidebar links have readable light text on the dark navy background. Hovering or selecting a link shows a pale mint surface with dark navy text and matching icons. The **selected** page retains a distinct orange indicator while hovering a different entry does not create a second selected indicator.
-- Expandable menus, profile footer, dark Sign out button, topbar actions and light-background Admin Overview actions have appropriate foreground/background contrast, including keyboard focus. No font, authentication or Supabase controller changes.
-- Updated the private JS/CSS URL revision on all eight protected HTML pages to invalidate older browser asset versions. Updated the public service-worker cache namespace; HTML, CSS and JS remain network-only, and private data are never cached by this service worker.
-
-## Verification
-
-- `npm run verify:deployment` — Academy, security, Practice Arena and Tutor suites pass.
-- Headless Chromium with an isolated, simulated admin identity: eight desktop pages (1440px) checked for keyboard/hover contrast on sidebar navigation, expandable panels, profile controls and sign-out. Eight mobile pages (390px) checked for the shared drawer, one progress destination and no Learners sidebar entry. Selected/hover contrast combinations exceed WCAG AA 4.5:1 for the sampled controls.
-- These were **local UI tests**, not a live Supabase login, RLS audit or production deployment check.
-
-## Deploying
-
-Deploy the full ZIP over the previous version. Refresh an admin session and verify sidebar destinations, hover/selected labels and Admin Overview → Learner management. No database migrations or edits to existing learner records are included.
-
-## AI Tutor mobile drawer refinement — 10 November 2026
-
-- Redesigned the AI Tutor mobile tools panel with a premium navy/teal sticky header, a labelled **Close** button, clear learning-mode selection, tidier tool cards, and dark readable labels on light hover backgrounds.
-- Fixed the mobile drawer's stacking position so the close control is not hidden behind the site's global header. The backdrop now covers the full interface.
-- Improved keyboard and screen-reader behavior: dialog semantics only while open, initial focus on Close, trapped Tab navigation, Escape/backdrop close, restored trigger focus, and inert hidden controls.
-- Added the scoped `assets/styles/tutor-mobile-drawer.css` stylesheet after the legacy Tutor styles (while retaining the required public-search stylesheet as the final link) and regression assertions in `tests/tutor-mobile-drawer-premium.mjs`.
-- Kept desktop Tutor layout, live AI/offline learning modes, starter prompts, and saved progress behavior unchanged.
-
-## All-sidebar mobile polish and parity — 10 November 2026
-
-**Base:** Premium AI Tutor Mobile Sidebar release. This is a full-project update, not a standalone CSS patch.
-
-### Corrections
-
-- **Eight protected Academy and Administration routes:** one compact slide-in drawer (maximum 360px wide), premium navy-to-teal fixed header, legible **Close** button, scrollable Academy/Admin groups, visible backdrop, consistent focus/hover colour. Previous 100vw mobile sidebar rule is overridden; the menu no longer covers the entire tablet screen.
-- **Python and AI course lesson rails:** removed the old forced full-screen/mobile drawer geometry; introduced the same compact inset width, a contrasting labelled Close button, sticky header and backdrop. Existing lesson highlights, deep links, resource links and auth/progress handling are preserved.
-- **Practice Studio skills rail:** retains the appropriate inline expanding panel on phones, with a clearly labelled Close button and Escape-to-close; no unnecessary full-screen modal.
-- **AI Tutor:** retained the previously verified premium tools drawer, with its persistent Close action, independent scroll area, focus trapping and backdrop.
-- **Public mobile navigation and Study Pulse:** labelled their close controls and aligned hover colours with the overall light-on-dark/dark-on-light design system.
-- **Practice Arena challenge selector:** improved the close action on narrow screens without modifying the SQL, Excel or Python practice engines.
-- **Cache:** updated the public image-cache namespace; CSS, JS and HTML remain network-only in the service worker. Sidebar UI assets have release-specific URL revisions.
-
-### Validation
-
-- `npm run verify:deployment` (Academy, security, Arena and Tutor suites).
-- Browser interaction checks at 320px, 390px, 768px, 1024px and desktop 1280px, covering representative protected drawers, AI and Python lesson rails, and their Close/Escape actions.
-- Public navigation and Practice Studio interaction checks at 320px–1280px.
-- New `tests/sidebar-unified-audit.mjs` checks shared sidebar links, styles and close behaviour contracts across all relevant routes.
-
-**Limits:** Browser checks use isolated local UI fixtures. These do not substitute for authentication or real learner progress testing against live Supabase, nor deployment-specific mobile device testing. No data tables, RLS policies, API credentials or learner records were changed.
-
-## Four-Level Curriculum Expansion — 10 November 2026
-
-- Seven existing core courses and 70 week identifiers remain unchanged.
-- 31 specialist modules in four proficiency levels now appear on `catalog.html`, with a premium, mobile-responsive explorer, filters and learning modules.
-- Each existing course reader links to foundation, applied and advanced pathways.
-- The detailed source and instructor blueprint: `assets/data/master-learning-pathway.json`, `curriculum/build_master_pathway.py`, `docs/MASTER_FOUR_LEVEL_CURRICULUM_20261110.md`.
-- No database changes, credentials, or migration. Specialist content is instructional and does not grant progress/certificates without assessment.
-
+Use `npm run verify:deployment` and review `docs/LEAN_APP_CLEANUP_TUTOR_20261111.md`. Static checks do not establish live Supabase authorisation, external video embedding or actual AI provider responses; verify on a deployment preview.

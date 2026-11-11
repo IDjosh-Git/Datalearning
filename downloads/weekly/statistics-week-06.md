@@ -1,51 +1,74 @@
-# Statistics · Week 06 · Probability in everyday analysis
+# Applied Statistics · Week 06 · Probability and risks in business decisions
 
-> DataLearning practice brief — synthetic training material. Keep your original source file unchanged and make a copy for transformations.
+> DataLearning comprehensive practical lesson. Data is fictional. This worksheet supports the full in-app explanation and independent practice. Do not overwrite your raw source file.
 
 ## Learning outcome
-Calculate simple conditional and joint probabilities
+Compute basic unconditional and conditional probabilities using observed counts.
 
-## Before you begin: open the right file
-- Download: `learning_experiment.csv` in `/downloads/` of your DataLearning project.
-- Important fields / tables: session_id, variant, converted, device, region, basket_items.
-- Related video (opens within the lesson page): https://www.youtube.com/watch?v=_IgyaD7vOOA.
-- Use Excel / Power BI / Tableau / Power Query for CSV sources, a SQLite-compatible reader for `.sqlite` files, or Python/pandas for code-based analysis as the week requires.
+## Where to begin in the tool
+Use a contingency table in Excel or a grouped pandas summary with counts and denominators.
 
-## Understand the analytical method
-Probability measures the chance of an event on a scale from 0 to 1. If 15 of 60 equally relevant observed orders contain an error, the observed error proportion is 15/60 = 0.25, or 25%. Conditional probability concerns a specific subset: P(Error | North) is the error proportion among North-region orders, not among all orders. The denominator changes when the condition changes.
 
-Joint probability asks how likely two events are together. For example, P(North and Late) divides the count of orders that are both North and late by the full relevant population. Do not assume events are independent; region and lateness may be associated. A historical proportion is an estimate of future chance only under appropriate sampling and stability assumptions. Always show numerator, denominator and conditioning group.
+## Source data dictionary · exact practice file fields
+The linked CSV uses these **exact header names**. Import the file before attempting examples. If an exercise uses a friendly or calculated name, map or create it first.
 
-## Guided walkthrough in the tool
-1. Draw a small two-way frequency table for Region and Late/On-time status.
-2. Calculate the overall late-order proportion using all eligible orders.
-3. Calculate P(Late | North) using only North-region orders as the denominator.
-4. Calculate P(North and Late) using all orders and explain how it differs from the conditional probability.
+`session_id, variant, converted, device, region, basket_items`
 
-### Additional hands-on instruction
-Calculate conversion proportion within mobile sessions and overall; list numerators and denominators.
+The worked example may introduce derived fields or example tables. Create or rename those fields explicitly and verify results against these original source columns.
 
-## Business case
-Of 100 orders, 30 are North-region and 12 of those are late. P(Late | North) = 12/30 = 40%, while P(North and Late) = 12/100 = 12%. Both numbers describe the same 12 late orders but answer different questions. The denominator is part of the probability definition.
+## Dataset and companion video
+- **Download the dataset:** [`learning_experiment.csv`](../learning_experiment.csv)
+- **Video companion:** https://www.youtube.com/watch?v=_IgyaD7vOOA (the in-app Watch button opens the YouTube player when embedding is permitted).
+- **Reading order:** first identify controls, then read the four concepts, reproduce the example, try an independent case, and validate your evidence.
+
+## Explain the four essential concepts
+### 1. Probability
+event count divided by appropriate total under the sampling design
+
+### 2. Conditional probability
+denominator changes to the condition group
+
+### 3. Independence
+compare joint and conditional rates to assess relationships
+
+### 4. Base rates
+a risk can look large without the population context.
+
+## Why this skill matters
+Why this skill matters: A logistics analyst needs realistic failure probabilities to prioritise interventions. The method is not only about producing an attractive figure. Independence: compare joint and conditional rates to assess relationships Base rates: a risk can look large without the population context. When preparing an output for another person, specify the reporting period, units, selection rules and known limitations. An analyst should be able to explain why a calculation or chart answers the actual business question and reproduce the result.
+
+## Guided practice · follow all four steps
+1. Open the correct workspace and identify the controls before entering commands. Use a contingency table in Excel or a grouped pandas summary with counts and denominators. Keep an untouched source or backup version so a mistake is reversible.
+2. Apply the first two concepts on a small example: Probability — event count divided by appropriate total under the sampling design Then test conditional probability with at least two contrasting inputs.
+3. Reproduce the worked example below exactly, then change one input or filter. Explain which value changes and why. After that, apply independence and inspect the output for errors.
+4. Complete the independent challenge: Calculate the error rate from 15 defective orders out of 60 and explain its denominator. Before moving on, check the result against the acceptance criteria: P(Error) = 15/60 = 25%; every probability statement names the conditioning group.
+
+## Study this worked example
+```text
+Late orders: 30/100 = 30%
+North late orders: 12/40 = 30%
+```
+
+**How to interpret the output:** Probability and risks in business decisions begins with a practical objective: Compute basic unconditional and conditional probabilities using observed counts. In Applied Statistics, begin by understanding the workspace and the data rather than memorising a command. Probability: event count divided by appropriate total under the sampling design Conditional probability: denominator changes to the condition group Practice these ideas on a small synthetic sample first. Notice where the tool shows inputs, intermediate results and errors; then describe in plain language what each operation does and what it does not prove. Keep original records separate from working calculations so you can trace any surprising result back to its source.
+
+## Business case study
+Business case: A logistics analyst needs realistic failure probabilities to prioritise interventions. Your role is to deliver a result that a manager can trust and act upon, not merely a screenshot. First describe what records are included and excluded. Next perform the method described in this week, and record any changes to the source. Use the worked example as a starting point but test it with different values; finally communicate one relevant observation, one limitation and a follow-up.
 
 ## Independent practical challenge
-If 15 of 60 orders have errors, what is P(Error)?
+Calculate the error rate from 15 defective orders out of 60 and explain its denominator.
 
-**Deliverable:** Explain the difference between P(Convert | Mobile) and P(Mobile and Convert).
+**What you should hand in:** P(Error) = 15/60 = 25%; every probability statement names the conditioning group.
 
-## Verify your work
-Probabilities must remain between zero and one. If your conditional probability exceeds one or disagrees with a table count, re-check which group belongs in the denominator.
+## Check your result (after attempting)
+Expected evidence: P(Error) = 15/60 = 25%; every probability statement names the conditioning group. To validate it, compare a small hand-checked sample with the final output, test an alternative filter or a changed input, and record any unmatched, missing or suspicious data. If results differ, review the original data, formula or query, aggregation grain and selected filters before sharing the report. Avoid this common error: Confusing 'of North orders' with 'of all orders' when calculating a conditional rate.
 
-- Confirm the number of records used and explain any excluded records.
-- Check date, currency, percentage and unit formats.
-- Recalculate at least one sample manually or using another method.
-- Separate observed results from assumptions about why they occurred.
-- Include source, period, filters and limitations in the presentation.
+**Common failure:** Confusing 'of North orders' with 'of all orders' when calculating a conditional rate.
 
-## Compare with the suggested solution (after attempting the task)
-15/60 = 25%.
-
-**Common pitfall:** Confusing conditional probability with overall probability.
+## Reflect and explain the result
+- Which menu, editor or pane did you use, and why?
+- What is the data grain, metric definition or calculated rule?
+- Can a second learner reproduce your output using the dataset and your instructions?
+- Which number, chart or limitation must be mentioned when presenting your result?
 
 ---
-The lesson content and model answers are intended for study. Completing the worksheet does not automatically mark the app quiz or progress as complete.
+**Progress note:** Completing this worksheet is practice. Marking a week complete, passing an assessment and submitting an instructor-reviewed capstone are separate actions in DataLearning.

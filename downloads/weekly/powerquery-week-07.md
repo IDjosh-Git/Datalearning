@@ -1,51 +1,75 @@
-# Power Query · Week 07 · Merge queries
+# Power Query · Week 07 · Merging lookup tables and checking join matches
 
-> DataLearning practice brief — synthetic training material. Keep your original source file unchanged and make a copy for transformations.
+> DataLearning comprehensive practical lesson. Data is fictional. This worksheet supports the full in-app explanation and independent practice. Do not overwrite your raw source file.
 
 ## Learning outcome
-Join related tables and detect missing matches
+Enrich transactions with attributes while preventing duplicate-key fanout.
 
-## Before you begin: open the right file
-- Download: `learning_sales_2026.csv` in `/downloads/` of your DataLearning project.
-- Important fields / tables: order_id, order_date, region, category, quantity, unit_price_ngn, unit_cost_ngn, status, customer_id, channel.
-- Related video (opens within the lesson page): https://www.youtube.com/watch?v=VO-MyVMKUC4.
-- Use Excel / Power BI / Tableau / Power Query for CSV sources, a SQLite-compatible reader for `.sqlite` files, or Python/pandas for code-based analysis as the week requires.
+## Where to begin in the tool
+Use Home > Merge Queries, choose matching ProductID columns and a Left Outer join, then expand selected fields.
 
-## Understand the analytical method
-Merge Queries joins tables horizontally using matching keys. For example, a Sales table may reference a ProductID, while a Products table supplies the product name and category. Select the key columns in both tables and a join kind that fits the reporting question. A Left Outer join retains all Sales rows and attaches matching Product fields; unmatched products appear with null attributes.
 
-Duplicate keys on the lookup side can multiply sales rows when you expand the joined table. Before merging, check key uniqueness and matching types. After the merge, compare the row count and revenue total with the original Sales table. Keep unmatched records visible for investigation rather than silently excluding them from the report. This makes the merge both analytically correct and auditable.
+## Source data dictionary · exact practice file fields
+The linked CSV uses these **exact header names**. Import the file before attempting examples. If an exercise uses a friendly or calculated name, map or create it first.
 
-## Guided walkthrough in the tool
-1. Inspect uniqueness of Products[ProductID] and matching types in both queries.
-2. Merge Sales with Products using ProductID and a Left Outer join.
-3. Expand only the needed descriptive columns and look for missing matches.
-4. Reconcile Sales row count and revenue total before and after expansion.
+`order_id, order_date, region, category, quantity, unit_price_ngn, unit_cost_ngn, status, customer_id, channel`
 
-### Additional hands-on instruction
-Use a one-column region lookup built from the sales CSV, merge by region and check match counts.
+Available `status` values: `Cancelled`, `Completed`, `Returned`
 
-## Business case
-The Products table contains two versions of one ProductID. Merging and expanding both matches duplicates a Sales row, inflating revenue. Check lookup-key uniqueness before merge, retain a source identifier, and compare row count and revenue after expansion. When a product has no match, preserve the Sales record while investigating the missing metadata.
+The worked example may introduce derived fields or example tables. Create or rename those fields explicitly and verify results against these original source columns. Source status values are Cancelled, Completed, Returned.
+
+## Dataset and companion video
+- **Download the dataset:** [`learning_sales_2026.csv`](../learning_sales_2026.csv)
+- **Video companion:** https://www.youtube.com/watch?v=VO-MyVMKUC4 (the in-app Watch button opens the YouTube player when embedding is permitted).
+- **Reading order:** first identify controls, then read the four concepts, reproduce the example, try an independent case, and validate your evidence.
+
+## Explain the four essential concepts
+### 1. Join direction
+Left Outer preserves the source transaction table
+
+### 2. Key quality
+dimension keys should be unique at the intended grain
+
+### 3. Match diagnostics
+identify null expanded attributes and fix mapping errors
+
+### 4. Validation
+compare source and merged row counts and sums.
+
+## Why this skill matters
+Why this skill matters: The product manager wants category analysis from order lines and a separate product master file. The method is not only about producing an attractive figure. Match diagnostics: identify null expanded attributes and fix mapping errors Validation: compare source and merged row counts and sums. When preparing an output for another person, specify the reporting period, units, selection rules and known limitations. An analyst should be able to explain why a calculation or chart answers the actual business question and reproduce the result.
+
+## Guided practice · follow all four steps
+1. Open the correct workspace and identify the controls before entering commands. Use Home > Merge Queries, choose matching ProductID columns and a Left Outer join, then expand selected fields. Keep an untouched source or backup version so a mistake is reversible.
+2. Apply the first two concepts on a small example: Join direction — Left Outer preserves the source transaction table Then test key quality with at least two contrasting inputs.
+3. Reproduce the worked example below exactly, then change one input or filter. Explain which value changes and why. After that, apply match diagnostics and inspect the output for errors.
+4. Complete the independent challenge: Merge orders with product categories and produce a list of unmatched product identifiers. Before moving on, check the result against the acceptance criteria: A unique product lookup should preserve one result per order row; unmatched ProductID remains visible.
+
+## Study this worked example
+```text
+Orders LEFT JOIN Products ON ProductID → expand Category, UnitCost
+```
+
+**How to interpret the output:** Merging lookup tables and checking join matches begins with a practical objective: Enrich transactions with attributes while preventing duplicate-key fanout. In Power Query, begin by understanding the workspace and the data rather than memorising a command. Join direction: Left Outer preserves the source transaction table Key quality: dimension keys should be unique at the intended grain Practice these ideas on a small synthetic sample first. Notice where the tool shows inputs, intermediate results and errors; then describe in plain language what each operation does and what it does not prove. Keep original records separate from working calculations so you can trace any surprising result back to its source.
+
+## Business case study
+Business case: The product manager wants category analysis from order lines and a separate product master file. Your role is to deliver a result that a manager can trust and act upon, not merely a screenshot. First describe what records are included and excluded. Next perform the method described in this week, and record any changes to the source. Use the worked example as a starting point but test it with different values; finally communicate one relevant observation, one limitation and a follow-up.
 
 ## Independent practical challenge
-What happens to unmatched order rows in a Left Outer merge?
+Merge orders with product categories and produce a list of unmatched product identifiers.
 
-**Deliverable:** Run an anti-join to find missing lookups before loading to the report model.
+**What you should hand in:** A unique product lookup should preserve one result per order row; unmatched ProductID remains visible.
 
-## Verify your work
-If the number of Sales rows increases, investigate duplicate matching keys. If product names are null, inspect missing or differently formatted IDs before changing join type.
+## Check your result (after attempting)
+Expected evidence: A unique product lookup should preserve one result per order row; unmatched ProductID remains visible. To validate it, compare a small hand-checked sample with the final output, test an alternative filter or a changed input, and record any unmatched, missing or suspicious data. If results differ, review the original data, formula or query, aggregation grain and selected filters before sharing the report. Avoid this common error: Using a many-to-many merge without checking whether revenue duplicates after expansion.
 
-- Confirm the number of records used and explain any excluded records.
-- Check date, currency, percentage and unit formats.
-- Recalculate at least one sample manually or using another method.
-- Separate observed results from assumptions about why they occurred.
-- Include source, period, filters and limitations in the presentation.
+**Common failure:** Using a many-to-many merge without checking whether revenue duplicates after expansion.
 
-## Compare with the suggested solution (after attempting the task)
-All left-side orders remain, with null fields for unmatched products.
-
-**Common pitfall:** Using an inner join and silently discarding unmatched orders.
+## Reflect and explain the result
+- Which menu, editor or pane did you use, and why?
+- What is the data grain, metric definition or calculated rule?
+- Can a second learner reproduce your output using the dataset and your instructions?
+- Which number, chart or limitation must be mentioned when presenting your result?
 
 ---
-The lesson content and model answers are intended for study. Completing the worksheet does not automatically mark the app quiz or progress as complete.
+**Progress note:** Completing this worksheet is practice. Marking a week complete, passing an assessment and submitting an instructor-reviewed capstone are separate actions in DataLearning.

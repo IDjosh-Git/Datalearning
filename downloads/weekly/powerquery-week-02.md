@@ -1,51 +1,76 @@
-# Power Query · Week 02 · Data types and locale
+# Power Query · Week 02 · Data types, date locale and column profiling
 
-> DataLearning practice brief — synthetic training material. Keep your original source file unchanged and make a copy for transformations.
+> DataLearning comprehensive practical lesson. Data is fictional. This worksheet supports the full in-app explanation and independent practice. Do not overwrite your raw source file.
 
 ## Learning outcome
-Convert text, dates and currency reliably
+Ensure values are correctly typed before creating calculated analysis fields.
 
-## Before you begin: open the right file
-- Download: `learning_sales_quality_lab.csv` in `/downloads/` of your DataLearning project.
-- Important fields / tables: order_id, order_date, region, category, quantity, unit_price_ngn, unit_cost_ngn, status, customer_id, channel.
-- Related video (opens within the lesson page): https://www.youtube.com/watch?v=WH937Gc_8eg&t=1880s.
-- Use Excel / Power BI / Tableau / Power Query for CSV sources, a SQLite-compatible reader for `.sqlite` files, or Python/pandas for code-based analysis as the week requires.
+## Where to begin in the tool
+In Power Query choose Transform > Data Type, Using Locale where needed, then View > Column quality.
 
-## Understand the analytical method
-Power Query stores each column using a data type such as text, whole number, decimal number, date or datetime. A value that looks like 12/11/2026 can mean different dates depending on locale. Explicitly set the correct locale when parsing imported dates or numeric separators. A currency field containing a symbol may need cleaning before numerical conversion. Do not allow silent conversion failures to turn valid records into errors or nulls.
 
-Identifiers often require text type. If a customer code 00125 is converted to whole number, its leading zeros disappear. Dates should be validated against plausible ranges after conversion, and currency amounts should be in consistent units. When a source uses mixed date formats, a single global conversion may be unsafe. Separate exceptional records for investigation instead of repeatedly guessing the intended meaning.
+## Source data dictionary · exact practice file fields
+The linked CSV uses these **exact header names**. Import the file before attempting examples. If an exercise uses a friendly or calculated name, map or create it first.
 
-## Guided walkthrough in the tool
-1. Inspect fields that look numeric or date-like and sample their original source strings.
-2. Use Change Type with Locale to parse one known date format correctly.
-3. Keep business IDs as text and convert genuine amounts to a decimal or currency type.
-4. Inspect error rows and compare sums, minimum dates and row counts after conversion.
+`order_id, order_date, region, category, quantity, unit_price_ngn, unit_cost_ngn, status, customer_id, channel`
 
-### Additional hands-on instruction
-Import the deliberately dirty file and inspect 03/02/2026 as text before applying locale; document the intended date order.
+Available `status` values: `Cancelled`, `Completed`, `Returned`, `complete`
 
-## Business case
-An imported date string “04/05/2026” could mean April 5 or May 4. Parsing it under the wrong locale can produce a valid but incorrect date that is hard to notice. Compare several known source records and choose the intended locale explicitly. Type conversion should preserve business meaning, not merely eliminate error messages.
+The worked example may introduce derived fields or example tables. Create or rename those fields explicitly and verify results against these original source columns. Source status values are Cancelled, Completed, Returned, complete.
+
+## Dataset and companion video
+- **Download the dataset:** [`learning_sales_quality_lab.csv`](../learning_sales_quality_lab.csv)
+- **Video companion:** https://www.youtube.com/watch?v=WH937Gc_8eg&t=1880s (the in-app Watch button opens the YouTube player when embedding is permitted).
+- **Reading order:** first identify controls, then read the four concepts, reproduce the example, try an independent case, and validate your evidence.
+
+## Explain the four essential concepts
+### 1. Type semantics
+dates, decimal values and text identifiers are not interchangeable
+
+### 2. Locale
+an ambiguous date requires a known regional format
+
+### 3. Quality profiling
+inspect Valid, Error and Empty percentages
+
+### 4. Step order
+correct parsing early so later filters are consistent.
+
+## Why this skill matters
+Why this skill matters: A regional finance team receives exports from systems using different date conventions. The method is not only about producing an attractive figure. Quality profiling: inspect Valid, Error and Empty percentages Step order: correct parsing early so later filters are consistent. When preparing an output for another person, specify the reporting period, units, selection rules and known limitations. An analyst should be able to explain why a calculation or chart answers the actual business question and reproduce the result.
+
+## Guided practice · follow all four steps
+1. Open the correct workspace and identify the controls before entering commands. In Power Query choose Transform > Data Type, Using Locale where needed, then View > Column quality. Keep an untouched source or backup version so a mistake is reversible.
+2. Apply the first two concepts on a small example: Type semantics — dates, decimal values and text identifiers are not interchangeable Then test locale with at least two contrasting inputs.
+3. Reproduce the worked example below exactly, then change one input or filter. Explain which value changes and why. After that, apply quality profiling and inspect the output for errors.
+4. Complete the independent challenge: Convert date and revenue columns, preserve zero-padded IDs, and document one ambiguous date. Before moving on, check the result against the acceptance criteria: After conversion, date sorting is chronological and revenue can be summed numerically; IDs retain leading zeroes.
+
+## Study this worked example
+```text
+Text '31/12/2026' → Date (English United Kingdom)
+Amount '1,250.50' → Decimal Number using appropriate locale
+```
+
+**How to interpret the output:** Data types, date locale and column profiling begins with a practical objective: Ensure values are correctly typed before creating calculated analysis fields. In Power Query, begin by understanding the workspace and the data rather than memorising a command. Type semantics: dates, decimal values and text identifiers are not interchangeable Locale: an ambiguous date requires a known regional format Practice these ideas on a small synthetic sample first. Notice where the tool shows inputs, intermediate results and errors; then describe in plain language what each operation does and what it does not prove. Keep original records separate from working calculations so you can trace any surprising result back to its source.
+
+## Business case study
+Business case: A regional finance team receives exports from systems using different date conventions. Your role is to deliver a result that a manager can trust and act upon, not merely a screenshot. First describe what records are included and excluded. Next perform the method described in this week, and record any changes to the source. Use the worked example as a starting point but test it with different values; finally communicate one relevant observation, one limitation and a follow-up.
 
 ## Independent practical challenge
-Why is the correct locale important for converting 03/04/2026?
+Convert date and revenue columns, preserve zero-padded IDs, and document one ambiguous date.
 
-**Deliverable:** Identify rows requiring business confirmation rather than guessing date conventions.
+**What you should hand in:** After conversion, date sorting is chronological and revenue can be summed numerically; IDs retain leading zeroes.
 
-## Verify your work
-A type conversion is correct only if representative records keep their intended meanings. Test ambiguous dates such as 03/04/2026 and confirm the correct month and day.
+## Check your result (after attempting)
+Expected evidence: After conversion, date sorting is chronological and revenue can be summed numerically; IDs retain leading zeroes. To validate it, compare a small hand-checked sample with the final output, test an alternative filter or a changed input, and record any unmatched, missing or suspicious data. If results differ, review the original data, formula or query, aggregation grain and selected filters before sharing the report. Avoid this common error: Using formatting alone to 'fix' a text date or allowing locale ambiguity to swap day and month.
 
-- Confirm the number of records used and explain any excluded records.
-- Check date, currency, percentage and unit formats.
-- Recalculate at least one sample manually or using another method.
-- Separate observed results from assumptions about why they occurred.
-- Include source, period, filters and limitations in the presentation.
+**Common failure:** Using formatting alone to 'fix' a text date or allowing locale ambiguity to swap day and month.
 
-## Compare with the suggested solution (after attempting the task)
-Without a locale it can mean 3 April or 4 March.
-
-**Common pitfall:** Using a display format to fix underlying type errors.
+## Reflect and explain the result
+- Which menu, editor or pane did you use, and why?
+- What is the data grain, metric definition or calculated rule?
+- Can a second learner reproduce your output using the dataset and your instructions?
+- Which number, chart or limitation must be mentioned when presenting your result?
 
 ---
-The lesson content and model answers are intended for study. Completing the worksheet does not automatically mark the app quiz or progress as complete.
+**Progress note:** Completing this worksheet is practice. Marking a week complete, passing an assessment and submitting an instructor-reviewed capstone are separate actions in DataLearning.

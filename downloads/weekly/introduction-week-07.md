@@ -1,51 +1,74 @@
-# Introduction · Week 07 · Business metrics
+# Data Analysis · Week 07 · Choosing effective charts and reading trends
 
-> DataLearning practice brief — synthetic training material. Keep your original source file unchanged and make a copy for transformations.
+> DataLearning comprehensive practical lesson. Data is fictional. This worksheet supports the full in-app explanation and independent practice. Do not overwrite your raw source file.
 
 ## Learning outcome
-Define KPI numerator, denominator and timeframe
+Connect business questions to line, bar, table and KPI displays without misleading viewers.
 
-## Before you begin: open the right file
-- Download: `learning_monthly_kpis.csv` in `/downloads/` of your DataLearning project.
-- Important fields / tables: month, region, net_sales_ngn, sales_target_ngn, gross_profit_ngn, order_count, late_shipments, returned_orders.
-- Related video (opens within the lesson page): https://www.youtube.com/watch?v=WH937Gc_8eg&t=2770s.
-- Use Excel / Power BI / Tableau / Power Query for CSV sources, a SQLite-compatible reader for `.sqlite` files, or Python/pandas for code-based analysis as the week requires.
+## Where to begin in the tool
+Open a chart designer in Excel or BI, select a clean summary table and identify chart configuration controls.
 
-## Understand the analytical method
-A key performance indicator (KPI) is a metric linked to a decision. Define it as a precise calculation with numerator, denominator, eligible population, period, unit and exclusions. “Conversion rate” could mean purchases divided by website visitors, checkout sessions or qualified leads; each is valid for a different question. Without a definition, two reports can disagree while both are mathematically correct.
 
-Ratios can be especially deceptive when groups differ in size. If one branch converts 20 of 100 visits (20%) and another converts 12 of 40 (30%), the combined conversion is 32 of 140, or about 22.9%—not the simple average of 20% and 30%. When comparing time periods, check whether the comparison is like-for-like, whether the denominator changed, and whether the observed difference exceeds ordinary variation.
+## Source data dictionary · exact practice file fields
+The linked CSV uses these **exact header names**. Import the file before attempting examples. If an exercise uses a friendly or calculated name, map or create it first.
 
-## Guided walkthrough in the tool
-1. Draft a KPI specification card listing owner, business question, formula, source, grain and refresh frequency.
-2. Calculate numerator and denominator independently before dividing; handle a zero denominator explicitly.
-3. Segment the KPI by period and category and recombine using weighted totals, not averaged percentages.
-4. Set a reporting threshold based on business impact and validate the metric against a known sample.
+`month, region, net_sales_ngn, sales_target_ngn, gross_profit_ngn, order_count, late_shipments, returned_orders`
 
-### Additional hands-on instruction
-With monthly KPI data, compute sales attainment = net_sales_ngn / sales_target_ngn. Compare regions without summing percentages.
+The worked example may introduce derived fields or example tables. Create or rename those fields explicitly and verify results against these original source columns.
 
-## Business case
-Two stores report conversion rates of 20% and 30%. Store A had 100 visitors and store B had 40, so 20 + 12 = 32 purchases among 140 visits. The overall rate is approximately 22.9%, not 25%. Weighted aggregation matters whenever denominators differ. Include visitors and purchases in the KPI specification.
+## Dataset and companion video
+- **Download the dataset:** [`learning_monthly_kpis.csv`](../learning_monthly_kpis.csv)
+- **Video companion:** https://www.youtube.com/watch?v=WH937Gc_8eg&t=2770s (the in-app Watch button opens the YouTube player when embedding is permitted).
+- **Reading order:** first identify controls, then read the four concepts, reproduce the example, try an independent case, and validate your evidence.
+
+## Explain the four essential concepts
+### 1. Line charts
+communicate movement across ordered dates
+
+### 2. Bar charts
+rank categories on a comparable scale
+
+### 3. KPIs
+make units and reporting period obvious
+
+### 4. Honest interpretation
+separate measured change from likely contributing factors.
+
+## Why this skill matters
+Why this skill matters: A business manager needs a quick visual overview that supports a sensible next question. The method is not only about producing an attractive figure. KPIs: make units and reporting period obvious Honest interpretation: separate measured change from likely contributing factors. When preparing an output for another person, specify the reporting period, units, selection rules and known limitations. An analyst should be able to explain why a calculation or chart answers the actual business question and reproduce the result.
+
+## Guided practice · follow all four steps
+1. Open the correct workspace and identify the controls before entering commands. Open a chart designer in Excel or BI, select a clean summary table and identify chart configuration controls. Keep an untouched source or backup version so a mistake is reversible.
+2. Apply the first two concepts on a small example: Line charts — communicate movement across ordered dates Then test bar charts with at least two contrasting inputs.
+3. Reproduce the worked example below exactly, then change one input or filter. Explain which value changes and why. After that, apply kpis and inspect the output for errors.
+4. Complete the independent challenge: Create a monthly line and regional bar chart and write one fact backed by both visuals. Before moving on, check the result against the acceptance criteria: A descending bar ranking identifies top region and the monthly line correctly shows a February peak.
+
+## Study this worked example
+```text
+January 120000; February 150000; March 135000
+March vs February = -10%
+```
+
+**How to interpret the output:** Choosing effective charts and reading trends begins with a practical objective: Connect business questions to line, bar, table and KPI displays without misleading viewers. In Data Analysis, begin by understanding the workspace and the data rather than memorising a command. Line charts: communicate movement across ordered dates Bar charts: rank categories on a comparable scale Practice these ideas on a small synthetic sample first. Notice where the tool shows inputs, intermediate results and errors; then describe in plain language what each operation does and what it does not prove. Keep original records separate from working calculations so you can trace any surprising result back to its source.
+
+## Business case study
+Business case: A business manager needs a quick visual overview that supports a sensible next question. Your role is to deliver a result that a manager can trust and act upon, not merely a screenshot. First describe what records are included and excluded. Next perform the method described in this week, and record any changes to the source. Use the worked example as a starting point but test it with different values; finally communicate one relevant observation, one limitation and a follow-up.
 
 ## Independent practical challenge
-Compute rate if 54 of 180 qualified leads converted.
+Create a monthly line and regional bar chart and write one fact backed by both visuals.
 
-**Deliverable:** Reconcile the total attainment from summed sales and targets, then state the strongest underperformance.
+**What you should hand in:** A descending bar ranking identifies top region and the monthly line correctly shows a February peak.
 
-## Verify your work
-A KPI definition should be reproducible by someone who did not build the dashboard. Label the timeframe and whether the value is daily, monthly or cumulative.
+## Check your result (after attempting)
+Expected evidence: A descending bar ranking identifies top region and the monthly line correctly shows a February peak. To validate it, compare a small hand-checked sample with the final output, test an alternative filter or a changed input, and record any unmatched, missing or suspicious data. If results differ, review the original data, formula or query, aggregation grain and selected filters before sharing the report. Avoid this common error: Using a dozen pie slices or skipping zero on a quantitative bar axis.
 
-- Confirm the number of records used and explain any excluded records.
-- Check date, currency, percentage and unit formats.
-- Recalculate at least one sample manually or using another method.
-- Separate observed results from assumptions about why they occurred.
-- Include source, period, filters and limitations in the presentation.
+**Common failure:** Using a dozen pie slices or skipping zero on a quantitative bar axis.
 
-## Compare with the suggested solution (after attempting the task)
-30%
-
-**Common pitfall:** Mixing different cohorts and denominators.
+## Reflect and explain the result
+- Which menu, editor or pane did you use, and why?
+- What is the data grain, metric definition or calculated rule?
+- Can a second learner reproduce your output using the dataset and your instructions?
+- Which number, chart or limitation must be mentioned when presenting your result?
 
 ---
-The lesson content and model answers are intended for study. Completing the worksheet does not automatically mark the app quiz or progress as complete.
+**Progress note:** Completing this worksheet is practice. Marking a week complete, passing an assessment and submitting an instructor-reviewed capstone are separate actions in DataLearning.

@@ -2,7 +2,7 @@
 (()=>{
  const cfg={"slug": "ai", "label": "AI Integration", "title": "AI-Assisted Business Analysis with Human Verification", "brief": "Use AI responsibly to accelerate a real business analysis while independently checking calculations, interpretations and generated outputs.", "deliverable": "An analytical report, working analysis files, selected prompt-and-response log, verification checklist, visual evidence and recommendations.", "steps": "Define a business question; document data provenance; use AI for planning or code assistance; perform the analysis; independently validate claims; record limitations and explain decisions."};
  const week=document.getElementById('week10');
- if(!week || document.getElementById('week10-capstone-project')) return;
+ if(window.DALP_REBUILT_CAPSTONE || !week || document.getElementById('week10-capstone-project') || document.querySelector('#week10 .dlm-capstone')) return;
  const box=document.createElement('section');box.id='week10-capstone-project';box.className='week10-capstone-v75';
  box.setAttribute('aria-labelledby','week10-capstone-heading');
  box.innerHTML=`<div class="capstone-v75-kicker">WEEK 10 · FINAL PRACTICAL ASSESSMENT</div>

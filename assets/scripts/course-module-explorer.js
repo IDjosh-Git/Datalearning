@@ -88,7 +88,7 @@
       button.type='button'; button.dataset.slug=slug;
       button.setAttribute('aria-controls','dlmx-active-course');
       const image = el('img','dlmx-subject-icon');
-      image.src=`assets/icons/icon-${icons[slug]}.svg`; image.alt=''; image.width=42;image.height=42; image.loading='lazy';
+      image.src=`assets/icons/icon-${icons[slug]}.svg`; image.dataset.brandCourse=slug; image.alt=''; image.width=42;image.height=42; image.loading='lazy';
       const copy = el('span','dlmx-subject-copy');
       copy.append(el('strong','',names[slug]),el('small','',`${course.units.length} ${isIntro(slug)?'lessons':'weeks'}`));
       const arrow=el('span','dlmx-subject-arrow','→');arrow.setAttribute('aria-hidden','true');
@@ -124,7 +124,7 @@
       const course=library[slug];
       const cover=el('div','dlmx-course-cover');
       const heading=el('div','dlmx-course-heading');
-      const icon=el('img','dlmx-course-icon');icon.src=`assets/icons/icon-${icons[slug]}.svg`;icon.alt='';icon.width=64;icon.height=64;
+      const icon=el('img','dlmx-course-icon');icon.src=`assets/icons/icon-${icons[slug]}.svg`;icon.dataset.brandCourse=slug;icon.alt='';icon.width=64;icon.height=64;
       const copy=el('div','dlmx-course-copy');
       copy.append(el('span','dlmx-course-eyebrow',`${course.category} · ${course.level}`),el('h3','dlmx-course-title',course.name),el('p','dlmx-course-description',course.description));
       heading.append(icon,copy);

@@ -1,51 +1,73 @@
-# Introduction · Week 05 · Descriptive statistics
+# Data Analysis · Week 05 · Basic calculations and descriptive KPIs
 
-> DataLearning practice brief — synthetic training material. Keep your original source file unchanged and make a copy for transformations.
+> DataLearning comprehensive practical lesson. Data is fictional. This worksheet supports the full in-app explanation and independent practice. Do not overwrite your raw source file.
 
 ## Learning outcome
-Interpret mean, median and outliers
+Understand totals, counts, averages and the difference between typical and exceptional values.
 
-## Before you begin: open the right file
-- Download: `learning_statistics_sample.csv` in `/downloads/` of your DataLearning project.
-- Important fields / tables: observation_id, delivery_minutes, basket_value_ngn, satisfaction_score, region, complaint_flag.
-- Related video (opens within the lesson page): https://www.youtube.com/watch?v=SzZ6GpcfoQY.
-- Use Excel / Power BI / Tableau / Power Query for CSV sources, a SQLite-compatible reader for `.sqlite` files, or Python/pandas for code-based analysis as the week requires.
+## Where to begin in the tool
+Use SUM, AVERAGE, COUNTIFS or a grouped calculation, then validate against a few raw records.
 
-## Understand the analytical method
-Descriptive statistics summarise a distribution, but one number rarely tells the full story. The mean is the arithmetic total divided by observation count. The median is the middle value after sorting. With salaries 20, 22, 23, 25 and 110 (in thousands), the mean is 40 while the median is 23 because the unusually high salary pulls the mean upward. The mode is the most frequent value. Compare location, spread and the shape of the distribution.
 
-Outliers need investigation rather than automatic removal. A large order can be a genuine enterprise purchase, a decimal-place error or a duplicated invoice. Each possibility changes the business interpretation. Segmenting by region or customer type may reveal that an overall average hides important group differences. Present units, sample size and a sensible measure of variability so users can understand what “typical” really means.
+## Source data dictionary · exact practice file fields
+The linked CSV uses these **exact header names**. Import the file before attempting examples. If an exercise uses a friendly or calculated name, map or create it first.
 
-## Guided walkthrough in the tool
-1. Sort a small numeric column and calculate mean, median, minimum, maximum and range.
-2. Flag values far from the main cluster; check the underlying record instead of deleting it automatically.
-3. Compare average order value for each region and then for the full company.
-4. Describe which measure is most representative and why, noting sample size and outliers.
+`observation_id, delivery_minutes, basket_value_ngn, satisfaction_score, region, complaint_flag`
 
-### Additional hands-on instruction
-Sort delivery_minutes and calculate mean, median, range and maximum. Compare the averages before and after investigating the outlier.
+The worked example may introduce derived fields or example tables. Create or rename those fields explicitly and verify results against these original source columns.
 
-## Business case
-A branch reports five orders valued 20, 22, 23, 25 and 110 thousand. A manager asking about the typical order is likely better served by the median of 23 thousand than the mean of 40 thousand. But for expected total revenue, the mean multiplied by order volume may still be useful. Choose based on the question.
+## Dataset and companion video
+- **Download the dataset:** [`learning_statistics_sample.csv`](../learning_statistics_sample.csv)
+- **Video companion:** https://www.youtube.com/watch?v=SzZ6GpcfoQY (the in-app Watch button opens the YouTube player when embedding is permitted).
+- **Reading order:** first identify controls, then read the four concepts, reproduce the example, try an independent case, and validate your evidence.
+
+## Explain the four essential concepts
+### 1. Revenue
+quantity times price under an explicit status definition
+
+### 2. Counts
+distinguish records from unique orders
+
+### 3. Mean and median
+provide different views of typical behaviour
+
+### 4. Period comparisons
+use an explicit denominator and note missing periods.
+
+## Why this skill matters
+Why this skill matters: A shop director wants four trustworthy weekly indicators before debating performance. The method is not only about producing an attractive figure. Mean and median: provide different views of typical behaviour Period comparisons: use an explicit denominator and note missing periods. When preparing an output for another person, specify the reporting period, units, selection rules and known limitations. An analyst should be able to explain why a calculation or chart answers the actual business question and reproduce the result.
+
+## Guided practice · follow all four steps
+1. Open the correct workspace and identify the controls before entering commands. Use SUM, AVERAGE, COUNTIFS or a grouped calculation, then validate against a few raw records. Keep an untouched source or backup version so a mistake is reversible.
+2. Apply the first two concepts on a small example: Revenue — quantity times price under an explicit status definition Then test counts with at least two contrasting inputs.
+3. Reproduce the worked example below exactly, then change one input or filter. Explain which value changes and why. After that, apply mean and median and inspect the output for errors.
+4. Complete the independent challenge: Calculate paid revenue, unique orders and average order value, then explain an outlier's impact. Before moving on, check the result against the acceptance criteria: AOV = Paid Revenue / Distinct Paid Orders, and the sample median is 23.
+
+## Study this worked example
+```text
+Five values 20,22,23,25,110 → mean 40, median 23
+```
+
+**How to interpret the output:** Basic calculations and descriptive KPIs begins with a practical objective: Understand totals, counts, averages and the difference between typical and exceptional values. In Data Analysis, begin by understanding the workspace and the data rather than memorising a command. Revenue: quantity times price under an explicit status definition Counts: distinguish records from unique orders Practice these ideas on a small synthetic sample first. Notice where the tool shows inputs, intermediate results and errors; then describe in plain language what each operation does and what it does not prove. Keep original records separate from working calculations so you can trace any surprising result back to its source.
+
+## Business case study
+Business case: A shop director wants four trustworthy weekly indicators before debating performance. Your role is to deliver a result that a manager can trust and act upon, not merely a screenshot. First describe what records are included and excluded. Next perform the method described in this week, and record any changes to the source. Use the worked example as a starting point but test it with different values; finally communicate one relevant observation, one limitation and a follow-up.
 
 ## Independent practical challenge
-Calculate the median of 10, 12, 13, 14, 100.
+Calculate paid revenue, unique orders and average order value, then explain an outlier's impact.
 
-**Deliverable:** Recommend the statistic a service manager should use and justify it in ordinary language.
+**What you should hand in:** AOV = Paid Revenue / Distinct Paid Orders, and the sample median is 23.
 
-## Verify your work
-Recalculate the mean with and without the high value as a sensitivity check. If the business question is “typical transaction”, the median may be more useful; explain the choice rather than hiding the mean.
+## Check your result (after attempting)
+Expected evidence: AOV = Paid Revenue / Distinct Paid Orders, and the sample median is 23. To validate it, compare a small hand-checked sample with the final output, test an alternative filter or a changed input, and record any unmatched, missing or suspicious data. If results differ, review the original data, formula or query, aggregation grain and selected filters before sharing the report. Avoid this common error: Adding order IDs together or implying mean and median always give similar answers.
 
-- Confirm the number of records used and explain any excluded records.
-- Check date, currency, percentage and unit formats.
-- Recalculate at least one sample manually or using another method.
-- Separate observed results from assumptions about why they occurred.
-- Include source, period, filters and limitations in the presentation.
+**Common failure:** Adding order IDs together or implying mean and median always give similar answers.
 
-## Compare with the suggested solution (after attempting the task)
-13
-
-**Common pitfall:** Using averages without inspecting distribution.
+## Reflect and explain the result
+- Which menu, editor or pane did you use, and why?
+- What is the data grain, metric definition or calculated rule?
+- Can a second learner reproduce your output using the dataset and your instructions?
+- Which number, chart or limitation must be mentioned when presenting your result?
 
 ---
-The lesson content and model answers are intended for study. Completing the worksheet does not automatically mark the app quiz or progress as complete.
+**Progress note:** Completing this worksheet is practice. Marking a week complete, passing an assessment and submitting an instructor-reviewed capstone are separate actions in DataLearning.

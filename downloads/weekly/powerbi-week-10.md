@@ -1,51 +1,93 @@
-# Power Bi · Week 10 · Performance
+# Power BI Desktop · Week 10 · Power BI capstone: model to published executive report
 
-> DataLearning practice brief — synthetic training material. Keep your original source file unchanged and make a copy for transformations.
+> DataLearning comprehensive practical lesson. Data is fictional. This worksheet supports the full in-app explanation and independent practice. Do not overwrite your raw source file.
 
 ## Learning outcome
-Reduce render and model costs
+Build and document an end-to-end data model, DAX KPIs, interactive report and executive presentation.
 
-## Before you begin: open the right file
-- Download: `learning_sales_2026.csv` in `/downloads/` of your DataLearning project.
-- Important fields / tables: order_id, order_date, region, category, quantity, unit_price_ngn, unit_cost_ngn, status, customer_id, channel.
-- Related video (opens within the lesson page): https://www.youtube.com/watch?v=WH937Gc_8eg&t=10072s.
-- Use Excel / Power BI / Tableau / Power Query for CSV sources, a SQLite-compatible reader for `.sqlite` files, or Python/pandas for code-based analysis as the week requires.
+## Where to begin in the tool
+Begin with the synthetic dataset, load via Power Query, verify the star schema and create a separate report Summary page.
 
-## Understand the analytical method
-Power BI performance has two major components: model efficiency and visual query work. Reduce unnecessary columns, use suitable data types, design a clean star schema and avoid high-cardinality columns that are not needed. Too many visuals each issuing complex queries can make a report feel slow even when the underlying model is small. Start by measuring actual performance rather than guessing where time is spent.
 
-Performance Analyzer shows visual refresh behaviour and helps identify slow interactions. DAX Studio or model inspection tools can provide deeper analysis where available. Query folding and incremental refresh can matter for large sources, but their usefulness depends on connectivity and deployment design. Never “optimise” by removing necessary filters or changing a measure’s meaning. Confirm identical business answers after every change.
+## Source data dictionary · exact practice file fields
+The linked CSV uses these **exact header names**. Import the file before attempting examples. If an exercise uses a friendly or calculated name, map or create it first.
 
-## Guided walkthrough in the tool
-1. Record page load and slicer response times using a representative dataset.
-2. Open Performance Analyzer and identify the slowest visuals or DAX queries.
-3. Reduce redundant visuals or unnecessary model columns, then retest.
-4. Compare metrics before and after the change to confirm numerical consistency.
+`order_id, order_date, region, category, quantity, unit_price_ngn, unit_cost_ngn, status, customer_id, channel`
 
-### Additional hands-on instruction
-Inspect Performance Analyzer, prune unneeded columns and compare measure output before and after.
+Available `status` values: `Cancelled`, `Completed`, `Returned`
 
-## Business case
-A report takes five seconds to react to a slicer. Performance Analyzer identifies a matrix with many row groups and expensive measures as the bottleneck. Reduce unnecessary columns or simplify the visual, then measure again. Compare the revenue totals before and after optimising, because faster wrong answers are not useful.
+The worked example may introduce derived fields or example tables. Create or rename those fields explicitly and verify results against these original source columns. Source status values are Cancelled, Completed, Returned.
+
+## Dataset and companion video
+- **Download the dataset:** [`learning_sales_2026.csv`](../learning_sales_2026.csv)
+- **Video companion:** https://www.youtube.com/watch?v=WH937Gc_8eg&t=10072s (the in-app Watch button opens the YouTube player when embedding is permitted).
+- **Reading order:** first identify controls, then read the four concepts, reproduce the example, try an independent case, and validate your evidence.
+
+## Explain the four essential concepts
+### 1. Preparation
+profile and type source fields before loading
+
+### 2. Measures
+calculate revenue, distinct orders, AOV and period variance
+
+### 3. Dashboard
+include filterable KPIs, at least three meaningful visuals and a note section
+
+### 4. Handover
+attach PBIX, screenshots or PDF, assumptions and validation record.
+
+## Why this skill matters
+Why this skill matters: A fictional e-commerce business commissions an executive sales and profitability dashboard for monthly steering meetings. The method is not only about producing an attractive figure. Dashboard: include filterable KPIs, at least three meaningful visuals and a note section Handover: attach PBIX, screenshots or PDF, assumptions and validation record. When preparing an output for another person, specify the reporting period, units, selection rules and known limitations. An analyst should be able to explain why a calculation or chart answers the actual business question and reproduce the result.
+
+## Guided practice · follow all four steps
+1. Open the correct workspace and identify the controls before entering commands. Begin with the synthetic dataset, load via Power Query, verify the star schema and create a separate report Summary page. Keep an untouched source or backup version so a mistake is reversible.
+2. Apply the first two concepts on a small example: Preparation — profile and type source fields before loading Then test measures with at least two contrasting inputs.
+3. Reproduce the worked example below exactly, then change one input or filter. Explain which value changes and why. After that, apply dashboard and inspect the output for errors.
+4. Complete the independent challenge: Submit PBIX or PDF/screenshot evidence, a data dictionary, measure list, three insights and a short management presentation. Before moving on, check the result against the acceptance criteria: The instructor should reproduce KPIs and navigate slicers; acceptance requires documented limitations and a 70/100 assessment.
+
+## Study this worked example
+```text
+Measures: Revenue; Orders; AOV; MoM %
+Validation: source totals = model totals; slicers filter the intended views
+```
+
+**How to interpret the output:** Power BI capstone: model to published executive report begins with a practical objective: Build and document an end-to-end data model, DAX KPIs, interactive report and executive presentation. In Power BI Desktop, begin by understanding the workspace and the data rather than memorising a command. Preparation: profile and type source fields before loading Measures: calculate revenue, distinct orders, AOV and period variance Practice these ideas on a small synthetic sample first. Notice where the tool shows inputs, intermediate results and errors; then describe in plain language what each operation does and what it does not prove. Keep original records separate from working calculations so you can trace any surprising result back to its source.
+
+## Business case study
+Business case: A fictional e-commerce business commissions an executive sales and profitability dashboard for monthly steering meetings. Your role is to deliver a result that a manager can trust and act upon, not merely a screenshot. First describe what records are included and excluded. Next perform the method described in this week, and record any changes to the source. Use the worked example as a starting point but test it with different values; finally communicate one relevant observation, one limitation and a follow-up.
 
 ## Independent practical challenge
-Which built-in feature can diagnose slow report visuals?
+Submit PBIX or PDF/screenshot evidence, a data dictionary, measure list, three insights and a short management presentation.
 
-**Deliverable:** Save a quality checklist: totals, refresh, slicers, labels, performance and sharing permissions.
+**What you should hand in:** The instructor should reproduce KPIs and navigate slicers; acceptance requires documented limitations and a 70/100 assessment.
 
-## Verify your work
-A measured improvement is more meaningful than a cosmetic one. Document the baseline, change and observed effect, including dataset size and test conditions.
+## Check your result (after attempting)
+Expected evidence: The instructor should reproduce KPIs and navigate slicers; acceptance requires documented limitations and a 70/100 assessment. To validate it, compare a small hand-checked sample with the final output, test an alternative filter or a changed input, and record any unmatched, missing or suspicious data. If results differ, review the original data, formula or query, aggregation grain and selected filters before sharing the report. Avoid this common error: Submitting attractive charts with broken relationships, untested DAX or no documentation of data refresh.
 
-- Confirm the number of records used and explain any excluded records.
-- Check date, currency, percentage and unit formats.
-- Recalculate at least one sample manually or using another method.
-- Separate observed results from assumptions about why they occurred.
-- Include source, period, filters and limitations in the presentation.
+**Common failure:** Submitting attractive charts with broken relationships, untested DAX or no documentation of data refresh.
 
-## Compare with the suggested solution (after attempting the task)
-Performance Analyzer
+## Reflect and explain the result
+- Which menu, editor or pane did you use, and why?
+- What is the data grain, metric definition or calculated rule?
+- Can a second learner reproduce your output using the dataset and your instructions?
+- Which number, chart or limitation must be mentioned when presenting your result?
 
-**Common pitfall:** Optimising only DAX while ignoring model design.
+## Dashboard design reference
+![Example Power BI Desktop dashboard layout](../../assets/images/dashboard-samples/powerbi-dashboard-wireframe.svg)
+
+Study the KPI strip, timeline, ranking, filters and notes. It is an illustrative wireframe, not a working dashboard or calculated analysis.
+
+## Management report presentation layout
+![Example management presentation storyboard](../../assets/images/dashboard-samples/powerbi-report-storyboard.svg)
+
+Follow the order: decision question, verified evidence, interpretation and recommended action.
+
+## Final Capstone Project · required note
+You have reached Week 10. Complete a reproducible end-to-end analysis and submit evidence for your instructor to review. Identify the audience and business question; document the source, cleaning, transformations and checks; present useful visuals and findings; and write recommendations with limitations.
+
+**Submission:** [Open your Power BI Desktop capstone submission page](../../capstone.html?course=powerbi). Sign in and synchronise all ten completed weeks before uploading. Attach your native project file and readable dashboard/report screenshots (up to four files; 12 MB per file, 32 MB total).
+
+**Rubric (100 points):** problem/objectives 25, data quality 20, technical implementation 20, evidence-based findings 20, communication/evidence 15. An instructor reviews each submission; 70/100 is the pass threshold. Never upload personal or confidential business information.
 
 ---
-The lesson content and model answers are intended for study. Completing the worksheet does not automatically mark the app quiz or progress as complete.
+**Progress note:** Completing this worksheet is practice. Marking a week complete, passing an assessment and submitting an instructor-reviewed capstone are separate actions in DataLearning.

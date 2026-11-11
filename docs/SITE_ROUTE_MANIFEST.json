@@ -1,5 +1,5 @@
 {
-  "description": "Current deployable route inventory. This is documentation only; middleware, auth and Supabase RLS enforce access.",
+  "description": "Maintained public and protected page inventory for the 2026-11-11 DataLearning release. Routes are not an authorization policy.",
   "learning_paths": [
     "introduction",
     "excel",
@@ -7,26 +7,30 @@
     "powerbi",
     "tableau",
     "powerquery",
-    "statistics"
+    "statistics",
+    "python",
+    "ai"
   ],
   "categories": {
     "public_pages": [
-      "index.html",
+      "auth.html",
+      "capstone-guide.html",
+      "capstone.html",
+      "career-path.html",
       "catalog.html",
-      "study-tools.html",
-      "overview.html",
-      "preview.html",
-      "reference.html",
-      "prompt-library.html",
-      "tutor.html",
+      "index.html",
       "learning-coach.html",
       "learning-lab.html",
+      "overview.html",
       "practice.html",
+      "preview.html",
+      "profile.html",
+      "prompt-library.html",
+      "reference.html",
       "studio.html",
-      "capstone.html",
-      "capstone-guide.html",
-      "verify.html",
-      "auth.html"
+      "study-tools.html",
+      "tutor.html",
+      "verify.html"
     ],
     "course_players": [
       "courses/introduction.html",
@@ -35,17 +39,9 @@
       "courses/powerbi.html",
       "courses/tableau.html",
       "courses/powerquery.html",
-      "courses/statistics.html"
-    ],
-    "legacy_course_players": [
+      "courses/statistics.html",
       "courses/python.html",
       "courses/ai.html"
-    ],
-    "legacy_course_guides": [
-      "courses/python-roadmap.html",
-      "courses/python-extension.html",
-      "courses/ai-roadmap.html",
-      "courses/ai-extension.html"
     ],
     "learner_account": [
       "account.html",
@@ -64,6 +60,12 @@
     "assessment_pages": [
       "quiz.html",
       "questions.html"
+    ],
+    "supplementary_course_guides": [
+      "courses/python-roadmap.html",
+      "courses/python-extension.html",
+      "courses/ai-roadmap.html",
+      "courses/ai-extension.html"
     ]
   },
   "redirects": {

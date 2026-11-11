@@ -1,0 +1,3297 @@
+{
+  "version": "2026-11-11-app-aware-v1",
+  "description": "Curated, public application help. No learner records, credentials or private admin data.",
+  "entries": [
+    {
+      "id": "getting-started",
+      "title": "Getting started in DataLearning",
+      "keywords": [
+        "how to use the app",
+        "start learning",
+        "new learner",
+        "where do i start",
+        "beginner learning",
+        "getting started",
+        "first course",
+        "which course",
+        "start a course",
+        "first course",
+        "learning from scratch"
+      ],
+      "answer": "Start at the Course Library, choose one of the nine 10-week guided courses, and open Week 1. Each course moves from learning the interface and working with data to analysis, dashboard or report design, and a Week 10 capstone. The separate Career Path explains what to study beyond one tool.",
+      "steps": [
+        "Open Courses and choose a tool or Data Analysis Foundations if you are new.",
+        "Read Week 1, download the linked practice file, then complete its learning, practice and knowledge check sections.",
+        "Move through the weeks using the course navigation.",
+        "When ready, review the Week 10 capstone requirements and submit from your account."
+      ],
+      "href": "/catalog.html",
+      "topic": "general"
+    },
+    {
+      "id": "courses",
+      "title": "Finding and selecting courses",
+      "keywords": [
+        "course library",
+        "list of courses",
+        "all courses",
+        "choose course",
+        "find course",
+        "where courses",
+        "excel sql power bi python",
+        "course",
+        "courses"
+      ],
+      "answer": "The Course Library includes Data Analysis Foundations, Excel, SQL, Power BI, Tableau, Power Query, Statistics, Python and AI for Data Analysis. Courses have 10 weekly learning stages and practice resources. Choose a course based on your goal rather than completing every course simultaneously.",
+      "steps": [
+        "Open the Course Library.",
+        "Use course search and category filters to narrow the list.",
+        "Select a course card to open the weekly reader.",
+        "Use the week sidebar and Start/Continue options to return to the next lesson."
+      ],
+      "href": "/catalog.html",
+      "topic": "general"
+    },
+    {
+      "id": "lesson-navigation",
+      "title": "Navigating weeks and lessons",
+      "keywords": [
+        "week navigation",
+        "next week",
+        "previous week",
+        "where is week",
+        "weekly lesson",
+        "lesson sidebar",
+        "return to week",
+        "how do i complete a week",
+        "mark week complete"
+      ],
+      "answer": "Open a course to see a single-week learning workspace. Use its week navigation to move between Weeks 1–10. Each week has Learn, Practise and Check Knowledge areas plus a completion action. Some courses open directly to a numbered week using the page URL fragment, for example #week8.",
+      "steps": [
+        "Open the relevant course.",
+        "Choose your week from the sidebar or Previous/Next controls.",
+        "Work through the explanation and exercise, then attempt the knowledge check.",
+        "Mark the week complete when you have done the work; your signed-in progress should sync before a capstone."
+      ],
+      "href": "/catalog.html",
+      "topic": "general"
+    },
+    {
+      "id": "practice-arena",
+      "title": "Using Practice Arena",
+      "keywords": [
+        "practice arena",
+        "excel editor",
+        "sql editor",
+        "python editor",
+        "solve challenge",
+        "show brief",
+        "hide brief",
+        "show table",
+        "hide table",
+        "run query",
+        "practice challenge"
+      ],
+      "answer": "Practice Arena lets you select Excel, SQL or Python practice. Choose a challenge, read the optional Challenge Brief, enter your solution and run the available checks. The Excel worksheet can be shown or hidden. The SQL environment uses SQLite practice queries. The Excel offline formula engine supports a subset of desktop Excel functions; the Python runner also has execution limitations. These environments are not full copies of desktop Excel, every SQL dialect or a local Python installation.",
+      "steps": [
+        "Open Practice Arena and select Excel, SQL or Python.",
+        "Choose a challenge and expand Show Brief if you need the requirements.",
+        "Write or edit the solution and run the result/check action.",
+        "Read the output and feedback; change your solution and rerun."
+      ],
+      "href": "/practice.html",
+      "topic": "general"
+    },
+    {
+      "id": "practice-studio",
+      "title": "Practice Studio and skill drills",
+      "keywords": [
+        "practice studio",
+        "practice skills",
+        "browse skills",
+        "drill",
+        "skills studio"
+      ],
+      "answer": "Practice Studio provides short skill-based activities that complement the weekly lessons. It is separate from the editor-based Practice Arena. Pick the course/skill, work on a small task, then return to your weekly lesson.",
+      "steps": [
+        "Open Practice Studio.",
+        "Pick a skill or Browse Skills on mobile.",
+        "Try the exercise and review feedback."
+      ],
+      "href": "/studio.html",
+      "topic": "general"
+    },
+    {
+      "id": "datasets",
+      "title": "Downloading datasets and weekly worksheets",
+      "keywords": [
+        "dataset",
+        "download dataset",
+        "download csv",
+        "practice file",
+        "spreadsheet file",
+        "worksheet download",
+        "where data",
+        "sample data",
+        "sql database download",
+        "practice datasets",
+        "find datasets",
+        "get datasets",
+        "where to download",
+        "dataset download",
+        "download practice data",
+        "practice files",
+        "practice file",
+        "data download",
+        "download data"
+      ],
+      "answer": "Each week has matched downloadable practice resources, including a worksheet with tasks and expected deliverables. Excel and Power BI commonly use CSV files; SQL has a ready-to-use SQLite practice database; Python lessons include fictional datasets. Some weeks share a dataset intentionally so you can build on earlier work.",
+      "steps": [
+        "Open the relevant week.",
+        "Use the practice dataset or weekly worksheet download in the resource section.",
+        "Check the column names and data dictionary before typing formulas or code.",
+        "Keep an original copy of the dataset, then work on a duplicate."
+      ],
+      "href": "/catalog.html",
+      "topic": "general"
+    },
+    {
+      "id": "videos",
+      "title": "Watching weekly lesson videos in the app",
+      "keywords": [
+        "youtube",
+        "video player",
+        "watch lesson video",
+        "video popup",
+        "video not playing",
+        "video cannot play",
+        "embedded video",
+        "fullscreen video",
+        "shorts video",
+        "video",
+        "watch video",
+        "lesson video",
+        "youtube videos"
+      ],
+      "answer": "A lesson video link opens DataLearning’s in-app video dialog. Supported YouTube formats include ordinary watch links, Shorts, some live videos, playlists and timestamps. The video remains hosted by YouTube. Some owners disable embedding or require you to view the video on YouTube; the app cannot override YouTube restrictions.",
+      "steps": [
+        "Open the weekly lesson and choose Watch Lesson Video.",
+        "Use the in-app player and fullscreen controls if available.",
+        "If embedding is blocked, choose the YouTube fallback to view the video there.",
+        "Close the dialog to stop playback and continue the lesson."
+      ],
+      "href": "/catalog.html",
+      "topic": "general"
+    },
+    {
+      "id": "capstone",
+      "title": "Submitting a Week 10 capstone project",
+      "keywords": [
+        "capstone",
+        "submit project",
+        "submit capstone",
+        "final project",
+        "upload project",
+        "week 10 submission",
+        "capstone requirements",
+        "capstone rubric",
+        "project review",
+        "capstone submission",
+        "upload capstone",
+        "submit capstone",
+        "submit project files"
+      ],
+      "answer": "Week 10 includes a course-specific project brief, required deliverables and a direct submission link. To submit, sign in and complete and sync all 10 weeks for that course. The submission form checks prior review status, accepts up to four supported files, allows up to 12 MB per file and 32 MB total, then routes the project for instructor review. Instructor review, not AI feedback, determines the assessment outcome; the published pass threshold is 70/100.",
+      "steps": [
+        "Open Week 10 of your course and read the full project brief and 100-point rubric.",
+        "Prepare your analysis, original project file or notebook, visuals and short evidence-based findings.",
+        "Sign in and confirm all ten course weeks are synced as complete.",
+        "Select Submit Capstone Project, choose the course and upload your files.",
+        "Check your account/submissions page for an instructor decision; AI Tutor cannot approve your work."
+      ],
+      "href": "/capstone-guide.html",
+      "topic": "general"
+    },
+    {
+      "id": "progress",
+      "title": "Learning progress and saved completions",
+      "keywords": [
+        "progress",
+        "lost progress",
+        "save progress",
+        "track progress",
+        "sync progress",
+        "completion",
+        "my learning",
+        "where is my progress"
+      ],
+      "answer": "The app provides weekly completion indicators and learner account progress. Some practice or draft states are stored in the browser; signed-in course progress is synced through Supabase when available. A local checkbox is not proof that cloud progress has synced. Sign in to preserve progress across devices and check the course before submitting a capstone.",
+      "steps": [
+        "Open the course and check your week completion indicators.",
+        "Sign in to the same learner account across devices.",
+        "Allow the progress sync to complete before closing the page.",
+        "If it looks wrong, confirm your account and connectivity, then use the account/progress view."
+      ],
+      "href": "/account.html",
+      "topic": "general"
+    },
+    {
+      "id": "auth",
+      "title": "Signing in and managing an account",
+      "keywords": [
+        "sign in",
+        "login",
+        "log in",
+        "register",
+        "sign up",
+        "password",
+        "forgot password",
+        "account creation",
+        "supabase auth"
+      ],
+      "answer": "DataLearning uses an account sign-in flow for cloud learner progress, live AI when configured, capstone submissions and some protected learning features. Do not share passwords or verification codes with a tutor. The public course and reference pages can be browsed without giving the tutor personal details.",
+      "steps": [
+        "Open Sign In.",
+        "Use your existing account or the available registration/recovery option.",
+        "Return to your course and check synced progress."
+      ],
+      "href": "/auth.html",
+      "topic": "general"
+    },
+    {
+      "id": "prompt-library",
+      "title": "Using the AI Prompt Library",
+      "keywords": [
+        "prompt library",
+        "ai prompts",
+        "prompt templates",
+        "prompts for excel",
+        "prompts for sql",
+        "prompt engineering",
+        "where are prompts"
+      ],
+      "answer": "The Prompt Library contains reusable prompts for data cleaning, Excel, SQL, Python, Power BI, analysis and reporting. It is linked directly from the AI for Data Analysis course and its weekly resource area. Treat example prompts as starting points: describe your question and fields accurately, anonymise sensitive data, and verify any AI-generated calculation.",
+      "steps": [
+        "Open the AI course or the Prompt Library directly.",
+        "Choose a prompt relevant to your task.",
+        "Replace placeholders with synthetic/non-sensitive field names and your own business question.",
+        "Use the prompt in an approved AI tool, then independently validate its output."
+      ],
+      "href": "/prompt-library.html",
+      "topic": "ai"
+    },
+    {
+      "id": "career-path",
+      "title": "Your Complete Data Career Path",
+      "keywords": [
+        "career path",
+        "complete data career path",
+        "four levels",
+        "beginner to expert",
+        "advanced courses",
+        "data engineering path",
+        "data science path"
+      ],
+      "answer": "Your Complete Data Career Path is on its own page, separate from the Course Library. It covers four levels—Beginner, Intermediate, Advanced and Expert—with 31 specialist modules spanning analytics, BI, engineering, data science and AI. Those modules contain design exercises and case studies; they do not provision real cloud/Spark/Kafka infrastructure.",
+      "steps": [
+        "Open the Career Path page.",
+        "Select a proficiency level or specialist track.",
+        "Review the prerequisites and worked case for a module.",
+        "Use the nine practical 10-week tool courses to build skills alongside the career roadmap."
+      ],
+      "href": "/career-path.html",
+      "topic": "general"
+    },
+    {
+      "id": "tutor",
+      "title": "Using the AI Tutor",
+      "keywords": [
+        "ai tutor",
+        "tutor studio",
+        "offline tutor",
+        "live ai",
+        "ask tutor",
+        "tutor not working",
+        "training tutor",
+        "app help"
+      ],
+      "answer": "Tutor Studio has an offline knowledge guide and optional live AI mode. Offline answers use bundled learning content and the verified app guide; they do not require provider credentials. Live AI uses a server-side OpenAI or Groq key if the administrator has configured one, requires sign-in, and sends your question to the selected provider. Neither mode has access to your private grades, uploaded project files or instructor review decisions.",
+      "steps": [
+        "Open AI Tutor.",
+        "Select Offline Guide for bundled explanations, or Live AI if enabled.",
+        "Ask a specific question about the app, a course topic, a dataset or an analysis problem.",
+        "Use course links supplied in the answer and check computations independently."
+      ],
+      "href": "/tutor.html",
+      "topic": "general"
+    },
+    {
+      "id": "quiz",
+      "title": "Quizzes and knowledge checks",
+      "keywords": [
+        "quiz",
+        "questions to try",
+        "weekly questions",
+        "check knowledge",
+        "graded quiz",
+        "assessment",
+        "knowledge check"
+      ],
+      "answer": "Each course week includes a knowledge check or questions page so you can assess understanding. Practice feedback is useful for learning, but it does not replace instructor capstone assessment. Retry after reading the explanation and cross-checking your answer against the lesson.",
+      "steps": [
+        "Open your current course week.",
+        "Choose Check Knowledge or Questions to Try.",
+        "Answer the questions and review the explanations.",
+        "Correct misunderstandings before moving ahead."
+      ],
+      "href": "/questions.html",
+      "topic": "general"
+    },
+    {
+      "id": "certificates",
+      "title": "Certificates and verification",
+      "keywords": [
+        "certificate",
+        "download certificate",
+        "verify certificate",
+        "course certificate",
+        "certificate verification"
+      ],
+      "answer": "Certificate eligibility follows the published assessment and instructor-review process; simply checking all ten weeks or receiving a Tutor answer is not approval. Existing certificate pages provide verification for an issued certificate.",
+      "steps": [
+        "Complete your course and submit the required capstone.",
+        "Wait for an instructor-published assessment outcome.",
+        "Use the certificate page for available issuance or verification details."
+      ],
+      "href": "/certificate.html",
+      "topic": "general"
+    },
+    {
+      "id": "dashboards",
+      "title": "Dashboard design lessons and examples",
+      "keywords": [
+        "dashboard sample",
+        "dashboard images",
+        "dashboard layout",
+        "dashboard creation",
+        "create dashboard",
+        "report presentation",
+        "week 8",
+        "week 9",
+        "dashboard examples",
+        "dashboard example"
+      ],
+      "answer": "The 10-week tool journeys include dashboard-layout samples and presentation storyboards in their later weeks. The illustrations show suggested KPI card, chart, filter and insight arrangements. The example images teach visual structure; they are not already-functional dashboard files. You must build and explain your own dashboard or reporting deliverable.",
+      "steps": [
+        "Open the relevant tool course.",
+        "Go to Week 8 for dashboard design/layout examples and Week 9 for reporting or presentation.",
+        "Recreate a layout using the practice dataset and an appropriate tool.",
+        "Write a short insight explaining the chart and the decision it supports."
+      ],
+      "href": "/catalog.html",
+      "topic": "general"
+    },
+    {
+      "id": "privacy",
+      "title": "Privacy and safe training data",
+      "keywords": [
+        "privacy",
+        "my data",
+        "real data",
+        "customer data",
+        "private files",
+        "sensitive",
+        "security",
+        "data protection"
+      ],
+      "answer": "Use the supplied fictional datasets for lessons and AI prompts. Never paste passwords, tokens, confidential company data or personal customer records into the Tutor or third-party AI providers. Live AI answers are generated from the question and limited chat history, not from a private scan of your account or capstone files.",
+      "steps": [
+        "Use a fictional or anonymised example.",
+        "Describe the necessary field names and business rules without revealing identifiers.",
+        "Validate all AI results against authorised local sources."
+      ],
+      "href": "/reference.html",
+      "topic": "general"
+    },
+    {
+      "id": "course-excel",
+      "title": "Microsoft Excel course — ten-week plan",
+      "keywords": [
+        "microsoft excel course",
+        "learn microsoft excel",
+        "microsoft excel weeks",
+        "microsoft excel syllabus",
+        "excel course",
+        "start excel",
+        "course excel"
+      ],
+      "answer": "This course starts with getting comfortable with the excel workspace and builds toward excel analytics capstone: dataset to executive dashboard. It contains ten weeks with instruction, worked examples, datasets and final project guidance.",
+      "steps": [
+        "Week 1: Getting comfortable with the Excel workspace — Identify ribbon tabs, worksheets, cells, ranges and the formula bar before typing or analysing data.",
+        "Week 2: Entering, formatting and organising data — Turn raw entries into a well-typed Excel Table that can be filtered without corrupting the source.",
+        "Week 3: Essential Excel formulas and cell references — Build correct arithmetic and summary formulas and know when to lock a reference.",
+        "Week 4: Cleaning text, dates, duplicates and errors — Fix dirty source data while keeping an auditable record of what changed.",
+        "Week 5: IF, SUMIFS, COUNTIFS and lookup functions — Calculate business KPIs by conditions and retrieve attributes from a reference table.",
+        "Week 6: PivotTables, dynamic arrays and reusable analysis — Summarise thousands of rows into pivot summaries and dynamic filtered lists without manual recalculation.",
+        "Week 7: Choosing and interpreting Excel charts — Create truthful visuals that match the business question and explain what each chart shows.",
+        "Week 8: Building a professional interactive Excel dashboard — Arrange KPI cards, PivotCharts and slicers into one readable decision-making page.",
+        "Week 9: Writing and presenting an Excel management report — Turn dashboard findings into a concise business narrative and deliver a portable report.",
+        "Week 10: Excel analytics capstone: dataset to executive dashboard — Independently design, calculate, validate, present and submit a professional Excel dashboard."
+      ],
+      "href": "/courses/excel.html",
+      "topic": "excel",
+      "weeks": [
+        {
+          "week": 1,
+          "title": "Getting comfortable with the Excel workspace",
+          "goal": "Identify ribbon tabs, worksheets, cells, ranges and the formula bar before typing or analysing data.",
+          "where": "Open Excel, choose Blank workbook, locate Home and Data ribbons, Name Box, formula bar, sheet tabs and Save As.",
+          "topics": [
+            {
+              "heading": "Workbook versus worksheet",
+              "explanation": "a workbook is the file and sheets organise different tables"
+            },
+            {
+              "heading": "Cell addresses",
+              "explanation": "B3 identifies a column and row and is used in formulas"
+            },
+            {
+              "heading": "Ribbon commands",
+              "explanation": "Home formats cells while Data handles import sorting and filtering"
+            },
+            {
+              "heading": "Reliable saving",
+              "explanation": "keep a raw sheet untouched and save a descriptive .xlsx version."
+            }
+          ],
+          "worked": "A1: Product  B1: Units  C1: Price\nA2: Notebook B2: 3 C2: 1500\nD2: =B2*C2  → 4500",
+          "task": "Create a workbook named Retail_Practice.xlsx, make Raw_Data and Analysis tabs, enter three sales rows and calculate one line total.",
+          "check": "The formula =B2*C2 multiplies 3 by 1500 to return 4500; the source values remain independently readable.",
+          "trap": "Typing data over a formula or confusing the active sheet with the entire workbook.",
+          "business": "A shop assistant needs a tidy daily sales workbook that a supervisor can reopen and understand without verbal instructions."
+        },
+        {
+          "week": 2,
+          "title": "Entering, formatting and organising data",
+          "goal": "Turn raw entries into a well-typed Excel Table that can be filtered without corrupting the source.",
+          "where": "Use Home > Number, then select a continuous range and choose Insert > Table with My table has headers.",
+          "topics": [
+            {
+              "heading": "Data types",
+              "explanation": "quantities are numbers while order IDs should remain text if zeros matter"
+            },
+            {
+              "heading": "Tables",
+              "explanation": "Ctrl+T creates structured ranges that expand when rows are added"
+            },
+            {
+              "heading": "Sorting",
+              "explanation": "use a whole Table rather than a single column to keep records together"
+            },
+            {
+              "heading": "Filters",
+              "explanation": "select Region or Status without deleting rows that do not match."
+            }
+          ],
+          "worked": "Headers: OrderID, Date, Region, Units, UnitPrice\nSelect range → Ctrl+T → Table Design > Name: tblSales",
+          "task": "Format dates, currencies and identifiers in the practice file; create tblSales, sort by date and filter one region.",
+          "check": "After filtering, every row still has the correct original OrderID and amount; removing the filter restores all records.",
+          "trap": "Sorting only the Region column or converting 0007 to numeric 7.",
+          "business": "A sales administrator receives daily transactions and must prepare a reliable master table for an analyst."
+        },
+        {
+          "week": 3,
+          "title": "Essential Excel formulas and cell references",
+          "goal": "Build correct arithmetic and summary formulas and know when to lock a reference.",
+          "where": "Use the formula bar, AutoSum and Formulas > Insert Function; inspect each cell's referenced ranges.",
+          "topics": [
+            {
+              "heading": "Operators",
+              "explanation": "+ - * / act on numeric cells and must use the intended units"
+            },
+            {
+              "heading": "SUM and AVERAGE",
+              "explanation": "summarise an explicit range rather than typing hardcoded totals"
+            },
+            {
+              "heading": "Relative versus absolute references",
+              "explanation": "$B$1 keeps a tax-rate cell fixed when copying"
+            },
+            {
+              "heading": "Formula auditing",
+              "explanation": "trace errors by changing one input and comparing the recalculated result."
+            }
+          ],
+          "worked": "D2 = B2*C2\nE2 = D2*$H$2\n=SUM(D2:D101) and =AVERAGE(D2:D101)",
+          "task": "Compute line revenue, tax using one fixed rate cell, grand total and average order-line value; copy formulas through all rows.",
+          "check": "A 3-unit order at 1500 produces 4500 before tax; a fixed 7.5% rate in H2 produces 337.50 tax.",
+          "trap": "Hardcoding a tax percentage in every row or confusing gross and net amounts.",
+          "business": "A finance assistant needs a dependable daily revenue sheet that recalculates when transactions change."
+        },
+        {
+          "week": 4,
+          "title": "Cleaning text, dates, duplicates and errors",
+          "goal": "Fix dirty source data while keeping an auditable record of what changed.",
+          "where": "Use Data > Remove Duplicates carefully, Data > Text to Columns, and helper columns beside the raw Table.",
+          "topics": [
+            {
+              "heading": "Whitespace",
+              "explanation": "TRIM removes extra spaces but must be checked before overwriting source values"
+            },
+            {
+              "heading": "Text standardisation",
+              "explanation": "UPPER and PROPER create consistent labels without changing definitions"
+            },
+            {
+              "heading": "Validation",
+              "explanation": "COUNTBLANK and conditional formatting reveal missing fields"
+            },
+            {
+              "heading": "Duplicate review",
+              "explanation": "identify the genuine transaction key before deciding which records to exclude."
+            }
+          ],
+          "worked": "=TRIM(A2)\n=PROPER(TRIM(C2))\n=IF(OR(D2=\"\",D2<0),\"Review\",\"OK\")",
+          "task": "Create cleaned Region and Status fields, flag blank order dates and suspect amounts, then document how many rows changed.",
+          "check": "A label of '  north ' becomes 'North'; missing dates remain flagged rather than silently fabricated.",
+          "trap": "Deleting repeated product rows even though different orders can contain the same product.",
+          "business": "An operations team exports inconsistent region spellings and occasional missing order dates from a point-of-sale device."
+        },
+        {
+          "week": 5,
+          "title": "IF, SUMIFS, COUNTIFS and lookup functions",
+          "goal": "Calculate business KPIs by conditions and retrieve attributes from a reference table.",
+          "where": "Use Formulas > Logical or Lookup & Reference and test criteria against visible filtered rows.",
+          "topics": [
+            {
+              "heading": "IF rules",
+              "explanation": "return readable business categories from explicit conditions"
+            },
+            {
+              "heading": "SUMIFS",
+              "explanation": "add sales meeting both status and region rules"
+            },
+            {
+              "heading": "COUNTIFS",
+              "explanation": "count records satisfying multiple tests"
+            },
+            {
+              "heading": "XLOOKUP",
+              "explanation": "match a stable ProductID and return a name or category with a clear not-found result."
+            }
+          ],
+          "worked": "=IF(E2>=50000,\"High\",\"Standard\")\n=SUMIFS(tblSales[Revenue],tblSales[Region],\"North\",tblSales[Status],\"Paid\")\n=XLOOKUP(A2,Products[ID],Products[Category],\"Unmapped\")",
+          "task": "Calculate paid revenue by region, high-value orders and missing product mappings, then explain why the filters matter.",
+          "check": "A missing ProductID returns 'Unmapped' rather than a misleading blank; paid revenue excludes cancelled sales.",
+          "trap": "Using a lookup on a nonunique key or letting cancelled orders inflate actual revenue.",
+          "business": "A regional manager wants comparable sales totals and product categories for a weekly trading review."
+        },
+        {
+          "week": 6,
+          "title": "PivotTables, dynamic arrays and reusable analysis",
+          "goal": "Summarise thousands of rows into pivot summaries and dynamic filtered lists without manual recalculation.",
+          "where": "Choose Insert > PivotTable, place fields in Rows, Columns, Values and Filters, then refresh after source changes.",
+          "topics": [
+            {
+              "heading": "Pivot aggregation",
+              "explanation": "choose Sum of Revenue rather than Count of Revenue"
+            },
+            {
+              "heading": "Slicers",
+              "explanation": "connect relevant pivot views so business users can filter"
+            },
+            {
+              "heading": "Dynamic arrays",
+              "explanation": "FILTER and UNIQUE return ranges that can spill into adjacent cells"
+            },
+            {
+              "heading": "LET",
+              "explanation": "name intermediate calculations to keep complex formulas readable and maintainable."
+            }
+          ],
+          "worked": "=UNIQUE(tblSales[Region])\n=LET(paid,SUMIFS(tblSales[Revenue],tblSales[Status],\"Paid\"),paid)\nPivot Rows: Region; Values: Sum of Revenue",
+          "task": "Build a region-by-month PivotTable and slicer, then compare it with a formula-based total and explain any mismatch.",
+          "check": "A pivot total for Paid orders must match independently computed SUMIFS on the same data and filters.",
+          "trap": "Forgetting PivotTable Refresh, or placing cells in a spill range where they block the result.",
+          "business": "A reporting analyst needs a reusable monthly sales summary that updates when new export rows arrive."
+        },
+        {
+          "week": 7,
+          "title": "Choosing and interpreting Excel charts",
+          "goal": "Create truthful visuals that match the business question and explain what each chart shows.",
+          "where": "Select a PivotTable summary, use Insert > Recommended Charts or the chart family, then format axes and titles.",
+          "topics": [
+            {
+              "heading": "Lines",
+              "explanation": "show time trends with dates in chronological order"
+            },
+            {
+              "heading": "Bars",
+              "explanation": "compare categories starting quantitative bars from zero"
+            },
+            {
+              "heading": "KPI context",
+              "explanation": "report units, dates and baseline alongside a headline metric"
+            },
+            {
+              "heading": "Chart integrity",
+              "explanation": "avoid truncated axes, 3D effects and over-coloured categories."
+            }
+          ],
+          "worked": "Monthly revenue: Jan 120000, Feb 150000, Mar 135000\nLine chart → Feb peak; Mar is 10% below Feb",
+          "task": "Produce a three-month revenue trend, a region ranking and one sentence distinguishing an observed change from its cause.",
+          "check": "The line must connect Jan, Feb and Mar in order; (135000-150000)/150000 = -10% month-on-month.",
+          "trap": "Using a pie chart with many categories or writing 'marketing caused the fall' without evidence.",
+          "business": "The sales director needs two charts that communicate trends and priorities in under one minute."
+        },
+        {
+          "week": 8,
+          "title": "Building a professional interactive Excel dashboard",
+          "goal": "Arrange KPI cards, PivotCharts and slicers into one readable decision-making page.",
+          "where": "Create a Dashboard worksheet, switch off Gridlines, add a title and align visuals using Format > Align.",
+          "topics": [
+            {
+              "heading": "Visual hierarchy",
+              "explanation": "place title, date range and three KPIs at the top"
+            },
+            {
+              "heading": "Story flow",
+              "explanation": "show revenue trend, region contribution and top products in a predictable grid"
+            },
+            {
+              "heading": "Interaction",
+              "explanation": "link slicers to PivotTables that share a source and test every selection"
+            },
+            {
+              "heading": "Design checks",
+              "explanation": "ensure consistent fonts, readable labels, whitespace and clear empty states."
+            }
+          ],
+          "worked": "Top row: Total Revenue | Orders | Average Order Value\nMiddle: Monthly Trend | Region Ranking\nBottom: Top Products | Filters / Notes",
+          "task": "Build a one-page dashboard with at least three KPIs, two charts and a slicer; compare its totals with your source Table.",
+          "check": "Changing the Region slicer must update the connected metrics; original overall totals must remain recoverable.",
+          "trap": "Placing decorative charts without a question, or showing conflicting totals from disconnected pivots.",
+          "business": "A retail manager needs a self-service Excel performance dashboard for weekly executive meetings."
+        },
+        {
+          "week": 9,
+          "title": "Writing and presenting an Excel management report",
+          "goal": "Turn dashboard findings into a concise business narrative and deliver a portable report.",
+          "where": "Use Page Layout > Print Area, Export > PDF and a short Insights sheet with assumptions and decisions.",
+          "topics": [
+            {
+              "heading": "Observation versus explanation",
+              "explanation": "show what changed before speculating why"
+            },
+            {
+              "heading": "Variance",
+              "explanation": "calculate actual-minus-target and percentage change with correct denominators"
+            },
+            {
+              "heading": "Recommendation",
+              "explanation": "link an action to the observed issue and a measurable follow-up"
+            },
+            {
+              "heading": "Handover",
+              "explanation": "include period, data source, refresh date and limitations for the recipient."
+            }
+          ],
+          "worked": "Actual 840000; target 900000\nGap = -60000; variance % = -60000/900000 = -6.67%",
+          "task": "Write a one-page executive summary supported by dashboard screenshots and three priority recommendations.",
+          "check": "Explain the ₦60,000 shortfall as a -6.67% variance against target; disclose unknown causes until investigated.",
+          "trap": "Reporting a percentage without its base or sharing screenshots with unreadable labels.",
+          "business": "A head of operations needs an evidence-based monthly performance report that can be discussed in five minutes."
+        },
+        {
+          "week": 10,
+          "title": "Excel analytics capstone: dataset to executive dashboard",
+          "goal": "Independently design, calculate, validate, present and submit a professional Excel dashboard.",
+          "where": "Start from a fresh copy of the project dataset and create separate Raw, Clean, Analysis, Dashboard and Notes sheets.",
+          "topics": [
+            {
+              "heading": "Project scope",
+              "explanation": "define the decision and business questions before touching formulas"
+            },
+            {
+              "heading": "Data preparation",
+              "explanation": "validate keys, dates, amounts and missing records"
+            },
+            {
+              "heading": "Dashboard delivery",
+              "explanation": "include KPI calculations, charts, slicers and interpretations"
+            },
+            {
+              "heading": "Evidence",
+              "explanation": "export dashboard PDF and attach your workbook, quality checks and one-page findings."
+            }
+          ],
+          "worked": "Revenue = SUM(Paid Revenue); AOV = Paid Revenue/Distinct Paid Orders\nChecks: source total = summary total; filters reconcile by region",
+          "task": "Deliver an .xlsx workbook, a dashboard image or PDF, a one-page report and a short validation checklist for instructor review.",
+          "check": "Instructor should reproduce totals and confirm a slicer changes relevant visuals; a 70/100 score is required for completion.",
+          "trap": "Submitting only a decorative screenshot without calculations, source attribution or reasoning.",
+          "business": "A fictional retail company has asked you to prepare an end-to-end monthly sales performance review for its leadership team."
+        }
+      ]
+    },
+    {
+      "id": "course-powerbi",
+      "title": "Power BI course — ten-week plan",
+      "keywords": [
+        "power bi course",
+        "learn power bi",
+        "power bi weeks",
+        "power bi syllabus",
+        "powerbi course",
+        "start powerbi",
+        "course powerbi"
+      ],
+      "answer": "This course starts with touring power bi desktop and its workspace and builds toward power bi capstone: model to published executive report. It contains ten weeks with instruction, worked examples, datasets and final project guidance.",
+      "steps": [
+        "Week 1: Touring Power BI Desktop and its workspace — Recognise the Report, Data and Model views, main ribbon and essential panes without prior Power BI experience.",
+        "Week 2: Connecting and profiling data in Power Query — Import spreadsheets or CSVs and identify incorrect types, missing fields and quality problems before modelling.",
+        "Week 3: Building relationships and a star schema — Model sales facts with reusable dimension tables to prevent misleading totals and filters.",
+        "Week 4: DAX measures and evaluation context — Write measures that react correctly to slicers and compare them with calculated columns.",
+        "Week 5: Time intelligence and period comparisons — Analyse month-over-month and year-over-year changes with a proper date dimension.",
+        "Week 6: Advanced DAX and analytical scenarios — Control denominators and create context-aware comparisons without confusing totals.",
+        "Week 7: Designing Power BI visuals and interactions — Select charts for decisions and make drilldown and filters understandable to a new user.",
+        "Week 8: Building a premium interactive Power BI report — Apply grid-based dashboard layout, slicers, bookmarks and visual hierarchy to a decision-ready report page.",
+        "Week 9: Publishing, sharing and presenting insights — Explain how Power BI Desktop reports are shared, refreshed and turned into an executive narrative.",
+        "Week 10: Power BI capstone: model to published executive report — Build and document an end-to-end data model, DAX KPIs, interactive report and executive presentation."
+      ],
+      "href": "/courses/powerbi.html",
+      "topic": "powerbi",
+      "weeks": [
+        {
+          "week": 1,
+          "title": "Touring Power BI Desktop and its workspace",
+          "goal": "Recognise the Report, Data and Model views, main ribbon and essential panes without prior Power BI experience.",
+          "where": "Install or open Power BI Desktop, select a blank report and locate Home > Get Data, Transform Data, fields and visualizations panes.",
+          "topics": [
+            {
+              "heading": "Report view",
+              "explanation": "design the canvas that viewers will interact with"
+            },
+            {
+              "heading": "Data view",
+              "explanation": "inspect loaded tables and column values"
+            },
+            {
+              "heading": "Model view",
+              "explanation": "inspect relationships and table directions"
+            },
+            {
+              "heading": "PBIX files",
+              "explanation": "save a versioned report and distinguish the desktop file from the published Power BI service item."
+            }
+          ],
+          "worked": "Home → Get data → Text/CSV → Transform Data → Close & Apply",
+          "task": "Open Power BI Desktop, import a practice sales CSV, identify three views and save a PBIX with a descriptive name.",
+          "check": "The imported table should appear in Data view and Model view; the Report canvas should remain ready for visuals.",
+          "trap": "Building charts before checking data types or assuming Save publishes to the Power BI Service.",
+          "business": "A new business analyst is onboarding and must understand where to load, inspect, model and visualise data."
+        },
+        {
+          "week": 2,
+          "title": "Connecting and profiling data in Power Query",
+          "goal": "Import spreadsheets or CSVs and identify incorrect types, missing fields and quality problems before modelling.",
+          "where": "From Power BI Desktop choose Home > Transform Data; inspect Column quality, Column distribution and Applied Steps.",
+          "topics": [
+            {
+              "heading": "Import options",
+              "explanation": "choose the correct delimiter, encoding and header row"
+            },
+            {
+              "heading": "Data types",
+              "explanation": "dates must really be Date and sales values numeric"
+            },
+            {
+              "heading": "Profiling",
+              "explanation": "inspect errors, blanks and unique counts before removal"
+            },
+            {
+              "heading": "Refresh",
+              "explanation": "repeat transformations reliably instead of manually altering report output."
+            }
+          ],
+          "worked": "Power Query: promote headers → set types → inspect Amount and Date → Close & Apply",
+          "task": "Document the source schema, correct at least two types and explain one missing-value decision.",
+          "check": "Your transformed table should include numeric Amount and a valid OrderDate with documented errors.",
+          "trap": "Silently replacing invalid sales values with zero, which alters the business measure.",
+          "business": "A commercial team exports sales from several systems with inconsistent date and currency columns."
+        },
+        {
+          "week": 3,
+          "title": "Building relationships and a star schema",
+          "goal": "Model sales facts with reusable dimension tables to prevent misleading totals and filters.",
+          "where": "Use Model view and Manage relationships; confirm which table has unique keys before setting cardinality.",
+          "topics": [
+            {
+              "heading": "Grain",
+              "explanation": "one fact row represents an order line or event"
+            },
+            {
+              "heading": "Dimensions",
+              "explanation": "Date, Product and Region describe records without repeating measures"
+            },
+            {
+              "heading": "Relationships",
+              "explanation": "use one-to-many where the dimension key is unique"
+            },
+            {
+              "heading": "Filter direction",
+              "explanation": "prefer predictable single-direction filters until a specific reason demands more."
+            }
+          ],
+          "worked": "FactSales[ProductID] (*) → (1) DimProduct[ProductID]\nDimDate[Date] (1) → (*) FactSales[OrderDate]",
+          "task": "Create or sketch a FactSales table related to Product and Date dimensions; verify filtering totals by one product.",
+          "check": "Each fact row must match at most one product dimension key; a filtered total should never increase from an accidental join.",
+          "trap": "Making many-to-many relationships to hide duplicate keys or linking tables on nonunique names.",
+          "business": "A retailer wants a dashboard that can filter by month, store and product without double-counting sales."
+        },
+        {
+          "week": 4,
+          "title": "DAX measures and evaluation context",
+          "goal": "Write measures that react correctly to slicers and compare them with calculated columns.",
+          "where": "Choose Modeling > New measure, write DAX and place the result on a Card and in a table visual.",
+          "topics": [
+            {
+              "heading": "Measures versus columns",
+              "explanation": "a measure aggregates in the current filter context"
+            },
+            {
+              "heading": "SUM and DISTINCTCOUNT",
+              "explanation": "compute revenue and orders based on model relationships"
+            },
+            {
+              "heading": "DIVIDE",
+              "explanation": "safely handles zero denominators"
+            },
+            {
+              "heading": "Context",
+              "explanation": "row selections and slicers change which fact rows contribute to a measure."
+            }
+          ],
+          "worked": "Sales Revenue = SUM(FactSales[Revenue])\nOrders = DISTINCTCOUNT(FactSales[OrderID])\nAOV = DIVIDE([Sales Revenue],[Orders])",
+          "task": "Create Revenue, Orders and AOV measures; filter by Region and compare totals with raw data.",
+          "check": "AOV must equal selected revenue divided by selected distinct orders, not average of precomputed category averages.",
+          "trap": "Using a calculated column to replace a dynamic KPI measure or dividing without checking zeros.",
+          "business": "Management wants accurate performance metrics that adjust instantly to the selected region and period."
+        },
+        {
+          "week": 5,
+          "title": "Time intelligence and period comparisons",
+          "goal": "Analyse month-over-month and year-over-year changes with a proper date dimension.",
+          "where": "Mark a contiguous DimDate as a Date table and use Calendar fields on a time-series visual.",
+          "topics": [
+            {
+              "heading": "Date table",
+              "explanation": "one row per date supports consistent calendar calculations"
+            },
+            {
+              "heading": "Period logic",
+              "explanation": "PREVIOUSMONTH and DATEADD compare comparable windows"
+            },
+            {
+              "heading": "Percentage variance",
+              "explanation": "divide by the prior period and handle missing months"
+            },
+            {
+              "heading": "Completeness",
+              "explanation": "flag partial current periods to avoid biased comparisons."
+            }
+          ],
+          "worked": "Previous Month Revenue = CALCULATE([Sales Revenue],DATEADD(DimDate[Date],-1,MONTH))\nMoM % = DIVIDE([Sales Revenue]-[Previous Month Revenue],[Previous Month Revenue])",
+          "task": "Build a line chart of monthly revenue plus a MoM percentage table, identifying incomplete months.",
+          "check": "For March 135000 versus February 150000, MoM = -10%; date labels must sort chronologically.",
+          "trap": "Comparing a partial current month with a complete previous month without explaining the limitation.",
+          "business": "A reporting team needs a credible monthly trend and variance against the previous trading period."
+        },
+        {
+          "week": 6,
+          "title": "Advanced DAX and analytical scenarios",
+          "goal": "Control denominators and create context-aware comparisons without confusing totals.",
+          "where": "Use Modeling > New measure, then test results in a matrix with Region as rows and slicer filters.",
+          "topics": [
+            {
+              "heading": "CALCULATE",
+              "explanation": "changes filter context for a specified calculation"
+            },
+            {
+              "heading": "ALL versus ALLSELECTED",
+              "explanation": "choose grand totals versus user-selected totals deliberately"
+            },
+            {
+              "heading": "Ranking",
+              "explanation": "RANKX or ranking measures require a clear comparison population"
+            },
+            {
+              "heading": "Sanity checks",
+              "explanation": "inspect row values and grand totals under two filter states."
+            }
+          ],
+          "worked": "Region Share % = DIVIDE([Sales Revenue],CALCULATE([Sales Revenue],ALL(DimRegion)))\nRank = RANKX(ALL(DimRegion[Region]),[Sales Revenue],,DESC)",
+          "task": "Calculate revenue share by region and explain whether it is a share of all data or selected regions.",
+          "check": "All region shares should sum to 100% when the denominator uses the appropriate total; compare to a source-based cross-check.",
+          "trap": "Removing all filters unintentionally with ALL(FactSales) or treating every percentage as additive.",
+          "business": "Executives want market contribution and ranking metrics under controlled country and period slicers."
+        },
+        {
+          "week": 7,
+          "title": "Designing Power BI visuals and interactions",
+          "goal": "Select charts for decisions and make drilldown and filters understandable to a new user.",
+          "where": "On Report view add clustered bars, line charts and Cards, then inspect Format visual and Edit interactions.",
+          "topics": [
+            {
+              "heading": "KPI cards",
+              "explanation": "show unit, current period and change from target"
+            },
+            {
+              "heading": "Lines and bars",
+              "explanation": "choose time and category visualizations based on question"
+            },
+            {
+              "heading": "Interactions",
+              "explanation": "test cross-filtering, drill-through and tooltips"
+            },
+            {
+              "heading": "Accessibility",
+              "explanation": "label measures clearly and check contrast and keyboard focus where supported."
+            }
+          ],
+          "worked": "Cards: Revenue, Orders, Margin %\nLine: Revenue by Month\nBar: Revenue by Region",
+          "task": "Create one report page with three cards and two visuals, and verify that selecting a bar affects other visuals intentionally.",
+          "check": "A selected region should update related KPIs, while totals in a separate validation table remain consistent.",
+          "trap": "Overcrowding the canvas or leaving unwanted visual-to-visual filters enabled.",
+          "business": "The sales leadership team needs a summary where a manager can investigate a changing KPI by region."
+        },
+        {
+          "week": 8,
+          "title": "Building a premium interactive Power BI report",
+          "goal": "Apply grid-based dashboard layout, slicers, bookmarks and visual hierarchy to a decision-ready report page.",
+          "where": "Set Page size, add a title and filter area, align and distribute visual containers, and use View > Selection where relevant.",
+          "topics": [
+            {
+              "heading": "Layout grid",
+              "explanation": "create a strong heading, compact KPI strip and analytical middle row"
+            },
+            {
+              "heading": "Interaction design",
+              "explanation": "group slicers, offer a clear reset method and test cross-filtering"
+            },
+            {
+              "heading": "Performance",
+              "explanation": "minimise redundant high-cardinality visuals and expensive measures"
+            },
+            {
+              "heading": "Publishing readiness",
+              "explanation": "document metric definitions, refresh timing and ownership."
+            }
+          ],
+          "worked": "Top: Total Revenue | AOV | Margin % | Orders\nMiddle: Monthly Revenue Trend | Region Ranking\nBottom: Product Mix | Insight & Actions",
+          "task": "Produce an executive overview with four KPIs, trend and category views and a clear slicer group.",
+          "check": "Every card must reconcile with its source measure; a reset state must restore the intended overview.",
+          "trap": "Making the page impressive but unreadable at real display size or allowing unrelated visual interactions.",
+          "business": "A board-facing monthly performance report needs a consistent 16:9 layout and immediately visible business context."
+        },
+        {
+          "week": 9,
+          "title": "Publishing, sharing and presenting insights",
+          "goal": "Explain how Power BI Desktop reports are shared, refreshed and turned into an executive narrative.",
+          "where": "Use Power BI Service Workspaces, Publish and semantic model settings as allowed by your organisation.",
+          "topics": [
+            {
+              "heading": "Desktop versus Service",
+              "explanation": "author PBIX locally, then publish where you have permission"
+            },
+            {
+              "heading": "Refresh governance",
+              "explanation": "know gateways, credentials and source ownership"
+            },
+            {
+              "heading": "Access",
+              "explanation": "workspace roles and row-level security should be verified rather than assumed"
+            },
+            {
+              "heading": "Storytelling",
+              "explanation": "prepare a one-page summary with business implications, caveats and next actions."
+            }
+          ],
+          "worked": "Executive summary: 'Revenue is 6.7% below target, mainly in East; review returns and channel mix before assigning a cause.'",
+          "task": "Write a management-ready insight narrative and a report handover note stating refresh, access and definitions.",
+          "check": "Do not claim a scheduled refresh is successful until the published model confirms it; screenshots must show selected filters.",
+          "trap": "Sending PBIX files as a substitute for access control or implying correlation proves business causation.",
+          "business": "A finance director needs a credible report and an accessible briefing rather than dozens of unexplained charts."
+        },
+        {
+          "week": 10,
+          "title": "Power BI capstone: model to published executive report",
+          "goal": "Build and document an end-to-end data model, DAX KPIs, interactive report and executive presentation.",
+          "where": "Begin with the synthetic dataset, load via Power Query, verify the star schema and create a separate report Summary page.",
+          "topics": [
+            {
+              "heading": "Preparation",
+              "explanation": "profile and type source fields before loading"
+            },
+            {
+              "heading": "Measures",
+              "explanation": "calculate revenue, distinct orders, AOV and period variance"
+            },
+            {
+              "heading": "Dashboard",
+              "explanation": "include filterable KPIs, at least three meaningful visuals and a note section"
+            },
+            {
+              "heading": "Handover",
+              "explanation": "attach PBIX, screenshots or PDF, assumptions and validation record."
+            }
+          ],
+          "worked": "Measures: Revenue; Orders; AOV; MoM %\nValidation: source totals = model totals; slicers filter the intended views",
+          "task": "Submit PBIX or PDF/screenshot evidence, a data dictionary, measure list, three insights and a short management presentation.",
+          "check": "The instructor should reproduce KPIs and navigate slicers; acceptance requires documented limitations and a 70/100 assessment.",
+          "trap": "Submitting attractive charts with broken relationships, untested DAX or no documentation of data refresh.",
+          "business": "A fictional e-commerce business commissions an executive sales and profitability dashboard for monthly steering meetings."
+        }
+      ]
+    },
+    {
+      "id": "course-sql",
+      "title": "SQL course — ten-week plan",
+      "keywords": [
+        "sql course",
+        "learn sql",
+        "sql weeks",
+        "sql syllabus",
+        "sql course",
+        "start sql",
+        "course sql"
+      ],
+      "answer": "This course starts with understanding databases and sql editor environments and builds toward sql capstone: end-to-end analytical reporting dataset. It contains ten weeks with instruction, worked examples, datasets and final project guidance.",
+      "steps": [
+        "Week 1: Understanding databases and SQL editor environments — Explore a SQL client, tables, schemas and query results before writing your first analytical statement.",
+        "Week 2: Writing SELECT, WHERE, ORDER BY and LIMIT — Retrieve precise records instead of dumping entire tables to the screen.",
+        "Week 3: GROUP BY, aggregation and KPI queries — Turn transaction records into business metrics using grouped aggregations.",
+        "Week 4: JOINs, table grain and duplicate control — Combine fact data with reference tables without accidentally multiplying money.",
+        "Week 5: CASE, NULL and conditional business rules — Classify transactions transparently and avoid incorrect logic for missing fields.",
+        "Week 6: CTEs, subqueries and maintainable reporting SQL — Split a difficult analysis into readable stages that can be checked separately.",
+        "Week 7: Window functions and time-based comparisons — Calculate rankings, running totals and period comparisons without losing transaction detail.",
+        "Week 8: Building dashboard-ready SQL datasets — Shape a query output that a BI tool can visualise without ambiguity.",
+        "Week 9: Optimising, validating and presenting SQL analysis — Explain query results to decision-makers and prepare reproducible validation evidence.",
+        "Week 10: SQL capstone: end-to-end analytical reporting dataset — Design, test and submit a repeatable SQL project for a complete business question."
+      ],
+      "href": "/courses/sql.html",
+      "topic": "sql",
+      "weeks": [
+        {
+          "week": 1,
+          "title": "Understanding databases and SQL editor environments",
+          "goal": "Explore a SQL client, tables, schemas and query results before writing your first analytical statement.",
+          "where": "Open the SQL Practice Arena or SQLite client; identify connection, schema browser, query editor, Run button and result grid.",
+          "topics": [
+            {
+              "heading": "Database versus table",
+              "explanation": "the database stores related tables and views"
+            },
+            {
+              "heading": "Columns and rows",
+              "explanation": "a row is one record at a defined grain and columns contain typed attributes"
+            },
+            {
+              "heading": "Query editor",
+              "explanation": "type a statement without changing the underlying data"
+            },
+            {
+              "heading": "Read-only work",
+              "explanation": "SELECT explores information while destructive statements must never be run casually."
+            }
+          ],
+          "worked": "SELECT name FROM sqlite_master WHERE type = 'table';\nSELECT * FROM orders LIMIT 5;",
+          "task": "List available tables, inspect five rows, and explain the meaning of one order and its primary key.",
+          "check": "The table list appears and the sample query returns no more than five rows; no source records change.",
+          "trap": "Running UPDATE or DELETE while intending to practise reading data.",
+          "business": "A trainee analyst receives an unfamiliar retail database and must first learn its structure without modifying transactions."
+        },
+        {
+          "week": 2,
+          "title": "Writing SELECT, WHERE, ORDER BY and LIMIT",
+          "goal": "Retrieve precise records instead of dumping entire tables to the screen.",
+          "where": "In the SQL editor, type SELECT followed by columns, FROM table, WHERE conditions and ORDER BY expression.",
+          "topics": [
+            {
+              "heading": "Projection",
+              "explanation": "choose only needed columns and give useful aliases"
+            },
+            {
+              "heading": "Filtering",
+              "explanation": "apply numeric, text and date predicates with correct syntax"
+            },
+            {
+              "heading": "Sorting",
+              "explanation": "sort explicitly when a top-N list is requested"
+            },
+            {
+              "heading": "Limiting",
+              "explanation": "use LIMIT to preview rows without assuming natural database order."
+            }
+          ],
+          "worked": "SELECT order_id,region,quantity*unit_price*(1-discount_pct) AS net_revenue\nFROM orders WHERE status='Completed' AND quantity*unit_price*(1-discount_pct)>10000\nORDER BY net_revenue DESC LIMIT 10;",
+          "task": "Return ten highest-value completed orders and explain why the filtering happens before ranking.",
+          "check": "All returned rows are Completed with revenue over 10000 and sorted descending; tie handling should be explained.",
+          "trap": "Assuming the last inserted row is always the last result when ORDER BY is absent.",
+          "business": "A trading manager requests a precise list of the largest completed orders for follow-up."
+        },
+        {
+          "week": 3,
+          "title": "GROUP BY, aggregation and KPI queries",
+          "goal": "Turn transaction records into business metrics using grouped aggregations.",
+          "where": "Write SELECT columns and SUM/COUNT aggregates, followed by GROUP BY and optional HAVING.",
+          "topics": [
+            {
+              "heading": "COUNT versus COUNT DISTINCT",
+              "explanation": "distinguish rows from unique customers or orders"
+            },
+            {
+              "heading": "SUM and AVG",
+              "explanation": "aggregate numeric measures at the correct grain"
+            },
+            {
+              "heading": "GROUP BY",
+              "explanation": "groups rows by categories rather than returning each transaction"
+            },
+            {
+              "heading": "HAVING",
+              "explanation": "filters aggregated groups after aggregation, unlike WHERE on individual rows."
+            }
+          ],
+          "worked": "SELECT region,COUNT(DISTINCT order_id) AS orders,\nROUND(SUM(quantity*unit_price*(1-discount_pct)),2) AS net_revenue\nFROM orders WHERE status='Completed' GROUP BY region ORDER BY net_revenue DESC;",
+          "task": "Create a revenue-by-region table and identify the region with the highest completed revenue.",
+          "check": "Sum of regions must reconcile to the Completed-only grand total unless intentionally excluded by HAVING.",
+          "trap": "Mixing ungrouped columns into grouped queries or counting order lines as unique orders.",
+          "business": "A retailer needs comparable regional KPIs before creating a dashboard in a BI tool."
+        },
+        {
+          "week": 4,
+          "title": "JOINs, table grain and duplicate control",
+          "goal": "Combine fact data with reference tables without accidentally multiplying money.",
+          "where": "Use SQL JOIN statements and inspect key uniqueness before selecting LEFT or INNER JOIN.",
+          "topics": [
+            {
+              "heading": "Primary keys",
+              "explanation": "one product should have one reference row per ProductID"
+            },
+            {
+              "heading": "Foreign keys",
+              "explanation": "order lines may repeat a ProductID legitimately"
+            },
+            {
+              "heading": "LEFT versus INNER",
+              "explanation": "preserving unmatched orders protects the source row count"
+            },
+            {
+              "heading": "Fanout checks",
+              "explanation": "compare COUNT and SUM before and after the join."
+            }
+          ],
+          "worked": "SELECT o.order_id,o.customer_id,c.segment,\no.quantity*o.unit_price*(1-o.discount_pct) AS net_revenue\nFROM orders o LEFT JOIN customers c ON o.customer_id=c.customer_id;",
+          "task": "Join orders to a product lookup and list unmatched ProductIDs for review.",
+          "check": "LEFT JOIN should keep every source order row if the product dimension is unique; totals should remain unchanged.",
+          "trap": "Joining to a dimension with duplicate keys and silently doubling sales totals.",
+          "business": "A merchandising team needs product categories to compare profitability without losing orders with missing reference values."
+        },
+        {
+          "week": 5,
+          "title": "CASE, NULL and conditional business rules",
+          "goal": "Classify transactions transparently and avoid incorrect logic for missing fields.",
+          "where": "Use CASE WHEN for categories and IS NULL or COALESCE when checking absent values.",
+          "topics": [
+            {
+              "heading": "NULL semantics",
+              "explanation": "NULL is unknown and cannot be tested reliably with = NULL"
+            },
+            {
+              "heading": "CASE",
+              "explanation": "defines readable derived categories with an ELSE fallback"
+            },
+            {
+              "heading": "COALESCE",
+              "explanation": "selects a fallback value where business rules permit"
+            },
+            {
+              "heading": "Conditional totals",
+              "explanation": "SUM(CASE WHEN ... THEN ... END) can create reporting measures with explicit logic."
+            }
+          ],
+          "worked": "SELECT order_id,\nCASE WHEN quantity*unit_price*(1-discount_pct)>=50000 THEN 'High' ELSE 'Standard' END AS band,\nCOALESCE(region,'Unknown') AS reporting_region FROM orders;",
+          "task": "Create spending bands and count missing Region values without replacing missing revenue with zero.",
+          "check": "High-value flag follows the threshold; NULL Region displays as Unknown only in the reporting output.",
+          "trap": "Using = NULL rather than IS NULL or assigning missing values a false zero.",
+          "business": "A compliance report needs consistent categories and explicit disclosure of incomplete records."
+        },
+        {
+          "week": 6,
+          "title": "CTEs, subqueries and maintainable reporting SQL",
+          "goal": "Split a difficult analysis into readable stages that can be checked separately.",
+          "where": "Start with WITH named CTEs, review the intermediate result, then select the final summary.",
+          "topics": [
+            {
+              "heading": "CTEs",
+              "explanation": "provide named temporary result sets within a statement"
+            },
+            {
+              "heading": "Layering",
+              "explanation": "filter valid orders before the final group and ranking"
+            },
+            {
+              "heading": "Reuse",
+              "explanation": "avoid repeating hardcoded filters across many expressions"
+            },
+            {
+              "heading": "Debugging",
+              "explanation": "execute a CTE's SELECT alone to verify row counts before adding complexity."
+            }
+          ],
+          "worked": "WITH completed AS (SELECT * FROM orders WHERE status='Completed'),\nregions AS (SELECT region,SUM(quantity*unit_price*(1-discount_pct)) AS total\nFROM completed GROUP BY region)\nSELECT * FROM regions ORDER BY total DESC;",
+          "task": "Rewrite a regional KPI report as two CTEs and show how you verified the filtered source rows.",
+          "check": "The sum of regions should equal the Completed-only sum from the base table, with matching date ranges.",
+          "trap": "Treating a CTE as a permanently saved table or hiding inconsistent filters in many nested clauses.",
+          "business": "An analytics engineer is preparing a report query colleagues must be able to read and audit."
+        },
+        {
+          "week": 7,
+          "title": "Window functions and time-based comparisons",
+          "goal": "Calculate rankings, running totals and period comparisons without losing transaction detail.",
+          "where": "Use OVER clauses with PARTITION BY and ORDER BY, then inspect window output row by row.",
+          "topics": [
+            {
+              "heading": "ROW_NUMBER",
+              "explanation": "creates a deterministic per-group ordering when ties are specified"
+            },
+            {
+              "heading": "RANK",
+              "explanation": "shows shared ranks where values tie"
+            },
+            {
+              "heading": "LAG",
+              "explanation": "compares a current row with a previous time period"
+            },
+            {
+              "heading": "Windows versus GROUP BY",
+              "explanation": "window results can preserve row detail while showing aggregate context."
+            }
+          ],
+          "worked": "WITH monthly AS (\n SELECT region,substr(order_date,1,7) AS month,\n ROUND(SUM(quantity*unit_price*(1-discount_pct)),2) AS revenue\n FROM orders WHERE status='Completed' GROUP BY region,substr(order_date,1,7)\n)\nSELECT region,month,revenue,\nLAG(revenue) OVER(PARTITION BY region ORDER BY month) AS prev_revenue,\nSUM(revenue) OVER(PARTITION BY region ORDER BY month) AS running_revenue\nFROM monthly ORDER BY region,month;",
+          "task": "Find the last month versus current month change for each region and create a running-revenue result.",
+          "check": "For values 10,15,12 by month, running total is 10,25,37; first LAG is NULL.",
+          "trap": "Omitting ORDER BY inside an ordered window and interpreting undefined sequence as time.",
+          "business": "The operations team requests a monthly comparison table to feed a line chart and exception report."
+        },
+        {
+          "week": 8,
+          "title": "Building dashboard-ready SQL datasets",
+          "goal": "Shape a query output that a BI tool can visualise without ambiguity.",
+          "where": "Use CTEs to prepare a dataset with one row per month and region and explicit measure fields.",
+          "topics": [
+            {
+              "heading": "Reporting grain",
+              "explanation": "declare one row per Month x Region in documentation"
+            },
+            {
+              "heading": "KPI fields",
+              "explanation": "pre-aggregate completed revenue, order count and return rate consistently"
+            },
+            {
+              "heading": "Dates",
+              "explanation": "normalise to reporting month and preserve original timestamps"
+            },
+            {
+              "heading": "Source checks",
+              "explanation": "include row counts, unmatched keys and excluded statuses as validation outputs."
+            }
+          ],
+          "worked": "SELECT substr(order_date,1,7) AS month,region,\nROUND(SUM(quantity*unit_price*(1-discount_pct)),2) AS completed_revenue,\nCOUNT(DISTINCT order_id) AS order_count\nFROM orders WHERE status='Completed'\nGROUP BY substr(order_date,1,7),region ORDER BY month,region;",
+          "task": "Produce a tidy reporting view for a trend chart and a region filter; sketch a dashboard layout fed by this output.",
+          "check": "Every row represents one month-region combination; when grouped again by month, totals must reconcile.",
+          "trap": "Using SELECT * as a long-term reporting schema or mixing gross and completed revenue definitions.",
+          "business": "A Power BI team needs a trustworthy monthly fact table to build a management dashboard."
+        },
+        {
+          "week": 9,
+          "title": "Optimising, validating and presenting SQL analysis",
+          "goal": "Explain query results to decision-makers and prepare reproducible validation evidence.",
+          "where": "Use EXPLAIN QUERY PLAN where supported, compare rows scanned and keep an audited final SELECT.",
+          "topics": [
+            {
+              "heading": "Indexes",
+              "explanation": "can improve search and join performance where predicates match access paths"
+            },
+            {
+              "heading": "Filtering",
+              "explanation": "restrict data early when the logic allows it"
+            },
+            {
+              "heading": "Reconciliation",
+              "explanation": "compare base counts and sums against final query output"
+            },
+            {
+              "heading": "Communication",
+              "explanation": "supply query, data dictionary, report-ready result and three evidence-based insights."
+            }
+          ],
+          "worked": "SELECT COUNT(*) AS rows,\nROUND(SUM(quantity*unit_price*(1-discount_pct)),2) AS net_revenue\nFROM orders WHERE status='Completed';\nEXPLAIN QUERY PLAN SELECT * FROM orders WHERE order_id='O0001';",
+          "task": "Prepare a concise SQL reporting note with query logic, total checks, performance observation and one recommended follow-up.",
+          "check": "Base and final totals reconcile at the same grain; query improvement must not change the answer.",
+          "trap": "Optimising only for speed while introducing incorrect joins or removing necessary records.",
+          "business": "An analytics lead reviews the correctness and maintainability of a monthly revenue extract before distribution."
+        },
+        {
+          "week": 10,
+          "title": "SQL capstone: end-to-end analytical reporting dataset",
+          "goal": "Design, test and submit a repeatable SQL project for a complete business question.",
+          "where": "Start from the supplied SQLite database; inspect tables and document their keys and the reporting grain.",
+          "topics": [
+            {
+              "heading": "Database review",
+              "explanation": "document source columns, business rules and identifiers"
+            },
+            {
+              "heading": "Analytical queries",
+              "explanation": "demonstrate filters, joins, aggregations, CTE and a window function"
+            },
+            {
+              "heading": "Dashboard handoff",
+              "explanation": "export a tidy results table and illustrate suitable KPIs and charts"
+            },
+            {
+              "heading": "Verification",
+              "explanation": "record count, revenue reconciliation, missing joins and query assumptions."
+            }
+          ],
+          "worked": "Deliverables: .sql file containing queries + exported CSV\nKPI controls: completed total, distinct orders, return count, MoM delta",
+          "task": "Submit the SQL script, exported reporting dataset, validation notes and a dashboard mockup or results presentation.",
+          "check": "An independent reviewer should rerun the SELECT queries and reproduce your metrics; provide screenshots of the editor and output.",
+          "trap": "Submitting only code with no analysis, no schema, no evidence and no conclusion.",
+          "business": "A fictional retail chain requests a validated dataset and concise management insight pack from its transactional database."
+        }
+      ]
+    },
+    {
+      "id": "course-python",
+      "title": "Python for Data Analysis course — ten-week plan",
+      "keywords": [
+        "python for data analysis course",
+        "learn python for data analysis",
+        "python for data analysis weeks",
+        "python for data analysis syllabus",
+        "python course",
+        "start python",
+        "course python"
+      ],
+      "answer": "This course starts with python environment, notebooks and first expressions and builds toward python capstone: raw csv to dashboard and report. It contains ten weeks with instruction, worked examples, datasets and final project guidance.",
+      "steps": [
+        "Week 1: Python environment, notebooks and first expressions — Start confidently in a Python editor or notebook, run code cells and understand variables and errors.",
+        "Week 2: Python collections, loops and functions — Represent multiple records and write small reusable calculations.",
+        "Week 3: Reading CSV files into pandas DataFrames — Load tabular sales data and inspect rows, column types and missing values.",
+        "Week 4: Cleaning DataFrames safely — Handle missing records, duplicates, inconsistent labels and invalid numeric values with reproducible code.",
+        "Week 5: Filtering, grouping and business KPI calculations — Compute revenue, customer counts and category KPIs with pandas using explicit business rules.",
+        "Week 6: Joining datasets and analytical feature engineering — Combine related tables and create purposeful derived fields without fanout errors.",
+        "Week 7: Exploratory data analysis and charts — Use descriptive statistics and matplotlib visuals to expose patterns without implying causation.",
+        "Week 8: Building a Python dashboard or interactive report — Compose KPIs and charts in a reproducible Streamlit or notebook dashboard layout.",
+        "Week 9: Automating reporting and presenting Python insights — Export clean tables, plots and a reproducible analysis narrative for business stakeholders.",
+        "Week 10: Python capstone: raw CSV to dashboard and report — Build a full data analysis project from source ingestion through dashboard, validated insights and presentation."
+      ],
+      "href": "/courses/python.html",
+      "topic": "python",
+      "weeks": [
+        {
+          "week": 1,
+          "title": "Python environment, notebooks and first expressions",
+          "goal": "Start confidently in a Python editor or notebook, run code cells and understand variables and errors.",
+          "where": "Open the Python Practice Arena or Jupyter notebook; identify code cells, Run, output area, file browser and error traceback.",
+          "topics": [
+            {
+              "heading": "Interpreter",
+              "explanation": "executes Python expressions and statements in sequence"
+            },
+            {
+              "heading": "Variables",
+              "explanation": "bind readable names to values without hardcoding business assumptions"
+            },
+            {
+              "heading": "Data types",
+              "explanation": "int, float, str and bool behave differently"
+            },
+            {
+              "heading": "Error messages",
+              "explanation": "a traceback points to the failing line and helps diagnose syntax or missing names."
+            }
+          ],
+          "worked": "orders=3\nunit_price=1500\nrevenue=orders*unit_price\nprint(revenue)  # 4500",
+          "task": "Create a notebook, calculate revenue for three items, change unit_price and explain why the output changes.",
+          "check": "The printed value is 4500, and changing input values updates the calculation without retyping the formula.",
+          "trap": "Treating notebook output from an old cell execution as if it reflects the latest code.",
+          "business": "A trainee analyst needs a repeatable calculator for simple business figures before importing files."
+        },
+        {
+          "week": 2,
+          "title": "Python collections, loops and functions",
+          "goal": "Represent multiple records and write small reusable calculations.",
+          "where": "Use a Python editor, add a code cell or .py file, and practise running it from top to bottom.",
+          "topics": [
+            {
+              "heading": "Lists",
+              "explanation": "preserve an ordered collection of values"
+            },
+            {
+              "heading": "Dictionaries",
+              "explanation": "give each field a meaningful key"
+            },
+            {
+              "heading": "Loops",
+              "explanation": "apply a consistent operation to each record"
+            },
+            {
+              "heading": "Functions",
+              "explanation": "package a calculation with a clear input and output."
+            }
+          ],
+          "worked": "prices=[1200,1500,2000]\ndef total(values):\n    return sum(values)\nprint(total(prices))  # 4700",
+          "task": "Create a function that calculates total sales for a list and add an empty-list test.",
+          "check": "The three given prices total 4700, and sum([]) returns zero rather than failing.",
+          "trap": "Using one-letter variable names or mutating an input collection without explaining side effects.",
+          "business": "A sales coordinator needs one trusted routine that works for every day's different number of transactions."
+        },
+        {
+          "week": 3,
+          "title": "Reading CSV files into pandas DataFrames",
+          "goal": "Load tabular sales data and inspect rows, column types and missing values.",
+          "where": "In a notebook import pandas, inspect the working directory, then read a local CSV with read_csv.",
+          "topics": [
+            {
+              "heading": "DataFrames",
+              "explanation": "two-dimensional labelled tables are the core pandas structure"
+            },
+            {
+              "heading": "Inspection",
+              "explanation": "head, shape and dtypes reveal dataset scope"
+            },
+            {
+              "heading": "File paths",
+              "explanation": "distinguish relative paths from project root"
+            },
+            {
+              "heading": "Data types",
+              "explanation": "parse_dates and numeric conversion reduce silent errors."
+            }
+          ],
+          "worked": "import pandas as pd\ndf=pd.read_csv('mastery_orders.csv',parse_dates=['order_date'])\nprint(df.shape)\nprint(df[['order_id','region','quantity','status']].head(3))",
+          "task": "Load the weekly dataset, list its columns and classify date, identifier and numeric fields.",
+          "check": "Shape reports rows then columns; head(3) previews three records without changing the source.",
+          "trap": "Using the wrong working directory or assuming inferred numeric types are always correct.",
+          "business": "A retail data specialist receives a daily CSV and must explain its structure before analysis."
+        },
+        {
+          "week": 4,
+          "title": "Cleaning DataFrames safely",
+          "goal": "Handle missing records, duplicates, inconsistent labels and invalid numeric values with reproducible code.",
+          "where": "Use pandas info(), isna(), duplicated() and transformations on a copied DataFrame.",
+          "topics": [
+            {
+              "heading": "Missingness",
+              "explanation": "count nulls by column before selecting a treatment"
+            },
+            {
+              "heading": "Duplication",
+              "explanation": "identify transaction keys before calling drop_duplicates"
+            },
+            {
+              "heading": "Strings",
+              "explanation": "strip and standardise region names without changing raw data"
+            },
+            {
+              "heading": "Numeric checks",
+              "explanation": "to_numeric(errors='coerce') makes invalid fields auditable as nulls."
+            }
+          ],
+          "worked": "import pandas as pd\ndf=pd.read_csv('learning_sales_2026.csv')\nclean=df.copy()\nclean['region']=clean['region'].astype('string').str.strip().str.title()\nprint(clean.isna().sum())",
+          "task": "Create a data quality report, clean one text column and document how many values were affected.",
+          "check": "Row count should change only if a documented removal rule is applied; missing totals must be reported.",
+          "trap": "Calling dropna on every column and silently losing valid customers or orders.",
+          "business": "A logistics dataset contains spelling differences and incomplete rows that must be investigated before KPI calculations."
+        },
+        {
+          "week": 5,
+          "title": "Filtering, grouping and business KPI calculations",
+          "goal": "Compute revenue, customer counts and category KPIs with pandas using explicit business rules.",
+          "where": "Use boolean masks, groupby().agg and named summary columns in a notebook.",
+          "topics": [
+            {
+              "heading": "Boolean masks",
+              "explanation": "select rows satisfying business conditions"
+            },
+            {
+              "heading": "GroupBy",
+              "explanation": "creates category-level calculations without manual loops"
+            },
+            {
+              "heading": "Named aggregation",
+              "explanation": "produces readable output schema"
+            },
+            {
+              "heading": "Validation",
+              "explanation": "compare grouped totals with a separately calculated ungrouped total."
+            }
+          ],
+          "worked": "import pandas as pd\ndf=pd.read_csv('learning_sales_quality_lab.csv')\ndf['quantity']=pd.to_numeric(df['quantity'],errors='coerce')\ndf['unit_price_ngn']=pd.to_numeric(df['unit_price_ngn'],errors='coerce')\n# Flag invalid numeric fields; exclude them from the calculation, never silently repair.\ninvalid=df['quantity'].isna()|df['unit_price_ngn'].isna()\nprint('Rows needing investigation:',int(invalid.sum()))\nvalid=df.loc[~invalid].copy()\nvalid['revenue_ngn']=valid['quantity']*valid['unit_price_ngn']\ncompleted=valid.loc[valid['status'].eq('Completed')]\nsummary=completed.groupby('region',dropna=False).agg(\n    revenue_ngn=('revenue_ngn','sum'),orders=('order_id','nunique'))\nprint(summary)",
+          "task": "Build a region summary with paid revenue and distinct orders, then identify top contribution.",
+          "check": "The sum of grouped paid revenue must match the source Paid-only revenue under the same filters.",
+          "trap": "Using count instead of nunique for order IDs or including returned orders in paid sales.",
+          "business": "A commercial analyst is preparing a monthly regional performance comparison for management."
+        },
+        {
+          "week": 6,
+          "title": "Joining datasets and analytical feature engineering",
+          "goal": "Combine related tables and create purposeful derived fields without fanout errors.",
+          "where": "Use pandas merge(validate=...) and assign() while checking key uniqueness.",
+          "topics": [
+            {
+              "heading": "Merge keys",
+              "explanation": "left and right tables must refer to the same business entity"
+            },
+            {
+              "heading": "Validation",
+              "explanation": "many_to_one detects duplicate dimension keys"
+            },
+            {
+              "heading": "Derived metrics",
+              "explanation": "calculate margin and order size with safe denominators"
+            },
+            {
+              "heading": "Reproducibility",
+              "explanation": "separate raw, cleaned and feature-enriched DataFrames."
+            }
+          ],
+          "worked": "import pandas as pd\nmonthly=pd.read_csv('learning_monthly_kpis.csv')\ntargets=monthly[['month','region','sales_target_ngn']].drop_duplicates()\nfacts=monthly.drop(columns='sales_target_ngn')\nreport=facts.merge(targets,on=['month','region'],how='left',validate='many_to_one')\nreport['target_attainment']=report['net_sales_ngn']/report['sales_target_ngn']\nprint(report[['month','region','target_attainment']].head())",
+          "task": "Join retail orders to a product dimension and calculate margin by category; flag unmatched ProductIDs.",
+          "check": "Post-merge row count must equal source orders for a valid many-to-one join; unmatched categories must be counted.",
+          "trap": "Using a many-to-many join and then treating inflated Revenue as genuine growth.",
+          "business": "An analyst needs category profitability while preserving transaction-level revenue values."
+        },
+        {
+          "week": 7,
+          "title": "Exploratory data analysis and charts",
+          "goal": "Use descriptive statistics and matplotlib visuals to expose patterns without implying causation.",
+          "where": "In Jupyter run describe() and plot time trends and category comparisons with clear axes.",
+          "topics": [
+            {
+              "heading": "EDA",
+              "explanation": "explore range, central tendency and missingness before selecting a chart"
+            },
+            {
+              "heading": "Time series",
+              "explanation": "aggregate by actual period in chronological order"
+            },
+            {
+              "heading": "Category comparison",
+              "explanation": "choose horizontal bars for longer names"
+            },
+            {
+              "heading": "Responsible interpretation",
+              "explanation": "describe what the chart shows and alternative explanations."
+            }
+          ],
+          "worked": "import pandas as pd\nimport matplotlib.pyplot as plt\ndf=pd.read_csv('learning_statistics_sample.csv')\nprint(df[['basket_value_ngn','delivery_minutes']].describe())\ndf['basket_value_ngn'].plot(kind='hist',bins=10,title='Basket value distribution')\nplt.xlabel('Basket value (₦)')\nplt.show()",
+          "task": "Create revenue distribution and monthly trend charts and write two observations backed by numbers.",
+          "check": "The plotted monthly sums should reconcile with the filtered dataframe; axis labels and units are explicit.",
+          "trap": "Using a plot that includes cancelled transactions while claiming it shows paid revenue.",
+          "business": "A product owner needs a first look at sales variation before deciding which region to investigate."
+        },
+        {
+          "week": 8,
+          "title": "Building a Python dashboard or interactive report",
+          "goal": "Compose KPIs and charts in a reproducible Streamlit or notebook dashboard layout.",
+          "where": "Sketch the dashboard grid, then use Streamlit st.metric, st.selectbox and chart objects in a local project if available.",
+          "topics": [
+            {
+              "heading": "Data pipeline",
+              "explanation": "load and validate source before rendering"
+            },
+            {
+              "heading": "KPI layout",
+              "explanation": "show Revenue, Orders and AOV in a consistent row"
+            },
+            {
+              "heading": "Interaction",
+              "explanation": "user controls should filter both chart and headline metrics"
+            },
+            {
+              "heading": "Deployment distinction",
+              "explanation": "local Streamlit requires an installed runtime and separate hosting for public access."
+            }
+          ],
+          "worked": "import streamlit as st\nimport pandas as pd\ndf=pd.read_csv('learning_statistics_sample.csv')\nst.title('Basket and delivery dashboard')\nst.metric('Observations',len(df))\nst.metric('Median basket',f\"₦{df['basket_value_ngn'].median():,.0f}\")\nst.bar_chart(df.groupby('region')['basket_value_ngn'].mean())",
+          "task": "Sketch and implement a dashboard with two charts and at least three KPIs, or produce a notebook report where Streamlit is unavailable.",
+          "check": "A region selection must change all linked metrics; the source revenue total is the independent accuracy check.",
+          "trap": "Assuming a notebook becomes a public web app automatically or displaying numbers without sources.",
+          "business": "A marketing team needs a compact self-service dashboard that explains recent sales results."
+        },
+        {
+          "week": 9,
+          "title": "Automating reporting and presenting Python insights",
+          "goal": "Export clean tables, plots and a reproducible analysis narrative for business stakeholders.",
+          "where": "Use pandas to_csv, matplotlib savefig and a notebook Markdown executive summary.",
+          "topics": [
+            {
+              "heading": "Outputs",
+              "explanation": "write datasets and figures to an outputs folder rather than overwriting raw inputs"
+            },
+            {
+              "heading": "Reporting",
+              "explanation": "state question, data period, KPI definitions and evidence"
+            },
+            {
+              "heading": "Automation",
+              "explanation": "parameterise file paths and dates before scheduling"
+            },
+            {
+              "heading": "Reliability",
+              "explanation": "re-run the analysis from a fresh environment to catch hidden notebook state."
+            }
+          ],
+          "worked": "from pathlib import Path\nimport pandas as pd\nimport matplotlib.pyplot as plt\nPath('outputs').mkdir(exist_ok=True)\nseries=pd.read_csv('learning_forecast_series.csv')\nseries.to_csv('outputs/checked_forecast_input.csv',index=False)\nfig,ax=plt.subplots()\nax.plot(series['month'],series['net_sales_ngn'])\nax.set(title='Sales trend',xlabel='Month',ylabel='Net sales (₦)')\nfig.autofmt_xdate()\nfig.savefig('outputs/sales_trend.png',dpi=160,bbox_inches='tight')",
+          "task": "Generate an exported KPI table and chart plus a 150-word management briefing with two recommendations.",
+          "check": "The exported totals equal those calculated in memory; the report names its source and reporting period.",
+          "trap": "Sharing a notebook that only runs due to hidden variables from earlier interactive sessions.",
+          "business": "A department head wants monthly analytical results that another analyst can reproduce without assistance."
+        },
+        {
+          "week": 10,
+          "title": "Python capstone: raw CSV to dashboard and report",
+          "goal": "Build a full data analysis project from source ingestion through dashboard, validated insights and presentation.",
+          "where": "Create project folders for data, notebooks or scripts, outputs and README before running the first transformation.",
+          "topics": [
+            {
+              "heading": "Workflow",
+              "explanation": "load a raw dataset and document assumptions"
+            },
+            {
+              "heading": "Quality and KPIs",
+              "explanation": "clean records, group data and reconcile totals"
+            },
+            {
+              "heading": "Visual deliverable",
+              "explanation": "publish plots and a dashboard or self-contained notebook narrative"
+            },
+            {
+              "heading": "Project evidence",
+              "explanation": "supply code or notebook, exported charts, conclusions and instructions."
+            }
+          ],
+          "worked": "Deliverables: analysis.ipynb or analysis.py, screenshots, report.pdf or README\nChecks: raw vs cleaned row counts; summed revenue; plot period validity",
+          "task": "Submit an executable notebook/script, two meaningful charts, a dashboard mock or screenshot, a short report and validation notes.",
+          "check": "An instructor can reproduce your summary from the supplied dataset; submission should disclose versions and limitations.",
+          "trap": "Submitting code screenshots without a runnable project or incorrectly describing a forecast as a fact.",
+          "business": "A fictional retailer wants a reproducible Python analysis that can inform weekly sales and inventory decisions."
+        }
+      ]
+    },
+    {
+      "id": "course-ai",
+      "title": "AI for Data Analysis course — ten-week plan",
+      "keywords": [
+        "ai for data analysis course",
+        "learn ai for data analysis",
+        "ai for data analysis weeks",
+        "ai for data analysis syllabus",
+        "ai course",
+        "start ai",
+        "course ai"
+      ],
+      "answer": "This course starts with getting to know ai tools for data analysis and builds toward ai analytics capstone: verified end-to-end insight pack. It contains ten weeks with instruction, worked examples, datasets and final project guidance.",
+      "steps": [
+        "Week 1: Getting to know AI tools for data analysis — Navigate a chat-based AI tool and understand what AI can and cannot verify on its own.",
+        "Week 2: Writing clear prompts for analytical tasks — Build prompts with task, data context, constraints, expected format and verification rules.",
+        "Week 3: Using AI to understand and clean datasets — Ask AI for an audit plan and implement transformations in the actual tool rather than trusting prose.",
+        "Week 4: Generating and checking Excel formulas with AI — Use AI to draft formulas while personally verifying references and edge cases.",
+        "Week 5: Generating and validating SQL with AI — Request readable SELECT queries and verify schema, join grain and source totals before using results.",
+        "Week 6: AI-assisted Python analysis and debugging — Use AI to explain code, diagnose errors and draft reproducible pandas transformations.",
+        "Week 7: AI-supported EDA, visuals and evidence-based insight — Use AI to suggest appropriate charts and draft explanations from verified results.",
+        "Week 8: Designing dashboards with AI assistance — Use AI to critique dashboard wireframes and propose layouts that make KPIs and filters understandable.",
+        "Week 9: Reviewing AI-written reports and building a safe workflow — Create a reliable human approval path for AI-generated analysis and reporting deliverables.",
+        "Week 10: AI analytics capstone: verified end-to-end insight pack — Deliver an AI-assisted analysis that is independently verified and transparently documented."
+      ],
+      "href": "/courses/ai.html",
+      "topic": "ai",
+      "weeks": [
+        {
+          "week": 1,
+          "title": "Getting to know AI tools for data analysis",
+          "goal": "Navigate a chat-based AI tool and understand what AI can and cannot verify on its own.",
+          "where": "Open the DataLearning AI Tutor or a permitted AI assistant; locate chat input, file upload capability, history, privacy options and response controls.",
+          "topics": [
+            {
+              "heading": "Assistant versus source",
+              "explanation": "a model predicts text and does not automatically know live company data"
+            },
+            {
+              "heading": "Inputs",
+              "explanation": "prompts, files and tables need accurate context and permission to share"
+            },
+            {
+              "heading": "Outputs",
+              "explanation": "code and explanations must be independently tested"
+            },
+            {
+              "heading": "Privacy",
+              "explanation": "never upload credentials, personal records or confidential customer data to unapproved tools."
+            }
+          ],
+          "worked": "Prompt: 'Explain the columns OrderID, Date, Revenue and Status to a beginner. State what cannot be inferred without records.'",
+          "task": "Ask the AI to classify five sample sales columns and audit its answer against a data dictionary.",
+          "check": "A good response identifies likely data types but flags uncertainty about field definitions.",
+          "trap": "Believing a confident response is automatically accurate or uploading private business spreadsheets.",
+          "business": "A new analyst wants an AI assistant that supports learning without replacing human judgment."
+        },
+        {
+          "week": 2,
+          "title": "Writing clear prompts for analytical tasks",
+          "goal": "Build prompts with task, data context, constraints, expected format and verification rules.",
+          "where": "Use a prompt editor or the AI Tutor and compare a vague request with a structured version.",
+          "topics": [
+            {
+              "heading": "Role and audience",
+              "explanation": "specify who receives the answer and the decisions it supports"
+            },
+            {
+              "heading": "Data context",
+              "explanation": "define fields, units and business rules"
+            },
+            {
+              "heading": "Output contract",
+              "explanation": "request a table, code, checklist or bullet summary"
+            },
+            {
+              "heading": "Verification",
+              "explanation": "insist on assumptions, reproducible calculations and explicit unknowns."
+            }
+          ],
+          "worked": "Prompt: 'Act as retail analyst. Using only the pasted five rows, calculate Paid revenue by Region, show your arithmetic, state exclusions, and flag missing values.'",
+          "task": "Write a reusable prompt that asks for a KPI summary from synthetic records and requires a quality checklist.",
+          "check": "The answer must show which rows count, the arithmetic and at least one limitation rather than invented figures.",
+          "trap": "Asking 'analyse everything' and trusting fabricated sources or unsupported totals.",
+          "business": "An operations manager wants comparable weekly KPI reports from an AI-assisted analyst."
+        },
+        {
+          "week": 3,
+          "title": "Using AI to understand and clean datasets",
+          "goal": "Ask AI for an audit plan and implement transformations in the actual tool rather than trusting prose.",
+          "where": "In a chat tool paste a non-sensitive schema and five sample rows; request rules compatible with Excel or pandas.",
+          "topics": [
+            {
+              "heading": "Schema review",
+              "explanation": "spot identifier versus measure confusion"
+            },
+            {
+              "heading": "Data profiling",
+              "explanation": "request tests for nulls, duplicates and invalid dates"
+            },
+            {
+              "heading": "Cleaning plan",
+              "explanation": "document standardisation rules and data-loss risks"
+            },
+            {
+              "heading": "Human approval",
+              "explanation": "run the generated steps on a copy and inspect changed rows."
+            }
+          ],
+          "worked": "Prompt: 'Given columns OrderID, Region, Date, Amount, write five validation checks; do not invent rows or results.'",
+          "task": "Create an AI-assisted cleaning checklist, run two checks in the practice dataset and show before/after counts.",
+          "check": "A valid checklist distinguishes detection from correction; each chosen transformation must be demonstrated with real input rows.",
+          "trap": "Letting an assistant decide to delete missing records without evaluating analytical impact.",
+          "business": "An analyst imports inconsistent branch reports and needs an auditable cleaning plan."
+        },
+        {
+          "week": 4,
+          "title": "Generating and checking Excel formulas with AI",
+          "goal": "Use AI to draft formulas while personally verifying references and edge cases.",
+          "where": "Ask for the target Excel version, table fields, criteria and three test cases before accepting a generated formula.",
+          "topics": [
+            {
+              "heading": "Structured references",
+              "explanation": "table column names are safer than hardcoded ranges"
+            },
+            {
+              "heading": "Condition logic",
+              "explanation": "SUMIFS and IF must match business inclusion rules"
+            },
+            {
+              "heading": "Lookup behaviour",
+              "explanation": "XLOOKUP should handle missing keys"
+            },
+            {
+              "heading": "Testing",
+              "explanation": "compare generated output with a hand-calculated three-row sample."
+            }
+          ],
+          "worked": "Prompt: 'Write an Excel SUMIFS formula for tblSales Revenue where Status=Paid and Region=North. Explain each argument and add a test.'",
+          "task": "Ask AI for a SUMIFS and XLOOKUP formula, then test both on a small synthetic table.",
+          "check": "The Paid North result matches hand arithmetic; an unknown product ID returns an explicit missing value.",
+          "trap": "Pasting a formula whose workbook/table names do not exist, then assuming a #NAME? error is harmless.",
+          "business": "A finance analyst wants to accelerate spreadsheet construction without weakening controls."
+        },
+        {
+          "week": 5,
+          "title": "Generating and validating SQL with AI",
+          "goal": "Request readable SELECT queries and verify schema, join grain and source totals before using results.",
+          "where": "Provide an invented database schema in the AI Tutor and run approved read-only SQL in the Practice Arena.",
+          "topics": [
+            {
+              "heading": "Schema grounding",
+              "explanation": "include table and column names rather than asking AI to guess"
+            },
+            {
+              "heading": "Join constraints",
+              "explanation": "state parent-child keys and expected cardinality"
+            },
+            {
+              "heading": "Read-only approach",
+              "explanation": "require SELECT and CTE patterns"
+            },
+            {
+              "heading": "Verification",
+              "explanation": "compare output counts and sums with independent source queries."
+            }
+          ],
+          "worked": "Prompt: 'Given orders(order_id,product_id,revenue,status) and products(product_id,category), write a LEFT JOIN summary by category and explain fanout checks.'",
+          "task": "Generate a SQL reporting query, execute it against the practice schema, fix incompatible names and reconcile totals.",
+          "check": "A valid join preserves orders when the dimension keys are unique; documented missing matches remain visible.",
+          "trap": "Running generated UPDATE, DELETE or unverified queries on production systems.",
+          "business": "A business analyst needs a trustworthy category sales extract without memorising every SQL function."
+        },
+        {
+          "week": 6,
+          "title": "AI-assisted Python analysis and debugging",
+          "goal": "Use AI to explain code, diagnose errors and draft reproducible pandas transformations.",
+          "where": "Share a minimal synthetic traceback and short code snippet, then test the proposed change in the Python editor.",
+          "topics": [
+            {
+              "heading": "Error context",
+              "explanation": "include the exact traceback and expected behaviour"
+            },
+            {
+              "heading": "Pandas transforms",
+              "explanation": "request explicit column names, dtype checks and copies"
+            },
+            {
+              "heading": "Reproducibility",
+              "explanation": "state package versions and file assumptions"
+            },
+            {
+              "heading": "Tests",
+              "explanation": "run with a changed input to ensure the fix generalises."
+            }
+          ],
+          "worked": "Prompt: 'Explain why df[Revenue].sum() raises NameError, correct the code, and create an assertion for Paid revenue.'",
+          "task": "Fix an intentionally broken pandas aggregation and write one automated or manual validation check.",
+          "check": "Code must execute without hiding errors; revenue output matches an independent filtered sum.",
+          "trap": "Blindly running generated pip commands or exposing secrets in error logs shared with AI.",
+          "business": "A data team wants an assistant to reduce debugging time while keeping changes reviewable."
+        },
+        {
+          "week": 7,
+          "title": "AI-supported EDA, visuals and evidence-based insight",
+          "goal": "Use AI to suggest appropriate charts and draft explanations from verified results.",
+          "where": "Provide calculated KPIs, column definitions, audience and reporting period before asking for chart recommendations.",
+          "topics": [
+            {
+              "heading": "Chart choice",
+              "explanation": "use line charts for time and bars for category ranking"
+            },
+            {
+              "heading": "Evidence",
+              "explanation": "separate observed patterns from hypotheses"
+            },
+            {
+              "heading": "Narrative",
+              "explanation": "include exact figures, periods and caveats"
+            },
+            {
+              "heading": "Fact checking",
+              "explanation": "verify every claimed number against the dataset and visual."
+            }
+          ],
+          "worked": "Prompt: 'Paid revenue fell from 150000 to 135000. Draft two factual insights and one hypothesis to investigate; do not claim causation.'",
+          "task": "Ask AI for chart recommendations and a 100-word summary, then correct unsupported claims.",
+          "check": "The reported month-on-month change is -10% and the causal explanation remains a hypothesis.",
+          "trap": "Letting an AI assistant invent a market trend or source not supplied in the data.",
+          "business": "A sales director wants a concise report that distinguishes measured facts from suggested follow-ups."
+        },
+        {
+          "week": 8,
+          "title": "Designing dashboards with AI assistance",
+          "goal": "Use AI to critique dashboard wireframes and propose layouts that make KPIs and filters understandable.",
+          "where": "Share only fictional dashboard requirements or a safe mock screenshot; request a concrete layout and interaction checklist.",
+          "topics": [
+            {
+              "heading": "Information hierarchy",
+              "explanation": "place executive KPIs first then explanatory trend and ranking"
+            },
+            {
+              "heading": "Visual semantics",
+              "explanation": "keep consistent definitions and units"
+            },
+            {
+              "heading": "Interactive controls",
+              "explanation": "ensure slicer behaviour and empty states are testable"
+            },
+            {
+              "heading": "Human review",
+              "explanation": "compare the AI proposal with data-quality and accessibility requirements."
+            }
+          ],
+          "worked": "Prompt: 'Design a 16:9 retail dashboard wireframe with Revenue, Orders, AOV, trend, region ranking and a filter panel. Explain reading order.'",
+          "task": "Sketch a dashboard based on AI suggestions and annotate each visual with the business question it answers.",
+          "check": "Every visual has a purpose, consistent filters and a reproducible metric definition.",
+          "trap": "Treating a generated dashboard image as evidence of working relationships or real KPI calculations.",
+          "business": "A new BI team needs fast layout ideas but must ensure the published report remains technically sound."
+        },
+        {
+          "week": 9,
+          "title": "Reviewing AI-written reports and building a safe workflow",
+          "goal": "Create a reliable human approval path for AI-generated analysis and reporting deliverables.",
+          "where": "Prepare a draft report from verified synthetic KPIs, then audit the numbers, citations and confidential content.",
+          "topics": [
+            {
+              "heading": "Fact register",
+              "explanation": "log each claim and its source calculation"
+            },
+            {
+              "heading": "Quality gate",
+              "explanation": "require another reviewer before distribution"
+            },
+            {
+              "heading": "Automation limits",
+              "explanation": "keep external sending or data changes behind explicit approval"
+            },
+            {
+              "heading": "Governance",
+              "explanation": "state which AI tool was used and what data was shared."
+            }
+          ],
+          "worked": "Review checklist: Claim → Source → Calculation → Evidence → Reviewer → Approved?",
+          "task": "Audit a one-page AI-generated executive summary, correct at least two weaknesses and write an AI-use disclosure.",
+          "check": "Every headline statistic appears in your evidence register, and recommendations are identified as recommendations.",
+          "trap": "Allowing an agent to email an unverified management report without human sign-off.",
+          "business": "A finance unit is piloting AI-supported reports and needs a defensible audit trail."
+        },
+        {
+          "week": 10,
+          "title": "AI analytics capstone: verified end-to-end insight pack",
+          "goal": "Deliver an AI-assisted analysis that is independently verified and transparently documented.",
+          "where": "Select a synthetic dataset and record the prompts, tool outputs, tests and final human decisions in a project folder.",
+          "topics": [
+            {
+              "heading": "Problem framing",
+              "explanation": "define a measurable retail question and authorised inputs"
+            },
+            {
+              "heading": "Assisted workflow",
+              "explanation": "use AI for cleaning plans, formulas, SQL or Python but execute and verify them"
+            },
+            {
+              "heading": "Report design",
+              "explanation": "include a dashboard wireframe and real verified chart/KPI outputs"
+            },
+            {
+              "heading": "Governance evidence",
+              "explanation": "submit prompt log, fact register, limitations and a signed-off management summary."
+            }
+          ],
+          "worked": "Deliverables: prompts.md, validation.csv, dashboard/report.pdf and source spreadsheet or script\nControls: no invented facts; no unapproved disclosure; approval before distribution",
+          "task": "Submit an analysis report, prompt audit trail, original calculations, dashboard screenshot/mock and accountable recommendation.",
+          "check": "Instructor can reproduce numerical findings independently; the AI-use statement clearly separates automation from human verification.",
+          "trap": "Submitting attractive but fictional AI-generated charts as if they were calculated from the project dataset.",
+          "business": "A fictional retail leadership team wants an accelerated but trustworthy analysis using AI under documented human oversight."
+        }
+      ]
+    },
+    {
+      "id": "course-tableau",
+      "title": "Tableau course — ten-week plan",
+      "keywords": [
+        "tableau course",
+        "learn tableau",
+        "tableau weeks",
+        "tableau syllabus",
+        "tableau course",
+        "start tableau",
+        "course tableau"
+      ],
+      "answer": "This course starts with tableau interface, worksheets and first connection and builds toward tableau capstone: interactive dashboard and story. It contains ten weeks with instruction, worked examples, datasets and final project guidance.",
+      "steps": [
+        "Week 1: Tableau interface, worksheets and first connection — Become familiar with Tableau's start page, data source pane, shelves, Marks card and sheet/dashboard/story tabs.",
+        "Week 2: Understanding field types, measures and data relationships — Set data types and link tables while respecting their analytical grain.",
+        "Week 3: Building bar charts, line charts and a readable visual — Choose the right shelf/marks combinations for rankings and trends.",
+        "Week 4: Calculated fields and business KPI definitions — Create reproducible calculations and understand row-level versus aggregate expressions.",
+        "Week 5: Filters, parameters and purposeful interactions — Give viewers useful controls while keeping metric definitions consistent.",
+        "Week 6: Level of detail and advanced aggregate reasoning — Apply FIXED and INCLUDE calculations carefully when category grain differs from metric grain.",
+        "Week 7: Table calculations for running totals and comparisons — Add running sums, ranks and percent-of-total calculations to an existing visual.",
+        "Week 8: Building a Tableau dashboard with layout containers — Combine worksheets, filters and actions into a premium interactive canvas.",
+        "Week 9: Creating Tableau stories and presenting findings — Organise dashboard views into a sequence that supports an evidence-based recommendation.",
+        "Week 10: Tableau capstone: interactive dashboard and story — Submit a complete Tableau analysis with verifiable calculations and an executive narrative."
+      ],
+      "href": "/courses/tableau.html",
+      "topic": "tableau",
+      "weeks": [
+        {
+          "week": 1,
+          "title": "Tableau interface, worksheets and first connection",
+          "goal": "Become familiar with Tableau's start page, data source pane, shelves, Marks card and sheet/dashboard/story tabs.",
+          "where": "Open Tableau Public or Desktop, connect to a CSV, inspect the Data Source grid and create a new Worksheet.",
+          "topics": [
+            {
+              "heading": "Start page",
+              "explanation": "connects to files or authorised servers"
+            },
+            {
+              "heading": "Data pane",
+              "explanation": "separates dimensions from measures and shows field roles"
+            },
+            {
+              "heading": "Shelves",
+              "explanation": "Rows and Columns determine chart structure"
+            },
+            {
+              "heading": "Marks card",
+              "explanation": "controls colour, size, label, detail and tooltip without changing original data."
+            }
+          ],
+          "worked": "Connect to learning_sales_2026.csv → Sheet 1 → drag Region to Rows; Revenue to Columns",
+          "task": "Load a sample sales dataset, identify two dimensions and two measures and save the workbook with a descriptive name.",
+          "check": "The sheet should show a bar per region when Region is on Rows and SUM(Revenue) on Columns.",
+          "trap": "Treating the number of marks in a chart as the number of raw records in a dataset.",
+          "business": "A trainee visual analyst must navigate Tableau before being asked to build a management dashboard."
+        },
+        {
+          "week": 2,
+          "title": "Understanding field types, measures and data relationships",
+          "goal": "Set data types and link tables while respecting their analytical grain.",
+          "where": "In the Data Source view inspect field-type icons, relationships and field profiles before building marks.",
+          "topics": [
+            {
+              "heading": "Dimensions",
+              "explanation": "group and segment data rather than being automatically summed"
+            },
+            {
+              "heading": "Measures",
+              "explanation": "numerical fields are typically aggregated per mark"
+            },
+            {
+              "heading": "Date types",
+              "explanation": "continuous dates and discrete date parts produce different timelines"
+            },
+            {
+              "heading": "Relationships",
+              "explanation": "combine tables logically but verify keys to avoid inflated totals."
+            }
+          ],
+          "worked": "OrderDate = Date; Region = Dimension; Revenue = Measure\nOrders[ProductID] → Products[ProductID]",
+          "task": "Classify six fields, set a correct OrderDate type and sketch a valid sales-to-product relationship.",
+          "check": "Revenue by Product Category should reconcile to the same total as the underlying valid sales data.",
+          "trap": "Connecting tables using product names that are not unique or treating CustomerID as an additive measure.",
+          "business": "A merchandiser needs reliable category comparisons across two related data files."
+        },
+        {
+          "week": 3,
+          "title": "Building bar charts, line charts and a readable visual",
+          "goal": "Choose the right shelf/marks combinations for rankings and trends.",
+          "where": "Use Rows and Columns shelves, Show Me and Marks to create a sorted bar view and time-series line.",
+          "topics": [
+            {
+              "heading": "Bar charts",
+              "explanation": "compare category size with a zero baseline"
+            },
+            {
+              "heading": "Line charts",
+              "explanation": "trend numeric values against ordered dates"
+            },
+            {
+              "heading": "Sorting",
+              "explanation": "sort by the correct measure rather than alphabetic category"
+            },
+            {
+              "heading": "Tooltips and labels",
+              "explanation": "show useful units and context without duplicating clutter."
+            }
+          ],
+          "worked": "Rows: Region; Columns: SUM(Revenue); Sort descending\nColumns: MONTH(OrderDate); Rows: SUM(Revenue); Marks: Line",
+          "task": "Produce a regional ranking and a monthly revenue line, then describe one pattern supported by the charts.",
+          "check": "Regional totals sum to the same filtered base revenue; monthly dates appear chronologically.",
+          "trap": "Using a continuous numeric field as a category or letting auto-sorted dates scramble the trend.",
+          "business": "A monthly business review requires a clear ranking plus sales movement over time."
+        },
+        {
+          "week": 4,
+          "title": "Calculated fields and business KPI definitions",
+          "goal": "Create reproducible calculations and understand row-level versus aggregate expressions.",
+          "where": "Use Analysis > Create Calculated Field; name fields clearly and check their aggregation.",
+          "topics": [
+            {
+              "heading": "Calculated fields",
+              "explanation": "define reusable metric logic such as Profit = Sales-Cost"
+            },
+            {
+              "heading": "Aggregation",
+              "explanation": "SUM([Profit])/SUM([Sales]) is different from a mean of row ratios"
+            },
+            {
+              "heading": "Conditional logic",
+              "explanation": "IF statements create categories under explicit rules"
+            },
+            {
+              "heading": "Error checks",
+              "explanation": "avoid mixing aggregate and nonaggregate expressions arbitrarily."
+            }
+          ],
+          "worked": "[Profit] = [Sales] - [Cost]\n[Margin %] = SUM([Profit]) / SUM([Sales])",
+          "task": "Create Profit and Margin % and verify a simple two-row example by hand.",
+          "check": "For revenue 1000 and cost 700, profit is 300 and margin 30%; aggregate ratios should be computed from total components.",
+          "trap": "Averaging row-wise margins and reporting that as overall portfolio margin without justification.",
+          "business": "Finance stakeholders need consistent margin KPIs across filters and charts."
+        },
+        {
+          "week": 5,
+          "title": "Filters, parameters and purposeful interactions",
+          "goal": "Give viewers useful controls while keeping metric definitions consistent.",
+          "where": "Add Region to Filters, show the filter card and create a Parameter for a selectable metric.",
+          "topics": [
+            {
+              "heading": "Dimension filters",
+              "explanation": "determine the subset of records shown"
+            },
+            {
+              "heading": "Parameters",
+              "explanation": "hold a selected user value that calculations can reference"
+            },
+            {
+              "heading": "Context filters",
+              "explanation": "change the effective order of operations"
+            },
+            {
+              "heading": "Testing",
+              "explanation": "compare filter selections and reset views with the raw source."
+            }
+          ],
+          "worked": "IF [Metric Choice]='Revenue' THEN [Revenue] ELSE [Profit] END",
+          "task": "Build a Region filter and a metric selector for Revenue versus Profit, then describe what changes.",
+          "check": "Changing Region must update dependent charts; Revenue and Profit are not interchangeable currency concepts.",
+          "trap": "Assuming a parameter filters rows automatically without a linked calculation.",
+          "business": "A branch manager wants to compare regions without maintaining separate workbooks."
+        },
+        {
+          "week": 6,
+          "title": "Level of detail and advanced aggregate reasoning",
+          "goal": "Apply FIXED and INCLUDE calculations carefully when category grain differs from metric grain.",
+          "where": "Create a calculated field from Analysis and add it beside a regular SUM to compare behaviour.",
+          "topics": [
+            {
+              "heading": "FIXED",
+              "explanation": "computes an expression at declared dimensions rather than a visible mark grain"
+            },
+            {
+              "heading": "INCLUDE",
+              "explanation": "evaluates with an additional dimension"
+            },
+            {
+              "heading": "Filter order",
+              "explanation": "some filters act before or after LOD computations"
+            },
+            {
+              "heading": "Verification",
+              "explanation": "compare a city-level chart with the same region totals from the raw data."
+            }
+          ],
+          "worked": "{ FIXED [Region] : SUM([Revenue]) }",
+          "task": "Create a region-level total and display it alongside product detail; explain why that number may repeat.",
+          "check": "Repeated region totals are not additive product facts, so summing the repeated figure across products would double count.",
+          "trap": "Summing repeated FIXED values as if every product row contributed an independent region total.",
+          "business": "An analyst needs region totals displayed consistently in a highly detailed product view."
+        },
+        {
+          "week": 7,
+          "title": "Table calculations for running totals and comparisons",
+          "goal": "Add running sums, ranks and percent-of-total calculations to an existing visual.",
+          "where": "Right-click the measure pill and select Quick Table Calculation; configure Compute Using explicitly.",
+          "topics": [
+            {
+              "heading": "Running totals",
+              "explanation": "accumulate values in displayed sort order"
+            },
+            {
+              "heading": "Ranking",
+              "explanation": "compare marks with chosen partition and order"
+            },
+            {
+              "heading": "Table calculation direction",
+              "explanation": "controls which neighbouring marks contribute"
+            },
+            {
+              "heading": "Verification",
+              "explanation": "manually test the first three visible months before trusting the entire line."
+            }
+          ],
+          "worked": "RUNNING_SUM(SUM([Revenue]))\nJanuary 10; February 15; March 12 → cumulative 10,25,37",
+          "task": "Build a running-revenue view and a rank by product category, then identify the addressing direction.",
+          "check": "The cumulative sequence must be 10,25,37 for the sample; ranking should honour the intended metric.",
+          "trap": "Using Table Down when the logical date order runs across columns.",
+          "business": "A sales planner wants to track progress against a year-to-date target."
+        },
+        {
+          "week": 8,
+          "title": "Building a Tableau dashboard with layout containers",
+          "goal": "Combine worksheets, filters and actions into a premium interactive canvas.",
+          "where": "Choose New Dashboard, select a desktop size, and use horizontal and vertical layout containers.",
+          "topics": [
+            {
+              "heading": "Layout containers",
+              "explanation": "align title, KPI strip, charts and a filter sidebar predictably"
+            },
+            {
+              "heading": "Actions",
+              "explanation": "make selection and highlight behaviour intentional"
+            },
+            {
+              "heading": "Dashboard sizing",
+              "explanation": "verify desktop and smaller displays using Device Preview"
+            },
+            {
+              "heading": "QA",
+              "explanation": "compare headline KPIs with the underlying sheet calculations."
+            }
+          ],
+          "worked": "Top: Revenue | Orders | Margin\nMiddle: Sales Trend | Region Ranking\nBottom: Product Category | Filter/Insights panel",
+          "task": "Build a dashboard with two worksheets, three KPIs, a Region filter and an action that highlights a selection.",
+          "check": "Region selection must update expected views; reset view restores the overall total.",
+          "trap": "Placing every chart as floating objects and losing alignment on smaller screens.",
+          "business": "An executive team needs an interactive monthly performance overview built from Tableau worksheets."
+        },
+        {
+          "week": 9,
+          "title": "Creating Tableau stories and presenting findings",
+          "goal": "Organise dashboard views into a sequence that supports an evidence-based recommendation.",
+          "where": "Use New Story and add key sheets or dashboard states; write captions for context, evidence and action.",
+          "topics": [
+            {
+              "heading": "Story points",
+              "explanation": "show the decision question, key finding and recommended follow-up"
+            },
+            {
+              "heading": "Exporting",
+              "explanation": "confirm fonts and filters remain legible in PDF or presentation"
+            },
+            {
+              "heading": "Accessibility",
+              "explanation": "make colours and labels meaningful without relying on colour alone"
+            },
+            {
+              "heading": "Data caveats",
+              "explanation": "document refresh date, exclusions and uncertainty."
+            }
+          ],
+          "worked": "Story point 1: Overall performance\nStory point 2: Region behind target\nStory point 3: Action & owner",
+          "task": "Present three Tableau story points with a headline, chart evidence and a recommendation for each.",
+          "check": "Each claim can be traced to a calculated field or worksheet; changed filters are disclosed.",
+          "trap": "Describing a visual association as the cause of a revenue shortfall.",
+          "business": "A regional director needs a short story rather than a crowded gallery of visualisations."
+        },
+        {
+          "week": 10,
+          "title": "Tableau capstone: interactive dashboard and story",
+          "goal": "Submit a complete Tableau analysis with verifiable calculations and an executive narrative.",
+          "where": "Start with clean source data and separate reusable Worksheets, Dashboard and Story deliverables.",
+          "topics": [
+            {
+              "heading": "Preparation",
+              "explanation": "connect and validate the dataset and calculated fields"
+            },
+            {
+              "heading": "Visuals",
+              "explanation": "create trend, ranking and contribution views with tooltips"
+            },
+            {
+              "heading": "Interaction",
+              "explanation": "add usable filters and test a clear reset state"
+            },
+            {
+              "heading": "Evidence",
+              "explanation": "provide workbook or Tableau Public link where appropriate, PDF/screenshots and findings."
+            }
+          ],
+          "worked": "Deliverables: .twb/.twbx or safe published link; dashboard screenshots; validation; 1-page report",
+          "task": "Create an interactive business dashboard and a three-point story for a fictional retail sales problem.",
+          "check": "The instructor can check chart data, filter behaviour and presentation against the stated metric definitions.",
+          "trap": "Sharing a published story containing confidential customer information or unexplained inconsistent totals.",
+          "business": "A regional retailer needs a filterable sales dashboard and an accessible recommendation story for leadership."
+        }
+      ]
+    },
+    {
+      "id": "course-powerquery",
+      "title": "Power Query course — ten-week plan",
+      "keywords": [
+        "power query course",
+        "learn power query",
+        "power query weeks",
+        "power query syllabus",
+        "powerquery course",
+        "start powerquery",
+        "course powerquery"
+      ],
+      "answer": "This course starts with finding the power query editor and importing data and builds toward power query capstone: reliable data preparation pipeline. It contains ten weeks with instruction, worked examples, datasets and final project guidance.",
+      "steps": [
+        "Week 1: Finding the Power Query editor and importing data — Learn the Power Query editor, Query pane, preview grid, ribbon and Applied Steps before transformations.",
+        "Week 2: Data types, date locale and column profiling — Ensure values are correctly typed before creating calculated analysis fields.",
+        "Week 3: Cleaning nulls, duplicates and transformation errors — Build a repeatable quality-control sequence with defensible exception handling.",
+        "Week 4: Transforming text, split columns and date fields — Standardise inconsistent labels and create helpful structured fields without changing source meaning.",
+        "Week 5: Custom columns, filtering and conditional business rules — Create transparent derived labels and filter only records that meet published KPI definitions.",
+        "Week 6: Appending monthly files and controlling schema drift — Combine compatible files vertically into one analysis-ready table.",
+        "Week 7: Merging lookup tables and checking join matches — Enrich transactions with attributes while preventing duplicate-key fanout.",
+        "Week 8: Grouping and reshaping dashboard-ready data — Use Group By and Unpivot to produce tidy monthly KPI data for visual analytics.",
+        "Week 9: Reading M language and designing a refreshable pipeline — Inspect Generated M steps, document dependencies and verify refresh without modifying original files.",
+        "Week 10: Power Query capstone: reliable data preparation pipeline — Prepare an auditable ETL output and show how downstream dashboards can consume it."
+      ],
+      "href": "/courses/powerquery.html",
+      "topic": "powerquery",
+      "weeks": [
+        {
+          "week": 1,
+          "title": "Finding the Power Query editor and importing data",
+          "goal": "Learn the Power Query editor, Query pane, preview grid, ribbon and Applied Steps before transformations.",
+          "where": "Open Excel > Data > Get Data or Power BI Desktop > Transform Data; locate Queries, Applied Steps and data preview.",
+          "topics": [
+            {
+              "heading": "Source connections",
+              "explanation": "determine where the file is read during refresh"
+            },
+            {
+              "heading": "Preview grid",
+              "explanation": "shows a sample and data-type icons for each column"
+            },
+            {
+              "heading": "Applied Steps",
+              "explanation": "records an ordered set of transformations"
+            },
+            {
+              "heading": "Load versus Transform",
+              "explanation": "choose whether to inspect and clean before sending results to Excel or the data model."
+            }
+          ],
+          "worked": "Get Data → Text/CSV → Transform Data → Promote Headers → Close & Load",
+          "task": "Import the weekly sales CSV, identify the Source and Changed Type steps, and explain how to refresh the result.",
+          "check": "The loaded output reflects the source preview and recorded transformations; raw CSV is unchanged.",
+          "trap": "Editing final worksheet cells and assuming those changes will survive future Power Query refreshes.",
+          "business": "A reporting assistant must repeatedly import monthly CSV exports without hand-copying and pasting rows."
+        },
+        {
+          "week": 2,
+          "title": "Data types, date locale and column profiling",
+          "goal": "Ensure values are correctly typed before creating calculated analysis fields.",
+          "where": "In Power Query choose Transform > Data Type, Using Locale where needed, then View > Column quality.",
+          "topics": [
+            {
+              "heading": "Type semantics",
+              "explanation": "dates, decimal values and text identifiers are not interchangeable"
+            },
+            {
+              "heading": "Locale",
+              "explanation": "an ambiguous date requires a known regional format"
+            },
+            {
+              "heading": "Quality profiling",
+              "explanation": "inspect Valid, Error and Empty percentages"
+            },
+            {
+              "heading": "Step order",
+              "explanation": "correct parsing early so later filters are consistent."
+            }
+          ],
+          "worked": "Text '31/12/2026' → Date (English United Kingdom)\nAmount '1,250.50' → Decimal Number using appropriate locale",
+          "task": "Convert date and revenue columns, preserve zero-padded IDs, and document one ambiguous date.",
+          "check": "After conversion, date sorting is chronological and revenue can be summed numerically; IDs retain leading zeroes.",
+          "trap": "Using formatting alone to 'fix' a text date or allowing locale ambiguity to swap day and month.",
+          "business": "A regional finance team receives exports from systems using different date conventions."
+        },
+        {
+          "week": 3,
+          "title": "Cleaning nulls, duplicates and transformation errors",
+          "goal": "Build a repeatable quality-control sequence with defensible exception handling.",
+          "where": "Use the column filter and Transform > Replace Values, Remove Errors only after inspecting the affected rows.",
+          "topics": [
+            {
+              "heading": "Nulls",
+              "explanation": "distinguish absent facts from zero-valued facts"
+            },
+            {
+              "heading": "Errors",
+              "explanation": "filter and inspect transformation errors before removal"
+            },
+            {
+              "heading": "Duplicates",
+              "explanation": "specify transaction-grain keys before removing rows"
+            },
+            {
+              "heading": "Audit evidence",
+              "explanation": "record source count, rows removed and fields corrected."
+            }
+          ],
+          "worked": "Quality checks: missing OrderID count; duplicate OrderID count; invalid Amount count",
+          "task": "Produce a small issues table and a cleaned sales query while keeping a raw reference query untouched.",
+          "check": "The number of cleaned rows plus investigated removals must reconcile to the input rows.",
+          "trap": "Removing all null rows and inadvertently excluding profitable transactions.",
+          "business": "A BI refresh fails when the source contains malformed amounts and duplicate transaction IDs."
+        },
+        {
+          "week": 4,
+          "title": "Transforming text, split columns and date fields",
+          "goal": "Standardise inconsistent labels and create helpful structured fields without changing source meaning.",
+          "where": "Use Transform > Format > Trim/Clean, Split Column by Delimiter and Add Column > Date.",
+          "topics": [
+            {
+              "heading": "Trim and Clean",
+              "explanation": "remove unwanted whitespace and nonprinting characters"
+            },
+            {
+              "heading": "Text case",
+              "explanation": "choose a consistent, business-approved region spelling"
+            },
+            {
+              "heading": "Splitting",
+              "explanation": "parse composed codes only when the delimiter format is reliable"
+            },
+            {
+              "heading": "Date extraction",
+              "explanation": "derive Year and Month from Date-typed fields."
+            }
+          ],
+          "worked": "Text.Trim([Region]); Text.Proper(Text.Trim([Region]))\nDate.Year([OrderDate]); Date.Month([OrderDate])",
+          "task": "Clean a Region field, split one structured ID and create year and month columns.",
+          "check": "'  north ' should become 'North'; derived month remains numeric or uses an explicit date dimension.",
+          "trap": "Removing leading zeroes from IDs or splitting inconsistent codes without checking failures.",
+          "business": "A branch system encodes channel and identifier in one text field and needs a dashboard-ready schema."
+        },
+        {
+          "week": 5,
+          "title": "Custom columns, filtering and conditional business rules",
+          "goal": "Create transparent derived labels and filter only records that meet published KPI definitions.",
+          "where": "Use Add Column > Conditional Column or Custom Column, then filter Status using its dropdown.",
+          "topics": [
+            {
+              "heading": "Conditional logic",
+              "explanation": "classify orders by stated thresholds"
+            },
+            {
+              "heading": "Row-level calculations",
+              "explanation": "use custom columns where inputs exist per record"
+            },
+            {
+              "heading": "Business inclusion",
+              "explanation": "paid orders may differ from gross bookings"
+            },
+            {
+              "heading": "Quality controls",
+              "explanation": "compare included and excluded row counts."
+            }
+          ],
+          "worked": "if [Revenue] >= 50000 then \"High\" else \"Standard\"\nFilter Status = \"Paid\"",
+          "task": "Build a high-value classification and create a Paid-only query for reported realised revenue.",
+          "check": "Every high-value result follows the chosen threshold; excluded statuses are documented.",
+          "trap": "Hardcoding filtering rules that silently omit refunds or exceptional valid records.",
+          "business": "A sales director needs a stable paid-sales report rather than a shifting mixture of booked and realised revenue."
+        },
+        {
+          "week": 6,
+          "title": "Appending monthly files and controlling schema drift",
+          "goal": "Combine compatible files vertically into one analysis-ready table.",
+          "where": "Use Home > Append Queries and inspect the combined preview and column types afterwards.",
+          "topics": [
+            {
+              "heading": "Append versus merge",
+              "explanation": "append stacks rows whereas merge adds related columns"
+            },
+            {
+              "heading": "Schema alignment",
+              "explanation": "ensure identical field names and measurement units"
+            },
+            {
+              "heading": "Null columns",
+              "explanation": "unmatched fields can introduce blanks after append"
+            },
+            {
+              "heading": "Refresh",
+              "explanation": "new month extracts should follow the same documented cleaning logic."
+            }
+          ],
+          "worked": "Append JanOrders and FebOrders → CombinedOrders\nCheck TotalRows = JanRows + FebRows",
+          "task": "Append two monthly datasets and compare the combined sum with their independently calculated totals.",
+          "check": "Combined row count equals the sum of compatible sources and revenue equals the sum of each month's revenue.",
+          "trap": "Appending transactions in different currencies without converting or flagging their units.",
+          "business": "A reporting team wants one growing sales dataset from monthly CSV exports."
+        },
+        {
+          "week": 7,
+          "title": "Merging lookup tables and checking join matches",
+          "goal": "Enrich transactions with attributes while preventing duplicate-key fanout.",
+          "where": "Use Home > Merge Queries, choose matching ProductID columns and a Left Outer join, then expand selected fields.",
+          "topics": [
+            {
+              "heading": "Join direction",
+              "explanation": "Left Outer preserves the source transaction table"
+            },
+            {
+              "heading": "Key quality",
+              "explanation": "dimension keys should be unique at the intended grain"
+            },
+            {
+              "heading": "Match diagnostics",
+              "explanation": "identify null expanded attributes and fix mapping errors"
+            },
+            {
+              "heading": "Validation",
+              "explanation": "compare source and merged row counts and sums."
+            }
+          ],
+          "worked": "Orders LEFT JOIN Products ON ProductID → expand Category, UnitCost",
+          "task": "Merge orders with product categories and produce a list of unmatched product identifiers.",
+          "check": "A unique product lookup should preserve one result per order row; unmatched ProductID remains visible.",
+          "trap": "Using a many-to-many merge without checking whether revenue duplicates after expansion.",
+          "business": "The product manager wants category analysis from order lines and a separate product master file."
+        },
+        {
+          "week": 8,
+          "title": "Grouping and reshaping dashboard-ready data",
+          "goal": "Use Group By and Unpivot to produce tidy monthly KPI data for visual analytics.",
+          "where": "Choose Transform > Group By then Unpivot Columns where months are incorrectly stored as headers.",
+          "topics": [
+            {
+              "heading": "Group By",
+              "explanation": "returns one row per chosen category with sums or counts"
+            },
+            {
+              "heading": "Multiple aggregations",
+              "explanation": "distinguish orders, revenue and distinct customer metrics"
+            },
+            {
+              "heading": "Unpivot",
+              "explanation": "converts monthly columns into Month and Value rows"
+            },
+            {
+              "heading": "Tidy output",
+              "explanation": "each field must have one well-defined meaning for charting."
+            }
+          ],
+          "worked": "Group by Region → Sum Revenue, Count Rows\nUnpivot Jan,Feb,Mar columns → Month,Revenue rows",
+          "task": "Make a long-format monthly revenue table and sketch a trend chart and regional KPI panel using it.",
+          "check": "Summing the tidy output must reproduce the source figures; each Month value should be a valid period.",
+          "trap": "Reporting counts of rows as distinct orders in a dataset containing multiple lines per order.",
+          "business": "A Power BI developer needs a consistent fact table that supports month slicers and region charts."
+        },
+        {
+          "week": 9,
+          "title": "Reading M language and designing a refreshable pipeline",
+          "goal": "Inspect Generated M steps, document dependencies and verify refresh without modifying original files.",
+          "where": "Use Home > Advanced Editor carefully, study let/in expressions, and record parameterised source paths.",
+          "topics": [
+            {
+              "heading": "M steps",
+              "explanation": "transformations are expressions evaluated within let/in"
+            },
+            {
+              "heading": "Reuse",
+              "explanation": "reference queries and parameters instead of copying the same source logic"
+            },
+            {
+              "heading": "Query folding",
+              "explanation": "verify which transformations can push back to database sources"
+            },
+            {
+              "heading": "Refresh controls",
+              "explanation": "check row counts, missing fields and credentials after updates."
+            }
+          ],
+          "worked": "let Source = Csv.Document(File.Contents(\"sales.csv\"),[Delimiter=\",\"]),\n    Promoted = Table.PromoteHeaders(Source,[PromoteAllScalars=true])\nin Promoted",
+          "task": "Annotate a query's Source, Changed Type and Filtered Rows steps and create a refresh checklist for a colleague.",
+          "check": "A fresh file of the same expected schema loads cleanly and the quality checks still reconcile.",
+          "trap": "Assuming a query 'refreshed successfully' proves the business totals are correct.",
+          "business": "An analyst must hand over a monthly refresh process that another team member can operate."
+        },
+        {
+          "week": 10,
+          "title": "Power Query capstone: reliable data preparation pipeline",
+          "goal": "Prepare an auditable ETL output and show how downstream dashboards can consume it.",
+          "where": "Start from two raw CSV files, reference them as sources and record every Applied Step.",
+          "topics": [
+            {
+              "heading": "Input quality",
+              "explanation": "profile nulls, errors and identifiers"
+            },
+            {
+              "heading": "Transformations",
+              "explanation": "type, standardise, append and merge where necessary"
+            },
+            {
+              "heading": "Dashboard output",
+              "explanation": "create tidy month-region KPI table and a preview chart or layout"
+            },
+            {
+              "heading": "Handover",
+              "explanation": "document source locations, Applied Steps, refresh, control totals and exceptions."
+            }
+          ],
+          "worked": "Deliverables: Excel workbook with queries or PBIX, cleaned output CSV, steps and reconciliation log",
+          "task": "Submit a refreshable Power Query pipeline and a clear analytical reporting dataset with a short interpretation.",
+          "check": "Re-running the transformation on the same inputs reproduces row counts and sums; changes to source are traceable.",
+          "trap": "Sharing only the final CSV without the transform logic, source schema or exception handling.",
+          "business": "A retail organisation wants a controlled monthly file-refresh process that supplies its BI dashboards."
+        }
+      ]
+    },
+    {
+      "id": "course-statistics",
+      "title": "Applied Statistics course — ten-week plan",
+      "keywords": [
+        "applied statistics course",
+        "learn applied statistics",
+        "applied statistics weeks",
+        "applied statistics syllabus",
+        "statistics course",
+        "start statistics",
+        "course statistics"
+      ],
+      "answer": "This course starts with discovering statistical tools and data types and builds toward statistics capstone: analysis to executive recommendations. It contains ten weeks with instruction, worked examples, datasets and final project guidance.",
+      "steps": [
+        "Week 1: Discovering statistical tools and data types — Understand how Excel's Analysis ToolPak or Python notebooks support practical statistical questions.",
+        "Week 2: Mean, median, mode and interpreting typical values — Calculate central tendency and explain what outliers do to the story.",
+        "Week 3: Spread: range, variance and standard deviation — Describe volatility alongside an average rather than hiding unstable results.",
+        "Week 4: Frequency tables, histograms and distribution patterns — Create charts that reveal where observations cluster and which values are unusual.",
+        "Week 5: Sampling design and identifying bias — Plan a sample that supports a specific conclusion without excluding important customers.",
+        "Week 6: Probability and risks in business decisions — Compute basic unconditional and conditional probabilities using observed counts.",
+        "Week 7: Correlation and exploratory relationship analysis — Measure associations and explain why they do not automatically establish causation.",
+        "Week 8: Confidence intervals and uncertainty dashboard — Construct and interpret a confidence interval in business terms without overstating certainty.",
+        "Week 9: Hypothesis testing, experiments and result interpretation — Use clear hypotheses and effect sizes to decide whether an apparent change is meaningful.",
+        "Week 10: Statistics capstone: analysis to executive recommendations — Perform descriptive analysis and one defensible inferential check, then present uncertainty to stakeholders."
+      ],
+      "href": "/courses/statistics.html",
+      "topic": "statistics",
+      "weeks": [
+        {
+          "week": 1,
+          "title": "Discovering statistical tools and data types",
+          "goal": "Understand how Excel's Analysis ToolPak or Python notebooks support practical statistical questions.",
+          "where": "Open Excel, inspect the Data tab and enable Analysis ToolPak when available; alternatively use pandas describe() in a notebook.",
+          "topics": [
+            {
+              "heading": "Measurement types",
+              "explanation": "categorical, ordinal and numeric variables require different summaries"
+            },
+            {
+              "heading": "Population versus sample",
+              "explanation": "define who you want to understand before selecting data"
+            },
+            {
+              "heading": "Tool interfaces",
+              "explanation": "know where descriptive outputs appear and how to preserve inputs"
+            },
+            {
+              "heading": "Research questions",
+              "explanation": "name the metric, period and comparison group."
+            }
+          ],
+          "worked": "CustomerID is an identifier; Revenue is numeric; Rating 1–5 is ordinal",
+          "task": "Classify the columns in a sales dataset and write a measurable question before calculating statistics.",
+          "check": "CustomerID must not be summed, and the chosen statistical operation matches the variable type.",
+          "trap": "Treating survey ratings as perfectly precise measurements or assuming a convenience sample represents everyone.",
+          "business": "A customer experience team wants to measure service changes using a small but clearly described dataset."
+        },
+        {
+          "week": 2,
+          "title": "Mean, median, mode and interpreting typical values",
+          "goal": "Calculate central tendency and explain what outliers do to the story.",
+          "where": "Use Excel AVERAGE, MEDIAN and MODE.SNGL, or pandas mean() and median() on a numeric series.",
+          "topics": [
+            {
+              "heading": "Mean",
+              "explanation": "includes every value and can shift strongly with extremes"
+            },
+            {
+              "heading": "Median",
+              "explanation": "identifies the central sorted observation and is robust to a single outlier"
+            },
+            {
+              "heading": "Mode",
+              "explanation": "identifies the most frequent observed category or number"
+            },
+            {
+              "heading": "Interpretation",
+              "explanation": "choose a typical-value statistic suited to the question and distribution."
+            }
+          ],
+          "worked": "Sales = 10,12,13,14,100\nMean = 29.8; Median = 13",
+          "task": "Calculate mean and median for the sample and recommend which better represents a typical order.",
+          "check": "The mean is 29.8 and median 13; the unusually high 100 pushes the mean upward.",
+          "trap": "Reporting only the mean when the data are skewed by exceptional transactions.",
+          "business": "A store manager needs a realistic typical order size for everyday planning."
+        },
+        {
+          "week": 3,
+          "title": "Spread: range, variance and standard deviation",
+          "goal": "Describe volatility alongside an average rather than hiding unstable results.",
+          "where": "Use Excel MIN, MAX, STDEV.S, VAR.S or pandas std(ddof=1) on a numeric range.",
+          "topics": [
+            {
+              "heading": "Range",
+              "explanation": "maximum minus minimum is a quick but outlier-sensitive span"
+            },
+            {
+              "heading": "Variance",
+              "explanation": "describes average squared deviation under a specified sample/population convention"
+            },
+            {
+              "heading": "Standard deviation",
+              "explanation": "returns spread in the original measurement units"
+            },
+            {
+              "heading": "Comparison",
+              "explanation": "equal averages do not mean equally predictable performance."
+            }
+          ],
+          "worked": "Team A sales = 48,50,52; Team B sales = 20,50,80\nBoth means = 50; Team B varies much more",
+          "task": "Compare two sample series that have equal means and explain which is more consistent.",
+          "check": "The means match, but Team B has a substantially larger range and standard deviation.",
+          "trap": "Using STDEV.P on a sample while describing the result as a sample standard deviation.",
+          "business": "A workforce manager compares sales consistency between two teams."
+        },
+        {
+          "week": 4,
+          "title": "Frequency tables, histograms and distribution patterns",
+          "goal": "Create charts that reveal where observations cluster and which values are unusual.",
+          "where": "Use Excel Histogram or FREQUENCY and chart bins; alternatively pandas hist() in Python.",
+          "topics": [
+            {
+              "heading": "Frequency",
+              "explanation": "counts observations in explicit ranges"
+            },
+            {
+              "heading": "Histogram",
+              "explanation": "is used for numeric values rather than categories"
+            },
+            {
+              "heading": "Shape",
+              "explanation": "recognise skewed, roughly symmetric and multi-modal patterns"
+            },
+            {
+              "heading": "Binning",
+              "explanation": "choose defensible bin widths and disclose the range."
+            }
+          ],
+          "worked": "Spend: 10,15,70,90,120\nBins 0–49: 2; 50–99: 2; 100–149: 1",
+          "task": "Build a histogram of customer spend, describe its shape and compare mean with median.",
+          "check": "The sample contains two spends in 0–49 and two in 50–99; bins must not overlap.",
+          "trap": "Using tiny or arbitrary bins to exaggerate patterns or hiding extreme observations.",
+          "business": "An e-commerce analyst needs to describe spending distribution before designing customer segments."
+        },
+        {
+          "week": 5,
+          "title": "Sampling design and identifying bias",
+          "goal": "Plan a sample that supports a specific conclusion without excluding important customers.",
+          "where": "Use a random-sample function or clearly described selection procedure and document the full target population.",
+          "topics": [
+            {
+              "heading": "Target population",
+              "explanation": "identify the entire group a decision affects"
+            },
+            {
+              "heading": "Sampling frame",
+              "explanation": "lists who could actually be selected"
+            },
+            {
+              "heading": "Selection bias",
+              "explanation": "missing groups create systematic distortion"
+            },
+            {
+              "heading": "Practical safeguards",
+              "explanation": "stratify by region or channel when those groups matter."
+            }
+          ],
+          "worked": "Population: all monthly customers\nBiased sample: only app users who opened a promotional email",
+          "task": "Design a 100-person satisfaction sample that covers weekday/weekend and online/in-store groups.",
+          "check": "The sampling plan includes each relevant segment and documents its selection probabilities and constraints.",
+          "trap": "Reporting opinions of volunteers as if they represent all customers without qualification.",
+          "business": "A retail board wants an interpretable service survey that is not dominated by one branch or channel."
+        },
+        {
+          "week": 6,
+          "title": "Probability and risks in business decisions",
+          "goal": "Compute basic unconditional and conditional probabilities using observed counts.",
+          "where": "Use a contingency table in Excel or a grouped pandas summary with counts and denominators.",
+          "topics": [
+            {
+              "heading": "Probability",
+              "explanation": "event count divided by appropriate total under the sampling design"
+            },
+            {
+              "heading": "Conditional probability",
+              "explanation": "denominator changes to the condition group"
+            },
+            {
+              "heading": "Independence",
+              "explanation": "compare joint and conditional rates to assess relationships"
+            },
+            {
+              "heading": "Base rates",
+              "explanation": "a risk can look large without the population context."
+            }
+          ],
+          "worked": "Late orders: 30/100 = 30%\nNorth late orders: 12/40 = 30%",
+          "task": "Calculate the error rate from 15 defective orders out of 60 and explain its denominator.",
+          "check": "P(Error) = 15/60 = 25%; every probability statement names the conditioning group.",
+          "trap": "Confusing 'of North orders' with 'of all orders' when calculating a conditional rate.",
+          "business": "A logistics analyst needs realistic failure probabilities to prioritise interventions."
+        },
+        {
+          "week": 7,
+          "title": "Correlation and exploratory relationship analysis",
+          "goal": "Measure associations and explain why they do not automatically establish causation.",
+          "where": "Use Excel CORREL and scatter charts or pandas corr(numeric_only=True) after checking missingness.",
+          "topics": [
+            {
+              "heading": "Correlation coefficient",
+              "explanation": "ranges from -1 to 1 for Pearson linear association"
+            },
+            {
+              "heading": "Scatterplots",
+              "explanation": "reveal outliers and curved patterns hidden by one coefficient"
+            },
+            {
+              "heading": "Confounders",
+              "explanation": "other variables may influence both observed measures"
+            },
+            {
+              "heading": "Interventions",
+              "explanation": "causal claims require study design and assumptions beyond a correlation."
+            }
+          ],
+          "worked": "Heat and cold drink sales may rise together; rainfall may drive umbrella sales and wet roads",
+          "task": "Make a scatterplot of advertising spend versus sales and write a cautious interpretation.",
+          "check": "A strong association may justify investigation but does not prove advertising caused the difference.",
+          "trap": "Writing 'increased spend led to higher revenue' solely because a scatterplot slopes upward.",
+          "business": "A marketing team wants to understand which relationships merit controlled testing."
+        },
+        {
+          "week": 8,
+          "title": "Confidence intervals and uncertainty dashboard",
+          "goal": "Construct and interpret a confidence interval in business terms without overstating certainty.",
+          "where": "Use a sample proportion and its standard error, or statistical software with clearly stated assumptions.",
+          "topics": [
+            {
+              "heading": "Point estimates",
+              "explanation": "provide one best observed estimate from a sample"
+            },
+            {
+              "heading": "Confidence intervals",
+              "explanation": "quantify uncertainty from sampling under a repeated-sampling method"
+            },
+            {
+              "heading": "Sample size",
+              "explanation": "usually affects precision when design is sound"
+            },
+            {
+              "heading": "Reporting",
+              "explanation": "include interval, method, sample size and potential selection bias."
+            }
+          ],
+          "worked": "Conversion estimate 20%; illustrative 95% CI = [16%,24%] under a stated sampling method",
+          "task": "Explain what an interval around a survey conversion estimate means for management decisions.",
+          "check": "Across repeated comparable samples, the 95% method captures the fixed population rate about 95% of the time.",
+          "trap": "Claiming there is a 95% probability that a fixed rate falls inside this already-computed interval.",
+          "business": "An operations director needs a range of plausible service performance rather than an unsupported single number."
+        },
+        {
+          "week": 9,
+          "title": "Hypothesis testing, experiments and result interpretation",
+          "goal": "Use clear hypotheses and effect sizes to decide whether an apparent change is meaningful.",
+          "where": "Define H0 and H1 before viewing results; use the appropriate statistical test and check assumptions.",
+          "topics": [
+            {
+              "heading": "Null hypothesis",
+              "explanation": "formalises a no-effect benchmark"
+            },
+            {
+              "heading": "P-values",
+              "explanation": "measure incompatibility under the null and the test model"
+            },
+            {
+              "heading": "Practical significance",
+              "explanation": "a tiny effect can be statistically significant yet operationally irrelevant"
+            },
+            {
+              "heading": "Multiple testing",
+              "explanation": "repeated unplanned comparisons inflate false positives."
+            }
+          ],
+          "worked": "H0: new checkout has equal conversion to old; p = 0.03 at alpha = 0.05",
+          "task": "Write a one-paragraph interpretation of a test result including effect size and limitations.",
+          "check": "At pre-specified alpha 0.05, reject H0 when p=0.03, subject to assumptions; do not call it proof of causation without design.",
+          "trap": "Interpreting p=0.03 as a 97% probability that the alternative hypothesis is true.",
+          "business": "A digital product team wants evidence before rolling out a new checkout design."
+        },
+        {
+          "week": 10,
+          "title": "Statistics capstone: analysis to executive recommendations",
+          "goal": "Perform descriptive analysis and one defensible inferential check, then present uncertainty to stakeholders.",
+          "where": "Use a supplied fictional dataset in Excel or Python, save the raw data and produce separate Results and Report sheets.",
+          "topics": [
+            {
+              "heading": "Problem framing",
+              "explanation": "define population, sample and relevant variables"
+            },
+            {
+              "heading": "Descriptive analysis",
+              "explanation": "report central tendency, spread and a useful chart"
+            },
+            {
+              "heading": "Inference",
+              "explanation": "perform a suitable comparison or uncertainty estimate with assumptions"
+            },
+            {
+              "heading": "Reporting",
+              "explanation": "provide plain-language insights, caveats and recommendations."
+            }
+          ],
+          "worked": "Deliverables: workbook/notebook, charts, summary statistics, assumptions and a 1-page management report",
+          "task": "Submit a complete statistical report with a chart, transparent method, independent checks and recommendations.",
+          "check": "Reviewer can trace all statistics to data and see why selected methods are appropriate; unsupported causal claims are flagged.",
+          "trap": "Submitting only a p-value or decorative chart without assumptions and a meaningful business interpretation.",
+          "business": "A fictional retail group commissions a customer-satisfaction and sales-volatility assessment for its leadership team."
+        }
+      ]
+    },
+    {
+      "id": "course-introduction",
+      "title": "Data Analysis Foundations course — ten-week plan",
+      "keywords": [
+        "data analysis foundations course",
+        "learn data analysis foundations",
+        "data analysis foundations weeks",
+        "data analysis foundations syllabus",
+        "introduction course",
+        "start introduction",
+        "course introduction"
+      ],
+      "answer": "This course starts with the data analyst's workspace and way of thinking and builds toward data analysis capstone: question to presentation. It contains ten weeks with instruction, worked examples, datasets and final project guidance.",
+      "steps": [
+        "Week 1: The data analyst's workspace and way of thinking — Learn the full analysis workflow and recognise the interfaces analysts commonly use before specialising.",
+        "Week 2: Data files, columns, types and measurement — Become confident reading CSVs and spreadsheets and recognising the meaning of each field.",
+        "Week 3: Data grain, keys and simple relationships — Understand what one row represents and why duplicates can be legitimate.",
+        "Week 4: Understanding and measuring data quality — Identify missing values, erroneous amounts and duplicate keys before trusting a calculation.",
+        "Week 5: Basic calculations and descriptive KPIs — Understand totals, counts, averages and the difference between typical and exceptional values.",
+        "Week 6: Preparing data for a repeatable analysis — Separate raw source, cleaned records and reporting summaries into traceable layers.",
+        "Week 7: Choosing effective charts and reading trends — Connect business questions to line, bar, table and KPI displays without misleading viewers.",
+        "Week 8: Planning the first dashboard and selecting KPIs — Design a clean dashboard layout before choosing a complicated tool.",
+        "Week 9: Explaining results and writing an executive briefing — Write an evidence-first management report and prepare a brief verbal presentation.",
+        "Week 10: Data analysis capstone: question to presentation — Complete one end-to-end analysis using a realistic fictional business dataset."
+      ],
+      "href": "/courses/introduction.html",
+      "topic": "introduction",
+      "weeks": [
+        {
+          "week": 1,
+          "title": "The data analyst's workspace and way of thinking",
+          "goal": "Learn the full analysis workflow and recognise the interfaces analysts commonly use before specialising.",
+          "where": "Open a spreadsheet or supplied dataset viewer, locate file tabs, fields and rows, and identify where Excel, SQL and BI fit.",
+          "topics": [
+            {
+              "heading": "Business questions",
+              "explanation": "start from the decision and identify a measurable outcome"
+            },
+            {
+              "heading": "Tool roles",
+              "explanation": "Excel handles small tables, SQL retrieves data, and BI tools show dashboards"
+            },
+            {
+              "heading": "Data lifecycle",
+              "explanation": "collect, clean, analyse, visualise and communicate"
+            },
+            {
+              "heading": "Evidence",
+              "explanation": "distinguish observation, hypotheses and decisions."
+            }
+          ],
+          "worked": "Question: 'Which region had the largest decline in paid revenue this quarter?'\nPlan: data source → quality check → KPI → chart → explanation",
+          "task": "Write a focused business question and identify which tools and dataset fields can answer it.",
+          "check": "Your question names a metric, comparison period, audience and decision that could follow.",
+          "trap": "Opening a dashboard tool before checking what is being measured and why.",
+          "business": "A new analyst is asked why last month's sales dipped and needs a safe, structured investigation plan."
+        },
+        {
+          "week": 2,
+          "title": "Data files, columns, types and measurement",
+          "goal": "Become confident reading CSVs and spreadsheets and recognising the meaning of each field.",
+          "where": "Open the sales CSV in Excel or a data viewer; inspect header names, formats, first five rows and source notes.",
+          "topics": [
+            {
+              "heading": "Rows and columns",
+              "explanation": "each record represents an observation with typed attributes"
+            },
+            {
+              "heading": "Numeric versus categorical",
+              "explanation": "revenue can be summed while region groups results"
+            },
+            {
+              "heading": "Dates",
+              "explanation": "permit period comparisons only when parsed correctly"
+            },
+            {
+              "heading": "Identifiers",
+              "explanation": "customer and order IDs should not be added together."
+            }
+          ],
+          "worked": "CustomerID=00125 → identifier; 2026-06-01 → date; 18500 → currency",
+          "task": "Classify dataset columns, identify a suspicious format and draft a short data dictionary.",
+          "check": "IDs preserve leading zeroes, and revenue or quantity fields have meaningful numeric units.",
+          "trap": "Letting an import strip leading zeros or treating a customer code as a measurement.",
+          "business": "A reporting officer receives a new CSV and must explain each column before preparing a KPI summary."
+        },
+        {
+          "week": 3,
+          "title": "Data grain, keys and simple relationships",
+          "goal": "Understand what one row represents and why duplicates can be legitimate.",
+          "where": "Inspect OrderID, ProductID and Status fields and compare counts of rows and distinct orders.",
+          "topics": [
+            {
+              "heading": "Granularity",
+              "explanation": "one row per order differs from one row per order line"
+            },
+            {
+              "heading": "Unique keys",
+              "explanation": "identify records without confusion"
+            },
+            {
+              "heading": "Relationships",
+              "explanation": "join descriptive tables by stable keys"
+            },
+            {
+              "heading": "Reconciliation",
+              "explanation": "count both total rows and distinct transactions to expose the difference."
+            }
+          ],
+          "worked": "Orders: O1 appears twice for two products, O2 once\nRow count = 3; unique orders = 2",
+          "task": "Explain how three rows can represent two purchases and choose the right measure for 'number of orders'.",
+          "check": "COUNTROWS = 3 but DISTINCTCOUNT(OrderID) = 2; both figures are right for different questions.",
+          "trap": "Calling repeated OrderID values erroneous duplicates without checking line-item grain.",
+          "business": "A logistics dashboard must show unique shipments rather than line items."
+        },
+        {
+          "week": 4,
+          "title": "Understanding and measuring data quality",
+          "goal": "Identify missing values, erroneous amounts and duplicate keys before trusting a calculation.",
+          "where": "Use filters, conditional formatting or data-profiling tools to inspect required columns.",
+          "topics": [
+            {
+              "heading": "Completeness",
+              "explanation": "count missing required dates and identifiers"
+            },
+            {
+              "heading": "Validity",
+              "explanation": "flag negative quantities where forbidden"
+            },
+            {
+              "heading": "Consistency",
+              "explanation": "standardise category labels"
+            },
+            {
+              "heading": "Accuracy controls",
+              "explanation": "reconcile source counts after any cleaning step."
+            }
+          ],
+          "worked": "Orders = 1000; missing dates = 18; duplicate transaction keys = 12\nInvestigate before removal",
+          "task": "Write three quality rules and quantify the rows that fail each rule in the practice file.",
+          "check": "Each rule has a count, rationale and treatment; source and cleaned totals reconcile after approved changes.",
+          "trap": "Replacing every null with zero and silently changing averages.",
+          "business": "An internal audit team needs a defensible note on source quality before accepting a revenue report."
+        },
+        {
+          "week": 5,
+          "title": "Basic calculations and descriptive KPIs",
+          "goal": "Understand totals, counts, averages and the difference between typical and exceptional values.",
+          "where": "Use SUM, AVERAGE, COUNTIFS or a grouped calculation, then validate against a few raw records.",
+          "topics": [
+            {
+              "heading": "Revenue",
+              "explanation": "quantity times price under an explicit status definition"
+            },
+            {
+              "heading": "Counts",
+              "explanation": "distinguish records from unique orders"
+            },
+            {
+              "heading": "Mean and median",
+              "explanation": "provide different views of typical behaviour"
+            },
+            {
+              "heading": "Period comparisons",
+              "explanation": "use an explicit denominator and note missing periods."
+            }
+          ],
+          "worked": "Five values 20,22,23,25,110 → mean 40, median 23",
+          "task": "Calculate paid revenue, unique orders and average order value, then explain an outlier's impact.",
+          "check": "AOV = Paid Revenue / Distinct Paid Orders, and the sample median is 23.",
+          "trap": "Adding order IDs together or implying mean and median always give similar answers.",
+          "business": "A shop director wants four trustworthy weekly indicators before debating performance."
+        },
+        {
+          "week": 6,
+          "title": "Preparing data for a repeatable analysis",
+          "goal": "Separate raw source, cleaned records and reporting summaries into traceable layers.",
+          "where": "Create Raw, Clean and Summary sheets or equivalent tables in a notebook.",
+          "topics": [
+            {
+              "heading": "Raw preservation",
+              "explanation": "keep an untouched reference for audit"
+            },
+            {
+              "heading": "Cleaning rules",
+              "explanation": "record how nulls and labels were handled"
+            },
+            {
+              "heading": "Aggregate tables",
+              "explanation": "report one row per reporting group"
+            },
+            {
+              "heading": "Reproducibility",
+              "explanation": "repeat the same steps when next week's data arrives."
+            }
+          ],
+          "worked": "Raw 100 rows → 3 flagged → Clean 97 valid records\nSummary groups by Region and Month",
+          "task": "Describe a simple cleaning flow and create an audit trail with row counts before and after processing.",
+          "check": "Every dropped or excluded record has a reason, and category totals reconcile to the clean rows.",
+          "trap": "Editing raw source values without documenting the transformation.",
+          "business": "A junior analyst must repeat last week's report using a new sales export next month."
+        },
+        {
+          "week": 7,
+          "title": "Choosing effective charts and reading trends",
+          "goal": "Connect business questions to line, bar, table and KPI displays without misleading viewers.",
+          "where": "Open a chart designer in Excel or BI, select a clean summary table and identify chart configuration controls.",
+          "topics": [
+            {
+              "heading": "Line charts",
+              "explanation": "communicate movement across ordered dates"
+            },
+            {
+              "heading": "Bar charts",
+              "explanation": "rank categories on a comparable scale"
+            },
+            {
+              "heading": "KPIs",
+              "explanation": "make units and reporting period obvious"
+            },
+            {
+              "heading": "Honest interpretation",
+              "explanation": "separate measured change from likely contributing factors."
+            }
+          ],
+          "worked": "January 120000; February 150000; March 135000\nMarch vs February = -10%",
+          "task": "Create a monthly line and regional bar chart and write one fact backed by both visuals.",
+          "check": "A descending bar ranking identifies top region and the monthly line correctly shows a February peak.",
+          "trap": "Using a dozen pie slices or skipping zero on a quantitative bar axis.",
+          "business": "A business manager needs a quick visual overview that supports a sensible next question."
+        },
+        {
+          "week": 8,
+          "title": "Planning the first dashboard and selecting KPIs",
+          "goal": "Design a clean dashboard layout before choosing a complicated tool.",
+          "where": "Sketch a 16:9 report page using a title, KPI strip, explanatory charts and a filter area.",
+          "topics": [
+            {
+              "heading": "Information hierarchy",
+              "explanation": "headline results should be visible first"
+            },
+            {
+              "heading": "Metric definitions",
+              "explanation": "Revenue and AOV need agreed inclusion rules"
+            },
+            {
+              "heading": "Interaction",
+              "explanation": "filters must update connected visuals consistently"
+            },
+            {
+              "heading": "Accessibility",
+              "explanation": "readable labels and purposeful whitespace beat visual clutter."
+            }
+          ],
+          "worked": "Top: Revenue | Orders | AOV\nMiddle: Trend | Region Ranking\nBottom: Notes | Filters",
+          "task": "Create a dashboard wireframe and map each KPI to a source column and calculation.",
+          "check": "A reader can answer the business question in 30 seconds and every visual has a clear purpose.",
+          "trap": "Adding flashy charts that do not connect to a decision or have inconsistent filters.",
+          "business": "A retail leadership team wants an outline of its first self-service sales dashboard."
+        },
+        {
+          "week": 9,
+          "title": "Explaining results and writing an executive briefing",
+          "goal": "Write an evidence-first management report and prepare a brief verbal presentation.",
+          "where": "Use a one-page slide or document with Insight, Evidence, Implication and Next Action sections.",
+          "topics": [
+            {
+              "heading": "Observation",
+              "explanation": "state a calculated fact with time period"
+            },
+            {
+              "heading": "Evidence",
+              "explanation": "include a reconciled KPI or chart"
+            },
+            {
+              "heading": "Uncertainty",
+              "explanation": "do not invent causes or unsupported precision"
+            },
+            {
+              "heading": "Recommendation",
+              "explanation": "propose a testable action and responsible owner."
+            }
+          ],
+          "worked": "Observation: March revenue is 10% below February\nFollow-up: Compare refunds and channel mix before making a claim",
+          "task": "Write a 120-word report and a two-minute presentation about an observed metric change.",
+          "check": "The statement uses correct arithmetic, cites the reporting dataset and identifies what cannot yet be concluded.",
+          "trap": "Confusing correlation with cause or overloading a slide with raw data tables.",
+          "business": "A team lead needs an answer to 'so what?' after reviewing a dashboard."
+        },
+        {
+          "week": 10,
+          "title": "Data analysis capstone: question to presentation",
+          "goal": "Complete one end-to-end analysis using a realistic fictional business dataset.",
+          "where": "Start from the downloaded dataset, define the business question and structure your project evidence folder.",
+          "topics": [
+            {
+              "heading": "Planning",
+              "explanation": "define audience, questions, timeframe and KPI definitions"
+            },
+            {
+              "heading": "Data preparation",
+              "explanation": "review quality, grain and exclusions before calculating"
+            },
+            {
+              "heading": "Analysis",
+              "explanation": "create two chart types, three KPIs and one dashboard layout"
+            },
+            {
+              "heading": "Communication",
+              "explanation": "submit a one-page executive summary plus verification notes and source files."
+            }
+          ],
+          "worked": "Deliverables: cleaned data, KPI table, 2 charts, dashboard/wireframe and 1-page report",
+          "task": "Submit an evidence-based analysis pack that another learner can reproduce from the same source dataset.",
+          "check": "Each chart and KPI traces back to documented source and filters, and the instructor can follow all exclusions.",
+          "trap": "Submitting a dashboard image without calculations or a written explanation of what it means.",
+          "business": "A fictional chain of retail stores hires you to deliver its first credible monthly performance pack."
+        }
+      ]
+    }
+  ]
+}

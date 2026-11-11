@@ -1,51 +1,76 @@
-# Power Query · Week 05 · Conditional columns and filtering
+# Power Query · Week 05 · Custom columns, filtering and conditional business rules
 
-> DataLearning practice brief — synthetic training material. Keep your original source file unchanged and make a copy for transformations.
+> DataLearning comprehensive practical lesson. Data is fictional. This worksheet supports the full in-app explanation and independent practice. Do not overwrite your raw source file.
 
 ## Learning outcome
-Classify records with transparent rules
+Create transparent derived labels and filter only records that meet published KPI definitions.
 
-## Before you begin: open the right file
-- Download: `learning_sales_2026.csv` in `/downloads/` of your DataLearning project.
-- Important fields / tables: order_id, order_date, region, category, quantity, unit_price_ngn, unit_cost_ngn, status, customer_id, channel.
-- Related video (opens within the lesson page): https://www.youtube.com/watch?v=WH937Gc_8eg&t=1880s.
-- Use Excel / Power BI / Tableau / Power Query for CSV sources, a SQLite-compatible reader for `.sqlite` files, or Python/pandas for code-based analysis as the week requires.
+## Where to begin in the tool
+Use Add Column > Conditional Column or Custom Column, then filter Status using its dropdown.
 
-## Understand the analytical method
-Conditional columns translate business rules into repeatable classifications. For example, classify Amount >= 10000 as High, Amount >= 5000 as Medium, and the rest as Low. The order of conditions matters because the first condition that matches determines the result. Add explicit handling for nulls and unexpected values so the query does not accidentally classify unknown amounts as Low.
 
-Filters determine which records enter the final report. Filtering to completed orders is reasonable for completed-sales analysis, but it should not be applied to an order-pipeline report. Document every classification and filter in business language, then test the boundary values. Keeping rules in named query steps makes it easier to review changes when thresholds or business definitions are updated.
+## Source data dictionary · exact practice file fields
+The linked CSV uses these **exact header names**. Import the file before attempting examples. If an exercise uses a friendly or calculated name, map or create it first.
 
-## Guided walkthrough in the tool
-1. Write the classification rules in a short table including boundaries and missing values.
-2. Add a Conditional Column using the agreed ordering.
-3. Test examples exactly at 5000 and 10000 plus a null record.
-4. Filter only records allowed by the report definition, then reconcile counts by category.
+`order_id, order_date, region, category, quantity, unit_price_ngn, unit_cost_ngn, status, customer_id, channel`
 
-### Additional hands-on instruction
-Create a revenue band from unit price and a completed-status flag with an explicit unknown category.
+Available `status` values: `Cancelled`, `Completed`, `Returned`
 
-## Business case
-Classifying orders with amounts 4,999, 5,000 and 10,000 should produce Low, Medium and High under thresholds >= 5,000 and >= 10,000. Test exactly on the boundaries. A missing amount should become Unknown, not Low. Boundary cases are the quickest way to verify conditional logic in Power Query.
+The worked example may introduce derived fields or example tables. Create or rename those fields explicitly and verify results against these original source columns. Source status values are Cancelled, Completed, Returned.
+
+## Dataset and companion video
+- **Download the dataset:** [`learning_sales_2026.csv`](../learning_sales_2026.csv)
+- **Video companion:** https://www.youtube.com/watch?v=WH937Gc_8eg&t=1880s (the in-app Watch button opens the YouTube player when embedding is permitted).
+- **Reading order:** first identify controls, then read the four concepts, reproduce the example, try an independent case, and validate your evidence.
+
+## Explain the four essential concepts
+### 1. Conditional logic
+classify orders by stated thresholds
+
+### 2. Row-level calculations
+use custom columns where inputs exist per record
+
+### 3. Business inclusion
+paid orders may differ from gross bookings
+
+### 4. Quality controls
+compare included and excluded row counts.
+
+## Why this skill matters
+Why this skill matters: A sales director needs a stable paid-sales report rather than a shifting mixture of booked and realised revenue. The method is not only about producing an attractive figure. Business inclusion: paid orders may differ from gross bookings Quality controls: compare included and excluded row counts. When preparing an output for another person, specify the reporting period, units, selection rules and known limitations. An analyst should be able to explain why a calculation or chart answers the actual business question and reproduce the result.
+
+## Guided practice · follow all four steps
+1. Open the correct workspace and identify the controls before entering commands. Use Add Column > Conditional Column or Custom Column, then filter Status using its dropdown. Keep an untouched source or backup version so a mistake is reversible.
+2. Apply the first two concepts on a small example: Conditional logic — classify orders by stated thresholds Then test row-level calculations with at least two contrasting inputs.
+3. Reproduce the worked example below exactly, then change one input or filter. Explain which value changes and why. After that, apply business inclusion and inspect the output for errors.
+4. Complete the independent challenge: Build a high-value classification and create a Paid-only query for reported realised revenue. Before moving on, check the result against the acceptance criteria: Every high-value result follows the chosen threshold; excluded statuses are documented.
+
+## Study this worked example
+```text
+if [Revenue] >= 50000 then "High" else "Standard"
+Filter Status = "Paid"
+```
+
+**How to interpret the output:** Custom columns, filtering and conditional business rules begins with a practical objective: Create transparent derived labels and filter only records that meet published KPI definitions. In Power Query, begin by understanding the workspace and the data rather than memorising a command. Conditional logic: classify orders by stated thresholds Row-level calculations: use custom columns where inputs exist per record Practice these ideas on a small synthetic sample first. Notice where the tool shows inputs, intermediate results and errors; then describe in plain language what each operation does and what it does not prove. Keep original records separate from working calculations so you can trace any surprising result back to its source.
+
+## Business case study
+Business case: A sales director needs a stable paid-sales report rather than a shifting mixture of booked and realised revenue. Your role is to deliver a result that a manager can trust and act upon, not merely a screenshot. First describe what records are included and excluded. Next perform the method described in this week, and record any changes to the source. Use the worked example as a starting point but test it with different values; finally communicate one relevant observation, one limitation and a follow-up.
 
 ## Independent practical challenge
-Classify Amount = 120,000 under the rule and explain why the Status filter matters.
+Build a high-value classification and create a Paid-only query for reported realised revenue.
 
-**Deliverable:** Count unknown cases separately and test boundary values.
+**What you should hand in:** Every high-value result follows the chosen threshold; excluded statuses are documented.
 
-## Verify your work
-If categories fail to cover all rows, inspect ELSE and null handling. The sum of category counts should equal the eligible input count when labels are mutually exclusive and exhaustive.
+## Check your result (after attempting)
+Expected evidence: Every high-value result follows the chosen threshold; excluded statuses are documented. To validate it, compare a small hand-checked sample with the final output, test an alternative filter or a changed input, and record any unmatched, missing or suspicious data. If results differ, review the original data, formula or query, aggregation grain and selected filters before sharing the report. Avoid this common error: Hardcoding filtering rules that silently omit refunds or exceptional valid records.
 
-- Confirm the number of records used and explain any excluded records.
-- Check date, currency, percentage and unit formats.
-- Recalculate at least one sample manually or using another method.
-- Separate observed results from assumptions about why they occurred.
-- Include source, period, filters and limitations in the presentation.
+**Common failure:** Hardcoding filtering rules that silently omit refunds or exceptional valid records.
 
-## Compare with the suggested solution (after attempting the task)
-High; only paid transactions belong in realized-revenue reporting.
-
-**Common pitfall:** Counting cancelled orders as completed sales.
+## Reflect and explain the result
+- Which menu, editor or pane did you use, and why?
+- What is the data grain, metric definition or calculated rule?
+- Can a second learner reproduce your output using the dataset and your instructions?
+- Which number, chart or limitation must be mentioned when presenting your result?
 
 ---
-The lesson content and model answers are intended for study. Completing the worksheet does not automatically mark the app quiz or progress as complete.
+**Progress note:** Completing this worksheet is practice. Marking a week complete, passing an assessment and submitting an instructor-reviewed capstone are separate actions in DataLearning.

@@ -2,7 +2,7 @@
 (()=>{
  const cfg={"slug": "python", "label": "Python", "title": "Exploratory Sales and Customer Analysis", "brief": "Use Python to clean a business dataset, explore revenue and customer patterns, and communicate evidence-based insights.", "deliverable": "A reproducible Jupyter notebook (.ipynb) or Python script (.py), charts, dataset or source reference and a written interpretation.", "steps": "Import data with pandas; assess data quality; clean and transform records; calculate KPIs; explore patterns; visualise results; verify outputs and document conclusions."};
  const week=document.getElementById('week10');
- if(!week || document.getElementById('week10-capstone-project')) return;
+ if(window.DALP_REBUILT_CAPSTONE || !week || document.getElementById('week10-capstone-project') || document.querySelector('#week10 .dlm-capstone')) return;
  const box=document.createElement('section');box.id='week10-capstone-project';box.className='week10-capstone-v75';
  box.setAttribute('aria-labelledby','week10-capstone-heading');
  box.innerHTML=`<div class="capstone-v75-kicker">WEEK 10 · FINAL PRACTICAL ASSESSMENT</div>

@@ -1,51 +1,74 @@
-# Statistics · Week 03 · Range, variance and standard deviation
+# Applied Statistics · Week 03 · Spread: range, variance and standard deviation
 
-> DataLearning practice brief — synthetic training material. Keep your original source file unchanged and make a copy for transformations.
+> DataLearning comprehensive practical lesson. Data is fictional. This worksheet supports the full in-app explanation and independent practice. Do not overwrite your raw source file.
 
 ## Learning outcome
-Describe how spread affects a typical value
+Describe volatility alongside an average rather than hiding unstable results.
 
-## Before you begin: open the right file
-- Download: `learning_statistics_sample.csv` in `/downloads/` of your DataLearning project.
-- Important fields / tables: observation_id, delivery_minutes, basket_value_ngn, satisfaction_score, region, complaint_flag.
-- Related video (opens within the lesson page): https://www.youtube.com/watch?v=SzZ6GpcfoQY.
-- Use Excel / Power BI / Tableau / Power Query for CSV sources, a SQLite-compatible reader for `.sqlite` files, or Python/pandas for code-based analysis as the week requires.
+## Where to begin in the tool
+Use Excel MIN, MAX, STDEV.S, VAR.S or pandas std(ddof=1) on a numeric range.
 
-## Understand the analytical method
-Spread measures how far observations vary. The range is maximum minus minimum. Variance averages squared deviations from the mean, and standard deviation is its square root, returning the measure to the original units. Distinguish population variance, which divides by N, from sample variance, which commonly divides by n−1 when estimating population variability from a sample.
 
-Two branches may have the same average delivery time but very different reliability. Branch A might consistently deliver in 20–25 minutes while Branch B ranges from 5 to 60 minutes. The average alone does not show the service inconsistency. Standard deviation is sensitive to extreme values; also inspect quartiles or a box plot when the distribution is skewed. Interpret dispersion in the original business units, not as a standalone percentage unless appropriately defined.
+## Source data dictionary · exact practice file fields
+The linked CSV uses these **exact header names**. Import the file before attempting examples. If an exercise uses a friendly or calculated name, map or create it first.
 
-## Guided walkthrough in the tool
-1. Calculate mean and range for a small list of delivery times.
-2. Subtract the mean from each observation and square the deviations.
-3. Sum squared deviations and divide by n−1 for a sample variance; take the square root.
-4. Compare two groups with similar means but different spreads and explain the operational impact.
+`observation_id, delivery_minutes, basket_value_ngn, satisfaction_score, region, complaint_flag`
 
-### Additional hands-on instruction
-Compute sample variance and standard deviation with and without the extreme observation.
+The worked example may introduce derived fields or example tables. Create or rename those fields explicitly and verify results against these original source columns.
 
-## Business case
-Branch A has delivery times 20, 21, 22 and 23 minutes, while B has 5, 19, 24 and 38. Both have a mean around 21.5, yet B is less consistent. Comparing standard deviations or ranges reveals the reliability difference. Calculate from the observations rather than concluding both services perform equally based on average alone.
+## Dataset and companion video
+- **Download the dataset:** [`learning_statistics_sample.csv`](../learning_statistics_sample.csv)
+- **Video companion:** https://www.youtube.com/watch?v=SzZ6GpcfoQY (the in-app Watch button opens the YouTube player when embedding is permitted).
+- **Reading order:** first identify controls, then read the four concepts, reproduce the example, try an independent case, and validate your evidence.
+
+## Explain the four essential concepts
+### 1. Range
+maximum minus minimum is a quick but outlier-sensitive span
+
+### 2. Variance
+describes average squared deviation under a specified sample/population convention
+
+### 3. Standard deviation
+returns spread in the original measurement units
+
+### 4. Comparison
+equal averages do not mean equally predictable performance.
+
+## Why this skill matters
+Why this skill matters: A workforce manager compares sales consistency between two teams. The method is not only about producing an attractive figure. Standard deviation: returns spread in the original measurement units Comparison: equal averages do not mean equally predictable performance. When preparing an output for another person, specify the reporting period, units, selection rules and known limitations. An analyst should be able to explain why a calculation or chart answers the actual business question and reproduce the result.
+
+## Guided practice · follow all four steps
+1. Open the correct workspace and identify the controls before entering commands. Use Excel MIN, MAX, STDEV.S, VAR.S or pandas std(ddof=1) on a numeric range. Keep an untouched source or backup version so a mistake is reversible.
+2. Apply the first two concepts on a small example: Range — maximum minus minimum is a quick but outlier-sensitive span Then test variance with at least two contrasting inputs.
+3. Reproduce the worked example below exactly, then change one input or filter. Explain which value changes and why. After that, apply standard deviation and inspect the output for errors.
+4. Complete the independent challenge: Compare two sample series that have equal means and explain which is more consistent. Before moving on, check the result against the acceptance criteria: The means match, but Team B has a substantially larger range and standard deviation.
+
+## Study this worked example
+```text
+Team A sales = 48,50,52; Team B sales = 20,50,80
+Both means = 50; Team B varies much more
+```
+
+**How to interpret the output:** Spread: range, variance and standard deviation begins with a practical objective: Describe volatility alongside an average rather than hiding unstable results. In Applied Statistics, begin by understanding the workspace and the data rather than memorising a command. Range: maximum minus minimum is a quick but outlier-sensitive span Variance: describes average squared deviation under a specified sample/population convention Practice these ideas on a small synthetic sample first. Notice where the tool shows inputs, intermediate results and errors; then describe in plain language what each operation does and what it does not prove. Keep original records separate from working calculations so you can trace any surprising result back to its source.
+
+## Business case study
+Business case: A workforce manager compares sales consistency between two teams. Your role is to deliver a result that a manager can trust and act upon, not merely a screenshot. First describe what records are included and excluded. Next perform the method described in this week, and record any changes to the source. Use the worked example as a starting point but test it with different values; finally communicate one relevant observation, one limitation and a follow-up.
 
 ## Independent practical challenge
-Calculate the range of 12, 15, 21, 32.
+Compare two sample series that have equal means and explain which is more consistent.
 
-**Deliverable:** Describe the units and why reporting only the average would hide instability.
+**What you should hand in:** The means match, but Team B has a substantially larger range and standard deviation.
 
-## Verify your work
-Confirm whether you are describing a complete population or estimating from a sample before choosing the variance denominator. Verify squared deviations are nonnegative.
+## Check your result (after attempting)
+Expected evidence: The means match, but Team B has a substantially larger range and standard deviation. To validate it, compare a small hand-checked sample with the final output, test an alternative filter or a changed input, and record any unmatched, missing or suspicious data. If results differ, review the original data, formula or query, aggregation grain and selected filters before sharing the report. Avoid this common error: Using STDEV.P on a sample while describing the result as a sample standard deviation.
 
-- Confirm the number of records used and explain any excluded records.
-- Check date, currency, percentage and unit formats.
-- Recalculate at least one sample manually or using another method.
-- Separate observed results from assumptions about why they occurred.
-- Include source, period, filters and limitations in the presentation.
+**Common failure:** Using STDEV.P on a sample while describing the result as a sample standard deviation.
 
-## Compare with the suggested solution (after attempting the task)
-32 - 12 = 20.
-
-**Common pitfall:** Confusing population standard deviation with sample standard deviation.
+## Reflect and explain the result
+- Which menu, editor or pane did you use, and why?
+- What is the data grain, metric definition or calculated rule?
+- Can a second learner reproduce your output using the dataset and your instructions?
+- Which number, chart or limitation must be mentioned when presenting your result?
 
 ---
-The lesson content and model answers are intended for study. Completing the worksheet does not automatically mark the app quiz or progress as complete.
+**Progress note:** Completing this worksheet is practice. Marking a week complete, passing an assessment and submitting an instructor-reviewed capstone are separate actions in DataLearning.

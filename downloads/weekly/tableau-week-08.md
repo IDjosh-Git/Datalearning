@@ -1,51 +1,80 @@
-# Tableau · Week 08 · Dashboard layout and actions
+# Tableau · Week 08 · Building a Tableau dashboard with layout containers
 
-> DataLearning practice brief — synthetic training material. Keep your original source file unchanged and make a copy for transformations.
+> DataLearning comprehensive practical lesson. Data is fictional. This worksheet supports the full in-app explanation and independent practice. Do not overwrite your raw source file.
 
 ## Learning outcome
-Arrange views for clear questions and intentional interactions
+Combine worksheets, filters and actions into a premium interactive canvas.
 
-## Before you begin: open the right file
-- Download: `learning_monthly_kpis.csv` in `/downloads/` of your DataLearning project.
-- Important fields / tables: month, region, net_sales_ngn, sales_target_ngn, gross_profit_ngn, order_count, late_shipments, returned_orders.
-- Related video (opens within the lesson page): https://www.youtube.com/watch?v=PSNXoAs2FtQ&t=29543s.
-- Use Excel / Power BI / Tableau / Power Query for CSV sources, a SQLite-compatible reader for `.sqlite` files, or Python/pandas for code-based analysis as the week requires.
+## Where to begin in the tool
+Choose New Dashboard, select a desktop size, and use horizontal and vertical layout containers.
 
-## Understand the analytical method
-A Tableau dashboard combines worksheets into a decision-oriented interface. Fixed and tiled containers control layout; tiled containers are often more stable for responsive arrangements. Start by deciding which view needs the most visual attention, then add supporting trends and detail. Dashboard actions enable selecting a mark to filter or highlight other views, but they must be planned rather than attached indiscriminately.
 
-Device layouts allow a mobile arrangement that differs from the desktop version. Test labels, tooltips, touch controls and cross-filter interactions on smaller viewports. A KPI may need to move above a wide trend chart on mobile, and a complex detail table may require a separate view. Do not rely only on colour to indicate a selected state; include clear text feedback where feasible.
+## Source data dictionary · exact practice file fields
+The linked CSV uses these **exact header names**. Import the file before attempting examples. If an exercise uses a friendly or calculated name, map or create it first.
 
-## Guided walkthrough in the tool
-1. Sketch a one-page dashboard with headline KPI, regional comparison and time trend.
-2. Place worksheets into tiled containers with deliberate reading order.
-3. Add a filter action from the region chart to the trend, then test its effect.
-4. Create or review the phone layout and verify text, actions and visible selections.
+`month, region, net_sales_ngn, sales_target_ngn, gross_profit_ngn, order_count, late_shipments, returned_orders`
 
-### Additional hands-on instruction
-Arrange a KPI card, trend and regional bar into a responsive dashboard; add filter actions.
+The worked example may introduce derived fields or example tables. Create or rename those fields explicitly and verify results against these original source columns.
 
-## Business case
-A dashboard contains a regional bar chart and a monthly trend. When a user selects West, the trend should show West unless it is explicitly meant to remain companywide. Add a filter action and test both selection and clearing. Create a mobile layout that preserves this task without relying on tiny tooltips or hard-to-tap controls.
+## Dataset and companion video
+- **Download the dataset:** [`learning_monthly_kpis.csv`](../learning_monthly_kpis.csv)
+- **Video companion:** https://www.youtube.com/watch?v=PSNXoAs2FtQ&t=29543s (the in-app Watch button opens the YouTube player when embedding is permitted).
+- **Reading order:** first identify controls, then read the four concepts, reproduce the example, try an independent case, and validate your evidence.
+
+## Explain the four essential concepts
+### 1. Layout containers
+align title, KPI strip, charts and a filter sidebar predictably
+
+### 2. Actions
+make selection and highlight behaviour intentional
+
+### 3. Dashboard sizing
+verify desktop and smaller displays using Device Preview
+
+### 4. QA
+compare headline KPIs with the underlying sheet calculations.
+
+## Why this skill matters
+Why this skill matters: An executive team needs an interactive monthly performance overview built from Tableau worksheets. The method is not only about producing an attractive figure. Dashboard sizing: verify desktop and smaller displays using Device Preview QA: compare headline KPIs with the underlying sheet calculations. When preparing an output for another person, specify the reporting period, units, selection rules and known limitations. An analyst should be able to explain why a calculation or chart answers the actual business question and reproduce the result.
+
+## Guided practice · follow all four steps
+1. Open the correct workspace and identify the controls before entering commands. Choose New Dashboard, select a desktop size, and use horizontal and vertical layout containers. Keep an untouched source or backup version so a mistake is reversible.
+2. Apply the first two concepts on a small example: Layout containers — align title, KPI strip, charts and a filter sidebar predictably Then test actions with at least two contrasting inputs.
+3. Reproduce the worked example below exactly, then change one input or filter. Explain which value changes and why. After that, apply dashboard sizing and inspect the output for errors.
+4. Complete the independent challenge: Build a dashboard with two worksheets, three KPIs, a Region filter and an action that highlights a selection. Before moving on, check the result against the acceptance criteria: Region selection must update expected views; reset view restores the overall total.
+
+## Study this worked example
+```text
+Top: Revenue | Orders | Margin
+Middle: Sales Trend | Region Ranking
+Bottom: Product Category | Filter/Insights panel
+```
+
+**How to interpret the output:** Building a Tableau dashboard with layout containers begins with a practical objective: Combine worksheets, filters and actions into a premium interactive canvas. In Tableau, begin by understanding the workspace and the data rather than memorising a command. Layout containers: align title, KPI strip, charts and a filter sidebar predictably Actions: make selection and highlight behaviour intentional Practice these ideas on a small synthetic sample first. Notice where the tool shows inputs, intermediate results and errors; then describe in plain language what each operation does and what it does not prove. Keep original records separate from working calculations so you can trace any surprising result back to its source.
+
+## Business case study
+Business case: An executive team needs an interactive monthly performance overview built from Tableau worksheets. Your role is to deliver a result that a manager can trust and act upon, not merely a screenshot. First describe what records are included and excluded. Next perform the method described in this week, and record any changes to the source. Use the worked example as a starting point but test it with different values; finally communicate one relevant observation, one limitation and a follow-up.
 
 ## Independent practical challenge
-Name three checks before publishing a sales dashboard.
+Build a dashboard with two worksheets, three KPIs, a Region filter and an action that highlights a selection.
 
-**Deliverable:** Test select/clear behaviour and confirm titles still describe the filtered data.
+**What you should hand in:** Region selection must update expected views; reset view restores the overall total.
 
-## Verify your work
-Check that clicking a mark filters the correct worksheets and that clearing the selection restores the intended baseline. Every interactive behaviour should help answer a named question.
+## Check your result (after attempting)
+Expected evidence: Region selection must update expected views; reset view restores the overall total. To validate it, compare a small hand-checked sample with the final output, test an alternative filter or a changed input, and record any unmatched, missing or suspicious data. If results differ, review the original data, formula or query, aggregation grain and selected filters before sharing the report. Avoid this common error: Placing every chart as floating objects and losing alignment on smaller screens.
 
-- Confirm the number of records used and explain any excluded records.
-- Check date, currency, percentage and unit formats.
-- Recalculate at least one sample manually or using another method.
-- Separate observed results from assumptions about why they occurred.
-- Include source, period, filters and limitations in the presentation.
+**Common failure:** Placing every chart as floating objects and losing alignment on smaller screens.
 
-## Compare with the suggested solution (after attempting the task)
-Check KPI totals, filter interactions and small-screen readability.
+## Reflect and explain the result
+- Which menu, editor or pane did you use, and why?
+- What is the data grain, metric definition or calculated rule?
+- Can a second learner reproduce your output using the dataset and your instructions?
+- Which number, chart or limitation must be mentioned when presenting your result?
 
-**Common pitfall:** Overcrowding dashboards with unrelated visualizations.
+## Dashboard design reference
+![Example Tableau dashboard layout](../../assets/images/dashboard-samples/tableau-dashboard-wireframe.svg)
+
+Study the KPI strip, timeline, ranking, filters and notes. It is an illustrative wireframe, not a working dashboard or calculated analysis.
 
 ---
-The lesson content and model answers are intended for study. Completing the worksheet does not automatically mark the app quiz or progress as complete.
+**Progress note:** Completing this worksheet is practice. Marking a week complete, passing an assessment and submitting an instructor-reviewed capstone are separate actions in DataLearning.

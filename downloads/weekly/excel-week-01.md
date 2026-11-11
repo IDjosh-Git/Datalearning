@@ -1,51 +1,77 @@
-# Excel · Week 01 · Excel data types
+# Microsoft Excel · Week 01 · Getting comfortable with the Excel workspace
 
-> DataLearning practice brief — synthetic training material. Keep your original source file unchanged and make a copy for transformations.
+> DataLearning comprehensive practical lesson. Data is fictional. This worksheet supports the full in-app explanation and independent practice. Do not overwrite your raw source file.
 
 ## Learning outcome
-Format values without confusing storage types
+Identify ribbon tabs, worksheets, cells, ranges and the formula bar before typing or analysing data.
 
-## Before you begin: open the right file
-- Download: `learning_sales_2026.csv` in `/downloads/` of your DataLearning project.
-- Important fields / tables: order_id, order_date, region, category, quantity, unit_price_ngn, unit_cost_ngn, status, customer_id, channel.
-- Related video (opens within the lesson page): https://www.youtube.com/watch?v=zXnQNytHCPM.
-- Use Excel / Power BI / Tableau / Power Query for CSV sources, a SQLite-compatible reader for `.sqlite` files, or Python/pandas for code-based analysis as the week requires.
+## Where to begin in the tool
+Open Excel, choose Blank workbook, locate Home and Data ribbons, Name Box, formula bar, sheet tabs and Save As.
 
-## Understand the analytical method
-Excel displays values according to their number format, but storage type controls calculations. Entering 18500 as a numeric amount and formatting it as currency does not change the underlying value. Entering “₦18,500” as uncleaned text may stop SUM from including it. Dates are stored as serial numbers with display formats; mixing a text date and a true date leads to inconsistent filtering and time calculations.
 
-Identifiers are different from amounts. A customer code such as 00125 must remain text because removing leading zeros changes the identifier. Before using formulas, inspect cells with alignment, ISNUMBER, ISTEXT and date formatting. Convert carefully and validate the results. Formatting a text number to currency usually does not convert it to a number; a deliberate data-cleaning step is required.
+## Source data dictionary · exact practice file fields
+The linked CSV uses these **exact header names**. Import the file before attempting examples. If an exercise uses a friendly or calculated name, map or create it first.
 
-## Guided walkthrough in the tool
-1. Build a four-column table with CustomerID, OrderDate, Amount and Status.
-2. Enter IDs as text; enter amounts as numbers and apply a currency format separately.
-3. Use ISNUMBER on Amount and test whether sorting OrderDate works chronologically.
-4. Compare SUM(Amount) with a hand calculation; inspect unexpected blank or zero results.
+`order_id, order_date, region, category, quantity, unit_price_ngn, unit_cost_ngn, status, customer_id, channel`
 
-### Additional hands-on instruction
-Open the sales CSV, apply Date and Currency formats, and test =ISNUMBER() on a true date or amount.
+Available `status` values: `Cancelled`, `Completed`, `Returned`
 
-## Business case
-Imagine a column of order amounts imported as text because every value includes a currency symbol. The spreadsheet may display the amounts convincingly while SUM reports zero. Keep the source values, parse a clean numeric column, and compare three records to invoices. Format the clean column as currency only after conversion, and report how many rows could not be parsed.
+The worked example may introduce derived fields or example tables. Create or rename those fields explicitly and verify results against these original source columns. Source status values are Cancelled, Completed, Returned.
+
+## Dataset and companion video
+- **Download the dataset:** [`learning_sales_2026.csv`](../learning_sales_2026.csv)
+- **Video companion:** https://www.youtube.com/watch?v=zXnQNytHCPM (the in-app Watch button opens the YouTube player when embedding is permitted).
+- **Reading order:** first identify controls, then read the four concepts, reproduce the example, try an independent case, and validate your evidence.
+
+## Explain the four essential concepts
+### 1. Workbook versus worksheet
+a workbook is the file and sheets organise different tables
+
+### 2. Cell addresses
+B3 identifies a column and row and is used in formulas
+
+### 3. Ribbon commands
+Home formats cells while Data handles import sorting and filtering
+
+### 4. Reliable saving
+keep a raw sheet untouched and save a descriptive .xlsx version.
+
+## Why this skill matters
+Why this skill matters: A shop assistant needs a tidy daily sales workbook that a supervisor can reopen and understand without verbal instructions. The method is not only about producing an attractive figure. Ribbon commands: Home formats cells while Data handles import sorting and filtering Reliable saving: keep a raw sheet untouched and save a descriptive .xlsx version. When preparing an output for another person, specify the reporting period, units, selection rules and known limitations. An analyst should be able to explain why a calculation or chart answers the actual business question and reproduce the result.
+
+## Guided practice · follow all four steps
+1. Open the correct workspace and identify the controls before entering commands. Open Excel, choose Blank workbook, locate Home and Data ribbons, Name Box, formula bar, sheet tabs and Save As. Keep an untouched source or backup version so a mistake is reversible.
+2. Apply the first two concepts on a small example: Workbook versus worksheet — a workbook is the file and sheets organise different tables Then test cell addresses with at least two contrasting inputs.
+3. Reproduce the worked example below exactly, then change one input or filter. Explain which value changes and why. After that, apply ribbon commands and inspect the output for errors.
+4. Complete the independent challenge: Create a workbook named Retail_Practice.xlsx, make Raw_Data and Analysis tabs, enter three sales rows and calculate one line total. Before moving on, check the result against the acceptance criteria: The formula =B2*C2 multiplies 3 by 1500 to return 4500; the source values remain independently readable.
+
+## Study this worked example
+```text
+A1: Product  B1: Units  C1: Price
+A2: Notebook B2: 3 C2: 1500
+D2: =B2*C2  → 4500
+```
+
+**How to interpret the output:** Getting comfortable with the Excel workspace begins with a practical objective: Identify ribbon tabs, worksheets, cells, ranges and the formula bar before typing or analysing data. In Microsoft Excel, begin by understanding the workspace and the data rather than memorising a command. Workbook versus worksheet: a workbook is the file and sheets organise different tables Cell addresses: B3 identifies a column and row and is used in formulas Practice these ideas on a small synthetic sample first. Notice where the tool shows inputs, intermediate results and errors; then describe in plain language what each operation does and what it does not prove. Keep original records separate from working calculations so you can trace any surprising result back to its source.
+
+## Business case study
+Business case: A shop assistant needs a tidy daily sales workbook that a supervisor can reopen and understand without verbal instructions. Your role is to deliver a result that a manager can trust and act upon, not merely a screenshot. First describe what records are included and excluded. Next perform the method described in this week, and record any changes to the source. Use the worked example as a starting point but test it with different values; finally communicate one relevant observation, one limitation and a follow-up.
 
 ## Independent practical challenge
-How do you test whether A2 contains a genuine Excel date?
+Create a workbook named Retail_Practice.xlsx, make Raw_Data and Analysis tabs, enter three sales rows and calculate one line total.
 
-**Deliverable:** Identify one text-as-number trap and show how to correct it without losing the original.
+**What you should hand in:** The formula =B2*C2 multiplies 3 by 1500 to return 4500; the source values remain independently readable.
 
-## Verify your work
-Type test formulas are diagnostics, not corrections. After converting text numbers, re-check total, row count and the original values to ensure no amounts were silently lost.
+## Check your result (after attempting)
+Expected evidence: The formula =B2*C2 multiplies 3 by 1500 to return 4500; the source values remain independently readable. To validate it, compare a small hand-checked sample with the final output, test an alternative filter or a changed input, and record any unmatched, missing or suspicious data. If results differ, review the original data, formula or query, aggregation grain and selected filters before sharing the report. Avoid this common error: Typing data over a formula or confusing the active sheet with the entire workbook.
 
-- Confirm the number of records used and explain any excluded records.
-- Check date, currency, percentage and unit formats.
-- Recalculate at least one sample manually or using another method.
-- Separate observed results from assumptions about why they occurred.
-- Include source, period, filters and limitations in the presentation.
+**Common failure:** Typing data over a formula or confusing the active sheet with the entire workbook.
 
-## Compare with the suggested solution (after attempting the task)
-=ISNUMBER(A2)
-
-**Common pitfall:** Mistaking display formatting for changing the underlying type.
+## Reflect and explain the result
+- Which menu, editor or pane did you use, and why?
+- What is the data grain, metric definition or calculated rule?
+- Can a second learner reproduce your output using the dataset and your instructions?
+- Which number, chart or limitation must be mentioned when presenting your result?
 
 ---
-The lesson content and model answers are intended for study. Completing the worksheet does not automatically mark the app quiz or progress as complete.
+**Progress note:** Completing this worksheet is practice. Marking a week complete, passing an assessment and submitting an instructor-reviewed capstone are separate actions in DataLearning.

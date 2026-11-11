@@ -1,51 +1,85 @@
-# Sql · Week 07 · Window functions
+# SQL and SQLite · Week 07 · Window functions and time-based comparisons
 
-> DataLearning practice brief — synthetic training material. Keep your original source file unchanged and make a copy for transformations.
+> DataLearning comprehensive practical lesson. Data is fictional. This worksheet supports the full in-app explanation and independent practice. Do not overwrite your raw source file.
 
 ## Learning outcome
-Compare records without collapsing detail
+Calculate rankings, running totals and period comparisons without losing transaction detail.
 
-## Before you begin: open the right file
-- Download: `retail_practice.sqlite` in `/downloads/` of your DataLearning project.
-- Important fields / tables: customers(customer_id, customer_name, segment, region, signup_date), orders(order_id, order_date, customer_id, region, category, product, quantity, unit_price, unit_cost, discount_pct, status, sales_rep), targets(month_start, region, sales_target).
-- Related video (opens within the lesson page): https://www.youtube.com/watch?v=PSNXoAs2FtQ&t=5402s.
-- Use Excel / Power BI / Tableau / Power Query for CSV sources, a SQLite-compatible reader for `.sqlite` files, or Python/pandas for code-based analysis as the week requires.
+## Where to begin in the tool
+Use OVER clauses with PARTITION BY and ORDER BY, then inspect window output row by row.
 
-## Understand the analytical method
-Window functions calculate values across related rows without collapsing each row into a summary. ROW_NUMBER can rank transactions within a customer, LAG can compare a month with its preceding month, and SUM(amount) OVER (...) can compute running totals. The PARTITION BY clause defines the groups; ORDER BY inside OVER defines the calculation sequence. This is distinct from the final ORDER BY used to display results.
 
-Ordering must be deterministic for stable results. If two rows share a date, add a unique tie-breaker such as OrderID when using ROW_NUMBER. Running totals also depend on the window frame, which may include peers unexpectedly when ordering values repeat. Specify a ROWS frame when you intend a row-by-row cumulative result. Preserve the original row count to demonstrate that the window calculation did not aggregate rows away.
+## Source data dictionary · exact practice file fields
+The SQL database contains the following **real tables and columns**. Use these names in your queries rather than assuming fields that do not exist.
 
-## Guided walkthrough in the tool
-1. Build monthly revenue by region with GROUP BY.
-2. Use LAG(revenue) partitioned by region and ordered by month to obtain the prior-month value.
-3. Calculate the absolute or percentage change and handle the first month’s NULL prior value.
-4. Compare two rows manually and inspect what happens when a month is missing.
+- `customers (customer_id, customer_name, segment, region, signup_date)`
+- `orders (order_id, order_date, customer_id, region, category, product, quantity, unit_price, unit_cost, discount_pct, status, sales_rep)`
+- `targets (month_start, region, sales_target)`
 
-### Additional hands-on instruction
-Use ROW_NUMBER() OVER (PARTITION BY region ORDER BY order_date) and a regional running revenue total.
+Available `status` values: `Completed`, `Returned`, `Cancelled`
 
-## Business case
-A monthly report shows 10,000 in January, 12,500 in February and 11,000 in March. LAG returns the previous month’s measure without collapsing rows. February’s change is +2,500; March’s is −1,500. If January is missing from the filtered period, February’s previous value may be NULL, so do not treat it as zero.
+The worked example may introduce derived fields or example tables. Create or rename those fields explicitly and verify results against these original source columns. Source status values are Completed, Returned, Cancelled.
+
+## Dataset and companion video
+- **Download the dataset:** [`retail_practice.sqlite`](../retail_practice.sqlite)
+- **Video companion:** https://www.youtube.com/watch?v=PSNXoAs2FtQ&t=5402s (the in-app Watch button opens the YouTube player when embedding is permitted).
+- **Reading order:** first identify controls, then read the four concepts, reproduce the example, try an independent case, and validate your evidence.
+
+## Explain the four essential concepts
+### 1. ROW_NUMBER
+creates a deterministic per-group ordering when ties are specified
+
+### 2. RANK
+shows shared ranks where values tie
+
+### 3. LAG
+compares a current row with a previous time period
+
+### 4. Windows versus GROUP BY
+window results can preserve row detail while showing aggregate context.
+
+## Why this skill matters
+Why this skill matters: The operations team requests a monthly comparison table to feed a line chart and exception report. The method is not only about producing an attractive figure. LAG: compares a current row with a previous time period Windows versus GROUP BY: window results can preserve row detail while showing aggregate context. When preparing an output for another person, specify the reporting period, units, selection rules and known limitations. An analyst should be able to explain why a calculation or chart answers the actual business question and reproduce the result.
+
+## Guided practice · follow all four steps
+1. Open the correct workspace and identify the controls before entering commands. Use OVER clauses with PARTITION BY and ORDER BY, then inspect window output row by row. Keep an untouched source or backup version so a mistake is reversible.
+2. Apply the first two concepts on a small example: ROW_NUMBER — creates a deterministic per-group ordering when ties are specified Then test rank with at least two contrasting inputs.
+3. Reproduce the worked example below exactly, then change one input or filter. Explain which value changes and why. After that, apply lag and inspect the output for errors.
+4. Complete the independent challenge: Find the last month versus current month change for each region and create a running-revenue result. Before moving on, check the result against the acceptance criteria: For values 10,15,12 by month, running total is 10,25,37; first LAG is NULL.
+
+## Study this worked example
+```text
+WITH monthly AS (
+ SELECT region,substr(order_date,1,7) AS month,
+ ROUND(SUM(quantity*unit_price*(1-discount_pct)),2) AS revenue
+ FROM orders WHERE status='Completed' GROUP BY region,substr(order_date,1,7)
+)
+SELECT region,month,revenue,
+LAG(revenue) OVER(PARTITION BY region ORDER BY month) AS prev_revenue,
+SUM(revenue) OVER(PARTITION BY region ORDER BY month) AS running_revenue
+FROM monthly ORDER BY region,month;
+```
+
+**How to interpret the output:** Window functions and time-based comparisons begins with a practical objective: Calculate rankings, running totals and period comparisons without losing transaction detail. In SQL and SQLite, begin by understanding the workspace and the data rather than memorising a command. ROW_NUMBER: creates a deterministic per-group ordering when ties are specified RANK: shows shared ranks where values tie Practice these ideas on a small synthetic sample first. Notice where the tool shows inputs, intermediate results and errors; then describe in plain language what each operation does and what it does not prove. Keep original records separate from working calculations so you can trace any surprising result back to its source.
+
+## Business case study
+Business case: The operations team requests a monthly comparison table to feed a line chart and exception report. Your role is to deliver a result that a manager can trust and act upon, not merely a screenshot. First describe what records are included and excluded. Next perform the method described in this week, and record any changes to the source. Use the worked example as a starting point but test it with different values; finally communicate one relevant observation, one limitation and a follow-up.
 
 ## Independent practical challenge
-Which function ranks rows sequentially within each customer?
+Find the last month versus current month change for each region and create a running-revenue result.
 
-**Deliverable:** Explain why GROUP BY and window output have different row counts.
+**What you should hand in:** For values 10,15,12 by month, running total is 10,25,37; first LAG is NULL.
 
-## Verify your work
-A missing prior month can mean a real gap, not a zero baseline. Decide whether your report should show the previous observed month or the previous calendar month.
+## Check your result (after attempting)
+Expected evidence: For values 10,15,12 by month, running total is 10,25,37; first LAG is NULL. To validate it, compare a small hand-checked sample with the final output, test an alternative filter or a changed input, and record any unmatched, missing or suspicious data. If results differ, review the original data, formula or query, aggregation grain and selected filters before sharing the report. Avoid this common error: Omitting ORDER BY inside an ordered window and interpreting undefined sequence as time.
 
-- Confirm the number of records used and explain any excluded records.
-- Check date, currency, percentage and unit formats.
-- Recalculate at least one sample manually or using another method.
-- Separate observed results from assumptions about why they occurred.
-- Include source, period, filters and limitations in the presentation.
+**Common failure:** Omitting ORDER BY inside an ordered window and interpreting undefined sequence as time.
 
-## Compare with the suggested solution (after attempting the task)
-ROW_NUMBER() OVER(PARTITION BY customer_id ORDER BY order_date)
-
-**Common pitfall:** Omitting deterministic tie-breakers.
+## Reflect and explain the result
+- Which menu, editor or pane did you use, and why?
+- What is the data grain, metric definition or calculated rule?
+- Can a second learner reproduce your output using the dataset and your instructions?
+- Which number, chart or limitation must be mentioned when presenting your result?
 
 ---
-The lesson content and model answers are intended for study. Completing the worksheet does not automatically mark the app quiz or progress as complete.
+**Progress note:** Completing this worksheet is practice. Marking a week complete, passing an assessment and submitting an instructor-reviewed capstone are separate actions in DataLearning.

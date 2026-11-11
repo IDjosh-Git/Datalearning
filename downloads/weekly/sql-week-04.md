@@ -1,51 +1,79 @@
-# Sql · Week 04 · Joins and fanout
+# SQL and SQLite · Week 04 · JOINs, table grain and duplicate control
 
-> DataLearning practice brief — synthetic training material. Keep your original source file unchanged and make a copy for transformations.
+> DataLearning comprehensive practical lesson. Data is fictional. This worksheet supports the full in-app explanation and independent practice. Do not overwrite your raw source file.
 
 ## Learning outcome
-Identify and prevent duplicate metric inflation
+Combine fact data with reference tables without accidentally multiplying money.
 
-## Before you begin: open the right file
-- Download: `retail_practice.sqlite` in `/downloads/` of your DataLearning project.
-- Important fields / tables: customers(customer_id, customer_name, segment, region, signup_date), orders(order_id, order_date, customer_id, region, category, product, quantity, unit_price, unit_cost, discount_pct, status, sales_rep), targets(month_start, region, sales_target).
-- Related video (opens within the lesson page): https://www.youtube.com/watch?v=PSNXoAs2FtQ&t=2823s.
-- Use Excel / Power BI / Tableau / Power Query for CSV sources, a SQLite-compatible reader for `.sqlite` files, or Python/pandas for code-based analysis as the week requires.
+## Where to begin in the tool
+Use SQL JOIN statements and inspect key uniqueness before selecting LEFT or INNER JOIN.
 
-## Understand the analytical method
-A JOIN matches rows using a condition. INNER JOIN keeps matching combinations; LEFT JOIN also retains rows from the left table with no match. The join condition must reflect the business relationship. Joining order headers to their lines repeats each header, so SUM(header_total) after the join can inflate revenue. This multiplication is called fanout and is one of the most damaging analytical SQL mistakes.
 
-Before joining, inspect uniqueness of the keys on each side and estimate how many output rows to expect. If you need a customer-level summary, first aggregate orders to customer grain and then join that summary to Customers. If you need line revenue, sum the line amounts instead of repeated header amounts. A LEFT JOIN followed by WHERE right_table.some_field = ... may unintentionally behave like an INNER JOIN by dropping unmatched rows.
+## Source data dictionary · exact practice file fields
+The SQL database contains the following **real tables and columns**. Use these names in your queries rather than assuming fields that do not exist.
 
-## Guided walkthrough in the tool
-1. Count Orders and OrderLines, and check duplicate OrderID values on the expected unique side.
-2. Join a single order with multiple lines and inspect repeated header values.
-3. Compute revenue from line totals or from a pre-aggregated Orders subquery—not both mixed together.
-4. Compare distinct order counts, total revenue and unmatched IDs before and after the join.
+- `customers (customer_id, customer_name, segment, region, signup_date)`
+- `orders (order_id, order_date, customer_id, region, category, product, quantity, unit_price, unit_cost, discount_pct, status, sales_rep)`
+- `targets (month_start, region, sales_target)`
 
-### Additional hands-on instruction
-Join orders to customers on customer_id, then compare the overall order count and revenue with the unjoined table.
+Available `status` values: `Completed`, `Returned`, `Cancelled`
 
-## Business case
-An order header of 200 has two line items: 120 and 80. Joining headers to lines produces two copies of the header amount; SUM(header_amount) incorrectly yields 400. Either sum line amounts (120 + 80) or pre-aggregate at order grain. Test this one-order example before joining the complete dataset.
+The worked example may introduce derived fields or example tables. Create or rename those fields explicitly and verify results against these original source columns. Source status values are Completed, Returned, Cancelled.
+
+## Dataset and companion video
+- **Download the dataset:** [`retail_practice.sqlite`](../retail_practice.sqlite)
+- **Video companion:** https://www.youtube.com/watch?v=PSNXoAs2FtQ&t=2823s (the in-app Watch button opens the YouTube player when embedding is permitted).
+- **Reading order:** first identify controls, then read the four concepts, reproduce the example, try an independent case, and validate your evidence.
+
+## Explain the four essential concepts
+### 1. Primary keys
+one product should have one reference row per ProductID
+
+### 2. Foreign keys
+order lines may repeat a ProductID legitimately
+
+### 3. LEFT versus INNER
+preserving unmatched orders protects the source row count
+
+### 4. Fanout checks
+compare COUNT and SUM before and after the join.
+
+## Why this skill matters
+Why this skill matters: A merchandising team needs product categories to compare profitability without losing orders with missing reference values. The method is not only about producing an attractive figure. LEFT versus INNER: preserving unmatched orders protects the source row count Fanout checks: compare COUNT and SUM before and after the join. When preparing an output for another person, specify the reporting period, units, selection rules and known limitations. An analyst should be able to explain why a calculation or chart answers the actual business question and reproduce the result.
+
+## Guided practice · follow all four steps
+1. Open the correct workspace and identify the controls before entering commands. Use SQL JOIN statements and inspect key uniqueness before selecting LEFT or INNER JOIN. Keep an untouched source or backup version so a mistake is reversible.
+2. Apply the first two concepts on a small example: Primary keys — one product should have one reference row per ProductID Then test foreign keys with at least two contrasting inputs.
+3. Reproduce the worked example below exactly, then change one input or filter. Explain which value changes and why. After that, apply left versus inner and inspect the output for errors.
+4. Complete the independent challenge: Join orders to a product lookup and list unmatched ProductIDs for review. Before moving on, check the result against the acceptance criteria: LEFT JOIN should keep every source order row if the product dimension is unique; totals should remain unchanged.
+
+## Study this worked example
+```text
+SELECT o.order_id,o.customer_id,c.segment,
+o.quantity*o.unit_price*(1-o.discount_pct) AS net_revenue
+FROM orders o LEFT JOIN customers c ON o.customer_id=c.customer_id;
+```
+
+**How to interpret the output:** JOINs, table grain and duplicate control begins with a practical objective: Combine fact data with reference tables without accidentally multiplying money. In SQL and SQLite, begin by understanding the workspace and the data rather than memorising a command. Primary keys: one product should have one reference row per ProductID Foreign keys: order lines may repeat a ProductID legitimately Practice these ideas on a small synthetic sample first. Notice where the tool shows inputs, intermediate results and errors; then describe in plain language what each operation does and what it does not prove. Keep original records separate from working calculations so you can trace any surprising result back to its source.
+
+## Business case study
+Business case: A merchandising team needs product categories to compare profitability without losing orders with missing reference values. Your role is to deliver a result that a manager can trust and act upon, not merely a screenshot. First describe what records are included and excluded. Next perform the method described in this week, and record any changes to the source. Use the worked example as a starting point but test it with different values; finally communicate one relevant observation, one limitation and a follow-up.
 
 ## Independent practical challenge
-Why does SUM(orders.total) increase after joining items?
+Join orders to a product lookup and list unmatched ProductIDs for review.
 
-**Deliverable:** Describe a fanout diagnostic and how you would prevent an unintended metric increase.
+**What you should hand in:** LEFT JOIN should keep every source order row if the product dimension is unique; totals should remain unchanged.
 
-## Verify your work
-Always check three things after a join: row count, distinct key count and metric total. One correct count does not guarantee the other two are correct.
+## Check your result (after attempting)
+Expected evidence: LEFT JOIN should keep every source order row if the product dimension is unique; totals should remain unchanged. To validate it, compare a small hand-checked sample with the final output, test an alternative filter or a changed input, and record any unmatched, missing or suspicious data. If results differ, review the original data, formula or query, aggregation grain and selected filters before sharing the report. Avoid this common error: Joining to a dimension with duplicate keys and silently doubling sales totals.
 
-- Confirm the number of records used and explain any excluded records.
-- Check date, currency, percentage and unit formats.
-- Recalculate at least one sample manually or using another method.
-- Separate observed results from assumptions about why they occurred.
-- Include source, period, filters and limitations in the presentation.
+**Common failure:** Joining to a dimension with duplicate keys and silently doubling sales totals.
 
-## Compare with the suggested solution (after attempting the task)
-One-to-many join duplicates parent rows
-
-**Common pitfall:** Using DISTINCT to hide a broken join logic.
+## Reflect and explain the result
+- Which menu, editor or pane did you use, and why?
+- What is the data grain, metric definition or calculated rule?
+- Can a second learner reproduce your output using the dataset and your instructions?
+- Which number, chart or limitation must be mentioned when presenting your result?
 
 ---
-The lesson content and model answers are intended for study. Completing the worksheet does not automatically mark the app quiz or progress as complete.
+**Progress note:** Completing this worksheet is practice. Marking a week complete, passing an assessment and submitting an instructor-reviewed capstone are separate actions in DataLearning.

@@ -1,51 +1,75 @@
-# Introduction · Week 02 · Data types and measurement
+# Data Analysis · Week 02 · Data files, columns, types and measurement
 
-> DataLearning practice brief — synthetic training material. Keep your original source file unchanged and make a copy for transformations.
+> DataLearning comprehensive practical lesson. Data is fictional. This worksheet supports the full in-app explanation and independent practice. Do not overwrite your raw source file.
 
 ## Learning outcome
-Distinguish numeric, categorical, dates and identifiers
+Become confident reading CSVs and spreadsheets and recognising the meaning of each field.
 
-## Before you begin: open the right file
-- Download: `learning_sales_2026.csv` in `/downloads/` of your DataLearning project.
-- Important fields / tables: order_id, order_date, region, category, quantity, unit_price_ngn, unit_cost_ngn, status, customer_id, channel.
-- Related video (opens within the lesson page): https://www.youtube.com/watch?v=PSNXoAs2FtQ&t=17311s.
-- Use Excel / Power BI / Tableau / Power Query for CSV sources, a SQLite-compatible reader for `.sqlite` files, or Python/pandas for code-based analysis as the week requires.
+## Where to begin in the tool
+Open the sales CSV in Excel or a data viewer; inspect header names, formats, first five rows and source notes.
 
-## Understand the analytical method
-Data types determine which transformations and summaries make sense. A numeric quantity such as units sold can be added; a customer ID that happens to contain digits must be treated as an identifier. Categories (region, product type) support grouping. Dates support periods and elapsed time. A Boolean field records two logical states, while free text may require additional cleaning or categorisation. Distinguish a field’s business meaning from the type your software inferred when it imported the file.
 
-Measurement scale also matters. A product code is a nominal category; a satisfaction rating from 1 to 5 is ordinal because 5 ranks above 4 but the gap may not be equal to the gap between 2 and 1. A currency amount has arithmetic meaning, but only when units and exchange rates are compatible. Treat missing values as “unknown” until their cause is understood; zero is often a real observation rather than a synonym for blank.
+## Source data dictionary · exact practice file fields
+The linked CSV uses these **exact header names**. Import the file before attempting examples. If an exercise uses a friendly or calculated name, map or create it first.
 
-## Guided walkthrough in the tool
-1. Inspect ten rows and write a short data dictionary: field, meaning, permitted values and expected type.
-2. Mark IDs as text to retain leading zeros; inspect dates for day/month ambiguity.
-3. Try a valid operation for each field: total amount, count category values, or group by month.
-4. Compare the imported type to the intended type and record any conversion failures.
+`order_id, order_date, region, category, quantity, unit_price_ngn, unit_cost_ngn, status, customer_id, channel`
 
-### Additional hands-on instruction
-Import the sales CSV and classify columns as dates, amounts, labels or keys. Test leading zeros in identifiers.
+Available `status` values: `Cancelled`, `Completed`, `Returned`
 
-## Business case
-A field imported as 20261101 might be a date key rather than a quantity. If your spreadsheet sums it, the output is meaningless despite being numeric. Convert a documented YYYYMMDD key into a date only after verifying that the source convention is consistent. Keep a separate raw ID text field when leading zeros carry meaning.
+The worked example may introduce derived fields or example tables. Create or rename those fields explicitly and verify results against these original source columns. Source status values are Cancelled, Completed, Returned.
+
+## Dataset and companion video
+- **Download the dataset:** [`learning_sales_2026.csv`](../learning_sales_2026.csv)
+- **Video companion:** https://www.youtube.com/watch?v=PSNXoAs2FtQ&t=17311s (the in-app Watch button opens the YouTube player when embedding is permitted).
+- **Reading order:** first identify controls, then read the four concepts, reproduce the example, try an independent case, and validate your evidence.
+
+## Explain the four essential concepts
+### 1. Rows and columns
+each record represents an observation with typed attributes
+
+### 2. Numeric versus categorical
+revenue can be summed while region groups results
+
+### 3. Dates
+permit period comparisons only when parsed correctly
+
+### 4. Identifiers
+customer and order IDs should not be added together.
+
+## Why this skill matters
+Why this skill matters: A reporting officer receives a new CSV and must explain each column before preparing a KPI summary. The method is not only about producing an attractive figure. Dates: permit period comparisons only when parsed correctly Identifiers: customer and order IDs should not be added together. When preparing an output for another person, specify the reporting period, units, selection rules and known limitations. An analyst should be able to explain why a calculation or chart answers the actual business question and reproduce the result.
+
+## Guided practice · follow all four steps
+1. Open the correct workspace and identify the controls before entering commands. Open the sales CSV in Excel or a data viewer; inspect header names, formats, first five rows and source notes. Keep an untouched source or backup version so a mistake is reversible.
+2. Apply the first two concepts on a small example: Rows and columns — each record represents an observation with typed attributes Then test numeric versus categorical with at least two contrasting inputs.
+3. Reproduce the worked example below exactly, then change one input or filter. Explain which value changes and why. After that, apply dates and inspect the output for errors.
+4. Complete the independent challenge: Classify dataset columns, identify a suspicious format and draft a short data dictionary. Before moving on, check the result against the acceptance criteria: IDs preserve leading zeroes, and revenue or quantity fields have meaningful numeric units.
+
+## Study this worked example
+```text
+CustomerID=00125 → identifier; 2026-06-01 → date; 18500 → currency
+```
+
+**How to interpret the output:** Data files, columns, types and measurement begins with a practical objective: Become confident reading CSVs and spreadsheets and recognising the meaning of each field. In Data Analysis, begin by understanding the workspace and the data rather than memorising a command. Rows and columns: each record represents an observation with typed attributes Numeric versus categorical: revenue can be summed while region groups results Practice these ideas on a small synthetic sample first. Notice where the tool shows inputs, intermediate results and errors; then describe in plain language what each operation does and what it does not prove. Keep original records separate from working calculations so you can trace any surprising result back to its source.
+
+## Business case study
+Business case: A reporting officer receives a new CSV and must explain each column before preparing a KPI summary. Your role is to deliver a result that a manager can trust and act upon, not merely a screenshot. First describe what records are included and excluded. Next perform the method described in this week, and record any changes to the source. Use the worked example as a starting point but test it with different values; finally communicate one relevant observation, one limitation and a follow-up.
 
 ## Independent practical challenge
-Classify 00125, 2026-06-01, ₦18,500 and Completed.
+Classify dataset columns, identify a suspicious format and draft a short data dictionary.
 
-**Deliverable:** Explain why adding customer IDs produces a meaningless total, then document the correct measure type.
+**What you should hand in:** IDs preserve leading zeroes, and revenue or quantity fields have meaningful numeric units.
 
-## Verify your work
-Your data dictionary should distinguish identifiers, measures, categories and dates. Do not average customer IDs or sum satisfaction labels. After conversions, confirm that row counts and identifiers have not changed unexpectedly.
+## Check your result (after attempting)
+Expected evidence: IDs preserve leading zeroes, and revenue or quantity fields have meaningful numeric units. To validate it, compare a small hand-checked sample with the final output, test an alternative filter or a changed input, and record any unmatched, missing or suspicious data. If results differ, review the original data, formula or query, aggregation grain and selected filters before sharing the report. Avoid this common error: Letting an import strip leading zeros or treating a customer code as a measurement.
 
-- Confirm the number of records used and explain any excluded records.
-- Check date, currency, percentage and unit formats.
-- Recalculate at least one sample manually or using another method.
-- Separate observed results from assumptions about why they occurred.
-- Include source, period, filters and limitations in the presentation.
+**Common failure:** Letting an import strip leading zeros or treating a customer code as a measurement.
 
-## Compare with the suggested solution (after attempting the task)
-identifier; date; currency/numeric; categorical
-
-**Common pitfall:** Converting identifiers to numbers and losing leading zeros.
+## Reflect and explain the result
+- Which menu, editor or pane did you use, and why?
+- What is the data grain, metric definition or calculated rule?
+- Can a second learner reproduce your output using the dataset and your instructions?
+- Which number, chart or limitation must be mentioned when presenting your result?
 
 ---
-The lesson content and model answers are intended for study. Completing the worksheet does not automatically mark the app quiz or progress as complete.
+**Progress note:** Completing this worksheet is practice. Marking a week complete, passing an assessment and submitting an instructor-reviewed capstone are separate actions in DataLearning.

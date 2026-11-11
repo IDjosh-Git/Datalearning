@@ -1,51 +1,79 @@
-# Sql · Week 05 · NULL and CASE
+# SQL and SQLite · Week 05 · CASE, NULL and conditional business rules
 
-> DataLearning practice brief — synthetic training material. Keep your original source file unchanged and make a copy for transformations.
+> DataLearning comprehensive practical lesson. Data is fictional. This worksheet supports the full in-app explanation and independent practice. Do not overwrite your raw source file.
 
 ## Learning outcome
-Handle unknowns consistently
+Classify transactions transparently and avoid incorrect logic for missing fields.
 
-## Before you begin: open the right file
-- Download: `retail_practice.sqlite` in `/downloads/` of your DataLearning project.
-- Important fields / tables: customers(customer_id, customer_name, segment, region, signup_date), orders(order_id, order_date, customer_id, region, category, product, quantity, unit_price, unit_cost, discount_pct, status, sales_rep), targets(month_start, region, sales_target).
-- Related video (opens within the lesson page): https://www.youtube.com/watch?v=PSNXoAs2FtQ&t=4111s.
-- Use Excel / Power BI / Tableau / Power Query for CSV sources, a SQLite-compatible reader for `.sqlite` files, or Python/pandas for code-based analysis as the week requires.
+## Where to begin in the tool
+Use CASE WHEN for categories and IS NULL or COALESCE when checking absent values.
 
-## Understand the analytical method
-NULL represents an absent or unknown value, not an ordinary value such as 0 or empty text. Comparisons involving NULL usually evaluate to unknown; use IS NULL and IS NOT NULL rather than = NULL. COALESCE can supply a fallback, but converting an unknown amount to zero changes the business meaning. Decide whether zero is appropriate for the metric, and document that assumption.
 
-CASE produces conditional output: for example, classify an order as Large when amount >= 10000, Medium when >= 5000, and Small otherwise. Evaluate conditions in the intended order because the first matching WHEN determines the result. Use explicit ELSE handling for unexpected statuses; silently assigning every missing case to Small can hide data-quality issues. Test threshold boundaries and actual NULL rows.
+## Source data dictionary · exact practice file fields
+The SQL database contains the following **real tables and columns**. Use these names in your queries rather than assuming fields that do not exist.
 
-## Guided walkthrough in the tool
-1. Count missing and nonmissing values before applying COALESCE.
-2. Write a CASE classification with ordered thresholds and an explicit ELSE.
-3. Test records exactly on each threshold and records with NULL amount.
-4. Aggregate counts by the new category and reconcile them to the input row count.
+- `customers (customer_id, customer_name, segment, region, signup_date)`
+- `orders (order_id, order_date, customer_id, region, category, product, quantity, unit_price, unit_cost, discount_pct, status, sales_rep)`
+- `targets (month_start, region, sales_target)`
 
-### Additional hands-on instruction
-Write a CASE expression for an order value band and use COALESCE only where the business rule permits a default.
+Available `status` values: `Completed`, `Returned`, `Cancelled`
 
-## Business case
-The amount is missing for some imported records. COALESCE(amount,0) may seem convenient, but it changes “not known” into “known zero”. In a dashboard, classify these values as Unknown until a business rule is approved. In a CASE expression, handle NULL before comparing numeric thresholds so missing records do not fall into an ordinary low-value group.
+The worked example may introduce derived fields or example tables. Create or rename those fields explicitly and verify results against these original source columns. Source status values are Completed, Returned, Cancelled.
+
+## Dataset and companion video
+- **Download the dataset:** [`retail_practice.sqlite`](../retail_practice.sqlite)
+- **Video companion:** https://www.youtube.com/watch?v=PSNXoAs2FtQ&t=4111s (the in-app Watch button opens the YouTube player when embedding is permitted).
+- **Reading order:** first identify controls, then read the four concepts, reproduce the example, try an independent case, and validate your evidence.
+
+## Explain the four essential concepts
+### 1. NULL semantics
+NULL is unknown and cannot be tested reliably with = NULL
+
+### 2. CASE
+defines readable derived categories with an ELSE fallback
+
+### 3. COALESCE
+selects a fallback value where business rules permit
+
+### 4. Conditional totals
+SUM(CASE WHEN ... THEN ... END) can create reporting measures with explicit logic.
+
+## Why this skill matters
+Why this skill matters: A compliance report needs consistent categories and explicit disclosure of incomplete records. The method is not only about producing an attractive figure. COALESCE: selects a fallback value where business rules permit Conditional totals: SUM(CASE WHEN ... THEN ... END) can create reporting measures with explicit logic. When preparing an output for another person, specify the reporting period, units, selection rules and known limitations. An analyst should be able to explain why a calculation or chart answers the actual business question and reproduce the result.
+
+## Guided practice · follow all four steps
+1. Open the correct workspace and identify the controls before entering commands. Use CASE WHEN for categories and IS NULL or COALESCE when checking absent values. Keep an untouched source or backup version so a mistake is reversible.
+2. Apply the first two concepts on a small example: NULL semantics — NULL is unknown and cannot be tested reliably with = NULL Then test case with at least two contrasting inputs.
+3. Reproduce the worked example below exactly, then change one input or filter. Explain which value changes and why. After that, apply coalesce and inspect the output for errors.
+4. Complete the independent challenge: Create spending bands and count missing Region values without replacing missing revenue with zero. Before moving on, check the result against the acceptance criteria: High-value flag follows the threshold; NULL Region displays as Unknown only in the reporting output.
+
+## Study this worked example
+```text
+SELECT order_id,
+CASE WHEN quantity*unit_price*(1-discount_pct)>=50000 THEN 'High' ELSE 'Standard' END AS band,
+COALESCE(region,'Unknown') AS reporting_region FROM orders;
+```
+
+**How to interpret the output:** CASE, NULL and conditional business rules begins with a practical objective: Classify transactions transparently and avoid incorrect logic for missing fields. In SQL and SQLite, begin by understanding the workspace and the data rather than memorising a command. NULL semantics: NULL is unknown and cannot be tested reliably with = NULL CASE: defines readable derived categories with an ELSE fallback Practice these ideas on a small synthetic sample first. Notice where the tool shows inputs, intermediate results and errors; then describe in plain language what each operation does and what it does not prove. Keep original records separate from working calculations so you can trace any surprising result back to its source.
+
+## Business case study
+Business case: A compliance report needs consistent categories and explicit disclosure of incomplete records. Your role is to deliver a result that a manager can trust and act upon, not merely a screenshot. First describe what records are included and excluded. Next perform the method described in this week, and record any changes to the source. Use the worked example as a starting point but test it with different values; finally communicate one relevant observation, one limitation and a follow-up.
 
 ## Independent practical challenge
-Why does amount = NULL return no matches?
+Create spending bands and count missing Region values without replacing missing revenue with zero.
 
-**Deliverable:** Count unclassified rows and explain how a NULL differs from the numeric value 0.
+**What you should hand in:** High-value flag follows the threshold; NULL Region displays as Unknown only in the reporting output.
 
-## Verify your work
-If every record must receive one label, the category counts should add up to the eligible row count. A missing amount should be reported as Unknown unless the business definition explicitly treats it as zero.
+## Check your result (after attempting)
+Expected evidence: High-value flag follows the threshold; NULL Region displays as Unknown only in the reporting output. To validate it, compare a small hand-checked sample with the final output, test an alternative filter or a changed input, and record any unmatched, missing or suspicious data. If results differ, review the original data, formula or query, aggregation grain and selected filters before sharing the report. Avoid this common error: Using = NULL rather than IS NULL or assigning missing values a false zero.
 
-- Confirm the number of records used and explain any excluded records.
-- Check date, currency, percentage and unit formats.
-- Recalculate at least one sample manually or using another method.
-- Separate observed results from assumptions about why they occurred.
-- Include source, period, filters and limitations in the presentation.
+**Common failure:** Using = NULL rather than IS NULL or assigning missing values a false zero.
 
-## Compare with the suggested solution (after attempting the task)
-NULL is unknown; use IS NULL
-
-**Common pitfall:** Conflating NULL with zero or an empty string.
+## Reflect and explain the result
+- Which menu, editor or pane did you use, and why?
+- What is the data grain, metric definition or calculated rule?
+- Can a second learner reproduce your output using the dataset and your instructions?
+- Which number, chart or limitation must be mentioned when presenting your result?
 
 ---
-The lesson content and model answers are intended for study. Completing the worksheet does not automatically mark the app quiz or progress as complete.
+**Progress note:** Completing this worksheet is practice. Marking a week complete, passing an assessment and submitting an instructor-reviewed capstone are separate actions in DataLearning.

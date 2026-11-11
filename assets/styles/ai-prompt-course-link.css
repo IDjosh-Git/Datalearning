@@ -1,0 +1,36 @@
+/* AI course resource: durable entry into the existing DataLearning Prompt Library. */
+body.lp-ai-page .dl-ai-prompt-feature {
+  display:flex; align-items:center; gap:18px; flex-wrap:wrap;
+  background:linear-gradient(112deg,#173c53 0%,#245965 56%,#1c5a5c 100%);
+  border:1px solid #38727c; color:#fff; border-radius:20px; padding:20px 22px;
+  margin:14px 0 20px; box-shadow:0 10px 32px rgba(13,54,68,.15);
+}
+body.lp-ai-page .dl-ai-prompt-feature-icon {
+  flex:0 0 54px; height:54px; display:grid; place-items:center;
+  border:1px solid rgba(255,255,255,.24); background:rgba(255,255,255,.11);
+  border-radius:17px; color:#ffcc99;
+}
+body.lp-ai-page .dl-ai-prompt-feature-copy {flex:1 1 260px;min-width:0}
+body.lp-ai-page .dl-ai-prompt-feature-eyebrow {display:block; font-size:10px; letter-spacing:.13em; font-weight:850; color:#bedbd8; margin-bottom:5px}
+body.lp-ai-page .dl-ai-prompt-feature-copy strong {display:block; font-size:clamp(18px,2vw,23px); font-weight:850; line-height:1.3; color:#fff}
+body.lp-ai-page .dl-ai-prompt-feature-copy p {font-size:13px; line-height:1.6; color:#e0edef; margin:6px 0 0;max-width:62ch}
+body.lp-ai-page .dl-ai-prompt-feature-action {
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  flex:0 0 auto; padding:12px 16px; min-height:46px;
+  border:1px solid #fff3e7; border-radius:12px; background:#fff;
+  text-decoration:none; color:#1a4e54; font-size:13px; font-weight:850;
+  box-shadow:0 4px 14px rgba(0,0,0,.08); transition:transform .18s ease,background-color .18s ease;
+}
+body.lp-ai-page .dl-ai-prompt-feature-action:hover {background:#effaf7;transform:translateY(-1px)}
+body.lp-ai-page .dl-ai-prompt-feature-action:focus-visible,
+body.lp-ai-page .course-portal-prompt:focus-visible,
+body.lp-ai-page .dl-prompt-rail-link:focus-visible {outline:3px solid #f7a85d!important;outline-offset:3px!important}
+body.lp-ai-page .course-portal-links .course-portal-prompt {background:#eaf3f2!important;color:#14585c!important;border:1px solid #b5d9d5!important;}
+body.lp-ai-page .dl-lesson-rail-resources .dl-prompt-rail-link {display:inline-flex;align-items:center;gap:6px;max-width:100%;margin-top:8px;color:inherit;font-weight:750;text-decoration:underline;text-underline-offset:3px;}
+@media (max-width:680px){
+  body.lp-ai-page .dl-ai-prompt-feature{padding:18px;gap:12px;border-radius:16px}
+  body.lp-ai-page .dl-ai-prompt-feature-icon{flex-basis:44px;height:44px;border-radius:13px}
+  body.lp-ai-page .dl-ai-prompt-feature-copy{flex:1 1 calc(100% - 60px)}
+  body.lp-ai-page .dl-ai-prompt-feature-action{width:100%;flex:1 1 100%;justify-content:space-between;min-height:46px}
+}
+@media (prefers-reduced-motion:reduce){body.lp-ai-page .dl-ai-prompt-feature-action{transition:none}}

@@ -1,51 +1,74 @@
-# Tableau · Week 03 · Build clear bar and line charts
+# Tableau · Week 03 · Building bar charts, line charts and a readable visual
 
-> DataLearning practice brief — synthetic training material. Keep your original source file unchanged and make a copy for transformations.
+> DataLearning comprehensive practical lesson. Data is fictional. This worksheet supports the full in-app explanation and independent practice. Do not overwrite your raw source file.
 
 ## Learning outcome
-Select the appropriate view for a question
+Choose the right shelf/marks combinations for rankings and trends.
 
-## Before you begin: open the right file
-- Download: `learning_monthly_kpis.csv` in `/downloads/` of your DataLearning project.
-- Important fields / tables: month, region, net_sales_ngn, sales_target_ngn, gross_profit_ngn, order_count, late_shipments, returned_orders.
-- Related video (opens within the lesson page): https://www.youtube.com/watch?v=PSNXoAs2FtQ&t=27620s.
-- Use Excel / Power BI / Tableau / Power Query for CSV sources, a SQLite-compatible reader for `.sqlite` files, or Python/pandas for code-based analysis as the week requires.
+## Where to begin in the tool
+Use Rows and Columns shelves, Show Me and Marks to create a sorted bar view and time-series line.
 
-## Understand the analytical method
-Bar charts are effective for comparing categories because a shared baseline helps the eye compare lengths. Line charts are suitable for ordered time series where the connecting line represents a meaningful sequence. In Tableau, dragging a Date field may create a discrete year or a continuous date axis; this choice changes how the view looks and how it groups records. Always verify the date level before interpreting a trend.
 
-Choose colour, labels and sorting to support the question. A ranked bar chart is often easier to read than an unsorted one. In a line chart, displaying every data label may crowd the plot; keep a clean axis and use hover detail as needed. If categories are numerous, group small values responsibly or show a filter rather than forcing unreadable text. Avoid 3D effects and truncated bar axes.
+## Source data dictionary · exact practice file fields
+The linked CSV uses these **exact header names**. Import the file before attempting examples. If an exercise uses a friendly or calculated name, map or create it first.
 
-## Guided walkthrough in the tool
-1. Create a Region-by-Revenue bar chart and sort categories by total revenue.
-2. Create a month-by-Revenue line chart using the correct date level.
-3. Add clear titles and tooltips with period, currency unit and source.
-4. Test the chart against two known time periods and compare the chosen chart to the question.
+`month, region, net_sales_ngn, sales_target_ngn, gross_profit_ngn, order_count, late_shipments, returned_orders`
 
-### Additional hands-on instruction
-Plot monthly sales as a line and regions as bars using monthly KPI data; add clear titles and number formats.
+The worked example may introduce derived fields or example tables. Create or rename those fields explicitly and verify results against these original source columns.
 
-## Business case
-A manager asks which product category generates the most revenue. Sort a bar chart by SUM(Revenue) to answer the comparison. If the question changes to whether revenue is increasing month by month, a continuous date axis and line chart are more suitable. Chart choice follows the question; it should not be decided by whichever visual looks more impressive.
+## Dataset and companion video
+- **Download the dataset:** [`learning_monthly_kpis.csv`](../learning_monthly_kpis.csv)
+- **Video companion:** https://www.youtube.com/watch?v=PSNXoAs2FtQ&t=27620s (the in-app Watch button opens the YouTube player when embedding is permitted).
+- **Reading order:** first identify controls, then read the four concepts, reproduce the example, try an independent case, and validate your evidence.
+
+## Explain the four essential concepts
+### 1. Bar charts
+compare category size with a zero baseline
+
+### 2. Line charts
+trend numeric values against ordered dates
+
+### 3. Sorting
+sort by the correct measure rather than alphabetic category
+
+### 4. Tooltips and labels
+show useful units and context without duplicating clutter.
+
+## Why this skill matters
+Why this skill matters: A monthly business review requires a clear ranking plus sales movement over time. The method is not only about producing an attractive figure. Sorting: sort by the correct measure rather than alphabetic category Tooltips and labels: show useful units and context without duplicating clutter. When preparing an output for another person, specify the reporting period, units, selection rules and known limitations. An analyst should be able to explain why a calculation or chart answers the actual business question and reproduce the result.
+
+## Guided practice · follow all four steps
+1. Open the correct workspace and identify the controls before entering commands. Use Rows and Columns shelves, Show Me and Marks to create a sorted bar view and time-series line. Keep an untouched source or backup version so a mistake is reversible.
+2. Apply the first two concepts on a small example: Bar charts — compare category size with a zero baseline Then test line charts with at least two contrasting inputs.
+3. Reproduce the worked example below exactly, then change one input or filter. Explain which value changes and why. After that, apply sorting and inspect the output for errors.
+4. Complete the independent challenge: Produce a regional ranking and a monthly revenue line, then describe one pattern supported by the charts. Before moving on, check the result against the acceptance criteria: Regional totals sum to the same filtered base revenue; monthly dates appear chronologically.
+
+## Study this worked example
+```text
+Rows: Region; Columns: SUM(Revenue); Sort descending
+Columns: MONTH(OrderDate); Rows: SUM(Revenue); Marks: Line
+```
+
+**How to interpret the output:** Building bar charts, line charts and a readable visual begins with a practical objective: Choose the right shelf/marks combinations for rankings and trends. In Tableau, begin by understanding the workspace and the data rather than memorising a command. Bar charts: compare category size with a zero baseline Line charts: trend numeric values against ordered dates Practice these ideas on a small synthetic sample first. Notice where the tool shows inputs, intermediate results and errors; then describe in plain language what each operation does and what it does not prove. Keep original records separate from working calculations so you can trace any surprising result back to its source.
+
+## Business case study
+Business case: A monthly business review requires a clear ranking plus sales movement over time. Your role is to deliver a result that a manager can trust and act upon, not merely a screenshot. First describe what records are included and excluded. Next perform the method described in this week, and record any changes to the source. Use the worked example as a starting point but test it with different values; finally communicate one relevant observation, one limitation and a follow-up.
 
 ## Independent practical challenge
-For monthly orders 80, 92, 87, 110, 125 and 119, choose a chart and identify the peak.
+Produce a regional ranking and a monthly revenue line, then describe one pattern supported by the charts.
 
-**Deliverable:** Confirm grand totals and write a one-sentence finding with units.
+**What you should hand in:** Regional totals sum to the same filtered base revenue; monthly dates appear chronologically.
 
-## Verify your work
-A chart should communicate comparison without extra explanation. Check whether the bar baseline is fair and whether missing months appear as gaps rather than false zeros.
+## Check your result (after attempting)
+Expected evidence: Regional totals sum to the same filtered base revenue; monthly dates appear chronologically. To validate it, compare a small hand-checked sample with the final output, test an alternative filter or a changed input, and record any unmatched, missing or suspicious data. If results differ, review the original data, formula or query, aggregation grain and selected filters before sharing the report. Avoid this common error: Using a continuous numeric field as a category or letting auto-sorted dates scramble the trend.
 
-- Confirm the number of records used and explain any excluded records.
-- Check date, currency, percentage and unit formats.
-- Recalculate at least one sample manually or using another method.
-- Separate observed results from assumptions about why they occurred.
-- Include source, period, filters and limitations in the presentation.
+**Common failure:** Using a continuous numeric field as a category or letting auto-sorted dates scramble the trend.
 
-## Compare with the suggested solution (after attempting the task)
-Line chart; May is the peak at 125 orders.
-
-**Common pitfall:** Using many categories on a pie chart instead of bars.
+## Reflect and explain the result
+- Which menu, editor or pane did you use, and why?
+- What is the data grain, metric definition or calculated rule?
+- Can a second learner reproduce your output using the dataset and your instructions?
+- Which number, chart or limitation must be mentioned when presenting your result?
 
 ---
-The lesson content and model answers are intended for study. Completing the worksheet does not automatically mark the app quiz or progress as complete.
+**Progress note:** Completing this worksheet is practice. Marking a week complete, passing an assessment and submitting an instructor-reviewed capstone are separate actions in DataLearning.

@@ -1,51 +1,73 @@
-# Tableau · Week 06 · Level of detail calculations
+# Tableau · Week 06 · Level of detail and advanced aggregate reasoning
 
-> DataLearning practice brief — synthetic training material. Keep your original source file unchanged and make a copy for transformations.
+> DataLearning comprehensive practical lesson. Data is fictional. This worksheet supports the full in-app explanation and independent practice. Do not overwrite your raw source file.
 
 ## Learning outcome
-Compare detailed marks against a fixed benchmark
+Apply FIXED and INCLUDE calculations carefully when category grain differs from metric grain.
 
-## Before you begin: open the right file
-- Download: `learning_monthly_kpis.csv` in `/downloads/` of your DataLearning project.
-- Important fields / tables: month, region, net_sales_ngn, sales_target_ngn, gross_profit_ngn, order_count, late_shipments, returned_orders.
-- Related video (opens within the lesson page): https://www.youtube.com/watch?v=K-3lEMHe2jU.
-- Use Excel / Power BI / Tableau / Power Query for CSV sources, a SQLite-compatible reader for `.sqlite` files, or Python/pandas for code-based analysis as the week requires.
+## Where to begin in the tool
+Create a calculated field from Analysis and add it beside a regular SUM to compare behaviour.
 
-## Understand the analytical method
-Level of Detail (LOD) expressions control the grain at which a calculation is evaluated. FIXED [CustomerID] : SUM([Revenue]) computes a per-customer total at a declared dimension, even when the visual displays Region. This is useful when comparing transactions against customer-level metrics or calculating a benchmark at a different grain from the view. INCLUDE and EXCLUDE offer other ways to shape detail.
 
-LOD expressions interact with filters according to Tableau’s order of operations. A FIXED calculation may not respond to ordinary dimension filters in the way a learner expects, while context filters may affect it. Read the expression aloud: “For each CustomerID, calculate the sum of Revenue.” Then explain how those customer totals should be aggregated in the final chart. Validate with a tiny dataset in which one customer has several orders.
+## Source data dictionary · exact practice file fields
+The linked CSV uses these **exact header names**. Import the file before attempting examples. If an exercise uses a friendly or calculated name, map or create it first.
 
-## Guided walkthrough in the tool
-1. Create a Customer Revenue LOD using FIXED CustomerID.
-2. Build a view showing individual transactions and the repeated customer total.
-3. Compare the sum of customer totals with a correct distinct-customer aggregation strategy.
-4. Apply a filter and inspect how it affects the FIXED result; test a context filter.
+`month, region, net_sales_ngn, sales_target_ngn, gross_profit_ngn, order_count, late_shipments, returned_orders`
 
-### Additional hands-on instruction
-Build a fixed regional benchmark and compare it to category-level marks. Inspect the filters applied.
+The worked example may introduce derived fields or example tables. Create or rename those fields explicitly and verify results against these original source columns.
 
-## Business case
-You want customer-level total revenue displayed beside each individual transaction. A FIXED CustomerID LOD can calculate that total. But after repeating it on multiple transaction rows, summing the repeated total would overstate the customers’ combined sales. Define the intended aggregation and check a customer with several orders before using the calculation in a dashboard.
+## Dataset and companion video
+- **Download the dataset:** [`learning_monthly_kpis.csv`](../learning_monthly_kpis.csv)
+- **Video companion:** https://www.youtube.com/watch?v=K-3lEMHe2jU (the in-app Watch button opens the YouTube player when embedding is permitted).
+- **Reading order:** first identify controls, then read the four concepts, reproduce the example, try an independent case, and validate your evidence.
+
+## Explain the four essential concepts
+### 1. FIXED
+computes an expression at declared dimensions rather than a visible mark grain
+
+### 2. INCLUDE
+evaluates with an additional dimension
+
+### 3. Filter order
+some filters act before or after LOD computations
+
+### 4. Verification
+compare a city-level chart with the same region totals from the raw data.
+
+## Why this skill matters
+Why this skill matters: An analyst needs region totals displayed consistently in a highly detailed product view. The method is not only about producing an attractive figure. Filter order: some filters act before or after LOD computations Verification: compare a city-level chart with the same region totals from the raw data. When preparing an output for another person, specify the reporting period, units, selection rules and known limitations. An analyst should be able to explain why a calculation or chart answers the actual business question and reproduce the result.
+
+## Guided practice · follow all four steps
+1. Open the correct workspace and identify the controls before entering commands. Create a calculated field from Analysis and add it beside a regular SUM to compare behaviour. Keep an untouched source or backup version so a mistake is reversible.
+2. Apply the first two concepts on a small example: FIXED — computes an expression at declared dimensions rather than a visible mark grain Then test include with at least two contrasting inputs.
+3. Reproduce the worked example below exactly, then change one input or filter. Explain which value changes and why. After that, apply filter order and inspect the output for errors.
+4. Complete the independent challenge: Create a region-level total and display it alongside product detail; explain why that number may repeat. Before moving on, check the result against the acceptance criteria: Repeated region totals are not additive product facts, so summing the repeated figure across products would double count.
+
+## Study this worked example
+```text
+{ FIXED [Region] : SUM([Revenue]) }
+```
+
+**How to interpret the output:** Level of detail and advanced aggregate reasoning begins with a practical objective: Apply FIXED and INCLUDE calculations carefully when category grain differs from metric grain. In Tableau, begin by understanding the workspace and the data rather than memorising a command. FIXED: computes an expression at declared dimensions rather than a visible mark grain INCLUDE: evaluates with an additional dimension Practice these ideas on a small synthetic sample first. Notice where the tool shows inputs, intermediate results and errors; then describe in plain language what each operation does and what it does not prove. Keep original records separate from working calculations so you can trace any surprising result back to its source.
+
+## Business case study
+Business case: An analyst needs region totals displayed consistently in a highly detailed product view. Your role is to deliver a result that a manager can trust and act upon, not merely a screenshot. First describe what records are included and excluded. Next perform the method described in this week, and record any changes to the source. Use the worked example as a starting point but test it with different values; finally communicate one relevant observation, one limitation and a follow-up.
 
 ## Independent practical challenge
-Why could a region total repeat beside each product on a detailed view?
+Create a region-level total and display it alongside product detail; explain why that number may repeat.
 
-**Deliverable:** Describe how context filters can affect a FIXED calculation.
+**What you should hand in:** Repeated region totals are not additive product facts, so summing the repeated figure across products would double count.
 
-## Verify your work
-Do not SUM a repeated customer-level LOD for every transaction without considering duplication. State the grain of both the LOD result and the final visual.
+## Check your result (after attempting)
+Expected evidence: Repeated region totals are not additive product facts, so summing the repeated figure across products would double count. To validate it, compare a small hand-checked sample with the final output, test an alternative filter or a changed input, and record any unmatched, missing or suspicious data. If results differ, review the original data, formula or query, aggregation grain and selected filters before sharing the report. Avoid this common error: Summing repeated FIXED values as if every product row contributed an independent region total.
 
-- Confirm the number of records used and explain any excluded records.
-- Check date, currency, percentage and unit formats.
-- Recalculate at least one sample manually or using another method.
-- Separate observed results from assumptions about why they occurred.
-- Include source, period, filters and limitations in the presentation.
+**Common failure:** Summing repeated FIXED values as if every product row contributed an independent region total.
 
-## Compare with the suggested solution (after attempting the task)
-The FIXED calculation evaluates at the region level, then appears alongside finer-grain product marks.
-
-**Common pitfall:** Summing repeated FIXED totals across products.
+## Reflect and explain the result
+- Which menu, editor or pane did you use, and why?
+- What is the data grain, metric definition or calculated rule?
+- Can a second learner reproduce your output using the dataset and your instructions?
+- Which number, chart or limitation must be mentioned when presenting your result?
 
 ---
-The lesson content and model answers are intended for study. Completing the worksheet does not automatically mark the app quiz or progress as complete.
+**Progress note:** Completing this worksheet is practice. Marking a week complete, passing an assessment and submitting an instructor-reviewed capstone are separate actions in DataLearning.

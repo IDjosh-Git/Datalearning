@@ -1,51 +1,77 @@
-# Power Bi · Week 04 · DAX evaluation contexts
+# Power BI Desktop · Week 04 · DAX measures and evaluation context
 
-> DataLearning practice brief — synthetic training material. Keep your original source file unchanged and make a copy for transformations.
+> DataLearning comprehensive practical lesson. Data is fictional. This worksheet supports the full in-app explanation and independent practice. Do not overwrite your raw source file.
 
 ## Learning outcome
-Understand filter context vs row context
+Write measures that react correctly to slicers and compare them with calculated columns.
 
-## Before you begin: open the right file
-- Download: `learning_sales_2026.csv` in `/downloads/` of your DataLearning project.
-- Important fields / tables: order_id, order_date, region, category, quantity, unit_price_ngn, unit_cost_ngn, status, customer_id, channel.
-- Related video (opens within the lesson page): https://www.youtube.com/watch?v=PSNXoAs2FtQ&t=34053s.
-- Use Excel / Power BI / Tableau / Power Query for CSV sources, a SQLite-compatible reader for `.sqlite` files, or Python/pandas for code-based analysis as the week requires.
+## Where to begin in the tool
+Choose Modeling > New measure, write DAX and place the result on a Card and in a table visual.
 
-## Understand the analytical method
-DAX measures are evaluated within a filter context supplied by report filters, slicers, row and column groupings, and CALCULATE. SUM(Sales[Amount]) is therefore not necessarily the same number on every visual row. Row context, by contrast, is the current row when evaluating calculated columns or iterators such as SUMX. CALCULATE changes filter context and may perform context transition in row-context scenarios.
 
-Misunderstanding context causes many “wrong total” problems. A formula may look correct in one table row but behave differently for the grand total because the total is a fresh evaluation under a broader filter context. Do not force every total to equal a naive sum without checking the business rule. Use a small table visual with Date, Region and a measure to observe how different filters affect the same DAX expression.
+## Source data dictionary · exact practice file fields
+The linked CSV uses these **exact header names**. Import the file before attempting examples. If an exercise uses a friendly or calculated name, map or create it first.
 
-## Guided walkthrough in the tool
-1. Create a base Sales Amount measure and place it in a visual grouped by region.
-2. Apply a date slicer and observe which rows and totals change.
-3. Create a second measure using CALCULATE to filter to completed orders.
-4. Check results for one known region against a manual calculation and discuss why totals may differ.
+`order_id, order_date, region, category, quantity, unit_price_ngn, unit_cost_ngn, status, customer_id, channel`
 
-### Additional hands-on instruction
-Write Total Sales := SUMX(Orders, Orders[quantity]*Orders[unit_price_ngn]) and test by region.
+Available `status` values: `Cancelled`, `Completed`, `Returned`
 
-## Business case
-The same [Revenue] measure shows 50,000 at the company level and 12,000 in the East row. DAX did not change formula: the East row supplied a different filter context. A slicer narrowing the month changes both again. Learn to ask “Which filters are active here?” before rewriting an apparently inconsistent DAX measure.
+The worked example may introduce derived fields or example tables. Create or rename those fields explicitly and verify results against these original source columns. Source status values are Cancelled, Completed, Returned.
+
+## Dataset and companion video
+- **Download the dataset:** [`learning_sales_2026.csv`](../learning_sales_2026.csv)
+- **Video companion:** https://www.youtube.com/watch?v=PSNXoAs2FtQ&t=34053s (the in-app Watch button opens the YouTube player when embedding is permitted).
+- **Reading order:** first identify controls, then read the four concepts, reproduce the example, try an independent case, and validate your evidence.
+
+## Explain the four essential concepts
+### 1. Measures versus columns
+a measure aggregates in the current filter context
+
+### 2. SUM and DISTINCTCOUNT
+compute revenue and orders based on model relationships
+
+### 3. DIVIDE
+safely handles zero denominators
+
+### 4. Context
+row selections and slicers change which fact rows contribute to a measure.
+
+## Why this skill matters
+Why this skill matters: Management wants accurate performance metrics that adjust instantly to the selected region and period. The method is not only about producing an attractive figure. DIVIDE: safely handles zero denominators Context: row selections and slicers change which fact rows contribute to a measure. When preparing an output for another person, specify the reporting period, units, selection rules and known limitations. An analyst should be able to explain why a calculation or chart answers the actual business question and reproduce the result.
+
+## Guided practice · follow all four steps
+1. Open the correct workspace and identify the controls before entering commands. Choose Modeling > New measure, write DAX and place the result on a Card and in a table visual. Keep an untouched source or backup version so a mistake is reversible.
+2. Apply the first two concepts on a small example: Measures versus columns — a measure aggregates in the current filter context Then test sum and distinctcount with at least two contrasting inputs.
+3. Reproduce the worked example below exactly, then change one input or filter. Explain which value changes and why. After that, apply divide and inspect the output for errors.
+4. Complete the independent challenge: Create Revenue, Orders and AOV measures; filter by Region and compare totals with raw data. Before moving on, check the result against the acceptance criteria: AOV must equal selected revenue divided by selected distinct orders, not average of precomputed category averages.
+
+## Study this worked example
+```text
+Sales Revenue = SUM(FactSales[Revenue])
+Orders = DISTINCTCOUNT(FactSales[OrderID])
+AOV = DIVIDE([Sales Revenue],[Orders])
+```
+
+**How to interpret the output:** DAX measures and evaluation context begins with a practical objective: Write measures that react correctly to slicers and compare them with calculated columns. In Power BI Desktop, begin by understanding the workspace and the data rather than memorising a command. Measures versus columns: a measure aggregates in the current filter context SUM and DISTINCTCOUNT: compute revenue and orders based on model relationships Practice these ideas on a small synthetic sample first. Notice where the tool shows inputs, intermediate results and errors; then describe in plain language what each operation does and what it does not prove. Keep original records separate from working calculations so you can trace any surprising result back to its source.
+
+## Business case study
+Business case: Management wants accurate performance metrics that adjust instantly to the selected region and period. Your role is to deliver a result that a manager can trust and act upon, not merely a screenshot. First describe what records are included and excluded. Next perform the method described in this week, and record any changes to the source. Use the worked example as a starting point but test it with different values; finally communicate one relevant observation, one limitation and a follow-up.
 
 ## Independent practical challenge
-Why does a measure change when a slicer is selected?
+Create Revenue, Orders and AOV measures; filter by Region and compare totals with raw data.
 
-**Deliverable:** Compare a card before and after selecting a region, then explain why the measure changes.
+**What you should hand in:** AOV must equal selected revenue divided by selected distinct orders, not average of precomputed category averages.
 
-## Verify your work
-State exactly which filters a measure should respect. If a result does not change under a slicer, inspect relationships, CALCULATE modifiers and the visual interaction settings.
+## Check your result (after attempting)
+Expected evidence: AOV must equal selected revenue divided by selected distinct orders, not average of precomputed category averages. To validate it, compare a small hand-checked sample with the final output, test an alternative filter or a changed input, and record any unmatched, missing or suspicious data. If results differ, review the original data, formula or query, aggregation grain and selected filters before sharing the report. Avoid this common error: Using a calculated column to replace a dynamic KPI measure or dividing without checking zeros.
 
-- Confirm the number of records used and explain any excluded records.
-- Check date, currency, percentage and unit formats.
-- Recalculate at least one sample manually or using another method.
-- Separate observed results from assumptions about why they occurred.
-- Include source, period, filters and limitations in the presentation.
+**Common failure:** Using a calculated column to replace a dynamic KPI measure or dividing without checking zeros.
 
-## Compare with the suggested solution (after attempting the task)
-The slicer changes filter context
-
-**Common pitfall:** Assuming measures are precomputed per row.
+## Reflect and explain the result
+- Which menu, editor or pane did you use, and why?
+- What is the data grain, metric definition or calculated rule?
+- Can a second learner reproduce your output using the dataset and your instructions?
+- Which number, chart or limitation must be mentioned when presenting your result?
 
 ---
-The lesson content and model answers are intended for study. Completing the worksheet does not automatically mark the app quiz or progress as complete.
+**Progress note:** Completing this worksheet is practice. Marking a week complete, passing an assessment and submitting an instructor-reviewed capstone are separate actions in DataLearning.

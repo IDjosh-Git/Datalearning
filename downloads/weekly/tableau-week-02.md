@@ -1,51 +1,74 @@
-# Tableau · Week 02 · Data types and relationships
+# Tableau · Week 02 · Understanding field types, measures and data relationships
 
-> DataLearning practice brief — synthetic training material. Keep your original source file unchanged and make a copy for transformations.
+> DataLearning comprehensive practical lesson. Data is fictional. This worksheet supports the full in-app explanation and independent practice. Do not overwrite your raw source file.
 
 ## Learning outcome
-Understand rows, keys and how tables relate
+Set data types and link tables while respecting their analytical grain.
 
-## Before you begin: open the right file
-- Download: `learning_customer_cohorts.csv` in `/downloads/` of your DataLearning project.
-- Important fields / tables: customer_id, signup_date, last_order_date, region, acquisition_channel, orders_lifetime.
-- Related video (opens within the lesson page): https://www.youtube.com/watch?v=PSNXoAs2FtQ&t=28460s.
-- Use Excel / Power BI / Tableau / Power Query for CSV sources, a SQLite-compatible reader for `.sqlite` files, or Python/pandas for code-based analysis as the week requires.
+## Where to begin in the tool
+In the Data Source view inspect field-type icons, relationships and field profiles before building marks.
 
-## Understand the analytical method
-Tableau can work with related tables at different levels of detail. A logical relationship lets Tableau decide how to combine tables for a particular analysis; a physical join combines rows according to the selected join condition. Do not treat these as interchangeable. A relationship between Orders and Customers typically connects a many-side order key to a unique CustomerID in the customer table.
 
-Bad join choices can multiply records and inflate measures. When Orders and OrderLines are joined physically, order-level totals may repeat for each line. Relationships can help preserve separate table grains, but you still need to validate results. Check the declared data types of joining keys, inspect unmatched records and use distinct counts where the business question requires distinct entities.
+## Source data dictionary · exact practice file fields
+The linked CSV uses these **exact header names**. Import the file before attempting examples. If an exercise uses a friendly or calculated name, map or create it first.
 
-## Guided walkthrough in the tool
-1. Connect an Orders table and a Customers table.
-2. Confirm CustomerID uniqueness in Customers and match its type to Orders.CustomerID.
-3. Create a relationship and compare a regional revenue view with source totals.
-4. Test one customer with multiple orders, then inspect what changes with a physical join.
+`customer_id, signup_date, last_order_date, region, acquisition_channel, orders_lifetime`
 
-### Additional hands-on instruction
-Connect customer cohorts as a separate source, review field types, and sketch intended keys before joining.
+The worked example may introduce derived fields or example tables. Create or rename those fields explicitly and verify results against these original source columns.
 
-## Business case
-A customer table contains one row per customer, while a sales table contains many rows per customer. A relationship can preserve their separate grains for analysis, but a careless physical join might repeat customer-level amounts. Use one known customer to trace the rows and validate a total. Understanding the relationship matters more than memorising the interface.
+## Dataset and companion video
+- **Download the dataset:** [`learning_customer_cohorts.csv`](../learning_customer_cohorts.csv)
+- **Video companion:** https://www.youtube.com/watch?v=PSNXoAs2FtQ&t=28460s (the in-app Watch button opens the YouTube player when embedding is permitted).
+- **Reading order:** first identify controls, then read the four concepts, reproduce the example, try an independent case, and validate your evidence.
+
+## Explain the four essential concepts
+### 1. Dimensions
+group and segment data rather than being automatically summed
+
+### 2. Measures
+numerical fields are typically aggregated per mark
+
+### 3. Date types
+continuous dates and discrete date parts produce different timelines
+
+### 4. Relationships
+combine tables logically but verify keys to avoid inflated totals.
+
+## Why this skill matters
+Why this skill matters: A merchandiser needs reliable category comparisons across two related data files. The method is not only about producing an attractive figure. Date types: continuous dates and discrete date parts produce different timelines Relationships: combine tables logically but verify keys to avoid inflated totals. When preparing an output for another person, specify the reporting period, units, selection rules and known limitations. An analyst should be able to explain why a calculation or chart answers the actual business question and reproduce the result.
+
+## Guided practice · follow all four steps
+1. Open the correct workspace and identify the controls before entering commands. In the Data Source view inspect field-type icons, relationships and field profiles before building marks. Keep an untouched source or backup version so a mistake is reversible.
+2. Apply the first two concepts on a small example: Dimensions — group and segment data rather than being automatically summed Then test measures with at least two contrasting inputs.
+3. Reproduce the worked example below exactly, then change one input or filter. Explain which value changes and why. After that, apply date types and inspect the output for errors.
+4. Complete the independent challenge: Classify six fields, set a correct OrderDate type and sketch a valid sales-to-product relationship. Before moving on, check the result against the acceptance criteria: Revenue by Product Category should reconcile to the same total as the underlying valid sales data.
+
+## Study this worked example
+```text
+OrderDate = Date; Region = Dimension; Revenue = Measure
+Orders[ProductID] → Products[ProductID]
+```
+
+**How to interpret the output:** Understanding field types, measures and data relationships begins with a practical objective: Set data types and link tables while respecting their analytical grain. In Tableau, begin by understanding the workspace and the data rather than memorising a command. Dimensions: group and segment data rather than being automatically summed Measures: numerical fields are typically aggregated per mark Practice these ideas on a small synthetic sample first. Notice where the tool shows inputs, intermediate results and errors; then describe in plain language what each operation does and what it does not prove. Keep original records separate from working calculations so you can trace any surprising result back to its source.
+
+## Business case study
+Business case: A merchandiser needs reliable category comparisons across two related data files. Your role is to deliver a result that a manager can trust and act upon, not merely a screenshot. First describe what records are included and excluded. Next perform the method described in this week, and record any changes to the source. Use the worked example as a starting point but test it with different values; finally communicate one relevant observation, one limitation and a follow-up.
 
 ## Independent practical challenge
-Explain why joining Customers to Orders on CustomerID is safer than joining on customer name.
+Classify six fields, set a correct OrderDate type and sketch a valid sales-to-product relationship.
 
-**Deliverable:** State why a customer-grain file should not be joined to order-grain data without a clear plan.
+**What you should hand in:** Revenue by Product Category should reconcile to the same total as the underlying valid sales data.
 
-## Verify your work
-A relationship does not remove the need to understand grain. Reconcile revenue and distinct order counts under each model setup; investigate differences before trusting the workbook.
+## Check your result (after attempting)
+Expected evidence: Revenue by Product Category should reconcile to the same total as the underlying valid sales data. To validate it, compare a small hand-checked sample with the final output, test an alternative filter or a changed input, and record any unmatched, missing or suspicious data. If results differ, review the original data, formula or query, aggregation grain and selected filters before sharing the report. Avoid this common error: Connecting tables using product names that are not unique or treating CustomerID as an additive measure.
 
-- Confirm the number of records used and explain any excluded records.
-- Check date, currency, percentage and unit formats.
-- Recalculate at least one sample manually or using another method.
-- Separate observed results from assumptions about why they occurred.
-- Include source, period, filters and limitations in the presentation.
+**Common failure:** Connecting tables using product names that are not unique or treating CustomerID as an additive measure.
 
-## Compare with the suggested solution (after attempting the task)
-IDs are more stable and specific; names can repeat or change.
-
-**Common pitfall:** Creating duplicate records through a many-to-many join.
+## Reflect and explain the result
+- Which menu, editor or pane did you use, and why?
+- What is the data grain, metric definition or calculated rule?
+- Can a second learner reproduce your output using the dataset and your instructions?
+- Which number, chart or limitation must be mentioned when presenting your result?
 
 ---
-The lesson content and model answers are intended for study. Completing the worksheet does not automatically mark the app quiz or progress as complete.
+**Progress note:** Completing this worksheet is practice. Marking a week complete, passing an assessment and submitting an instructor-reviewed capstone are separate actions in DataLearning.

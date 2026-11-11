@@ -1,51 +1,79 @@
-# Excel · Week 09 · Dashboard UX
+# Microsoft Excel · Week 09 · Writing and presenting an Excel management report
 
-> DataLearning practice brief — synthetic training material. Keep your original source file unchanged and make a copy for transformations.
+> DataLearning comprehensive practical lesson. Data is fictional. This worksheet supports the full in-app explanation and independent practice. Do not overwrite your raw source file.
 
 ## Learning outcome
-Design decision-focused interactive dashboards
+Turn dashboard findings into a concise business narrative and deliver a portable report.
 
-## Before you begin: open the right file
-- Download: `learning_monthly_kpis.csv` in `/downloads/` of your DataLearning project.
-- Important fields / tables: month, region, net_sales_ngn, sales_target_ngn, gross_profit_ngn, order_count, late_shipments, returned_orders.
-- Related video (opens within the lesson page): https://www.youtube.com/watch?v=PSNXoAs2FtQ&t=21589s.
-- Use Excel / Power BI / Tableau / Power Query for CSV sources, a SQLite-compatible reader for `.sqlite` files, or Python/pandas for code-based analysis as the week requires.
+## Where to begin in the tool
+Use Page Layout > Print Area, Export > PDF and a short Insights sheet with assumptions and decisions.
 
-## Understand the analytical method
-A dashboard combines visual elements to support a particular decision. Begin with a hierarchy: a headline KPI, a trend, a category comparison and a small set of diagnostic details. Use consistent units and time windows, clear chart titles and a restrained palette. If users need to select a region, use a slicer or clearly labelled filter. A dashboard should not require readers to reverse-engineer what each measure means.
 
-Interactive controls can silently create inconsistent comparisons. A month slicer may filter revenue but leave a reference target unchanged, producing a misleading variance. Test each slicer against each visual and label any measures intentionally exempt from filtering. Keep the number of charts manageable and ensure they answer the stakeholder’s original questions. Avoid 3D effects, unnecessary legends and cramped labels.
+## Source data dictionary · exact practice file fields
+The linked CSV uses these **exact header names**. Import the file before attempting examples. If an exercise uses a friendly or calculated name, map or create it first.
 
-## Guided walkthrough in the tool
-1. Write the decision the dashboard is meant to support and define three KPIs.
-2. Create a month trend and a regional comparison from validated PivotTables or formulas.
-3. Add a slicer and test its effect on every visual and KPI.
-4. Ask a new viewer to explain one insight and one next action without receiving a walkthrough.
+`month, region, net_sales_ngn, sales_target_ngn, gross_profit_ngn, order_count, late_shipments, returned_orders`
 
-### Additional hands-on instruction
-Use monthly KPI data for revenue, target and margin cards; add a trend chart and region comparison with clear labels.
+The worked example may introduce derived fields or example tables. Create or rename those fields explicitly and verify results against these original source columns.
 
-## Business case
-A CEO dashboard displays current revenue, prior-month revenue and change. When a Region slicer selects West, every measure must use the same definition of West unless a KPI is explicitly a companywide benchmark. Test a second region and clear the slicer. The dashboard should not silently mix selected-region sales with an unfiltered target.
+## Dataset and companion video
+- **Download the dataset:** [`learning_monthly_kpis.csv`](../learning_monthly_kpis.csv)
+- **Video companion:** https://www.youtube.com/watch?v=PSNXoAs2FtQ&t=21589s (the in-app Watch button opens the YouTube player when embedding is permitted).
+- **Reading order:** first identify controls, then read the four concepts, reproduce the example, try an independent case, and validate your evidence.
+
+## Explain the four essential concepts
+### 1. Observation versus explanation
+show what changed before speculating why
+
+### 2. Variance
+calculate actual-minus-target and percentage change with correct denominators
+
+### 3. Recommendation
+link an action to the observed issue and a measurable follow-up
+
+### 4. Handover
+include period, data source, refresh date and limitations for the recipient.
+
+## Why this skill matters
+Why this skill matters: A head of operations needs an evidence-based monthly performance report that can be discussed in five minutes. The method is not only about producing an attractive figure. Recommendation: link an action to the observed issue and a measurable follow-up Handover: include period, data source, refresh date and limitations for the recipient. When preparing an output for another person, specify the reporting period, units, selection rules and known limitations. An analyst should be able to explain why a calculation or chart answers the actual business question and reproduce the result.
+
+## Guided practice · follow all four steps
+1. Open the correct workspace and identify the controls before entering commands. Use Page Layout > Print Area, Export > PDF and a short Insights sheet with assumptions and decisions. Keep an untouched source or backup version so a mistake is reversible.
+2. Apply the first two concepts on a small example: Observation versus explanation — show what changed before speculating why Then test variance with at least two contrasting inputs.
+3. Reproduce the worked example below exactly, then change one input or filter. Explain which value changes and why. After that, apply recommendation and inspect the output for errors.
+4. Complete the independent challenge: Write a one-page executive summary supported by dashboard screenshots and three priority recommendations. Before moving on, check the result against the acceptance criteria: Explain the ₦60,000 shortfall as a -6.67% variance against target; disclose unknown causes until investigated.
+
+## Study this worked example
+```text
+Actual 840000; target 900000
+Gap = -60000; variance % = -60000/900000 = -6.67%
+```
+
+**How to interpret the output:** Writing and presenting an Excel management report begins with a practical objective: Turn dashboard findings into a concise business narrative and deliver a portable report. In Microsoft Excel, begin by understanding the workspace and the data rather than memorising a command. Observation versus explanation: show what changed before speculating why Variance: calculate actual-minus-target and percentage change with correct denominators Practice these ideas on a small synthetic sample first. Notice where the tool shows inputs, intermediate results and errors; then describe in plain language what each operation does and what it does not prove. Keep original records separate from working calculations so you can trace any surprising result back to its source.
+
+## Business case study
+Business case: A head of operations needs an evidence-based monthly performance report that can be discussed in five minutes. Your role is to deliver a result that a manager can trust and act upon, not merely a screenshot. First describe what records are included and excluded. Next perform the method described in this week, and record any changes to the source. Use the worked example as a starting point but test it with different values; finally communicate one relevant observation, one limitation and a follow-up.
 
 ## Independent practical challenge
-Name three quality checks before publishing a dashboard.
+Write a one-page executive summary supported by dashboard screenshots and three priority recommendations.
 
-**Deliverable:** Create a short presenter script with headline, evidence, caveat and action.
+**What you should hand in:** Explain the ₦60,000 shortfall as a -6.67% variance against target; disclose unknown causes until investigated.
 
-## Verify your work
-Each KPI should state its timeframe and unit. Compare the dashboard values to the source table for two selected months and one specific region before sharing it.
+## Check your result (after attempting)
+Expected evidence: Explain the ₦60,000 shortfall as a -6.67% variance against target; disclose unknown causes until investigated. To validate it, compare a small hand-checked sample with the final output, test an alternative filter or a changed input, and record any unmatched, missing or suspicious data. If results differ, review the original data, formula or query, aggregation grain and selected filters before sharing the report. Avoid this common error: Reporting a percentage without its base or sharing screenshots with unreadable labels.
 
-- Confirm the number of records used and explain any excluded records.
-- Check date, currency, percentage and unit formats.
-- Recalculate at least one sample manually or using another method.
-- Separate observed results from assumptions about why they occurred.
-- Include source, period, filters and limitations in the presentation.
+**Common failure:** Reporting a percentage without its base or sharing screenshots with unreadable labels.
 
-## Compare with the suggested solution (after attempting the task)
-reconcile totals; test slicers; verify labels/units
+## Reflect and explain the result
+- Which menu, editor or pane did you use, and why?
+- What is the data grain, metric definition or calculated rule?
+- Can a second learner reproduce your output using the dataset and your instructions?
+- Which number, chart or limitation must be mentioned when presenting your result?
 
-**Common pitfall:** Adding decorative charts without business questions.
+## Management report presentation layout
+![Example management presentation storyboard](../../assets/images/dashboard-samples/excel-report-storyboard.svg)
+
+Follow the order: decision question, verified evidence, interpretation and recommended action.
 
 ---
-The lesson content and model answers are intended for study. Completing the worksheet does not automatically mark the app quiz or progress as complete.
+**Progress note:** Completing this worksheet is practice. Marking a week complete, passing an assessment and submitting an instructor-reviewed capstone are separate actions in DataLearning.

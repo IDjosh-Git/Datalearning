@@ -1,51 +1,76 @@
-# Excel · Week 07 · Data cleaning
+# Microsoft Excel · Week 07 · Choosing and interpreting Excel charts
 
-> DataLearning practice brief — synthetic training material. Keep your original source file unchanged and make a copy for transformations.
+> DataLearning comprehensive practical lesson. Data is fictional. This worksheet supports the full in-app explanation and independent practice. Do not overwrite your raw source file.
 
 ## Learning outcome
-Standardise text and verify duplicates
+Create truthful visuals that match the business question and explain what each chart shows.
 
-## Before you begin: open the right file
-- Download: `learning_sales_quality_lab.csv` in `/downloads/` of your DataLearning project.
-- Important fields / tables: order_id, order_date, region, category, quantity, unit_price_ngn, unit_cost_ngn, status, customer_id, channel.
-- Related video (opens within the lesson page): https://www.youtube.com/watch?v=PSNXoAs2FtQ&t=22498s.
-- Use Excel / Power BI / Tableau / Power Query for CSV sources, a SQLite-compatible reader for `.sqlite` files, or Python/pandas for code-based analysis as the week requires.
+## Where to begin in the tool
+Select a PivotTable summary, use Insert > Recommended Charts or the chart family, then format axes and titles.
 
-## Understand the analytical method
-Text data often contains invisible whitespace, inconsistent letter case and stray characters. TRIM removes ordinary extra spaces; CLEAN removes many nonprintable characters; SUBSTITUTE replaces specific characters. Before joining tables or counting categories, standardise these fields and confirm that two values which look identical really compare as equal. Email addresses, category labels and external IDs deserve special care.
 
-Duplicate detection must use the correct key. Two customers with the same name are not necessarily duplicate customer records; an OrderID repeated with different LineNumbers may be expected. Create a cleaning column rather than overwriting the source immediately, compare before-and-after distinct counts, and keep an exception list. Excel Text to Columns or Power Query can help split imported text fields reproducibly.
+## Source data dictionary · exact practice file fields
+The linked CSV uses these **exact header names**. Import the file before attempting examples. If an exercise uses a friendly or calculated name, map or create it first.
 
-## Guided walkthrough in the tool
-1. Create a RawRegion column with differences in capitalisation and spacing.
-2. Create CleanRegion using TRIM, CLEAN and a consistent casing rule.
-3. Compare unique counts before and after normalisation and inspect merged categories.
-4. Flag duplicate business keys with COUNTIF but confirm whether the record grain permits repeats.
+`order_id, order_date, region, category, quantity, unit_price_ngn, unit_cost_ngn, status, customer_id, channel`
 
-### Additional hands-on instruction
-Import the dirty sales file, inspect blank price, malformed quantity and duplicated order ID, and make a corrected copy.
+Available `status` values: `Cancelled`, `Completed`, `Returned`, `complete`
 
-## Business case
-Imported regions include “South”, “ south” and “SOUTH”. Trimming and standardising their case makes reports group them together. But “South-East” and “South East” might be distinct official categories; do not automatically replace punctuation without an approved mapping. Inspect the frequency table before and after cleaning to catch mistaken merges.
+The worked example may introduce derived fields or example tables. Create or rename those fields explicitly and verify results against these original source columns. Source status values are Cancelled, Completed, Returned, complete.
+
+## Dataset and companion video
+- **Download the dataset:** [`learning_sales_quality_lab.csv`](../learning_sales_quality_lab.csv)
+- **Video companion:** https://www.youtube.com/watch?v=PSNXoAs2FtQ&t=22498s (the in-app Watch button opens the YouTube player when embedding is permitted).
+- **Reading order:** first identify controls, then read the four concepts, reproduce the example, try an independent case, and validate your evidence.
+
+## Explain the four essential concepts
+### 1. Lines
+show time trends with dates in chronological order
+
+### 2. Bars
+compare categories starting quantitative bars from zero
+
+### 3. KPI context
+report units, dates and baseline alongside a headline metric
+
+### 4. Chart integrity
+avoid truncated axes, 3D effects and over-coloured categories.
+
+## Why this skill matters
+Why this skill matters: The sales director needs two charts that communicate trends and priorities in under one minute. The method is not only about producing an attractive figure. KPI context: report units, dates and baseline alongside a headline metric Chart integrity: avoid truncated axes, 3D effects and over-coloured categories. When preparing an output for another person, specify the reporting period, units, selection rules and known limitations. An analyst should be able to explain why a calculation or chart answers the actual business question and reproduce the result.
+
+## Guided practice · follow all four steps
+1. Open the correct workspace and identify the controls before entering commands. Select a PivotTable summary, use Insert > Recommended Charts or the chart family, then format axes and titles. Keep an untouched source or backup version so a mistake is reversible.
+2. Apply the first two concepts on a small example: Lines — show time trends with dates in chronological order Then test bars with at least two contrasting inputs.
+3. Reproduce the worked example below exactly, then change one input or filter. Explain which value changes and why. After that, apply kpi context and inspect the output for errors.
+4. Complete the independent challenge: Produce a three-month revenue trend, a region ranking and one sentence distinguishing an observed change from its cause. Before moving on, check the result against the acceptance criteria: The line must connect Jan, Feb and Mar in order; (135000-150000)/150000 = -10% month-on-month.
+
+## Study this worked example
+```text
+Monthly revenue: Jan 120000, Feb 150000, Mar 135000
+Line chart → Feb peak; Mar is 10% below Feb
+```
+
+**How to interpret the output:** Choosing and interpreting Excel charts begins with a practical objective: Create truthful visuals that match the business question and explain what each chart shows. In Microsoft Excel, begin by understanding the workspace and the data rather than memorising a command. Lines: show time trends with dates in chronological order Bars: compare categories starting quantitative bars from zero Practice these ideas on a small synthetic sample first. Notice where the tool shows inputs, intermediate results and errors; then describe in plain language what each operation does and what it does not prove. Keep original records separate from working calculations so you can trace any surprising result back to its source.
+
+## Business case study
+Business case: The sales director needs two charts that communicate trends and priorities in under one minute. Your role is to deliver a result that a manager can trust and act upon, not merely a screenshot. First describe what records are included and excluded. Next perform the method described in this week, and record any changes to the source. Use the worked example as a starting point but test it with different values; finally communicate one relevant observation, one limitation and a follow-up.
 
 ## Independent practical challenge
-Propose a quick clean-up sequence for imported customer names.
+Produce a three-month revenue trend, a region ranking and one sentence distinguishing an observed change from its cause.
 
-**Deliverable:** Write a before/after quality summary and keep every disputed row in an exceptions tab.
+**What you should hand in:** The line must connect Jan, Feb and Mar in order; (135000-150000)/150000 = -10% month-on-month.
 
-## Verify your work
-If values are still different after TRIM, look for non-breaking spaces or character-encoding issues. Do not delete all duplicates until you know why they appeared.
+## Check your result (after attempting)
+Expected evidence: The line must connect Jan, Feb and Mar in order; (135000-150000)/150000 = -10% month-on-month. To validate it, compare a small hand-checked sample with the final output, test an alternative filter or a changed input, and record any unmatched, missing or suspicious data. If results differ, review the original data, formula or query, aggregation grain and selected filters before sharing the report. Avoid this common error: Using a pie chart with many categories or writing 'marketing caused the fall' without evidence.
 
-- Confirm the number of records used and explain any excluded records.
-- Check date, currency, percentage and unit formats.
-- Recalculate at least one sample manually or using another method.
-- Separate observed results from assumptions about why they occurred.
-- Include source, period, filters and limitations in the presentation.
+**Common failure:** Using a pie chart with many categories or writing 'marketing caused the fall' without evidence.
 
-## Compare with the suggested solution (after attempting the task)
-check types; TRIM/CLEAN; standardise case; inspect duplicates
-
-**Common pitfall:** Deleting records solely because customer names repeat.
+## Reflect and explain the result
+- Which menu, editor or pane did you use, and why?
+- What is the data grain, metric definition or calculated rule?
+- Can a second learner reproduce your output using the dataset and your instructions?
+- Which number, chart or limitation must be mentioned when presenting your result?
 
 ---
-The lesson content and model answers are intended for study. Completing the worksheet does not automatically mark the app quiz or progress as complete.
+**Progress note:** Completing this worksheet is practice. Marking a week complete, passing an assessment and submitting an instructor-reviewed capstone are separate actions in DataLearning.

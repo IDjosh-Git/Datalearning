@@ -1,51 +1,92 @@
-# Power Query · Week 10 · M basics and refresh-ready pipeline
+# Power Query · Week 10 · Power Query capstone: reliable data preparation pipeline
 
-> DataLearning practice brief — synthetic training material. Keep your original source file unchanged and make a copy for transformations.
+> DataLearning comprehensive practical lesson. Data is fictional. This worksheet supports the full in-app explanation and independent practice. Do not overwrite your raw source file.
 
 ## Learning outcome
-Read transformation code and document refresh checks
+Prepare an auditable ETL output and show how downstream dashboards can consume it.
 
-## Before you begin: open the right file
-- Download: `learning_sales_quality_lab.csv` in `/downloads/` of your DataLearning project.
-- Important fields / tables: order_id, order_date, region, category, quantity, unit_price_ngn, unit_cost_ngn, status, customer_id, channel.
-- Related video (opens within the lesson page): https://www.youtube.com/watch?v=VO-MyVMKUC4.
-- Use Excel / Power BI / Tableau / Power Query for CSV sources, a SQLite-compatible reader for `.sqlite` files, or Python/pandas for code-based analysis as the week requires.
+## Where to begin in the tool
+Start from two raw CSV files, reference them as sources and record every Applied Step.
 
-## Understand the analytical method
-Power Query uses the M language. A query is commonly a `let` expression containing named transformation steps followed by an `in` expression that specifies the final output. You do not need to memorise every function to audit a query: read the steps in order and identify which step changes the column shape, type or row count. The Advanced Editor helps inspect and edit these expressions when the interface is insufficient.
 
-A reliable refresh pipeline has predictable inputs, clear step names and validation checks. A new source column, changed category spelling or unexpected timestamp format can break previously successful steps. Prefer robust transformations over hard-coded manual fixes, but do not suppress errors without investigating them. Document source location, owner, refresh frequency, row-count checks and the expected output schema.
+## Source data dictionary · exact practice file fields
+The linked CSV uses these **exact header names**. Import the file before attempting examples. If an exercise uses a friendly or calculated name, map or create it first.
 
-## Guided walkthrough in the tool
-1. Open Advanced Editor and identify the Source, transformation steps and final in expression.
-2. Rename one step clearly and verify that subsequent steps reference its new name.
-3. Refresh with an updated file and compare column types, row counts, errors and totals.
-4. Write a refresh checklist containing expected file structure and steps for investigating failures.
+`order_id, order_date, region, category, quantity, unit_price_ngn, unit_cost_ngn, status, customer_id, channel`
 
-### Additional hands-on instruction
-Open Advanced Editor and trace Source → Changed Type → Cleaned Region → Grouped Rows with friendly names.
+Available `status` values: `Cancelled`, `Completed`, `Returned`, `complete`
 
-## Business case
-A query in Advanced Editor contains Source, Changed Type and Filtered Rows steps. A renamed source column can break Changed Type. Instead of suppressing the error, trace the dependency, update the step and refresh again. Record the expected schema, row count and numeric control total as part of a repeatable production checklist.
+The worked example may introduce derived fields or example tables. Create or rename those fields explicitly and verify results against these original source columns. Source status values are Cancelled, Completed, Returned, complete.
+
+## Dataset and companion video
+- **Download the dataset:** [`learning_sales_quality_lab.csv`](../learning_sales_quality_lab.csv)
+- **Video companion:** https://www.youtube.com/watch?v=VO-MyVMKUC4 (the in-app Watch button opens the YouTube player when embedding is permitted).
+- **Reading order:** first identify controls, then read the four concepts, reproduce the example, try an independent case, and validate your evidence.
+
+## Explain the four essential concepts
+### 1. Input quality
+profile nulls, errors and identifiers
+
+### 2. Transformations
+type, standardise, append and merge where necessary
+
+### 3. Dashboard output
+create tidy month-region KPI table and a preview chart or layout
+
+### 4. Handover
+document source locations, Applied Steps, refresh, control totals and exceptions.
+
+## Why this skill matters
+Why this skill matters: A retail organisation wants a controlled monthly file-refresh process that supplies its BI dashboards. The method is not only about producing an attractive figure. Dashboard output: create tidy month-region KPI table and a preview chart or layout Handover: document source locations, Applied Steps, refresh, control totals and exceptions. When preparing an output for another person, specify the reporting period, units, selection rules and known limitations. An analyst should be able to explain why a calculation or chart answers the actual business question and reproduce the result.
+
+## Guided practice · follow all four steps
+1. Open the correct workspace and identify the controls before entering commands. Start from two raw CSV files, reference them as sources and record every Applied Step. Keep an untouched source or backup version so a mistake is reversible.
+2. Apply the first two concepts on a small example: Input quality — profile nulls, errors and identifiers Then test transformations with at least two contrasting inputs.
+3. Reproduce the worked example below exactly, then change one input or filter. Explain which value changes and why. After that, apply dashboard output and inspect the output for errors.
+4. Complete the independent challenge: Submit a refreshable Power Query pipeline and a clear analytical reporting dataset with a short interpretation. Before moving on, check the result against the acceptance criteria: Re-running the transformation on the same inputs reproduces row counts and sums; changes to source are traceable.
+
+## Study this worked example
+```text
+Deliverables: Excel workbook with queries or PBIX, cleaned output CSV, steps and reconciliation log
+```
+
+**How to interpret the output:** Power Query capstone: reliable data preparation pipeline begins with a practical objective: Prepare an auditable ETL output and show how downstream dashboards can consume it. In Power Query, begin by understanding the workspace and the data rather than memorising a command. Input quality: profile nulls, errors and identifiers Transformations: type, standardise, append and merge where necessary Practice these ideas on a small synthetic sample first. Notice where the tool shows inputs, intermediate results and errors; then describe in plain language what each operation does and what it does not prove. Keep original records separate from working calculations so you can trace any surprising result back to its source.
+
+## Business case study
+Business case: A retail organisation wants a controlled monthly file-refresh process that supplies its BI dashboards. Your role is to deliver a result that a manager can trust and act upon, not merely a screenshot. First describe what records are included and excluded. Next perform the method described in this week, and record any changes to the source. Use the worked example as a starting point but test it with different values; finally communicate one relevant observation, one limitation and a follow-up.
 
 ## Independent practical challenge
-What must be verified before scheduling a refreshed query?
+Submit a refreshable Power Query pipeline and a clear analytical reporting dataset with a short interpretation.
 
-**Deliverable:** Refresh safely and supply a short step-by-step data-preparation handover.
+**What you should hand in:** Re-running the transformation on the same inputs reproduces row counts and sums; changes to source are traceable.
 
-## Verify your work
-A refresh that runs without errors may still produce incorrect totals. Confirm that both schema and metrics remain valid, and keep a record of any rejected rows.
+## Check your result (after attempting)
+Expected evidence: Re-running the transformation on the same inputs reproduces row counts and sums; changes to source are traceable. To validate it, compare a small hand-checked sample with the final output, test an alternative filter or a changed input, and record any unmatched, missing or suspicious data. If results differ, review the original data, formula or query, aggregation grain and selected filters before sharing the report. Avoid this common error: Sharing only the final CSV without the transform logic, source schema or exception handling.
 
-- Confirm the number of records used and explain any excluded records.
-- Check date, currency, percentage and unit formats.
-- Recalculate at least one sample manually or using another method.
-- Separate observed results from assumptions about why they occurred.
-- Include source, period, filters and limitations in the presentation.
+**Common failure:** Sharing only the final CSV without the transform logic, source schema or exception handling.
 
-## Compare with the suggested solution (after attempting the task)
-Source access, data types, row counts, errors, and expected totals.
+## Reflect and explain the result
+- Which menu, editor or pane did you use, and why?
+- What is the data grain, metric definition or calculated rule?
+- Can a second learner reproduce your output using the dataset and your instructions?
+- Which number, chart or limitation must be mentioned when presenting your result?
 
-**Common pitfall:** Assuming a successful refresh means all numbers are correct.
+## Dashboard design reference
+![Example Power Query dashboard layout](../../assets/images/dashboard-samples/powerquery-dashboard-wireframe.svg)
+
+Study the KPI strip, timeline, ranking, filters and notes. It is an illustrative wireframe, not a working dashboard or calculated analysis.
+
+## Management report presentation layout
+![Example management presentation storyboard](../../assets/images/dashboard-samples/powerquery-report-storyboard.svg)
+
+Follow the order: decision question, verified evidence, interpretation and recommended action.
+
+## Final Capstone Project · required note
+You have reached Week 10. Complete a reproducible end-to-end analysis and submit evidence for your instructor to review. Identify the audience and business question; document the source, cleaning, transformations and checks; present useful visuals and findings; and write recommendations with limitations.
+
+**Submission:** [Open your Power Query capstone submission page](../../capstone.html?course=powerquery). Sign in and synchronise all ten completed weeks before uploading. Attach your native project file and readable dashboard/report screenshots (up to four files; 12 MB per file, 32 MB total).
+
+**Rubric (100 points):** problem/objectives 25, data quality 20, technical implementation 20, evidence-based findings 20, communication/evidence 15. An instructor reviews each submission; 70/100 is the pass threshold. Never upload personal or confidential business information.
 
 ---
-The lesson content and model answers are intended for study. Completing the worksheet does not automatically mark the app quiz or progress as complete.
+**Progress note:** Completing this worksheet is practice. Marking a week complete, passing an assessment and submitting an instructor-reviewed capstone are separate actions in DataLearning.

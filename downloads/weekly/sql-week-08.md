@@ -1,51 +1,86 @@
-# Sql · Week 08 · Date-based cohorts
+# SQL and SQLite · Week 08 · Building dashboard-ready SQL datasets
 
-> DataLearning practice brief — synthetic training material. Keep your original source file unchanged and make a copy for transformations.
+> DataLearning comprehensive practical lesson. Data is fictional. This worksheet supports the full in-app explanation and independent practice. Do not overwrite your raw source file.
 
 ## Learning outcome
-Align event dates with business definitions
+Shape a query output that a BI tool can visualise without ambiguity.
 
-## Before you begin: open the right file
-- Download: `retail_practice.sqlite` in `/downloads/` of your DataLearning project.
-- Important fields / tables: customers(customer_id, customer_name, segment, region, signup_date), orders(order_id, order_date, customer_id, region, category, product, quantity, unit_price, unit_cost, discount_pct, status, sales_rep), targets(month_start, region, sales_target).
-- Related video (opens within the lesson page): https://www.youtube.com/watch?v=PSNXoAs2FtQ&t=8217s.
-- Use Excel / Power BI / Tableau / Power Query for CSV sources, a SQLite-compatible reader for `.sqlite` files, or Python/pandas for code-based analysis as the week requires.
+## Where to begin in the tool
+Use CTEs to prepare a dataset with one row per month and region and explicit measure fields.
 
-## Understand the analytical method
-A cohort groups entities by a shared starting event, such as the month a customer first purchased. A retention table then asks how many members of each starting cohort return in later periods. Distinguish “new customer” from “first order in the selected dataset”; partial history can misclassify old customers as new. Align event dates to the business timezone and use consistent month boundaries.
 
-In retention reporting, the denominator is usually the number of customers in the original cohort, while each later numerator counts returning members from that cohort. Multiple orders by the same customer in a month should count once for customer retention. A cohort matrix should clearly label Month 0, Month 1 and later periods, and should not compare immature recent cohorts against months they have not yet reached.
+## Source data dictionary · exact practice file fields
+The SQL database contains the following **real tables and columns**. Use these names in your queries rather than assuming fields that do not exist.
 
-## Guided walkthrough in the tool
-1. Find each customer’s first eligible order date from complete available history.
-2. Assign the customer to a cohort month and each order to an activity month.
-3. Count distinct active customers by cohort month and elapsed month.
-4. Divide by the original cohort size; verify a few customers by tracing their activity.
+- `customers (customer_id, customer_name, segment, region, signup_date)`
+- `orders (order_id, order_date, customer_id, region, category, product, quantity, unit_price, unit_cost, discount_pct, status, sales_rep)`
+- `targets (month_start, region, sales_target)`
 
-### Additional hands-on instruction
-Group customers by signup month; compare with orders grouped by order month and explain the different populations.
+Available `status` values: `Completed`, `Returned`, `Cancelled`
 
-## Business case
-Customers A and B first purchased in January. A returned in February, while B did not. January-cohort Month 1 retention is 1/2 = 50%. If A made five February orders, retention is still 50%, not 250%. Count active customers distinctly and divide by the original cohort size, not the number of transactions.
+The worked example may introduce derived fields or example tables. Create or rename those fields explicitly and verify results against these original source columns. Source status values are Completed, Returned, Cancelled.
+
+## Dataset and companion video
+- **Download the dataset:** [`retail_practice.sqlite`](../retail_practice.sqlite)
+- **Video companion:** https://www.youtube.com/watch?v=PSNXoAs2FtQ&t=8217s (the in-app Watch button opens the YouTube player when embedding is permitted).
+- **Reading order:** first identify controls, then read the four concepts, reproduce the example, try an independent case, and validate your evidence.
+
+## Explain the four essential concepts
+### 1. Reporting grain
+declare one row per Month x Region in documentation
+
+### 2. KPI fields
+pre-aggregate completed revenue, order count and return rate consistently
+
+### 3. Dates
+normalise to reporting month and preserve original timestamps
+
+### 4. Source checks
+include row counts, unmatched keys and excluded statuses as validation outputs.
+
+## Why this skill matters
+Why this skill matters: A Power BI team needs a trustworthy monthly fact table to build a management dashboard. The method is not only about producing an attractive figure. Dates: normalise to reporting month and preserve original timestamps Source checks: include row counts, unmatched keys and excluded statuses as validation outputs. When preparing an output for another person, specify the reporting period, units, selection rules and known limitations. An analyst should be able to explain why a calculation or chart answers the actual business question and reproduce the result.
+
+## Guided practice · follow all four steps
+1. Open the correct workspace and identify the controls before entering commands. Use CTEs to prepare a dataset with one row per month and region and explicit measure fields. Keep an untouched source or backup version so a mistake is reversible.
+2. Apply the first two concepts on a small example: Reporting grain — declare one row per Month x Region in documentation Then test kpi fields with at least two contrasting inputs.
+3. Reproduce the worked example below exactly, then change one input or filter. Explain which value changes and why. After that, apply dates and inspect the output for errors.
+4. Complete the independent challenge: Produce a tidy reporting view for a trend chart and a region filter; sketch a dashboard layout fed by this output. Before moving on, check the result against the acceptance criteria: Every row represents one month-region combination; when grouped again by month, totals must reconcile.
+
+## Study this worked example
+```text
+SELECT substr(order_date,1,7) AS month,region,
+ROUND(SUM(quantity*unit_price*(1-discount_pct)),2) AS completed_revenue,
+COUNT(DISTINCT order_id) AS order_count
+FROM orders WHERE status='Completed'
+GROUP BY substr(order_date,1,7),region ORDER BY month,region;
+```
+
+**How to interpret the output:** Building dashboard-ready SQL datasets begins with a practical objective: Shape a query output that a BI tool can visualise without ambiguity. In SQL and SQLite, begin by understanding the workspace and the data rather than memorising a command. Reporting grain: declare one row per Month x Region in documentation KPI fields: pre-aggregate completed revenue, order count and return rate consistently Practice these ideas on a small synthetic sample first. Notice where the tool shows inputs, intermediate results and errors; then describe in plain language what each operation does and what it does not prove. Keep original records separate from working calculations so you can trace any surprising result back to its source.
+
+## Business case study
+Business case: A Power BI team needs a trustworthy monthly fact table to build a management dashboard. Your role is to deliver a result that a manager can trust and act upon, not merely a screenshot. First describe what records are included and excluded. Next perform the method described in this week, and record any changes to the source. Use the worked example as a starting point but test it with different values; finally communicate one relevant observation, one limitation and a follow-up.
 
 ## Independent practical challenge
-Why can daily conversion divided by daily activations mislead?
+Produce a tidy reporting view for a trend chart and a region filter; sketch a dashboard layout fed by this output.
 
-**Deliverable:** Write an unambiguous cohort definition and note which timezone and calendar rules it needs.
+**What you should hand in:** Every row represents one month-region combination; when grouped again by month, totals must reconcile.
 
-## Verify your work
-Recent cohorts have fewer observed follow-up months. Leave future periods blank rather than showing them as zero retention, which would be misleading.
+## Check your result (after attempting)
+Expected evidence: Every row represents one month-region combination; when grouped again by month, totals must reconcile. To validate it, compare a small hand-checked sample with the final output, test an alternative filter or a changed input, and record any unmatched, missing or suspicious data. If results differ, review the original data, formula or query, aggregation grain and selected filters before sharing the report. Avoid this common error: Using SELECT * as a long-term reporting schema or mixing gross and completed revenue definitions.
 
-- Confirm the number of records used and explain any excluded records.
-- Check date, currency, percentage and unit formats.
-- Recalculate at least one sample manually or using another method.
-- Separate observed results from assumptions about why they occurred.
-- Include source, period, filters and limitations in the presentation.
+**Common failure:** Using SELECT * as a long-term reporting schema or mixing gross and completed revenue definitions.
 
-## Compare with the suggested solution (after attempting the task)
-Numerator and denominator may describe different populations
+## Reflect and explain the result
+- Which menu, editor or pane did you use, and why?
+- What is the data grain, metric definition or calculated rule?
+- Can a second learner reproduce your output using the dataset and your instructions?
+- Which number, chart or limitation must be mentioned when presenting your result?
 
-**Common pitfall:** Mixing event and cohort denominators.
+## Dashboard design reference
+![Example SQL and SQLite dashboard layout](../../assets/images/dashboard-samples/sql-dashboard-wireframe.svg)
+
+Study the KPI strip, timeline, ranking, filters and notes. It is an illustrative wireframe, not a working dashboard or calculated analysis.
 
 ---
-The lesson content and model answers are intended for study. Completing the worksheet does not automatically mark the app quiz or progress as complete.
+**Progress note:** Completing this worksheet is practice. Marking a week complete, passing an assessment and submitting an instructor-reviewed capstone are separate actions in DataLearning.

@@ -1,51 +1,74 @@
-# Statistics · Week 05 · Sampling and bias
+# Applied Statistics · Week 05 · Sampling design and identifying bias
 
-> DataLearning practice brief — synthetic training material. Keep your original source file unchanged and make a copy for transformations.
+> DataLearning comprehensive practical lesson. Data is fictional. This worksheet supports the full in-app explanation and independent practice. Do not overwrite your raw source file.
 
 ## Learning outcome
-Recognise when a sample misrepresents users
+Plan a sample that supports a specific conclusion without excluding important customers.
 
-## Before you begin: open the right file
-- Download: `learning_experiment.csv` in `/downloads/` of your DataLearning project.
-- Important fields / tables: session_id, variant, converted, device, region, basket_items.
-- Related video (opens within the lesson page): https://www.youtube.com/watch?v=bvglAgAZtXE.
-- Use Excel / Power BI / Tableau / Power Query for CSV sources, a SQLite-compatible reader for `.sqlite` files, or Python/pandas for code-based analysis as the week requires.
+## Where to begin in the tool
+Use a random-sample function or clearly described selection procedure and document the full target population.
 
-## Understand the analytical method
-Sampling allows us to estimate features of a large population using a smaller set of observations. A simple random sample gives each eligible member a known selection chance. Stratified sampling divides the population into important groups and samples from each; this can improve representation for smaller groups. Convenience sampling uses easy-to-reach people and may be strongly biased. Choosing more observations does not automatically correct a biased method.
 
-Bias can arise from who is selected, who refuses to respond, how a question is worded or when data is collected. A weekday-only customer survey may miss weekend shoppers, and an online-only form excludes people without access. Before interpreting an estimate, ask whether the sample resembles the target population on relevant factors. Explain coverage gaps and avoid treating a survey proportion as an exact census result.
+## Source data dictionary · exact practice file fields
+The linked CSV uses these **exact header names**. Import the file before attempting examples. If an exercise uses a friendly or calculated name, map or create it first.
 
-## Guided walkthrough in the tool
-1. Define the target customer population and list groups likely to behave differently.
-2. Compare a weekday-only convenience survey with a sampling plan covering all trading days.
-3. Choose a sampling method and explain how participants would be selected.
-4. Document likely coverage and non-response biases and how you would assess their severity.
+`session_id, variant, converted, device, region, basket_items`
 
-### Additional hands-on instruction
-Inspect experiment records by device and region; compare group composition before measuring lift.
+The worked example may introduce derived fields or example tables. Create or rename those fields explicitly and verify results against these original source columns.
 
-## Business case
-A survey about Saturday shopping is collected only on Tuesday mornings. The resulting sample may underrepresent weekend-only shoppers, even if many responses are collected. A better design covers different shopping periods and checks representation of relevant groups. Sample size does not fix an exclusion built into the selection process.
+## Dataset and companion video
+- **Download the dataset:** [`learning_experiment.csv`](../learning_experiment.csv)
+- **Video companion:** https://www.youtube.com/watch?v=bvglAgAZtXE (the in-app Watch button opens the YouTube player when embedding is permitted).
+- **Reading order:** first identify controls, then read the four concepts, reproduce the example, try an independent case, and validate your evidence.
+
+## Explain the four essential concepts
+### 1. Target population
+identify the entire group a decision affects
+
+### 2. Sampling frame
+lists who could actually be selected
+
+### 3. Selection bias
+missing groups create systematic distortion
+
+### 4. Practical safeguards
+stratify by region or channel when those groups matter.
+
+## Why this skill matters
+Why this skill matters: A retail board wants an interpretable service survey that is not dominated by one branch or channel. The method is not only about producing an attractive figure. Selection bias: missing groups create systematic distortion Practical safeguards: stratify by region or channel when those groups matter. When preparing an output for another person, specify the reporting period, units, selection rules and known limitations. An analyst should be able to explain why a calculation or chart answers the actual business question and reproduce the result.
+
+## Guided practice · follow all four steps
+1. Open the correct workspace and identify the controls before entering commands. Use a random-sample function or clearly described selection procedure and document the full target population. Keep an untouched source or backup version so a mistake is reversible.
+2. Apply the first two concepts on a small example: Target population — identify the entire group a decision affects Then test sampling frame with at least two contrasting inputs.
+3. Reproduce the worked example below exactly, then change one input or filter. Explain which value changes and why. After that, apply selection bias and inspect the output for errors.
+4. Complete the independent challenge: Design a 100-person satisfaction sample that covers weekday/weekend and online/in-store groups. Before moving on, check the result against the acceptance criteria: The sampling plan includes each relevant segment and documents its selection probabilities and constraints.
+
+## Study this worked example
+```text
+Population: all monthly customers
+Biased sample: only app users who opened a promotional email
+```
+
+**How to interpret the output:** Sampling design and identifying bias begins with a practical objective: Plan a sample that supports a specific conclusion without excluding important customers. In Applied Statistics, begin by understanding the workspace and the data rather than memorising a command. Target population: identify the entire group a decision affects Sampling frame: lists who could actually be selected Practice these ideas on a small synthetic sample first. Notice where the tool shows inputs, intermediate results and errors; then describe in plain language what each operation does and what it does not prove. Keep original records separate from working calculations so you can trace any surprising result back to its source.
+
+## Business case study
+Business case: A retail board wants an interpretable service survey that is not dominated by one branch or channel. Your role is to deliver a result that a manager can trust and act upon, not merely a screenshot. First describe what records are included and excluded. Next perform the method described in this week, and record any changes to the source. Use the worked example as a starting point but test it with different values; finally communicate one relevant observation, one limitation and a follow-up.
 
 ## Independent practical challenge
-Name one sampling problem in surveying only app users who opened a promo email.
+Design a 100-person satisfaction sample that covers weekday/weekend and online/in-store groups.
 
-**Deliverable:** Identify who might be missing from the sample and what additional data would reduce bias.
+**What you should hand in:** The sampling plan includes each relevant segment and documents its selection probabilities and constraints.
 
-## Verify your work
-A sample is useful only if its limitations are understood. Compare sampled group proportions against known population benchmarks where possible, and disclose gaps rather than overclaiming precision.
+## Check your result (after attempting)
+Expected evidence: The sampling plan includes each relevant segment and documents its selection probabilities and constraints. To validate it, compare a small hand-checked sample with the final output, test an alternative filter or a changed input, and record any unmatched, missing or suspicious data. If results differ, review the original data, formula or query, aggregation grain and selected filters before sharing the report. Avoid this common error: Reporting opinions of volunteers as if they represent all customers without qualification.
 
-- Confirm the number of records used and explain any excluded records.
-- Check date, currency, percentage and unit formats.
-- Recalculate at least one sample manually or using another method.
-- Separate observed results from assumptions about why they occurred.
-- Include source, period, filters and limitations in the presentation.
+**Common failure:** Reporting opinions of volunteers as if they represent all customers without qualification.
 
-## Compare with the suggested solution (after attempting the task)
-Selection bias: many customers never receive or open that email.
-
-**Common pitfall:** Generalising from a convenience sample without caveats.
+## Reflect and explain the result
+- Which menu, editor or pane did you use, and why?
+- What is the data grain, metric definition or calculated rule?
+- Can a second learner reproduce your output using the dataset and your instructions?
+- Which number, chart or limitation must be mentioned when presenting your result?
 
 ---
-The lesson content and model answers are intended for study. Completing the worksheet does not automatically mark the app quiz or progress as complete.
+**Progress note:** Completing this worksheet is practice. Marking a week complete, passing an assessment and submitting an instructor-reviewed capstone are separate actions in DataLearning.

@@ -1,51 +1,74 @@
-# Power Bi · Week 06 · Time intelligence
+# Power BI Desktop · Week 06 · Advanced DAX and analytical scenarios
 
-> DataLearning practice brief — synthetic training material. Keep your original source file unchanged and make a copy for transformations.
+> DataLearning comprehensive practical lesson. Data is fictional. This worksheet supports the full in-app explanation and independent practice. Do not overwrite your raw source file.
 
 ## Learning outcome
-Define date continuity and comparison periods
+Control denominators and create context-aware comparisons without confusing totals.
 
-## Before you begin: open the right file
-- Download: `learning_monthly_kpis.csv` in `/downloads/` of your DataLearning project.
-- Important fields / tables: month, region, net_sales_ngn, sales_target_ngn, gross_profit_ngn, order_count, late_shipments, returned_orders.
-- Related video (opens within the lesson page): https://www.youtube.com/watch?v=WH937Gc_8eg&t=7494s.
-- Use Excel / Power BI / Tableau / Power Query for CSV sources, a SQLite-compatible reader for `.sqlite` files, or Python/pandas for code-based analysis as the week requires.
+## Where to begin in the tool
+Use Modeling > New measure, then test results in a matrix with Region as rows and slicer filters.
 
-## Understand the analytical method
-Time intelligence compares periods under explicit calendar rules. Create a continuous date table spanning the required history, including dates with no transactions, and relate it to the fact table. Measures can then calculate month-to-date revenue, previous-year revenue or year-over-year variance. Decide whether the business uses calendar months, fiscal periods or custom trading weeks before writing comparisons.
 
-A previous-month comparison can mislead if the current month is incomplete. Comparing the first five days of this month to all of last month mixes time windows. Define how the report handles incomplete periods and late-arriving data. Dates must be typed correctly, the relationship must be active for the intended date role, and filters must not produce a disconnected date range.
+## Source data dictionary · exact practice file fields
+The linked CSV uses these **exact header names**. Import the file before attempting examples. If an exercise uses a friendly or calculated name, map or create it first.
 
-## Guided walkthrough in the tool
-1. Create and validate a continuous Calendar table with year, month and date columns.
-2. Relate Calendar[Date] to the transaction date and check a known month total.
-3. Write a previous-year or previous-month measure and display it beside the current value.
-4. Label incomplete periods and test the calculation around year and month boundaries.
+`month, region, net_sales_ngn, sales_target_ngn, gross_profit_ngn, order_count, late_shipments, returned_orders`
 
-### Additional hands-on instruction
-Create a Calendar table covering the full period, mark it as a date table and compare current to previous month.
+The worked example may introduce derived fields or example tables. Create or rename those fields explicitly and verify results against these original source columns.
 
-## Business case
-A dashboard compares November revenue with the previous month. On November 10, the current month has only ten days. Comparing it to all 31 days of October would exaggerate the apparent decline. Decide whether to compare month-to-date periods or completed months and show the comparison explicitly in the measure label.
+## Dataset and companion video
+- **Download the dataset:** [`learning_monthly_kpis.csv`](../learning_monthly_kpis.csv)
+- **Video companion:** https://www.youtube.com/watch?v=WH937Gc_8eg&t=7494s (the in-app Watch button opens the YouTube player when embedding is permitted).
+- **Reading order:** first identify controls, then read the four concepts, reproduce the example, try an independent case, and validate your evidence.
+
+## Explain the four essential concepts
+### 1. CALCULATE
+changes filter context for a specified calculation
+
+### 2. ALL versus ALLSELECTED
+choose grand totals versus user-selected totals deliberately
+
+### 3. Ranking
+RANKX or ranking measures require a clear comparison population
+
+### 4. Sanity checks
+inspect row values and grand totals under two filter states.
+
+## Why this skill matters
+Why this skill matters: Executives want market contribution and ranking metrics under controlled country and period slicers. The method is not only about producing an attractive figure. Ranking: RANKX or ranking measures require a clear comparison population Sanity checks: inspect row values and grand totals under two filter states. When preparing an output for another person, specify the reporting period, units, selection rules and known limitations. An analyst should be able to explain why a calculation or chart answers the actual business question and reproduce the result.
+
+## Guided practice · follow all four steps
+1. Open the correct workspace and identify the controls before entering commands. Use Modeling > New measure, then test results in a matrix with Region as rows and slicer filters. Keep an untouched source or backup version so a mistake is reversible.
+2. Apply the first two concepts on a small example: CALCULATE — changes filter context for a specified calculation Then test all versus allselected with at least two contrasting inputs.
+3. Reproduce the worked example below exactly, then change one input or filter. Explain which value changes and why. After that, apply ranking and inspect the output for errors.
+4. Complete the independent challenge: Calculate revenue share by region and explain whether it is a share of all data or selected regions. Before moving on, check the result against the acceptance criteria: All region shares should sum to 100% when the denominator uses the appropriate total; compare to a source-based cross-check.
+
+## Study this worked example
+```text
+Region Share % = DIVIDE([Sales Revenue],CALCULATE([Sales Revenue],ALL(DimRegion)))
+Rank = RANKX(ALL(DimRegion[Region]),[Sales Revenue],,DESC)
+```
+
+**How to interpret the output:** Advanced DAX and analytical scenarios begins with a practical objective: Control denominators and create context-aware comparisons without confusing totals. In Power BI Desktop, begin by understanding the workspace and the data rather than memorising a command. CALCULATE: changes filter context for a specified calculation ALL versus ALLSELECTED: choose grand totals versus user-selected totals deliberately Practice these ideas on a small synthetic sample first. Notice where the tool shows inputs, intermediate results and errors; then describe in plain language what each operation does and what it does not prove. Keep original records separate from working calculations so you can trace any surprising result back to its source.
+
+## Business case study
+Business case: Executives want market contribution and ranking metrics under controlled country and period slicers. Your role is to deliver a result that a manager can trust and act upon, not merely a screenshot. First describe what records are included and excluded. Next perform the method described in this week, and record any changes to the source. Use the worked example as a starting point but test it with different values; finally communicate one relevant observation, one limitation and a follow-up.
 
 ## Independent practical challenge
-Why does YTD need a proper date dimension?
+Calculate revenue share by region and explain whether it is a share of all data or selected regions.
 
-**Deliverable:** Show a missing-month check and explain what happens when time periods are not contiguous.
+**What you should hand in:** All region shares should sum to 100% when the denominator uses the appropriate total; compare to a source-based cross-check.
 
-## Verify your work
-A time comparison should state what is being compared: equivalent elapsed days, complete months or another valid business definition. Review months with no transactions explicitly.
+## Check your result (after attempting)
+Expected evidence: All region shares should sum to 100% when the denominator uses the appropriate total; compare to a source-based cross-check. To validate it, compare a small hand-checked sample with the final output, test an alternative filter or a changed input, and record any unmatched, missing or suspicious data. If results differ, review the original data, formula or query, aggregation grain and selected filters before sharing the report. Avoid this common error: Removing all filters unintentionally with ALL(FactSales) or treating every percentage as additive.
 
-- Confirm the number of records used and explain any excluded records.
-- Check date, currency, percentage and unit formats.
-- Recalculate at least one sample manually or using another method.
-- Separate observed results from assumptions about why they occurred.
-- Include source, period, filters and limitations in the presentation.
+**Common failure:** Removing all filters unintentionally with ALL(FactSales) or treating every percentage as additive.
 
-## Compare with the suggested solution (after attempting the task)
-Consistent date filtering and time calculations
-
-**Common pitfall:** Comparing partial current periods to full prior periods.
+## Reflect and explain the result
+- Which menu, editor or pane did you use, and why?
+- What is the data grain, metric definition or calculated rule?
+- Can a second learner reproduce your output using the dataset and your instructions?
+- Which number, chart or limitation must be mentioned when presenting your result?
 
 ---
-The lesson content and model answers are intended for study. Completing the worksheet does not automatically mark the app quiz or progress as complete.
+**Progress note:** Completing this worksheet is practice. Marking a week complete, passing an assessment and submitting an instructor-reviewed capstone are separate actions in DataLearning.

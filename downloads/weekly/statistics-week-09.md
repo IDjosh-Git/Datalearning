@@ -1,51 +1,78 @@
-# Statistics · Week 09 · Hypothesis tests and p-values
+# Applied Statistics · Week 09 · Hypothesis testing, experiments and result interpretation
 
-> DataLearning practice brief — synthetic training material. Keep your original source file unchanged and make a copy for transformations.
+> DataLearning comprehensive practical lesson. Data is fictional. This worksheet supports the full in-app explanation and independent practice. Do not overwrite your raw source file.
 
 ## Learning outcome
-State hypotheses and avoid common interpretation errors
+Use clear hypotheses and effect sizes to decide whether an apparent change is meaningful.
 
-## Before you begin: open the right file
-- Download: `learning_experiment.csv` in `/downloads/` of your DataLearning project.
-- Important fields / tables: session_id, variant, converted, device, region, basket_items.
-- Related video (opens within the lesson page): https://www.youtube.com/watch?v=vyX4m89VkyI.
-- Use Excel / Power BI / Tableau / Power Query for CSV sources, a SQLite-compatible reader for `.sqlite` files, or Python/pandas for code-based analysis as the week requires.
+## Where to begin in the tool
+Define H0 and H1 before viewing results; use the appropriate statistical test and check assumptions.
 
-## Understand the analytical method
-A hypothesis test evaluates how compatible observed data are with a proposed null model. Begin with a null hypothesis H₀ and an alternative H₁, choose a suitable test, define the significance threshold in advance, and check assumptions. A p-value is the probability, under the null model and testing procedure, of results at least as extreme as the observed evidence. It is not the probability that H₀ is true.
 
-A small p-value can support rejecting the null model under the stated assumptions, but statistical significance is not the same as practical importance. A huge sample can detect a tiny effect that the business does not care about. Conversely, a non-significant result does not prove there is no effect. Report the effect estimate and its uncertainty alongside the p-value, and consider multiple-testing risk when checking many metrics or subgroups.
+## Source data dictionary · exact practice file fields
+The linked CSV uses these **exact header names**. Import the file before attempting examples. If an exercise uses a friendly or calculated name, map or create it first.
 
-## Guided walkthrough in the tool
-1. Write H₀ and H₁ in terms of a measurable business quantity.
-2. Check test assumptions and choose an appropriate procedure before viewing results.
-3. Compare the p-value with the pre-specified threshold and state the resulting decision.
-4. Discuss effect size, confidence interval and practical importance before recommending action.
+`session_id, variant, converted, device, region, basket_items`
 
-### Additional hands-on instruction
-Define a null of equal A/B conversion, set alpha before inspection and calculate or interpret a suitable test.
+The worked example may introduce derived fields or example tables. Create or rename those fields explicitly and verify results against these original source columns.
 
-## Business case
-A new checkout treatment shows p = 0.03 under a correctly specified test with pre-selected α = 0.05. That result can justify rejecting H₀ in the chosen framework, but it does not prove a large effect or a 97% probability that the treatment works. Report the estimated conversion difference and its confidence interval before deciding whether to deploy it.
+## Dataset and companion video
+- **Download the dataset:** [`learning_experiment.csv`](../learning_experiment.csv)
+- **Video companion:** https://www.youtube.com/watch?v=vyX4m89VkyI (the in-app Watch button opens the YouTube player when embedding is permitted).
+- **Reading order:** first identify controls, then read the four concepts, reproduce the example, try an independent case, and validate your evidence.
+
+## Explain the four essential concepts
+### 1. Null hypothesis
+formalises a no-effect benchmark
+
+### 2. P-values
+measure incompatibility under the null and the test model
+
+### 3. Practical significance
+a tiny effect can be statistically significant yet operationally irrelevant
+
+### 4. Multiple testing
+repeated unplanned comparisons inflate false positives.
+
+## Why this skill matters
+Why this skill matters: A digital product team wants evidence before rolling out a new checkout design. The method is not only about producing an attractive figure. Practical significance: a tiny effect can be statistically significant yet operationally irrelevant Multiple testing: repeated unplanned comparisons inflate false positives. When preparing an output for another person, specify the reporting period, units, selection rules and known limitations. An analyst should be able to explain why a calculation or chart answers the actual business question and reproduce the result.
+
+## Guided practice · follow all four steps
+1. Open the correct workspace and identify the controls before entering commands. Define H0 and H1 before viewing results; use the appropriate statistical test and check assumptions. Keep an untouched source or backup version so a mistake is reversible.
+2. Apply the first two concepts on a small example: Null hypothesis — formalises a no-effect benchmark Then test p-values with at least two contrasting inputs.
+3. Reproduce the worked example below exactly, then change one input or filter. Explain which value changes and why. After that, apply practical significance and inspect the output for errors.
+4. Complete the independent challenge: Write a one-paragraph interpretation of a test result including effect size and limitations. Before moving on, check the result against the acceptance criteria: At pre-specified alpha 0.05, reject H0 when p=0.03, subject to assumptions; do not call it proof of causation without design.
+
+## Study this worked example
+```text
+H0: new checkout has equal conversion to old; p = 0.03 at alpha = 0.05
+```
+
+**How to interpret the output:** Hypothesis testing, experiments and result interpretation begins with a practical objective: Use clear hypotheses and effect sizes to decide whether an apparent change is meaningful. In Applied Statistics, begin by understanding the workspace and the data rather than memorising a command. Null hypothesis: formalises a no-effect benchmark P-values: measure incompatibility under the null and the test model Practice these ideas on a small synthetic sample first. Notice where the tool shows inputs, intermediate results and errors; then describe in plain language what each operation does and what it does not prove. Keep original records separate from working calculations so you can trace any surprising result back to its source.
+
+## Business case study
+Business case: A digital product team wants evidence before rolling out a new checkout design. Your role is to deliver a result that a manager can trust and act upon, not merely a screenshot. First describe what records are included and excluded. Next perform the method described in this week, and record any changes to the source. Use the worked example as a starting point but test it with different values; finally communicate one relevant observation, one limitation and a follow-up.
 
 ## Independent practical challenge
-At a pre-specified 5% significance level, what decision follows p=0.03?
+Write a one-paragraph interpretation of a test result including effect size and limitations.
 
-**Deliverable:** Report effect size, interval and caveats, not just a pass/fail significance label.
+**What you should hand in:** At pre-specified alpha 0.05, reject H0 when p=0.03, subject to assumptions; do not call it proof of causation without design.
 
-## Verify your work
-With α = 0.05 and p = 0.03, you would reject H₀ under the test assumptions. You would not conclude that H₀ has a 3% probability of being true.
+## Check your result (after attempting)
+Expected evidence: At pre-specified alpha 0.05, reject H0 when p=0.03, subject to assumptions; do not call it proof of causation without design. To validate it, compare a small hand-checked sample with the final output, test an alternative filter or a changed input, and record any unmatched, missing or suspicious data. If results differ, review the original data, formula or query, aggregation grain and selected filters before sharing the report. Avoid this common error: Interpreting p=0.03 as a 97% probability that the alternative hypothesis is true.
 
-- Confirm the number of records used and explain any excluded records.
-- Check date, currency, percentage and unit formats.
-- Recalculate at least one sample manually or using another method.
-- Separate observed results from assumptions about why they occurred.
-- Include source, period, filters and limitations in the presentation.
+**Common failure:** Interpreting p=0.03 as a 97% probability that the alternative hypothesis is true.
 
-## Compare with the suggested solution (after attempting the task)
-Reject H0, subject to assumptions; do not infer practical importance from p alone.
+## Reflect and explain the result
+- Which menu, editor or pane did you use, and why?
+- What is the data grain, metric definition or calculated rule?
+- Can a second learner reproduce your output using the dataset and your instructions?
+- Which number, chart or limitation must be mentioned when presenting your result?
 
-**Common pitfall:** Equating statistical significance with a large business impact.
+## Management report presentation layout
+![Example management presentation storyboard](../../assets/images/dashboard-samples/statistics-report-storyboard.svg)
+
+Follow the order: decision question, verified evidence, interpretation and recommended action.
 
 ---
-The lesson content and model answers are intended for study. Completing the worksheet does not automatically mark the app quiz or progress as complete.
+**Progress note:** Completing this worksheet is practice. Marking a week complete, passing an assessment and submitting an instructor-reviewed capstone are separate actions in DataLearning.

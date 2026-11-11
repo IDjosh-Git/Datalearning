@@ -14,7 +14,7 @@
   const pathFor = slug => courses[slug];
   const num = week => String(week).padStart(2,'0');
   const labelFor = slug => slug === 'introduction' ? 'Data Analysis' : courses[slug]?.title || slug;
-  const icon = slug => ({introduction:'◉',excel:'▦',sql:'⌗',powerbi:'▥',tableau:'◫',powerquery:'⇆',statistics:'Σ'})[slug] || '◈';
+  const icon = slug => `<img class="dl-course-logo" data-brand-course="${safe(slug)}" src="${base}assets/icons/icon-${safe(slug)}.svg" alt="" width="46" height="46" loading="lazy" decoding="async">`;
   const track = slug => window.ZAHProgressCloud?.COURSE_MAP?.[slug];
   const readProgress = slug => {
     const map = track(slug);
@@ -156,6 +156,9 @@
       one('#zaLessonOutcome').textContent=record.outcome;
       const guide = window.DALP_GUIDED_LESSONS?.[slug]?.[week-1];
       const media = window.DALP_WEEK_MEDIA?.[slug]?.[week-1];
+      const rebuiltModule = window.DALP_TOOL_TO_REPORT?.[slug]?.[week-1];
+      const masterclassHtml = window.DALP_TEN_WEEK_UI?.renderCore?.(rebuiltModule,base) || '';
+      const capstoneProjectHtml = week === 10 ? (window.DALP_TEN_WEEK_UI?.renderCapstone?.(rebuiltModule,base) || '') : '';
       const kitHtml = media ? `<section class="dl-week-kit" id="zaLessonResources" aria-labelledby="dl-week-kit-title">
         <div class="dl-week-kit-heading"><div><span class="dl-eyebrow">WEEK ${num(week)} · PRACTISE & WATCH</span><h2 id="dl-week-kit-title">Your learning resources</h2></div><span class="dl-kit-tip">Included with this lesson</span></div>
         <div class="dl-week-kit-grid">
@@ -208,6 +211,7 @@
         <nav class="za-lesson-sections" aria-label="Sections in this lesson">
           <span class="za-section-toc-title">IN THIS WEEK</span>
           <button type="button" data-jump="zaConcepts">Read the concepts</button>
+          <button type="button" data-jump="zaMasterclass">Tool masterclass</button>
           <button type="button" data-jump="zaLessonResources">Dataset & video</button>
           <button type="button" data-jump="zaMethod">Guided walkthrough</button>
           <button type="button" data-jump="zaExample">Worked example</button>
@@ -216,12 +220,13 @@
         </nav>
         <section class="za-lesson-block za-lesson-objective" id="zaGoals"><div class="za-block-head"><span class="za-block-ico" aria-hidden="true">◎</span><div><span class="za-block-kicker">01 · LEARNING GOAL</span><h2>What you will understand</h2></div></div><p>${safe(record.outcome)}.</p><div class="za-tip"><b>How to study this module:</b> Read both explanations, follow the guided workflow, examine the example, and solve the exercise before opening its answer. Finish with the separate weekly questions.</div></section>
         ${kitHtml}
+        ${masterclassHtml}
         ${guideHtml}
         ${deepHtml}
         ${journeyHtml}
         <section class="za-lesson-block" id="zaExample"><div class="za-block-head"><span class="za-block-ico" aria-hidden="true">▥</span><div><span class="za-block-kicker">02 · WORKED EXAMPLE</span><h2>See the idea in practice</h2></div></div><p class="za-example-intro">Read the scenario. Identify the input, the operation, and what the result means for the business question.</p><div class="za-example">${safe(record.example)}</div>${guide?.case ? `<div class="za-case-study"><div class="za-case-label">APPLY IT TO A REALISTIC CASE</div><p>${safe(guide.case)}</p></div>` : ''}</section>
         <section class="za-lesson-block" id="zaExercise"><div class="za-block-head"><span class="za-block-ico orange" aria-hidden="true">✎</span><div><span class="za-block-kicker">03 · YOUR TURN</span><h2>Try the practical exercise</h2></div></div><p>${safe(record.exercise)}</p><div class="za-exercise-help">Before revealing the answer: identify the correct input fields, state the rule or formula, and check that your result addresses the question.</div><details class="za-exercise-solution"><summary>Reveal the worked answer and compare your reasoning</summary><div class="za-solution">${safe(record.solution)}</div></details><div class="za-tip"><b>Common mistake to avoid:</b> ${safe(record.pitfall)}.</div></section>
-        <section class="za-lesson-block za-lesson-recap" id="zaRecap"><div class="za-block-head"><span class="za-block-ico" aria-hidden="true">✓</span><div><span class="za-block-kicker">LEARNING RECAP</span><h2>Check your understanding</h2></div></div><p class="za-recap-lead">Before you move on, explain the main idea in your own words and confirm that your calculations or decisions can be checked independently.</p><div class="za-recap-card"><strong>What a correct result should show</strong><p>${safe(guide?.verify || record.outcome)}</p></div><div class="za-recap-card za-recap-warning"><strong>Remember this limitation</strong><p>${safe(record.pitfall)}.</p></div><p class="za-recap-next">When you are ready, select <b>Questions to Try</b> below. Questions open on a separate assessment page; completing the lesson and submitting a quiz remain separate actions.</p></section>${deepDive}`;
+        <section class="za-lesson-block za-lesson-recap" id="zaRecap"><div class="za-block-head"><span class="za-block-ico" aria-hidden="true">✓</span><div><span class="za-block-kicker">LEARNING RECAP</span><h2>Check your understanding</h2></div></div><p class="za-recap-lead">Before you move on, explain the main idea in your own words and confirm that your calculations or decisions can be checked independently.</p><div class="za-recap-card"><strong>What a correct result should show</strong><p>${safe(guide?.verify || record.outcome)}</p></div><div class="za-recap-card za-recap-warning"><strong>Remember this limitation</strong><p>${safe(record.pitfall)}.</p></div><p class="za-recap-next">When you are ready, select <b>Questions to Try</b> below. Questions open on a separate assessment page; completing the lesson and submitting a quiz remain separate actions.</p></section>${capstoneProjectHtml}${deepDive}`;
       all('.za-lesson-sections button',one('#zaLessonBody')).forEach(button=>button.addEventListener('click',()=>{
         const section=document.getElementById(button.dataset.jump);
         section?.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});

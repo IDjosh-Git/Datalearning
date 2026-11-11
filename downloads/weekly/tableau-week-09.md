@@ -1,51 +1,80 @@
-# Tableau · Week 09 · Stories and accessibility
+# Tableau · Week 09 · Creating Tableau stories and presenting findings
 
-> DataLearning practice brief — synthetic training material. Keep your original source file unchanged and make a copy for transformations.
+> DataLearning comprehensive practical lesson. Data is fictional. This worksheet supports the full in-app explanation and independent practice. Do not overwrite your raw source file.
 
 ## Learning outcome
-Explain insight, evidence, and recommendation visually
+Organise dashboard views into a sequence that supports an evidence-based recommendation.
 
-## Before you begin: open the right file
-- Download: `learning_monthly_kpis.csv` in `/downloads/` of your DataLearning project.
-- Important fields / tables: month, region, net_sales_ngn, sales_target_ngn, gross_profit_ngn, order_count, late_shipments, returned_orders.
-- Related video (opens within the lesson page): https://www.youtube.com/watch?v=PSNXoAs2FtQ&t=29112s.
-- Use Excel / Power BI / Tableau / Power Query for CSV sources, a SQLite-compatible reader for `.sqlite` files, or Python/pandas for code-based analysis as the week requires.
+## Where to begin in the tool
+Use New Story and add key sheets or dashboard states; write captions for context, evidence and action.
 
-## Understand the analytical method
-A data story explains why a finding matters. Rather than showing every chart built during analysis, select a sequence that moves from the business question to evidence, plausible interpretations and a recommendation. Tableau Story Points can capture a sequence of visual states or dashboard views. Each point needs a concise title that makes a claim supported by the data, not merely “Chart 1”.
 
-Accessibility and honesty strengthen the story. Use readable text, meaningful colour contrast, descriptive titles and consistent units. Disclose missing data, assumptions and uncertainty, especially when a correlation may be mistaken for a causal effect. Explain the decisions a stakeholder can take and what additional evidence would change the recommendation. A good story retains enough detail for technical reviewers to reproduce the result.
+## Source data dictionary · exact practice file fields
+The linked CSV uses these **exact header names**. Import the file before attempting examples. If an exercise uses a friendly or calculated name, map or create it first.
 
-## Guided walkthrough in the tool
-1. Choose one quantified finding and write a descriptive headline.
-2. Arrange a baseline comparison, explanatory breakdown and recommendation across three story points.
-3. Add sources, date range and methodological caveats.
-4. Ask a reviewer to challenge the conclusion using the same charts, and revise unclear language.
+`month, region, net_sales_ngn, sales_target_ngn, gross_profit_ngn, order_count, late_shipments, returned_orders`
 
-### Additional hands-on instruction
-Add short captions, colour-independent labels, descriptive titles and a next-action callout.
+The worked example may introduce derived fields or example tables. Create or rename those fields explicitly and verify results against these original source columns.
 
-## Business case
-One Tableau story point says “Sales fell 12% in the West”. The next should show whether the decline came from order volume, basket size or returns, rather than merely repeating the same chart in another colour. A final point can propose an investigation and disclose missing data. The flow should move from evidence to reasonable action.
+## Dataset and companion video
+- **Download the dataset:** [`learning_monthly_kpis.csv`](../learning_monthly_kpis.csv)
+- **Video companion:** https://www.youtube.com/watch?v=PSNXoAs2FtQ&t=29112s (the in-app Watch button opens the YouTube player when embedding is permitted).
+- **Reading order:** first identify controls, then read the four concepts, reproduce the example, try an independent case, and validate your evidence.
+
+## Explain the four essential concepts
+### 1. Story points
+show the decision question, key finding and recommended follow-up
+
+### 2. Exporting
+confirm fonts and filters remain legible in PDF or presentation
+
+### 3. Accessibility
+make colours and labels meaningful without relying on colour alone
+
+### 4. Data caveats
+document refresh date, exclusions and uncertainty.
+
+## Why this skill matters
+Why this skill matters: A regional director needs a short story rather than a crowded gallery of visualisations. The method is not only about producing an attractive figure. Accessibility: make colours and labels meaningful without relying on colour alone Data caveats: document refresh date, exclusions and uncertainty. When preparing an output for another person, specify the reporting period, units, selection rules and known limitations. An analyst should be able to explain why a calculation or chart answers the actual business question and reproduce the result.
+
+## Guided practice · follow all four steps
+1. Open the correct workspace and identify the controls before entering commands. Use New Story and add key sheets or dashboard states; write captions for context, evidence and action. Keep an untouched source or backup version so a mistake is reversible.
+2. Apply the first two concepts on a small example: Story points — show the decision question, key finding and recommended follow-up Then test exporting with at least two contrasting inputs.
+3. Reproduce the worked example below exactly, then change one input or filter. Explain which value changes and why. After that, apply accessibility and inspect the output for errors.
+4. Complete the independent challenge: Present three Tableau story points with a headline, chart evidence and a recommendation for each. Before moving on, check the result against the acceptance criteria: Each claim can be traced to a calculated field or worksheet; changed filters are disclosed.
+
+## Study this worked example
+```text
+Story point 1: Overall performance
+Story point 2: Region behind target
+Story point 3: Action & owner
+```
+
+**How to interpret the output:** Creating Tableau stories and presenting findings begins with a practical objective: Organise dashboard views into a sequence that supports an evidence-based recommendation. In Tableau, begin by understanding the workspace and the data rather than memorising a command. Story points: show the decision question, key finding and recommended follow-up Exporting: confirm fonts and filters remain legible in PDF or presentation Practice these ideas on a small synthetic sample first. Notice where the tool shows inputs, intermediate results and errors; then describe in plain language what each operation does and what it does not prove. Keep original records separate from working calculations so you can trace any surprising result back to its source.
+
+## Business case study
+Business case: A regional director needs a short story rather than a crowded gallery of visualisations. Your role is to deliver a result that a manager can trust and act upon, not merely a screenshot. First describe what records are included and excluded. Next perform the method described in this week, and record any changes to the source. Use the worked example as a starting point but test it with different values; finally communicate one relevant observation, one limitation and a follow-up.
 
 ## Independent practical challenge
-Write a one-sentence observation and recommended follow-up for that change.
+Present three Tableau story points with a headline, chart evidence and a recommendation for each.
 
-**Deliverable:** Produce an executive summary that does not imply the chart proves causation.
+**What you should hand in:** Each claim can be traced to a calculated field or worksheet; changed filters are disclosed.
 
-## Verify your work
-A strong story lets a reader distinguish what the data directly shows from the analyst’s hypothesis. Never use a visually persuasive graphic to imply certainty the evidence does not support.
+## Check your result (after attempting)
+Expected evidence: Each claim can be traced to a calculated field or worksheet; changed filters are disclosed. To validate it, compare a small hand-checked sample with the final output, test an alternative filter or a changed input, and record any unmatched, missing or suspicious data. If results differ, review the original data, formula or query, aggregation grain and selected filters before sharing the report. Avoid this common error: Describing a visual association as the cause of a revenue shortfall.
 
-- Confirm the number of records used and explain any excluded records.
-- Check date, currency, percentage and unit formats.
-- Recalculate at least one sample manually or using another method.
-- Separate observed results from assumptions about why they occurred.
-- Include source, period, filters and limitations in the presentation.
+**Common failure:** Describing a visual association as the cause of a revenue shortfall.
 
-## Compare with the suggested solution (after attempting the task)
-Conversion fell 3 percentage points; compare channel mix and tracking before attributing a cause.
+## Reflect and explain the result
+- Which menu, editor or pane did you use, and why?
+- What is the data grain, metric definition or calculated rule?
+- Can a second learner reproduce your output using the dataset and your instructions?
+- Which number, chart or limitation must be mentioned when presenting your result?
 
-**Common pitfall:** Claiming causation from a chart alone.
+## Management report presentation layout
+![Example management presentation storyboard](../../assets/images/dashboard-samples/tableau-report-storyboard.svg)
+
+Follow the order: decision question, verified evidence, interpretation and recommended action.
 
 ---
-The lesson content and model answers are intended for study. Completing the worksheet does not automatically mark the app quiz or progress as complete.
+**Progress note:** Completing this worksheet is practice. Marking a week complete, passing an assessment and submitting an instructor-reviewed capstone are separate actions in DataLearning.

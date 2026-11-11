@@ -1,51 +1,74 @@
-# Power Bi · Week 05 · Measures vs calculated columns
+# Power BI Desktop · Week 05 · Time intelligence and period comparisons
 
-> DataLearning practice brief — synthetic training material. Keep your original source file unchanged and make a copy for transformations.
+> DataLearning comprehensive practical lesson. Data is fictional. This worksheet supports the full in-app explanation and independent practice. Do not overwrite your raw source file.
 
 ## Learning outcome
-Choose model-efficient calculations
+Analyse month-over-month and year-over-year changes with a proper date dimension.
 
-## Before you begin: open the right file
-- Download: `learning_monthly_kpis.csv` in `/downloads/` of your DataLearning project.
-- Important fields / tables: month, region, net_sales_ngn, sales_target_ngn, gross_profit_ngn, order_count, late_shipments, returned_orders.
-- Related video (opens within the lesson page): https://www.youtube.com/watch?v=WH937Gc_8eg&t=2770s.
-- Use Excel / Power BI / Tableau / Power Query for CSV sources, a SQLite-compatible reader for `.sqlite` files, or Python/pandas for code-based analysis as the week requires.
+## Where to begin in the tool
+Mark a contiguous DimDate as a Date table and use Calendar fields on a time-series visual.
 
-## Understand the analytical method
-A measure is calculated at query time under the current filter context. A calculated column is stored row by row at model refresh and can be used for grouping or relationships, but increases model size. Use measures for aggregations such as total revenue, utilisation percentage and dynamic comparisons. Use a calculated column when a genuinely row-level attribute must exist in the model, rather than creating it just to avoid writing a measure.
 
-Iterators such as SUMX calculate an expression for each table row before aggregating the results. This is useful for quantity multiplied by unit price when no net amount column exists. A simple SUM cannot evaluate arbitrary row expressions. Large calculated columns and unnecessarily complex iterators can increase memory use or slow queries. Measure design should be driven by the analytical grain and report behaviour.
+## Source data dictionary · exact practice file fields
+The linked CSV uses these **exact header names**. Import the file before attempting examples. If an exercise uses a friendly or calculated name, map or create it first.
 
-## Guided walkthrough in the tool
-1. Write a measure for Total Revenue using a suitable existing amount field.
-2. Write a SUMX alternative when revenue is Quantity × UnitPrice at row grain.
-3. Create a row-level category only if it needs to be sliced or grouped repeatedly.
-4. Compare model size and report behaviour; verify calculations at multiple filter levels.
+`month, region, net_sales_ngn, sales_target_ngn, gross_profit_ngn, order_count, late_shipments, returned_orders`
 
-### Additional hands-on instruction
-Build Completed Sales as a measure applying status="Completed" and compare with a calculated row amount.
+The worked example may introduce derived fields or example tables. Create or rename those fields explicitly and verify results against these original source columns.
 
-## Business case
-If Sales contains three lines with quantities 2, 3 and 1 and unit prices 100, 200 and 50, SUMX returns 850. SUM(Sales[Quantity]) × SUM(Sales[Price]) returns (6 × 350) = 2,100, which is wrong. Row-level multiplication must happen before aggregation. Use measures for reusable context-dependent business totals.
+## Dataset and companion video
+- **Download the dataset:** [`learning_monthly_kpis.csv`](../learning_monthly_kpis.csv)
+- **Video companion:** https://www.youtube.com/watch?v=WH937Gc_8eg&t=2770s (the in-app Watch button opens the YouTube player when embedding is permitted).
+- **Reading order:** first identify controls, then read the four concepts, reproduce the example, try an independent case, and validate your evidence.
+
+## Explain the four essential concepts
+### 1. Date table
+one row per date supports consistent calendar calculations
+
+### 2. Period logic
+PREVIOUSMONTH and DATEADD compare comparable windows
+
+### 3. Percentage variance
+divide by the prior period and handle missing months
+
+### 4. Completeness
+flag partial current periods to avoid biased comparisons.
+
+## Why this skill matters
+Why this skill matters: A reporting team needs a credible monthly trend and variance against the previous trading period. The method is not only about producing an attractive figure. Percentage variance: divide by the prior period and handle missing months Completeness: flag partial current periods to avoid biased comparisons. When preparing an output for another person, specify the reporting period, units, selection rules and known limitations. An analyst should be able to explain why a calculation or chart answers the actual business question and reproduce the result.
+
+## Guided practice · follow all four steps
+1. Open the correct workspace and identify the controls before entering commands. Mark a contiguous DimDate as a Date table and use Calendar fields on a time-series visual. Keep an untouched source or backup version so a mistake is reversible.
+2. Apply the first two concepts on a small example: Date table — one row per date supports consistent calendar calculations Then test period logic with at least two contrasting inputs.
+3. Reproduce the worked example below exactly, then change one input or filter. Explain which value changes and why. After that, apply percentage variance and inspect the output for errors.
+4. Complete the independent challenge: Build a line chart of monthly revenue plus a MoM percentage table, identifying incomplete months. Before moving on, check the result against the acceptance criteria: For March 135000 versus February 150000, MoM = -10%; date labels must sort chronologically.
+
+## Study this worked example
+```text
+Previous Month Revenue = CALCULATE([Sales Revenue],DATEADD(DimDate[Date],-1,MONTH))
+MoM % = DIVIDE([Sales Revenue]-[Previous Month Revenue],[Previous Month Revenue])
+```
+
+**How to interpret the output:** Time intelligence and period comparisons begins with a practical objective: Analyse month-over-month and year-over-year changes with a proper date dimension. In Power BI Desktop, begin by understanding the workspace and the data rather than memorising a command. Date table: one row per date supports consistent calendar calculations Period logic: PREVIOUSMONTH and DATEADD compare comparable windows Practice these ideas on a small synthetic sample first. Notice where the tool shows inputs, intermediate results and errors; then describe in plain language what each operation does and what it does not prove. Keep original records separate from working calculations so you can trace any surprising result back to its source.
+
+## Business case study
+Business case: A reporting team needs a credible monthly trend and variance against the previous trading period. Your role is to deliver a result that a manager can trust and act upon, not merely a screenshot. First describe what records are included and excluded. Next perform the method described in this week, and record any changes to the source. Use the worked example as a starting point but test it with different values; finally communicate one relevant observation, one limitation and a follow-up.
 
 ## Independent practical challenge
-Which is preferable for a slicer-responsive revenue total?
+Build a line chart of monthly revenue plus a MoM percentage table, identifying incomplete months.
 
-**Deliverable:** Record one case where a column would increase model size without helping the required visual.
+**What you should hand in:** For March 135000 versus February 150000, MoM = -10%; date labels must sort chronologically.
 
-## Verify your work
-Test whether the total still makes sense under multiple slicers. A row-level column fixed at refresh will not automatically respond to report filter context in the way a measure does.
+## Check your result (after attempting)
+Expected evidence: For March 135000 versus February 150000, MoM = -10%; date labels must sort chronologically. To validate it, compare a small hand-checked sample with the final output, test an alternative filter or a changed input, and record any unmatched, missing or suspicious data. If results differ, review the original data, formula or query, aggregation grain and selected filters before sharing the report. Avoid this common error: Comparing a partial current month with a complete previous month without explaining the limitation.
 
-- Confirm the number of records used and explain any excluded records.
-- Check date, currency, percentage and unit formats.
-- Recalculate at least one sample manually or using another method.
-- Separate observed results from assumptions about why they occurred.
-- Include source, period, filters and limitations in the presentation.
+**Common failure:** Comparing a partial current month with a complete previous month without explaining the limitation.
 
-## Compare with the suggested solution (after attempting the task)
-a DAX measure
-
-**Common pitfall:** Creating one calculated column per KPI.
+## Reflect and explain the result
+- Which menu, editor or pane did you use, and why?
+- What is the data grain, metric definition or calculated rule?
+- Can a second learner reproduce your output using the dataset and your instructions?
+- Which number, chart or limitation must be mentioned when presenting your result?
 
 ---
-The lesson content and model answers are intended for study. Completing the worksheet does not automatically mark the app quiz or progress as complete.
+**Progress note:** Completing this worksheet is practice. Marking a week complete, passing an assessment and submitting an instructor-reviewed capstone are separate actions in DataLearning.

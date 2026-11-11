@@ -1,51 +1,82 @@
-# Introduction · Week 08 · Data ethics and privacy
+# Data Analysis · Week 08 · Planning the first dashboard and selecting KPIs
 
-> DataLearning practice brief — synthetic training material. Keep your original source file unchanged and make a copy for transformations.
+> DataLearning comprehensive practical lesson. Data is fictional. This worksheet supports the full in-app explanation and independent practice. Do not overwrite your raw source file.
 
 ## Learning outcome
-Minimise sensitive data and disclose limitations
+Design a clean dashboard layout before choosing a complicated tool.
 
-## Before you begin: open the right file
-- Download: `learning_staff_operations.csv` in `/downloads/` of your DataLearning project.
-- Important fields / tables: employee_id, department, region, monthly_hours, completed_tasks, status.
-- Related video (opens within the lesson page): https://www.youtube.com/watch?v=TImRJTzphhE.
-- Use Excel / Power BI / Tableau / Power Query for CSV sources, a SQLite-compatible reader for `.sqlite` files, or Python/pandas for code-based analysis as the week requires.
+## Where to begin in the tool
+Sketch a 16:9 report page using a title, KPI strip, explanatory charts and a filter area.
 
-## Understand the analytical method
-Responsible analysis begins with data minimisation. Only use personal or sensitive attributes needed for a legitimate analytical purpose. Replace direct identifiers with aggregates or pseudonymous keys when possible; avoid publishing small groups that could identify individuals indirectly. Know who is authorised to view the underlying records and separate raw access from published summary access.
 
-Fairness also depends on how data was collected. A survey may exclude people without internet access; an operational system may systematically miss events during outages. Cleaning and modelling choices can amplify these gaps. Document consent, retention assumptions, uncertainty and known biases in plain language. A technically accurate calculation can still support a harmful decision if it ignores who was missing from the data.
+## Source data dictionary · exact practice file fields
+The linked CSV uses these **exact header names**. Import the file before attempting examples. If an exercise uses a friendly or calculated name, map or create it first.
 
-## Guided walkthrough in the tool
-1. Identify personal or confidential fields and ask whether each is necessary for the decision.
-2. Design a group-level report that avoids names, phone numbers, and very small identifying segments.
-3. Check which groups and periods are poorly represented or missing.
-4. Write a short limitations note and verify that report access follows your organisation’s policy.
+`employee_id, department, region, monthly_hours, completed_tasks, status`
 
-### Additional hands-on instruction
-Use synthetic staff operations. Publish department totals but do not expose row-level worker IDs in the presentation.
+Available `status` values: `Active`, `On leave`
 
-## Business case
-A report grouped by department and age may contain a cell with only one employee. Even if names are removed, a colleague could infer that person’s salary from the total. Prefer larger reporting groups or suppress small cells according to policy. Evaluate identifiability across all combinations of visible filters, not just each individual column.
+The worked example may introduce derived fields or example tables. Create or rename those fields explicitly and verify results against these original source columns. Source status values are Active, On leave.
+
+## Dataset and companion video
+- **Download the dataset:** [`learning_staff_operations.csv`](../learning_staff_operations.csv)
+- **Video companion:** https://www.youtube.com/watch?v=TImRJTzphhE (the in-app Watch button opens the YouTube player when embedding is permitted).
+- **Reading order:** first identify controls, then read the four concepts, reproduce the example, try an independent case, and validate your evidence.
+
+## Explain the four essential concepts
+### 1. Information hierarchy
+headline results should be visible first
+
+### 2. Metric definitions
+Revenue and AOV need agreed inclusion rules
+
+### 3. Interaction
+filters must update connected visuals consistently
+
+### 4. Accessibility
+readable labels and purposeful whitespace beat visual clutter.
+
+## Why this skill matters
+Why this skill matters: A retail leadership team wants an outline of its first self-service sales dashboard. The method is not only about producing an attractive figure. Interaction: filters must update connected visuals consistently Accessibility: readable labels and purposeful whitespace beat visual clutter. When preparing an output for another person, specify the reporting period, units, selection rules and known limitations. An analyst should be able to explain why a calculation or chart answers the actual business question and reproduce the result.
+
+## Guided practice · follow all four steps
+1. Open the correct workspace and identify the controls before entering commands. Sketch a 16:9 report page using a title, KPI strip, explanatory charts and a filter area. Keep an untouched source or backup version so a mistake is reversible.
+2. Apply the first two concepts on a small example: Information hierarchy — headline results should be visible first Then test metric definitions with at least two contrasting inputs.
+3. Reproduce the worked example below exactly, then change one input or filter. Explain which value changes and why. After that, apply interaction and inspect the output for errors.
+4. Complete the independent challenge: Create a dashboard wireframe and map each KPI to a source column and calculation. Before moving on, check the result against the acceptance criteria: A reader can answer the business question in 30 seconds and every visual has a clear purpose.
+
+## Study this worked example
+```text
+Top: Revenue | Orders | AOV
+Middle: Trend | Region Ranking
+Bottom: Notes | Filters
+```
+
+**How to interpret the output:** Planning the first dashboard and selecting KPIs begins with a practical objective: Design a clean dashboard layout before choosing a complicated tool. In Data Analysis, begin by understanding the workspace and the data rather than memorising a command. Information hierarchy: headline results should be visible first Metric definitions: Revenue and AOV need agreed inclusion rules Practice these ideas on a small synthetic sample first. Notice where the tool shows inputs, intermediate results and errors; then describe in plain language what each operation does and what it does not prove. Keep original records separate from working calculations so you can trace any surprising result back to its source.
+
+## Business case study
+Business case: A retail leadership team wants an outline of its first self-service sales dashboard. Your role is to deliver a result that a manager can trust and act upon, not merely a screenshot. First describe what records are included and excluded. Next perform the method described in this week, and record any changes to the source. Use the worked example as a starting point but test it with different values; finally communicate one relevant observation, one limitation and a follow-up.
 
 ## Independent practical challenge
-Give two safeguards when sharing customer analytics.
+Create a dashboard wireframe and map each KPI to a source column and calculation.
 
-**Deliverable:** Create a report sharing checklist covering roles, retention, purpose, and suppression of small groups.
+**What you should hand in:** A reader can answer the business question in 30 seconds and every visual has a clear purpose.
 
-## Verify your work
-A safe report contains only the information needed for the reader’s role. Test whether two or more visible dimensions could combine to reveal an individual; if so, aggregate further.
+## Check your result (after attempting)
+Expected evidence: A reader can answer the business question in 30 seconds and every visual has a clear purpose. To validate it, compare a small hand-checked sample with the final output, test an alternative filter or a changed input, and record any unmatched, missing or suspicious data. If results differ, review the original data, formula or query, aggregation grain and selected filters before sharing the report. Avoid this common error: Adding flashy charts that do not connect to a decision or have inconsistent filters.
 
-- Confirm the number of records used and explain any excluded records.
-- Check date, currency, percentage and unit formats.
-- Recalculate at least one sample manually or using another method.
-- Separate observed results from assumptions about why they occurred.
-- Include source, period, filters and limitations in the presentation.
+**Common failure:** Adding flashy charts that do not connect to a decision or have inconsistent filters.
 
-## Compare with the suggested solution (after attempting the task)
-anonymise data; restrict access
+## Reflect and explain the result
+- Which menu, editor or pane did you use, and why?
+- What is the data grain, metric definition or calculated rule?
+- Can a second learner reproduce your output using the dataset and your instructions?
+- Which number, chart or limitation must be mentioned when presenting your result?
 
-**Common pitfall:** Publishing identifiable raw data in an open dashboard.
+## Dashboard design reference
+![Example Data Analysis dashboard layout](../../assets/images/dashboard-samples/introduction-dashboard-wireframe.svg)
+
+Study the KPI strip, timeline, ranking, filters and notes. It is an illustrative wireframe, not a working dashboard or calculated analysis.
 
 ---
-The lesson content and model answers are intended for study. Completing the worksheet does not automatically mark the app quiz or progress as complete.
+**Progress note:** Completing this worksheet is practice. Marking a week complete, passing an assessment and submitting an instructor-reviewed capstone are separate actions in DataLearning.

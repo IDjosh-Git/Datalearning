@@ -1,51 +1,76 @@
-# Introduction · Week 03 · Granularity and keys
+# Data Analysis · Week 03 · Data grain, keys and simple relationships
 
-> DataLearning practice brief — synthetic training material. Keep your original source file unchanged and make a copy for transformations.
+> DataLearning comprehensive practical lesson. Data is fictional. This worksheet supports the full in-app explanation and independent practice. Do not overwrite your raw source file.
 
 ## Learning outcome
-Identify what one row means and how records are identified
+Understand what one row represents and why duplicates can be legitimate.
 
-## Before you begin: open the right file
-- Download: `learning_sales_2026.csv` in `/downloads/` of your DataLearning project.
-- Important fields / tables: order_id, order_date, region, category, quantity, unit_price_ngn, unit_cost_ngn, status, customer_id, channel.
-- Related video (opens within the lesson page): https://www.youtube.com/watch?v=PSNXoAs2FtQ&t=2823s.
-- Use Excel / Power BI / Tableau / Power Query for CSV sources, a SQLite-compatible reader for `.sqlite` files, or Python/pandas for code-based analysis as the week requires.
+## Where to begin in the tool
+Inspect OrderID, ProductID and Status fields and compare counts of rows and distinct orders.
 
-## Understand the analytical method
-Granularity, or grain, answers “What does one row represent?” An orders table might have one row per order, whereas an order-lines table has one row per product in an order. An order with three products therefore occupies three line rows. A key identifies a record at its intended grain: OrderID might identify the order table, while the combination of OrderID and LineNumber identifies an order-line record. State the grain of every dataset before computing totals.
 
-Joining tables can multiply rows. If an order has three lines, joining the order header to those lines repeats its header revenue three times. Summing that repeated column produces an incorrect result even when the join itself is technically valid. Measure at the correct grain, aggregate line-level amounts, or use a distinct order count as appropriate. Verify the relationship’s one-to-many direction and search for duplicates on the supposed unique side.
+## Source data dictionary · exact practice file fields
+The linked CSV uses these **exact header names**. Import the file before attempting examples. If an exercise uses a friendly or calculated name, map or create it first.
 
-## Guided walkthrough in the tool
-1. Write one sentence describing the grain of both Orders and OrderLines.
-2. Check whether OrderID is unique in Orders and whether OrderID plus LineNumber is unique in OrderLines.
-3. Join a small sample and compare the number of distinct orders before and after the join.
-4. Calculate order count with distinct OrderID and line sales by summing line amount; compare with the source totals.
+`order_id, order_date, region, category, quantity, unit_price_ngn, unit_cost_ngn, status, customer_id, channel`
 
-### Additional hands-on instruction
-Inspect the sales export and locate order_id and customer_id. Compare COUNT rows with unique order IDs.
+Available `status` values: `Cancelled`, `Completed`, `Returned`
 
-## Business case
-Orders O-100 and O-101 each contain three order lines. A line-level table therefore has six rows but only two orders. A report labelled “6 orders” would mislead operations. Count distinct OrderID for order count and sum line amounts for line revenue; never assume one row means one business transaction.
+The worked example may introduce derived fields or example tables. Create or rename those fields explicitly and verify results against these original source columns. Source status values are Cancelled, Completed, Returned.
+
+## Dataset and companion video
+- **Download the dataset:** [`learning_sales_2026.csv`](../learning_sales_2026.csv)
+- **Video companion:** https://www.youtube.com/watch?v=PSNXoAs2FtQ&t=2823s (the in-app Watch button opens the YouTube player when embedding is permitted).
+- **Reading order:** first identify controls, then read the four concepts, reproduce the example, try an independent case, and validate your evidence.
+
+## Explain the four essential concepts
+### 1. Granularity
+one row per order differs from one row per order line
+
+### 2. Unique keys
+identify records without confusion
+
+### 3. Relationships
+join descriptive tables by stable keys
+
+### 4. Reconciliation
+count both total rows and distinct transactions to expose the difference.
+
+## Why this skill matters
+Why this skill matters: A logistics dashboard must show unique shipments rather than line items. The method is not only about producing an attractive figure. Relationships: join descriptive tables by stable keys Reconciliation: count both total rows and distinct transactions to expose the difference. When preparing an output for another person, specify the reporting period, units, selection rules and known limitations. An analyst should be able to explain why a calculation or chart answers the actual business question and reproduce the result.
+
+## Guided practice · follow all four steps
+1. Open the correct workspace and identify the controls before entering commands. Inspect OrderID, ProductID and Status fields and compare counts of rows and distinct orders. Keep an untouched source or backup version so a mistake is reversible.
+2. Apply the first two concepts on a small example: Granularity — one row per order differs from one row per order line Then test unique keys with at least two contrasting inputs.
+3. Reproduce the worked example below exactly, then change one input or filter. Explain which value changes and why. After that, apply relationships and inspect the output for errors.
+4. Complete the independent challenge: Explain how three rows can represent two purchases and choose the right measure for 'number of orders'. Before moving on, check the result against the acceptance criteria: COUNTROWS = 3 but DISTINCTCOUNT(OrderID) = 2; both figures are right for different questions.
+
+## Study this worked example
+```text
+Orders: O1 appears twice for two products, O2 once
+Row count = 3; unique orders = 2
+```
+
+**How to interpret the output:** Data grain, keys and simple relationships begins with a practical objective: Understand what one row represents and why duplicates can be legitimate. In Data Analysis, begin by understanding the workspace and the data rather than memorising a command. Granularity: one row per order differs from one row per order line Unique keys: identify records without confusion Practice these ideas on a small synthetic sample first. Notice where the tool shows inputs, intermediate results and errors; then describe in plain language what each operation does and what it does not prove. Keep original records separate from working calculations so you can trace any surprising result back to its source.
+
+## Business case study
+Business case: A logistics dashboard must show unique shipments rather than line items. Your role is to deliver a result that a manager can trust and act upon, not merely a screenshot. First describe what records are included and excluded. Next perform the method described in this week, and record any changes to the source. Use the worked example as a starting point but test it with different values; finally communicate one relevant observation, one limitation and a follow-up.
 
 ## Independent practical challenge
-Explain which metric needs DISTINCTCOUNT of order ID.
+Explain how three rows can represent two purchases and choose the right measure for 'number of orders'.
 
-**Deliverable:** Write a grain statement and show a sample duplicate-key test appropriate to that grain.
+**What you should hand in:** COUNTROWS = 3 but DISTINCTCOUNT(OrderID) = 2; both figures are right for different questions.
 
-## Verify your work
-After a join, compare row counts, distinct key counts and grand totals to the originals. If the number of orders increases, inspect whether you counted lines rather than unique orders.
+## Check your result (after attempting)
+Expected evidence: COUNTROWS = 3 but DISTINCTCOUNT(OrderID) = 2; both figures are right for different questions. To validate it, compare a small hand-checked sample with the final output, test an alternative filter or a changed input, and record any unmatched, missing or suspicious data. If results differ, review the original data, formula or query, aggregation grain and selected filters before sharing the report. Avoid this common error: Calling repeated OrderID values erroneous duplicates without checking line-item grain.
 
-- Confirm the number of records used and explain any excluded records.
-- Check date, currency, percentage and unit formats.
-- Recalculate at least one sample manually or using another method.
-- Separate observed results from assumptions about why they occurred.
-- Include source, period, filters and limitations in the presentation.
+**Common failure:** Calling repeated OrderID values erroneous duplicates without checking line-item grain.
 
-## Compare with the suggested solution (after attempting the task)
-Number of unique orders, rather than order lines
-
-**Common pitfall:** Double-counting a parent-level metric after joining child records.
+## Reflect and explain the result
+- Which menu, editor or pane did you use, and why?
+- What is the data grain, metric definition or calculated rule?
+- Can a second learner reproduce your output using the dataset and your instructions?
+- Which number, chart or limitation must be mentioned when presenting your result?
 
 ---
-The lesson content and model answers are intended for study. Completing the worksheet does not automatically mark the app quiz or progress as complete.
+**Progress note:** Completing this worksheet is practice. Marking a week complete, passing an assessment and submitting an instructor-reviewed capstone are separate actions in DataLearning.

@@ -1,51 +1,73 @@
-# Tableau · Week 05 · Filters and parameters
+# Tableau · Week 05 · Filters, parameters and purposeful interactions
 
-> DataLearning practice brief — synthetic training material. Keep your original source file unchanged and make a copy for transformations.
+> DataLearning comprehensive practical lesson. Data is fictional. This worksheet supports the full in-app explanation and independent practice. Do not overwrite your raw source file.
 
 ## Learning outcome
-Make a dashboard interactive without changing the data
+Give viewers useful controls while keeping metric definitions consistent.
 
-## Before you begin: open the right file
-- Download: `learning_monthly_kpis.csv` in `/downloads/` of your DataLearning project.
-- Important fields / tables: month, region, net_sales_ngn, sales_target_ngn, gross_profit_ngn, order_count, late_shipments, returned_orders.
-- Related video (opens within the lesson page): https://www.youtube.com/watch?v=PSNXoAs2FtQ&t=29112s.
-- Use Excel / Power BI / Tableau / Power Query for CSV sources, a SQLite-compatible reader for `.sqlite` files, or Python/pandas for code-based analysis as the week requires.
+## Where to begin in the tool
+Add Region to Filters, show the filter card and create a Parameter for a selectable metric.
 
-## Understand the analytical method
-Filters restrict the records or marks shown in a view, whereas parameters are user-controlled single values that can drive calculations, reference lines or other logic. A Region filter narrows the data, while a parameter called Target Revenue might change a comparison threshold without changing source rows. Different kinds of filters operate at different stages of Tableau’s order of operations, which is important for totals and fixed calculations.
 
-A dashboard with many controls can become harder to use than a static report. Each filter should have a purpose, an understandable default and a clear label. Test what happens when a category has no data. Parameters require an expression to affect the view; creating a parameter alone changes nothing. Explain which calculations respond to filters and which benchmarks are intentionally fixed.
+## Source data dictionary · exact practice file fields
+The linked CSV uses these **exact header names**. Import the file before attempting examples. If an exercise uses a friendly or calculated name, map or create it first.
 
-## Guided walkthrough in the tool
-1. Add Region as a filter and show it as a compact list on the worksheet.
-2. Create a numeric target parameter and show its control.
-3. Build a calculated field comparing revenue with the selected target.
-4. Change both controls and verify which visual elements react to each.
+`month, region, net_sales_ngn, sales_target_ngn, gross_profit_ngn, order_count, late_shipments, returned_orders`
 
-### Additional hands-on instruction
-Add a date filter and a simple KPI selection parameter for monthly sales versus margin.
+The worked example may introduce derived fields or example tables. Create or rename those fields explicitly and verify results against these original source columns.
 
-## Business case
-A business target is 500,000 revenue. A parameter lets a manager change that target to 600,000 while keeping transaction data unchanged; a filter selects which region’s actual revenue to compare. These controls do different things. Label each clearly and verify that a target change affects the variance calculation rather than the source records.
+## Dataset and companion video
+- **Download the dataset:** [`learning_monthly_kpis.csv`](../learning_monthly_kpis.csv)
+- **Video companion:** https://www.youtube.com/watch?v=PSNXoAs2FtQ&t=29112s (the in-app Watch button opens the YouTube player when embedding is permitted).
+- **Reading order:** first identify controls, then read the four concepts, reproduce the example, try an independent case, and validate your evidence.
+
+## Explain the four essential concepts
+### 1. Dimension filters
+determine the subset of records shown
+
+### 2. Parameters
+hold a selected user value that calculations can reference
+
+### 3. Context filters
+change the effective order of operations
+
+### 4. Testing
+compare filter selections and reset views with the raw source.
+
+## Why this skill matters
+Why this skill matters: A branch manager wants to compare regions without maintaining separate workbooks. The method is not only about producing an attractive figure. Context filters: change the effective order of operations Testing: compare filter selections and reset views with the raw source. When preparing an output for another person, specify the reporting period, units, selection rules and known limitations. An analyst should be able to explain why a calculation or chart answers the actual business question and reproduce the result.
+
+## Guided practice · follow all four steps
+1. Open the correct workspace and identify the controls before entering commands. Add Region to Filters, show the filter card and create a Parameter for a selectable metric. Keep an untouched source or backup version so a mistake is reversible.
+2. Apply the first two concepts on a small example: Dimension filters — determine the subset of records shown Then test parameters with at least two contrasting inputs.
+3. Reproduce the worked example below exactly, then change one input or filter. Explain which value changes and why. After that, apply context filters and inspect the output for errors.
+4. Complete the independent challenge: Build a Region filter and a metric selector for Revenue versus Profit, then describe what changes. Before moving on, check the result against the acceptance criteria: Changing Region must update dependent charts; Revenue and Profit are not interchangeable currency concepts.
+
+## Study this worked example
+```text
+IF [Metric Choice]='Revenue' THEN [Revenue] ELSE [Profit] END
+```
+
+**How to interpret the output:** Filters, parameters and purposeful interactions begins with a practical objective: Give viewers useful controls while keeping metric definitions consistent. In Tableau, begin by understanding the workspace and the data rather than memorising a command. Dimension filters: determine the subset of records shown Parameters: hold a selected user value that calculations can reference Practice these ideas on a small synthetic sample first. Notice where the tool shows inputs, intermediate results and errors; then describe in plain language what each operation does and what it does not prove. Keep original records separate from working calculations so you can trace any surprising result back to its source.
+
+## Business case study
+Business case: A branch manager wants to compare regions without maintaining separate workbooks. Your role is to deliver a result that a manager can trust and act upon, not merely a screenshot. First describe what records are included and excluded. Next perform the method described in this week, and record any changes to the source. Use the worked example as a starting point but test it with different values; finally communicate one relevant observation, one limitation and a follow-up.
 
 ## Independent practical challenge
-Describe the difference between a Region filter and a Top N parameter.
+Build a Region filter and a metric selector for Revenue versus Profit, then describe what changes.
 
-**Deliverable:** Test the view after clearing filters and document any misleading empty states.
+**What you should hand in:** Changing Region must update dependent charts; Revenue and Profit are not interchangeable currency concepts.
 
-## Verify your work
-If an interactive control appears to do nothing, inspect its linked calculation and applicable worksheets. Label targets and periods so users understand what is being compared.
+## Check your result (after attempting)
+Expected evidence: Changing Region must update dependent charts; Revenue and Profit are not interchangeable currency concepts. To validate it, compare a small hand-checked sample with the final output, test an alternative filter or a changed input, and record any unmatched, missing or suspicious data. If results differ, review the original data, formula or query, aggregation grain and selected filters before sharing the report. Avoid this common error: Assuming a parameter filters rows automatically without a linked calculation.
 
-- Confirm the number of records used and explain any excluded records.
-- Check date, currency, percentage and unit formats.
-- Recalculate at least one sample manually or using another method.
-- Separate observed results from assumptions about why they occurred.
-- Include source, period, filters and limitations in the presentation.
+**Common failure:** Assuming a parameter filters rows automatically without a linked calculation.
 
-## Compare with the suggested solution (after attempting the task)
-A filter restricts included records; a parameter holds a user-selected value used by calculations or filters.
-
-**Common pitfall:** Assuming parameter changes automatically filter a view.
+## Reflect and explain the result
+- Which menu, editor or pane did you use, and why?
+- What is the data grain, metric definition or calculated rule?
+- Can a second learner reproduce your output using the dataset and your instructions?
+- Which number, chart or limitation must be mentioned when presenting your result?
 
 ---
-The lesson content and model answers are intended for study. Completing the worksheet does not automatically mark the app quiz or progress as complete.
+**Progress note:** Completing this worksheet is practice. Marking a week complete, passing an assessment and submitting an instructor-reviewed capstone are separate actions in DataLearning.

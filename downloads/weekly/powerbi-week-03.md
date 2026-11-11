@@ -1,51 +1,76 @@
-# Power Bi · Week 03 · Star schema
+# Power BI Desktop · Week 03 · Building relationships and a star schema
 
-> DataLearning practice brief — synthetic training material. Keep your original source file unchanged and make a copy for transformations.
+> DataLearning comprehensive practical lesson. Data is fictional. This worksheet supports the full in-app explanation and independent practice. Do not overwrite your raw source file.
 
 ## Learning outcome
-Use dimensions to filter fact tables predictably
+Model sales facts with reusable dimension tables to prevent misleading totals and filters.
 
-## Before you begin: open the right file
-- Download: `learning_sales_2026.csv` in `/downloads/` of your DataLearning project.
-- Important fields / tables: order_id, order_date, region, category, quantity, unit_price_ngn, unit_cost_ngn, status, customer_id, channel.
-- Related video (opens within the lesson page): https://www.youtube.com/watch?v=PSNXoAs2FtQ&t=33537s.
-- Use Excel / Power BI / Tableau / Power Query for CSV sources, a SQLite-compatible reader for `.sqlite` files, or Python/pandas for code-based analysis as the week requires.
+## Where to begin in the tool
+Use Model view and Manage relationships; confirm which table has unique keys before setting cardinality.
 
-## Understand the analytical method
-A star schema typically centres on a fact table containing business events and measures, surrounded by dimension tables containing descriptive attributes. Sales is a fact; Calendar, Product and Customer are dimensions. A one-to-many relationship usually filters from a unique dimension key to many fact rows. This helps the report use a consistent filter path and reduces ambiguous joins.
 
-Relationships are not simply lines drawn between columns with similar names. Check uniqueness on the “one” side, matching data types and the intended cardinality. Many-to-many or bidirectional relationships can produce confusing results when used without a specific modelling justification. Create a dedicated date table for reliable time comparisons and mark it appropriately where required. Compare results before and after introducing relationships.
+## Source data dictionary · exact practice file fields
+The linked CSV uses these **exact header names**. Import the file before attempting examples. If an exercise uses a friendly or calculated name, map or create it first.
 
-## Guided walkthrough in the tool
-1. Write the grain and key for the Sales fact table.
-2. Create dimension tables with one row per Date, Product and Customer key.
-3. Relate each dimension key to the fact key and verify the one-to-many cardinality.
-4. Test a table visual filtered by product and month, and reconcile grand totals.
+`order_id, order_date, region, category, quantity, unit_price_ngn, unit_cost_ngn, status, customer_id, channel`
 
-### Additional hands-on instruction
-Create separate Region and Calendar dimensions, relate them one-to-many to the sales fact, and inspect filter direction.
+Available `status` values: `Cancelled`, `Completed`, `Returned`
 
-## Business case
-A Product table contains two rows for ProductID 5. Power BI cannot safely use that column as a unique one-side key. Deduplicate only after establishing which product record is valid, then create the relationship. Test a product slicer against a known order; if filtering behaves unexpectedly, inspect keys and cardinality first.
+The worked example may introduce derived fields or example tables. Create or rename those fields explicitly and verify results against these original source columns. Source status values are Cancelled, Completed, Returned.
+
+## Dataset and companion video
+- **Download the dataset:** [`learning_sales_2026.csv`](../learning_sales_2026.csv)
+- **Video companion:** https://www.youtube.com/watch?v=PSNXoAs2FtQ&t=33537s (the in-app Watch button opens the YouTube player when embedding is permitted).
+- **Reading order:** first identify controls, then read the four concepts, reproduce the example, try an independent case, and validate your evidence.
+
+## Explain the four essential concepts
+### 1. Grain
+one fact row represents an order line or event
+
+### 2. Dimensions
+Date, Product and Region describe records without repeating measures
+
+### 3. Relationships
+use one-to-many where the dimension key is unique
+
+### 4. Filter direction
+prefer predictable single-direction filters until a specific reason demands more.
+
+## Why this skill matters
+Why this skill matters: A retailer wants a dashboard that can filter by month, store and product without double-counting sales. The method is not only about producing an attractive figure. Relationships: use one-to-many where the dimension key is unique Filter direction: prefer predictable single-direction filters until a specific reason demands more. When preparing an output for another person, specify the reporting period, units, selection rules and known limitations. An analyst should be able to explain why a calculation or chart answers the actual business question and reproduce the result.
+
+## Guided practice · follow all four steps
+1. Open the correct workspace and identify the controls before entering commands. Use Model view and Manage relationships; confirm which table has unique keys before setting cardinality. Keep an untouched source or backup version so a mistake is reversible.
+2. Apply the first two concepts on a small example: Grain — one fact row represents an order line or event Then test dimensions with at least two contrasting inputs.
+3. Reproduce the worked example below exactly, then change one input or filter. Explain which value changes and why. After that, apply relationships and inspect the output for errors.
+4. Complete the independent challenge: Create or sketch a FactSales table related to Product and Date dimensions; verify filtering totals by one product. Before moving on, check the result against the acceptance criteria: Each fact row must match at most one product dimension key; a filtered total should never increase from an accidental join.
+
+## Study this worked example
+```text
+FactSales[ProductID] (*) → (1) DimProduct[ProductID]
+DimDate[Date] (1) → (*) FactSales[OrderDate]
+```
+
+**How to interpret the output:** Building relationships and a star schema begins with a practical objective: Model sales facts with reusable dimension tables to prevent misleading totals and filters. In Power BI Desktop, begin by understanding the workspace and the data rather than memorising a command. Grain: one fact row represents an order line or event Dimensions: Date, Product and Region describe records without repeating measures Practice these ideas on a small synthetic sample first. Notice where the tool shows inputs, intermediate results and errors; then describe in plain language what each operation does and what it does not prove. Keep original records separate from working calculations so you can trace any surprising result back to its source.
+
+## Business case study
+Business case: A retailer wants a dashboard that can filter by month, store and product without double-counting sales. Your role is to deliver a result that a manager can trust and act upon, not merely a screenshot. First describe what records are included and excluded. Next perform the method described in this week, and record any changes to the source. Use the worked example as a starting point but test it with different values; finally communicate one relevant observation, one limitation and a follow-up.
 
 ## Independent practical challenge
-What goes on the one side of Date–Sales relationship?
+Create or sketch a FactSales table related to Product and Date dimensions; verify filtering totals by one product.
 
-**Deliverable:** Test whether a region slicer filters the fact once, without duplicating transactions.
+**What you should hand in:** Each fact row must match at most one product dimension key; a filtered total should never increase from an accidental join.
 
-## Verify your work
-If a product slicer does not change revenue, inspect the relationship and filter direction before editing the measure. If totals unexpectedly double, inspect duplicate dimension keys and fact grain.
+## Check your result (after attempting)
+Expected evidence: Each fact row must match at most one product dimension key; a filtered total should never increase from an accidental join. To validate it, compare a small hand-checked sample with the final output, test an alternative filter or a changed input, and record any unmatched, missing or suspicious data. If results differ, review the original data, formula or query, aggregation grain and selected filters before sharing the report. Avoid this common error: Making many-to-many relationships to hide duplicate keys or linking tables on nonunique names.
 
-- Confirm the number of records used and explain any excluded records.
-- Check date, currency, percentage and unit formats.
-- Recalculate at least one sample manually or using another method.
-- Separate observed results from assumptions about why they occurred.
-- Include source, period, filters and limitations in the presentation.
+**Common failure:** Making many-to-many relationships to hide duplicate keys or linking tables on nonunique names.
 
-## Compare with the suggested solution (after attempting the task)
-Date table with unique dates
-
-**Common pitfall:** Relying on bi-directional relationships everywhere.
+## Reflect and explain the result
+- Which menu, editor or pane did you use, and why?
+- What is the data grain, metric definition or calculated rule?
+- Can a second learner reproduce your output using the dataset and your instructions?
+- Which number, chart or limitation must be mentioned when presenting your result?
 
 ---
-The lesson content and model answers are intended for study. Completing the worksheet does not automatically mark the app quiz or progress as complete.
+**Progress note:** Completing this worksheet is practice. Marking a week complete, passing an assessment and submitting an instructor-reviewed capstone are separate actions in DataLearning.

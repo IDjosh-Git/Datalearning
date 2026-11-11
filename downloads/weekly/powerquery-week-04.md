@@ -1,51 +1,76 @@
-# Power Query · Week 04 · Text transformations
+# Power Query · Week 04 · Transforming text, split columns and date fields
 
-> DataLearning practice brief — synthetic training material. Keep your original source file unchanged and make a copy for transformations.
+> DataLearning comprehensive practical lesson. Data is fictional. This worksheet supports the full in-app explanation and independent practice. Do not overwrite your raw source file.
 
 ## Learning outcome
-Standardise case, spacing and identifiers
+Standardise inconsistent labels and create helpful structured fields without changing source meaning.
 
-## Before you begin: open the right file
-- Download: `learning_sales_quality_lab.csv` in `/downloads/` of your DataLearning project.
-- Important fields / tables: order_id, order_date, region, category, quantity, unit_price_ngn, unit_cost_ngn, status, customer_id, channel.
-- Related video (opens within the lesson page): https://www.youtube.com/watch?v=WH937Gc_8eg&t=1880s.
-- Use Excel / Power BI / Tableau / Power Query for CSV sources, a SQLite-compatible reader for `.sqlite` files, or Python/pandas for code-based analysis as the week requires.
+## Where to begin in the tool
+Use Transform > Format > Trim/Clean, Split Column by Delimiter and Add Column > Date.
 
-## Understand the analytical method
-Text cleaning standardises labels that should represent the same category. “ North ”, “NORTH” and “north” may be three different source strings, but they probably describe one region. Trim removes leading and trailing whitespace; Clean removes many nonprinting characters; uppercase or lowercase makes the matching rule consistent. Keep the raw value available while validating the rule.
 
-Text transformations can also corrupt identifiers if used indiscriminately. Removing punctuation from invoice numbers might merge two distinct codes; title-casing a customer’s name may affect culturally meaningful spelling. Use field-specific rules and check examples before applying them to every row. Where possible, maintain a mapping table for approved category values rather than repeatedly using ad hoc replacements.
+## Source data dictionary · exact practice file fields
+The linked CSV uses these **exact header names**. Import the file before attempting examples. If an exercise uses a friendly or calculated name, map or create it first.
 
-## Guided walkthrough in the tool
-1. Duplicate a sample Region field for side-by-side comparison.
-2. Apply Trim, Clean and Uppercase to the cleaned version.
-3. Group the cleaned category values and compare distinct counts with the raw version.
-4. Check exceptions such as nonbreaking spaces, nulls and genuine category differences.
+`order_id, order_date, region, category, quantity, unit_price_ngn, unit_cost_ngn, status, customer_id, channel`
 
-### Additional hands-on instruction
-Apply Trim and Clean to region, use consistent casing, and review mismatched categories.
+Available `status` values: `Cancelled`, `Completed`, `Returned`, `complete`
 
-## Business case
-A branch name appears as “ EAST”, “East” and “east ”. Trim and standardise case to a canonical value before grouping. Compare distinct branch values and revenue totals before and after. If the source also contains “East-1”, do not merge it automatically with “East” without a defined business mapping.
+The worked example may introduce derived fields or example tables. Create or rename those fields explicitly and verify results against these original source columns. Source status values are Cancelled, Completed, Returned, complete.
+
+## Dataset and companion video
+- **Download the dataset:** [`learning_sales_quality_lab.csv`](../learning_sales_quality_lab.csv)
+- **Video companion:** https://www.youtube.com/watch?v=WH937Gc_8eg&t=1880s (the in-app Watch button opens the YouTube player when embedding is permitted).
+- **Reading order:** first identify controls, then read the four concepts, reproduce the example, try an independent case, and validate your evidence.
+
+## Explain the four essential concepts
+### 1. Trim and Clean
+remove unwanted whitespace and nonprinting characters
+
+### 2. Text case
+choose a consistent, business-approved region spelling
+
+### 3. Splitting
+parse composed codes only when the delimiter format is reliable
+
+### 4. Date extraction
+derive Year and Month from Date-typed fields.
+
+## Why this skill matters
+Why this skill matters: A branch system encodes channel and identifier in one text field and needs a dashboard-ready schema. The method is not only about producing an attractive figure. Splitting: parse composed codes only when the delimiter format is reliable Date extraction: derive Year and Month from Date-typed fields. When preparing an output for another person, specify the reporting period, units, selection rules and known limitations. An analyst should be able to explain why a calculation or chart answers the actual business question and reproduce the result.
+
+## Guided practice · follow all four steps
+1. Open the correct workspace and identify the controls before entering commands. Use Transform > Format > Trim/Clean, Split Column by Delimiter and Add Column > Date. Keep an untouched source or backup version so a mistake is reversible.
+2. Apply the first two concepts on a small example: Trim and Clean — remove unwanted whitespace and nonprinting characters Then test text case with at least two contrasting inputs.
+3. Reproduce the worked example below exactly, then change one input or filter. Explain which value changes and why. After that, apply splitting and inspect the output for errors.
+4. Complete the independent challenge: Clean a Region field, split one structured ID and create year and month columns. Before moving on, check the result against the acceptance criteria: '  north ' should become 'North'; derived month remains numeric or uses an explicit date dimension.
+
+## Study this worked example
+```text
+Text.Trim([Region]); Text.Proper(Text.Trim([Region]))
+Date.Year([OrderDate]); Date.Month([OrderDate])
+```
+
+**How to interpret the output:** Transforming text, split columns and date fields begins with a practical objective: Standardise inconsistent labels and create helpful structured fields without changing source meaning. In Power Query, begin by understanding the workspace and the data rather than memorising a command. Trim and Clean: remove unwanted whitespace and nonprinting characters Text case: choose a consistent, business-approved region spelling Practice these ideas on a small synthetic sample first. Notice where the tool shows inputs, intermediate results and errors; then describe in plain language what each operation does and what it does not prove. Keep original records separate from working calculations so you can trace any surprising result back to its source.
+
+## Business case study
+Business case: A branch system encodes channel and identifier in one text field and needs a dashboard-ready schema. Your role is to deliver a result that a manager can trust and act upon, not merely a screenshot. First describe what records are included and excluded. Next perform the method described in this week, and record any changes to the source. Use the worked example as a starting point but test it with different values; finally communicate one relevant observation, one limitation and a follow-up.
 
 ## Independent practical challenge
-How would you standardise "  NORTH  " in a Region field?
+Clean a Region field, split one structured ID and create year and month columns.
 
-**Deliverable:** Explain why standardising labels is safe while inventing missing identifiers is not.
+**What you should hand in:** '  north ' should become 'North'; derived month remains numeric or uses an explicit date dimension.
 
-## Verify your work
-Standardisation is successful when equivalent labels merge and distinct labels remain distinct. Compare group-level totals before and after cleaning to spot unexpected category changes.
+## Check your result (after attempting)
+Expected evidence: '  north ' should become 'North'; derived month remains numeric or uses an explicit date dimension. To validate it, compare a small hand-checked sample with the final output, test an alternative filter or a changed input, and record any unmatched, missing or suspicious data. If results differ, review the original data, formula or query, aggregation grain and selected filters before sharing the report. Avoid this common error: Removing leading zeroes from IDs or splitting inconsistent codes without checking failures.
 
-- Confirm the number of records used and explain any excluded records.
-- Check date, currency, percentage and unit formats.
-- Recalculate at least one sample manually or using another method.
-- Separate observed results from assumptions about why they occurred.
-- Include source, period, filters and limitations in the presentation.
+**Common failure:** Removing leading zeroes from IDs or splitting inconsistent codes without checking failures.
 
-## Compare with the suggested solution (after attempting the task)
-Trim whitespace and apply proper case or upper case consistently.
-
-**Common pitfall:** Losing important leading zeroes from identifier columns.
+## Reflect and explain the result
+- Which menu, editor or pane did you use, and why?
+- What is the data grain, metric definition or calculated rule?
+- Can a second learner reproduce your output using the dataset and your instructions?
+- Which number, chart or limitation must be mentioned when presenting your result?
 
 ---
-The lesson content and model answers are intended for study. Completing the worksheet does not automatically mark the app quiz or progress as complete.
+**Progress note:** Completing this worksheet is practice. Marking a week complete, passing an assessment and submitting an instructor-reviewed capstone are separate actions in DataLearning.

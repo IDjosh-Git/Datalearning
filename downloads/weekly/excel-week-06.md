@@ -1,51 +1,77 @@
-# Excel · Week 06 · Dynamic arrays
+# Microsoft Excel · Week 06 · PivotTables, dynamic arrays and reusable analysis
 
-> DataLearning practice brief — synthetic training material. Keep your original source file unchanged and make a copy for transformations.
+> DataLearning comprehensive practical lesson. Data is fictional. This worksheet supports the full in-app explanation and independent practice. Do not overwrite your raw source file.
 
 ## Learning outcome
-Create maintainable filtered and deduplicated outputs
+Summarise thousands of rows into pivot summaries and dynamic filtered lists without manual recalculation.
 
-## Before you begin: open the right file
-- Download: `learning_sales_2026.csv` in `/downloads/` of your DataLearning project.
-- Important fields / tables: order_id, order_date, region, category, quantity, unit_price_ngn, unit_cost_ngn, status, customer_id, channel.
-- Related video (opens within the lesson page): https://www.youtube.com/watch?v=zXnQNytHCPM.
-- Use Excel / Power BI / Tableau / Power Query for CSV sources, a SQLite-compatible reader for `.sqlite` files, or Python/pandas for code-based analysis as the week requires.
+## Where to begin in the tool
+Choose Insert > PivotTable, place fields in Rows, Columns, Values and Filters, then refresh after source changes.
 
-## Understand the analytical method
-Dynamic array functions return a collection of values that can spill into neighbouring cells. FILTER returns rows meeting a condition; UNIQUE removes repeated items; SORT orders a result. These functions let the report update when the source table grows without manually copying a formula down. For example, =SORT(UNIQUE(Sales[Region])) creates an automatically updated region list.
 
-A spill needs empty destination cells. If a formula reports #SPILL!, check for blocking content or merged cells rather than altering the logic blindly. Spilled arrays are useful for summary lists and audit tables, but their size can change after refresh. Design downstream references and sheet layouts around that behaviour. Test both a populated result and the case where no records meet a filter.
+## Source data dictionary · exact practice file fields
+The linked CSV uses these **exact header names**. Import the file before attempting examples. If an exercise uses a friendly or calculated name, map or create it first.
 
-## Guided walkthrough in the tool
-1. Create a Table with Region, Status and Revenue fields.
-2. Use UNIQUE and SORT to produce an independent list of regions.
-3. Use FILTER to display rows for a chosen status, including an if-empty message.
-4. Add a new region and confirm that the list expands without manually editing a range.
+`order_id, order_date, region, category, quantity, unit_price_ngn, unit_cost_ngn, status, customer_id, channel`
 
-### Additional hands-on instruction
-From sales data, use UNIQUE and SORT for region lists, then FILTER completed orders from a selected region.
+Available `status` values: `Cancelled`, `Completed`, `Returned`
 
-## Business case
-A regional dashboard needs an automatically updated list of active areas. SORT(UNIQUE(Sales[Region])) creates the list without manually maintaining its length. FILTER can display completed records for the selected region. Test what happens when a region disappears or is newly added, and give the spill formula enough empty cells to expand.
+The worked example may introduce derived fields or example tables. Create or rename those fields explicitly and verify results against these original source columns. Source status values are Cancelled, Completed, Returned.
+
+## Dataset and companion video
+- **Download the dataset:** [`learning_sales_2026.csv`](../learning_sales_2026.csv)
+- **Video companion:** https://www.youtube.com/watch?v=zXnQNytHCPM (the in-app Watch button opens the YouTube player when embedding is permitted).
+- **Reading order:** first identify controls, then read the four concepts, reproduce the example, try an independent case, and validate your evidence.
+
+## Explain the four essential concepts
+### 1. Pivot aggregation
+choose Sum of Revenue rather than Count of Revenue
+
+### 2. Slicers
+connect relevant pivot views so business users can filter
+
+### 3. Dynamic arrays
+FILTER and UNIQUE return ranges that can spill into adjacent cells
+
+### 4. LET
+name intermediate calculations to keep complex formulas readable and maintainable.
+
+## Why this skill matters
+Why this skill matters: A reporting analyst needs a reusable monthly sales summary that updates when new export rows arrive. The method is not only about producing an attractive figure. Dynamic arrays: FILTER and UNIQUE return ranges that can spill into adjacent cells LET: name intermediate calculations to keep complex formulas readable and maintainable. When preparing an output for another person, specify the reporting period, units, selection rules and known limitations. An analyst should be able to explain why a calculation or chart answers the actual business question and reproduce the result.
+
+## Guided practice · follow all four steps
+1. Open the correct workspace and identify the controls before entering commands. Choose Insert > PivotTable, place fields in Rows, Columns, Values and Filters, then refresh after source changes. Keep an untouched source or backup version so a mistake is reversible.
+2. Apply the first two concepts on a small example: Pivot aggregation — choose Sum of Revenue rather than Count of Revenue Then test slicers with at least two contrasting inputs.
+3. Reproduce the worked example below exactly, then change one input or filter. Explain which value changes and why. After that, apply dynamic arrays and inspect the output for errors.
+4. Complete the independent challenge: Build a region-by-month PivotTable and slicer, then compare it with a formula-based total and explain any mismatch. Before moving on, check the result against the acceptance criteria: A pivot total for Paid orders must match independently computed SUMIFS on the same data and filters.
+
+## Study this worked example
+```text
+=UNIQUE(tblSales[Region])
+=LET(paid,SUMIFS(tblSales[Revenue],tblSales[Status],"Paid"),paid)
+Pivot Rows: Region; Values: Sum of Revenue
+```
+
+**How to interpret the output:** PivotTables, dynamic arrays and reusable analysis begins with a practical objective: Summarise thousands of rows into pivot summaries and dynamic filtered lists without manual recalculation. In Microsoft Excel, begin by understanding the workspace and the data rather than memorising a command. Pivot aggregation: choose Sum of Revenue rather than Count of Revenue Slicers: connect relevant pivot views so business users can filter Practice these ideas on a small synthetic sample first. Notice where the tool shows inputs, intermediate results and errors; then describe in plain language what each operation does and what it does not prove. Keep original records separate from working calculations so you can trace any surprising result back to its source.
+
+## Business case study
+Business case: A reporting analyst needs a reusable monthly sales summary that updates when new export rows arrive. Your role is to deliver a result that a manager can trust and act upon, not merely a screenshot. First describe what records are included and excluded. Next perform the method described in this week, and record any changes to the source. Use the worked example as a starting point but test it with different values; finally communicate one relevant observation, one limitation and a follow-up.
 
 ## Independent practical challenge
-Produce sorted unique product names from Sales[Product].
+Build a region-by-month PivotTable and slicer, then compare it with a formula-based total and explain any mismatch.
 
-**Deliverable:** Show which cell holds the formula, where the results spill and what causes #SPILL!.
+**What you should hand in:** A pivot total for Paid orders must match independently computed SUMIFS on the same data and filters.
 
-## Verify your work
-Use a deliberately empty condition to confirm your no-results message. Ensure the result area has room to expand and that the source table headers are not repeated in each spill row.
+## Check your result (after attempting)
+Expected evidence: A pivot total for Paid orders must match independently computed SUMIFS on the same data and filters. To validate it, compare a small hand-checked sample with the final output, test an alternative filter or a changed input, and record any unmatched, missing or suspicious data. If results differ, review the original data, formula or query, aggregation grain and selected filters before sharing the report. Avoid this common error: Forgetting PivotTable Refresh, or placing cells in a spill range where they block the result.
 
-- Confirm the number of records used and explain any excluded records.
-- Check date, currency, percentage and unit formats.
-- Recalculate at least one sample manually or using another method.
-- Separate observed results from assumptions about why they occurred.
-- Include source, period, filters and limitations in the presentation.
+**Common failure:** Forgetting PivotTable Refresh, or placing cells in a spill range where they block the result.
 
-## Compare with the suggested solution (after attempting the task)
-=SORT(UNIQUE(Sales[Product]))
-
-**Common pitfall:** Blocking a spill range or using unsupported Excel editions.
+## Reflect and explain the result
+- Which menu, editor or pane did you use, and why?
+- What is the data grain, metric definition or calculated rule?
+- Can a second learner reproduce your output using the dataset and your instructions?
+- Which number, chart or limitation must be mentioned when presenting your result?
 
 ---
-The lesson content and model answers are intended for study. Completing the worksheet does not automatically mark the app quiz or progress as complete.
+**Progress note:** Completing this worksheet is practice. Marking a week complete, passing an assessment and submitting an instructor-reviewed capstone are separate actions in DataLearning.
