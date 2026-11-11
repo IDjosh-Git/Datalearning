@@ -21,3 +21,6 @@ Use Node.js 24 (`.nvmrc`). Run `npm install` followed by `npm run verify:deploym
 **Safety and release bounds:** This package does not change or migrate Supabase records, grade projects automatically, or retrain a model. Live AI receives relevant *verified public application guidance* through the server prompt; offline help uses the same curated source. Neither has access to private submissions or personal account data. Verify live authenticated flows and actual video playback on a deployed preview.
 
 See [release notes](CURRENT_RELEASE.md), [the active file map](docs/PROJECT_FILE_MAP.md), and [the cleanup and Tutor audit](docs/LEAN_APP_CLEANUP_TUTOR_20261111.md).
+
+### AI and Python specialist course design
+The Python (`courses/python.html`) and AI (`courses/ai.html`) courses now use a consistent premium weekly workspace through `assets/scripts/specialist-unified-course.js` and `assets/styles/specialist-unified-course.css`. They retain the original ten-week content, deep links, progress controls, quizzes, in-app video player and capstone routes. The week selector uses the existing hash-based week controller; course progress uses the existing checkboxes and sync events.
