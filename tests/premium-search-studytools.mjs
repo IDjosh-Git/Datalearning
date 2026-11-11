@@ -16,7 +16,8 @@ for(const page of publicRoutes){
  assert(head.includes(`href="${base}assets/styles/access-guard.css`),`${page}: app is protected at first paint`);
 }
 const search=read('assets/scripts/premium-search.js');
-for(const token of ['premiumSearchDialog','ps-filter-list','aria-expanded','aria-haspopup','ps-card','learning-lab.html','study-tools.html','certificate.html','progress.html','Search courses and learning tools','keydown'])assert(search.includes(token),`Search behaviour missing: ${token}`);
+for(const token of ['premiumSearchDialog','ps-filter-list','aria-expanded','aria-haspopup','ps-card','learning-lab.html','study-tools.html','certificate.html','account.html','Search courses and learning tools','keydown'])assert(search.includes(token),`Search behaviour missing: ${token}`);
+assert(!search.includes("['progress.html'"),'Retired admin progress destination must not be advertised in search');
 const styles=read(css);
 for(const token of ['dialog.premium-search-dialog','ps-result-grid','dlu-search-button','max-width:640px','dlx-tools-grid>.dlx-tools-card>a::after','focus-visible','prefers-reduced-motion'])assert(styles.includes(token),`Search style missing: ${token}`);
 const hub=read('study-tools.html');

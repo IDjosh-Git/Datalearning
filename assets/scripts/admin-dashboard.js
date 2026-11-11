@@ -11,7 +11,7 @@
  const selectedPeriod=()=>!!($('adminFrom')?.value||$('adminTo')?.value);
  const courseEvents=(slug)=>{
   const ids=new Set();for(const [records,field] of [[progress,'updated_at'],[quizzes,'submitted_at'],[submissions,'created_at']]){
-   for(const r of records){if(r.course_slug===slug&&r.user_id!==window.DALP_AUTH_USER?.id&&isWithin(r[field]))ids.add(r.user_id)}
+   for(const r of records){if(r.course_slug===slug&&profilesById.has(r.user_id)&&isWithin(r[field]))ids.add(r.user_id)}
   }return ids;
  };
  const pageSize=12,db=()=>window.ZAH_DB?.client;
@@ -25,11 +25,13 @@
  function profileStats(user){
   const rows=rowsFor(user.user_id),qs=quizByUser.get(user.user_id)||[],subs=subByUser.get(user.user_id)||[],certs=certByUser.get(user.user_id)||[];
   const paths=new Set([...rows.map(r=>r.course_slug),...qs.map(r=>r.course_slug),...subs.map(r=>r.course_slug)]);
-  const completed=rows.filter(r=>r.completed).length;
+  const completedUnits=new Set(rows.filter(r=>r.completed&&COURSE[r.course_slug]).map(r=>r.course_slug+':'+r.week_no));
+  const completed=completedUnits.size;
   const usage=usageByUser.get(user.user_id);
-  const last=latest([usage?.last_used_at,...rows.map(r=>r.updated_at||r.completed_at),...qs.map(r=>r.submitted_at),...subs.map(r=>r.created_at)]);
-  const completedPath=Object.entries(COURSE).some(([slug,[,units]])=>rows.filter(r=>r.course_slug===slug&&r.completed).length>=units)||certs.length>0;
-  return {paths:paths.size,completed,last,active:!!last&&Date.now()-new Date(last).getTime()<30*86400000,completedPath,courseSet:paths};
+  const learningLast=latest([...rows.map(r=>r.updated_at||r.completed_at),...qs.map(r=>r.submitted_at),...subs.map(r=>r.created_at)]);
+  const last=latest([usage?.last_used_at,learningLast]);
+  const completedPath=Object.entries(COURSE).some(([slug,[,units]])=>rows.filter(r=>r.course_slug===slug&&r.completed).reduce((seen,r)=>(seen.add(Number(r.week_no)),seen),new Set()).size>=units)||certs.length>0;
+  return {paths:paths.size,completed,last,learningLast,active:!!learningLast&&Date.now()-new Date(learningLast).getTime()<30*86400000,completedPath,courseSet:paths,progressPct:Math.round(completed/(9*10)*100)};
  }
  async function fetchAll(table,fields){
   const all=[],pageSize=500;
@@ -41,12 +43,17 @@
   throw new Error('There are too many records to display at once. Please narrow your search.');
  }
  function paintStats(){
-  const learners=profiles.filter(p=>p.role!=='admin');
-  // Verified app accounts include learner and administrator roles.
+  // All verified DataLearning accounts—including an administrator who studies—
+  // contribute to learning metrics. Role controls access, not engagement.
+  const memberIds=new Set(profiles.map(p=>p.user_id));
   $('adminTotal').textContent=profiles.length;
-  $('adminActive').textContent=learners.filter(p=>profileStats(p).active).length;
-  $('adminCompleted').textContent=progress.filter(r=>r.completed&&r.user_id!==window.DALP_AUTH_USER?.id).length;
-  const pendingCount=submissions.filter(s=>PENDING.has(s.status)&&s.user_id!==window.DALP_AUTH_USER?.id).length;
+  $('adminActive').textContent=profiles.filter(p=>profileStats(p).active).length;
+  $('adminCompleted').textContent=new Set(progress.filter(r=>r.completed&&memberIds.has(r.user_id)).map(r=>r.user_id+':'+r.course_slug+':'+r.week_no)).size;
+  const pendingCount=submissions.filter(s=>PENDING.has(s.status)&&memberIds.has(s.user_id)).length;
+  if($('adminRosterTotal'))$('adminRosterTotal').textContent=profiles.length;
+  if($('adminRosterAdmins'))$('adminRosterAdmins').textContent=profiles.filter(p=>p.role==='admin').length;
+  if($('adminRosterLearners'))$('adminRosterLearners').textContent=profiles.filter(p=>p.role!=='admin').length;
+  if($('adminRosterEngaged'))$('adminRosterEngaged').textContent=profiles.filter(p=>profileStats(p).paths>0).length;
   $('adminPending').textContent=pendingCount;
   if($('adminPendingHero'))$('adminPendingHero').textContent=pendingCount;
   $('adminUpdated').textContent='Updated '+new Date().toLocaleTimeString(undefined,{hour:'numeric',minute:'2-digit'});
@@ -57,17 +64,17 @@
   const from=$('adminFrom').value,to=$('adminTo').value;
   $('adminPeriod').textContent=from||to?'Activity period: '+(from||'earliest available')+' to '+(to||'latest available'):'All recorded activity';
   const counts=Object.keys(COURSE).map(slug=>({slug,count:courseEvents(slug).size}));
-  const validCourses=new Set(Object.keys(COURSE)),administratorId=window.DALP_AUTH_USER?.id;
-  const engaged=new Set([...progress.filter(r=>validCourses.has(r.course_slug)&&isWithin(r.updated_at||r.completed_at)),...quizzes.filter(r=>validCourses.has(r.course_slug)&&isWithin(r.submitted_at)),...submissions.filter(r=>validCourses.has(r.course_slug)&&isWithin(r.created_at))].filter(r=>r.user_id&&r.user_id!==administratorId).map(r=>r.user_id));
-  const completedLessons=progress.filter(r=>validCourses.has(r.course_slug)&&r.completed&&r.user_id!==administratorId&&isWithin(r.completed_at||r.updated_at)).length;
-  const quizAttempts=quizzes.filter(r=>validCourses.has(r.course_slug)&&r.user_id!==administratorId&&isWithin(r.submitted_at)).length;
+  const validCourses=new Set(Object.keys(COURSE)),memberIds=new Set(profiles.map(p=>p.user_id));
+  const engaged=new Set([...progress.filter(r=>validCourses.has(r.course_slug)&&isWithin(r.updated_at||r.completed_at)),...quizzes.filter(r=>validCourses.has(r.course_slug)&&isWithin(r.submitted_at)),...submissions.filter(r=>validCourses.has(r.course_slug)&&isWithin(r.created_at))].filter(r=>memberIds.has(r.user_id)).map(r=>r.user_id));
+  const completedLessons=new Set(progress.filter(r=>validCourses.has(r.course_slug)&&r.completed&&memberIds.has(r.user_id)&&isWithin(r.completed_at||r.updated_at)).map(r=>r.user_id+':'+r.course_slug+':'+r.week_no)).size;
+  const quizAttempts=quizzes.filter(r=>validCourses.has(r.course_slug)&&memberIds.has(r.user_id)&&isWithin(r.submitted_at)).length;
   $('adminInsightPaths').textContent=validCourses.size.toLocaleString();
   $('adminInsightLearners').textContent=engaged.size.toLocaleString();
   $('adminInsightLessons').textContent=completedLessons.toLocaleString();
   $('adminInsightQuizzes').textContent=quizAttempts.toLocaleString();
   const max=Math.max(1,...counts.map(c=>c.count));
   for(const {slug,count} of counts){const el=document.createElement('div');el.className='ac-chart-row';el.setAttribute('role','listitem');const label=COURSE[slug][0];el.innerHTML='<span class="ac-chart-label">'+esc(label)+'</span><div class="ac-chart-track" aria-hidden="true"><span style="width:'+Math.round(count/max*100)+'%"></span></div><strong class="ac-chart-count">'+count+' <span>learner'+(count===1?'':'s')+'</span></strong>';el.setAttribute('aria-label',label+': '+count+' active learners in selected period');chart.append(el)}
-  const outstanding=submissions.filter(s=>PENDING.has(s.status)&&s.user_id!==window.DALP_AUTH_USER?.id).sort((a,b)=>String(a.created_at||'').localeCompare(String(b.created_at||'')));
+  const outstanding=submissions.filter(s=>PENDING.has(s.status)&&memberIds.has(s.user_id)).sort((a,b)=>String(a.created_at||'').localeCompare(String(b.created_at||'')));
   if(!outstanding.length) attention.innerHTML='<div class="ac-task"><span class="ac-task-badge">✓</span><div class="ac-task-copy"><strong>Your assessment queue is clear</strong><small>New capstone submissions will appear here when received.</small></div></div>';
   outstanding.slice(0,4).forEach(s=>{
    const p=profilesById.get(s.user_id),row=document.createElement('div');row.className='ac-task';
@@ -75,14 +82,14 @@
    row.innerHTML='<span class="ac-task-badge">◷</span><div class="ac-task-copy"><strong>'+esc(p?.full_name||p?.email||'Learner')+' · '+esc(label)+'</strong><small>'+esc(date(s.created_at))+' · '+esc((s.status||'submitted').replaceAll('_',' '))+'</small></div><a href="reviewer.html">Assess →</a>';attention.append(row);
   });
   if(outstanding.length>4){const more=document.createElement('a');more.className='ac-inline-link';more.href='reviewer.html';more.textContent='View all '+outstanding.length+' pending submissions →';attention.append(more)}
-  const recent=[...progress.filter(r=>r.completed&&r.user_id!==window.DALP_AUTH_USER?.id).map(r=>({id:r.user_id,type:'Lesson completed',when:r.completed_at||r.updated_at,detail:(COURSE[r.course_slug]?.[0]||r.course_slug||'Learning path')+' · Unit '+r.week_no})),...submissions.filter(r=>r.user_id!==window.DALP_AUTH_USER?.id).map(r=>({id:r.user_id,type:'Capstone submitted',when:r.created_at,detail:COURSE[r.course_slug]?.[0]||r.course_slug||'Learning path'})),...quizzes.filter(r=>r.user_id!==window.DALP_AUTH_USER?.id).map(r=>({id:r.user_id,type:'Knowledge check completed',when:r.submitted_at,detail:COURSE[r.course_slug]?.[0]||r.course_slug||'Learning path'})),...appUsage.filter(r=>r.user_id!==window.DALP_AUTH_USER?.id).map(r=>({id:r.user_id,type:'Learner joined DataLearning',when:r.first_used_at,detail:'Verified app use'}))]
+  const recent=[...progress.filter(r=>r.completed&&memberIds.has(r.user_id)).map(r=>({id:r.user_id,type:'Lesson completed',when:r.completed_at||r.updated_at,detail:(COURSE[r.course_slug]?.[0]||r.course_slug||'Learning path')+' · Unit '+r.week_no})),...submissions.filter(r=>memberIds.has(r.user_id)).map(r=>({id:r.user_id,type:'Capstone submitted',when:r.created_at,detail:COURSE[r.course_slug]?.[0]||r.course_slug||'Learning path'})),...quizzes.filter(r=>memberIds.has(r.user_id)).map(r=>({id:r.user_id,type:'Knowledge check completed',when:r.submitted_at,detail:COURSE[r.course_slug]?.[0]||r.course_slug||'Learning path'})),...appUsage.filter(r=>memberIds.has(r.user_id)).map(r=>({id:r.user_id,type:'Learner joined DataLearning',when:r.first_used_at,detail:'Verified app use'}))]
    .filter(r=>r.when).sort((a,b)=>String(b.when).localeCompare(String(a.when))).slice(0,4);
   if(!recent.length)activity.innerHTML='<p class="ac-empty">No activity recorded yet. New learner events will appear here.</p>';
   recent.forEach(r=>{const p=profilesById.get(r.id),el=document.createElement('div');el.className='ac-event';el.innerHTML='<span class="ac-event-icon">↗</span><div class="ac-event-copy"><strong>'+esc(r.type)+'</strong><small>'+esc(p?.full_name||p?.email||'Learner')+' · '+esc(r.detail)+' · '+esc(time(r.when))+'</small></div>';activity.append(el)});
   for(const [slug,[label,total,abbr]] of Object.entries(COURSE)){
    const owners=selectedPeriod()?courseEvents(slug):new Set([...progress.filter(r=>r.course_slug===slug).map(r=>r.user_id),...quizzes.filter(r=>r.course_slug===slug).map(r=>r.user_id),...submissions.filter(r=>r.course_slug===slug).map(r=>r.user_id)]);
-   owners.delete(window.DALP_AUTH_USER?.id);
-   const units=progress.filter(r=>r.course_slug===slug&&r.completed&&owners.has(r.user_id)&&(!selectedPeriod()||isWithin(r.completed_at||r.updated_at))).length;
+   for(const id of owners){if(!memberIds.has(id))owners.delete(id)}
+   const units=new Set(progress.filter(r=>r.course_slug===slug&&r.completed&&owners.has(r.user_id)&&(!selectedPeriod()||isWithin(r.completed_at||r.updated_at))).map(r=>r.user_id+':'+r.week_no)).size;
    const average=owners.size?Math.min(100,Math.round(units/(total*owners.size)*100)):0;
    const card=document.createElement('article');card.className='ac-course-card';
    card.dataset.course=slug;
@@ -91,42 +98,57 @@
   }
  }
  function filteredLearners(){
-  const q=$('adminSearch').value.trim().toLowerCase(),status=$('adminStatus').value,course=$('adminCourse').value;
+  const q=$('adminSearch').value.trim().toLowerCase(),status=$('adminStatus').value,course=$('adminCourse').value,role=$('adminRole').value;
   return profiles.filter(p=>{
    // Administrators are also registered DataLearning accounts and must appear in the directory.
    const s=profileStats(p);
+   const roleMatch=role==='all'||(p.role||'learner')===role;
    const match=!q||[p.full_name,p.email,p.role].some(v=>String(v||'').toLowerCase().includes(q));
-   const st=status==='all'||(status==='active'&&s.active)||(status==='new'&&!s.active)||(status==='completed'&&s.completedPath);
+   const st=status==='all'||(status==='active'&&s.paths>0)||(status==='new'&&s.paths===0)||(status==='completed'&&s.completedPath);
    const co=course==='all'||(selectedPeriod()?courseEvents(course).has(p.user_id):s.courseSet.has(course));
    const inPeriod=!selectedPeriod()||[p.first_app_use_at,usageByUser.get(p.user_id)?.last_used_at,...rowsFor(p.user_id).map(r=>r.updated_at),...(quizByUser.get(p.user_id)||[]).map(r=>r.submitted_at),...(subByUser.get(p.user_id)||[]).map(r=>r.created_at)].some(isWithin);
-   return match&&st&&co&&inPeriod;
+   return roleMatch&&match&&st&&co&&inPeriod;
   }).sort((a,b)=>String(b.first_app_use_at||'').localeCompare(String(a.first_app_use_at||'')));
  }
  function render(){
   filtered=filteredLearners();page=Math.max(0,Math.min(page,Math.max(0,Math.ceil(filtered.length/pageSize)-1)));
   const tbody=$('adminLearnerRows');tbody.replaceChildren();
   const batch=filtered.slice(page*pageSize,(page+1)*pageSize);
-  if(!batch.length){const r=document.createElement('tr');r.innerHTML='<td colspan="5">No learners match your filters. Try another search or clear your filters.</td>';tbody.append(r)}
+  if(!batch.length){const r=document.createElement('tr');r.innerHTML='<td colspan="6">No accounts match your filters. Try another search or clear your filters.</td>';tbody.append(r)}
   for(const p of batch){const s=profileStats(p),tr=document.createElement('tr'),label=p.full_name||p.email?.split('@')[0]||'Unnamed learner';
-   tr.innerHTML='<td><strong>'+esc(label)+'</strong><span class="ac-account-role '+(p.role==='admin'?'is-admin':'is-learner')+'">'+(p.role==='admin'?'Administrator':'Learner')+'</span><small>'+esc(p.email)+'</small></td><td>'+s.paths+'</td><td>'+s.completed+'</td><td>'+esc(date(s.last))+'</td><td><button type="button" class="dalp-learner-view">Open record →</button></td>';
+   tr.innerHTML='<td><div class="ac-directory-account"><span class="ac-account-initial" aria-hidden="true">'+esc(label.trim().slice(0,1).toUpperCase())+'</span><span><strong>'+esc(label)+'</strong><small>'+esc(p.email)+'</small></span></div></td><td><span class="ac-account-role '+(p.role==='admin'?'is-admin':'is-learner')+'">'+(p.role==='admin'?'Administrator':'Learner')+'</span></td><td><strong class="ac-numeric">'+s.paths+' <small>of 9</small></strong></td><td><div class="ac-progress-cell"><div><strong>'+s.completed+' / 90</strong><small>'+s.progressPct+'%</small></div><div class="ac-mini-meter" role="progressbar" aria-label="'+esc(label)+' total course progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="'+s.progressPct+'"><span style="width:'+s.progressPct+'%"></span></div></div></td><td><span class="ac-time-cell">'+esc(date(s.last))+'</span></td><td><button type="button" class="dalp-learner-view">View details <span aria-hidden="true">↗</span></button></td>';
    tr.querySelector('button').addEventListener('click',()=>showLearner(p));tbody.append(tr);
   }
   const start=filtered.length?page*pageSize+1:0,end=Math.min(filtered.length,(page+1)*pageSize);
-  $('adminRowCount').textContent='Showing '+start+'–'+end+' of '+filtered.length+' matching learners';
+  $('adminRowCount').textContent='Showing '+start+'–'+end+' of '+filtered.length+' matching accounts';
   $('adminPageInfo').textContent='Page '+(page+1)+' of '+Math.max(1,Math.ceil(filtered.length/pageSize));
   $('adminPrevPage').disabled=page===0;$('adminNextPage').disabled=(page+1)*pageSize>=filtered.length;
  }
  function showLearner(p){
-  $('adminDetailName').textContent=(p.full_name||'Learner')+' · '+(p.role==='admin'?'Administrator':'Learner');$('adminDetailEmail').textContent=p.email||'';
+  const name=p.full_name||p.email?.split('@')[0]||'Learner';
+  $('adminDetailName').textContent=name;
+  $('adminDetailEmail').textContent=p.email||'No email on record';
   const rows=rowsFor(p.user_id),details=$('adminDetailContent');details.replaceChildren();
-  const summary=document.createElement('p');summary.className='ac-learner-summary';const s=profileStats(p);summary.textContent=s.completed+' learning units completed · '+s.paths+' courses started · Last activity '+date(s.last);details.append(summary);
-  const tracks=document.createElement('div');tracks.className='dalp-admin-track-list';
+  const s=profileStats(p);
+  const header=document.createElement('div');header.className='ac-detail-snapshot';
+  header.innerHTML='<span class="ac-account-role '+(p.role==='admin'?'is-admin':'is-learner')+'">'+(p.role==='admin'?'Administrator':'Learner')+'</span>'+
+   '<div class="ac-detail-metrics">'+
+   '<div><small>COURSES STARTED</small><strong>'+s.paths+' / 9</strong></div>'+
+   '<div><small>WEEKS COMPLETED</small><strong>'+s.completed+' / 90</strong></div>'+
+   '<div><small>LAST LEARNING ACTIVITY</small><strong>'+esc(date(s.learningLast))+'</strong></div>'+
+   '</div><p>Administrators appear here as users. Their own course activity is measured exactly like learner activity.</p>';
+  details.append(header);
+  const tracks=document.createElement('div');tracks.className='dalp-admin-track-list ac-detail-course-list';
+  const userQuizzes=quizByUser.get(p.user_id)||[],userSubmissions=subByUser.get(p.user_id)||[],userCerts=certByUser.get(p.user_id)||[];
   for(const [slug,[title,total]] of Object.entries(COURSE)){
-   const count=rows.filter(r=>r.course_slug===slug&&r.completed).length,pct=Math.min(100,Math.round(100*count/total));
-   const qs=(quizByUser.get(p.user_id)||[]).filter(q=>q.course_slug===slug),subs=(subByUser.get(p.user_id)||[]).filter(s=>s.course_slug===slug).sort((a,b)=>String(b.created_at).localeCompare(String(a.created_at))),certificate=(certByUser.get(p.user_id)||[]).some(c=>c.course_slug===slug);
-   const avg=qs.length?Math.round(qs.reduce((sum,q)=>sum+Number(q.percentage||0),0)/qs.length)+'%':'Not yet taken';
-   const card=document.createElement('article');card.className='dalp-admin-track';
-   card.innerHTML='<h3>'+esc(title)+'</h3><strong>'+count+' / '+total+' lessons</strong><div class="dalp-admin-meter"><span style="width:'+pct+'%"></span></div><p>Quizzes: '+qs.length+' · Average: '+avg+'</p><p>Capstone: '+esc(subs[0]?.status?.replaceAll('_',' ')||'Not submitted')+'</p><p>Certificate: '+(certificate?'Issued':'Not issued')+'</p>';
+   const courseRows=rows.filter(r=>r.course_slug===slug),doneWeeks=new Set(courseRows.filter(r=>r.completed).map(r=>Number(r.week_no)).filter(w=>Number.isInteger(w)&&w>=1&&w<=total));
+   const count=doneWeeks.size,pct=Math.round(100*count/total);
+   const qs=userQuizzes.filter(q=>q.course_slug===slug),subs=userSubmissions.filter(s=>s.course_slug===slug).sort((a,b)=>String(b.created_at).localeCompare(String(a.created_at))),certificate=userCerts.some(c=>c.course_slug===slug);
+   const attempts=qs.map(q=>Number(q.percentage)).filter(Number.isFinite),avg=attempts.length?Math.round(attempts.reduce((sum,v)=>sum+v,0)/attempts.length)+'%':'Not taken';
+   const card=document.createElement('details');card.className='dalp-admin-track ac-detail-course';if(count>0||qs.length||subs.length)card.open=true;
+   const weeks=Array.from({length:total},(_,i)=>'<span class="ac-week-pill '+(doneWeeks.has(i+1)?'is-done':'')+'" aria-label="Week '+(i+1)+': '+(doneWeeks.has(i+1)?'completed':'not completed')+'">'+(doneWeeks.has(i+1)?'✓ ':'')+'W'+String(i+1).padStart(2,'0')+'</span>').join('');
+   card.innerHTML='<summary><span class="ac-track-title"><strong>'+esc(title)+'</strong><small>'+count+' of '+total+' lessons completed</small></span><span class="ac-track-percent">'+pct+'%</span><span class="ac-track-chevron" aria-hidden="true">⌄</span></summary>'+
+    '<div class="ac-track-body"><div class="ac-detail-track"><span style="width:'+pct+'%"></span></div><div class="ac-track-grid"><div><small>Knowledge checks</small><strong>'+qs.length+' attempt'+(qs.length===1?'':'s')+'</strong></div><div><small>Quiz average</small><strong>'+avg+'</strong></div><div><small>Capstone</small><strong>'+esc((subs[0]?.status||'Not submitted').replaceAll('_',' '))+'</strong></div><div><small>Certificate</small><strong>'+(certificate?'Issued':'Not issued')+'</strong></div></div><p class="ac-week-label">Weekly completion</p><div class="ac-week-pills">'+weeks+'</div></div>';
    tracks.append(card);
   }
   details.append(tracks);$('adminLearnerDetail').hidden=false;
@@ -134,8 +156,8 @@
  function exportCSV(){
   // Export all filtered matches, not merely the currently displayed page. Prevent CSV formula injection.
   const safe=v=>{let s=String(v??'');if(/^[\s]*[=+@\-\t\r]/.test(s))s="'"+s;return '"'+s.replaceAll('"','""')+'"'};
-  const head=['Account name','Email','Account role','First app use','Courses started','Lessons completed','Last activity'];
-  const lines=[head,...filtered.map(p=>{const s=profileStats(p);return [p.full_name,p.email,p.role||'learner',p.first_app_use_at||'',s.paths,s.completed,s.last||'']})];
+  const head=['Account name','Email','Account role','First app use','Courses started','Lessons completed','Overall progress %','Last activity'];
+  const lines=[head,...filtered.map(p=>{const s=profileStats(p);return [p.full_name,p.email,p.role||'learner',p.first_app_use_at||'',s.paths,s.completed,s.progressPct,s.last||'']})];
   const csv='\ufeff'+lines.map(row=>row.map(safe).join(',')).join('\r\n');
   const blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='academy-learners-'+new Date().toISOString().slice(0,10)+'.csv';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
  }
@@ -181,7 +203,7 @@
   $('adminWorkspace').hidden=false;
   const refreshDates=()=>{const from=$('adminFrom').value,to=$('adminTo').value;if(from&&to&&from>to){notice('Start date must be before end date.',true);return;}$('adminNotice').hidden=true;page=0;paintInsights();render()};
   $('adminFrom').addEventListener('change',refreshDates);$('adminTo').addEventListener('change',refreshDates);$('adminClearDates').addEventListener('click',()=>{$('adminFrom').value='';$('adminTo').value='';refreshDates()});
-  $('adminSearch').addEventListener('input',()=>{page=0;render()});$('adminStatus').addEventListener('change',()=>{page=0;render()});$('adminCourse').addEventListener('change',()=>{page=0;render()});
+  $('adminSearch').addEventListener('input',()=>{page=0;render()});$('adminStatus').addEventListener('change',()=>{page=0;render()});$('adminRole').addEventListener('change',()=>{page=0;render()});$('adminCourse').addEventListener('change',()=>{page=0;render()});
   $('adminReload').addEventListener('click',load);$('adminExport').addEventListener('click',exportCSV);
   $('adminPrevPage').addEventListener('click',()=>{page--;render()});$('adminNextPage').addEventListener('click',()=>{page++;render()});
   $('adminCloseDetail').addEventListener('click',()=>{$('adminLearnerDetail').hidden=true});

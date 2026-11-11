@@ -19,7 +19,6 @@ const records=[
  ['study-tools.html','Study Tools hub','Study tools','Find the right study and practice tool','all learning tools study hub planner'],
  ['learning-lab.html','Learning Lab','Study tools','Review explanations and save understanding status','study review reading confidence library'],
  ['certificate.html','Certificates','My workspace','View and verify completed course achievements','certificate award completion verification'],
- ['progress.html','My progress','My workspace','See saved completion across learning paths','progress performance score'],
  ['tutor.html','AI Learning Tutor','Study tools','Guided explanations, follow-up questions and knowledge checks','coach tutor chat explain'],
  ['reference.html','Reference library','Study tools','Formulas and worked examples across analytics tools','dax formulas excel sql functions'],
  ['learning-coach.html','Learning Coach','Study tools','Personal seven-session study routes and active recall','study plan learning schedule guided recall learning lab weekly goals reflection flashcards recap'],

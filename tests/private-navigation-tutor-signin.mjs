@@ -29,7 +29,7 @@ assert.equal(restrictedKind('/assets/scripts/admin-console.js'),'adminAsset');
 assert.equal(restrictedKind('/assets/styles/admin-workspace.css'),'adminAsset');
 assert.notEqual(restrictedKind('/assets/scripts/private-navigation.js'),'adminAsset','Learners must be able to load shared navigation');
 assert.notEqual(restrictedKind('/assets/styles/private-workspace.css'),'adminAsset','Learners must be able to load shared styling');
-for(const destination of ['admin.html#admin-courses','progress.html','reviewer.html','account.html','index.html'])assert(navigation.includes(destination),`Missing role-aware route ${destination}`);
+for(const destination of ['admin.html#admin-courses','admin.html#admin-learners','reviewer.html','account.html','index.html'])assert(navigation.includes(destination),`Missing role-aware route ${destination}`);
 assert(navigation.includes('wrap.hidden=true')&&navigation.includes("window.DALP_ROLE==='admin'")&&navigation.includes('group.hidden=!admin'),'Admin links hidden until verified administrator role');
 assert(navigation.includes('ac-mobile-menu')&&navigation.includes('aria-expanded')&&navigation.includes("e.key==='Escape'"),'Mobile drawer keyboard handling');
 assert(!navigation.includes('ac-mobile-tabs')&&!adminController.includes('ac-side-nav'),'Only shared script constructs navigation');

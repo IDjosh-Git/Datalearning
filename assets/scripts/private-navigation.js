@@ -34,9 +34,9 @@
  ];
  const moreNav=[['Study Tools','study-tools.html','study'],['Study plan','learning-coach.html','study-plan'],['Practice Studio','studio.html','studio'],['Learning Lab','learning-lab.html','lab'],['Capstone Studio','capstone.html','capstone'],['Certificates','account.html#certificates','certificate']];
  const adminNav=[
-  {caption:'ADMINISTRATION',items:[['Admin overview','admin.html','overview'],['Progress reports','progress.html','progress'],['Review desk','reviewer.html','reviews']]}
+  {caption:'ADMINISTRATION',items:[['Admin overview','admin.html','overview'],['Learners & Progress','admin.html#admin-learners','learners'],['Courses analysis','admin.html#admin-courses','courses'],['Review desk','reviewer.html','reviews']]}
  ];
- const adminMoreNav=[['Courses analysis','admin.html#admin-courses','courses'],['Connection check','connection-test.html','connection'],['Progress sync','sync-test.html','sync']];
+ const adminMoreNav=[['Connection check','connection-test.html','connection'],['Progress sync','sync-test.html','sync']];
  const adminPages=new Set(['overview','progress','reviews','connection','sync']);
  const shell=document.createElement('div');shell.className='ac-shell';
  const aside=document.createElement('aside');aside.className='ac-sidebar';aside.id='acSidebar';aside.setAttribute('aria-label','Private learning navigation');
@@ -59,7 +59,11 @@
  const academyLink=navLink(['Back to public academy','index.html','portal']);academyLink.classList.add('ac-academy-link');navEl.append(academyLink);
  aside.append(navEl);
  const bottom=document.createElement('div');bottom.className='ac-side-bottom';
- bottom.innerHTML=''; // Profile lives in the top navigation; the sidebar contains sign-out only.
+ bottom.innerHTML=''; // Profile remains in the top bar; account identity lives above Sign out.
+ const identityCard=document.createElement('section');identityCard.className='ac-side-identity';identityCard.setAttribute('aria-label','Signed-in account');
+ const accountBadge=document.createElement('span');accountBadge.className='ac-identity-role';accountBadge.textContent='Checking account…';
+ const accountEmail=document.createElement('span');accountEmail.className='ac-identity-email';accountEmail.textContent='Secure DataLearning account';
+ identityCard.append(accountBadge,accountEmail);bottom.append(identityCard);
  const logout=document.createElement('button');logout.className='ac-logout';logout.type='button';logout.innerHTML='<span aria-hidden="true">↪</span> Sign out';
  logout.addEventListener('click',async()=>{logout.disabled=true;logout.textContent='Signing out…';try{await window.DALP_SERVER_SESSION?.clear();await window.ZAH_DB?.client?.auth.signOut()}finally{location.replace('auth.html')}});
  bottom.append(logout);aside.append(bottom);
@@ -67,7 +71,7 @@
  const frame=document.createElement('div');frame.className='ac-main-frame';
  const header=document.createElement('header');header.className='ac-topbar';
  const mobileToggle=document.createElement('button');mobileToggle.type='button';mobileToggle.className='ac-mobile-menu';mobileToggle.setAttribute('aria-label','Open navigation');mobileToggle.setAttribute('aria-controls','acSidebar');mobileToggle.setAttribute('aria-expanded','false');mobileToggle.innerHTML='<span aria-hidden="true">☰</span>';
- const titles={overview:'Academy overview',progress:'Progress reports',reviews:'Assessment desk',account:'My dashboard',profile:'My profile',certificate:'My certificate',connection:'Connection test',sync:'Progress sync'};
+ const titles={overview:'Academy overview',progress:'Learners & Progress',reviews:'Assessment desk',account:'My dashboard',profile:'My profile',certificate:'My certificate',connection:'Connection test',sync:'Progress sync'};
  const trail=document.createElement('div');trail.className='ac-breadcrumb';trail.innerHTML='<span class="ac-breadcrumb-prefix">Workspace</span><span class="ac-crumb-divider" aria-hidden="true">/</span><strong>'+(titles[current]||'Learning Dashboard')+'</strong>';
  const right=document.createElement('div');right.className='ac-top-actions';
  right.innerHTML='<span class="ac-secure"><span class="ac-secure-dot" aria-hidden="true"></span> Learner space</span>'; // No duplicate course or admin links in the top bar.
@@ -110,8 +114,8 @@
  function updateActive(){
   showAdminView();
   const h=location.hash;
-  const active=current==='overview'?(h==='#admin-courses'?'courses':'overview'):current==='account'&&h==='#certificates'?'certificate':current;
-  if(current==='overview')trail.querySelector('strong').textContent=({learners:'Student management',courses:'Courses analysis',overview:'Admin overview'})[active];
+  const active=current==='overview'?(h==='#admin-courses'?'courses':h==='#admin-learners'?'learners':'overview'):current==='account'&&h==='#certificates'?'certificate':current;
+  if(current==='overview')trail.querySelector('strong').textContent=({learners:'Learners & Progress',courses:'Courses analysis',overview:'Admin overview'})[active];
   navEl.querySelectorAll('.ac-side-link').forEach(a=>{const match=a.dataset.section===active;a.classList.toggle('ac-selected',match);if(match)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
   if(extras.querySelector('.ac-selected'))extras.open=true;
   if(adminTools.querySelector('.ac-selected'))adminTools.open=true;
@@ -132,7 +136,7 @@
  window.addEventListener('popstate',switchAdminView);
  if(['connection','sync'].includes(current))adminTools.open=true;
  updateActive();
- function roleUpdate(){const admin=window.DALP_ROLE==='admin';navEl.querySelectorAll('[data-admin-only]').forEach(group=>group.hidden=!admin);if(adminPages.has(current)&&!admin)root.classList.remove('ac-menu-open');right.querySelector('.ac-secure').lastChild.textContent=admin?' Admin access':' Learner space';branding.href=admin?'admin.html':'account.html';branding.querySelector('small').textContent=admin?'ADMIN WORKSPACE':'LEARNING WORKSPACE';updateActive();}
+ function roleUpdate(){const account=window.DALP_AUTH_USER;const admin=window.DALP_ROLE==='admin';navEl.querySelectorAll('[data-admin-only]').forEach(group=>group.hidden=!admin);if(adminPages.has(current)&&!admin)root.classList.remove('ac-menu-open');right.querySelector('.ac-secure').lastChild.textContent=admin?' Admin access':' Learner space';accountBadge.textContent=admin?'Administrator account':window.DALP_ROLE==='learner'?'Learner account':'Checking account…';accountBadge.classList.toggle('is-admin',admin);accountEmail.textContent=account?.email||'Email unavailable';accountEmail.title=account?.email||'';branding.href=admin?'admin.html':'account.html';branding.querySelector('small').textContent=admin?'ADMIN WORKSPACE':'LEARNING WORKSPACE';updateActive();}
  window.addEventListener('dalp:auth-ready',roleUpdate);roleUpdate();
  function identity(){ /* Top Profile control owns account name and photo. */ }
  window.addEventListener('dalp:auth-ready',identity);identity();

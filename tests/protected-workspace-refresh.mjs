@@ -18,7 +18,7 @@ for (const page of pages) {
 assert(nav.includes('ac-side-nav') && nav.includes('ac-mobile-menu') && nav.includes('ac-drawer-close'),'One accessible desktop/mobile sidebar');
 assert(!nav.includes('ac-mobile-tabs'),'Duplicated mobile navigation removed at source');
 assert(!shared.includes('.ac-mobile-tabs'),'Obsolete mobile navigation styling physically removed');
-for (const href of ['admin.html','admin.html#admin-courses','progress.html','reviewer.html']) {
+for (const href of ['admin.html','admin.html#admin-courses','admin.html#admin-learners','reviewer.html']) {
  assert(nav.includes(href),`Admin navigation target ${href} missing`);
 }
 assert(shared.includes('background:#203a57!important'),'Admin toolbar uses dark contrast colour');

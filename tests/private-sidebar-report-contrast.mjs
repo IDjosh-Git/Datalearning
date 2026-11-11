@@ -5,13 +5,17 @@ const nav=read('assets/scripts/private-navigation.js');
 const primary=nav.split('const adminNav=')[1]?.split('const adminMoreNav=')[0];
 const secondary=nav.split('const adminMoreNav=')[1]?.split('const adminPages=')[0];
 assert(primary,'Primary administration routes must exist');
-assert.match(primary,/\['Progress reports','progress\.html','progress'\]/,'Progress reports must be a primary Administration route');
-assert(!primary.includes("'Student management'"),'Student management must not duplicate progress in the sidebar');
-assert(!secondary.includes("'Progress reports'"),'Progress reports must not be repeated in secondary tools');
-assert(!nav.includes("'admin.html#admin-learners','learners'"),'Learner directory is not a sidebar item');
-assert(nav.includes("hash==='#admin-learners'")&&read('admin.html').includes('id="admin-learners"'),'Admin Overview retains accessible student management drill-down');
-assert(nav.includes("const active=current==='overview'?(h==='#admin-courses'?'courses':'overview')"),'Overview remains selected when accessed through its directory shortcut');
-assert(!nav.includes("'progress'].includes(current)"),'Primary Progress reports should not force the admin tools accordion open');
+assert.match(primary,/\['Learners & Progress','admin\.html#admin-learners','learners'\]/,'One unified admin directory and progress page in the sidebar');
+assert.match(primary,/\['Courses analysis','admin\.html#admin-courses','courses'\]/,'Course intelligence is still available independently');
+assert(!primary.includes("'Progress reports'"),'Old progress-report duplicate removed');
+assert(!secondary.includes("'Progress reports'"),'Old admin link removed from more-tools');
+assert(nav.includes("hash==='#admin-learners'")&&read('admin.html').includes('id="admin-learners"'),'Unified admin page exists');
+assert(nav.includes("h==='#admin-learners'?'learners'"),'Learners section is actively selected when opened');
+const admin=read('admin.html');
+assert(!admin.includes('href="progress.html"'),'No retired destination in admin shortcuts');
+assert.match(admin,/id="adminRole"/,'Admin and learner role filter included');
+assert.match(admin,/ac-roster-summary/,'Compact verified account overview included');
+assert(nav.includes("className='ac-side-identity'"),'Shared sidebar shows verified role and email');
 const css=read('assets/styles/private-experience-v3.css');
 for(const marker of [
  '.ac-sidebar .ac-side-nav a.ac-side-link:is(:hover,:focus-visible,.ac-selected,[aria-current="page"])',
@@ -27,4 +31,4 @@ for(const file of ['admin','account','progress','reviewer','profile','certificat
  assert(html.includes('private-experience-v3.css?v=sidebar-20261110-r6'),`${file}: new contrast CSS cache version`);
  assert(html.includes('auth-gate.js'),`${file}: protected route retained`);
 }
-console.log('PASS Administration has one primary Progress Reports destination, no duplicate Learners item, accessible student-directory drill-down and shared contrast-safe hover styling on all eight private pages');
+console.log('PASS Administration has one unified Learners & Progress destination and account identity in the sidebar, with shared responsive styles');

@@ -1,3 +1,14 @@
+## 12 November 2026 — Unified Learners & Progress, admin engagement and clean layouts
+
+- Merged the duplicate Learner Management and Progress Reports admin navigation into one role-filterable **Learners & Progress** view on the current Admin Dashboard. No admin short link or search destination points to the retired progress page. The historical URL remains protected for existing bookmarks.
+- Added verified role/learning KPI cards, per-account progress bars, course and status filters, accessible View details sheets with nine course summaries, per-course quiz/capstone/certificate outcomes and ten weekly checkpoints.
+- Fixed the analytics bug that excluded the signed-in administrator from course engagement metrics. A verified administrator who genuinely studies is included as an engaged learner in overview, analytics and personal detail views; role-based access is unchanged.
+- Added verified account role and email to the shared private sidebar directly above Sign out. Both administrator and learner identities display on their respective accounts.
+- Removed obsolete page-wide dark roster and course-header underlay rules, eliminated unused decorative hero HTML and included a scoped premium admin/review design stylesheet. Fixed legacy content-box sizing that clipped the mobile learner detail drawer.
+- Automated tests and isolated Chromium mobile/tablet/desktop checks passed. **Source only:** deploy and smoke-test with real accounts before considering the live site updated. Full notes: `docs/ADMIN_UNIFIED_LEARNER_PROGRESS_20261112.md`.
+
+---
+
 ## 11 November 2026 — Mobile refresh recovery & Tutor AI response readability
 
 - Fixed the server session renewal endpoint's navigation failure path: when a Supabase refresh token is invalid, the browser returns to the sign-in screen with its original destination instead of displaying raw `{"error":"Session expired"}` JSON.

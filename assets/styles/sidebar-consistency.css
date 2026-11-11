@@ -172,3 +172,11 @@ html body.dlp-course-v29[data-ui-course] #sidebar .dl-lesson-drawer-heading{isol
 
 /* Role-aware navigation: hidden admin groups must never become visible through display utilities. */
 [data-admin-only][hidden], [data-admin-shortcut][hidden] { display: none !important; }
+
+
+/* Account information belongs above Sign Out on EVERY private workspace page. */
+html[data-theme] body.ac-ready .ac-side-bottom{border-top:0!important;padding-top:10px!important}
+html[data-theme] body.ac-ready .ac-side-identity{display:grid;gap:7px;padding:12px 13px;margin-bottom:10px;min-width:0;border-radius:13px;background:#ffffff0b;border:1px solid #ffffff1c}
+html[data-theme] body.ac-ready .ac-identity-role{display:inline-flex;width:fit-content;max-width:100%;font:800 11px/1.4 "DM Sans",sans-serif;color:#d2e7ec!important;-webkit-text-fill-color:#d2e7ec!important}
+html[data-theme] body.ac-ready .ac-identity-role.is-admin{color:#b2f1d2!important;-webkit-text-fill-color:#b2f1d2!important}
+html[data-theme] body.ac-ready .ac-identity-email{font:600 11px/1.45 "DM Sans",sans-serif;color:#e7edf2!important;-webkit-text-fill-color:#e7edf2!important;overflow-wrap:anywhere;word-break:break-word}
