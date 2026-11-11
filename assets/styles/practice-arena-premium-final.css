@@ -1802,3 +1802,127 @@ html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDeta
 html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail .ide-shell{border-radius:22px!important;overflow:hidden;}
 html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail .ide-content{min-width:0;}
 html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail :is(.ide-primary,.ide-secondary){min-width:0;}
+
+
+/* Practice Arena • Mobile full-width workspace + SQL light editor • 11 Nov 2026.
+   This scoped final layer resolves nested gutters and the historic SQL dual-layer
+   background collision without changing editor input, highlighting, or runners. */
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .ide-primary .arena-editor {
+  background:#f7fafb!important;border:1px solid #cbdde4!important;
+  color:#233e51!important;isolation:isolate!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .ide-primary .arena-editor .arena-lines {
+  background:#eaf1f5!important;color:#557285!important;-webkit-text-fill-color:#557285!important;
+  border-right:1px solid #cbdde4!important;
+  box-sizing:border-box!important;padding:12px 5px!important;text-align:right!important;
+  font:500 13px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .ide-primary .arena-editor .arena-code {
+  background:#f7fafb!important;position:relative!important;isolation:isolate!important;
+}
+/* The pre is the single visible, syntax-coloured code layer. The native
+   textarea remains focusable, editable, and topmost for keyboard/touch input. */
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .ide-primary .arena-code pre#arenaHighlight {
+  display:block!important;position:absolute!important;inset:0!important;
+  width:100%!important;height:100%!important;margin:0!important;padding:12px!important;
+  box-sizing:border-box!important;z-index:1!important;pointer-events:none!important;
+  background:transparent!important;color:#233e51!important;-webkit-text-fill-color:#233e51!important;
+  border:0!important;border-radius:0!important;box-shadow:none!important;
+  font:500 14px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace!important;
+  letter-spacing:normal!important;word-spacing:normal!important;
+  white-space:pre-wrap!important;overflow-wrap:break-word!important;word-break:break-word!important;
+  tab-size:2!important;overflow:hidden!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .ide-primary .arena-code #arenaInputHost {
+  position:absolute!important;inset:0!important;z-index:2!important;
+  width:100%!important;height:100%!important;max-width:100%!important;
+  background:transparent!important;border:0!important;overflow:hidden!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .ide-primary .arena-code #practiceAnswer.sql-editor-textarea {
+  display:block!important;position:absolute!important;inset:0!important;
+  width:100%!important;height:100%!important;margin:0!important;padding:12px!important;
+  box-sizing:border-box!important;z-index:3!important;
+  background:transparent!important;background-color:transparent!important;
+  color:transparent!important;-webkit-text-fill-color:transparent!important;
+  caret-color:#155977!important;border:0!important;border-radius:0!important;
+  outline-offset:-3px!important;box-shadow:none!important;text-shadow:none!important;
+  font:500 14px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace!important;
+  letter-spacing:normal!important;word-spacing:normal!important;
+  white-space:pre-wrap!important;overflow-wrap:break-word!important;word-break:break-word!important;
+  tab-size:2!important;overflow:auto!important;resize:none!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .ide-primary .arena-code #practiceAnswer.sql-editor-textarea::placeholder {
+  color:#597484!important;-webkit-text-fill-color:#597484!important;opacity:1!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .ide-primary .arena-code #practiceAnswer.sql-editor-textarea::selection {
+  background:rgba(51,118,158,.23)!important;color:transparent!important;-webkit-text-fill-color:transparent!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .ide-primary .arena-code pre#arenaHighlight .arena-kw{
+  color:#145eac!important;-webkit-text-fill-color:#145eac!important;font-weight:750!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .ide-primary .arena-code pre#arenaHighlight .arena-string{
+  color:#8b4c15!important;-webkit-text-fill-color:#8b4c15!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .ide-primary .arena-code pre#arenaHighlight .arena-number{
+  color:#8c4b1c!important;-webkit-text-fill-color:#8c4b1c!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .ide-primary .arena-code pre#arenaHighlight .arena-comment{
+  color:#4a7468!important;-webkit-text-fill-color:#4a7468!important;
+}
+@media(max-width:700px){
+  /* Only 6px side gutters at the viewport, rather than compounded padding. */
+  html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] main.pc-wrap {
+    width:100%!important;max-width:100%!important;min-width:0!important;
+    margin-inline:0!important;padding:0 6px 22px!important;box-sizing:border-box!important;
+  }
+  html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] main.pc-wrap > :is(.pc-hero,nav.arena-subject-launcher,.hub-topbar,.pc-layout,.arena-trust,.pc-note){
+    width:100%!important;max-width:100%!important;min-width:0!important;
+    margin-left:0!important;margin-right:0!important;box-sizing:border-box!important;
+  }
+  html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] main.pc-wrap .pc-layout,
+  html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] main.pc-wrap #practiceDetail {
+    width:100%!important;max-width:100%!important;min-width:0!important;
+  }
+  html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] main.pc-wrap #practiceDetail{
+    padding:10px!important;border-radius:14px!important;
+  }
+  html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] main.pc-wrap #practiceDetail .ide-shell{
+    width:100%!important;max-width:100%!important;min-width:0!important;margin:10px 0 13px!important;
+  }
+  html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] main.pc-wrap #practiceDetail .ide-content,
+  html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] main.pc-wrap #practiceDetail :is(.ide-primary,.ide-secondary){
+    width:100%!important;max-width:100%!important;min-width:0!important;
+  }
+  html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] main.pc-wrap #practiceDetail #ideEditorSlot,
+  html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] main.pc-wrap #practiceDetail .ide-secondary .ide-panel:not([hidden]){
+    box-sizing:border-box!important;width:100%!important;max-width:100%!important;
+    min-width:0!important;padding:6px!important;
+  }
+  html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] main.pc-wrap #practiceDetail[data-active-editor="SQL"] .ide-primary .arena-editor{
+    grid-template-columns:34px minmax(0,1fr)!important;
+  }
+  html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] main.pc-wrap #practiceDetail .ide-editor-toolbar{
+    box-sizing:border-box!important;width:100%!important;max-width:100%!important;padding:9px!important;
+  }
+  html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] main.pc-wrap #practiceDetail .ide-editor-toolbar>div {
+    min-width:0!important;max-width:100%!important;
+  }
+  html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] main.pc-wrap #practiceDetail :is(.python-in-challenge,.python-lab,#pythonCode,#pythonOutput,.ide-sheet-editor,.ide-grid-scroll,.arena-workspace,.arena-grid,.arena-editor-pane,.arena-editor,.arena-code,.ide-results-tabs){
+    box-sizing:border-box!important;max-width:100%!important;min-width:0!important;
+  }
+}
+
+/* High-specificity gutter paint: the legacy editor used a navy shorthand for
+   line numbers, which could survive the SQL light-surface update. */
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .ide-primary .arena-editor #arenaLines.arena-lines{
+  background:#eaf1f5!important;background-image:none!important;
+  color:#557285!important;-webkit-text-fill-color:#557285!important;
+  border-right:1px solid #cbdde4!important;
+  font:500 13px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace!important;
+  padding:12px 5px!important;white-space:pre!important;text-align:right!important;
+}
+@media(max-width:700px){
+ html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .ide-primary .arena-editor #arenaLines.arena-lines{
+    width:34px!important;min-width:0!important;max-width:34px!important;
+ }
+}

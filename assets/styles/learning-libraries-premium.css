@@ -228,3 +228,47 @@ body[data-library-page] .dl-lib-eyebrow{justify-content:center;}
 body[data-library-page] .dl-lib-hero-actions{justify-content:center;}
 body[data-library-page] .dl-lib-hero-preview{width:min(100%,650px);margin-inline:auto;text-align:left;}
 @media(max-width:600px){body[data-library-page] .dlst-hero[data-lib-hero="true"]{gap:21px;padding:29px 18px;}body[data-library-page] .dl-lib-hero-actions{width:100%;}body[data-library-page] .dl-lib-hero-actions a{flex:1 1 180px;}}
+
+/* Reference Library: vertically and horizontally centered compact hero; toolkit sits outside the banner. */
+body[data-library-page="reference"] .dlst-hero[data-lib-hero="true"] {
+ display:flex!important; align-items:center!important; justify-content:center!important;
+ min-height:0!important; gap:0!important; text-align:center!important;
+ padding:clamp(28px,3.2vw,43px) clamp(18px,3vw,38px)!important;
+ margin-bottom:14px!important;
+}
+body[data-library-page="reference"] .dl-lib-hero-copy { width:min(100%,800px); margin:auto; text-align:center; }
+body[data-library-page="reference"] .dlst-hero[data-lib-hero="true"] h1 { margin-bottom:10px; font-size:clamp(30px,3.5vw,49px)!important; }
+body[data-library-page="reference"] .dl-lib-hero-copy>p { max-width:700px!important; margin-inline:auto; line-height:1.55!important; }
+body[data-library-page="reference"] .dl-lib-eyebrow { margin-bottom:12px; }
+body[data-library-page="reference"] .dl-lib-hero-actions { margin-top:19px; justify-content:center; }
+body[data-library-page="reference"] .dl-lib-hero-preview {
+ display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1.3fr) auto;
+ align-items:center; column-gap:22px; row-gap:10px; width:min(100%,1420px);
+ margin:0 auto 22px; padding:15px 22px; color:#173449;
+ text-align:left; background:#fff; border:1px solid #dae7e8; border-radius:17px;
+ box-shadow:0 8px 26px rgba(18,54,72,.045); backdrop-filter:none;
+}
+body[data-library-page="reference"] .dl-lib-hero-preview .dl-lib-preview-label { grid-column:1; grid-row:1; margin:0 0 3px; color:#197a78; }
+body[data-library-page="reference"] .dl-lib-hero-preview strong { grid-column:1; grid-row:2; color:#173449; font-size:16px; }
+body[data-library-page="reference"] .dl-lib-hero-preview p { grid-column:1; grid-row:3; margin:0; color:#617984; font-size:12px; }
+body[data-library-page="reference"] .dl-lib-hero-preview .dl-lib-preview-tools { grid-column:2; grid-row:1 / 4; margin:0; justify-content:center; }
+body[data-library-page="reference"] .dl-lib-hero-preview .dl-lib-preview-tools span { color:#28616c; background:#f1f8f8; border-color:#dceceb; font-size:11px; }
+body[data-library-page="reference"] .dl-lib-hero-preview .dl-lib-preview-stat { grid-column:3; grid-row:1 / 4; border-top:0; border-left:1px solid #e2ecee; padding:0 0 0 22px; white-space:nowrap; }
+body[data-library-page="reference"] .dl-lib-hero-preview .dl-lib-preview-stat b { color:#d85e24; font-size:27px; }
+body[data-library-page="reference"] .dl-lib-hero-preview .dl-lib-preview-stat small { color:#5d7280; }
+@media(max-width:850px) {
+ body[data-library-page="reference"] .dl-lib-hero-preview { grid-template-columns:minmax(0,1fr) auto; }
+ body[data-library-page="reference"] .dl-lib-hero-preview .dl-lib-preview-tools { grid-column:1; grid-row:4; justify-content:flex-start; margin-top:7px; }
+ body[data-library-page="reference"] .dl-lib-hero-preview .dl-lib-preview-stat { grid-column:2; grid-row:1 / 5; }
+}
+@media(max-width:540px) {
+ body[data-library-page="reference"] .dlst-hero[data-lib-hero="true"] { padding:25px 17px!important; }
+ body[data-library-page="reference"] .dl-lib-hero-actions { margin-top:17px; gap:8px; }
+ body[data-library-page="reference"] .dl-lib-hero-actions a { flex:1 1 130px; }
+ body[data-library-page="reference"] .dl-lib-hero-preview { padding:15px; grid-template-columns:minmax(0,1fr) auto; column-gap:10px; }
+ body[data-library-page="reference"] .dl-lib-hero-preview .dl-lib-preview-stat { align-self:center; display:flex; flex-direction:column; gap:4px; text-align:center; padding-left:10px; }
+ body[data-library-page="reference"] .dl-lib-hero-preview .dl-lib-preview-stat b { font-size:22px; }
+ body[data-library-page="reference"] .dl-lib-hero-preview .dl-lib-preview-stat small { font-size:10px; white-space:normal; }
+ body[data-library-page="reference"] .dl-lib-hero-preview .dl-lib-preview-tools { gap:5px; }
+ body[data-library-page="reference"] .dl-lib-hero-preview .dl-lib-preview-tools span { padding:5px 7px; font-size:10px; }
+}

@@ -1,0 +1,31 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import vm from 'node:vm';
+const read = name => fs.readFileSync(name, 'utf8');
+const script = read('assets/scripts/tool-journeys.js');
+const css = read('assets/styles/tool-journeys.css');
+const ref = read('reference.html');
+const referenceCss = read('assets/styles/learning-libraries-premium.css');
+const sandbox = { window: {} };
+vm.runInNewContext(script, sandbox);
+for (const course of ['python', 'ai']) {
+  assert.equal(sandbox.window.DALP_TOOL_JOURNEYS[course].stages.length, 6, `${course} loses a roadmap stage`);
+  const html = read(`courses/${course}.html`);
+  assert(html.includes('tool-journeys.js?v=journey-toggle-20261111-r1'), `${course} does not load new roadmap logic`);
+  assert(html.includes('tool-journeys.css?v=journey-toggle-20261111-r1'), `${course} does not load new roadmap styling`);
+}
+assert(script.includes("panel.hidden = true"), 'Roadmap must start collapsed');
+assert(script.includes("aria-expanded") && script.includes("aria-controls"), 'Roadmap must have accessible expansion state and target');
+assert(script.includes("panel.hidden = !expand"), 'Button must actually toggle roadmap content');
+assert(script.includes("buttonIcon.textContent = expand ? '−' : '+'"), 'Toggle must show minus when open and plus when closed');
+assert(script.includes('if (!journey || !main || document.getElementById'), 'Avoid duplicate roadmaps');
+assert(css.includes('.dlx-journey-panel[hidden]') && css.includes('display:none!important'), 'Collapsed panel must remain hidden');
+assert(css.includes('@media (max-width:640px)'), 'Roadmap must support small screens');
+assert.equal((ref.match(/class="dl-lib-hero-preview"/g) || []).length, 1, 'Tool summary duplicated');
+const heroIndex = ref.indexOf('<section class="dlst-hero"');
+const heroEnd = ref.indexOf('</section>', heroIndex);
+const summaryIndex = ref.indexOf('class="dl-lib-hero-preview"');
+assert(heroIndex >= 0 && heroEnd >= 0 && summaryIndex > heroEnd, 'Reference toolkit summary must be below the hero');
+assert(referenceCss.includes('body[data-library-page="reference"] .dlst-hero') && referenceCss.includes('justify-content:center!important'), 'Reference hero must be centered');
+assert(referenceCss.includes('min-height:0!important'), 'Reference hero must not inherit excessive minimum height');
+console.log('PASS collapsible Python/AI roadmaps and compact centered Reference Library hero');

@@ -8,7 +8,7 @@ const style=fs.readFileSync('assets/styles/practice-arena-premium-final.css','ut
 const practice=fs.readFileSync('assets/scripts/practice.js','utf8');
 assert(page.includes('arena-ide.js?v=arena-unified-20261111-r1'),'Toolbar changes must have a refreshed asset URL');
 assert(page.includes('arena-stability.js?v=arena-task-dedup-20261111-r1'),'Duplicate removal must have a refreshed asset URL');
-assert(page.includes('practice-arena-premium-final.css?v=20261111-design-v2'),'Compact styling must have a refreshed asset URL');
+assert(page.includes('practice-arena-premium-final.css?v=20261111-mobile-sql-light-r1'),'Compact styling must have a refreshed asset URL');
 assert.equal((practice.match(/class="arena-learning-brief"/g)||[]).length,1,'Retain one challenge brief at top');
 assert(!stable.includes('CHALLENGE BRIEF'),'No additional task brief in IDE');
 assert(!stable.includes('data-arena-view="task"'),'Mobile tabs must not provide duplicate task panel');

@@ -56,3 +56,19 @@ Deployment: Upload the contents of this `datalearning/` project to the existing 
 - The redundant advanced career/roadmap end-of-lesson section was removed from Python and AI core lessons; practical teaching material remains.
 - The Reference Library hero heading and actions are centered across desktop, tablet and mobile.
 - The Practice Arena loads a consolidated `practice-arena-premium-final.css` instead of six legacy override layers. The legacy mobile action dock was removed and a single canonical Run Query or Calculate button is used across screen sizes; the original SQL challenge action remains wired invisibly for execution.
+
+
+## 11 November 2026 — AI/Python roadmap and Reference Library compact hero
+
+- The optional six-stage "Your path from the interface to a professional report" section on AI and Python course pages is now presented inside a modern, responsive card.
+- The roadmap is **collapsed by default**; the accessible **View roadmap + / Hide roadmap −** button controls a single panel. All existing stages, descriptions and practice tasks remain available.
+- The Reference Library hero is shorter and centered vertically and horizontally. Its existing toolkit highlights are retained in a compact summary strip below the hero, not inside the large background.
+- Updated course and Reference Library asset cache versions and added the focused regression test `tests/specialist-roadmap-toggle-reference-compact.mjs`.
+- Confirmed visually at 1440, 768, 390 and 320px (Reference Library), and 1440, 390 and 320px (both roadmaps); no horizontal overflow; toggle expanded/collapsed successfully.
+
+## 11 November — Mobile full-width Practice Arena and light SQL code surface
+- Reduced the Practice Arena's mobile outer gutters to 6px per side and removed redundant nested spacing so all workspace cards, editors, tabs, and result panels use the available screen width.
+- Corrected the SQL editor's historical overlapping dark and light layers: the query editor, syntax-highlight pre, and line-number gutter now render as one light surface with dark, contrast-aware syntax colours. The native textarea, selection, caret, input/composition events and scroll synchronisation remain intact.
+- Added mobile screen-width assertions and a dedicated `tests/practice-mobile-sql-light.mjs` contract. Browser visual checks were performed at 320px, 390px, 768px and 1440px with no horizontal page overflow.
+- Existing challenge selection, SQL/Excel execution and grading, Python worker, weekly lessons, mastery questions, progress and cloud schema are unchanged. The full `npm test` suite passed.
+- Source release only; no live deployment was performed.
