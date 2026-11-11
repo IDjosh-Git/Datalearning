@@ -146,3 +146,9 @@ html body .lc-panel.lc-pulse-panel:not([hidden]){z-index:30001!important;transfo
 html body .lc-panel.lc-pulse-panel .lc-top .lc-close{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:6px!important;width:auto!important;min-width:77px!important;min-height:42px!important;padding:0 11px!important;border:1px solid #c0dad2!important;border-radius:11px!important;background:#f1faf6!important;color:#153e4e!important;-webkit-text-fill-color:#153e4e!important;font:800 12px/1 "DM Sans",system-ui,sans-serif!important;cursor:pointer!important}
 html body .lc-panel.lc-pulse-panel .lc-top .lc-close>span:first-child{font-size:20px!important;line-height:1!important}
 html body .lc-panel.lc-pulse-panel .lc-top .lc-close:is(:hover,:focus-visible){background:#d9f0e8!important;border-color:#8fbfb4!important;color:#153e4e!important;-webkit-text-fill-color:#153e4e!important}
+
+/* Study Pulse: truthful cloud sync state instead of obsolete local-browser privacy copy. */
+html body .lc-panel.lc-pulse-panel .lc-privacy{display:flex!important;gap:9px;align-items:flex-start;line-height:1.5!important;margin:0!important;border:1px solid #d4e5e8!important;background:#edf5f7!important;border-radius:12px!important;padding:12px 13px!important;color:#31566a!important;font-size:12px!important;font-weight:650!important}
+html body .lc-panel.lc-pulse-panel .lc-privacy-icon{font-size:16px;line-height:1.3;color:#41758a;flex:none}
+html body .lc-panel.lc-pulse-panel [data-lc-sync-status][data-state="synced"],html body .lc-panel.lc-pulse-panel [data-lc-sync-status][data-state="ready"]{color:#216954!important}
+html body .lc-panel.lc-pulse-panel [data-lc-sync-status][data-state="unsynced"],html body .lc-panel.lc-pulse-panel [data-lc-sync-status][data-state="unsigned"]{color:#8b4c23!important}

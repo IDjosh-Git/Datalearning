@@ -1,3 +1,22 @@
+## 11 November 2026 — Study Pulse cloud-save status correction
+
+- Removed the obsolete Study Pulse footer claiming notes and study history stay in local browser storage, plus the inaccurate "auto-saved on this device" note.
+- The footer now displays an accessible, live status for Supabase cloud readiness, pending saves, successful saves, signed-out use and failed saves. No cloud confirmation is displayed until a save finishes successfully.
+- Study Pulse refreshes its notes, habits, bookmarks and spaced-revision data after the authenticated cloud workspace hydrates. Temporary unsynced edits remain in memory only.
+- Added a cloud-storage persistence acknowledgement that also works if the debounced background save finishes before Study Pulse checks the result. Regression tests cover success, failure, guest access and stale copy removal.
+- Source project only; production website has not been redeployed. The existing authenticated Supabase project is unchanged.
+
+---
+
+## 11 November 2026 — All-course illustrated cards and cleaner Excel results
+
+- Every course now shows a dedicated first-week instructional illustration in both the home discovery cards and course catalog cards, rather than relying on an icon alone. The full set of 90 week-specific lesson interface images remains present, with lazy loading and consistent responsive aspect ratios.
+- Removed the redundant visible Excel formula textarea beneath the worksheet disclosure. Its original input stays mounted, explicitly hidden and synchronized with the single formula bar so challenge grading keeps working.
+- Redesigned the Excel calculation output as a labeled result card with separate value, formula, status, explanatory guidance and a clear error state. Numbers are displayed with readable digit grouping; calculations still use the original numeric output, with no change to the evaluator.
+- Full automated test suite passed. Direct browser navigation in this build environment was blocked, so no claim of browser-rendered testing is made. Source-only; live deployment not performed.
+
+---
+
 ## 11 November 2026 — Full-width, scrollable SQL query results
 
 - SQL query results now occupy a dedicated full-width panel beneath the editor, rather than the narrow side column. Excel and Python retain their existing layouts.

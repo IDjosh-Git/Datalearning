@@ -1,6 +1,48 @@
 (()=>{'use strict';
 if(document.body?.dataset.privateWorkspace==='true'||/^(admin|progress|reviewer|account|certificate|connection-test|sync-test)\.html$/i.test(location.pathname.split('/').pop()||''))return;
-let KEY='dalp-companion-v1:'+(window.DALP_AUTH_USER?.id||window.DALP_STORAGE.getItem('dalpLastLearnerId')||'guest');const get=()=>{try{return JSON.parse(window.DALP_STORAGE.getItem(KEY)||'{}')}catch{return {}}};let state=get();state.sessions=state.sessions||{};state.notes=state.notes||{};state.saved=state.saved||{};state.review=state.review||{};state.goal=Number(state.goal)||3;const save=()=>{try{window.DALP_STORAGE.setItem(KEY,JSON.stringify(state))}catch{}};
+// Study Pulse uses the private Supabase-backed workspace. Unsynced edits exist only in memory.
+const ownerId=()=>window.DALP_CLOUD_WORKSPACE?.userId||window.DALP_AUTH_USER?.id||'';
+const makeKey=id=>'dalp-companion-v1:'+(id||'guest');
+let KEY=makeKey(ownerId());
+const get=()=>{try{return JSON.parse(window.DALP_STORAGE?.getItem(KEY)||'{}')}catch{return {}}};
+const normalise=x=>{const v=x&&typeof x==='object'&&!Array.isArray(x)?x:{};v.sessions=v.sessions&&typeof v.sessions==='object'?v.sessions:{};v.notes=v.notes&&typeof v.notes==='object'?v.notes:{};v.saved=v.saved&&typeof v.saved==='object'?v.saved:{};v.review=v.review&&typeof v.review==='object'?v.review:{};v.goal=[1,3,5,10].includes(Number(v.goal))?Number(v.goal):3;return v};
+let state=normalise(get());
+let syncStatus='checking',syncSequence=0,syncTimer=0;
+const syncMessages={
+ checking:'Checking your secure cloud account…',
+ ready:'Connected to your secure Supabase account.',
+ saving:'Saving changes to your account…',
+ synced:'Saved securely to your Supabase account.',
+ unsigned:'Sign in to save notes, habits and bookmarks to your account.',
+ unsynced:'Cloud save unavailable. Changes are in memory only and may be lost when this page closes.'
+};
+const updateStatus=()=>{for(const el of panel.querySelectorAll('[data-lc-sync-status]')){el.textContent=syncMessages[syncStatus]||syncMessages.checking;el.dataset.state=syncStatus}};
+async function syncNow(sequence){
+ if(sequence!==syncSequence)return;
+ if(!ownerId()){syncStatus='unsigned';updateStatus();return;}
+ try{
+  const ok=await window.DALP_CLOUD_WORKSPACE?.persist?.(KEY);
+  if(sequence!==syncSequence)return;
+  syncStatus=ok?'synced':'unsynced';
+ }catch{if(sequence===syncSequence)syncStatus='unsynced'}
+ updateStatus();
+}
+const save=()=>{
+ if(!window.DALP_STORAGE){syncStatus='unsynced';updateStatus();return}
+ try{window.DALP_STORAGE.setItem(KEY,JSON.stringify(state));}catch{syncStatus='unsynced';updateStatus();return}
+ const sequence=++syncSequence;
+ clearTimeout(syncTimer);
+ syncStatus=ownerId()?'saving':'unsigned';updateStatus();
+ if(ownerId())syncTimer=setTimeout(()=>void syncNow(sequence),700);
+};
+function refreshFromCloud(confirmed=false){
+ const next=makeKey(ownerId());
+ if(KEY!==next){KEY=next;syncSequence++;clearTimeout(syncTimer);}
+ state=normalise(get());
+ syncStatus=ownerId()?(confirmed?'ready':'unsynced'):'unsigned';
+ if(!panel.hidden)render();
+}
+
 const path=location.pathname.split('/').pop()||'index.html';const course=location.pathname.includes('/courses/')?path.replace('.html',''):null;const root=course?'../':'';const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const day=()=>new Date().toLocaleDateString('en-CA');
 const today=day();function days(){return Object.keys(state.sessions).filter(d=>state.sessions[d]>0).sort().reverse()}function streak(){let s=0;let date=new Date();if(!state.sessions[day()])date.setDate(date.getDate()-1);for(;;){let d=date.toLocaleDateString('en-CA');if(!state.sessions[d])break;s++;date.setDate(date.getDate()-1)}return s}
 function catalog(){let all=window.COURSE_STUDIO_DATA||{};return Object.keys(all).flatMap(c=>(all[c]||[]).map((u,i)=>({key:c+':'+i,course:c,title:u[0],desc:u[1],prompt:u[3],solution:u[4]})))}
@@ -33,9 +75,9 @@ function render(){
    </section>
    <section class="lc-section lc-achievements" aria-labelledby="lc-achievements-heading"><div class="lc-section-heading"><div><span class="lc-section-label">YOUR MILESTONES</span><h3 id="lc-achievements-heading">Achievements</h3></div><span class="lc-count-chip">${badges.length} unlocked</span></div><div class="lc-badges">${badges.map(b=>`<span class="lc-badge"><span aria-hidden="true">✦</span> ${esc(b)}</span>`).join('')||'<p class="lc-feedback">Your first milestone is one learning session away. Keep practising!</p>'}</div></section>
    <section class="lc-section lc-review-section" aria-labelledby="lc-review-heading"><div class="lc-section-heading"><div><span class="lc-section-label">PRACTISE TO REMEMBER</span><h3 id="lc-review-heading">Spaced review</h3></div><span class="lc-count-chip">${due.length} due</span></div><p class="lc-section-description">Revisit key concepts just before you forget them.</p><div class="lc-review-list">${reviewCards}</div><div class="lc-actions"><button class="lc-outline-btn lc-wide" data-action="next"><span aria-hidden="true">＋</span> Add another skill to review</button></div></section>
-   <section class="lc-section lc-notes-section" aria-labelledby="lc-notes-heading"><div class="lc-section-heading"><div><span class="lc-section-label">REFLECT & GROW</span><h3 id="lc-notes-heading">My study notes</h3></div><span class="lc-notes-icon" aria-hidden="true">✎</span></div><label for="lc-notes">Notes for ${esc(path)} · Auto-saved on this device</label><textarea id="lc-notes" rows="5" placeholder="What did I learn today? Which concept should I practise next?">${esc(currentNote)}</textarea><span class="lc-notes-footnote">✦ Your notes are saved automatically as you type.</span></section>
+   <section class="lc-section lc-notes-section" aria-labelledby="lc-notes-heading"><div class="lc-section-heading"><div><span class="lc-section-label">REFLECT & GROW</span><h3 id="lc-notes-heading">My study notes</h3></div><span class="lc-notes-icon" aria-hidden="true">✎</span></div><label for="lc-notes">Notes for ${esc(path)}</label><textarea id="lc-notes" rows="5" placeholder="What did I learn today? Which concept should I practise next?">${esc(currentNote)}</textarea><span class="lc-notes-footnote">Tip: Record one practical takeaway to revisit after your next lesson.</span></section>
    <section class="lc-section lc-records" aria-labelledby="lc-records-heading"><div class="lc-section-heading"><div><span class="lc-section-label">YOUR LEARNING HISTORY</span><h3 id="lc-records-heading">Records & backup</h3></div></div><div class="lc-record-summary"><span><strong>${Object.keys(state.saved).length}</strong> bookmarked pages</span><span><strong>${Object.keys(state.review).length}</strong> skills tracked</span><span><strong>${days().length}</strong> active days</span></div><div class="lc-actions lc-secondary-actions"><button data-action="export">↓ Export</button><button data-action="import">↑ Import</button><button data-action="saved">☆ Bookmarks</button></div><input id="lc-file" type="file" accept="application/json,.json" hidden><div id="lc-msg" role="status" aria-live="polite"></div></section>
-   <p class="lc-privacy"><span aria-hidden="true">⛨</span> Private and offline-first. Notes, activity and review history stay in your browser unless you export them.</p>
+   <p class="lc-privacy" role="status" aria-live="polite"><span class="lc-privacy-icon" aria-hidden="true">⛨</span><span data-lc-sync-status data-state="${syncStatus}">${syncMessages[syncStatus]}</span></p>
   </div>`;
 }
 
@@ -45,7 +87,7 @@ function ensureCourseData(){
  if(!courseDataPromise){courseDataPromise=new Promise((resolve,reject)=>{const sc=document.createElement('script');sc.src=root+'assets/scripts/course-studio-data.js?v=20261021.3';sc.onload=resolve;sc.onerror=()=>reject(new Error('Course skill catalogue could not be loaded'));document.head.append(sc)}).catch(e=>{courseDataPromise=null;console.warn(e)});}
  return courseDataPromise;
 }
-async function open(){panel.hidden=false;backdrop.hidden=false;document.body.classList.add('lc-dialog-open');launch.setAttribute('aria-expanded','true');panel.innerHTML='<div class="lc-top"><h2 id="lc-panel-heading">Study Pulse</h2></div><p class="lc-feedback">Opening Study Pulse…</p>';await ensureCourseData();if(panel.hidden)return;render();panel.querySelector('.lc-close')?.focus()}
+async function open(){panel.hidden=false;backdrop.hidden=false;document.body.classList.add('lc-dialog-open');launch.setAttribute('aria-expanded','true');panel.innerHTML='<div class="lc-top"><h2 id="lc-panel-heading">Study Pulse</h2></div><p class="lc-feedback">Opening Study Pulse…</p>';const [,cloudLoaded]=await Promise.all([ensureCourseData(),window.DALP_CLOUD_WORKSPACE?.hydrate?.().catch(()=>false)]);if(panel.hidden)return;refreshFromCloud(cloudLoaded===true);panel.querySelector('.lc-close')?.focus()}
 function close(){panel.hidden=true;backdrop.hidden=true;document.body.classList.remove('lc-dialog-open');launch.setAttribute('aria-expanded','false');(lastOpenTrigger?.isConnected?lastOpenTrigger:launch).focus({preventScroll:true})}
 let lastOpenTrigger=null;
 // The footer and coach button open one consistent in-page coaching panel.
@@ -60,7 +102,9 @@ panel.addEventListener('input',e=>{if(e.target.id==='lc-notes'){state.notes[path
 panel.addEventListener('change',e=>{if(e.target.id==='lc-goal'){state.goal=Number(e.target.value);save();render()}if(e.target.id==='lc-file'&&e.target.files[0]){const reader=new FileReader();reader.onload=()=>{try{const obj=JSON.parse(reader.result);if(!obj||!obj.sessions||!obj.review||!obj.notes||typeof obj.sessions!=='object'||typeof obj.review!=='object'||typeof obj.notes!=='object')throw Error('Invalid progress file');state={sessions:obj.sessions,review:obj.review,notes:obj.notes,saved:obj.saved||{},goal:obj.goal||3};save();render()}catch{panel.querySelector('#lc-msg').textContent='Unable to import: invalid learning-progress JSON.'}};reader.readAsText(e.target.files[0])}});
 panel.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.review){review(b.dataset.review,Number(b.dataset.grade));return}const a=b.dataset.action;if(a==='close')close();if(a==='study'){activity();render()}if(a==='bookmark'){state.saved[path]=!state.saved[path];if(!state.saved[path])delete state.saved[path];save();render()}if(a==='next'){let c=catalog().filter(x=>!state.review[x.key]);if(!c.length)c=catalog();if(c.length){const x=c[Math.floor(Math.random()*c.length)];state.review[x.key]={level:0,interval:0,next:Date.now()-1};save();render()}else panel.querySelector('#lc-msg').textContent='Open a course page to discover skills.'}if(a==='export'){const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const link=document.createElement('a');link.href=url;link.download='data-learning-progress.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1500)}if(a==='import')panel.querySelector('#lc-file').click();if(a==='saved'){const items=Object.keys(state.saved);panel.querySelector('#lc-msg').innerHTML=items.length?items.map(x=>`<p><a href="${root}${encodeURI(x).replace(/%2F/g,'/')}">${esc(x)}</a></p>`).join(''):'No bookmarks yet.'}});
 // Switching between accounts must never expose another person's notes or practice habits.
-window.addEventListener('dalp:auth-ready',()=>{const userId=window.DALP_AUTH_USER?.id;if(!userId)return;const newKey='dalp-companion-v1:'+userId;if(KEY===newKey)return;KEY=newKey;state=get();state.sessions=state.sessions||{};state.notes=state.notes||{};state.saved=state.saved||{};state.review=state.review||{};state.goal=Number(state.goal)||3;if(!panel.hidden)render();});
+window.addEventListener('dalp:auth-ready',()=>{syncStatus='checking';updateStatus();});
+window.addEventListener('dalp:cloud-hydrated',()=>refreshFromCloud(true));
+window.addEventListener('online',()=>{if(syncStatus==='unsynced'&&ownerId()){const sequence=++syncSequence;syncStatus='saving';updateStatus();void syncNow(sequence)}});
 // Course studio exposes skills for spaced repetition independently of the self-assessed completion flag.
 if(course){document.addEventListener('click',e=>{const button=e.target.closest('[data-lc-save]');if(!button)return;const key=course+':'+button.dataset.lcSave;state.review[key]=state.review[key]||{level:0,interval:0,next:Date.now()-1};save();button.textContent='✓ Added to review';activity()});}
 })();

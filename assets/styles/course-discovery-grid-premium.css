@@ -57,3 +57,23 @@ body.za-courses #zaCatalogCards .dlc-week-status{grid-column:2;justify-self:star
 @media(max-width:700px){body.za-discover #zaDiscoverCards,body.za-courses #zaCatalogCards{grid-template-columns:minmax(0,1fr)!important;gap:15px!important}body.za-discover #zaDiscoverCards .za-course-card{min-height:0!important;padding:20px}body.za-discover #zaDiscoverCards .za-course-card .za-card-bottom{margin-top:7px}body.za-courses #zaCatalogCards .dlc-course-card h3{font-size:21px}body.za-courses #zaCatalogCards .za-card-icon,body.za-discover #zaDiscoverCards .za-card-icon{width:55px!important;height:55px!important;min-width:55px!important}}
 @media(max-width:370px){body.za-discover #zaDiscoverCards .za-card-bottom a{width:100%;justify-content:center}body.za-courses #zaCatalogCards .za-catalog-links a{max-width:100%}}
 @media(prefers-reduced-motion:reduce){body.za-discover #zaDiscoverCards .za-course-card,body.za-courses #zaCatalogCards .dlc-course-card{transition:none}}
+
+/* 11 Nov 2026: course-specific illustrated previews across all nine tracks. */
+body.za-discover #zaDiscoverCards .za-course-card{--course-card-inset:clamp(20px,2vw,27px)}
+body.za-discover #zaDiscoverCards .za-card-media{
+  display:block;
+  margin:calc(0px - var(--course-card-inset)) calc(0px - var(--course-card-inset)) 18px;
+  border-bottom:1px solid #dce8ea;
+  background:#f0f7f8;
+  overflow:hidden;
+}
+body.za-discover #zaDiscoverCards .za-card-media img,
+body.za-courses #zaCatalogCards .za-catalog-visual img{
+  display:block;width:100%;height:auto;aspect-ratio:2/1;object-fit:cover;
+}
+body.za-courses #zaCatalogCards .za-catalog-visual{margin:0;border-bottom:1px solid #dce8ea;overflow:hidden;background:#f0f7f8}
+@media(max-width:700px){
+ body.za-discover #zaDiscoverCards .za-course-card{--course-card-inset:20px}
+ body.za-discover #zaDiscoverCards .za-card-media img,
+ body.za-courses #zaCatalogCards .za-catalog-visual img{aspect-ratio:2.15/1}
+}

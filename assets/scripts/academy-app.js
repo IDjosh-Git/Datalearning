@@ -19,6 +19,7 @@
   const num = week => String(week).padStart(2,'0');
   const labelFor = slug => slug === 'introduction' ? 'Data Analysis' : courses[slug]?.title || slug;
   const icon = slug => `<img class="dl-course-logo" data-brand-course="${safe(slug)}" src="${base}assets/icons/icon-${safe(slug)}.svg" alt="" width="46" height="46" loading="lazy" decoding="async">`;
+  const weekVisual = (slug, week=1) => `${base}assets/images/lesson-interfaces/${safe(slug)}-week-${week}.${slug==='excel'&&week===1?'png':'svg'}`;
   const track = slug => window.ZAHProgressCloud?.COURSE_MAP?.[slug];
   const readProgress = slug => {
     const map = track(slug);
@@ -39,8 +40,8 @@
     } catch (error) {console.warn('Course progress sync is temporarily unavailable:',error?.message || error);}
   }
   function renderCard(path, details=false) {
-    const s=safe(path.slug),name=safe(path.title);
-    const staticPart = `<div class="za-card-top"><span class="za-card-icon" aria-hidden="true">${icon(path.slug)}</span><span class="za-card-index">LEARNING PATH ${safe(path.number)} / 09</span></div><div class="za-discover-eyebrow">BEGINNER → PRACTICAL SKILLS</div><h3>${name}</h3><p>${safe(path.tagline)}</p>`;
+    const s=safe(path.slug),name=safe(path.title),visual=weekVisual(path.slug,1);
+    const staticPart = `<figure class="za-card-media"><img src="${visual}" alt="Preview of ${name}" width="1200" height="600" loading="lazy" decoding="async"></figure><div class="za-card-top"><span class="za-card-icon" aria-hidden="true">${icon(path.slug)}</span><span class="za-card-index">LEARNING PATH ${safe(path.number)} / 09</span></div><div class="za-discover-eyebrow">BEGINNER → PRACTICAL SKILLS</div><h3>${name}</h3><p>${safe(path.tagline)}</p>`;
     return `<article class="za-course-card" data-course="${s}">${staticPart}<div class="za-card-bottom"><small><span aria-hidden="true">◷</span> 10 weeks · Guided practice</small><a href="${courseHref(path.slug)}" aria-label="Explore ${name}">Explore course <span aria-hidden="true">↗</span></a></div></article>`;
   }
   function attachMenu(){
@@ -86,7 +87,7 @@
         const label=done===path.weeks.length?'Review course':done?'Continue week '+num(next):'Start learning';
         const href=courseHref(path.slug)+(done?'?week='+next:'');
         return `<article class="za-catalog-item dlc-course-card" data-course="${safe(path.slug)}">
-          <div class="za-catalog-intro"><div class="za-catalog-meta"><span class="za-card-icon" aria-hidden="true">${icon(path.slug)}</span><span class="za-card-index">PATH ${safe(path.number)} / 09</span></div>
+          <figure class="za-catalog-visual"><img src="${weekVisual(path.slug,1)}" alt="Preview of ${safe(path.title)}" width="1200" height="600" loading="lazy" decoding="async"></figure><div class="za-catalog-intro"><div class="za-catalog-meta"><span class="za-card-icon" aria-hidden="true">${icon(path.slug)}</span><span class="za-card-index">PATH ${safe(path.number)} / 09</span></div>
           <span class="dlc-card-category">${safe(focusNames[focus[path.slug]])}</span><h3>${safe(path.title)}</h3><p>${safe(path.tagline)}</p>
           <div class="za-catalog-stats"><span>10 weekly modules</span><span>Worked examples</span><span>Practice quizzes</span></div>
           <div class="dlc-card-progress"><div class="dlc-progress-heading"><strong>${done===path.weeks.length?'Course complete':done?'Your learning progress':'Ready when you are'}</strong><span>${done} / ${path.weeks.length} weeks</span></div><div class="dlc-progress-track" role="progressbar" aria-label="${safe(path.title)} progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${value}"><span style="width:${value}%"></span></div></div>
