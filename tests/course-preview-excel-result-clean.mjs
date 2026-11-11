@@ -14,9 +14,9 @@ for(const slug of paths){
   assert(fs.existsSync(new URL(`../assets/images/lesson-interfaces/${slug}-week-${n}.${extension}`,import.meta.url)),`${slug} Week ${n} visual missing`);
  }
 }
-assert(js.includes('za-card-media')&&js.includes('za-catalog-visual'),'Discovery and catalog previews are required');
-assert(js.includes('loading="lazy" decoding="async"'),'Preview images must be lazy-loaded');
-assert(style.includes('body.za-discover #zaDiscoverCards .za-card-media'),'Premium course preview layout missing');
+assert(!js.includes('za-card-media')&&!js.includes('za-catalog-visual'),'Course cards must remain compact without large previews');
+assert(!style.includes('za-card-media')&&!style.includes('za-catalog-visual'),'Obsolete course-card preview rules must be removed');
+assert(js.includes('za-week-interface-visual'),'Weekly instructional images must remain available in lessons');
 assert(ide.includes('answer.hidden=true')&&ide.includes('answer.tabIndex=-1'),'Hidden original worksheet grading textarea must remain inaccessible');
 assert(ide.includes("const originalLabel=area.querySelector('label[for=\"practiceAnswer\"]')"),'Original grading input label should be found');
 assert(ide.includes("originalLabel.hidden=true"),'Original input label should remain hidden');
@@ -24,4 +24,4 @@ assert(ide.includes('ide-result-formula')&&ide.includes('ide-result-value'),'Str
 assert(ide.includes('formatExcelPreview')&&ide.includes('Intl.NumberFormat'),'Excel results need friendly number formatting');
 assert(css.includes('textarea#practiceAnswer.ide-visually-hidden'),'CSS must prevent second formula box even under layout overrides');
 assert(css.includes('output.ide-result-value'),'Result typography must be styled');
-console.log('PASS nine course preview cards, 90 weekly visuals, single visible Excel formula entry and accessible formatted results');
+console.log('PASS nine compact course cards, 90 weekly visuals, single visible Excel formula entry and accessible formatted results');

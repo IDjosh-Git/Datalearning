@@ -14,7 +14,7 @@
   live.disabled=!enabled;
   help.textContent=mode==='live'?`${provider} · ${model} · account sign-in required. Usage limits apply.`:enabled?`Offline knowledge guide. Switch to ${provider} for live questions.`:'Live AI is not set up. The built-in knowledge guide remains available.';
   statusText(mode==='live'?`Live AI · ${provider}`:'Offline guide · ready');
-  note.textContent=mode==='live'?'Enter to send · Shift+Enter for a new line. Messages stay in this tab; responses are AI-generated.':'Enter to send · Shift+Enter for a new line. Offline knowledge checks are saved in this browser.';
+  note.textContent=mode==='live'?'Enter to send · Shift+Enter for a new line. Messages stay in this tab; responses are AI-generated.':'Enter to send · Shift+Enter for a new line. Offline knowledge progress syncs to Supabase when signed in.';
   if(privacy)privacy.firstChild.textContent=mode==='live'?`Live AI sends your question and up to ${MAX_HISTORY} recent messages to ${provider}. Provider retention and processing policies apply. `:'Offline guide answers do not send your question to an AI provider. ';
   const policy=$('tutorProviderPrivacy');if(policy){policy.hidden=mode!=='live';policy.href=provider==='OpenAI'?'https://developers.openai.com/api/docs/guides/your-data':'https://console.groq.com/docs/your-data';}
   followups.hidden=mode!=='live'||!history.some(x=>x.role==='assistant');
@@ -35,54 +35,10 @@
   updateMode();
  }
  live.addEventListener('click',()=>newMode('live'));offline.addEventListener('click',()=>newMode('offline'));
- function mdInline(parent,value){
-  // Text is never interpreted as HTML. Only safe inline formatting is created as DOM nodes.
-  const pattern=/(\*\*([^*\n]+)\*\*|`([^`\n]+)`|\*([^*\n]+)\*)/g;let cursor=0,match;
-  while((match=pattern.exec(value))){safeText(parent,value.slice(cursor,match.index));const node=document.createElement(match[2]?'strong':match[3]?'code':'em');node.textContent=match[2]||match[3]||match[4];parent.append(node);cursor=pattern.lastIndex}
-  safeText(parent,value.slice(cursor));
- }
- function highlightCode(element,code,language){
-  const pattern=/(\/\/[^\n]*|--[^\n]*|#[^\n]*|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\b(?:SELECT|FROM|WHERE|JOIN|LEFT|RIGHT|GROUP|BY|ORDER|LIMIT|AS|WITH|CASE|WHEN|THEN|ELSE|END|SUM|COUNT|FILTER|CALCULATE|RETURN|VAR|def|import|from|as|for|in|if|elif|else|return|print|True|False|None|let|const|function|SUMIFS|XLOOKUP)\b|\b\d+(?:\.\d+)?\b)/gim;
-  let cursor=0,match;
-  while((match=pattern.exec(code))){
-   safeText(element,code.slice(cursor,match.index));const token=match[0];let kind='keyword';
-   if(/^\/\/|^--|^#/.test(token)&&!/^excel$/i.test(language))kind='comment';
-   else if(/^['"]/.test(token))kind='string';else if(/^\d/.test(token))kind='number';
-   const node=document.createElement('span');node.className='tutor-syntax-'+kind;node.textContent=token;element.append(node);cursor=pattern.lastIndex;
-  }
-  safeText(element,code.slice(cursor));
- }
- function tableCells(line){return line.trim().replace(/^\|/,'').replace(/\|$/,'').split('|').map(v=>v.trim());}
+ // Live Tutor and the floating coach share one safe DOM-based Markdown renderer.
  function richAnswer(text){
-  const body=document.createElement('div');body.className='tutor-answer';const lines=text.split(/\r?\n/);
-  let i=0;while(i<lines.length){const line=lines[i];
-   if(line.includes('|')&&i+1<lines.length&&/^\s*\|?[\s:|\-]+\|?\s*$/.test(lines[i+1])&&/---/.test(lines[i+1])){
-    const heads=tableCells(line),rules=tableCells(lines[i+1]);
-    if(heads.length>=2&&heads.length<=8&&rules.length===heads.length&&rules.every(x=>/^:?-{3,}:?$/.test(x))){
-     const wrap=document.createElement('div');wrap.className='tutor-table-scroll';const table=document.createElement('table'),thead=document.createElement('thead'),tr=document.createElement('tr');
-     heads.forEach(x=>{const th=document.createElement('th');th.scope='col';mdInline(th,x);tr.append(th)});thead.append(tr);table.append(thead);i+=2;const tbody=document.createElement('tbody');let rows=0;
-     while(i<lines.length&&lines[i].includes('|')&&rows++<25){const row=tableCells(lines[i]);if(row.length!==heads.length)break;const r=document.createElement('tr');row.forEach(x=>{const td=document.createElement('td');mdInline(td,x);r.append(td)});tbody.append(r);i++}table.append(tbody);wrap.append(table);body.append(wrap);continue;
-    }
-   }
-   if(/^\s*```/.test(line)){
-    const language=line.replace(/^\s*```/,'').trim().slice(0,32);const codeLines=[];i++;
-    while(i<lines.length&&!/^\s*```/.test(lines[i]))codeLines.push(lines[i++]);if(i<lines.length)i++;
-    const block=document.createElement('div');block.className='tutor-code';const head=document.createElement('div');head.className='tutor-code-head';
-    const title=document.createElement('span');title.textContent=language||'Code / formula';const copy=document.createElement('button');copy.type='button';copy.textContent='Copy code';copy.setAttribute('aria-label','Copy '+(language||'code')+' example');
-    const code=codeLines.join('\n');copy.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(code);copy.textContent='Copied ✓'}catch{copy.textContent='Select code to copy'}setTimeout(()=>copy.textContent='Copy code',2200)});
-    head.append(title,copy);const pre=document.createElement('pre');const el=document.createElement('code');highlightCode(el,code,language);el.className='language-'+language.replace(/[^\w-]/g,'');pre.append(el);block.append(head,pre);body.append(block);continue;
-   }
-   const head=line.match(/^\s{0,3}(#{1,3})\s+(.+)/);
-   if(head){const h=document.createElement(['h3','h4','h5'][head[1].length-1]);mdInline(h,head[2]);body.append(h);i++;continue}
-   if(/^\s*([-*]|\d+\.)\s+/.test(line)){
-    const ordered=/^\s*\d+\./.test(line);const list=document.createElement(ordered?'ol':'ul');
-    while(i<lines.length&&/^\s*([-*]|\d+\.)\s+/.test(lines[i])){const li=document.createElement('li');mdInline(li,lines[i].replace(/^\s*([-*]|\d+\.)\s+/,''));list.append(li);i++}body.append(list);continue;
-   }
-   if(line.trim()===''){i++;continue}
-   const paragraph=document.createElement('p');const parts=[];
-   while(i<lines.length&&lines[i].trim()&&!/^\s*```|^\s{0,3}#{1,3}\s+|^\s*([-*]|\d+\.)\s+/.test(lines[i]))parts.push(lines[i++]);
-   mdInline(paragraph,parts.join(' '));body.append(paragraph);
-  }return body;
+  const body=document.createElement('div');body.className='tutor-answer';
+  return window.DALP_AI_RESPONSE.render(body,String(text||''));
  }
  function addBubble(content,role='assistant',title='AI tutor'){
   const box=document.createElement('div');box.className='bubble tutor-ai-message'+(role==='user'?' user':'');
