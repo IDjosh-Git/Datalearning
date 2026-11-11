@@ -59,7 +59,7 @@
  const academyLink=navLink(['Back to public academy','index.html','portal']);academyLink.classList.add('ac-academy-link');navEl.append(academyLink);
  aside.append(navEl);
  const bottom=document.createElement('div');bottom.className='ac-side-bottom';
- bottom.innerHTML='<a class="ac-side-account" href="profile.html" title="Edit your learner profile"><span class="ac-avatar" aria-hidden="true">A</span><span class="ac-account-copy"><strong id="acUserName">My account</strong><small id="acUserEmail">Manage profile</small></span><span class="ac-account-chevron" aria-hidden="true">›</span></a>';
+ bottom.innerHTML=''; // Profile lives in the top navigation; the sidebar contains sign-out only.
  const logout=document.createElement('button');logout.className='ac-logout';logout.type='button';logout.innerHTML='<span aria-hidden="true">↪</span> Sign out';
  logout.addEventListener('click',async()=>{logout.disabled=true;logout.textContent='Signing out…';try{await window.DALP_SERVER_SESSION?.clear();await window.ZAH_DB?.client?.auth.signOut()}finally{location.replace('auth.html')}});
  bottom.append(logout);aside.append(bottom);
@@ -70,7 +70,7 @@
  const titles={overview:'Academy overview',progress:'Progress reports',reviews:'Assessment desk',account:'My dashboard',profile:'My profile',certificate:'My certificate',connection:'Connection test',sync:'Progress sync'};
  const trail=document.createElement('div');trail.className='ac-breadcrumb';trail.innerHTML='<span class="ac-breadcrumb-prefix">Workspace</span><span class="ac-crumb-divider" aria-hidden="true">/</span><strong>'+(titles[current]||'Learning Dashboard')+'</strong>';
  const right=document.createElement('div');right.className='ac-top-actions';
- right.innerHTML='<span class="ac-secure"><span class="ac-secure-dot" aria-hidden="true"></span> Learner space</span><a class="ac-topbar-link" data-learner-shortcut href="catalog.html">Browse courses <span aria-hidden="true">↗</span></a><a class="ac-topbar-link" data-admin-shortcut href="reviewer.html" hidden>Review desk <span aria-hidden="true">↗</span></a>';
+ right.innerHTML='<span class="ac-secure"><span class="ac-secure-dot" aria-hidden="true"></span> Learner space</span>'; // No duplicate course or admin links in the top bar.
  header.append(mobileToggle,trail,right);
  const area=document.createElement('div');area.className='ac-page-area';
  main.parentNode.insertBefore(shell,main);shell.append(aside,backdrop,frame);frame.append(header,area);area.append(main);
@@ -115,7 +115,7 @@
   navEl.querySelectorAll('.ac-side-link').forEach(a=>{const match=a.dataset.section===active;a.classList.toggle('ac-selected',match);if(match)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
   if(extras.querySelector('.ac-selected'))extras.open=true;
   if(adminTools.querySelector('.ac-selected'))adminTools.open=true;
-  bottom.querySelector('.ac-side-account')?.classList.toggle('ac-selected',current==='profile');
+
  }
  // The browser would normally scroll to an anchor buried below other sections;
  // navigate in-place instead and start each new view at its own top.
@@ -132,8 +132,8 @@
  window.addEventListener('popstate',switchAdminView);
  if(['connection','sync'].includes(current))adminTools.open=true;
  updateActive();
- function roleUpdate(){const admin=window.DALP_ROLE==='admin';navEl.querySelectorAll('[data-admin-only]').forEach(group=>group.hidden=!admin);if(adminPages.has(current)&&!admin)root.classList.remove('ac-menu-open');right.querySelector('.ac-secure').lastChild.textContent=admin?' Admin access':' Learner space';branding.href=admin?'admin.html':'account.html';branding.querySelector('small').textContent=admin?'ADMIN WORKSPACE':'LEARNING WORKSPACE';const learnerShortcut=right.querySelector('[data-learner-shortcut]');if(learnerShortcut)learnerShortcut.hidden=admin;const shortcut=right.querySelector('[data-admin-shortcut]');shortcut.hidden=!admin;if(admin){shortcut.href=current==='reviews'?'admin.html':'reviewer.html';shortcut.innerHTML=current==='reviews'?'Academy overview <span aria-hidden="true">↗</span>':'Review desk <span aria-hidden="true">↗</span>';}updateActive();}
+ function roleUpdate(){const admin=window.DALP_ROLE==='admin';navEl.querySelectorAll('[data-admin-only]').forEach(group=>group.hidden=!admin);if(adminPages.has(current)&&!admin)root.classList.remove('ac-menu-open');right.querySelector('.ac-secure').lastChild.textContent=admin?' Admin access':' Learner space';branding.href=admin?'admin.html':'account.html';branding.querySelector('small').textContent=admin?'ADMIN WORKSPACE':'LEARNING WORKSPACE';updateActive();}
  window.addEventListener('dalp:auth-ready',roleUpdate);roleUpdate();
- function identity(){const user=window.DALP_AUTH_USER;if(!user)return;const email=user.email||'Secure account',name=user.user_metadata?.full_name||email.split('@')[0]||'Learner';bottom.querySelector('#acUserName').textContent=name;bottom.querySelector('#acUserEmail').textContent=email;const initial=name.trim().charAt(0).toUpperCase()||'A';bottom.querySelector('.ac-avatar').textContent=initial;}
+ function identity(){ /* Top Profile control owns account name and photo. */ }
  window.addEventListener('dalp:auth-ready',identity);identity();
 })();

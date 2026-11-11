@@ -217,3 +217,9 @@ html[data-theme] body[data-private-workspace="true"] :is(.review-hero,.ip-hero) 
  background:rgba(255,255,255,.15)!important;
  border:1px solid rgba(255,255,255,.4)!important;
 }
+
+/* Account role in the learner directory; role is read-only and server maintained. */
+.dalp-admin-table .ac-account-role{display:inline-flex;vertical-align:middle;align-items:center;margin:3px 0 4px 8px;padding:3px 8px;border:1px solid #d7e5ea;border-radius:999px;background:#eef4f7;color:#36576a;font:700 11px/1.35 "DM Sans",system-ui,sans-serif;white-space:nowrap}
+.dalp-admin-table .ac-account-role.is-admin{background:#e5f4ee;border-color:#b4dfd0;color:#14634f}
+.dalp-admin-table td:first-child small{display:block;margin-top:4px;overflow-wrap:anywhere}
+@media(max-width:580px){.dalp-admin-table .ac-account-role{margin-inline-start:0;margin-top:5px}}

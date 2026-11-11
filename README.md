@@ -1,4 +1,4 @@
-> **Latest release (11 November 2026):** App-wide sign-in remains mandatory. Learners do not see administrator navigation and cannot access admin-only pages; the server verifies the `site_admins` role. Styles have been audited and route-scoped, unnecessary Practice Studio CSS loads removed, and repeated declarations consolidated. See `CURRENT_RELEASE.md` and `docs/STYLE_CLEANUP_AUDIT_20261111.json`. This ZIP has not been deployed.
+> **Latest release (11 November 2026):** The learner directory is now restricted to verified DataLearning activity and administrators, rather than every shared Supabase Auth account. The admin dashboard uses the same source-of-truth directory. App-wide sign-in remains mandatory. Learners do not see administrator navigation and cannot access admin-only pages; the server verifies the `site_admins` role. Styles have been audited and route-scoped, unnecessary Practice Studio CSS loads removed, and repeated declarations consolidated. See `CURRENT_RELEASE.md` and `docs/STYLE_CLEANUP_AUDIT_20261111.json`. This ZIP has not been deployed.
 
 # DataLearning — current application (11 November 2026)
 
@@ -33,3 +33,12 @@ Python (`courses/python.html`) and AI (`courses/ai.html`) are now first-class Ac
 All DataLearning routes, including `/`, the course catalog, Practice Arena, Tutor Studio, previews, course assets, lessons and downloads, are protected by Vercel middleware before any HTML is served. `/auth.html` and its minimal styles/scripts/icons plus the session exchange endpoint are the only public resources. Guests are redirected to sign-in, with the original in-app destination preserved in `?return=...`.
 
 **Important:** Deploy this project to Vercel (or a host that enforces equivalent request-time middleware). Opening static files directly or hosting the ZIP on a static-only provider does **not** provide true access control. The same Supabase project manages learner and administrator identities. The server checks valid identity and enforces the existing administrator role restrictions. First-party HttpOnly cookies are required before entering; signing out clears them. Existing Row Level Security must remain enabled for learner data. Verify the redirect and protected asset tests on a deployed preview before releasing to learners.
+
+
+### Verified DataLearning learner directory (11 November 2026)
+
+`public.learner_profiles` now includes only learners who have a verified DataLearning app use/sign-in or recorded DataLearning-specific learning activity, plus users present in `public.site_admins`. The former Auth-wide profile trigger has been removed. `datalearning_private.learner_profiles_archive` preserves unverified profiles, without deleting shared Auth accounts or study records. The admin dashboard uses **exactly** the live directory table for its user count. New authenticated app visits are tracked through `record_datalearning_use` before the sign-in redirect; a DB trigger creates or restores the directory profile.
+
+**Snapshot after reconciliation:** 3 evidenced learner profiles + 1 administrator. The operator reports expecting 4 learners; the remaining person's identity has not been independently established by app-specific records, so the application does not fabricate a fifth directory entry. That person will appear after a genuine DataLearning sign-in, without deleting or recreating their Supabase Auth account.
+
+See `database/migrations/20261111_verified_datalearning_members_only.sql` (already applied). Do not reapply the older Auth-wide migration after it without the corrective migration.

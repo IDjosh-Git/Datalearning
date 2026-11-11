@@ -33,11 +33,18 @@
  }
 
  async function init(){if(!window.ZAH_DB?.configured||!db()){gate('The assessment desk is unavailable right now. Please try again later or contact your administrator.','error');return}
- try{const {data,error:authError}=await db().auth.getUser();if(authError)throw authError;if(!data?.user){el('reviewGate').innerHTML='Instructor sign-in required. <a href="auth.html?return='+encodeURIComponent(location.href)+'">Sign in to continue ↗</a>';return}
- const {data:owner,error:ownError}=await db().from('capstone_reviewers').select('user_id').eq('user_id',data.user.id).maybeSingle();if(ownError)throw ownError;
- if(!owner){gate('Access restricted. This account is not on the instructor reviewer allowlist. Ask the site owner to grant access using OWNER_SETUP.sql.','warning');return}
+ try{
+   // The shared gate restores the Supabase session and verifies site_admins.
+   // Starting a second getUser() during restoration caused false denials.
+   const verified=await window.DALP_AUTH_GATE?.whenReady;
+   if(!verified?.id||window.DALP_ROLE!=='admin'){
+     gate('The Review Desk is available to authorized administrators. Please sign in with an instructor account.','warning');return;
+   }
+   const {data:owner,error:ownError}=await db().from('capstone_reviewers').select('user_id').eq('user_id',verified.id).maybeSingle();
+   if(ownError)throw ownError;
+   if(!owner){gate('Your administrator account is not yet enabled for capstone reviews. Contact the site owner.','warning');return}
  el('reviewApp').hidden=false;el('reviewGate').hidden=true;el('gradingFields').innerHTML=RULES.map(([key,label,max,help])=>'<div class="review-grade"><div><strong>'+esc(label)+'</strong><p>'+esc(help)+'</p></div><label><input type="number" required min="0" max="'+max+'" step="1" id="grade_'+key+'" aria-label="'+esc(label)+' score"> / '+max+'</label></div>').join('');RULES.forEach(([key])=>el('grade_'+key).addEventListener('input',updateScore));el('gradeSummary').addEventListener('input',updateScore);el('reviewSearch').addEventListener('input',debounce(()=>{currentPage=0;loadRows()},300));['reviewCourse','reviewFilter'].forEach(id=>el(id).addEventListener('change',()=>{currentPage=0;loadRows()}));el('reviewPrev').onclick=()=>{if(currentPage>0){currentPage--;loadRows()}};el('reviewNext').onclick=()=>{if((currentPage+1)*PAGE_SIZE<totalRows){currentPage++;loadRows()}};el('reviewForm').addEventListener('submit',publish);await Promise.all([loadCounts(),loadRows()]);
- }catch(err){console.error('Instructor login error',err);gate('We couldn’t confirm your instructor access. Please sign in again or contact an administrator.','error')}}
+ }catch(err){console.error('Instructor access check:',err);gate('We could not load instructor permissions right now. Check your connection and retry this page.','error')}}
  function debounce(fn,ms){let timeout;return (...args)=>{clearTimeout(timeout);timeout=setTimeout(()=>fn(...args),ms)}}
  async function loadCounts(){const all=()=>db().from('capstone_submissions').select('*',{count:'exact',head:true});const [total,pending,marked]=await Promise.all([all(),all().in('status',PENDING),all().in('status',['approved','needs_revision'])]);if(total.error||pending.error||marked.error){el('statTotal').textContent=el('statPending').textContent=el('statMarked').textContent='—';return}el('statTotal').textContent=total.count;el('statPending').textContent=pending.count;el('statMarked').textContent=marked.count}
  async function loadRows(){const token=++loadToken;el('listStatus').textContent='Loading submissions…';let query=db().from('capstone_submissions').select('id,user_id,learner_name,project_title,project_summary,attachments,course_slug,status,created_at,reviewed_at,review_due_at,score,score_breakdown,review_summary,strengths,improvements,next_steps,evidence_notes,certificate_id',{count:'exact'}).order('created_at',{ascending:false}).range(currentPage*PAGE_SIZE,(currentPage+1)*PAGE_SIZE-1);const status=el('reviewFilter').value,course=el('reviewCourse').value,search=el('reviewSearch').value.trim().replace(/[^\p{L}\p{N} @._-]/gu,'').slice(0,80);if(course)query=query.eq('course_slug',course);if(status==='pending')query=query.in('status',PENDING);else if(status!=='all')query=query.eq('status',status);if(search)query=query.or('learner_name.ilike.%'+search+'%,project_title.ilike.%'+search+'%');

@@ -9,6 +9,7 @@
  function updateIdentity(){if(!user)return;const meta=user.user_metadata||{};const name=String(meta.full_name||meta.name||user.email?.split('@')[0]||'Learner').trim();
   $('profileDisplayName').textContent=name;$('profileDisplayEmail').textContent=user.email||'';$('profileInitials').textContent=initials(name);
   $('profileCurrentEmail').value=user.email||'';$('profileAccountStatus').textContent='Signed in and secure';
+  window.DALP_AUTH_USER=user;
   window.dispatchEvent(new Event('dalp:profile-updated'));
  }
  function fill(){if(!user)return;const m=user.user_metadata||{};
@@ -64,6 +65,7 @@
    const {data,error}=await db.auth.updateUser({data:{dalp_avatar_path:path}});
    if(error)throw error;
    user=data?.user||{...user,user_metadata:{...(user.user_metadata||{}),dalp_avatar_path:path}};
+   window.DALP_AUTH_USER=user;
    avatarPath=path;provisional='';
    if(old&&window.DALP_PROFILE_PHOTO?.goodPath(old,user.id)&&old!==path){void db.storage.from('datalearning-avatars').remove([old]).catch(()=>{});}
    await readPhoto();status('photoStatus','Your photo was saved and is visible in the navigation.','success');window.dispatchEvent(new Event('dalp:profile-updated'));
@@ -75,7 +77,7 @@
  async function removePhoto(){if(!user||!avatarPath||working)return;
   working=true;disable('removeProfilePhoto',true);
   try{const old=avatarPath,db=client();const {data,error}=await db.auth.updateUser({data:{dalp_avatar_path:''}});if(error)throw error;
-   user=data?.user||user;avatarPath='';setPhoto(null);status('photoStatus','Your photo was removed.','success');window.dispatchEvent(new Event('dalp:profile-updated'));
+   user=data?.user||user;window.DALP_AUTH_USER=user;avatarPath='';setPhoto(null);status('photoStatus','Your photo was removed.','success');window.dispatchEvent(new Event('dalp:profile-updated'));
    if(window.DALP_PROFILE_PHOTO?.goodPath(old,user.id)){const {error:deleteError}=await db.storage.from('datalearning-avatars').remove([old]);if(deleteError)console.warn('Old profile photo cleanup:',deleteError)}
   }catch(error){status('photoStatus',error.message||'Could not remove photo. Please retry.','error')}finally{working=false;disable('removeProfilePhoto',false)}
  }
@@ -88,9 +90,12 @@
   try{
    const db=client();const {data,error}=await db.auth.updateUser({data:values});if(error)throw error;user=data?.user||{...user,user_metadata:{...user.user_metadata,...values}};
    // Existing learner_profiles remains compatible with the app's progress dashboard and RLS.
-   const {error:profileError}=await db.from('learner_profiles').update({full_name:name}).eq('user_id',user.id);
-   if(profileError)console.warn('Public learning profile name sync:',profileError);
-   updateIdentity();status('profileSaveStatus',profileError?'Profile saved. Your learning directory will synchronize separately.':'Profile saved successfully.','success');
+   const {data:directory,error:profileError}=await db.from('learner_profiles').update({full_name:name}).eq('user_id',user.id).select('user_id,role').maybeSingle();
+   if(profileError)console.warn('Learner directory profile sync:',profileError);
+   window.DALP_AUTH_USER=user;
+   updateIdentity();
+   if(!profileError&&directory){$('profileAccountRole').textContent=directory.role==='admin'?'Administrator':'Learner';}
+   status('profileSaveStatus',profileError||!directory?'Your account details were updated. Your directory name could not be confirmed; please try again later.':'Profile updated and synchronized to your account.','success');
   }catch(error){console.warn('Profile save:',error);status('profileSaveStatus',error.message||'Unable to save details. Please retry.','error')}
   finally{disable('saveProfileBtn',false)}
  }
@@ -117,7 +122,12 @@
   $('profileEmailForm').addEventListener('submit',emailUpdate);
   $('profilePasswordForm').addEventListener('submit',passwordUpdate);
   user=await verify();if(!user)return;
-  fill();updateIdentity();await readPhoto();
+  fill();updateIdentity();
+  // The role is read-only and mirrored from the protected site_admins allowlist.
+  try{const {data,error}=await client().from('learner_profiles').select('role').eq('user_id',user.id).maybeSingle();
+    if(!error&&data)$('profileAccountRole').textContent=data.role==='admin'?'Administrator':'Learner';
+  }catch(error){console.warn('Account role label unavailable:',error)}
+  await readPhoto();
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else void init();
 })();

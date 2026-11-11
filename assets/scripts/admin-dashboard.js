@@ -41,8 +41,9 @@
   throw new Error('There are too many records to display at once. Please narrow your search.');
  }
  function paintStats(){
-  const learners=profiles.filter(p=>p.user_id!==window.DALP_AUTH_USER?.id);
-  $('adminTotal').textContent=learners.length;
+  const learners=profiles.filter(p=>p.role!=='admin');
+  // Verified app accounts include learner and administrator roles.
+  $('adminTotal').textContent=profiles.length;
   $('adminActive').textContent=learners.filter(p=>profileStats(p).active).length;
   $('adminCompleted').textContent=progress.filter(r=>r.completed&&r.user_id!==window.DALP_AUTH_USER?.id).length;
   const pendingCount=submissions.filter(s=>PENDING.has(s.status)&&s.user_id!==window.DALP_AUTH_USER?.id).length;
@@ -92,9 +93,9 @@
  function filteredLearners(){
   const q=$('adminSearch').value.trim().toLowerCase(),status=$('adminStatus').value,course=$('adminCourse').value;
   return profiles.filter(p=>{
-   if(p.user_id===window.DALP_AUTH_USER?.id)return false;
+   // Administrators are also registered DataLearning accounts and must appear in the directory.
    const s=profileStats(p);
-   const match=!q||[p.full_name,p.email].some(v=>String(v||'').toLowerCase().includes(q));
+   const match=!q||[p.full_name,p.email,p.role].some(v=>String(v||'').toLowerCase().includes(q));
    const st=status==='all'||(status==='active'&&s.active)||(status==='new'&&!s.active)||(status==='completed'&&s.completedPath);
    const co=course==='all'||(selectedPeriod()?courseEvents(course).has(p.user_id):s.courseSet.has(course));
    const inPeriod=!selectedPeriod()||[p.first_app_use_at,usageByUser.get(p.user_id)?.last_used_at,...rowsFor(p.user_id).map(r=>r.updated_at),...(quizByUser.get(p.user_id)||[]).map(r=>r.submitted_at),...(subByUser.get(p.user_id)||[]).map(r=>r.created_at)].some(isWithin);
@@ -107,7 +108,7 @@
   const batch=filtered.slice(page*pageSize,(page+1)*pageSize);
   if(!batch.length){const r=document.createElement('tr');r.innerHTML='<td colspan="5">No learners match your filters. Try another search or clear your filters.</td>';tbody.append(r)}
   for(const p of batch){const s=profileStats(p),tr=document.createElement('tr'),label=p.full_name||p.email?.split('@')[0]||'Unnamed learner';
-   tr.innerHTML='<td><strong>'+esc(label)+'</strong><small>'+esc(p.email)+'</small></td><td>'+s.paths+'</td><td>'+s.completed+'</td><td>'+esc(date(s.last))+'</td><td><button type="button" class="dalp-learner-view">Open record →</button></td>';
+   tr.innerHTML='<td><strong>'+esc(label)+'</strong><span class="ac-account-role '+(p.role==='admin'?'is-admin':'is-learner')+'">'+(p.role==='admin'?'Administrator':'Learner')+'</span><small>'+esc(p.email)+'</small></td><td>'+s.paths+'</td><td>'+s.completed+'</td><td>'+esc(date(s.last))+'</td><td><button type="button" class="dalp-learner-view">Open record →</button></td>';
    tr.querySelector('button').addEventListener('click',()=>showLearner(p));tbody.append(tr);
   }
   const start=filtered.length?page*pageSize+1:0,end=Math.min(filtered.length,(page+1)*pageSize);
@@ -116,7 +117,7 @@
   $('adminPrevPage').disabled=page===0;$('adminNextPage').disabled=(page+1)*pageSize>=filtered.length;
  }
  function showLearner(p){
-  $('adminDetailName').textContent=p.full_name||'Learner';$('adminDetailEmail').textContent=p.email||'';
+  $('adminDetailName').textContent=(p.full_name||'Learner')+' · '+(p.role==='admin'?'Administrator':'Learner');$('adminDetailEmail').textContent=p.email||'';
   const rows=rowsFor(p.user_id),details=$('adminDetailContent');details.replaceChildren();
   const summary=document.createElement('p');summary.className='ac-learner-summary';const s=profileStats(p);summary.textContent=s.completed+' learning units completed · '+s.paths+' courses started · Last activity '+date(s.last);details.append(summary);
   const tracks=document.createElement('div');tracks.className='dalp-admin-track-list';
@@ -133,8 +134,8 @@
  function exportCSV(){
   // Export all filtered matches, not merely the currently displayed page. Prevent CSV formula injection.
   const safe=v=>{let s=String(v??'');if(/^[\s]*[=+@\-\t\r]/.test(s))s="'"+s;return '"'+s.replaceAll('"','""')+'"'};
-  const head=['Learner name','Email','First app use','Courses started','Lessons completed','Last activity'];
-  const lines=[head,...filtered.map(p=>{const s=profileStats(p);return [p.full_name,p.email,p.first_app_use_at||'',s.paths,s.completed,s.last||'']})];
+  const head=['Account name','Email','Account role','First app use','Courses started','Lessons completed','Last activity'];
+  const lines=[head,...filtered.map(p=>{const s=profileStats(p);return [p.full_name,p.email,p.role||'learner',p.first_app_use_at||'',s.paths,s.completed,s.last||'']})];
   const csv='\ufeff'+lines.map(row=>row.map(safe).join(',')).join('\r\n');
   const blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='academy-learners-'+new Date().toISOString().slice(0,10)+'.csv';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
  }
@@ -142,20 +143,22 @@
   if(busy)return;busy=true;notice('Loading academy reports…');$('adminReload').disabled=true;
   try{
    const [p,c,q,s,cert]=await Promise.all([
-    fetchAll('learner_profiles','user_id,full_name,email,joined_at,last_seen_at'),
+    fetchAll('learner_profiles','user_id,full_name,email,role,joined_at,last_seen_at'),
     fetchAll('course_progress','user_id,course_slug,week_no,completed,updated_at,completed_at'),
     fetchAll('quiz_results','user_id,course_slug,week_no,percentage,submitted_at'),
     fetchAll('capstone_submissions','user_id,course_slug,status,created_at'),
     fetchAll('certificates','user_id,course_slug,certificate_id')]);
    progress=c;quizzes=q;submissions=s;certificates=cert;
-   // This optional table is populated ONLY by authenticated use inside DataLearning.
-   // On older deployments without the migration, keep only demonstrably active learners
-   // from lessons, quizzes or capstones; never fall back to all Auth profiles.
+   // The restricted learner_profiles table is the authoritative DataLearning
+   // app-user directory. It is populated only after verified app usage or
+   // first-party learning activity, plus administrators. Do not merge all
+   // Supabase Auth accounts into this list or infer membership from Auth sign-ins.
    try { appUsage=await fetchAll('datalearning_app_users','user_id,first_used_at,last_used_at,last_signed_in_at'); }
    catch { appUsage=[]; }
    usageByUser=new Map(appUsage.map(u=>[u.user_id,u]));
-   const realParticipants=new Set([...appUsage,...progress,...quizzes,...submissions].map(r=>r.user_id).filter(Boolean));
-   profiles=p.filter(person=>realParticipants.has(person.user_id)).map(person=>{
+   // Both the directory table in Supabase and the admin counter use exactly
+   // this list; rows from other applications cannot enter via auth.users.
+   profiles=p.map(person=>{
      const id=person.user_id;
      const timestamps=[usageByUser.get(id)?.first_used_at,
        ...progress.filter(row=>row.user_id===id).map(row=>row.completed_at||row.updated_at),

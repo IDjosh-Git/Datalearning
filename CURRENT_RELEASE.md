@@ -153,3 +153,21 @@ Deployment: Upload the contents of this `datalearning/` project to the existing 
 - Sign-in must successfully establish a server-side HttpOnly session cookie before navigating into the app.
 - All 37 non-auth HTML pages retain an additional client-side first-paint protection guard.
 - No production deployment performed from this package.
+
+
+## 2026-11-11 · Mobile sessions, Tutor layout, profile, navigation and account roles
+- Mobile refresh: an expired navigation goes to first-party sign-in or a safe renewal page rather than showing raw JSON. Background JSON APIs still return status codes. No active login is deliberately revoked when a transient verification service is unavailable.
+- Tutor: final rich-response stylesheet is loaded after legacy skins; message cards grow with content and wide tables scroll horizontally within each bubble.
+- Profile: one top-navigation Profile entry opens the existing editor, updates Supabase Auth metadata, and synchronizes the learner directory name under RLS. Profile photos remain private in Supabase Storage.
+- Navigation: admin and Review Desk links occur only in the admin sidebar on private workspace pages. The Profile control remains in the top bar; redundant sign-in and profile cards are removed from the sidebar.
+- Supabase: `learner_profiles.role` mirrors `site_admins` through protected triggers. All actual admin accounts appear in the learner directory with a role badge, but authorization still checks `site_admins` and instructor allowlists. Learner client roles cannot be edited.
+- Verification: run `npm test`, test an actual signed-in refresh and profile update on deployed hosting, and verify the admin directory with authorized accounts.
+
+
+## 2026-11-11 — Verified app membership, learner counts and shared Supabase isolation
+
+- The learner directory stopped inheriting all `auth.users` records; DataLearning login, explicit app use, documented learning activity, or the administrator allowlist is now required.
+- Archived profiles of unrelated Auth accounts in a private, non-exposed schema; no accounts or learning history were deleted.
+- The admin console loads `learner_profiles` as the authoritative app directory; registration awaits the DataLearning usage record before page navigation.
+- Live reconciliation found 3 verified learners and 1 administrator, while 4 learners were expected. The fourth legacy learner must be identified by verified app sign-in or account reconciliation, rather than guessing from shared Supabase Auth sign-ins.
+- See migration `database/migrations/20261111_verified_datalearning_members_only.sql`; applied to the connected Supabase project. Live app source still requires deployment.

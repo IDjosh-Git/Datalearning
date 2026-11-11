@@ -34,7 +34,7 @@
  }
  function showError(){paint('error');}
  function addSignOut(){
-  if(!document.getElementById('dalpGlobalLogout')&&!document.getElementById('logout')){
+  if(!document.body?.dataset.adminConsole&&!document.getElementById('dalpGlobalLogout')&&!document.getElementById('logout')){
    const host=document.querySelector('.nav-links,.course-top-actions,.auth-top-actions,.sidebar,.dlu-header-actions');
    if(host){const b=document.createElement('button');b.id='dalpGlobalLogout';b.className='dalp-gate-logout';b.type='button';b.textContent='Sign out';b.addEventListener('click',async()=>{b.disabled=true;b.textContent='Signing out…';try{await window.DALP_SERVER_SESSION?.clear();await window.ZAH_DB.client.auth.signOut()}catch(e){console.warn('Sign-out failed',e)}exit()});host.append(b);}
   }
@@ -45,7 +45,7 @@
   document.querySelectorAll('[data-admin-only]').forEach(node=>{node.hidden=role!=='admin'});
   if(role==='admin'){
    const host=document.querySelector('.nav-links,.course-top-actions,.sidebar,.auth-top-actions');
-   if(host&&!document.getElementById('dalpAdminLink')){const a=document.createElement('a');a.id='dalpAdminLink';a.className=host.classList.contains('sidebar')?'lp-course-link':'dalp-admin-link';a.href=toPage('admin.html').href;a.textContent='⚙ Admin dashboard';host.append(a);}
+   if(host&&!document.body?.dataset.adminConsole&&!document.getElementById('dalpAdminLink')){const a=document.createElement('a');a.id='dalpAdminLink';a.className=host.classList.contains('sidebar')?'lp-course-link':'dalp-admin-link';a.href=toPage('admin.html').href;a.textContent='⚙ Admin dashboard';host.append(a);}
   }else{document.querySelectorAll('.instructor-access-panel').forEach(n=>n.remove());}
   window.dispatchEvent(new CustomEvent('dalp:auth-ready',{detail:{role}}));
  }

@@ -23,9 +23,9 @@
  async function init(){
    if(!window.ZAH_DB?.configured||!db()){gate('Progress reports are temporarily unavailable. Please try again later or contact your administrator.','error');return}
    try{
-     const {data,error}=await db().auth.getUser();if(error)throw error;
-     if(!data?.user){el('progressGate').innerHTML='Instructor sign-in required. <a href="auth.html?return='+encodeURIComponent(location.href)+'">Sign in to continue ↗</a>';return}
-     const {data:owner,error:ownerError}=await db().from('capstone_reviewers').select('user_id').eq('user_id',data.user.id).maybeSingle();if(ownerError)throw ownerError;
+     const verified=await window.DALP_AUTH_GATE?.whenReady;
+     if(!verified?.id||window.DALP_ROLE!=='admin'){gate('Learner reports require an authorized administrator account.','warning');return}
+     const {data:owner,error:ownerError}=await db().from('capstone_reviewers').select('user_id').eq('user_id',verified.id).maybeSingle();if(ownerError)throw ownerError;
      if(!owner){gate('You do not have permission to view learner reports. Please contact an administrator if you need access.','warning');return}
      el('progressGate').hidden=true;el('progressApp').hidden=false;
      el('progressLearner').addEventListener('change',applyFilters);

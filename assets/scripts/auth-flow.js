@@ -75,8 +75,11 @@
   async function enter(user,msgId){
     if(completing)return;
     completing=true;
-    // Do not count sign-ups: record only after a verified in-app sign-in.
-    void window.DALP_APP_USAGE?.record('sign_in');
+    // Register a verified DataLearning login before navigation. The DB trigger
+    // creates/updates the matching learner_profiles directory row. This avoids
+    // a race where the admin roster counts fewer users than Supabase.
+    try { if (window.DALP_APP_USAGE?.record) await window.DALP_APP_USAGE.record('sign_in'); }
+    catch (_) { console.warn('App-user sync will retry on the learning page'); }
     const el=msgId?$(msgId):null;
     if(el)message(msgId,'Signed in. Preparing your personal learning space…','success');
     try{

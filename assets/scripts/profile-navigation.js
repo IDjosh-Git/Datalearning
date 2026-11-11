@@ -6,8 +6,9 @@
   const host=priv||pub;if(!host)return;
   if(host.querySelector('.dl-profile-control'))return;
   const base=location.pathname.includes('/courses/')?'../':'';
+  const isPrivate=!!priv;
   const node=document.createElement('div');node.className='dl-profile-control';
-  node.innerHTML='<a class="dl-profile-button" href="'+base+'account.html" aria-label="Open Learning Dashboard"><span class="dl-profile-avatar"><span data-profile-initial>↗</span></span><span class="dl-profile-button-copy"><strong data-profile-label>Dashboard</strong><small data-profile-state>Checking account…</small></span><span class="dl-profile-live" aria-hidden="true"></span></a>';
+  node.innerHTML='<a class="dl-profile-button" href="'+base+'profile.html" aria-label="Open your DataLearning profile"><span class="dl-profile-avatar"><span data-profile-initial>↗</span></span><span class="dl-profile-button-copy"><strong data-profile-label>Profile</strong><small data-profile-state>My account</small></span><span class="dl-profile-live" aria-hidden="true"></span></a>';
   const toggle=document.querySelector('.dalp-global-toggle');
   if(pub&&toggle)pub.insertBefore(node,toggle);else host.append(node);
   const link=node.querySelector('a');
@@ -16,15 +17,15 @@
    if(!window.DALP_AUTH_USER)return;
    const client=window.ZAH_DB?.client;
    if(!client){node.classList.add('dl-profile-guest');return}
-   let user=null;
-   try{const {data,error}=await client.auth.getSession();if(error)throw error;user=data?.session?.user||null}
-   catch(e){console.info('Profile status not available yet');}
+   // Reuse the identity already verified by the app-wide sign-in gate. Do not
+   // let a transient browser session lookup turn an authenticated header into Sign in.
+   const user=window.DALP_AUTH_USER;
    currentUser=user;
    const signed=!!user&&!user.is_anonymous;
    node.classList.toggle('dl-profile-signed',signed);node.classList.toggle('dl-profile-guest',!signed);
    link.href=base+(signed?'profile.html':'auth.html');link.setAttribute('aria-label',signed?'Open your DataLearning profile':'Sign in to DataLearning');
-   node.querySelector('[data-profile-label]').textContent=signed?(user.user_metadata?.full_name||user.email?.split('@')[0]||'My profile').split(' ')[0]:'Sign in';
-   node.querySelector('[data-profile-state]').textContent=signed?'Signed in':'Guest';
+   node.querySelector('[data-profile-label]').textContent=signed?'Profile':'Sign in';
+   node.querySelector('[data-profile-state]').textContent=signed?'Edit details':'Sign in required';
    const avatar=node.querySelector('.dl-profile-avatar');
    if(window.DALP_PROFILE_PHOTO){const url=signed?await window.DALP_PROFILE_PHOTO.signedUrl(user):null;
       if(currentUser?.id!==user?.id)return;
