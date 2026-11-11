@@ -60,7 +60,7 @@
           <button class="dl-float-mode-btn is-active" data-mode="guide" type="button" aria-pressed="true">Study guide</button>
           <button class="dl-float-mode-btn" data-mode="live" type="button" aria-pressed="false" disabled>Live AI</button>
         </div>
-        <p class="dl-float-status" id="dl-float-status" role="status">Study guide works without signing in. Live AI requires a configured provider and sign-in.</p>
+        <p class="dl-float-status" id="dl-float-status" role="status">Your learning assistant is available in your signed-in workspace. Live AI requires a configured provider.</p>
         <div class="dl-float-messages" id="dl-float-messages" role="log" aria-label="Coach conversation" aria-live="polite"></div>
         <div class="dl-float-suggestions" id="dl-float-suggestions" aria-label="Suggested study questions"></div>
         <form class="dl-float-composer" id="dl-float-form">

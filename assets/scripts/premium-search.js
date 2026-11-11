@@ -26,7 +26,7 @@ const records=[
  ['prompt-library.html','AI prompt library','Study tools','Practical prompts for analysts','ai chatgpt prompts'],
  ['account.html','My learning dashboard','My workspace','Personal course progress and achievements','my courses results certificates'],
  ['capstone.html','Capstone studio','My workspace','Submit projects and review instructor feedback','projects assignments submission'],
- ['preview.html','Try a lesson','Explore','Read a sample before signing in','trial lesson preview'],
+ ['preview.html','Try a lesson','Explore','Review an example lesson in your learning workspace','trial lesson preview'],
  ['auth.html','Sign in','My workspace','Save your course progress across devices','account login register']
  ];
 const searchIcon='<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="7.5"/><path d="m16 16 5 5"/></svg>';

@@ -40,8 +40,8 @@ assert(tutor.includes('class="tutor-compose-icon"')&&tutor.includes('<svg'),'AI 
 assert(tutor.includes('rows="1"')&&tutor.includes('id="chatQuestion"')&&tutor.includes('id="sendQuestion"'),'Compact composer retains real controls');
 assert(tutor.includes('class="sr-only" for="chatQuestion"'),'Composer retains accessible name');
 assert(tutorCss.includes('height:42px!important')&&tutorCss.includes('flex-wrap:nowrap!important'),'Compact composer responsive styles');
-const auth=read('assets/styles/auth.css');
-assert(auth.includes('linear-gradient(')&&auth.includes('radial-gradient(')&&auth.includes('@keyframes authFloat'),'Sign-in has requested gradients and motion');
+const auth=read('assets/styles/auth-entry-premium.css');
+assert(auth.includes('linear-gradient(')&&auth.includes('radial-gradient(')&&auth.includes('.auth-story'),'Sign-in has requested gradients and motion');
 assert(auth.includes('prefers-reduced-motion:reduce'),'Sign-in respects reduced motion');
 assert(auth.length < 30000,'Remove obsolete cross-page theme rules from sign-in stylesheet');
 assert(!auth.includes('.auth-story::before,.auth-story::after{display:none!important'),'Decorative gradient shapes must not be hidden');

@@ -1,39 +1,44 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import {pathToFileURL} from 'node:url';
-const base=new URL('../',import.meta.url);
-let source=await fs.readFile(new URL('../middleware.js',import.meta.url),'utf8');
+let src=await fs.readFile(new URL('../middleware.js',import.meta.url),'utf8');
 const modPath=pathToFileURL(new URL('../lib/server-auth.js',import.meta.url).pathname).href;
-source=source.replace("import { next } from '@vercel/functions';", "const next=({headers}={}) => new Response(null,{status:204,headers:{...headers,'x-middleware-next':'true'}});")
- .replace("from './lib/server-auth.js'","from '"+modPath+"'");
-const {default:middleware,config}=await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));
+src=src.replace("import { next } from '@vercel/functions';","const next=({headers}={})=>new Response(null,{status:204,headers:{...headers,'x-middleware-next':'true'}});").replace("from './lib/server-auth.js'","from '"+modPath+"'");
+const {default:middleware,config}=await import('data:text/javascript;base64,'+Buffer.from(src).toString('base64'));
 const {sessionCookie}=await import('../lib/server-auth.js');
-const userId='aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa';
-const token='part.signature.token';
+const id='aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa';
 const originalFetch=global.fetch;
-function mock(admin,unavailable=false,invalid=false){return async url=>{
- if(unavailable)throw Error('Network offline');
- if(String(url).includes('/auth/v1/user'))return new Response(JSON.stringify(invalid?{error:'Invalid JWT'}:{id:userId,is_anonymous:false}),{status:invalid?401:200});
- if(String(url).includes('/site_admins'))return new Response(JSON.stringify(admin?[{user_id:userId}]:[]),{status:200});
- throw Error('Unexpected remote call: '+url);
-}}
-function req(path,cookie=''){return new Request('https://learning.example'+path,{headers:cookie?{cookie}:undefined})}
+const token=label=>{const payload=Buffer.from(JSON.stringify({exp:Math.floor(Date.now()/1000)+3600,jti:label})).toString('base64url');return 'x.'+payload+'.'+('z'.repeat(64))};
+const req=(route,cookie='')=>new Request('https://learning.example'+route,{headers:cookie?{cookie}:undefined});
+const mock=(admin=false,unavailable=false,invalid=false,anonymous=false)=>async url=>{
+ if(unavailable)throw new Error('Network offline');
+ if(String(url).includes('/auth/v1/user'))return new Response(JSON.stringify(invalid?{error:'Invalid JWT'}:{id,is_anonymous:anonymous}),{status:invalid?401:200});
+ if(String(url).includes('/site_admins'))return new Response(JSON.stringify(admin?[{user_id:id}]:[]),{status:200});
+ throw new Error('Unexpected '+url);
+};
 try{
- const routes=['/admin.html','/progress.html','/reviewer.html','/sync-test.html','/connection-test.html'];
- for(const route of routes)assert.ok(config.matcher.includes(route));
- let r=await middleware(req('/admin.html?view=learners'));assert.equal(r.status,302);assert.equal(new URL(r.headers.get('location')).pathname,'/auth.html');assert.ok(r.headers.get('location').includes('return='));
- r=await middleware(req('/assets/scripts/admin-dashboard.js'));assert.equal(r.status,403);
- r=await middleware(req('/OWNER_SETUP.sql'));assert.equal(r.status,404);
+ assert(config.matcher.includes('/:path*'),'Middleware must cover all app paths');
+ for(const route of ['/','/index.html','/catalog.html','/courses/excel.html','/practice.html','/tutor.html','/preview.html','/verify.html','/dashboard']){
+  const r=await middleware(req(route));assert.equal(r.status,302,route);const url=new URL(r.headers.get('location'));assert.equal(url.pathname,'/auth.html');
+ }
+ for(const route of ['/assets/scripts/academy-app.js','/assets/styles/practice.css','/downloads/learning_sales_2026.csv','/assets/images/lesson-interfaces/excel-week-1.png'])assert.equal((await middleware(req(route))).status,403,route);
+ for(const route of ['/auth.html','/auth','/assets/scripts/auth-flow.js','/assets/styles/auth-entry-premium.css','/assets/icons/da-logo.svg','/api/auth/session'])assert.equal((await middleware(req(route))).status,204,route);
+ assert.equal((await middleware(req('/api/tutor'))).status,401);
+ assert.equal((await middleware(req('/lib/server-auth.js'))).status,404);
  global.fetch=mock(false);
- r=await middleware(req('/admin.html',sessionCookie(token,300)));assert.equal(r.status,403);assert.equal(await r.text(),'This area is for administrators.');
- r=await middleware(req('/assets/scripts/admin-dashboard.js',sessionCookie(token,300)));assert.equal(r.status,403);
+ let cookie=sessionCookie(token('learner'),300);
+ for(const route of ['/','/index.html','/courses/python.html','/assets/scripts/academy-app.js','/practice.html','/api/tutor']){
+  const r=await middleware(req(route,cookie));assert.equal(r.status,204,route);assert.match(r.headers.get('cache-control'),/no-store/);
+ }
+ for(const route of ['/admin.html','/assets/scripts/admin-dashboard.js'])assert.equal((await middleware(req(route,cookie))).status,403,route);
  global.fetch=mock(true);
- r=await middleware(req('/admin.html',sessionCookie(token,300)));assert.equal(r.status,204);assert.equal(r.headers.get('x-middleware-next'),'true');assert.match(r.headers.get('Cache-Control'),/no-store/);
- r=await middleware(req('/progress.html',sessionCookie(token,300)));assert.equal(r.status,204);
- r=await middleware(req('/assets/scripts/reviewer.js',sessionCookie(token,300)));assert.equal(r.status,204);
- global.fetch=mock(true,true);
- r=await middleware(req('/admin.html',sessionCookie(token,300)));assert.equal(r.status,503);
- global.fetch=mock(true,false,true);
- r=await middleware(req('/admin.html',sessionCookie(token,300)));assert.equal(r.status,302);
+ cookie=sessionCookie(token('admin'),300);
+ for(const route of ['/admin.html','/progress.html','/assets/scripts/admin-dashboard.js'])assert.equal((await middleware(req(route,cookie))).status,204,route);
+ global.fetch=mock(false,true);
+ assert.equal((await middleware(req('/index.html',sessionCookie(token('offline'),300)))).status,503);
+ global.fetch=mock(false,false,true);
+ assert.equal((await middleware(req('/catalog.html',sessionCookie(token('invalid'),300)))).status,302);
+ global.fetch=mock(false,false,false,true);
+ assert.equal((await middleware(req('/catalog.html',sessionCookie(token('anon'),300)))).status,302);
 }finally{global.fetch=originalFetch}
-console.log('Server middleware: guest redirected, learner blocked, admin allowed, assets gated, outage fails closed.');
+console.log('PASS app-wide server gate: homepage, courses, API and assets protected; login public; admin role isolated; fail-closed');

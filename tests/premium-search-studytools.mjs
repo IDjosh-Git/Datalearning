@@ -4,7 +4,7 @@ import path from 'node:path';
 const root=path.resolve(import.meta.dirname,'..');
 const read=(p)=>fs.readFileSync(path.join(root,p),'utf8');
 const privateRoutes=new Set(['account.html','admin.html','certificate.html','connection-test.html','profile.html','progress.html','reviewer.html','sync-test.html']);
-const publicRoutes=[...fs.readdirSync(root).filter(x=>x.endsWith('.html')&&!privateRoutes.has(x)),...fs.readdirSync(path.join(root,'courses')).filter(x=>x.endsWith('.html')).map(x=>'courses/'+x)];
+const publicRoutes=[...fs.readdirSync(root).filter(x=>x.endsWith('.html')&&!privateRoutes.has(x)&&x!=='auth.html'),...fs.readdirSync(path.join(root,'courses')).filter(x=>x.endsWith('.html')).map(x=>'courses/'+x)];
 const css='assets/styles/public-search-premium.css';
 for(const page of publicRoutes){
  const html=read(page);const base=page.startsWith('courses/')?'../':'';
@@ -12,7 +12,8 @@ for(const page of publicRoutes){
  assert.equal((html.match(/premium-search\.js/g)||[]).length,1,`${page}: one search script`);
  assert.equal((html.match(/public-search-premium\.css/g)||[]).length,1,`${page}: one shared search style`);
  const head=html.split('</head>')[0];
- assert(head.trimEnd().endsWith(`<link href="${base}${css}" rel="stylesheet"/>`),`${page}: final stylesheet after legacy styles`);
+ assert(head.includes(`<link href="${base}${css}" rel="stylesheet"/>`),`${page}: retained the shared search stylesheet`);
+ assert(head.includes(`href="${base}assets/styles/access-guard.css`),`${page}: app is protected at first paint`);
 }
 const search=read('assets/scripts/premium-search.js');
 for(const token of ['premiumSearchDialog','ps-filter-list','aria-expanded','aria-haspopup','ps-card','learning-lab.html','study-tools.html','certificate.html','progress.html','Search courses and learning tools','keydown'])assert(search.includes(token),`Search behaviour missing: ${token}`);

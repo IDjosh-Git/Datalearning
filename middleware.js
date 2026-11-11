@@ -1,34 +1,44 @@
-/* Server-side protection for hosted administrator HTML and supporting scripts. */
+/* Authentication is required for every DataLearning route other than sign-in and its minimal assets. */
 import { next } from '@vercel/functions';
-import { restrictedKind, readServerToken, verifyAccount, verifyAdmin, PRIVATE_HEADERS } from './lib/server-auth.js';
+import { restrictedKind,readServerToken,verifyAccount,verifyAdmin,PRIVATE_HEADERS,tokenSecondsLeft } from './lib/server-auth.js';
 
-export const config = {
- matcher: [
-  '/admin.html','/admin','/progress.html','/progress','/reviewer.html','/reviewer',
-  '/connection-test.html','/connection-test','/sync-test.html','/sync-test',
-  '/assets/scripts/admin-dashboard.js','/assets/scripts/admin-console.js','/assets/scripts/progress-admin.js','/assets/scripts/reviewer.js',
-  '/assets/styles/admin.css','/assets/styles/progress.css','/assets/styles/reviewer.css',
-  '/assets/styles/connection-test-layout.css','/assets/styles/sync-test-layout.css',
-  '/OWNER_SETUP.sql','/ADMIN_LEARNER_MIGRATION.sql','/supabase_setup.sql',
-  '/AI_COURSE_DATABASE_MIGRATION.sql','/SUPABASE_SETUP.txt','/tests/:path*','/lib/:path*','/database/:path*','/docs/:path*','/tools/:path*'
- ]
-};
+// Vercel invokes this at the edge before serving public and private static HTML and bundles.
+export const config = { matcher: ['/:path*'] };
+const cache=new Map();
+const CACHE_MS=15000;
+async function verifiedUser(token){
+ // Short server-memory validation cache avoids dozens of remote Auth requests per lesson image.
+ // Never grant access on expiry and never persist JWTs to the learner's browser.
+ if(!token||tokenSecondsLeft(token)<1)return {ok:false,status:401};
+ const now=Date.now();const saved=cache.get(token);
+ if(saved&&saved.until>now)return saved.value;
+ const value=await verifyAccount(token);
+ if(value.ok){cache.set(token,{value,until:now+CACHE_MS});if(cache.size>100){for(const [key,item] of cache){if(item.until<now||cache.size>80)cache.delete(key)}}}
+ return value;
+}
 function fail(status,message){return new Response(message,{status,headers:{...PRIVATE_HEADERS,'Content-Type':'text/plain; charset=utf-8'}})}
+function login(url){const nextUrl=new URL('/auth.html',url);nextUrl.searchParams.set('return',url.pathname+url.search+url.hash);return Response.redirect(nextUrl,302)}
 export default async function middleware(request){
  const url=new URL(request.url);
  const kind=restrictedKind(url.pathname);
- if(!kind)return next();
  if(kind==='deny')return fail(404,'Not found');
+ if(kind==='public')return next({headers:{'Cache-Control':'no-store, max-age=0'}});
  const token=readServerToken(request.headers.get('cookie'));
- if(!token){
-  if(kind==='adminAsset')return fail(403,'Access denied');
-  const login=new URL('/auth.html',url);
-  login.searchParams.set('return',url.pathname+url.search+url.hash);
-  return Response.redirect(login,302);
+ if(!token || tokenSecondsLeft(token)<1){
+  if(kind==='appApi')return fail(401,'Sign in required');
+  if(kind==='appAsset'||kind==='adminAsset')return fail(403,'Sign in required');
+  return login(url);
  }
- const user=await verifyAccount(token);
- if(!user.ok)return user.status===401?(kind==='adminPage'?Response.redirect(new URL('/auth.html?return='+encodeURIComponent(url.pathname+url.search),url),302):fail(403,'Access denied')):fail(503,'Unable to verify access. Please try again.');
- const admin=await verifyAdmin(token,user.userId);
- if(!admin.ok)return fail(admin.status===503?503:403,admin.status===503?'Unable to verify access. Please try again.':'This area is for administrators.');
+ const user=await verifiedUser(token);
+ if(!user.ok){
+  if(user.status===503)return fail(503,'Unable to verify your learning account. Please retry.');
+  if(kind==='appApi')return fail(401,'Sign in required');
+  if(kind==='appAsset'||kind==='adminAsset')return fail(403,'Sign in required');
+  return login(url);
+ }
+ if(kind==='adminPage'||kind==='adminAsset'){
+  const admin=await verifyAdmin(token,user.userId);
+  if(!admin.ok)return fail(admin.status===503?503:403,admin.status===503?'Administrator verification unavailable. Please retry.':'This area is for administrators.');
+ }
  return next({headers:PRIVATE_HEADERS});
 }

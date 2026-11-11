@@ -8,8 +8,9 @@ assert.equal(pages.length,38,'One unified loader across all retained public and 
 assert.equal(privatePages.length,8,'Eight protected workspaces');
 const extract=(markup)=>markup.slice(markup.indexOf('<div id="dlxPageLoader"'),markup.indexOf('</div><script src=',markup.indexOf('<div id="dlxPageLoader"'))+6);
 const shared=extract(fs.readFileSync('index.html','utf8'));
+assert(fs.readFileSync('auth.html','utf8').includes('auth-entry-premium.css'),'Sign-in uses its own responsive design');
 assert(shared.includes('dlx-loader-wordmark')&&shared.includes('dlx-loader-orbit'));
-for(const file of pages){
+for(const file of pages.filter(file=>!file.endsWith('/auth.html'))){
  const html=fs.readFileSync(file,'utf8');
  const prefix=file.includes(`${path.sep}courses${path.sep}`)?'../':'';
  for(const text of [`${prefix}assets/styles/page-loader.css?v=unified-20261110-r2`,`${prefix}assets/scripts/page-loader.js?v=unified-20261110-r2`,"classList.add('dlx-loader-pending')",'id="dlxPageLoader"','Preparing your next insight'])assert.ok(html.includes(text),`${path.relative(root,file)} missing ${text}`);

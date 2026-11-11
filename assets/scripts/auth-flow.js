@@ -102,31 +102,20 @@
         if(!result?.error && result?.data)target=new URL('admin.html',location.href).href;
       }
     }catch(error){console.warn('Role landing lookup deferred to page gate')}
-    // A hosting session is required for administrator-only Vercel routes,
-    // but ordinary learner pages use the independently verified Supabase
-    // session. A transient hosting-cookie failure must not strand learners
-    // on the sign-in page.
-    const filename=new URL(target).pathname.split('/').pop().toLowerCase();
-    const needsServerSession=new Set(['admin.html','progress.html','reviewer.html','connection-test.html','sync-test.html']).has(filename);
-    let hostingSessionOk=false;
+    // Every page is server-gated. A valid hosting session is mandatory for
+    // learners and administrators alike; never redirect without confirmation.
     try {
-      const {data}=await db().auth.getSession();
-      if(needsServerSession){
-        await Promise.race([
-          window.DALP_SERVER_SESSION.establish(data?.session),
-          new Promise((_,reject)=>setTimeout(()=>reject(new Error('Hosting session timed out')),9000))
-        ]);
-        hostingSessionOk=true;
-      }else if(window.DALP_SERVER_SESSION?.establish){
-        // Do not keep the learner on sign-in to renew a separate hosting cookie.
-        // The destination page performs its own verified, best-effort renewal.
-        void window.DALP_SERVER_SESSION.establish(data?.session).catch(()=>{});
-      }
-    }catch(error){console.warn('Hosting session could not be established; learner pages remain accessible');}
-    if(needsServerSession && !hostingSessionOk){
+      const {data,error}=await db().auth.getSession();
+      if(error||!data?.session)throw new Error('Sign-in session is unavailable.');
+      if(!window.DALP_SERVER_SESSION?.establish)throw new Error('Secure session service is unavailable.');
+      await Promise.race([
+        window.DALP_SERVER_SESSION.establish(data.session),
+        new Promise((_,reject)=>setTimeout(()=>reject(new Error('Secure session timed out')),9000))
+      ]);
+    }catch(error){
       completing=false;
-      message(msgId||'loginMsg','Your account is signed in, but the instructor workspace could not be verified. Check your connection and try again.');
-      return;
+      message(msgId||'loginMsg','Your identity was confirmed, but the secure app session could not be opened. Check your connection and select Sign in again.');
+      return false;
     }
     location.replace(target);
   }
@@ -166,7 +155,8 @@
       const {data,error}=await db().auth.signInWithPassword({email,password});
       if(error)throw error;
       if(!data?.user||!data?.session)throw new Error('Sign-in could not be confirmed. Please try again.');
-      await enter(data.user,'loginMsg');
+      const entered=await enter(data.user,'loginMsg');
+      if(entered===false)busy(button,false,'Sign in');
     }catch(error){message('loginMsg',errorText(error));busy(button,false,'Sign in')}
   });
   $('signupForm').addEventListener('submit',async e=>{
@@ -239,6 +229,7 @@
     if(!dbReady())return;
     db().auth.onAuthStateChange((event)=>{if(event==='PASSWORD_RECOVERY'){setMode('reset')}});
     try{
+      await Promise.resolve(window.DALP_AUTH_RESTORE).catch(()=>false);
       const {data,error}=await db().auth.getUser();
       if(error && !/session missing/i.test(error.message||''))console.info('No confirmed user session yet',error.message);
       if(data?.user && !resetCallback){await enter(data.user,null)}

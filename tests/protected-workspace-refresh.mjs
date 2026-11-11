@@ -25,7 +25,7 @@ assert(shared.includes('background:#203a57!important'),'Admin toolbar uses dark 
 assert(shared.includes('background:#263d5d!important'),'Admin overview has a dark coloured hero');
 assert(shared.includes('.review-hero{background:#203F58!important'),'Review desk has distinct dark banner');
 assert(shared.includes('background:var(--ui-nav-ink)!important'),'Progress banner has dark slate treatment');
-for(const c of ['auth','progress','reviewer','certificate','private-utilities-premium']){
+for(const c of ['auth-entry-premium','progress','reviewer','certificate','private-utilities-premium']){
  assert(fs.statSync('assets/styles/'+c+'.css').size<45000,`${c} contains old oversized site-wide styling`);
 }
 for (const page of ['certificate.html','connection-test.html','sync-test.html']) {

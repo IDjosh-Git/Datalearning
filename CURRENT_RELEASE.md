@@ -113,3 +113,10 @@ Deployment: Upload the contents of this `datalearning/` project to the existing 
 - Added mobile screen-width assertions and a dedicated `tests/practice-mobile-sql-light.mjs` contract. Browser visual checks were performed at 320px, 390px, 768px and 1440px with no horizontal page overflow.
 - Existing challenge selection, SQL/Excel execution and grading, Python worker, weekly lessons, mastery questions, progress and cloud schema are unchanged. The full `npm test` suite passed.
 - Source release only; no live deployment was performed.
+
+### App-wide premium sign-in (11 November 2026)
+- Refined standalone mobile-first sign-in page with desktop split-panel design; all form modes remain keyboard accessible.
+- Vercel request-time middleware covers the entire application instead of selected private pages. `/auth.html`, its needed assets, and `/api/auth/session` remain public; everything else requires an authenticated session.
+- Sign-in must successfully establish a server-side HttpOnly session cookie before navigating into the app.
+- All 37 non-auth HTML pages retain an additional client-side first-paint protection guard.
+- No production deployment performed from this package.

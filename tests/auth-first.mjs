@@ -1,33 +1,22 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
-const root=process.cwd();
-const read=x=>fs.readFileSync(path.join(root,x),'utf8');
-const paths=dir=>fs.readdirSync(dir,{withFileTypes:true}).flatMap(x=>x.isDirectory()?paths(path.join(dir,x.name)):x.name.endsWith('.html')?[path.join(dir,x.name)]:[]);
-const htmlFiles=paths(root);
-const publiclyBrowsable=new Set(['study-tools.html','reference.html','prompt-library.html','capstone.html','tutor.html','studio.html','learning-lab.html','learning-coach.html','catalog.html','career-path.html','overview.html','index.html','quiz.html','questions.html','courses/tableau.html','courses/powerquery.html','courses/statistics.html','courses/introduction.html','courses/excel.html','courses/sql.html','courses/powerbi.html','courses/python.html','courses/ai.html']);
-for(const course of ['python','ai']){publiclyBrowsable.add(`courses/${course}-extension.html`);}
-for(const rel of publiclyBrowsable){assert(!read(rel).includes('assets/scripts/auth-gate.js'),`${rel} should allow course browsing without redirect`);}
-assert(htmlFiles.length>=23,'Expected at least 23 app pages');
-const publicPage=read('auth.html');
-assert(!publicPage.includes('auth-gate.js'),'Sign-in page must remain public');
-assert(!read('verify.html').includes('auth-gate.js'),'Third-party certificate verification must be public');
-assert(!read('preview.html').includes('auth-gate.js'),'Sample lesson must remain public, with no save controls');
-assert(!read('practice.html').includes('auth-gate.js'),'Practice Arena selection and local execution must remain public');
-for(const f of htmlFiles.filter(x=>!publiclyBrowsable.has(path.relative(root,x).replaceAll('\\','/'))&&!x.endsWith('auth.html')&&!x.endsWith('verify.html')&&!x.endsWith('capstone-guide.html')&&!x.endsWith('preview.html')&&!x.endsWith('practice.html'))){
- const html=fs.readFileSync(f,'utf8');
- const rel=path.relative(root,f);
- const gate=html.indexOf('document.documentElement.classList.add(\'dalp-auth-checking\')');
- assert(gate>=0,`Missing pre-render authentication cover on ${rel}`);
- assert(html.includes('assets/scripts/auth-gate.js'),`Missing session guard ${rel}`);
- assert(html.includes('assets/styles/'),`Missing fail-closed CSS bundle ${rel}`);
- assert(html.slice(0,html.indexOf('</head>')).includes('assets/scripts/auth-gate.js'),`Guard not in head ${rel}`);
- assert.equal((html.match(/src="https:\/\/cdn.jsdelivr.net\/npm\/@supabase\/supabase-js@2.57.0"/g)||[]).length,1,`Auth SDK not once on ${rel}`);
+const root=process.cwd(), read=f=>fs.readFileSync(path.join(root,f),'utf8');
+const pages=[...fs.readdirSync(root).filter(f=>f.endsWith('.html')),...fs.readdirSync('courses').filter(f=>f.endsWith('.html')).map(f=>'courses/'+f)];
+for(const page of pages.filter(f=>f!=='auth.html')){
+ const html=read(page),head=html.split('</head>')[0];
+ assert(head.includes("classList.add('dalp-auth-checking')"),`${page}: protect before initial paint`);
+ assert(head.includes('access-guard.css'),`${page}: fail-closed cover required`);
+ assert(head.includes('assets/scripts/auth-gate.js'),`${page}: authenticated browser guard required`);
+ assert(head.indexOf('auth-gate.js')>head.indexOf('supabase-client.js'),`${page}: session must initialize before gate`);
+ assert.equal((html.match(/auth-gate.js/g)||[]).length,1,`${page}: avoid repeated auth checks`);
 }
-for(const id of ['loginForm','signupForm','forgotForm','resetForm','loginEmail','loginPassword','signupEmail','signupPassword','signupConfirm','forgotEmail','newPassword','confirmNewPassword','loginBtn','signupBtn','forgotBtn','resetBtn'])assert(publicPage.includes(`id="${id}"`),`Missing ${id}`);
-const auth=read('assets/scripts/auth-flow.js');
-for(const term of ['signInWithPassword','signUp','resetPasswordForEmail','updateUser','signInWithOAuth','return','location.replace(target)','emailRedirectTo','PASSWORD_RECOVERY','8 characters'])assert(auth.includes(term),`Missing auth logic ${term}`);
-const gate=read('assets/scripts/auth-gate.js');
-for(const term of ['auth.getSession()','auth.getUser()','loginDestination()','prepareWorkspace','clearLocalCourseCache','SIGNED_OUT','USER_DELETED','dalp-auth-checking','showError()','onAuthStateChange'])assert(gate.includes(term),`Missing guard logic ${term}`);
-assert(read('assets/scripts/progress-cloud.js').includes('recoverCurrentDevice(user){ return syncAll({user:user||null}); }'),'No forced recovery on account switching');
-console.log(`PASS auth-first coverage: ${htmlFiles.length-5-publiclyBrowsable.size} guarded pages, verified sessions, signup, signin, recovery, account switching, signout`);
+const auth=read('auth.html');
+assert(!auth.includes('assets/scripts/auth-gate.js'),'Sign-in is the sole public screen');
+assert(auth.includes('auth-entry-premium.css'));
+assert(!auth.includes('public-header-unified.js')&&!auth.includes('learner-companion.js'));
+for(const id of ['loginForm','signupForm','forgotForm','resetForm','loginEmail','loginPassword','signupEmail','signupPassword','signupConfirm','forgotEmail','newPassword','confirmNewPassword','loginBtn','signupBtn','forgotBtn','resetBtn'])assert(auth.includes(`id="${id}"`),`Missing auth control ${id}`);
+const flow=read('assets/scripts/auth-flow.js');
+for(const key of ['signInWithPassword','signUp','resetPasswordForEmail','updateUser','signInWithOAuth','location.replace(target)','DALP_SERVER_SESSION.establish','PASSWORD_RECOVERY'])assert(flow.includes(key),`Missing auth flow ${key}`);
+assert(flow.includes('Secure session timed out'),'Cookie must be established before entering');
+console.log(`PASS app-wide authenticated HTML: ${pages.length-1} guarded pages; only sign-in public; secure session required`);

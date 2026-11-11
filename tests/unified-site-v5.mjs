@@ -7,7 +7,7 @@ import {fileURLToPath} from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=filename=>fs.readFileSync(path.join(root,filename),'utf8');
 const protectedPages=new Set(['account.html','admin.html','profile.html','progress.html','reviewer.html','certificate.html','connection-test.html','sync-test.html']);
-const publicPages=[...fs.readdirSync(root).filter(f=>f.endsWith('.html')&&!protectedPages.has(f)),...fs.readdirSync(path.join(root,'courses')).filter(f=>f.endsWith('.html')).map(f=>'courses/'+f)];
+const publicPages=[...fs.readdirSync(root).filter(f=>f.endsWith('.html')&&!protectedPages.has(f)&&f!=='auth.html'),...fs.readdirSync(path.join(root,'courses')).filter(f=>f.endsWith('.html')).map(f=>'courses/'+f)];
 for(const f of publicPages){
  const html=read(f);const nested=f.startsWith('courses/');
  const script=(nested?'../':'')+'assets/scripts/public-footer.js';
@@ -16,6 +16,7 @@ for(const f of publicPages){
  assert(html.includes('unified-site-v5.css'),`${f}: shared typography / footer CSS missing`);
  assert(html.includes('study-tools.html')||f==='questions.html',`${f}: Study Tools route missing`);
 }
+assert(!read('auth.html').includes('public-footer.js'),'Entry must not initialize the full learning app before sign-in');
 for(const f of protectedPages){
  assert(read(f).includes('unified-site-v5.css'),`${f}: consistent private UI CSS missing`);
  assert(!read(f).includes('public-footer.js'),`${f}: public footer must not attach to guarded workspace`);

@@ -31,7 +31,7 @@
  function showError(){paint('error');}
  function addSignOut(){
   if(!document.getElementById('dalpGlobalLogout')&&!document.getElementById('logout')){
-   const host=document.querySelector('.nav-links,.course-top-actions,.auth-top-actions,.sidebar');
+   const host=document.querySelector('.nav-links,.course-top-actions,.auth-top-actions,.sidebar,.dlu-header-actions');
    if(host){const b=document.createElement('button');b.id='dalpGlobalLogout';b.className='dalp-gate-logout';b.type='button';b.textContent='Sign out';b.addEventListener('click',async()=>{b.disabled=true;b.textContent='Signing out…';try{await window.DALP_SERVER_SESSION?.clear();await window.ZAH_DB.client.auth.signOut()}catch(e){console.warn('Sign-out failed',e)}exit()});host.append(b);}
   }
   document.querySelectorAll('a.account-link,a.course-account-link').forEach(a=>{a.textContent='My account';a.href=toPage('account.html').href});

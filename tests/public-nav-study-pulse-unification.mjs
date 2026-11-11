@@ -5,7 +5,7 @@ import path from 'node:path';
 const root=path.resolve(import.meta.dirname,'..');
 const read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const privateRoutes=new Set(['account.html','admin.html','certificate.html','connection-test.html','profile.html','progress.html','reviewer.html','sync-test.html']);
-const pages=[...fs.readdirSync(root).filter(f=>f.endsWith('.html')&&!privateRoutes.has(f)),...fs.readdirSync(path.join(root,'courses')).filter(f=>f.endsWith('.html')).map(f=>'courses/'+f)];
+const pages=[...fs.readdirSync(root).filter(f=>f.endsWith('.html')&&!privateRoutes.has(f)&&f!=='auth.html'),...fs.readdirSync(path.join(root,'courses')).filter(f=>f.endsWith('.html')).map(f=>'courses/'+f)];
 const navs=['index.html','catalog.html','study-tools.html','practice.html','tutor.html','capstone.html','overview.html'];
 for(const p of pages){
  const src=read(p),base=p.startsWith('courses/')?'../':'';
@@ -22,6 +22,7 @@ for(const p of pages){
  assert(!src.includes('public-navigation.js')&&!src.includes('unified-academy-shell.js'),`${p}: legacy controller still linked`);
 }
 for(const p of privateRoutes){const src=read(p);assert(!src.includes('class="dlu-header"'),`${p}: protected workspace must keep role-aware nav`)}
+assert(!read('auth.html').includes('learner-companion.js'),'Sign-in must not initialize a floating study widget');
 const coach=read('assets/scripts/learner-companion.js');
 assert(coach.includes("launch.className='lc-launch lc-pulse-trigger'"));
 assert(coach.includes('Study Pulse'));
