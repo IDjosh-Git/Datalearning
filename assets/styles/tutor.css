@@ -104,7 +104,7 @@ h1 em{font-style:normal;color:var(--mint)}
 .messages{padding:24px;min-height:360px;max-height:560px;overflow:auto;display:flex;flex-direction:column;gap:14px;background:linear-gradient(180deg,#fafcff,#f3f7fd)}
 .bubble{align-self:flex-start;max-width:85%;background:white;border:1px solid #e1e9f4;border-radius:17px 17px 17px 5px;padding:15px 17px;font-size:13px;white-space:pre-wrap;line-height:1.8;color:#283851}
 .bubble.user{align-self:flex-end;background:#dfe8ff;border-color:#c7d7ff;border-radius:17px 17px 5px 17px}
-.bubble b{display:block;font-size:11px;color:#5071aa;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px}
+.bubble > b{display:block;font-size:11px;color:#5071aa;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px}
 .chat-input{border-top:1px solid var(--stroke);padding:17px 20px;display:flex;gap:10px;align-items:flex-end}
 .chat-input textarea{min-height:52px;max-height:170px;resize:vertical;flex:1;padding:13px;border-radius:12px;border:1px solid #cbd7e9;min-width:0}
 .chat-input button{background:var(--blue-deep);border:0;color:white;border-radius:11px;font-size:13px;font-weight:900;padding:15px 20px}
@@ -807,7 +807,7 @@ body:has(a[href$="learning-lab.html"][style*="position:fixed"]) footer{padding-b
 .tutor-context-right{margin-left:auto;font-weight:500}
 .tutor-chat .messages{flex:1;min-height:340px;max-height:58vh;padding:24px 22px;overflow-y:auto;overflow-x:hidden;scroll-behavior:smooth}
 .tutor-chat .bubble{max-width:min(92%,720px);line-height:1.63;overflow-wrap:anywhere;border-radius:15px;padding:14px 17px;margin-bottom:14px;font-size:.92rem}
-.tutor-chat .bubble b{display:block;margin-bottom:5px}
+.tutor-chat .bubble > b{display:block;margin-bottom:5px}
 .tutor-chat .bubble.user{margin-left:auto;background:var(--app-brand);color:#fff}
 .tutor-chat .tutor-welcome{background:var(--panel,var(--app-surface-2));border:1px solid var(--line,var(--app-line))}
 .tutor-chat .tutor-tools{display:flex;gap:8px;flex-wrap:wrap;padding:12px 20px 5px;border-top:1px solid var(--line,var(--app-line))}

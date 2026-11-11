@@ -1,3 +1,15 @@
+## 11 November 2026 — Mobile refresh recovery & Tutor AI response readability
+
+- Fixed the server session renewal endpoint's navigation failure path: when a Supabase refresh token is invalid, the browser returns to the sign-in screen with its original destination instead of displaying raw `{"error":"Session expired"}` JSON.
+- Invalid first-party session and refresh cookies are cleared to prevent a redirect loop. Temporary Supabase connection problems show a minimal human-readable **Retry session** page without discarding the intended course route.
+- Reuse still-valid access tokens on navigation instead of rotating refresh credentials prematurely, reducing refresh-token race conditions during mobile page reloads.
+- Refined Tutor Studio's shared AI response styles: inline emphasis stays inline; paragraphs, headings and lists use consistent vertical rhythm; chat response bubbles have intrinsic height instead of fixed/limited height. Wide tables and code blocks scroll within their own containers, and code text has explicit readable contrast.
+- Scoped legacy `.bubble b` label styling to the bubble's direct child and loaded the shared response stylesheet last on Tutor Studio to avoid competing older theme rules. Floating AI remains on the shared formatter.
+- Added tests for expired refresh-token redirects, network failures, live-token reuse and Tutor response styling. Full `npm test` passed; isolated Chromium renders of content-heavy replies passed at 320, 390, 768 and 1440px without page overflow or adjacent-card overlap.
+- These fixes are in source files only. The live site requires redeployment and an authenticated mobile-device smoke test to confirm the real-world session lifecycle.
+
+---
+
 ## 11 November 2026 — Current release: administrator access and stylesheet hygiene
 
 - **Learners cannot open administrator pages.** The `site_admins` table is checked through Supabase, administrator navigation is hidden by default, and Vercel middleware denies direct access to administration pages and their protected assets. A signed-in learner receives HTTP 403 for a protected admin URL; no CSS-only access control is used.

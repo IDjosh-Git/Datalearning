@@ -106,3 +106,91 @@ body[data-responsive-page="tutor"] .tutor-chat .tutor-offline-answer{
  body[data-responsive-page="tutor"] .tutor-chat .bubble:not(.user){max-width:100%!important}
  .dl-float-coach .dl-ai-table :is(th,td),body[data-responsive-page="tutor"] .dl-ai-table :is(th,td){min-width:112px;padding:9px 11px!important}
 }
+
+
+/* 2026-11-11 — Tutor response contract. Loaded after legacy Tutor skins.
+   The Tutor label is the bubble's DIRECT child only; rich text within the
+   answer remains inline. Message height is determined entirely by its content. */
+html[data-theme] body[data-responsive-page="tutor"] .tutor-main .tutor-chat .messages {
+ box-sizing:border-box;min-width:0;max-width:100%;overflow-x:hidden!important;overflow-y:auto!important;
+ align-items:stretch;scrollbar-gutter:stable;
+}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-main .tutor-chat .bubble:not(.user):not(.tutor-welcome) {
+ box-sizing:border-box!important;position:relative!important;display:block!important;
+ flex:0 0 auto!important;align-self:flex-start!important;
+ width:100%!important;max-width:min(100%,840px)!important;
+ height:auto!important;min-height:0!important;max-height:none!important;
+ overflow:visible!important;contain:none!important;
+ padding:clamp(13px,2.5vw,20px)!important;
+ white-space:normal!important;word-break:normal!important;overflow-wrap:anywhere!important;
+ line-height:1.68!important;letter-spacing:normal!important;
+}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-main .tutor-chat .bubble.user {
+ flex:0 0 auto!important;height:auto!important;min-height:0!important;max-height:none!important;
+ overflow-wrap:anywhere!important;white-space:pre-wrap!important;line-height:1.6!important;
+}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-main .tutor-chat .bubble > b {
+ display:block!important;position:static!important;margin:0 0 12px!important;
+ font:800 .72rem/1.4 "DM Sans",system-ui,sans-serif!important;
+ letter-spacing:.055em!important;text-transform:uppercase;
+}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-main .tutor-chat :is(.tutor-answer,.tutor-offline-answer,.dl-ai-response) {
+ box-sizing:border-box;position:static!important;display:block!important;
+ width:100%!important;max-width:100%!important;min-width:0!important;
+ height:auto!important;min-height:0!important;max-height:none!important;
+ overflow:visible!important;white-space:normal!important;
+ font-family:"DM Sans",system-ui,sans-serif!important;
+ font-size:clamp(14px,1.65vw,16px)!important;font-weight:400!important;
+ line-height:1.72!important;letter-spacing:normal!important;word-spacing:normal!important;
+ text-align:start!important;word-break:normal!important;overflow-wrap:anywhere!important;
+}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-main .tutor-chat .dl-ai-response :is(p,li,blockquote) {
+ box-sizing:border-box;position:static!important;max-width:100%!important;
+ height:auto!important;min-height:0!important;max-height:none!important;
+ white-space:normal!important;line-height:1.72!important;
+ font-size:inherit!important;letter-spacing:normal!important;word-spacing:normal!important;
+ text-align:start!important;word-break:normal!important;overflow-wrap:anywhere!important;
+}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-main .tutor-chat .dl-ai-response p {
+ display:block!important;margin:0 0 1em!important;padding:0!important;
+}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-main .tutor-chat .dl-ai-response :is(strong,b) {
+ display:inline!important;position:static!important;margin:0!important;padding:0!important;
+ font:inherit!important;font-weight:800!important;line-height:inherit!important;
+ text-transform:none!important;letter-spacing:inherit!important;
+}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-main .tutor-chat .dl-ai-response :is(h3,h4) {
+ position:static!important;height:auto!important;max-height:none!important;
+ white-space:normal!important;line-height:1.35!important;letter-spacing:-.012em!important;
+ margin:1.15em 0 .5em!important;overflow-wrap:anywhere!important;
+}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-main .tutor-chat .dl-ai-response :is(ul,ol) {
+ margin:.5em 0 1em!important;padding-inline-start:1.6em!important;
+}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-main .tutor-chat .dl-ai-response li {
+ display:list-item!important;margin:0 0 .42em!important;padding:0!important;
+}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-main .tutor-chat .dl-ai-table-region,
+html[data-theme] body[data-responsive-page="tutor"] .tutor-main .tutor-chat .dl-ai-code {
+ box-sizing:border-box;min-width:0!important;width:100%!important;max-width:100%!important;
+ overflow:hidden;
+}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-main .tutor-chat .dl-ai-table-region {
+ overflow-x:auto!important;overflow-y:hidden!important;
+}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-main .tutor-chat .dl-ai-code pre {
+ box-sizing:border-box!important;max-width:100%!important;
+ overflow-x:auto!important;overflow-y:hidden!important;
+ color:#e9f5fa!important;-webkit-text-fill-color:#e9f5fa!important;
+ background:#142e40!important;
+}
+html[data-theme] body[data-responsive-page="tutor"] .tutor-main .tutor-chat .dl-ai-code pre code {
+ display:inline!important;color:#e9f5fa!important;-webkit-text-fill-color:#e9f5fa!important;
+ background:transparent!important;font-family:ui-monospace,Consolas,monospace!important;
+ font-size:.87rem!important;line-height:1.65!important;white-space:pre!important;
+}
+@media(max-width:600px){
+ html[data-theme] body[data-responsive-page="tutor"] .tutor-main .tutor-chat .messages {scrollbar-gutter:auto}
+ html[data-theme] body[data-responsive-page="tutor"] .tutor-main .tutor-chat .bubble:not(.user):not(.tutor-welcome) {padding:14px!important}
+ html[data-theme] body[data-responsive-page="tutor"] .tutor-main .tutor-chat :is(.tutor-answer,.tutor-offline-answer,.dl-ai-response) {font-size:14.5px!important}
+}
