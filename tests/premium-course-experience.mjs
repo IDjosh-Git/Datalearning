@@ -20,7 +20,7 @@ for(const slug of ['introduction','excel','sql','powerbi','tableau','powerquery'
  assert.equal((html.match(/id="dlcOverviewBar"/g)||[]).length,1);
  assert(html.indexOf('id="dlcOverviewBar"')<html.indexOf('id="zaLessonTitle"'),`${slug}: progress appears ahead of lesson`);
 }
-for(const slug of ['python-roadmap','ai-roadmap','python-extension','ai-extension']){
+for(const slug of ['python-extension','ai-extension']){
  const html=read(`courses/${slug}.html`);
  assert(html.includes('specialist-course-premium.css?v=course-ux-20261110-r1'),`${slug}: specialist premium theme missing`);
  assert(html.includes('public-search-premium.css'),`${slug}: preserve unified search styling`);
@@ -32,4 +32,4 @@ for(const marker of ['dlcOverviewBar','dlcOverviewCompleted','dlcCurrentWeek','d
 const courseData=JSON.parse(read('assets/data/academy-curriculum.json'));
 assert.equal(courseData.length,7);
 assert.equal(courseData.reduce((n,c)=>n+c.weeks.length,0),70);
-console.log('PASS premium course experience: 7 guided courses, 70 stable lessons, 6 specialist resources, 4-level explorer, responsive filters/progress/navigation');
+console.log('PASS premium course experience: 7 guided courses, 70 stable lessons, 2 specialist extension resources, 4-level explorer, responsive filters/progress/navigation');

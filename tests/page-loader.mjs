@@ -4,7 +4,7 @@ import path from 'node:path';
 const root=process.cwd();
 const pages=[...fs.readdirSync(root).filter(n=>n.endsWith('.html')).map(n=>path.join(root,n)),...fs.readdirSync(path.join(root,'courses')).filter(n=>n.endsWith('.html')).map(n=>path.join(root,'courses',n))];
 const privatePages=pages.filter(file=>fs.readFileSync(file,'utf8').includes('data-private-workspace="true"'));
-assert.equal(pages.length,40,'One unified loader across all public and private routes');
+assert.equal(pages.length,38,'One unified loader across all retained public and private routes');
 assert.equal(privatePages.length,8,'Eight protected workspaces');
 const extract=(markup)=>markup.slice(markup.indexOf('<div id="dlxPageLoader"'),markup.indexOf('</div><script src=',markup.indexOf('<div id="dlxPageLoader"'))+6);
 const shared=extract(fs.readFileSync('index.html','utf8'));

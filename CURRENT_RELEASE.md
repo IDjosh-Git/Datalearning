@@ -1,3 +1,25 @@
+## 11 November 2026 — Full-width, scrollable SQL query results
+
+- SQL query results now occupy a dedicated full-width panel beneath the editor, rather than the narrow side column. Excel and Python retain their existing layouts.
+- The table preserves readable column widths, with horizontal scrolling for wide result sets and a height-capped vertical scroll for long queries; neither causes sideways page overflow on mobile.
+- Added clear result status spacing, alternating row surfaces, a sticky header, a scroll hint, an accessible table caption, keyboard-focusable scroll region and column headers.
+- Preserved the read-only SQL execution engine, errors, console, grading, and query-input handling. No changes to datasets, progress, user accounts or any of the nine courses.
+- All project tests passed. A browser-rendered 50-row, seven-column SQL result was verified at 320, 390, 430, 768, 1024 and 1440px; horizontal movement remains inside the table. No live deployment performed.
+
+---
+
+## 11 November 2026 — Single career roadmap and nine course entry points
+
+- Removed the obsolete standalone `courses/python-roadmap.html` and `courses/ai-roadmap.html` files from the release entirely.
+- Removed/replaced every link to those obsolete pages in the Python and AI course readers and their supplementary extension guides. Their navigation now points to the canonical `career-path.html` page.
+- The new **Your Complete Data Career Path** page features nine premium, responsive guided-course cards: Data Analysis, Excel, SQL, Power BI, Tableau, Power Query, Statistics, Python, and AI. Every card links directly to its 10-week course.
+- All 31 advanced roadmap modules retain their teaching content, business examples and challenges, with context-specific links to related courses; Python and AI are included using existing `courseBridges` definitions.
+- Updated the route manifest and retired the obsolete-page expectations in the test contracts; added `tests/roadmap-single-source.mjs` to prevent regressions.
+- The full `npm test` suite passes. An isolated Chromium rendering verified nine cards, Python and AI links, no runtime errors and no horizontal overflow at 320, 390, 768 and 1440px.
+- The existing six-stage collapsible **in-course** Python/AI learning guide remains available; only the two redundant standalone Course Roadmap pages were removed. This ZIP does not perform a live deployment.
+
+---
+
 ## November 11, 2026 — Premium paginated Formula & Code / Prompt Libraries
 
 - Replaced the former library-only layouts with a shared, theme-aligned responsive design.

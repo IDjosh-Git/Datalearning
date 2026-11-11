@@ -10,3 +10,31 @@
 @media(max-width:1050px){.dlp-levels{grid-template-columns:repeat(3,minmax(0,1fr))}.dlp-toolbar{grid-template-columns:1fr 1fr}.dlp-toolbar-heading{grid-column:1/-1}}
 @media(max-width:680px){#masterLearningPath{padding-top:10px}.dlp-shell{border-radius:20px}.dlp-intro{grid-template-columns:1fr;gap:14px;padding:24px 19px}.dlp-intro-side{padding:16px;display:grid;grid-template-columns:60px 1fr;align-items:center}.dlp-intro-side .dlp-big-number{grid-row:span 2;font-size:54px}.dlp-intro-side a{grid-column:1/-1;text-align:center}.dlp-levels{padding:14px;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.dlp-level{padding:13px 11px;min-height:102px}.dlp-level strong{font-size:14px}.dlp-level-count{font-size:9px}.dlp-toolbar{grid-template-columns:1fr;padding:20px 16px 10px}.dlp-toolbar-heading{grid-column:auto}.dlp-programme{margin:0 14px 21px}.dlp-programme-top{padding:14px;align-items:start;flex-direction:column}.dlp-module-header{padding:0 16px 15px;align-items:start}.dlp-collapse{font-size:12px;padding:10px}.dlp-module-list{padding:0 14px 20px;gap:9px}.dlp-module>summary{padding:14px 12px;gap:10px}.dlp-module-index{height:40px;width:40px;font-size:11px}.dlp-module-toggle{width:29px;height:29px}.dlp-module-outcome{font-size:12px}.dlp-detail{padding:12px;grid-template-columns:1fr;gap:12px}.dlp-detail-rail{padding:14px}.dlp-detail-body section{padding:14px}.dlp-detail-body p,.dlp-detail-body li{font-size:13.5px}.dlp-footer{margin:0 14px 14px;padding:19px;flex-direction:column;align-items:stretch}.dlp-footer-links{grid-template-columns:1fr}.dlp-footer h3{font-size:19px}}
 @media(prefers-reduced-motion:reduce){.dlp-level{transition:none}}
+
+/* All nine guided courses: permanent, integrated course entry points in the canonical roadmap. */
+.dlp-guided-courses{padding:clamp(20px,3.2vw,38px);background:linear-gradient(180deg,#f5faf8 0%,#fff 100%);border-bottom:1px solid #dce9e5}
+.dlp-guided-header{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:22px}
+.dlp-guided-header h3{font:800 clamp(21px,2.6vw,32px)/1.22 'Plus Jakarta Sans',sans-serif;letter-spacing:-.035em;color:#173c4a;margin:7px 0}
+.dlp-guided-header p{max-width:68ch;font-size:14px;line-height:1.65;color:#59737b;margin:0}
+.dlp-guided-count{display:flex;flex:none;align-items:center;gap:10px;color:#13595a;font:800 clamp(33px,4vw,52px)/1 'Plus Jakarta Sans',sans-serif;letter-spacing:-.055em}
+.dlp-guided-count small{font:800 10px/1.5 'DM Sans',sans-serif;letter-spacing:.11em;width:60px;color:#607b7c}
+.dlp-guided-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.dlp-course-card{--course-accent:#146c72;position:relative;min-width:0;display:flex;flex-direction:column;gap:0;background:#fff;border:1px solid #d9e5e5;border-radius:19px;padding:20px;box-shadow:0 9px 30px #153b480a;transition:border-color .18s ease,transform .18s ease,box-shadow .18s ease}
+.dlp-course-card:hover{border-color:#98c5bd;box-shadow:0 15px 34px #153b4815;transform:translateY(-2px)}
+.dlp-course-python{--course-accent:#285bb3}.dlp-course-ai{--course-accent:#984d91}.dlp-course-excel{--course-accent:#14724c}.dlp-course-sql{--course-accent:#285a88}.dlp-course-powerbi{--course-accent:#97651e}.dlp-course-tableau{--course-accent:#3c6d9f}.dlp-course-powerquery{--course-accent:#397962}.dlp-course-statistics{--course-accent:#8c5a3b}
+.dlp-course-card-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:16px}
+.dlp-course-mark{display:grid;place-items:center;flex:none;min-width:49px;height:46px;padding:0 8px;border-radius:14px;background:color-mix(in srgb,var(--course-accent) 12%,white);color:var(--course-accent);font:900 15px/1 'Plus Jakarta Sans',sans-serif;letter-spacing:-.025em}
+.dlp-course-tag{border:1px solid #dceae7;padding:5px 8px;border-radius:8px;font:800 9px/1.4 'DM Sans',sans-serif;letter-spacing:.065em;color:#516f78;text-align:right}
+.dlp-course-card h4{font:800 17px/1.35 'Plus Jakarta Sans',sans-serif;letter-spacing:-.025em;color:#193f4d;margin:0 0 7px}
+.dlp-course-card>p{font-size:13px;line-height:1.7;color:#547079;margin:0 0 20px;flex:1}
+.dlp-course-card-bottom{border-top:1px solid #edf2f2;padding-top:14px;display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.dlp-course-card-bottom>span{font-size:11px;color:#6b8489;font-weight:700}
+.dlp-course-card-bottom>a{display:inline-flex;align-items:center;gap:8px;padding:9px 12px;background:#143f4b;border-radius:10px;text-decoration:none;color:#fff!important;font:800 12px/1.25 'DM Sans',sans-serif}
+.dlp-course-card-bottom>a:hover,.dlp-course-card-bottom>a:focus-visible{background:#0c655f!important;outline:2px solid #ef8639;outline-offset:2px}
+.dlp-related-courses{border:1px solid #cbded9!important;background:linear-gradient(135deg,#f2faf6,#fff)!important}
+.dlp-related-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}
+.dlp-related-links a{display:inline-flex;padding:10px 12px;border:1px solid #b7d4ce;border-radius:10px;background:white;color:#155c58;font-size:12px;font-weight:800;text-decoration:none}
+.dlp-related-links a:hover,.dlp-related-links a:focus-visible{background:#135c59;color:white;outline:2px solid #ef8639;outline-offset:2px}
+@media(max-width:900px){.dlp-guided-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:580px){.dlp-guided-courses{padding:20px 14px}.dlp-guided-grid{grid-template-columns:1fr;gap:10px}.dlp-guided-header{flex-direction:column-reverse;align-items:flex-start;gap:11px}.dlp-guided-count{font-size:25px;gap:9px}.dlp-guided-count small{width:auto;white-space:nowrap;font-size:10px}.dlp-course-card{padding:16px}.dlp-course-card-top{margin-bottom:11px}}
+@media(prefers-reduced-motion:reduce){.dlp-course-card{transition:none}}

@@ -1926,3 +1926,181 @@ html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDeta
     width:34px!important;min-width:0!important;max-width:34px!important;
  }
 }
+
+
+/* SQL query results — full-width panel and self-contained scrollable data grid.
+   A query can return many columns: never compress the table or scroll the page. */
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .ide-content {
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:auto auto!important;
+  gap:14px!important;
+  width:100%!important;
+  min-width:0!important;
+  align-items:start!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .ide-content>.ide-primary,
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .ide-content>.ide-secondary {
+  grid-column:1 / -1!important;
+  grid-row:auto!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  min-height:0!important;
+  height:auto!important;
+  max-height:none!important;
+  overflow:hidden!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .ide-secondary :is(.ide-panel,#ideResultsMount,#arenaResults) {
+  min-width:0!important;
+  width:100%!important;
+  max-width:100%!important;
+  box-sizing:border-box!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] #arenaResults {
+  overflow:visible!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .arena-table-hint {
+  display:flex!important;
+  align-items:center!important;
+  gap:9px!important;
+  margin:9px 0 10px!important;
+  padding:0 2px!important;
+  color:#426779!important;
+  -webkit-text-fill-color:#426779!important;
+  font-size:.78rem!important;
+  font-weight:650!important;
+  line-height:1.5!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .arena-table-hint span {
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  flex:none;
+  width:29px;
+  height:29px;
+  border:1px solid #cee0e6;
+  border-radius:9px;
+  background:#ecf4f6;
+  color:#2d6576;
+  -webkit-text-fill-color:#2d6576!important;
+  font-size:1.1rem;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .arena-table-scroll {
+  display:block!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  box-sizing:border-box!important;
+  overflow-x:auto!important;
+  overflow-y:auto!important;
+  max-height:480px!important;
+  border:1px solid #d5e4e8!important;
+  border-radius:13px!important;
+  background:#fff!important;
+  -webkit-overflow-scrolling:touch;
+  overscroll-behavior-x:contain!important;
+  scrollbar-width:thin;
+  scrollbar-color:#90afba #eef5f7;
+  box-shadow:0 7px 20px rgba(22,62,80,.055);
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .arena-table-scroll:focus-visible {
+  outline:3px solid #ed955e!important;
+  outline-offset:2px!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .arena-table-scroll::-webkit-scrollbar {
+  width:9px;
+  height:9px;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .arena-table-scroll::-webkit-scrollbar-thumb {
+  background:#90afba;
+  border:2px solid #eef5f7;
+  border-radius:30px;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .arena-table-scroll>.arena-table {
+  display:table!important;
+  width:max-content!important;
+  min-width:100%!important;
+  max-width:none!important;
+  table-layout:auto!important;
+  border-spacing:0!important;
+  border-collapse:separate!important;
+  margin:0!important;
+  background:#fff!important;
+  color:#213f50!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .arena-table-caption {
+  position:absolute!important;
+  width:1px!important;
+  height:1px!important;
+  padding:0!important;
+  margin:-1px!important;
+  overflow:hidden!important;
+  clip-path:inset(50%)!important;
+  white-space:nowrap!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .arena-table-scroll>.arena-table :is(th,td) {
+  box-sizing:border-box!important;
+  min-width:124px!important;
+  max-width:330px!important;
+  padding:12px 15px!important;
+  border:0!important;
+  border-bottom:1px solid #e4edf0!important;
+  border-right:1px solid #edf2f4!important;
+  font-size:.82rem!important;
+  line-height:1.48!important;
+  text-align:left!important;
+  vertical-align:middle!important;
+  color:#234657!important;
+  -webkit-text-fill-color:#234657!important;
+  background:transparent!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .arena-table-scroll>.arena-table thead th {
+  position:sticky!important;
+  top:0!important;
+  z-index:2!important;
+  white-space:nowrap!important;
+  font-weight:850!important;
+  background:#e9f2f5!important;
+  color:#153c50!important;
+  -webkit-text-fill-color:#153c50!important;
+  border-bottom:2px solid #cbdfe5!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .arena-table-scroll>.arena-table tbody td {
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+  word-break:normal!important;
+  font-variant-numeric:tabular-nums!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .arena-table-scroll>.arena-table tbody tr:nth-child(even) td {background:#f5f9fa!important;}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .arena-table-scroll>.arena-table tbody tr:hover td {background:#eaf5f3!important;}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .arena-table-scroll>.arena-table tbody tr:last-child td {border-bottom:0!important;}
+@media(max-width:650px){
+  html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .ide-secondary .ide-panel:not([hidden]) {padding:10px!important;}
+  html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .arena-table-scroll {max-height:420px!important;border-radius:11px!important;}
+  html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .arena-table-scroll>.arena-table :is(th,td) {min-width:116px!important;padding:11px 12px!important;font-size:.79rem!important;}
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .arena-summary {
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  flex-wrap:wrap!important;
+  gap:8px 15px!important;
+  min-height:45px!important;
+  padding:11px 13px!important;
+  margin:0 0 11px!important;
+  border:1px solid #dbe8ec!important;
+  border-radius:11px!important;
+  background:#f0f7f8!important;
+  color:#234f62!important;
+}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] .arena-summary span {
+  display:inline-flex!important;
+  align-items:center!important;
+  white-space:normal!important;
+  font-size:.78rem!important;
+  line-height:1.5!important;
+  font-weight:750!important;
+  color:#234f62!important;
+  -webkit-text-fill-color:#234f62!important;
+}

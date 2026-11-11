@@ -50,9 +50,8 @@ for (const slug of ['introduction','excel','sql','powerbi','tableau','powerquery
 }
 for (const slug of ['ai','python']) {
   assert(fs.existsSync(path.join(pagesDir, slug + '.html')), `Missing native specialist course ${slug}`);
-  for(const suffix of ['roadmap','extension']) {
-    assert(fs.existsSync(path.join(pagesDir, slug + '-' + suffix + '.html')), `Missing still-linked legacy guide ${slug}-${suffix}`);
-  }
+  assert(fs.existsSync(path.join(pagesDir, slug + '-extension.html')), `Missing curriculum extension ${slug}`);
+  assert(!fs.existsSync(path.join(pagesDir, slug + '-roadmap.html')), `Obsolete course roadmap must not ship: ${slug}`);
 }
 const config = JSON.parse(fs.readFileSync(path.join(root,'vercel.json'),'utf8'));
 for(const slug of ['introduction','excel','sql','powerbi']) {

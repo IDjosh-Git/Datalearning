@@ -26,7 +26,7 @@ assert.equal(context.window.DALP_MASTER_PATHWAY.modules.length,31);
 const catalog=read('career-path.html');
 for(const x of ['id="masterLearningPath"','master-pathway-data.js','master-pathway.js','master-pathway.css'])assert(catalog.includes(x),`Catalog missing ${x}`);
 const renderer=read('assets/scripts/master-pathway.js');
-for(const x of ['data-level','aria-pressed','data-jump-module','caseStudy','microProject','modelAnswer','prerequisites','filter(m)','aria-live','Collapse all'])assert(renderer.includes(x),`Pathway explorer missing ${x}`);
+for(const x of ['data-level','aria-pressed','data-jump-module','caseStudy','microProject','modelAnswer','prerequisites','filter(m)','aria-live','Collapse all','dlp-guided-grid','courseCard','dlp-related-links'])assert(renderer.includes(x),`Pathway explorer missing ${x}`);
 const app=read('assets/scripts/academy-app.js');
 for(const slug of ['introduction','excel','sql','powerbi','tableau','powerquery','statistics']){
  const link=data.courseBridges[slug];assert(link.length>=3&&link.every(id=>codes.has(id)));
@@ -38,4 +38,5 @@ assert.equal(courses.length,7);assert.equal(courses.reduce((t,x)=>t+x.weeks.leng
 for(const c of courses)assert(c.weeks.every((w,i)=>w.week===i+1));
 const blueprint=read('docs/MASTER_FOUR_LEVEL_CURRICULUM_20261110.md');
 for(const x of ['Gap analysis summary','Updated master curriculum table','Detailed module breakdowns',...data.modules.map(m=>m.id+' · '+m.title)])assert(blueprint.includes(x),`Blueprint missing ${x}`);
-console.log('PASS master curriculum: 4 levels, 31 original specialist lessons, 31 worked cases and micro-projects, seven course bridges, 70 preserved legacy weeks');
+for(const slug of ['python','ai']) assert(renderer.includes(`slug:'${slug}'`) && renderer.includes('weekLinks=Object.fromEntries'), `${slug} missing guided course card`);
+console.log('PASS master curriculum: 4 levels, 31 specialist lessons, nine guided-course cards and related bridges, 90 guided weeks');

@@ -4,7 +4,7 @@ import {readFileSync} from 'node:fs';
 const css=readFileSync('assets/styles/practice-arena-premium-final.css','utf8');
 const page=readFileSync('practice.html','utf8');
 const upgrade=readFileSync('assets/scripts/arena-upgrade.js','utf8');
-assert(page.includes('practice-arena-premium-final.css?v=20261111-mobile-sql-light-r1'),'Browser should load the revised CSS');
+assert(page.includes('practice-arena-premium-final.css?v=20261111-mobile-sql-results-r2'),'Browser should load the revised CSS');
 for(const clause of [
  'main.pc-wrap {', 'width:100%!important;max-width:100%!important;min-width:0!important;',
  'padding:0 6px 22px!important', '.ide-editor-toolbar{',

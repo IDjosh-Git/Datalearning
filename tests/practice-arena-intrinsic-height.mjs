@@ -23,7 +23,7 @@ const rules=[
 for(const token of rules)assert(stylesheet.includes(token),`Required compact style absent: ${token}`);
 assert(editor.includes("shell.querySelector('.ide-secondary')?.appendChild(feedback)"),'Assessment must be in visible results card, not hidden Console tab');
 assert(!editor.includes("$('#ideConsoleMount',shell)?.after(feedback)"),'Old hidden grading location returned');
-assert(page.includes('practice-arena-premium-final.css?v=20261111-mobile-sql-light-r1'),'Compact styles need an updated cache revision');
+assert(page.includes('practice-arena-premium-final.css?v=20261111-mobile-sql-results-r2'),'Compact styles need an updated cache revision');
 assert(page.includes('arena-ide.js?v=arena-unified-20261111-r1'),'Editor layout controller needs an updated cache revision');
 assert(editor.includes('id="ideTableToggle"')&&editor.includes('aria-expanded="false"'),'Table must remain collapsed by default');
 assert(editor.includes("label.textContent=show?'Hide table':'Show table'"),'Table disclosure behavior must remain active');
