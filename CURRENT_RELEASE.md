@@ -1,3 +1,9 @@
+## 2026-11-12 – Learners & Progress header / flat admin canvas
+- Restored a contained premium navy-to-teal header for Learners & Progress with readable white text and accessible action buttons.
+- Removed legacy background overlays on admin workspace containers, leaving one clean page background without long borders.
+- Verified responsive layout at 320, 390, 768 and 1440 pixels; retained details, filters and administrator access controls.
+- Versioned `admin-unified-premium.css` to bust stale device caches; no database migration or live deployment.
+
 ## Admin Course Analysis and Learner Detail Refinement — 12 November 2026
 
 - Restored the dark navy/teal gradient Course Analysis header with light text and accessible contrast.

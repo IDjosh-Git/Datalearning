@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+const css=readFileSync('assets/styles/admin-unified-premium.css','utf8');
+const page=readFileSync('admin.html','utf8');
+const old=css.match(/html\[data-theme\] body\.dalp-admin-page\.ac-ready \.ac-roster>\.ac-section-header\s*\{([^}]+)\}/g)||[];
+assert(old.length>=1,'Learners & Progress header definition exists');
+const mainRule=old.find(rule=>rule.includes('background-image:linear-gradient(117deg,#132d40'));
+assert(mainRule,'Premium dark Learners & Progress header is explicit');
+assert.doesNotMatch(mainRule,/background:transparent/,'Header must not be transparent');
+assert.match(css,/\.ac-roster>\.ac-section-header :is\(h2,h3\)[\s\S]*?color:#fff!important/,'Accessible white heading');
+assert.match(css,/\.ac-roster>\.ac-section-header \.dalp-admin-tools button\{[\s\S]*?color:#fff!important/,'Contrast-safe action buttons');
+assert.match(css,/body\.dalp-admin-page\.ac-ready :is\(\.ac-main-frame,\.ac-page-area,\.dalp-admin-main,#adminWorkspace,#admin-learners\)\{[\s\S]*?background:transparent!important;background-image:none!important/,'No secondary page background or overlay');
+assert.match(css,/@media\(max-width:700px\)[\s\S]*?\.ac-roster>\.ac-section-header/,'Responsive header layout exists');
+assert.match(page,/admin-unified-premium\.css\?v=20261112-roster-hero-v3/,'Fresh CSS version avoids stale mobile cache');
+for (const id of ['adminRosterTotal','adminRosterEngaged','adminLearnerRows','adminLearnerDetail','adminReload','adminExport']) assert(page.includes(`id="${id}"`),`${id} retained`);
+console.log('PASS Admin Learners & Progress premium header, no background overlay, controls and responsive layout retained');
