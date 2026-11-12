@@ -34,9 +34,37 @@
  }
  function showError(){paint('error');}
  function addSignOut(){
-  if(!document.body?.dataset.adminConsole&&!document.getElementById('dalpGlobalLogout')&&!document.getElementById('logout')){
-   const host=document.querySelector('.nav-links,.course-top-actions,.auth-top-actions,.sidebar,.dlu-header-actions');
-   if(host){const b=document.createElement('button');b.id='dalpGlobalLogout';b.className='dalp-gate-logout';b.type='button';b.textContent='Sign out';b.addEventListener('click',async()=>{b.disabled=true;b.textContent='Signing out…';try{await window.DALP_SERVER_SESSION?.clear();await window.ZAH_DB.client.auth.signOut()}catch(e){console.warn('Sign-out failed',e)}exit()});host.append(b);}
+  if(document.body?.dataset.adminConsole)return; // Private workspace owns its own account card.
+  const safeExit=async button=>{
+   if(button?.disabled)return;
+   document.querySelectorAll('[data-dalp-signout]').forEach(node=>{node.disabled=true;node.setAttribute('aria-busy','true');});
+   if(button)button.querySelector('[data-dalp-signout-label]').textContent='Signing out…';
+   try{await window.DALP_SERVER_SESSION?.clear();await window.ZAH_DB?.client?.auth.signOut();}
+   catch(e){console.warn('Sign-out did not complete cleanly',e)}
+   exit();
+  };
+  const icon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h3"/><path d="M15 16l4-4-4-4M9 12h10"/></svg>';
+  if(!document.getElementById('dalpGlobalLogout')&&!document.getElementById('logout')){
+   const host=document.querySelector('.dlu-header .dlu-header-actions,.nav-links,.course-top-actions,.auth-top-actions,.sidebar');
+   if(host){
+    const b=document.createElement('button');b.id='dalpGlobalLogout';b.className='dalp-gate-logout dalp-public-signout';b.type='button';
+    b.setAttribute('aria-label','Sign out of DataLearning securely');b.dataset.dalpSignout='';
+    b.innerHTML='<span class="dalp-logout-icon">'+icon+'</span><span class="dalp-logout-copy"><strong data-dalp-signout-label>Sign out</strong><small>Secure exit</small></span>';
+    b.addEventListener('click',()=>safeExit(b));host.append(b);
+   }
+  }
+  const menu=document.querySelector('.dlu-nav-panel .dlu-nav-content');
+  if(menu&&!document.getElementById('dalpPublicSessionCard')){
+   const card=document.createElement('section');card.id='dalpPublicSessionCard';card.className='dalp-public-session-card';card.setAttribute('aria-label','Signed-in DataLearning account');
+   card.innerHTML='<div class="dalp-session-head"><span class="dalp-session-avatar" aria-hidden="true">'+icon+'</span><div class="dalp-session-copy"><span class="dalp-session-kicker">YOUR DATALEARNING ACCOUNT</span><strong class="dalp-session-role">Learner account</strong><span class="dalp-session-email"></span></div></div><button type="button" class="dalp-session-signout" data-dalp-signout aria-label="Sign out securely">'+icon+'<span data-dalp-signout-label>Sign out securely</span><span aria-hidden="true">↗</span></button>';
+   const update=()=>{
+    card.querySelector('.dalp-session-role').textContent=window.DALP_ROLE==='admin'?'Administrator account':'Learner account';
+    card.querySelector('.dalp-session-email').textContent=window.DALP_AUTH_USER?.email||'Signed-in user';
+    card.classList.toggle('is-admin',window.DALP_ROLE==='admin');
+   };
+   update();window.addEventListener('dalp:auth-ready',update);
+   card.querySelector('button').addEventListener('click',()=>safeExit(card.querySelector('button')));
+   menu.append(card);
   }
   document.querySelectorAll('a.account-link,a.course-account-link').forEach(a=>{a.textContent='My account';a.href=toPage('account.html').href});
  }

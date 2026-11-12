@@ -1,3 +1,12 @@
+## 2026-11-12 – Unified header Search & premium public Sign Out
+- Replaced the divergent public icon-only search and private input-width search treatment with one shared navigation search control (`navigation-search-signout.css`) across all 37 authenticated app routes. The existing keyboard shortcuts, accessible dialog, search filters and destinations are preserved.
+- On wide displays, Search uses the same field-like pill, icon, label and focus treatment on both public and private pages; on smaller viewports, both collapse to the same labeled accessible search icon.
+- Replaced the plain text public-page Sign out action with a premium navy/teal session action. On mobile, the full-screen navigation contains a role-aware account card with the authenticated email and a dedicated secure Sign Out button.
+- No additional session store was introduced. Sign out continues clearing the first-party hosting session and Supabase Auth, then returning to the sign-in screen.
+- Removed old conflicting public/private Search styling. Added a final shared stylesheet with responsive width safeguards, repaired mobile navigation content-box sizing, and added `tests/shared-top-search-signout.mjs` to protect every route.
+- Full `npm test` passed. Isolated Chromium checks at phone, tablet and desktop widths show no horizontal overflow; manual live authenticated sign-out and search must still be verified after deployment.
+- **Source files only. No live deployment or database migration was performed.**
+
 ## 2026-11-12 – Learners & Progress header / flat admin canvas
 - Restored a contained premium navy-to-teal header for Learners & Progress with readable white text and accessible action buttons.
 - Removed legacy background overlays on admin workspace containers, leaving one clean page background without long borders.

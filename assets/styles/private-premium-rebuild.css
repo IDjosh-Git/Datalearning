@@ -118,20 +118,7 @@ html[data-theme] body.ac-ready .ac-top-actions .dl-profile-button-copy strong{co
 html[data-theme] body.ac-ready .ac-top-actions .dl-profile-button-copy small{color:#5d7780!important;-webkit-text-fill-color:#5d7780!important}
 html[data-theme] body.ac-ready .ac-admin-more-details{margin-top:1px!important;border-top:0!important}
 html[data-theme] body.ac-ready .ac-admin-more-details>summary{background:#ffffff0b!important;border:1px solid #ffffff1d!important}
-/* Match the public search bar and reuse precisely the same search-dialog CSS. */
-html[data-theme] body.ac-ready .ac-top-actions .premium-search-trigger{
-  display:inline-flex!important;align-items:center!important;justify-content:flex-start!important;gap:10px!important;
-  height:44px!important;min-height:44px!important;min-width:230px!important;width:min(290px,25vw)!important;
-  margin:0!important;padding:0 12px!important;border-radius:12px!important;
-  border:1px solid #c7dedc!important;background:linear-gradient(110deg,#f1f8f5,#fff)!important;
-  color:#4b6a74!important;-webkit-text-fill-color:#4b6a74!important;
-  font:750 12px/1.25 "DM Sans",system-ui,sans-serif!important;box-shadow:inset 0 1px 1px #fff!important;
-  cursor:pointer!important;position:static!important;transform:none!important;
-}
-html[data-theme] body.ac-ready .ac-top-actions .premium-search-trigger:hover{border-color:#75b4a7!important;background:#e9f4ef!important}
-html[data-theme] body.ac-ready .ac-top-actions .premium-search-trigger svg{width:18px!important;height:18px!important;flex:none!important;stroke:#316b72!important}
-html[data-theme] body.ac-ready .ac-top-actions .premium-search-trigger span{flex:1;display:inline!important;text-align:left;color:#557780!important;-webkit-text-fill-color:#557780!important}
-html[data-theme] body.ac-ready .ac-top-actions .premium-search-trigger kbd{display:inline-flex!important;align-items:center!important;padding:4px 6px!important;background:#fff!important;border:1px solid #d7e7e5!important;border-radius:5px!important;color:#63818a!important;font:800 10px/1 system-ui!important}
+/* Unified search trigger lives in navigation-search-signout.css. */
 html[data-theme] body.ac-ready .ac-page-area{max-width:1670px!important;padding:0 clamp(16px,3vw,46px) 54px!important;overflow-x:clip!important}
 html[data-theme] body.ac-ready :is(h1,h2,h3,h4){font-family:"Plus Jakarta Sans","DM Sans",system-ui,sans-serif!important;letter-spacing:-.036em}
 html[data-theme] body.ac-ready :is(.ac-welcome,.account-overview,.profile-hero,.ip-hero,.review-hero){
