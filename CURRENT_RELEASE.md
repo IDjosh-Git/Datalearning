@@ -1,3 +1,11 @@
+## Admin Course Analysis and Learner Detail Refinement — 12 November 2026
+
+- Restored the dark navy/teal gradient Course Analysis header with light text and accessible contrast.
+- Eliminated page-wide borders/outlines while retaining meaningful boundaries around individual cards.
+- Redesigned the Learners & Progress detail drawer with account avatar, role, circular overall progress, four key metrics, filterable nine-course cards, score and individual-week details.
+- On narrow screens the drawer fits the viewport width, with independently scrolling content and readable compact layout.
+- Existing administrator permissions, data requests, and learning activity calculations are unchanged.
+
 ## 12 November 2026 — Unified Learners & Progress, admin engagement and clean layouts
 
 - Merged the duplicate Learner Management and Progress Reports admin navigation into one role-filterable **Learners & Progress** view on the current Admin Dashboard. No admin short link or search destination points to the retired progress page. The historical URL remains protected for existing bookmarks.

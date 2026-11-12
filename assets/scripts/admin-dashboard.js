@@ -128,30 +128,61 @@
   const name=p.full_name||p.email?.split('@')[0]||'Learner';
   $('adminDetailName').textContent=name;
   $('adminDetailEmail').textContent=p.email||'No email on record';
+  $('adminDetailInitial').textContent=(name.trim().charAt(0)||'L').toUpperCase();
   const rows=rowsFor(p.user_id),details=$('adminDetailContent');details.replaceChildren();
-  const s=profileStats(p);
-  const header=document.createElement('div');header.className='ac-detail-snapshot';
-  header.innerHTML='<span class="ac-account-role '+(p.role==='admin'?'is-admin':'is-learner')+'">'+(p.role==='admin'?'Administrator':'Learner')+'</span>'+
-   '<div class="ac-detail-metrics">'+
-   '<div><small>COURSES STARTED</small><strong>'+s.paths+' / 9</strong></div>'+
-   '<div><small>WEEKS COMPLETED</small><strong>'+s.completed+' / 90</strong></div>'+
-   '<div><small>LAST LEARNING ACTIVITY</small><strong>'+esc(date(s.learningLast))+'</strong></div>'+
-   '</div><p>Administrators appear here as users. Their own course activity is measured exactly like learner activity.</p>';
-  details.append(header);
-  const tracks=document.createElement('div');tracks.className='dalp-admin-track-list ac-detail-course-list';
+  const s=profileStats(p),role=p.role==='admin'?'Administrator':'Learner';
   const userQuizzes=quizByUser.get(p.user_id)||[],userSubmissions=subByUser.get(p.user_id)||[],userCerts=certByUser.get(p.user_id)||[];
-  for(const [slug,[title,total]] of Object.entries(COURSE)){
+  const quizzesTaken=userQuizzes.length;
+  const header=document.createElement('section');header.className='ac-detail-snapshot';
+  header.setAttribute('aria-label','Account and learning overview');
+  header.innerHTML='<div class="ac-detail-overview">'+
+   '<div class="ac-detail-score" role="img" aria-label="Overall progress '+s.progressPct+' percent" style="--ac-score:'+s.progressPct+'%"><strong>'+s.progressPct+'%</strong><span>overall</span></div>'+
+   '<div class="ac-detail-summary-copy"><span class="ac-account-role '+(p.role==='admin'?'is-admin':'is-learner')+'">'+role+' account</span>'+
+   '<h3>'+(s.paths?s.paths+' of 9 courses started':'Ready to begin learning')+'</h3>'+
+   '<p>'+(s.paths?'Learning records are based on completed lesson units and submitted assessments.':'No recorded course activity yet. Learning progress will appear here after the first lesson or assessment.')+'</p></div></div>'+
+   '<div class="ac-detail-metrics">'+
+   '<div><small>COURSES STARTED</small><strong>'+s.paths+' <span>of 9</span></strong></div>'+
+   '<div><small>WEEKS COMPLETED</small><strong>'+s.completed+' <span>of 90</span></strong></div>'+
+   '<div><small>QUIZ ATTEMPTS</small><strong>'+quizzesTaken+'</strong></div>'+
+   '<div><small>LAST LEARNING ACTIVITY</small><strong class="ac-detail-date">'+esc(date(s.learningLast))+'</strong></div></div>';
+  details.append(header);
+
+  const coursesHeader=document.createElement('div');coursesHeader.className='ac-detail-courses-heading';
+  coursesHeader.innerHTML='<div><span class="ac-section-eyebrow">PATHWAY RECORDS</span><h3>Course-by-course progress</h3><p>Open a course to inspect its lessons, knowledge checks, capstone and certificate.</p></div>'+
+    '<div class="ac-detail-course-actions"><button type="button" data-detail-show="all" aria-pressed="true">All 9</button><button type="button" data-detail-show="started" aria-pressed="false">Started</button><button type="button" data-detail-show="complete" aria-pressed="false">Completed</button></div>';
+  details.append(coursesHeader);
+  const tracks=document.createElement('div');tracks.className='dalp-admin-track-list ac-detail-course-list';
+  let expandedFirst=false;
+  for(const [slug,[title,total,abbr]] of Object.entries(COURSE)){
    const courseRows=rows.filter(r=>r.course_slug===slug),doneWeeks=new Set(courseRows.filter(r=>r.completed).map(r=>Number(r.week_no)).filter(w=>Number.isInteger(w)&&w>=1&&w<=total));
    const count=doneWeeks.size,pct=Math.round(100*count/total);
    const qs=userQuizzes.filter(q=>q.course_slug===slug),subs=userSubmissions.filter(s=>s.course_slug===slug).sort((a,b)=>String(b.created_at).localeCompare(String(a.created_at))),certificate=userCerts.some(c=>c.course_slug===slug);
    const attempts=qs.map(q=>Number(q.percentage)).filter(Number.isFinite),avg=attempts.length?Math.round(attempts.reduce((sum,v)=>sum+v,0)/attempts.length)+'%':'Not taken';
-   const card=document.createElement('details');card.className='dalp-admin-track ac-detail-course';if(count>0||qs.length||subs.length)card.open=true;
+   const started=count>0||qs.length>0||subs.length>0||certificate;
+   const status=count>=total?'Completed':started?'In progress':'Not started';
+   const card=document.createElement('details');card.className='dalp-admin-track ac-detail-course';card.dataset.courseStatus=count>=total?'complete':started?'started':'new';
+   if(started&&!expandedFirst){card.open=true;expandedFirst=true}
    const weeks=Array.from({length:total},(_,i)=>'<span class="ac-week-pill '+(doneWeeks.has(i+1)?'is-done':'')+'" aria-label="Week '+(i+1)+': '+(doneWeeks.has(i+1)?'completed':'not completed')+'">'+(doneWeeks.has(i+1)?'✓ ':'')+'W'+String(i+1).padStart(2,'0')+'</span>').join('');
-   card.innerHTML='<summary><span class="ac-track-title"><strong>'+esc(title)+'</strong><small>'+count+' of '+total+' lessons completed</small></span><span class="ac-track-percent">'+pct+'%</span><span class="ac-track-chevron" aria-hidden="true">⌄</span></summary>'+
-    '<div class="ac-track-body"><div class="ac-detail-track"><span style="width:'+pct+'%"></span></div><div class="ac-track-grid"><div><small>Knowledge checks</small><strong>'+qs.length+' attempt'+(qs.length===1?'':'s')+'</strong></div><div><small>Quiz average</small><strong>'+avg+'</strong></div><div><small>Capstone</small><strong>'+esc((subs[0]?.status||'Not submitted').replaceAll('_',' '))+'</strong></div><div><small>Certificate</small><strong>'+(certificate?'Issued':'Not issued')+'</strong></div></div><p class="ac-week-label">Weekly completion</p><div class="ac-week-pills">'+weeks+'</div></div>';
+   card.innerHTML='<summary><span class="ac-detail-course-symbol" aria-hidden="true">'+esc(abbr)+'</span><span class="ac-track-title"><strong>'+esc(title)+'</strong><small>'+count+' of '+total+' lessons completed</small></span><span class="ac-track-status '+(count>=total?'is-complete':started?'is-started':'')+'">'+status+'</span><span class="ac-track-percent">'+pct+'%</span><span class="ac-track-chevron" aria-hidden="true">⌄</span></summary>'+
+    '<div class="ac-detail-summary-meter" role="progressbar" aria-label="'+esc(title)+' course completion" aria-valuemin="0" aria-valuemax="100" aria-valuenow="'+pct+'"><span style="width:'+pct+'%"></span></div>'+
+    '<div class="ac-track-body"><div class="ac-track-grid"><div><small>Knowledge checks</small><strong>'+qs.length+' attempt'+(qs.length===1?'':'s')+'</strong></div><div><small>Quiz average</small><strong>'+avg+'</strong></div><div><small>Capstone</small><strong>'+esc((subs[0]?.status||'Not submitted').replaceAll('_',' '))+'</strong></div><div><small>Certificate</small><strong>'+(certificate?'Issued':'Not issued')+'</strong></div></div><p class="ac-week-label">WEEK-BY-WEEK RECORD</p><div class="ac-week-pills">'+weeks+'</div></div>';
    tracks.append(card);
   }
-  details.append(tracks);$('adminLearnerDetail').hidden=false;
+  details.append(tracks);
+  const detailFooter=document.createElement('p');detailFooter.className='ac-detail-footer-note';detailFooter.textContent='Progress reflects verified DataLearning activity. Administrator accounts retain their administrator role while studying courses.';details.append(detailFooter);
+  const filterButtons=[...coursesHeader.querySelectorAll('[data-detail-show]')];
+  const applyFilter=mode=>{
+   let visible=0;
+   [...tracks.children].forEach(card=>{
+    const show=mode==='all'||mode==='started'&&card.dataset.courseStatus!=='new'||mode==='complete'&&card.dataset.courseStatus==='complete';
+    card.hidden=!show;if(show)visible++;
+   });
+   filterButtons.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.detailShow===mode)));
+   const empty=details.querySelector('.ac-detail-empty');if(empty)empty.remove();
+   if(!visible){const n=document.createElement('p');n.className='ac-detail-empty';n.setAttribute('role','status');n.textContent='No courses match this view yet. Choose All 9 to see every pathway.';tracks.after(n)}
+  };
+  filterButtons.forEach(button=>button.addEventListener('click',()=>applyFilter(button.dataset.detailShow)));
+  $('adminLearnerDetail').hidden=false;
  }
  function exportCSV(){
   // Export all filtered matches, not merely the currently displayed page. Prevent CSV formula injection.
