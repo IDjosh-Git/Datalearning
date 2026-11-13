@@ -1,0 +1,95 @@
+/* DataLearning Burnt Wood · 2026-11-13 · single app-wide visual authority */
+:root{--ui-night:#0B0909;--ui-deep:#023048;--ui-ink:#023048;--ui-accent:#770101;--ui-accent-strong:#770101;--ui-blue:#023048;--ui-green:#C58A69;--ui-gold:#D9BFA4;--ui-paper:#F0EDDE;--ui-surface:#FFFFFF;--ui-muted:#675D58;--ui-line:#E2DCD3;--ui-gradient:linear-gradient(116deg,#0B0909 0%,#023048 58%,#770101 140%);--brand-navy:#023048;--brand-blue:#023048;--brand-orange:#770101;--brand-accent:#C58A69;--auth-navy:#023048;--auth-deep:#0B0909;--auth-coral:#770101;--accent:#770101;--primary:#023048;--ink:#023048;--navy:#023048;--mint:#D9BFA4;--gold:#C58A69;--paper:#F0EDDE;--stroke:#E2DCD3;}
+html,body{background-color:#F0EDDE;color:#023048}
+/* Shared navigation and authenticated page banners */
+.admin-header,.admin-hero,.admin-page-header,.private-page-header,.private-hero,.page-hero,.dashboard-hero,.course-hero,.academy-hero,.dlx-private-hero,.admin-banner,.profile-hero,.tutor-hero,.progress-hero{background:linear-gradient(118deg,#0B0909 0%,#023048 62%,#770101 145%);color:#F0EDDE}
+.admin-header h1,.admin-hero h1,.admin-page-header h1,.private-page-header h1,.private-hero h1,.page-hero h1,.dashboard-hero h1,.course-hero h1,.academy-hero h1,.dlx-private-hero h1,.admin-banner h1,.profile-hero h1,.tutor-hero h1,.progress-hero h1{color:#F0EDDE}
+.dalp-admin-link,.admin-access-badge,.admin-access-pill{background:#023048!important;color:#F0EDDE!important;border-color:#C58A69!important}
+/* Buttons and interactive accents */
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline-color:#C58A69}
+/* Page loader keeps its soft translucent backdrop rather than an opaque overlay */
+#page-loader,.page-loader,.dalp-page-loader,.loading-overlay{background:linear-gradient(135deg,rgba(11,9,9,.22),rgba(2,48,72,.26) 52%,rgba(119,1,1,.21))!important;backdrop-filter:blur(9px)}
+/* Prevent wide outer decorative frames on administrative pages */
+body.admin-page main,body[data-page*="admin"] main{border-color:transparent}
+/* Burnt red primary action; midnight-blue secondary actions. */
+.btn-primary,.button-primary,.primary-btn,.auth-submit,.btn--primary,button[type="submit"]:not(.icon-button):not(.search-trigger){background:linear-gradient(115deg,#770101 0%,#770101 100%);color:#FFFFFF;border-color:#770101}
+.btn-primary:hover,.button-primary:hover,.primary-btn:hover,.auth-submit:hover{background:linear-gradient(115deg,#770101,#770101)}
+/* The navigation uses the image's midnight-blue and charcoal palette. */
+.site-header,.top-nav,.app-header,.private-header,.admin-topbar{background:linear-gradient(110deg,#0B0909,#023048);color:#F0EDDE}
+
+/* Burnt Wood v2 · unified administration navigation and icon hierarchy.
+   Scoped to admin shell; never modifies learner editor controls or JS behavior. */
+:root {
+  --bw-charcoal:#0B0909;--bw-midnight:#023048;--bw-burgundy:#770101;
+  --bw-ivory:#F0EDDE;--bw-copper:#C58A69;--bw-sand:#D9BFA4;
+  --bw-nav-gradient:linear-gradient(145deg,#0B0909 0%,#023048 55%,#770101 145%);
+  --bw-top-gradient:linear-gradient(105deg,#0B0909 0%,#023048 58%,#770101 150%);
+}
+html[data-theme] body.ac-ready .ac-sidebar {
+  background:radial-gradient(circle at 100% 0%,rgba(197,138,105,.15),transparent 43%),
+    linear-gradient(159deg,#0B0909 0%,#023048 57%,#0B0909 100%)!important;
+  color:#F0EDDE!important;
+  border-right:1px solid rgba(217,191,164,.22)!important;
+  box-shadow:8px 0 26px rgba(11,9,9,.14)!important;
+}
+html[data-theme] body.ac-ready .ac-topbar {
+  background:var(--bw-top-gradient)!important;
+  color:#F0EDDE!important;
+  border-bottom:1px solid rgba(217,191,164,.28)!important;
+  box-shadow:0 8px 24px rgba(11,9,9,.16)!important;
+}
+html[data-theme] body.ac-ready .ac-topbar :is(.ac-breadcrumb,.ac-breadcrumb strong,.ac-breadcrumb-prefix) {
+  color:#F0EDDE!important;-webkit-text-fill-color:#F0EDDE!important;
+}
+html[data-theme] body.ac-ready .ac-side-link {
+  color:#F0EDDE!important;-webkit-text-fill-color:#F0EDDE!important;
+  border:1px solid transparent!important; border-radius:13px!important;
+}
+html[data-theme] body.ac-ready .ac-side-link:is(:hover,.ac-selected,[aria-current="page"]) {
+  background:linear-gradient(105deg,rgba(119,1,1,.62),rgba(197,138,105,.20))!important;
+  border-color:rgba(217,191,164,.38)!important;
+  box-shadow:inset 3px 0 0 #C58A69,0 5px 16px rgba(11,9,9,.18)!important;
+}
+html[data-theme] body.ac-ready :is(.ac-side-icon,.ac-kpi-icon,.ac-insights-icon,.ac-action-icon,.ac-stat-icon,.ac-metric-icon) {
+  display:inline-grid;place-items:center;flex-shrink:0;
+  width:42px;min-width:42px;height:42px;
+  border-radius:13px!important;
+  background:linear-gradient(145deg,#023048 0%,#0B0909 100%)!important;
+  color:#F0EDDE!important;
+  border:1px solid rgba(197,138,105,.50)!important;
+  box-shadow:0 5px 14px rgba(11,9,9,.17),inset 0 1px 0 rgba(240,237,222,.10)!important;
+  font-weight:900!important;
+}
+html[data-theme] body.ac-ready .ac-side-icon {width:37px;min-width:37px;height:37px}
+html[data-theme] body.ac-ready :is(.ac-side-icon,.ac-kpi-icon,.ac-insights-icon,.ac-action-icon,.ac-stat-icon,.ac-metric-icon) :is(svg,i) {
+  width:21px;height:21px;stroke-width:2.4;flex-shrink:0;color:inherit!important;
+}
+html[data-theme] body.ac-ready :is(.ac-side-icon,.ac-kpi-icon,.ac-insights-icon,.ac-action-icon,.ac-stat-icon,.ac-metric-icon) svg {
+  stroke:currentColor!important;fill:none;stroke-linecap:round;stroke-linejoin:round;
+}
+html[data-theme] body.ac-ready .ac-side-link:is(:hover,.ac-selected,[aria-current="page"]) .ac-side-icon {
+  background:linear-gradient(140deg,#770101,#0B0909)!important;
+  border-color:#C58A69!important;
+}
+html[data-theme] body.ac-ready .ac-secure {
+  background:rgba(11,9,9,.55)!important;color:#F0EDDE!important;
+  border:1px solid rgba(217,191,164,.5)!important;
+}
+html[data-theme] body.ac-ready .ac-topbar-link {
+  color:#F0EDDE!important;background:rgba(11,9,9,.28)!important;
+  border-color:rgba(217,191,164,.42)!important;
+}
+html[data-theme] body.ac-ready .ac-topbar-link:hover {
+  background:rgba(119,1,1,.45)!important;
+}
+html[data-theme] body.ac-ready .ac-mobile-menu {
+  background:#F0EDDE!important;color:#023048!important;
+  border-color:#D9BFA4!important;
+}
+@media(max-width:540px){
+  html[data-theme] body.ac-ready .ac-topbar {padding-inline:14px!important}
+  html[data-theme] body.ac-ready .ac-side-icon {width:35px;min-width:35px;height:35px}
+}
+@media(prefers-reduced-motion:reduce){
+  html[data-theme] body.ac-ready .ac-side-link {transition:none!important}
+}

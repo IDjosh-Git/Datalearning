@@ -1,23 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600" role="img" aria-label="DATA ANALYSIS week 7: Choosing effective charts and reading trends concept diagram">
-<rect x="0" y="0" width="1200" height="600" rx="0" fill="#FBFBF8" stroke="none"/>
-<rect x="0" y="0" width="1200" height="112" rx="0" fill="#06141B" stroke="none"/>
-<rect x="0" y="108" width="1200" height="5" rx="0" fill="#6AA6DA" stroke="none"/>
-<text x="48" y="42" fill="#C5E384" font-size="17" font-family="Inter,Arial,sans-serif" font-weight="700">DATA ANALYSIS  /  WEEK 07</text>
+<rect x="0" y="0" width="1200" height="600" rx="0" fill="#F0EDDE" stroke="none"/>
+<rect x="0" y="0" width="1200" height="112" rx="0" fill="#0B0909" stroke="none"/>
+<rect x="0" y="108" width="1200" height="5" rx="0" fill="#C58A69" stroke="none"/>
+<text x="48" y="42" fill="#D9BFA4" font-size="17" font-family="Inter,Arial,sans-serif" font-weight="700">DATA ANALYSIS  /  WEEK 07</text>
 <text x="48" y="85" fill="#FFFFFF" font-size="29" font-family="Inter,Arial,sans-serif" font-weight="700">Choosing effective charts and reading trends</text>
-<text x="49" y="148" fill="#4A5C6A" font-size="17" font-family="Inter,Arial,sans-serif" font-weight="600">Question → Evidence → Decision</text>
-<rect x="55" y="190" width="700" height="314" rx="18" fill="#FFFFFF" stroke="#DCE5E7"/>
-<rect x="780" y="190" width="365" height="314" rx="18" fill="#FFFFFF" stroke="#DCE5E7"/>
-<polyline points="104,418 205,381 306,396 407,307 508,335 609,244 701,222" fill="none" stroke="#6AA6DA" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="104" cy="418" r="8" fill="#253745"/>
-<circle cx="205" cy="381" r="8" fill="#253745"/>
-<circle cx="306" cy="396" r="8" fill="#253745"/>
-<circle cx="407" cy="307" r="8" fill="#253745"/>
-<circle cx="508" cy="335" r="8" fill="#253745"/>
-<circle cx="609" cy="244" r="8" fill="#253745"/>
-<circle cx="701" cy="222" r="8" fill="#253745"/>
-<text x="804" y="265" fill="#253745" font-size="18" font-family="Inter,Arial,sans-serif" font-weight="600">Sales by month</text>
-<text x="804" y="344" fill="#253745" font-size="18" font-family="Inter,Arial,sans-serif" font-weight="600">Compare the baseline</text>
-<text x="804" y="423" fill="#253745" font-size="18" font-family="Inter,Arial,sans-serif" font-weight="600">Explain the peak</text>
-<rect x="55" y="535" width="1090" height="42" rx="12" fill="#EAF3FA" stroke="none"/>
-<text x="77" y="563" fill="#253745" font-size="16" font-family="Inter,Arial,sans-serif" font-weight="600">LEARNING CHECK  ·  Identify the input, the method, and how you would verify the result.</text>
+<text x="49" y="148" fill="#675D58" font-size="17" font-family="Inter,Arial,sans-serif" font-weight="600">Question → Evidence → Decision</text>
+<rect x="55" y="190" width="700" height="314" rx="18" fill="#FFFFFF" stroke="#E8E1D8"/>
+<rect x="780" y="190" width="365" height="314" rx="18" fill="#FFFFFF" stroke="#E8E1D8"/>
+<polyline points="104,418 205,381 306,396 407,307 508,335 609,244 701,222" fill="none" stroke="#C58A69" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="104" cy="418" r="8" fill="#023048"/>
+<circle cx="205" cy="381" r="8" fill="#023048"/>
+<circle cx="306" cy="396" r="8" fill="#023048"/>
+<circle cx="407" cy="307" r="8" fill="#023048"/>
+<circle cx="508" cy="335" r="8" fill="#023048"/>
+<circle cx="609" cy="244" r="8" fill="#023048"/>
+<circle cx="701" cy="222" r="8" fill="#023048"/>
+<text x="804" y="265" fill="#023048" font-size="18" font-family="Inter,Arial,sans-serif" font-weight="600">Sales by month</text>
+<text x="804" y="344" fill="#023048" font-size="18" font-family="Inter,Arial,sans-serif" font-weight="600">Compare the baseline</text>
+<text x="804" y="423" fill="#023048" font-size="18" font-family="Inter,Arial,sans-serif" font-weight="600">Explain the peak</text>
+<rect x="55" y="535" width="1090" height="42" rx="12" fill="#F6F0E8" stroke="none"/>
+<text x="77" y="563" fill="#023048" font-size="16" font-family="Inter,Arial,sans-serif" font-weight="600">LEARNING CHECK  ·  Identify the input, the method, and how you would verify the result.</text>
 </svg>

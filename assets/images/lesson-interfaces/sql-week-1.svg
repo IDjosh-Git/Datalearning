@@ -1,24 +1,24 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600" role="img" aria-label="SQL week 1: Understanding databases and SQL editor environments concept diagram">
-<rect x="0" y="0" width="1200" height="600" rx="0" fill="#FBFBF8" stroke="none"/>
-<rect x="0" y="0" width="1200" height="112" rx="0" fill="#06141B" stroke="none"/>
-<rect x="0" y="108" width="1200" height="5" rx="0" fill="#6AA6DA" stroke="none"/>
-<text x="48" y="42" fill="#C5E384" font-size="17" font-family="Inter,Arial,sans-serif" font-weight="700">SQL  /  WEEK 01</text>
+<rect x="0" y="0" width="1200" height="600" rx="0" fill="#F0EDDE" stroke="none"/>
+<rect x="0" y="0" width="1200" height="112" rx="0" fill="#0B0909" stroke="none"/>
+<rect x="0" y="108" width="1200" height="5" rx="0" fill="#C58A69" stroke="none"/>
+<text x="48" y="42" fill="#D9BFA4" font-size="17" font-family="Inter,Arial,sans-serif" font-weight="700">SQL  /  WEEK 01</text>
 <text x="48" y="85" fill="#FFFFFF" font-size="29" font-family="Inter,Arial,sans-serif" font-weight="700">Understanding databases and SQL editor environments</text>
-<text x="49" y="148" fill="#4A5C6A" font-size="17" font-family="Inter,Arial,sans-serif" font-weight="600">Tables → Queries → Insights</text>
-<rect x="70" y="205" width="326" height="265" rx="18" fill="#FFFFFF" stroke="#DCE5E7"/>
-<rect x="70" y="205" width="326" height="50" rx="16" fill="#253745" stroke="none"/>
+<text x="49" y="148" fill="#675D58" font-size="17" font-family="Inter,Arial,sans-serif" font-weight="600">Tables → Queries → Insights</text>
+<rect x="70" y="205" width="326" height="265" rx="18" fill="#FFFFFF" stroke="#E8E1D8"/>
+<rect x="70" y="205" width="326" height="50" rx="16" fill="#023048" stroke="none"/>
 <text x="89" y="238" fill="#FFFFFF" font-size="16" font-family="Inter,Arial,sans-serif" font-weight="700">SOURCE</text>
-<text x="90" y="306" fill="#253745" font-size="22" font-family="Inter,Arial,sans-serif" font-weight="600">Customers table</text>
-<path d="M399 343 L442 343" fill="none" stroke="#6AA6DA" stroke-width="5" stroke-linecap="round"/>
-<rect x="452" y="205" width="326" height="265" rx="18" fill="#FFFFFF" stroke="#DCE5E7"/>
-<rect x="452" y="205" width="326" height="50" rx="16" fill="#253745" stroke="none"/>
+<text x="90" y="306" fill="#023048" font-size="22" font-family="Inter,Arial,sans-serif" font-weight="600">Customers table</text>
+<path d="M399 343 L442 343" fill="none" stroke="#C58A69" stroke-width="5" stroke-linecap="round"/>
+<rect x="452" y="205" width="326" height="265" rx="18" fill="#FFFFFF" stroke="#E8E1D8"/>
+<rect x="452" y="205" width="326" height="50" rx="16" fill="#023048" stroke="none"/>
 <text x="471" y="238" fill="#FFFFFF" font-size="16" font-family="Inter,Arial,sans-serif" font-weight="700">RELATIONSHIP</text>
-<text x="472" y="306" fill="#253745" font-size="22" font-family="Inter,Arial,sans-serif" font-weight="600">Orders table</text>
-<path d="M781 343 L824 343" fill="none" stroke="#6AA6DA" stroke-width="5" stroke-linecap="round"/>
-<rect x="834" y="205" width="326" height="265" rx="18" fill="#FFFFFF" stroke="#DCE5E7"/>
-<rect x="834" y="205" width="326" height="50" rx="16" fill="#253745" stroke="none"/>
+<text x="472" y="306" fill="#023048" font-size="22" font-family="Inter,Arial,sans-serif" font-weight="600">Orders table</text>
+<path d="M781 343 L824 343" fill="none" stroke="#C58A69" stroke-width="5" stroke-linecap="round"/>
+<rect x="834" y="205" width="326" height="265" rx="18" fill="#FFFFFF" stroke="#E8E1D8"/>
+<rect x="834" y="205" width="326" height="50" rx="16" fill="#023048" stroke="none"/>
 <text x="853" y="238" fill="#FFFFFF" font-size="16" font-family="Inter,Arial,sans-serif" font-weight="700">RESULT</text>
-<text x="854" y="306" fill="#253745" font-size="22" font-family="Inter,Arial,sans-serif" font-weight="600">SQL query editor</text>
-<rect x="55" y="535" width="1090" height="42" rx="12" fill="#EAF3FA" stroke="none"/>
-<text x="77" y="563" fill="#253745" font-size="16" font-family="Inter,Arial,sans-serif" font-weight="600">LEARNING CHECK  ·  Identify the input, the method, and how you would verify the result.</text>
+<text x="854" y="306" fill="#023048" font-size="22" font-family="Inter,Arial,sans-serif" font-weight="600">SQL query editor</text>
+<rect x="55" y="535" width="1090" height="42" rx="12" fill="#F6F0E8" stroke="none"/>
+<text x="77" y="563" fill="#023048" font-size="16" font-family="Inter,Arial,sans-serif" font-weight="600">LEARNING CHECK  ·  Identify the input, the method, and how you would verify the result.</text>
 </svg>

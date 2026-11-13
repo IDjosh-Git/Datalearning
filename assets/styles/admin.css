@@ -1,43 +1,43 @@
 /* Administrator-specific table, metrics and protected loader styles.
    Shared admin workspace appearance: admin-workspace.css. */
 /* Maintained route-specific layout. Shared colours, type and components: design-system.css. */
-.dalp-admin-page{background:#F3F8FC;color:var(--ui-ink);min-height:100vh;font-family:"DM Sans",system-ui,-apple-system,Segoe UI,sans-serif}
+.dalp-admin-page{background:#F7F3EA;color:var(--ui-ink);min-height:100vh;font-family:"DM Sans",system-ui,-apple-system,Segoe UI,sans-serif}
 .dalp-admin-main{padding-bottom:70px}
-.dalp-admin-notice{margin-bottom:18px;background:#F4F8E9;color:#253745;border:1px solid #C5E384;border-radius:12px;padding:16px}
+.dalp-admin-notice{margin-bottom:18px;background:#F8EFE4;color:var(--bw-midnight);border:1px solid var(--bw-sand);border-radius:12px;padding:16px}
 .dalp-admin-notice[hidden],#adminWorkspace[hidden],#adminLearnerDetail[hidden]{display:none!important}
 .dalp-admin-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:0 0 22px}
-.dalp-admin-stats article{min-width:0;border:1px solid #DCE5E7;box-shadow:0 6px 22px #11212D0A;background:#FFFFFF;border-radius:17px;padding:21px;border-top:4px solid var(--ui-coral)}
+.dalp-admin-stats article{min-width:0;border:1px solid #E8E1D8;box-shadow:0 6px 22px #0230480A;background:#FFFFFF;border-radius:17px;padding:21px;border-top:4px solid var(--ui-coral)}
 .dalp-admin-stats article:nth-child(even){border-top-color:var(--ui-ink)}
 .dalp-admin-stats span,.dalp-admin-stats small{display:block}
 .dalp-admin-stats span{font-weight:750;font-size:13px}
-.dalp-admin-stats strong{font-size:clamp(26px,3vw,36px);line-height:1.3;display:block;margin:9px 0;color:#253745}
-.dalp-admin-stats small{color:#4A5C6A;font-size:12px;line-height:1.4}
-.dalp-admin-panel{border:1px solid #DCE5E7;background:#FFFFFF;border-radius:19px;padding:25px;margin-bottom:22px;box-shadow:0 9px 28px #25374509}
+.dalp-admin-stats strong{font-size:clamp(26px,3vw,36px);line-height:1.3;display:block;margin:9px 0;color:var(--bw-midnight)}
+.dalp-admin-stats small{color:#675D58;font-size:12px;line-height:1.4}
+.dalp-admin-panel{border:1px solid #E8E1D8;background:#FFFFFF;border-radius:19px;padding:25px;margin-bottom:22px;box-shadow:0 9px 28px #02304809}
 .dalp-admin-panel-title{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:19px}
-.dalp-admin-panel-title small{font-size:11px;letter-spacing:.12em;color:#566B36;font-weight:850}
+.dalp-admin-panel-title small{font-size:11px;letter-spacing:.12em;color:var(--bw-burgundy);font-weight:850}
 .dalp-admin-panel h2{font-size:clamp(20px,2.4vw,27px);letter-spacing:-.035em;margin:6px 0 5px}
-.dalp-admin-panel-title p{margin:0;color:#4A5C6A;font-size:13px;line-height:1.6}
+.dalp-admin-panel-title p{margin:0;color:#675D58;font-size:13px;line-height:1.6}
 .dalp-admin-tools{display:flex;gap:9px;flex-wrap:wrap}
-.dalp-admin-panel button{padding:10px 14px;border-radius:10px;border:1px solid #CCD0CF;background:#FFFFFF;color:var(--ui-ink);font-weight:750;cursor:pointer;min-height:42px}
-.dalp-admin-panel button:hover{background:#EAF3FA}
+.dalp-admin-panel button{padding:10px 14px;border-radius:10px;border:1px solid #E2DCD3;background:#FFFFFF;color:var(--ui-ink);font-weight:750;cursor:pointer;min-height:42px}
+.dalp-admin-panel button:hover{background:#F6F0E8}
 .dalp-admin-filters{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:20px}
 .dalp-admin-filters label{display:flex;flex-direction:column;gap:6px;font-weight:750;font-size:12px;flex:1 1 210px;min-width:0}
-.dalp-admin-filters input,.dalp-admin-filters select{width:100%;max-width:100%;border:1px solid #CCD0CF;padding:12px;background:#FFFFFF;border-radius:10px;color:#253745;font-size:15px;min-height:44px}
-.dalp-admin-table-wrap{overflow:auto;max-width:100%;border:1px solid #EAF0F3;border-radius:12px}
+.dalp-admin-filters input,.dalp-admin-filters select{width:100%;max-width:100%;border:1px solid #E2DCD3;padding:12px;background:#FFFFFF;border-radius:10px;color:var(--bw-midnight);font-size:15px;min-height:44px}
+.dalp-admin-table-wrap{overflow:auto;max-width:100%;border:1px solid #EEE7DD;border-radius:12px}
 .dalp-admin-table{border-collapse:collapse;width:100%;min-width:670px;text-align:left;font-size:13px}
-.dalp-admin-table th{background:#F2F6F7;color:#4A5C6A;text-transform:uppercase;font-size:10px;letter-spacing:.08em;padding:15px 13px}
-.dalp-admin-table td{padding:15px 13px;border-top:1px solid #EAF0F3;vertical-align:middle}
+.dalp-admin-table th{background:#F7F2EA;color:#675D58;text-transform:uppercase;font-size:10px;letter-spacing:.08em;padding:15px 13px}
+.dalp-admin-table td{padding:15px 13px;border-top:1px solid #EEE7DD;vertical-align:middle}
 .dalp-admin-table td strong,.dalp-admin-table td small{display:block}
-.dalp-admin-table td small{font-size:11px;color:#4A5C6A;margin-top:4px;overflow-wrap:anywhere}
-.dalp-admin-count{color:#4A5C6A;font-size:12px;margin:13px 0 0}
+.dalp-admin-table td small{font-size:11px;color:#675D58;margin-top:4px;overflow-wrap:anywhere}
+.dalp-admin-count{color:#675D58;font-size:12px;margin:13px 0 0}
 .dalp-admin-detail{scroll-margin-top:35px}
 .dalp-admin-track-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:12px}
-.dalp-admin-track{background:#F3F8FC;border-radius:12px;border:1px solid #D6E8F5;padding:17px}
+.dalp-admin-track{background:#F7F3EA;border-radius:12px;border:1px solid #E9DDD0;padding:17px}
 .dalp-admin-track h3{font-size:14px;margin:0 0 11px}
-.dalp-admin-track p{font-size:12px;margin:8px 0;color:#4A5C6A}
-.dalp-admin-meter{height:8px;background:#DCE5E7;border-radius:20px;overflow:hidden}
+.dalp-admin-track p{font-size:12px;margin:8px 0;color:#675D58}
+.dalp-admin-meter{height:8px;background:#E8E1D8;border-radius:20px;overflow:hidden}
 .dalp-admin-meter span{display:block;height:100%;background:var(--ui-coral)}
-.dalp-admin-page input:focus-visible,.dalp-admin-page button:focus-visible,.dalp-admin-page a:focus-visible{outline:3px solid #9BB765;outline-offset:3px}
+.dalp-admin-page input:focus-visible,.dalp-admin-page button:focus-visible,.dalp-admin-page a:focus-visible{outline:3px solid var(--bw-copper);outline-offset:3px}
 @media(max-width:850px){.dalp-admin-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
 .dalp-admin-panel-title{flex-direction:column}}
 @media(max-width:540px){.dalp-admin-stats{gap:9px}

@@ -1,11 +1,11 @@
 /* Auth-first entry and fail-closed page guard. Loaded before page content. */
 html.dalp-auth-checking body > *:not(#dalp-auth-gate):not(#dlxPageLoader){display:none!important}
 html.dalp-auth-checking #dalp-auth-gate.dalp-gate-loading{display:none!important}
-html.dalp-auth-checking,html.dalp-auth-checking body{min-height:100%;background:#F3F8FC}
+html.dalp-auth-checking,html.dalp-auth-checking body{min-height:100%;background:#F7F3EA}
 
-#dalp-auth-gate{position:fixed;inset:0;z-index:2147483600;background:#F3F8FC;color:#253745;display:grid;place-items:center;overflow-y:auto;padding:20px;font-family:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif}
+#dalp-auth-gate{position:fixed;inset:0;z-index:2147483600;background:#F7F3EA;color:var(--bw-midnight);display:grid;place-items:center;overflow-y:auto;padding:20px;font-family:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif}
 
-.dalp-gate-box{width:min(100%,390px);padding:clamp(26px,5vw,38px);border:1px solid #DCE5E7;border-radius:24px;background:#FFFFFF;text-align:center;box-shadow:0 22px 60px #25374512}
+.dalp-gate-box{width:min(100%,390px);padding:clamp(26px,5vw,38px);border:1px solid #E8E1D8;border-radius:24px;background:#FFFFFF;text-align:center;box-shadow:0 22px 60px #02304812}
 
 .dalp-gate-brand{display:flex;align-items:center;justify-content:center;gap:11px;margin-bottom:28px;font-size:13px;font-weight:850;text-align:left}
 .dalp-gate-brand img{width:43px;height:43px;border-radius:12px}
@@ -15,13 +15,13 @@ html.dalp-auth-checking,html.dalp-auth-checking body{min-height:100%;background:
 .dalp-gate-box button{background:var(--ui-primary);border:0;border-radius:12px;padding:13px 20px;min-height:46px;color:#FFFFFF;font-weight:800;font:inherit;cursor:pointer}
 .dalp-gate-error .dalp-gate-box p{opacity:.9}
 .dalp-gate-logout{min-height:40px;border:1px solid currentColor;border-radius:9px;background:transparent;color:inherit;font:inherit;font-size:12px;font-weight:750;cursor:pointer;padding:7px 11px;margin-inline-start:8px}
-.nav-links .dalp-gate-logout{color:#FFFFFF;border-color:#9BA8AB}
+.nav-links .dalp-gate-logout{color:#FFFFFF;border-color:#AFA39A}
 
 @media(max-width:650px){.dalp-gate-box{border-radius:20px}.dalp-gate-logout{margin-inline-start:0;font-size:11px;padding:8px 10px}.course-top-actions .dalp-gate-logout{min-height:38px}}
 
 .dalp-gate-go{display:inline-flex;align-items:center;min-height:44px;padding:11px 17px;border-radius:12px;background:var(--ui-nav-ink);color:#FFFFFF!important;font-weight:750;text-decoration:none;justify-content:center}
 .dalp-admin-link{display:inline-flex;align-items:center;color:inherit;text-decoration:none;font-weight:750;padding:9px;border-radius:10px;white-space:nowrap}
-.nav-links .dalp-admin-link{color:#C5E384}
+.nav-links .dalp-admin-link{color:var(--bw-sand)}
 @media(max-width:650px){.dalp-admin-link{font-size:13px}}
 
 /* v91: make failed-verification recovery actions visible and keyboard accessible. */
@@ -32,67 +32,67 @@ html.dalp-auth-checking,html.dalp-auth-checking body{min-height:100%;background:
 /* Premium session-check card V5. Stable, non-blocking visual treatment:
    the existing auth checks and error-recovery controls remain unchanged. */
 #dalp-auth-gate{
-  --dalp-gate-accent:#657A86;
-  background:radial-gradient(circle at 20% 15%,#EAF3FA 0,transparent 36%),
-             radial-gradient(circle at 84% 80%,#EAF3FA 0,transparent 34%),
-             #F3F8FC;
+  --dalp-gate-accent:#675D58;
+  background:radial-gradient(circle at 20% 15%,#F6F0E8 0,transparent 36%),
+             radial-gradient(circle at 84% 80%,#F6F0E8 0,transparent 34%),
+             #F7F3EA;
   padding:clamp(16px,4vw,32px);
-  color:#11212D;
+  color:var(--bw-midnight);
 }
 #dalp-auth-gate .dalp-gate-box{
   position:relative;isolation:isolate;overflow:hidden;
   width:min(100%,420px);box-sizing:border-box;
   padding:clamp(25px,5vw,42px);
   border-radius:28px;
-  border:1px solid #D6E8F5;
-  background:linear-gradient(155deg,#FFFFFF 0%,#FFFFFF 64%,#FBFBF8 100%);
-  box-shadow:0 28px 72px rgba(17,33,45,.11),0 5px 16px rgba(17,33,45,.04);
+  border:1px solid #E9DDD0;
+  background:linear-gradient(155deg,#FFFFFF 0%,#FFFFFF 64%,var(--bw-ivory) 100%);
+  box-shadow:0 28px 72px rgba(2,48,72,.11),0 5px 16px rgba(2,48,72,.04);
   text-align:center;
 }
 #dalp-auth-gate .dalp-gate-box::before{
   content:'';position:absolute;inset:0 0 auto;height:4px;
-  background:linear-gradient(90deg,#657A86,#657A86,#6AA6DA);
+  background:linear-gradient(90deg,#675D58,#675D58,var(--bw-copper));
 }
 #dalp-auth-gate .dalp-gate-brand{
   display:flex;justify-content:flex-start;align-items:center;
   gap:13px;margin:0 0 30px;padding:0 0 21px;
-  border-bottom:1px solid #EAF3FA;text-align:left;
-  color:#11212D;font-size:13px;letter-spacing:-.02em;
+  border-bottom:1px solid #F6F0E8;text-align:left;
+  color:var(--bw-midnight);font-size:13px;letter-spacing:-.02em;
 }
 #dalp-auth-gate .dalp-gate-brand img{
   width:46px;height:46px;border-radius:14px;
-  box-shadow:0 7px 17px rgba(35,90,131,.17);
+  box-shadow:0 7px 17px rgba(2,48,72,.17);
 }
 #dalp-auth-gate .dalp-gate-brand small{
   margin-top:4px;font-size:11px;font-weight:650;letter-spacing:.035em;
-  text-transform:uppercase;color:#4A5C6A;opacity:1;
+  text-transform:uppercase;color:#675D58;opacity:1;
 }
 #dalp-auth-gate h2{
   max-width:20ch;margin:0 auto 10px;font-size:clamp(20px,4.2vw,25px);
-  line-height:1.25;letter-spacing:-.045em;font-weight:800;color:#11212D;
+  line-height:1.25;letter-spacing:-.045em;font-weight:800;color:var(--bw-midnight);
 }
 #dalp-auth-gate p{
   max-width:38ch;margin:0 auto 24px;font-size:14px;
-  line-height:1.7;color:#4A5C6A;opacity:1;
+  line-height:1.7;color:#675D58;opacity:1;
 }
 #dalp-auth-gate .dalp-gate-box button,
 #dalp-auth-gate .dalp-gate-go{
   min-height:46px;display:inline-flex;align-items:center;justify-content:center;
   padding:12px 19px;border-radius:13px;
   border:1px solid transparent;
-  background:linear-gradient(105deg,#657A86,#253745);
+  background:linear-gradient(105deg,#675D58,var(--bw-midnight));
   color:#FFFFFF;font:inherit;font-size:13px;font-weight:750;
-  box-shadow:0 9px 18px rgba(35,90,131,.15);
+  box-shadow:0 9px 18px rgba(2,48,72,.15);
   transition:transform .18s ease,box-shadow .18s ease,filter .18s ease;
 }
 #dalp-auth-gate .dalp-gate-box :is(button,.dalp-gate-go):hover{
   transform:translateY(-2px);filter:brightness(1.05);
-  box-shadow:0 14px 24px rgba(35,90,131,.20);
+  box-shadow:0 14px 24px rgba(2,48,72,.20);
 }
-#dalp-auth-gate :is(button,a):focus-visible{outline:3px solid #D6E8F5;outline-offset:4px}
+#dalp-auth-gate :is(button,a):focus-visible{outline:3px solid #E9DDD0;outline-offset:4px}
 #dalp-auth-gate .dalp-gate-actions{gap:10px}
 #dalp-auth-gate .dalp-gate-actions .dalp-gate-go{
-  color:#253745!important;background:#F2F6F7;border-color:#EAF3FA;box-shadow:none;
+  color:var(--bw-midnight)!important;background:#F7F2EA;border-color:#F6F0E8;box-shadow:none;
 }
 @media(max-width:380px){
  #dalp-auth-gate .dalp-gate-box{padding:25px 21px;border-radius:22px}

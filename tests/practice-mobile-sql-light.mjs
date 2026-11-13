@@ -9,10 +9,10 @@ for(const clause of [
  'main.pc-wrap {', 'width:100%!important;max-width:100%!important;min-width:0!important;',
  'padding:0 6px 22px!important', '.ide-editor-toolbar{',
  '#practiceDetail[data-active-editor="SQL"] .ide-primary .arena-editor',
- 'background:#FBFBF8!important', '.arena-code pre#arenaHighlight',
- 'color:#253745!important', '#practiceAnswer.sql-editor-textarea',
+ 'background:#F0EDDE!important', '.arena-code pre#arenaHighlight',
+ 'color:#023048!important', '#practiceAnswer.sql-editor-textarea',
  'background:transparent!important', '-webkit-text-fill-color:transparent!important',
- '#arenaLines.arena-lines', 'background:#EAF3FA!important',
+ '#arenaLines.arena-lines', 'background:#F6F0E8!important',
 ]) assert(css.includes(clause),`Missing mobile/light-theme rule: ${clause}`);
 assert(upgrade.includes("textarea.addEventListener('input'"),'Native editor and highlighting must remain active');
 assert(upgrade.includes("textarea.addEventListener('scroll'"),'Highlighter must remain scroll-synchronized');

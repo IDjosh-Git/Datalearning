@@ -35,7 +35,7 @@ assert(nav.includes('aria-expanded')&&nav.includes("e.key==='Escape'"),'accessib
 const profile=read('assets/scripts/profile-navigation.js');
 assert(profile.includes('if(host.querySelector(\'.dl-profile-control\'))return'),'one reusable profile control');
 const css=read('assets/styles/private-premium-rebuild.css');
-for(const token of ['#253745','#9BB765','.ac-admin-more-details','.ac-top-actions .dl-profile-control','@media(max-width:740px)','prefers-reduced-motion:reduce']) assert(css.includes(token),`missing private styling: ${token}`);
+for(const token of ['#023048','#C58A69','.ac-admin-more-details','.ac-top-actions .dl-profile-control','@media(max-width:740px)','prefers-reduced-motion:reduce']) assert(css.includes(token),`missing private styling: ${token}`);
 assert(read('assets/styles/public-search-premium.css').includes('dialog.premium-search-dialog'),'shared search panel retained');
 assert(read('assets/styles/navigation-search-signout.css').includes('premium-search-trigger.dalp-unified-search'),'shared public/private search control retained');
 assert(read('assets/styles/page-loader.css').includes('html.dalp-auth-checking.dlx-loader-pending body>#dlxPageLoader'),'branded loader stays visible during private auth verification');

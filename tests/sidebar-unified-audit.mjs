@@ -22,7 +22,7 @@ for(const required of ["open?.addEventListener('click'","close?.addEventListener
 const studio=read('assets/scripts/course-studio.js');
 assert(studio.includes("railClose.setAttribute('aria-label','Close skills list')")&&studio.includes('railClose.addEventListener(\'click\'')&&studio.includes("event.key==='Escape'"),'Studio rail needs labelled close and Escape');
 for(const p of ['studio.html','tutor.html','practice.html'])assert.match(read(p),/sidebar-consistency\.css\?v=sidebar-audit-20261110-r1/);
-assert(read('practice.html').includes('id="hubClose" type="button"><span aria-hidden="true">&#11212D;</span><span>Close</span>'),'Practice Arena challenge sheet has a labelled Close action');
+assert(read('practice.html').includes('id="hubClose" type="button"><span aria-hidden="true">&#023048;</span><span>Close</span>'),'Practice Arena challenge sheet has a labelled Close action');
 assert(read('assets/scripts/public-header-unified.js').includes("close.innerHTML='<span aria-hidden"),'All public pages need a labelled navigation close');
 assert(read('assets/scripts/learner-companion.js').includes('<span>Close</span>'),'Study Pulse needs a labelled close');
 assert(read('assets/styles/public-header-unified.css').includes('Study Pulse follows the same legible mobile close-button convention'));

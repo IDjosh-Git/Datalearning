@@ -22,7 +22,7 @@ for(const marker of [
  '.ac-sidebar .ac-side-nav .ac-more-details>summary:is(:hover,:focus-visible)',
  '.ac-sidebar .ac-side-account:is(:hover,:focus-visible,.ac-selected)',
  '.ac-page-area .ac-hero-secondary',
- 'background:#F4F8E9!important', 'color:#253745!important', '-webkit-text-fill-color:#253745!important',
+ 'background:#F8EFE4!important', 'color:#023048!important', '-webkit-text-fill-color:#023048!important',
  'transition:transform .15s ease,box-shadow .15s ease!important'
 ])assert(css.includes(marker),`Private hover fix missing ${marker}`);
 for(const file of ['admin','account','progress','reviewer','profile','certificate','connection-test','sync-test']){

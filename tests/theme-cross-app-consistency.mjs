@@ -11,7 +11,7 @@ assert.equal(pages.length, 38, 'All 38 pages must share the same theme');
 const themePath = 'assets/styles/palette-premium-20261113.css';
 const theme = fs.readFileSync(themePath, 'utf8');
 const cssFiles = fs.readdirSync('assets/styles').filter(name => name.endsWith('.css'));
-assert.equal(cssFiles.length, 54, 'All active CSS modules remain available');
+assert.equal(cssFiles.length, 55, 'All active CSS modules remain available');
 
 for (const page of pages) {
   const html = fs.readFileSync(page, 'utf8');
@@ -19,8 +19,7 @@ for (const page of pages) {
   assert.equal(hits.length, 1, `${page} must use the current theme exactly once`);
   const links = [...html.matchAll(/<link\b[^>]*?href="([^"]+\.css(?:\?[^"]*)?)"[^>]*>/gi)].map(match => match[1]);
   assert(links.length > 0, `${page} must have styles`);
-  assert(links[links.length - 1].includes('palette-premium-20261113.css') ||
-    (page === 'tutor.html' && links[links.length - 1].includes('ai-response-premium.css')),
+  assert(links[links.length - 1].includes('burnt-wood-theme.css') || (page === 'tutor.html' && links[links.length - 1].includes('ai-response-premium.css')),
     `${page}: canonical theme must be the final general-purpose stylesheet`);
   assert(!/#(?:F27329|254559|203F58|35637C|F9F7F6|6590A4|F2A675|2E4098|172848)(?![a-f\d])/i.test(html),
     `${page}: retired color remains in markup`);
@@ -30,7 +29,7 @@ for (const cssName of cssFiles) {
   assert(!/#(?:F27329|254559|203F58|35637C|F9F7F6|6590A4|F2A675|2E4098|172848)(?![a-f\d])/i.test(css),
     `${cssName}: retired brand color remains`);
 }
-const requiredTokens = ['#06141B','#11212D','#253745','#4A5C6A','#9BA8AB','#CCD0CF','#FBFBF8','#6AA6DA','#C5E384'];
+const requiredTokens = ['#0B0909','#023048','#023048','#675D58','#AFA39A','#E2DCD3','#F0EDDE','#C58A69','#D9BFA4'];
 for (const token of requiredTokens) assert(theme.includes(token), `Missing theme token ${token}`);
 for (const selector of [
   '.account-overview.mld-hero','.profile-hero','.ip-hero','.review-hero',
@@ -43,7 +42,7 @@ assert(theme.includes('body[data-private-workspace="true"].ac-ready'), 'Private 
 assert(theme.includes('prefers-reduced-motion:reduce'), 'Reduced-motion styling must be retained');
 
 const loader = fs.readFileSync('assets/styles/page-loader.css','utf8');
-assert(loader.includes('rgba(6,20,27,.27)') && loader.includes('rgba(37,55,69,.22)'),
+assert(loader.includes('rgba(11,9,9,.27)') && loader.includes('rgba(2,48,72,.22)'),
   'Loader backdrop must remain approximately 75% transparent');
 
 function luminance(hex) {
@@ -56,10 +55,10 @@ function contrast(a,b) {
   return (high+.05)/(low+.05);
 }
 for (const [label,foreground,background] of [
-  ['White header text','#FFFFFF','#11212D'],
-  ['Muted text on canvas','#4A5C6A','#FBFBF8'],
-  ['Link text on canvas','#235A83','#FBFBF8'],
-  ['Pear accent on navy','#C5E384','#11212D'],
+  ['White header text','#FFFFFF','#023048'],
+  ['Muted text on canvas','#675D58','#F0EDDE'],
+  ['Link text on canvas','#023048','#F0EDDE'],
+  ['Pear accent on navy','#D9BFA4','#023048'],
 ]) assert(contrast(foreground,background)>=4.5, `${label} must meet WCAG AA`);
 
 console.log(`PASS consistent premium theme on ${pages.length} pages, ${cssFiles.length} active stylesheets, all private gradients, 75% transparent loader and WCAG AA reference colors`);

@@ -2,114 +2,114 @@
    Dedicated, scoped layout for Coach, Lab, Practice Studio and Reference.
    Loaded AFTER existing page styles to avoid cross-page overrides.
    All original controller IDs and state persistence remain unchanged. */
-:root{--dlst-ink:#253745;--dlst-muted:#657A86;--dlst-blue:#235A83;--dlst-orange:#758C46;--dlst-border:#DCE5E7;--dlst-paper:#FFFFFF;--dlst-bg:#F2F6F7;--dlst-ease:cubic-bezier(.2,.8,.2,1)}
-body[data-study-tool-page]{background:linear-gradient(180deg,#F3F8FC 0,#FBFBF8 35%,#F2F6F7 100%)!important;color:var(--dlst-ink)!important;overflow-x:clip}
+:root{--dlst-ink:var(--bw-midnight);--dlst-muted:#675D58;--dlst-blue:var(--bw-midnight);--dlst-orange:var(--bw-burgundy);--dlst-border:#E8E1D8;--dlst-paper:#FFFFFF;--dlst-bg:#F7F2EA;--dlst-ease:cubic-bezier(.2,.8,.2,1)}
+body[data-study-tool-page]{background:linear-gradient(180deg,#F7F3EA 0,var(--bw-ivory) 35%,#F7F2EA 100%)!important;color:var(--dlst-ink)!important;overflow-x:clip}
 body[data-study-tool-page] main.dlst-main{width:min(1360px,calc(100% - 48px));max-width:none!important;margin:0 auto 64px!important;padding:18px 0 12px!important;min-width:0;display:block!important;background:transparent!important;box-shadow:none!important}
 body[data-study-tool-page] .dlst-main > :not(.dlst-hero){min-width:0}
-body[data-study-tool-page] .dlst-breadcrumb{display:flex;align-items:center;gap:10px;color:#4A5C6A;font-size:.84rem;font-weight:700;margin:10px 0 18px!important;flex-wrap:wrap}
-body[data-study-tool-page] .dlst-breadcrumb a{color:#235A83!important;text-decoration:none;font-weight:800}
+body[data-study-tool-page] .dlst-breadcrumb{display:flex;align-items:center;gap:10px;color:#675D58;font-size:.84rem;font-weight:700;margin:10px 0 18px!important;flex-wrap:wrap}
+body[data-study-tool-page] .dlst-breadcrumb a{color:var(--bw-midnight)!important;text-decoration:none;font-weight:800}
 body[data-study-tool-page] .dlst-breadcrumb a:hover{text-decoration:underline}
-body[data-study-tool-page] .dlst-hero{min-height:245px;position:relative;isolation:isolate;overflow:hidden;border:1px solid #235A83;border-radius:24px!important;background:radial-gradient(ellipse at 80% 18%,rgba(106,166,218,.28),transparent 42%),linear-gradient(122deg,#253745 0%,#304F66 50%,#235A83 100%)!important;color:#FFFFFF!important;display:grid!important;grid-template-columns:minmax(0,1.3fr) minmax(200px,.7fr)!important;gap:12px;align-items:center;padding:clamp(24px,4vw,52px)!important;box-shadow:0 22px 52px rgba(37,55,69,.13)!important;margin:0 0 24px!important}
+body[data-study-tool-page] .dlst-hero{min-height:245px;position:relative;isolation:isolate;overflow:hidden;border:1px solid var(--bw-midnight);border-radius:24px!important;background:radial-gradient(ellipse at 80% 18%,rgba(197,138,105,.28),transparent 42%),linear-gradient(122deg,var(--bw-midnight) 0%,var(--bw-midnight) 50%,var(--bw-midnight) 100%)!important;color:#FFFFFF!important;display:grid!important;grid-template-columns:minmax(0,1.3fr) minmax(200px,.7fr)!important;gap:12px;align-items:center;padding:clamp(24px,4vw,52px)!important;box-shadow:0 22px 52px rgba(2,48,72,.13)!important;margin:0 0 24px!important}
 body[data-study-tool-page] .dlst-hero::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:-1;background:linear-gradient(113deg,transparent 50%,rgba(255,255,255,.035) 50.5%,transparent 51%),repeating-linear-gradient(90deg,transparent 0 52px,rgba(255,255,255,.035) 53px 54px);opacity:.5}
 body[data-study-tool-page] .dlst-hero-copy{position:relative;z-index:2;max-width:775px}
-body[data-study-tool-page] .dlst-eyebrow,body[data-study-tool-page] .dlst-hero .dlst-eyebrow{display:block;font-size:.69rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#A8CBE8!important;margin:0 0 14px}
+body[data-study-tool-page] .dlst-eyebrow,body[data-study-tool-page] .dlst-hero .dlst-eyebrow{display:block;font-size:.69rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--bw-sand)!important;margin:0 0 14px}
 body[data-study-tool-page] .dlst-hero h1{color:#FFFFFF!important;font-family:'Plus Jakarta Sans','DM Sans',sans-serif!important;font-weight:800!important;letter-spacing:-.049em!important;line-height:1.13!important;font-size:clamp(1.75rem,3.6vw,3.3rem)!important;max-width:690px!important;margin:0 0 17px!important;text-wrap:balance}
-body[data-study-tool-page] .dlst-hero p{color:#D6E8F5!important;font-size:clamp(.93rem,1.2vw,1.06rem)!important;line-height:1.75!important;max-width:680px;margin:0 0 24px!important}
+body[data-study-tool-page] .dlst-hero p{color:#E9DDD0!important;font-size:clamp(.93rem,1.2vw,1.06rem)!important;line-height:1.75!important;max-width:680px;margin:0 0 24px!important}
 body[data-study-tool-page] .dlst-hero-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 body[data-study-tool-page] a.dlst-btn{display:inline-flex!important;align-items:center;justify-content:center;min-height:44px;padding:11px 17px;border:1px solid rgba(255,255,255,.36)!important;text-decoration:none!important;border-radius:12px!important;font-weight:800!important;font-size:.88rem!important;line-height:1.3!important;transition:transform .2s var(--dlst-ease),background .2s ease}
-body[data-study-tool-page] .dlst-btn-primary{color:#253745!important;background:#EAF3D2!important;border-color:#EAF3D2!important}
+body[data-study-tool-page] .dlst-btn-primary{color:var(--bw-midnight)!important;background:#F1E3D0!important;border-color:#F1E3D0!important}
 body[data-study-tool-page] .dlst-btn-soft{color:#FFFFFF!important;background:rgba(255,255,255,.1)!important}
 @media(hover:hover){body[data-study-tool-page] a.dlst-btn:hover{transform:translateY(-2px)}}
-body[data-study-tool-page] .dlst-hero-art{position:relative;display:grid;align-content:center;align-items:end;justify-content:center;gap:12px;min-height:185px;width:min(100%,300px);margin:auto;transform:perspective(700px) rotateY(-9deg) rotateX(5deg);background:linear-gradient(145deg,rgba(255,255,255,.13),rgba(255,255,255,.045));border:1px solid rgba(243,248,252,.26);border-radius:20px;padding:22px;box-shadow:18px 20px 24px rgba(6,20,27,.16);grid-template-columns:repeat(4,1fr);grid-template-rows:auto 76px auto}
-body[data-study-tool-page] .dlst-visual-top{grid-column:1/-1;color:#FBFBF8;font-weight:800;font-size:1.05rem;letter-spacing:-.02em}
-body[data-study-tool-page] .dlst-visual-line{grid-column:1/-1;grid-row:3;color:#DCEBAE;font-weight:800;font-size:.53rem;letter-spacing:.06em;text-align:center}
-body[data-study-tool-page] .dlst-visual-bottom{position:absolute;top:-16px;right:-17px;border-radius:999px;padding:7px 10px;background:#DCEBAE;color:#304F66;box-shadow:0 10px 24px rgba(0,0,0,.13);font-size:.61rem;font-weight:900;letter-spacing:.06em}
-body[data-study-tool-page] .dlst-visual-bar{grid-row:2;align-self:end;display:block;border-radius:8px 8px 3px 3px;height:calc(20px + var(--n)*13px);background:linear-gradient(180deg,#C5E384,#9BB765)}
-body[data-study-tool-page] .dlst-visual-bar:nth-last-child(3){background:linear-gradient(180deg,#A8CBE8,#6AA6DA)}
-body[data-study-tool-page] .dlst-next-panel{display:flex!important;gap:22px;justify-content:space-between;align-items:center;padding:26px 30px;margin:28px 0 0!important;border:1px solid #DCE5E7;border-radius:21px;background:linear-gradient(110deg,#EAF3FA,#FBFBF8)!important;box-shadow:0 10px 26px rgba(37,55,69,.045)}
-body[data-study-tool-page] .dlst-next-panel span{color:#235A83;font-size:.71rem;letter-spacing:.13em;font-weight:900}
-body[data-study-tool-page] .dlst-next-panel h2{color:#253745!important;font-weight:800;letter-spacing:-.03em;font-size:clamp(1.1rem,2vw,1.55rem);margin:6px 0 7px!important}
-body[data-study-tool-page] .dlst-next-panel p{color:#4A5C6A!important;line-height:1.6;margin:0!important;max-width:630px}
+body[data-study-tool-page] .dlst-hero-art{position:relative;display:grid;align-content:center;align-items:end;justify-content:center;gap:12px;min-height:185px;width:min(100%,300px);margin:auto;transform:perspective(700px) rotateY(-9deg) rotateX(5deg);background:linear-gradient(145deg,rgba(255,255,255,.13),rgba(255,255,255,.045));border:1px solid rgba(246,240,232,.26);border-radius:20px;padding:22px;box-shadow:18px 20px 24px rgba(11,9,9,.16);grid-template-columns:repeat(4,1fr);grid-template-rows:auto 76px auto}
+body[data-study-tool-page] .dlst-visual-top{grid-column:1/-1;color:var(--bw-ivory);font-weight:800;font-size:1.05rem;letter-spacing:-.02em}
+body[data-study-tool-page] .dlst-visual-line{grid-column:1/-1;grid-row:3;color:#EAD7C0;font-weight:800;font-size:.53rem;letter-spacing:.06em;text-align:center}
+body[data-study-tool-page] .dlst-visual-bottom{position:absolute;top:-16px;right:-17px;border-radius:999px;padding:7px 10px;background:#EAD7C0;color:var(--bw-midnight);box-shadow:0 10px 24px rgba(0,0,0,.13);font-size:.61rem;font-weight:900;letter-spacing:.06em}
+body[data-study-tool-page] .dlst-visual-bar{grid-row:2;align-self:end;display:block;border-radius:8px 8px 3px 3px;height:calc(20px + var(--n)*13px);background:linear-gradient(180deg,var(--bw-sand),var(--bw-copper))}
+body[data-study-tool-page] .dlst-visual-bar:nth-last-child(3){background:linear-gradient(180deg,var(--bw-sand),var(--bw-copper))}
+body[data-study-tool-page] .dlst-next-panel{display:flex!important;gap:22px;justify-content:space-between;align-items:center;padding:26px 30px;margin:28px 0 0!important;border:1px solid #E8E1D8;border-radius:21px;background:linear-gradient(110deg,#F6F0E8,var(--bw-ivory))!important;box-shadow:0 10px 26px rgba(2,48,72,.045)}
+body[data-study-tool-page] .dlst-next-panel span{color:var(--bw-midnight);font-size:.71rem;letter-spacing:.13em;font-weight:900}
+body[data-study-tool-page] .dlst-next-panel h2{color:var(--bw-midnight)!important;font-weight:800;letter-spacing:-.03em;font-size:clamp(1.1rem,2vw,1.55rem);margin:6px 0 7px!important}
+body[data-study-tool-page] .dlst-next-panel p{color:#675D58!important;line-height:1.6;margin:0!important;max-width:630px}
 body[data-study-tool-page] .dlst-next-actions{display:flex;flex-shrink:0;gap:9px;flex-wrap:wrap}
-body[data-study-tool-page] .dlst-next-actions a{background:#304F66!important;color:white!important;border-radius:11px!important;padding:13px 17px;text-decoration:none;font-weight:800;white-space:nowrap}
-body[data-study-tool-page] .dlst-next-actions a:nth-child(2){background:white!important;color:#304F66!important;border:1px solid #CCD0CF!important}
+body[data-study-tool-page] .dlst-next-actions a{background:var(--bw-midnight)!important;color:white!important;border-radius:11px!important;padding:13px 17px;text-decoration:none;font-weight:800;white-space:nowrap}
+body[data-study-tool-page] .dlst-next-actions a:nth-child(2){background:white!important;color:var(--bw-midnight)!important;border:1px solid #E2DCD3!important}
 body[data-study-tool-page] .dlst-section-top{display:flex;align-items:center;justify-content:space-between;gap:18px;margin:24px 0 18px!important}
-body[data-study-tool-page] .dlst-section-top h2{margin:0 0 7px!important;font:800 clamp(1.25rem,2.2vw,1.8rem)/1.26 'Plus Jakarta Sans',sans-serif!important;letter-spacing:-.033em;color:#253745!important}
-body[data-study-tool-page] .dlst-section-top p{color:#4A5C6A!important;font-size:.93rem!important;line-height:1.65!important;margin:0!important}
-body[data-study-tool-page] .dlst-text-link{color:#304F66!important;font-weight:800;text-decoration:underline;text-underline-offset:4px;white-space:nowrap}
+body[data-study-tool-page] .dlst-section-top h2{margin:0 0 7px!important;font:800 clamp(1.25rem,2.2vw,1.8rem)/1.26 'Plus Jakarta Sans',sans-serif!important;letter-spacing:-.033em;color:var(--bw-midnight)!important}
+body[data-study-tool-page] .dlst-section-top p{color:#675D58!important;font-size:.93rem!important;line-height:1.65!important;margin:0!important}
+body[data-study-tool-page] .dlst-text-link{color:var(--bw-midnight)!important;font-weight:800;text-decoration:underline;text-underline-offset:4px;white-space:nowrap}
 /* Coach: ONE workspace with the original seven-session planner and active recall controls. */
 body[data-study-tool-page=coach] .ss-workspace.dlst-coach-workspace{display:block!important;width:100%!important;max-width:none!important;margin:0!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important;overflow:visible!important}
 body[data-study-tool-page=coach] .ss-layout{display:grid!important;grid-template-columns:minmax(280px,.72fr) minmax(0,1.28fr)!important;align-items:start;gap:20px!important;margin:0 0 22px!important}
-body[data-study-tool-page=coach] :is(.ss-setup,.ss-plan,.ss-recall){background:#FFFFFF!important;border:1px solid #DCE5E7!important;box-shadow:0 12px 38px rgba(37,55,69,.06)!important;border-radius:20px!important;min-width:0!important;padding:clamp(18px,2.3vw,27px)!important;overflow:visible!important}
-body[data-study-tool-page=coach] :is(.ss-setup,.ss-plan,.ss-recall) h3{color:#253745!important;line-height:1.3!important}
-body[data-study-tool-page=coach] :is(.ss-setup,.ss-plan,.ss-recall) :is(p,small){color:#4A5C6A!important}
-body[data-study-tool-page=coach] :is(.ss-setup,.ss-plan,.ss-recall) :is(input,select,textarea){min-height:46px;max-width:100%;background:#FFFFFF!important;color:#253745!important;border:1px solid #CCD0CF!important;border-radius:11px!important;padding:10px 12px!important}
-body[data-study-tool-page=coach] .ss-create{background:#304F66!important;color:#FFFFFF!important;border-radius:12px!important;min-height:48px!important}
-body[data-study-tool-page=coach] .ss-plan-summary{background:#EAF3FA!important;border:1px solid #DCE5E7!important}
-body[data-study-tool-page=coach] .ss-session{background:#FFFFFF!important;border:1px solid #DCE5E7!important;border-radius:13px!important;min-width:0!important}
+body[data-study-tool-page=coach] :is(.ss-setup,.ss-plan,.ss-recall){background:#FFFFFF!important;border:1px solid #E8E1D8!important;box-shadow:0 12px 38px rgba(2,48,72,.06)!important;border-radius:20px!important;min-width:0!important;padding:clamp(18px,2.3vw,27px)!important;overflow:visible!important}
+body[data-study-tool-page=coach] :is(.ss-setup,.ss-plan,.ss-recall) h3{color:var(--bw-midnight)!important;line-height:1.3!important}
+body[data-study-tool-page=coach] :is(.ss-setup,.ss-plan,.ss-recall) :is(p,small){color:#675D58!important}
+body[data-study-tool-page=coach] :is(.ss-setup,.ss-plan,.ss-recall) :is(input,select,textarea){min-height:46px;max-width:100%;background:#FFFFFF!important;color:var(--bw-midnight)!important;border:1px solid #E2DCD3!important;border-radius:11px!important;padding:10px 12px!important}
+body[data-study-tool-page=coach] .ss-create{background:var(--bw-midnight)!important;color:#FFFFFF!important;border-radius:12px!important;min-height:48px!important}
+body[data-study-tool-page=coach] .ss-plan-summary{background:#F6F0E8!important;border:1px solid #E8E1D8!important}
+body[data-study-tool-page=coach] .ss-session{background:#FFFFFF!important;border:1px solid #E8E1D8!important;border-radius:13px!important;min-width:0!important}
 body[data-study-tool-page=coach] .ss-session button,body[data-study-tool-page=coach] .ss-recall button{min-height:42px}
 body[data-study-tool-page=coach] .ss-recall{margin-top:0!important}
 body[data-study-tool-page=coach] .ss-recall-grid{display:grid!important;grid-template-columns:minmax(0,1.35fr) minmax(210px,.65fr)!important;gap:18px!important}
 body[data-study-tool-page=coach] .ss-recall-main,body[data-study-tool-page=coach] .ss-recall-aside{min-width:0!important}
 body[data-study-tool-page=coach] .ss-recall-header{background:transparent!important;border:0!important;margin:0 0 22px!important}
-body[data-study-tool-page=coach] .ss-recall-header h3{color:#253745!important}
+body[data-study-tool-page=coach] .ss-recall-header h3{color:var(--bw-midnight)!important}
 /* Learning Lab: searchable, independent library—not a container for another tool. */
 body[data-study-tool-page=lab] .dlst-work-section{border:0;background:transparent;max-width:none;width:100%;padding:0}
-body[data-study-tool-page=lab] .dlst-library-progress{display:block!important;background:#EAF3D2;border:1px solid #D6E8F5;color:#235A83!important;border-radius:11px;padding:13px 16px;margin:0 0 15px!important;font-weight:700;font-size:.91rem}
-body[data-study-tool-page=lab] .lab-controls.dlst-library-filters{display:grid!important;grid-template-columns:minmax(0,2.3fr) minmax(135px,1fr) minmax(135px,1fr) auto;gap:10px;align-items:center;background:#FFFFFF!important;border:1px solid #DCE5E7!important;box-shadow:0 10px 25px rgba(37,55,69,.045);border-radius:16px!important;padding:15px!important;margin:0 0 10px!important}
-body[data-study-tool-page=lab] .lab-controls :is(input,select,button){width:100%!important;min-width:0!important;min-height:47px!important;background:#FBFBF8!important;border:1px solid #D6E8F5!important;border-radius:11px!important;color:#253745!important;font-size:.9rem!important;padding:10px 12px!important;box-shadow:none!important}
-body[data-study-tool-page=lab] .lab-controls button{background:#304F66!important;color:#FFFFFF!important;font-weight:800!important}
-body[data-study-tool-page=lab] .dlst-result-count{color:#4A5C6A!important;font-weight:700;font-size:.86rem;margin:0 0 15px!important}
+body[data-study-tool-page=lab] .dlst-library-progress{display:block!important;background:#F1E3D0;border:1px solid #E9DDD0;color:var(--bw-midnight)!important;border-radius:11px;padding:13px 16px;margin:0 0 15px!important;font-weight:700;font-size:.91rem}
+body[data-study-tool-page=lab] .lab-controls.dlst-library-filters{display:grid!important;grid-template-columns:minmax(0,2.3fr) minmax(135px,1fr) minmax(135px,1fr) auto;gap:10px;align-items:center;background:#FFFFFF!important;border:1px solid #E8E1D8!important;box-shadow:0 10px 25px rgba(2,48,72,.045);border-radius:16px!important;padding:15px!important;margin:0 0 10px!important}
+body[data-study-tool-page=lab] .lab-controls :is(input,select,button){width:100%!important;min-width:0!important;min-height:47px!important;background:var(--bw-ivory)!important;border:1px solid #E9DDD0!important;border-radius:11px!important;color:var(--bw-midnight)!important;font-size:.9rem!important;padding:10px 12px!important;box-shadow:none!important}
+body[data-study-tool-page=lab] .lab-controls button{background:var(--bw-midnight)!important;color:#FFFFFF!important;font-weight:800!important}
+body[data-study-tool-page=lab] .dlst-result-count{color:#675D58!important;font-weight:700;font-size:.86rem;margin:0 0 15px!important}
 body[data-study-tool-page=lab] #labCards.lab-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:16px!important;margin:0!important;padding:0!important;align-items:stretch}
-body[data-study-tool-page=lab] .lab-card{background:#FFFFFF!important;border:1px solid #DCE5E7!important;border-radius:18px!important;padding:20px!important;min-width:0!important;box-shadow:0 9px 22px rgba(37,55,69,.045)!important;overflow-wrap:anywhere!important}
-body[data-study-tool-page=lab] .lab-card h3{color:#253745!important;font-size:1.08rem!important;line-height:1.45!important}
-body[data-study-tool-page=lab] .lab-card :is(.lab-muted,p){color:#4A5C6A!important;line-height:1.62!important}
-body[data-study-tool-page=lab] .lab-card details{border:1px solid #DCE5E7!important;background:#FBFBF8!important;border-radius:12px!important;padding:12px!important}
-body[data-study-tool-page=lab] .lab-card summary{color:#304F66!important;font-weight:800!important;cursor:pointer}
+body[data-study-tool-page=lab] .lab-card{background:#FFFFFF!important;border:1px solid #E8E1D8!important;border-radius:18px!important;padding:20px!important;min-width:0!important;box-shadow:0 9px 22px rgba(2,48,72,.045)!important;overflow-wrap:anywhere!important}
+body[data-study-tool-page=lab] .lab-card h3{color:var(--bw-midnight)!important;font-size:1.08rem!important;line-height:1.45!important}
+body[data-study-tool-page=lab] .lab-card :is(.lab-muted,p){color:#675D58!important;line-height:1.62!important}
+body[data-study-tool-page=lab] .lab-card details{border:1px solid #E8E1D8!important;background:var(--bw-ivory)!important;border-radius:12px!important;padding:12px!important}
+body[data-study-tool-page=lab] .lab-card summary{color:var(--bw-midnight)!important;font-weight:800!important;cursor:pointer}
 body[data-study-tool-page=lab] .lab-card .lab-actions{display:flex!important;gap:7px!important;flex-wrap:wrap!important}
 body[data-study-tool-page=lab] .lab-card button{border-radius:9px!important;min-height:40px!important;font-size:.81rem!important}
 /* Studio: one hero, one skill picker and one active exercise. */
 body[data-study-tool-page=studio] main.ps-main.dlst-main{width:min(1350px,calc(100% - 48px))!important}
-body[data-study-tool-page=studio] .dlst-helper-strip{display:flex;align-items:center;gap:14px;justify-content:space-between;background:#F4F8E9;border:1px solid #D6E8F5;border-radius:14px;padding:15px 20px;margin:0 0 25px!important;color:#235A83}
-body[data-study-tool-page=studio] .dlst-helper-strip strong{color:#304F66}
-body[data-study-tool-page=studio] .dlst-helper-strip a{font-weight:800;color:#235A83!important}
+body[data-study-tool-page=studio] .dlst-helper-strip{display:flex;align-items:center;gap:14px;justify-content:space-between;background:#F8EFE4;border:1px solid #E9DDD0;border-radius:14px;padding:15px 20px;margin:0 0 25px!important;color:var(--bw-midnight)}
+body[data-study-tool-page=studio] .dlst-helper-strip strong{color:var(--bw-midnight)}
+body[data-study-tool-page=studio] .dlst-helper-strip a{font-weight:800;color:var(--bw-midnight)!important}
 body[data-study-tool-page=studio] #ps-course-nav{display:flex!important;gap:10px!important;flex-wrap:wrap!important;margin:0 0 20px!important;max-width:100%}
 body[data-study-tool-page=studio] #ps-course-nav button{border-radius:12px!important;min-height:44px!important;font-weight:800!important}
 body[data-study-tool-page=studio] #ps-workspace.ps-layout{display:grid!important;grid-template-columns:minmax(265px,330px) minmax(0,1fr)!important;gap:20px!important;align-items:start!important;margin:0!important;max-width:100%!important}
-body[data-study-tool-page=studio] #ps-rail.ps-rail{position:sticky!important;top:88px!important;max-height:calc(100dvh - 104px)!important;min-height:0!important;overflow:auto!important;overscroll-behavior:contain;background:#FFFFFF!important;border:1px solid #DCE5E7!important;border-radius:18px!important;box-shadow:0 8px 26px rgba(37,55,69,.05)!important;padding:16px!important}
-body[data-study-tool-page=studio] .ps-focus{min-width:0!important;width:100%!important;max-width:100%!important;border:1px solid #DCE5E7!important;border-radius:20px!important;background:#FFFFFF!important;padding:clamp(16px,2.6vw,28px)!important;box-shadow:0 12px 30px rgba(37,55,69,.045)!important;overflow:visible!important}
+body[data-study-tool-page=studio] #ps-rail.ps-rail{position:sticky!important;top:88px!important;max-height:calc(100dvh - 104px)!important;min-height:0!important;overflow:auto!important;overscroll-behavior:contain;background:#FFFFFF!important;border:1px solid #E8E1D8!important;border-radius:18px!important;box-shadow:0 8px 26px rgba(2,48,72,.05)!important;padding:16px!important}
+body[data-study-tool-page=studio] .ps-focus{min-width:0!important;width:100%!important;max-width:100%!important;border:1px solid #E8E1D8!important;border-radius:20px!important;background:#FFFFFF!important;padding:clamp(16px,2.6vw,28px)!important;box-shadow:0 12px 30px rgba(2,48,72,.045)!important;overflow:visible!important}
 body[data-study-tool-page=studio] .ps-focus :is(p,small,span){overflow-wrap:anywhere}
-body[data-study-tool-page=studio] .ps-focus :is(.ps-example,.ps-task){background:#F3F8FC!important;border:1px solid #DCE5E7!important;border-radius:14px!important;padding:18px!important}
-body[data-study-tool-page=studio] .ps-focus textarea{width:100%!important;min-width:0!important;max-width:100%!important;border-radius:12px!important;border:1px solid #CCD0CF!important;background:#FFFFFF!important;color:#253745!important;padding:14px!important;line-height:1.55}
+body[data-study-tool-page=studio] .ps-focus :is(.ps-example,.ps-task){background:#F7F3EA!important;border:1px solid #E8E1D8!important;border-radius:14px!important;padding:18px!important}
+body[data-study-tool-page=studio] .ps-focus textarea{width:100%!important;min-width:0!important;max-width:100%!important;border-radius:12px!important;border:1px solid #E2DCD3!important;background:#FFFFFF!important;color:var(--bw-midnight)!important;padding:14px!important;line-height:1.55}
 body[data-study-tool-page=studio] .ps-task-actions{display:flex!important;gap:9px!important;flex-wrap:wrap}
 body[data-study-tool-page=studio] .ps-task-actions button{min-height:44px!important;border-radius:11px!important}
-body[data-study-tool-page=studio] .ps-search-label,body[data-study-tool-page=studio] .ps-filter-label{color:#235A83!important}
-body[data-study-tool-page=studio] .ps-rail :is(input,select){width:100%!important;min-height:43px!important;background:#FFFFFF!important;border:1px solid #DCE5E7!important;border-radius:10px!important;color:#304F66!important}
+body[data-study-tool-page=studio] .ps-search-label,body[data-study-tool-page=studio] .ps-filter-label{color:var(--bw-midnight)!important}
+body[data-study-tool-page=studio] .ps-rail :is(input,select){width:100%!important;min-height:43px!important;background:#FFFFFF!important;border:1px solid #E8E1D8!important;border-radius:10px!important;color:var(--bw-midnight)!important}
 body[data-study-tool-page=studio] .ps-more{margin:26px 0!important;border-radius:19px!important}
 /* Reference: beautiful compact filters and responsive reference example cards. */
 body[data-study-tool-page=reference] .dlst-reference-main{margin:0!important;width:100%!important;max-width:none!important;padding:0!important}
-body[data-study-tool-page=reference] .dlst-reference-search{border:1px solid #DCE5E7!important;background:#FFFFFF!important;border-radius:19px!important;padding:22px!important;box-shadow:0 10px 30px rgba(37,55,69,.05)!important;margin:0 0 25px!important;width:100%!important}
-body[data-study-tool-page=reference] .reference-search-label{display:block;color:#304F66!important;font-weight:800!important;margin:0 0 12px!important}
+body[data-study-tool-page=reference] .dlst-reference-search{border:1px solid #E8E1D8!important;background:#FFFFFF!important;border-radius:19px!important;padding:22px!important;box-shadow:0 10px 30px rgba(2,48,72,.05)!important;margin:0 0 25px!important;width:100%!important}
+body[data-study-tool-page=reference] .reference-search-label{display:block;color:var(--bw-midnight)!important;font-weight:800!important;margin:0 0 12px!important}
 body[data-study-tool-page=reference] .search-row{display:grid!important;grid-template-columns:minmax(0,2.3fr) minmax(130px,.8fr) minmax(130px,.8fr) auto auto!important;gap:10px!important;align-items:center}
-body[data-study-tool-page=reference] .search-row>*{min-width:0!important;width:100%!important;max-width:100%!important;min-height:46px!important;border-radius:11px!important;border:1px solid #D6E8F5!important;padding:10px 12px!important;white-space:normal}
-body[data-study-tool-page=reference] .search-row input,body[data-study-tool-page=reference] .search-row select{background:#FBFBF8!important;color:#253745!important}
-body[data-study-tool-page=reference] .search-row :is(button,#clearSearch){background:#235A83!important;color:#FFFFFF!important;font-weight:800!important}
-body[data-study-tool-page=reference] .search-hint{color:#4A5C6A!important;font-size:.88rem!important;line-height:1.6!important}
+body[data-study-tool-page=reference] .search-row>*{min-width:0!important;width:100%!important;max-width:100%!important;min-height:46px!important;border-radius:11px!important;border:1px solid #E9DDD0!important;padding:10px 12px!important;white-space:normal}
+body[data-study-tool-page=reference] .search-row input,body[data-study-tool-page=reference] .search-row select{background:var(--bw-ivory)!important;color:var(--bw-midnight)!important}
+body[data-study-tool-page=reference] .search-row :is(button,#clearSearch){background:var(--bw-midnight)!important;color:#FFFFFF!important;font-weight:800!important}
+body[data-study-tool-page=reference] .search-hint{color:#675D58!important;font-size:.88rem!important;line-height:1.6!important}
 body[data-study-tool-page=reference] .topic-cloud{display:flex;gap:9px;flex-wrap:wrap;margin-top:17px!important}
-body[data-study-tool-page=reference] .topic-cloud button{min-height:35px!important;border-radius:999px!important;padding:7px 13px!important;background:#F3F8FC!important;border:1px solid #DCE5E7!important;color:#235A83!important}
+body[data-study-tool-page=reference] .topic-cloud button{min-height:35px!important;border-radius:999px!important;padding:7px 13px!important;background:#F7F3EA!important;border:1px solid #E8E1D8!important;color:var(--bw-midnight)!important}
 body[data-study-tool-page=reference] .result-head{margin:14px 0 16px!important}
 body[data-study-tool-page=reference] #referenceResults.ref-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:17px!important;margin:0!important}
-body[data-study-tool-page=reference] .ref-card{border-radius:18px!important;border:1px solid #DCE5E7!important;background:#FFFFFF!important;box-shadow:0 9px 23px rgba(37,55,69,.06)!important;min-width:0!important;padding:20px!important;overflow-wrap:anywhere}
-body[data-study-tool-page=reference] .ref-card h3{color:#253745!important}
-body[data-study-tool-page=reference] .ref-card p{color:#4A5C6A!important}
-body[data-study-tool-page=reference] .ref-card .snippet{max-width:100%!important;overflow:auto!important;background:#253745!important;color:#F3F8FC!important;border-radius:12px!important;padding:14px!important;white-space:pre-wrap!important;overflow-wrap:anywhere}
-body[data-study-tool-page=reference] .ref-card .note{background:#FBFBF8!important;color:#253745!important;border-radius:10px!important;border:1px solid #DCEBAE!important;padding:12px!important}
+body[data-study-tool-page=reference] .ref-card{border-radius:18px!important;border:1px solid #E8E1D8!important;background:#FFFFFF!important;box-shadow:0 9px 23px rgba(2,48,72,.06)!important;min-width:0!important;padding:20px!important;overflow-wrap:anywhere}
+body[data-study-tool-page=reference] .ref-card h3{color:var(--bw-midnight)!important}
+body[data-study-tool-page=reference] .ref-card p{color:#675D58!important}
+body[data-study-tool-page=reference] .ref-card .snippet{max-width:100%!important;overflow:auto!important;background:var(--bw-midnight)!important;color:#F7F3EA!important;border-radius:12px!important;padding:14px!important;white-space:pre-wrap!important;overflow-wrap:anywhere}
+body[data-study-tool-page=reference] .ref-card .note{background:var(--bw-ivory)!important;color:var(--bw-midnight)!important;border-radius:10px!important;border:1px solid #EAD7C0!important;padding:12px!important}
 body[data-study-tool-page=reference] .ref-card .ref-actions{display:flex;flex-wrap:wrap;gap:10px}
 body[data-study-tool-page=reference] .ref-card :is(.copy-btn,.ref-bookmark){min-height:36px!important;border-radius:9px!important}
 body[data-study-tool-page=reference] .lead-band{margin:28px 0 0!important;border-radius:20px!important;overflow:hidden}
 /* Capstone: privacy notice becomes unobtrusive and readable, not a secondary banner over the header. */
-body.dlst-capstone-refresh .cap-disclaimer.dlst-privacy-note{background:#F4F8E9!important;color:#304F66!important;border:1px solid #DCE5E7!important;border-left:4px solid #4D92C5!important;border-radius:11px!important;padding:13px 16px!important;margin:16px 0 0!important;font-size:.9rem!important;line-height:1.6!important;box-shadow:none!important;text-align:left!important}
-body.dlst-capstone-refresh .cap-disclaimer.dlst-privacy-note strong{color:#304F66!important}
+body.dlst-capstone-refresh .cap-disclaimer.dlst-privacy-note{background:#F8EFE4!important;color:var(--bw-midnight)!important;border:1px solid #E8E1D8!important;border-left:4px solid var(--bw-copper)!important;border-radius:11px!important;padding:13px 16px!important;margin:16px 0 0!important;font-size:.9rem!important;line-height:1.6!important;box-shadow:none!important;text-align:left!important}
+body.dlst-capstone-refresh .cap-disclaimer.dlst-privacy-note strong{color:var(--bw-midnight)!important}
 /* Keep each page bounded and accessible at every breakpoint. */
 @media(max-width:1100px){
  body[data-study-tool-page=lab] #labCards.lab-grid,body[data-study-tool-page=reference] #referenceResults.ref-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
@@ -154,11 +154,11 @@ body.dlst-capstone-refresh .cap-disclaimer.dlst-privacy-note strong{color:#304F6
    bookmarked filter ink text against its new navy background. */
 body[data-study-tool-page=reference] .search-row button#savedFilter,
 body[data-study-tool-page=reference] .search-row button#clearSearch{
-  color:#FFFFFF!important;background:#235A83!important;border-color:#235A83!important;
+  color:#FFFFFF!important;background:var(--bw-midnight)!important;border-color:var(--bw-midnight)!important;
   text-shadow:none!important;opacity:1!important;
 }
 body[data-study-tool-page=reference] .search-row button#savedFilter[aria-pressed="true"]{
-  color:#253745!important;background:#EAF3D2!important;border-color:#9BB765!important;
+  color:var(--bw-midnight)!important;background:#F1E3D0!important;border-color:var(--bw-copper)!important;
 }
 
 /* 2026-11-10 · Practice Studio compact subject controls / untrapped skills panel.
@@ -186,10 +186,10 @@ body.ps-page[data-study-tool-page="studio"] #ps-course-nav .ps-course-pill{
   padding:10px 13px!important;
   text-decoration:none!important;
   border-radius:13px!important;
-  border:1px solid #DCE5E7!important;
-  color:#304F66!important;
-  background:linear-gradient(132deg,#FFFFFF,#FBFBF8)!important;
-  box-shadow:0 5px 17px rgba(37,55,69,.055)!important;
+  border:1px solid #E8E1D8!important;
+  color:var(--bw-midnight)!important;
+  background:linear-gradient(132deg,#FFFFFF,var(--bw-ivory))!important;
+  box-shadow:0 5px 17px rgba(2,48,72,.055)!important;
   transition:background .18s ease,border-color .18s ease,box-shadow .18s ease,transform .18s ease!important;
   scroll-snap-align:start;
 }
@@ -198,16 +198,16 @@ body.ps-page[data-study-tool-page="studio"] #ps-course-nav .ps-course-pill .ps-c
   width:35px!important;height:35px!important;min-width:35px!important;
   flex:0 0 35px!important;
   border-radius:10px!important;
-  color:#304F66!important;
-  background:linear-gradient(145deg,#EAF3D2,#D6E8F5)!important;
-  border:1px solid #D6E8F5!important;
+  color:var(--bw-midnight)!important;
+  background:linear-gradient(145deg,#F1E3D0,#E9DDD0)!important;
+  border:1px solid #E9DDD0!important;
   font-size:1.15rem!important;
   line-height:1!important;
 }
 body.ps-page[data-study-tool-page="studio"] #ps-course-nav .ps-course-pill span:last-child{
   min-width:0!important;
   font-weight:850!important;
-  color:#304F66!important;
+  color:var(--bw-midnight)!important;
   font-size:.88rem!important;
   letter-spacing:-.012em!important;
   line-height:1.3!important;
@@ -215,31 +215,31 @@ body.ps-page[data-study-tool-page="studio"] #ps-course-nav .ps-course-pill span:
 body.ps-page[data-study-tool-page="studio"] #ps-course-nav .ps-course-pill small{
   display:block!important;
   margin-top:3px!important;
-  color:#4A5C6A!important;
+  color:#675D58!important;
   font-size:.69rem!important;
   font-weight:650!important;
   line-height:1.25!important;
 }
 body.ps-page[data-study-tool-page="studio"] #ps-course-nav .ps-course-pill:hover{
   transform:translateY(-2px)!important;
-  border-color:#9BA8AB!important;
-  box-shadow:0 10px 23px rgba(48,79,102,.11)!important;
+  border-color:#AFA39A!important;
+  box-shadow:0 10px 23px rgba(2,48,72,.11)!important;
 }
 body.ps-page[data-study-tool-page="studio"] #ps-course-nav .ps-course-pill.is-active{
-  background:linear-gradient(128deg,#304F66,#253745)!important;
+  background:linear-gradient(128deg,var(--bw-midnight),var(--bw-midnight))!important;
   color:#FFFFFF!important;
-  border-color:#304F66!important;
-  box-shadow:0 9px 23px rgba(48,79,102,.22)!important;
+  border-color:var(--bw-midnight)!important;
+  box-shadow:0 9px 23px rgba(2,48,72,.22)!important;
 }
 body.ps-page[data-study-tool-page="studio"] #ps-course-nav .ps-course-pill.is-active :is(span:last-child,small){color:#FFFFFF!important;}
-body.ps-page[data-study-tool-page="studio"] #ps-course-nav .ps-course-pill.is-active small{color:#D6E8F5!important;}
+body.ps-page[data-study-tool-page="studio"] #ps-course-nav .ps-course-pill.is-active small{color:#E9DDD0!important;}
 body.ps-page[data-study-tool-page="studio"] #ps-course-nav .ps-course-pill.is-active .ps-course-icon{
-  background:linear-gradient(135deg,#DCEBAE,#9BB765)!important;
-  color:#253745!important;
-  border-color:#C5E384!important;
+  background:linear-gradient(135deg,#EAD7C0,var(--bw-copper))!important;
+  color:var(--bw-midnight)!important;
+  border-color:var(--bw-sand)!important;
 }
 body.ps-page[data-study-tool-page="studio"] #ps-course-nav .ps-course-pill:focus-visible{
-  outline:3px solid #9BB765!important;
+  outline:3px solid var(--bw-copper)!important;
   outline-offset:3px!important;
 }
 /* Skills sidebar: all skills participate in the document scroll; there is no
@@ -275,10 +275,10 @@ body.ps-page[data-study-tool-page="studio"] #ps-rail .ps-skill{
   background:transparent!important;
   transition:background .15s ease,border-color .15s ease!important;
 }
-body.ps-page[data-study-tool-page="studio"] #ps-rail .ps-skill:hover{background:#F4F8E9!important;border-color:#D6E8F5!important;}
+body.ps-page[data-study-tool-page="studio"] #ps-rail .ps-skill:hover{background:#F8EFE4!important;border-color:#E9DDD0!important;}
 body.ps-page[data-study-tool-page="studio"] #ps-rail .ps-skill.is-active{
-  border-color:#A8CBE8!important;
-  background:linear-gradient(110deg,#EAF3FA,#F3F8FC)!important;
+  border-color:var(--bw-sand)!important;
+  background:linear-gradient(110deg,#F6F0E8,#F7F3EA)!important;
 }
 body.ps-page[data-study-tool-page="studio"] #ps-rail .ps-skill-copy small{
   white-space:normal!important;
@@ -328,44 +328,44 @@ body[data-study-tool-page="lab"] .lab-pagination{
   row-gap:12px;
   margin:22px 0 8px!important;
   padding:17px 20px!important;
-  border:1px solid #DCE5E7!important;
+  border:1px solid #E8E1D8!important;
   border-radius:17px!important;
-  background:linear-gradient(140deg,#FFFFFF,#F3F8FC)!important;
-  box-shadow:0 8px 24px rgba(37,55,69,.055)!important;
+  background:linear-gradient(140deg,#FFFFFF,#F7F3EA)!important;
+  box-shadow:0 8px 24px rgba(2,48,72,.055)!important;
 }
 body[data-study-tool-page="lab"] .lab-pagination :is(button,span){font:inherit;}
 body[data-study-tool-page="lab"] .lab-page-step{
   cursor:pointer;min-width:112px;min-height:44px;
-  border:1px solid #A8CBE8!important;border-radius:10px!important;
-  padding:10px 15px!important;background:#FFFFFF!important;color:#304F66!important;
+  border:1px solid var(--bw-sand)!important;border-radius:10px!important;
+  padding:10px 15px!important;background:#FFFFFF!important;color:var(--bw-midnight)!important;
   font-size:.86rem!important;font-weight:800!important;
 }
-body[data-study-tool-page="lab"] .lab-page-step:not(:disabled):hover{border-color:#397BAE!important;background:#EAF3D2!important;}
+body[data-study-tool-page="lab"] .lab-page-step:not(:disabled):hover{border-color:var(--bw-burgundy)!important;background:#F1E3D0!important;}
 body[data-study-tool-page="lab"] .lab-page-step:disabled{cursor:not-allowed;opacity:.52!important;}
 body[data-study-tool-page="lab"] .lab-page-numbers{display:flex;gap:6px;justify-content:center;align-items:center;flex-wrap:wrap;min-width:0;}
 body[data-study-tool-page="lab"] .lab-page-number{
   display:grid;place-items:center;min-height:38px;min-width:38px;
-  background:#FFFFFF!important;border:1px solid #DCE5E7!important;
-  border-radius:9px!important;color:#235A83!important;
+  background:#FFFFFF!important;border:1px solid #E8E1D8!important;
+  border-radius:9px!important;color:var(--bw-midnight)!important;
   font-size:.83rem!important;font-weight:800!important;cursor:pointer;
 }
 body[data-study-tool-page="lab"] .lab-page-number[aria-current=page]{
-  background:#304F66!important;color:#FFFFFF!important;border-color:#304F66!important;
-  box-shadow:0 5px 15px rgba(48,79,102,.2)!important;
+  background:var(--bw-midnight)!important;color:#FFFFFF!important;border-color:var(--bw-midnight)!important;
+  box-shadow:0 5px 15px rgba(2,48,72,.2)!important;
 }
-body[data-study-tool-page="lab"] .lab-page-number:not([aria-current=page]):hover{background:#EAF3D2!important;}
-body[data-study-tool-page="lab"] .lab-pagination-ellipsis{color:#4A5C6A;padding:0 2px;}
+body[data-study-tool-page="lab"] .lab-page-number:not([aria-current=page]):hover{background:#F1E3D0!important;}
+body[data-study-tool-page="lab"] .lab-pagination-ellipsis{color:#675D58;padding:0 2px;}
 body[data-study-tool-page="lab"] .lab-page-summary{
   grid-column:1/-1;text-align:center;
-  font-size:.78rem;color:#4A5C6A;font-weight:700;
+  font-size:.78rem;color:#675D58;font-weight:700;
 }
 body[data-study-tool-page="lab"] .lab-empty-state{
   grid-column:1/-1;padding:30px!important;border-radius:14px;
-  border:1px dashed #A8CBE8!important;background:#FBFBF8!important;
-  color:#235A83!important;text-align:center;
+  border:1px dashed var(--bw-sand)!important;background:var(--bw-ivory)!important;
+  color:var(--bw-midnight)!important;text-align:center;
 }
 body[data-study-tool-page="lab"] .dlst-result-count{scroll-margin-top:105px;}
-body[data-study-tool-page="lab"] .lab-pagination button:focus-visible{outline:3px solid #9BB765!important;outline-offset:3px!important;}
+body[data-study-tool-page="lab"] .lab-pagination button:focus-visible{outline:3px solid var(--bw-copper)!important;outline-offset:3px!important;}
 @media(max-width:600px){
   body[data-study-tool-page="lab"] .lab-pagination{column-gap:7px;padding:14px 10px!important;}
   body[data-study-tool-page="lab"] .lab-page-step{min-width:81px;padding:9px 9px!important;font-size:.79rem!important;}
@@ -387,10 +387,10 @@ body.ps-page[data-study-tool-page="studio"] .dlst-helper-strip{
   padding:2px 0!important;margin:3px 0 19px!important;
   gap:9px 16px!important;min-height:0!important;
 }
-body.ps-page[data-study-tool-page="studio"] .dlst-helper-strip strong{font-weight:850!important;color:#304F66!important;}
+body.ps-page[data-study-tool-page="studio"] .dlst-helper-strip strong{font-weight:850!important;color:var(--bw-midnight)!important;}
 body.ps-page[data-study-tool-page="studio"] .dlst-helper-strip span{font-size:.87rem!important;}
 body.ps-page[data-study-tool-page="studio"] .dlst-helper-strip a{
-  margin-inline-start:auto;color:#235A83!important;font-size:.84rem!important;
+  margin-inline-start:auto;color:var(--bw-midnight)!important;font-size:.84rem!important;
   text-decoration:underline;text-underline-offset:3px;
 }
 @media(max-width:760px){

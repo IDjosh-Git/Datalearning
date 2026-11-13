@@ -10,8 +10,8 @@ for(const page of pages){
  assert.equal((html.match(/palette-premium-20261113\.css/g)||[]).length,1,`${page}: exactly one canonical palette`);
  assert(!/#(?:F27329|254559|203F58|35637C|F9F7F6)(?![0-9a-f])/i.test(html),`${page}: retired brand color`);
 }
-for(const token of ['#06141B','#11212D','#253745','#4A5C6A','#9BA8AB','#CCD0CF','#FBFBF8','#6AA6DA','#C5E384'])assert(theme.includes(token),`missing ${token}`);
-assert(loader.includes('rgba(6,20,27,.27)')&&loader.includes('rgba(37,55,69,.22)'),'transparent overlay around 75%');
+for(const token of ['#0B0909','#023048','#023048','#675D58','#AFA39A','#E2DCD3','#F0EDDE','#C58A69','#D9BFA4'])assert(theme.includes(token),`missing ${token}`);
+assert(loader.includes('rgba(11,9,9,.27)')&&loader.includes('rgba(2,48,72,.22)'),'transparent overlay around 75%');
 assert(loader.includes('backdrop-filter:blur(14px)'),'glass loader blur');
 assert(loader.includes('prefers-reduced-motion:reduce'),'reduced motion retained');
 console.log('PASS premium unified palette across 38 pages, transparent gradient loader, accessibility');

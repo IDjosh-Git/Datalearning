@@ -4,49 +4,49 @@
    authenticated hero gradients, focus states and surface contrast.
    It deliberately does not change component sizing, data behavior or access rules. */
 :root,html,html[data-theme="light"],html[data-theme-mode="light"]{
- --dl-color-ink:#06141B;--dl-color-navy:#11212D;--dl-color-slate:#253745;
- --dl-color-steel:#4A5C6A;--dl-color-silver:#9BA8AB;--dl-color-mist:#CCD0CF;
- --dl-color-canvas:#FBFBF8;--dl-color-blue:#6AA6DA;--dl-color-pear:#C5E384;
- --dl-gradient-premium:linear-gradient(120deg,#06141B 0%,#11212D 48%,#253745 100%);
- --dl-gradient-hero:linear-gradient(115deg,#06141B 0%,#11212D 44%,#304F66 82%,#397BAE 130%);
- --dl-gradient-header:linear-gradient(110deg,#06141B 0%,#11212D 55%,#253745 100%);
- --dl-gradient-accent:linear-gradient(95deg,#6AA6DA,#C5E384);
- --dl-surface:#FFFFFF;--dl-surface-soft:#F3F8FC;--dl-border:#DCE5E7;
- --dl-ink:#11212D;--dl-muted:#4A5C6A;--dl-on-dark:#FFFFFF;
- --dl-focus:#397BAE;--dl-shadow:0 15px 38px rgba(6,20,27,.12);
- --ui-canvas:#FBFBF8;--ui-paper:#FFFFFF;--ui-ink:#11212D;--ui-strong:#06141B;
- --ui-muted:#4A5C6A;--ui-stroke:#DCE5E7;--ui-stroke-strong:#9BA8AB;
- --ui-control-stroke:#9BA8AB;--ui-primary:#253745;--ui-primary-hover:#11212D;
- --ui-primary-strong:#11212D;--ui-primary-soft:#EAF0F3;
- --ui-accent:#235A83;--ui-accent-hover:#11212D;--ui-accent-soft:#EAF3FA;
- --ui-accent-border:#A8CBE8;--ui-coral:#6AA6DA;--ui-focus:#397BAE;
- --ui-night:#06141B;--ui-nav-ink:#11212D;--ui-nav-accent:#6AA6DA;
- --ui-surface-soft:#F3F8FC;--primary:#253745;--primary-hover:#11212D;
- --brand:#11212D;--app-bg:#FBFBF8;--app-surface:#FFFFFF;
- --app-surface-2:#F3F8FC;--app-brand:#253745;--app-brand-strong:#11212D;
- --app-brand-soft:#EAF0F3;--za-navy:#11212D;--za-ink:#253745;
- --za-blue:#4A5C6A;--za-accent:#6AA6DA;--dal-sidebar-navy:#11212D;
- --dal-sidebar-deep:#06141B;--dal-sidebar-orange:#C5E384;
- --experience-brand:#253745;--experience-wash:#FBFBF8;
- --experience-glow:#EAF3FA;--experience-accent:#6AA6DA;
- --pm-primary:#253745;--pm-primary-dark:#11212D;
- --dlu-navy:#253745;--dlu-deep:#11212D;--dlu-ink:#11212D;
- --dlu-soft:#F3F8FC;--dlu-peach:#6AA6DA;--dlu-border:#DCE5E7;
- --admin-surface:#FFFFFF;--admin-ink:#11212D;--admin-muted:#4A5C6A;
- --admin-line:#DCE5E7;--ac-canvas:#FBFBF8;--ac-panel:#FFFFFF;
- --ac-text:#11212D;--ac-muted:#4A5C6A;--ac-stroke:#DCE5E7;
- --px-ink:#11212D;--px-muted:#4A5C6A;--px-line:#DCE5E7;
- --px-canvas:#FBFBF8;--px-orange:#6AA6DA;--px-teal:#397BAE;
+ --dl-color-ink:#0B0909;--dl-color-navy:#023048;--dl-color-slate:#023048;
+ --dl-color-steel:#675D58;--dl-color-silver:#AFA39A;--dl-color-mist:#E2DCD3;
+ --dl-color-canvas:#F0EDDE;--dl-color-blue:#C58A69;--dl-color-pear:#D9BFA4;
+ --dl-gradient-premium:linear-gradient(120deg,#0B0909 0%,#023048 48%,#023048 100%);
+ --dl-gradient-hero:linear-gradient(115deg,#0B0909 0%,#023048 44%,#023048 82%,#770101 130%);
+ --dl-gradient-header:linear-gradient(110deg,#0B0909 0%,#023048 55%,#023048 100%);
+ --dl-gradient-accent:linear-gradient(95deg,#C58A69,#D9BFA4);
+ --dl-surface:#FFFFFF;--dl-surface-soft:#F7F3EA;--dl-border:#E8E1D8;
+ --dl-ink:#023048;--dl-muted:#675D58;--dl-on-dark:#FFFFFF;
+ --dl-focus:#770101;--dl-shadow:0 15px 38px rgba(11,9,9,.12);
+ --ui-canvas:#F0EDDE;--ui-paper:#FFFFFF;--ui-ink:#023048;--ui-strong:#0B0909;
+ --ui-muted:#675D58;--ui-stroke:#E8E1D8;--ui-stroke-strong:#AFA39A;
+ --ui-control-stroke:#AFA39A;--ui-primary:#023048;--ui-primary-hover:#023048;
+ --ui-primary-strong:#023048;--ui-primary-soft:#EEE7DD;
+ --ui-accent:#023048;--ui-accent-hover:#023048;--ui-accent-soft:#F6F0E8;
+ --ui-accent-border:#D9BFA4;--ui-coral:#C58A69;--ui-focus:#770101;
+ --ui-night:#0B0909;--ui-nav-ink:#023048;--ui-nav-accent:#C58A69;
+ --ui-surface-soft:#F7F3EA;--primary:#023048;--primary-hover:#023048;
+ --brand:#023048;--app-bg:#F0EDDE;--app-surface:#FFFFFF;
+ --app-surface-2:#F7F3EA;--app-brand:#023048;--app-brand-strong:#023048;
+ --app-brand-soft:#EEE7DD;--za-navy:#023048;--za-ink:#023048;
+ --za-blue:#675D58;--za-accent:#C58A69;--dal-sidebar-navy:#023048;
+ --dal-sidebar-deep:#0B0909;--dal-sidebar-orange:#D9BFA4;
+ --experience-brand:#023048;--experience-wash:#F0EDDE;
+ --experience-glow:#F6F0E8;--experience-accent:#C58A69;
+ --pm-primary:#023048;--pm-primary-dark:#023048;
+ --dlu-navy:#023048;--dlu-deep:#023048;--dlu-ink:#023048;
+ --dlu-soft:#F7F3EA;--dlu-peach:#C58A69;--dlu-border:#E8E1D8;
+ --admin-surface:#FFFFFF;--admin-ink:#023048;--admin-muted:#675D58;
+ --admin-line:#E8E1D8;--ac-canvas:#F0EDDE;--ac-panel:#FFFFFF;
+ --ac-text:#023048;--ac-muted:#675D58;--ac-stroke:#E8E1D8;
+ --px-ink:#023048;--px-muted:#675D58;--px-line:#E8E1D8;
+ --px-canvas:#F0EDDE;--px-orange:#C58A69;--px-teal:#770101;
  color-scheme:light;
 }
 html[data-theme="dark"],html[data-theme-mode="dark"]{
- --ui-canvas:#06141B;--ui-paper:#11212D;--ui-ink:#FBFBF8;
- --ui-strong:#FFFFFF;--ui-muted:#CCD0CF;--ui-stroke:#4A5C6A;
- --ui-stroke-strong:#9BA8AB;--ui-primary:#6AA6DA;
- --ui-primary-hover:#A8CBE8;--ui-primary-soft:#253745;
- --ui-accent:#C5E384;--ui-focus:#C5E384;
- --dl-surface:#11212D;--dl-surface-soft:#253745;
- --dl-ink:#FBFBF8;--dl-muted:#CCD0CF;--dl-border:#4A5C6A;
+ --ui-canvas:#0B0909;--ui-paper:#023048;--ui-ink:#F0EDDE;
+ --ui-strong:#FFFFFF;--ui-muted:#E2DCD3;--ui-stroke:#675D58;
+ --ui-stroke-strong:#AFA39A;--ui-primary:#C58A69;
+ --ui-primary-hover:#D9BFA4;--ui-primary-soft:#023048;
+ --ui-accent:#D9BFA4;--ui-focus:#D9BFA4;
+ --dl-surface:#023048;--dl-surface-soft:#023048;
+ --dl-ink:#F0EDDE;--dl-muted:#E2DCD3;--dl-border:#675D58;
  color-scheme:dark;
 }
 /* Calm canvas: remove full-page radial underlays; leave local card gradients intact. */
@@ -58,44 +58,44 @@ html[data-theme="light"] body.dlp-course-v29{
 html[data-theme="light"] body:where(.dalp-admin-page,.dalp-account-page,.profile-page,.dalp-utility-page) :is(.ac-page-area,.ac-main-frame,.dalp-admin-main,.mld-container,.profile-shell,.px-utility-main){background-image:none!important}
 /* Public navigation stays light and legible; the shared accent is consistent. */
 html[data-theme="light"] body .dlu-header{
- background:linear-gradient(100deg,#FBFBF8 0%,#FFFFFF 52%,#EAF3FA 100%)!important;
- border-bottom:1px solid #DCE5E7!important;
- box-shadow:0 8px 24px rgba(6,20,27,.07)!important;
+ background:linear-gradient(100deg,#F0EDDE 0%,#FFFFFF 52%,#F6F0E8 100%)!important;
+ border-bottom:1px solid #E8E1D8!important;
+ box-shadow:0 8px 24px rgba(11,9,9,.07)!important;
 }
-html[data-theme="light"] body .dlu-brand-name b{color:#235A83!important}
+html[data-theme="light"] body .dlu-brand-name b{color:#023048!important}
 html[data-theme="light"] body .dlu-primary-links a:hover,
-html[data-theme="light"] body .dlu-primary-links a[aria-current="page"]{background:#EAF3FA!important;color:#11212D!important}
+html[data-theme="light"] body .dlu-primary-links a[aria-current="page"]{background:#F6F0E8!important;color:#023048!important}
 html[data-theme="light"] body .dlu-primary-links a[aria-current="page"]::after{background:var(--dl-gradient-accent)!important}
 /* Premium authenticated sidebar: dark, but not covered by a page-wide overlay. */
 html[data-theme] body.ac-ready .ac-sidebar{
- background:linear-gradient(165deg,#06141B 0%,#11212D 58%,#253745 100%)!important;
- background-image:linear-gradient(165deg,#06141B 0%,#11212D 58%,#253745 100%)!important;
- border-right:1px solid rgba(204,208,207,.20)!important;
+ background:linear-gradient(165deg,#0B0909 0%,#023048 58%,#023048 100%)!important;
+ background-image:linear-gradient(165deg,#0B0909 0%,#023048 58%,#023048 100%)!important;
+ border-right:1px solid rgba(217,191,164,.20)!important;
 }
 html[data-theme] body.ac-ready .ac-side-nav a.ac-side-link:is(.ac-selected,[aria-current="page"]){
- background:rgba(106,166,218,.17)!important;
- border-color:rgba(106,166,218,.44)!important;
- border-left:3px solid #C5E384!important;color:#FFFFFF!important;
+ background:rgba(197,138,105,.17)!important;
+ border-color:rgba(197,138,105,.44)!important;
+ border-left:3px solid #D9BFA4!important;color:#FFFFFF!important;
  -webkit-text-fill-color:#FFFFFF!important;
 }
-html[data-theme] body.ac-ready .ac-side-nav a.ac-side-link:hover{background:rgba(106,166,218,.13)!important}
-html[data-theme] body.ac-ready .ac-side-account{background:rgba(255,255,255,.09)!important;border:1px solid rgba(204,208,207,.18)!important}
+html[data-theme] body.ac-ready .ac-side-nav a.ac-side-link:hover{background:rgba(197,138,105,.13)!important}
+html[data-theme] body.ac-ready .ac-side-account{background:rgba(255,255,255,.09)!important;border:1px solid rgba(217,191,164,.18)!important}
 /* Shared private topbar: gradient is visible even on the first authenticated paint. */
 html[data-theme] body.ac-ready .ac-topbar{
  background:var(--dl-gradient-header)!important;background-image:var(--dl-gradient-header)!important;
- border-bottom:1px solid rgba(204,208,207,.20)!important;
- box-shadow:0 6px 22px rgba(6,20,27,.13)!important;
+ border-bottom:1px solid rgba(217,191,164,.20)!important;
+ box-shadow:0 6px 22px rgba(11,9,9,.13)!important;
  color:#FFFFFF!important;
 }
 html[data-theme] body.ac-ready .ac-topbar :is(.ac-breadcrumb,.ac-breadcrumb-prefix,.ac-breadcrumb strong,.ac-secure){
- color:#EAF3FA!important;-webkit-text-fill-color:#EAF3FA!important;
+ color:#F6F0E8!important;-webkit-text-fill-color:#F6F0E8!important;
 }
 /* Administration navigation: no pale badge under pale lettering. The label
    and its single status dot sit on a restrained glass surface over the header. */
 html[data-theme] body.ac-ready .ac-topbar .ac-secure{
  align-items:center;gap:8px;
- background:rgba(6,20,27,.34)!important;background-image:none!important;
- border:1px solid rgba(204,208,207,.32)!important;
+ background:rgba(11,9,9,.34)!important;background-image:none!important;
+ border:1px solid rgba(217,191,164,.32)!important;
  border-radius:999px;padding:8px 12px;
  color:#FFFFFF!important;-webkit-text-fill-color:#FFFFFF!important;
  box-shadow:none!important;text-shadow:none!important;
@@ -104,23 +104,23 @@ html[data-theme] body.ac-ready .ac-topbar .ac-secure{
 html[data-theme] body.ac-ready .ac-topbar .ac-secure::before{content:none!important;display:none!important}
 html[data-theme] body.ac-ready .ac-topbar .ac-secure-dot{
  display:inline-block;flex:none;width:8px;height:8px;border-radius:50%;
- background:#C5E384!important;box-shadow:0 0 0 3px rgba(197,227,132,.18)!important;
+ background:#D9BFA4!important;box-shadow:0 0 0 3px rgba(217,191,164,.18)!important;
 }
 /* Administration pages use one neutral mist canvas, not a white page-sized
    underlay. White is reserved for content cards and editable controls. */
 html[data-theme="light"] body.ac-ready:is(.dalp-admin-page,[data-admin-console="reviews"],[data-admin-console="connection"],[data-admin-console="sync"]){
- background-color:#EAF0F3!important;background-image:none!important;
+ background-color:#EEE7DD!important;background-image:none!important;
 }
 html[data-theme="light"] body.ac-ready:is(.dalp-admin-page,[data-admin-console="reviews"],[data-admin-console="connection"],[data-admin-console="sync"]) :is(.ac-main-frame,.ac-page-area,.dalp-admin-main,.review-content,.px-utility-main){
  background:transparent!important;background-image:none!important;
 }
 html[data-theme] body.ac-ready .ac-topbar a.ac-topbar-link{
  color:#FFFFFF!important;-webkit-text-fill-color:#FFFFFF!important;
- background:rgba(255,255,255,.10)!important;border:1px solid rgba(204,208,207,.32)!important;
+ background:rgba(255,255,255,.10)!important;border:1px solid rgba(217,191,164,.32)!important;
 }
 html[data-theme] body.ac-ready .ac-topbar a.ac-topbar-link:hover{background:rgba(255,255,255,.18)!important}
 html[data-theme] body.ac-ready .ac-topbar :is(.ac-mobile-menu,.premium-search-trigger){
- border-color:#9BA8AB!important;
+ border-color:#AFA39A!important;
 }
 /* The same editorial header across all private workspaces, including certificate and diagnostics. */
 html[data-theme] body :is(
@@ -129,9 +129,9 @@ html[data-theme] body :is(
  #admin-courses .ac-courses-heading,.ac-roster>.ac-section-header
 ){
  background:var(--dl-gradient-hero)!important;background-image:var(--dl-gradient-hero)!important;
- color:#FFFFFF!important;border:1px solid rgba(204,208,207,.19)!important;
+ color:#FFFFFF!important;border:1px solid rgba(217,191,164,.19)!important;
  border-radius:clamp(17px,2vw,25px)!important;
- box-shadow:0 16px 38px rgba(6,20,27,.14)!important;
+ box-shadow:0 16px 38px rgba(11,9,9,.14)!important;
  isolation:isolate;max-width:100%;
 }
 /* Heading and description contrast: do not override light widgets inside heroes. */
@@ -141,35 +141,35 @@ html[data-theme] body :is(.profile-hero,.ip-hero,.review-hero,.px-utility-hero,.
 html[data-theme] body .account-overview.mld-hero .account-overview-content :is(h1,h2,p,.account-eyebrow,.account-identity,.account-intro,.account-studio-link){
  color:#FFFFFF!important;-webkit-text-fill-color:#FFFFFF!important;
 }
-html[data-theme] body .account-overview.mld-hero .account-overview-content a:not(.mld-btn){color:#D6E8F5!important;-webkit-text-fill-color:#D6E8F5!important}
-html[data-theme] body .account-overview.mld-hero .mld-hero-progress{background:rgba(6,20,27,.24)!important;border-color:rgba(204,208,207,.20)!important}
+html[data-theme] body .account-overview.mld-hero .account-overview-content a:not(.mld-btn){color:#E9DDD0!important;-webkit-text-fill-color:#E9DDD0!important}
+html[data-theme] body .account-overview.mld-hero .mld-hero-progress{background:rgba(11,9,9,.24)!important;border-color:rgba(217,191,164,.20)!important}
 html[data-theme] body .account-overview.mld-hero .mld-hero-progress :is(p,small,strong,span){color:#FFFFFF!important;-webkit-text-fill-color:#FFFFFF!important}
 html[data-theme] body :is(.profile-hero,.ip-hero,.review-hero,.px-utility-hero,.cert-view-header,.ac-welcome.ac-command-hero,#admin-courses .ac-courses-heading,.ac-roster>.ac-section-header) :is(.lp-eyebrow,.profile-hero-overline,.px-utility-overline,.px-cert-kicker,.ac-section-eyebrow){
- color:#C5E384!important;-webkit-text-fill-color:#C5E384!important;
+ color:#D9BFA4!important;-webkit-text-fill-color:#D9BFA4!important;
 }
 html[data-theme] body :is(.profile-hero,.ip-hero,.review-hero,.px-utility-hero,.cert-view-header,.ac-welcome.ac-command-hero,#admin-courses .ac-courses-heading,.ac-roster>.ac-section-header) a:not(.ac-hero-primary):not(.mld-btn){text-underline-offset:3px}
 /* Keep buttons on dark headers visibly interactive without losing contrast. */
 html[data-theme] body :is(.ac-welcome.ac-command-hero,#admin-courses .ac-courses-heading,.ac-roster>.ac-section-header,.review-hero,.ip-hero,.px-utility-hero,.cert-view-header) :is(.ac-hero-secondary,.ac-courses-hero-outline,.review-hero-secondary,.px-utility-hero-links a,.cert-back-link,.dalp-admin-tools button){
  background:rgba(255,255,255,.11)!important;color:#FFFFFF!important;
- -webkit-text-fill-color:#FFFFFF!important;border-color:rgba(204,208,207,.38)!important;
+ -webkit-text-fill-color:#FFFFFF!important;border-color:rgba(217,191,164,.38)!important;
 }
 /* Course headers and Tutor chat heading share the same restrained gradient. */
 html[data-theme] body :is(.chat-head.tutor-toolbar,.tutor-toolbar,.course-top){
  background:var(--dl-gradient-header)!important;background-image:var(--dl-gradient-header)!important;
- border-color:rgba(204,208,207,.20)!important;color:#FFFFFF!important;
+ border-color:rgba(217,191,164,.20)!important;color:#FFFFFF!important;
 }
 html[data-theme] body .chat-head.tutor-toolbar :is(h2,.tutor-toolbar-tag,.tutor-subtitle){color:#FFFFFF!important;-webkit-text-fill-color:#FFFFFF!important}
 /* Inputs, progress and actions consistently use the new palette. */
 html[data-theme="light"] body :is(.btn-primary,.button-primary,.primary-btn,.lp-btn-primary,.auth-submit,.primary-action){
- background:linear-gradient(110deg,#11212D,#253745)!important;
- background-image:linear-gradient(110deg,#11212D,#253745)!important;
- border-color:#253745!important;color:#FFFFFF!important;
+ background:linear-gradient(110deg,#023048,#023048)!important;
+ background-image:linear-gradient(110deg,#023048,#023048)!important;
+ border-color:#023048!important;color:#FFFFFF!important;
  -webkit-text-fill-color:#FFFFFF!important;
 }
-html[data-theme="light"] body :is(.btn-primary,.button-primary,.primary-btn,.lp-btn-primary,.auth-submit,.primary-action):hover{background:linear-gradient(110deg,#253745,#304F66)!important}
-html[data-theme="light"] body :is(.progress-fill,.progress-bar .fill,.track .fill){background:linear-gradient(90deg,#397BAE,#6AA6DA,#C5E384)!important}
-html[data-theme] body :is(input,textarea,select,a,button,[role="button"]):focus-visible{outline:3px solid #397BAE!important;outline-offset:2px!important}
-html[data-theme] body :is(.error,.field-error,[role="alert"]){color:#A3333A}
+html[data-theme="light"] body :is(.btn-primary,.button-primary,.primary-btn,.lp-btn-primary,.auth-submit,.primary-action):hover{background:linear-gradient(110deg,#023048,#023048)!important}
+html[data-theme="light"] body :is(.progress-fill,.progress-bar .fill,.track .fill){background:linear-gradient(90deg,#770101,#C58A69,#D9BFA4)!important}
+html[data-theme] body :is(input,textarea,select,a,button,[role="button"]):focus-visible{outline:3px solid #770101!important;outline-offset:2px!important}
+html[data-theme] body :is(.error,.field-error,[role="alert"]){color:#770101}
 /* Content should never expand the viewport to accommodate a gradient header. */
 html[data-theme] body :is(.ac-page-area,.profile-shell,.mld-container,.cert-view-wrap,.ip-content,.review-content,.px-utility-main){min-width:0;max-width:100%}
 @media(max-width:700px){
@@ -181,5 +181,5 @@ html[data-theme] body :is(.ac-page-area,.profile-shell,.mld-container,.cert-view
 html[data-theme] body[data-private-workspace="true"]::before,
 html[data-theme] body[data-private-workspace="true"]::after{content:none!important;display:none!important}
 html[data-theme="light"] body[data-private-workspace="true"].ac-ready{
- background:#FBFBF8!important;background-image:none!important;
+ background:#F0EDDE!important;background-image:none!important;
 }

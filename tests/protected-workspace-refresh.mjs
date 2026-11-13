@@ -21,9 +21,9 @@ assert(!shared.includes('.ac-mobile-tabs'),'Obsolete mobile navigation styling p
 for (const href of ['admin.html','admin.html#admin-courses','admin.html#admin-learners','reviewer.html']) {
  assert(nav.includes(href),`Admin navigation target ${href} missing`);
 }
-assert(shared.includes('background:#253745!important'),'Admin toolbar uses dark contrast colour');
-assert(shared.includes('background:#253745!important'),'Admin overview has a dark coloured hero');
-assert(shared.includes('.review-hero{background:#11212D!important'),'Review desk has distinct dark banner');
+assert(shared.includes('background:#023048!important'),'Admin toolbar uses dark contrast colour');
+assert(shared.includes('background:#023048!important'),'Admin overview has a dark coloured hero');
+assert(shared.includes('.review-hero{background:#023048!important'),'Review desk has distinct dark banner');
 assert(shared.includes('background:var(--ui-nav-ink)!important'),'Progress banner has dark slate treatment');
 for(const c of ['auth-entry-premium','progress','reviewer','certificate','private-utilities-premium']){
  assert(fs.statSync('assets/styles/'+c+'.css').size<45000,`${c} contains old oversized site-wide styling`);
@@ -47,5 +47,5 @@ assert(css.includes('@media(max-width:680px)'),'Learner account phone layout');
 assert(shared.includes('@media(max-width:760px)') && shared.includes('@media(max-width:1024px)'),'Admin mobile and tablet layout');
 function lum(hex){return [1,3,5].map(i=>parseInt(hex.slice(i,i+2),16)/255).map(c=>c<=.04045?c/12.92:((c+.055)/1.055)**2.4).reduce((a,v,i)=>a+v*[.2126,.7152,.0722][i],0)}
 function ratio(a,b){const [hi,lo]=[lum(a),lum(b)].sort((x,y)=>y-x);return (hi+.05)/(lo+.05)}
-for(const [fg,bg] of [['#F3F8FC','#253745'],['#D6E8F5','#253745'],['#FFFFFF','#253745'],['#304F66','#FFFFFF']])assert(ratio(fg,bg)>=4.5,`Protected colour contrast ${fg}/${bg}`);
+for(const [fg,bg] of [['#F7F3EA','#023048'],['#E9DDD0','#023048'],['#FFFFFF','#023048'],['#023048','#FFFFFF']])assert(ratio(fg,bg)>=4.5,`Protected colour contrast ${fg}/${bg}`);
 console.log('PASS protected workspace refresh: no duplicated mobile navigation, shared guard, five maintained route styles (unified premium diagnostics), distinct readable headers, responsive layouts and correct protected links');

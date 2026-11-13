@@ -22,14 +22,14 @@ function contrast(a, b) {
   return (values[0]+.05)/(values[1]+.05);
 }
 const pairs = {
-  'active output tab': ['#FFFFFF', '#253745'],
-  'inactive output tab': ['#304F66', '#FFFFFF'],
-  'hovered output tab': ['#253745', '#EAF3FA'],
-  'console diagnostics': ['#FBFBF8', '#253745'],
-  'selected challenge': ['#253745', '#F4F8E9'],
-  'selection badge': ['#FFFFFF', '#253745'],
-  'selected subject': ['#FFFFFF', '#253745'],
-  'challenge filter label': ['#304F66', '#FFFFFF'],
+  'active output tab': ['#FFFFFF', '#023048'],
+  'inactive output tab': ['#023048', '#FFFFFF'],
+  'hovered output tab': ['#023048', '#F6F0E8'],
+  'console diagnostics': ['#F0EDDE', '#023048'],
+  'selected challenge': ['#023048', '#F8EFE4'],
+  'selection badge': ['#FFFFFF', '#023048'],
+  'selected subject': ['#FFFFFF', '#023048'],
+  'challenge filter label': ['#023048', '#FFFFFF'],
 };
 for (const [label,[fg,bg]] of Object.entries(pairs)) {
   assert(contrast(fg,bg) >= 4.5, `${label} contrast must meet WCAG AA normal text`);

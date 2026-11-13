@@ -4,7 +4,7 @@ const css=readFileSync('assets/styles/admin-unified-premium.css','utf8');
 const page=readFileSync('admin.html','utf8');
 const old=css.match(/html\[data-theme\] body\.dalp-admin-page\.ac-ready \.ac-roster>\.ac-section-header\s*\{([^}]+)\}/g)||[];
 assert(old.length>=1,'Learners & Progress header definition exists');
-const mainRule=old.find(rule=>rule.includes('background-image:linear-gradient(117deg,#253745'));
+const mainRule=old.find(rule=>rule.includes('background-image:linear-gradient(117deg,#023048'));
 assert(mainRule,'Premium dark Learners & Progress header is explicit');
 assert.doesNotMatch(mainRule,/background:transparent/,'Header must not be transparent');
 assert.match(css,/\.ac-roster>\.ac-section-header :is\(h2,h3\)[\s\S]*?color:#FFFFFF!important/,'Accessible white heading');
