@@ -1,42 +1,42 @@
 /* DataLearning public course displays: three-column editorial layout, Nov 2026.
    Uses the existing course routes, brand assets, progress and details behaviors. */
-:root{--dl-grid-edge:#d9e7e7;--dl-grid-ink:#123449;--dl-grid-teal:#14686e}
+:root{--dl-grid-edge:#DCE5E7;--dl-grid-ink:#253745;--dl-grid-teal:#235A83}
 /* Strong, deliberate three-column rhythm on desktop; single-column on phones. */
 body.za-discover #zaDiscoverCards,
 body.za-courses #zaCatalogCards{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;align-items:start;gap:clamp(16px,1.8vw,23px)!important;min-width:0}
 body.za-discover #zaDiscoverCards>*,body.za-courses #zaCatalogCards>*{min-width:0;max-width:100%;box-sizing:border-box}
 body.za-discover #zaDiscoverCards .za-loading,body.za-courses #zaCatalogCards .za-loading{grid-column:1/-1}
 /* Consistent product-brand hues in a restrained neutral design. */
-body.za-discover #zaDiscoverCards [data-course="excel"],body.za-courses #zaCatalogCards [data-course="excel"]{--course-tint:#d8f3e5;--course-accent:#19815a}
-body.za-discover #zaDiscoverCards [data-course="powerbi"],body.za-courses #zaCatalogCards [data-course="powerbi"]{--course-tint:#fff0c8;--course-accent:#aa7810}
-body.za-discover #zaDiscoverCards [data-course="python"],body.za-courses #zaCatalogCards [data-course="python"]{--course-tint:#e4efff;--course-accent:#33649b}
-body.za-discover #zaDiscoverCards [data-course="ai"],body.za-courses #zaCatalogCards [data-course="ai"]{--course-tint:#eee4ff;--course-accent:#7850b0}
-body.za-discover #zaDiscoverCards [data-course="tableau"],body.za-courses #zaCatalogCards [data-course="tableau"]{--course-tint:#e4f3ff;--course-accent:#447c9e}
-body.za-discover #zaDiscoverCards [data-course="powerquery"],body.za-courses #zaCatalogCards [data-course="powerquery"]{--course-tint:#dcf1f0;--course-accent:#177a80}
-body.za-discover #zaDiscoverCards [data-course="sql"],body.za-courses #zaCatalogCards [data-course="sql"]{--course-tint:#e0eeff;--course-accent:#3c71a0}
-body.za-discover #zaDiscoverCards [data-course="statistics"],body.za-courses #zaCatalogCards [data-course="statistics"]{--course-tint:#ffe9e1;--course-accent:#bf6938}
-body.za-discover #zaDiscoverCards [data-course="introduction"],body.za-courses #zaCatalogCards [data-course="introduction"]{--course-tint:#dbf3ee;--course-accent:#238274}
+body.za-discover #zaDiscoverCards [data-course="excel"],body.za-courses #zaCatalogCards [data-course="excel"]{--course-tint:#EAF3D2;--course-accent:#566B36}
+body.za-discover #zaDiscoverCards [data-course="powerbi"],body.za-courses #zaCatalogCards [data-course="powerbi"]{--course-tint:#EAF3D2;--course-accent:#758C46}
+body.za-discover #zaDiscoverCards [data-course="python"],body.za-courses #zaCatalogCards [data-course="python"]{--course-tint:#EAF3FA;--course-accent:#235A83}
+body.za-discover #zaDiscoverCards [data-course="ai"],body.za-courses #zaCatalogCards [data-course="ai"]{--course-tint:#D6E8F5;--course-accent:#235A83}
+body.za-discover #zaDiscoverCards [data-course="tableau"],body.za-courses #zaCatalogCards [data-course="tableau"]{--course-tint:#EAF3FA;--course-accent:#397BAE}
+body.za-discover #zaDiscoverCards [data-course="powerquery"],body.za-courses #zaCatalogCards [data-course="powerquery"]{--course-tint:#EAF3FA;--course-accent:#397BAE}
+body.za-discover #zaDiscoverCards [data-course="sql"],body.za-courses #zaCatalogCards [data-course="sql"]{--course-tint:#EAF3FA;--course-accent:#397BAE}
+body.za-discover #zaDiscoverCards [data-course="statistics"],body.za-courses #zaCatalogCards [data-course="statistics"]{--course-tint:#EAF3D2;--course-accent:#758C46}
+body.za-discover #zaDiscoverCards [data-course="introduction"],body.za-courses #zaCatalogCards [data-course="introduction"]{--course-tint:#EAF3FA;--course-accent:#397BAE}
 body.za-discover #zaDiscoverCards .za-course-card,
-body.za-courses #zaCatalogCards .dlc-course-card{position:relative;min-height:0!important;border-radius:22px!important;border:1px solid var(--dl-grid-edge)!important;background:#fff!important;box-shadow:0 7px 22px rgba(19,57,74,.055),0 1px 3px rgba(19,57,74,.025)!important;overflow:hidden;isolation:isolate;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+body.za-courses #zaCatalogCards .dlc-course-card{position:relative;min-height:0!important;border-radius:22px!important;border:1px solid var(--dl-grid-edge)!important;background:#FFFFFF!important;box-shadow:0 7px 22px rgba(37,55,69,.055),0 1px 3px rgba(37,55,69,.025)!important;overflow:hidden;isolation:isolate;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
 body.za-discover #zaDiscoverCards .za-course-card::before,
-body.za-courses #zaCatalogCards .dlc-course-card::before{content:"";display:block;position:absolute;left:0;top:0;right:0;height:5px;background:var(--course-accent,#19817e);z-index:2}
+body.za-courses #zaCatalogCards .dlc-course-card::before{content:"";display:block;position:absolute;left:0;top:0;right:0;height:5px;background:var(--course-accent,#397BAE);z-index:2}
 body.za-discover #zaDiscoverCards .za-course-card:hover,
-body.za-courses #zaCatalogCards .dlc-course-card:hover{transform:translateY(-4px);border-color:#9bc4c4!important;box-shadow:0 20px 43px rgba(19,57,74,.14)!important}
+body.za-courses #zaCatalogCards .dlc-course-card:hover{transform:translateY(-4px);border-color:#CCD0CF!important;box-shadow:0 20px 43px rgba(37,55,69,.14)!important}
 body.za-discover #zaDiscoverCards .za-course-card{padding:clamp(20px,2vw,27px);display:flex;flex-direction:column;align-items:stretch;gap:0;min-height:282px!important}
 body.za-discover #zaDiscoverCards .za-card-top{gap:12px;min-height:62px}
 body.za-discover #zaDiscoverCards .za-card-icon,
-body.za-courses #zaCatalogCards .za-card-icon{width:61px!important;height:61px!important;min-width:61px!important;display:grid;place-items:center;border:1px solid #dbe7e6!important;border-radius:17px!important;background:linear-gradient(140deg,#fff,var(--course-tint,#e3f3f1))!important;box-shadow:0 6px 16px rgba(18,64,73,.075)!important}
+body.za-courses #zaCatalogCards .za-card-icon{width:61px!important;height:61px!important;min-width:61px!important;display:grid;place-items:center;border:1px solid #DCE5E7!important;border-radius:17px!important;background:linear-gradient(140deg,#FFFFFF,var(--course-tint,#EAF3FA))!important;box-shadow:0 6px 16px rgba(37,55,69,.075)!important}
 body.za-discover #zaDiscoverCards .za-card-icon img,
 body.za-courses #zaCatalogCards .za-card-icon img{width:72%!important;height:72%!important;object-fit:contain!important}
 body.za-discover #zaDiscoverCards .za-card-index,
-body.za-courses #zaCatalogCards .za-card-index{font-size:10px;letter-spacing:.08em;line-height:1.5;color:#527481;font-weight:850;text-align:right}
-body.za-discover #zaDiscoverCards .za-discover-eyebrow{margin:19px 0 1px;color:var(--course-accent,#287d77);font-size:10px;font-weight:850;letter-spacing:.11em}
+body.za-courses #zaCatalogCards .za-card-index{font-size:10px;letter-spacing:.08em;line-height:1.5;color:#4A5C6A;font-weight:850;text-align:right}
+body.za-discover #zaDiscoverCards .za-discover-eyebrow{margin:19px 0 1px;color:var(--course-accent,#397BAE);font-size:10px;font-weight:850;letter-spacing:.11em}
 body.za-discover #zaDiscoverCards .za-course-card h3{margin:8px 0 10px;font-size:clamp(19px,1.7vw,23px);line-height:1.3;font-weight:850;color:var(--dl-grid-ink)}
-body.za-discover #zaDiscoverCards .za-course-card p{font-size:13px;line-height:1.72;color:#516c78;flex:1;margin:0 0 16px}
+body.za-discover #zaDiscoverCards .za-course-card p{font-size:13px;line-height:1.72;color:#4A5C6A;flex:1;margin:0 0 16px}
 body.za-discover #zaDiscoverCards .za-card-bottom{padding-top:15px;gap:10px;align-items:center;flex-wrap:wrap;margin-top:auto}
-body.za-discover #zaDiscoverCards .za-card-bottom small{font-size:11px;line-height:1.5;color:#58737a}
-body.za-discover #zaDiscoverCards .za-card-bottom a{display:inline-flex;align-items:center;gap:7px;padding:10px 12px;color:#fff!important;background:#153f50;border-radius:10px;text-decoration:none;font-size:11px;font-weight:850;min-height:40px}
-body.za-discover #zaDiscoverCards .za-card-bottom a:hover{background:#1d6c71;color:#fff!important}
+body.za-discover #zaDiscoverCards .za-card-bottom small{font-size:11px;line-height:1.5;color:#4A5C6A}
+body.za-discover #zaDiscoverCards .za-card-bottom a{display:inline-flex;align-items:center;gap:7px;padding:10px 12px;color:#FFFFFF!important;background:#253745;border-radius:10px;text-decoration:none;font-size:11px;font-weight:850;min-height:40px}
+body.za-discover #zaDiscoverCards .za-card-bottom a:hover{background:#235A83;color:#FFFFFF!important}
 body.za-courses #zaCatalogCards .dlc-course-card{align-self:start}
 body.za-courses #zaCatalogCards .za-catalog-intro{padding:clamp(19px,1.9vw,27px)!important}
 body.za-courses #zaCatalogCards .za-catalog-meta{align-items:flex-start;min-height:64px;gap:10px;margin-bottom:11px}

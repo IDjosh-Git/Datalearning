@@ -1,30 +1,30 @@
 /* Maintained certificate.css | obsolete site-wide rules removed. Shared palette: design-system.css. */
-.certificate-paper{width:100%;aspect-ratio:1.414;max-width:100%;background:#fcfaf6;box-shadow:0 10px 35px rgba(25,29,40,.14);border:1px solid #e4ddcf;overflow:hidden;color:#23303c;--cert-accent:var(--ui-primary);container-type:inline-size}
-.certificate-paper h3{color:#23334b;font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:5.4cqw;letter-spacing:-.065em;line-height:1.1;margin:1.4% 0 2.1%}
-.certificate-paper[data-course="excel"]{--cert-accent:#16794e}
-.certificate-paper[data-course="sql"]{--cert-accent:#456baf}
-.certificate-paper[data-course="powerbi"]{--cert-accent:#ab7a16}
+.certificate-paper{width:100%;aspect-ratio:1.414;max-width:100%;background:#FBFBF8;box-shadow:0 10px 35px rgba(17,33,45,.14);border:1px solid #C5E384;overflow:hidden;color:#182D3A;--cert-accent:var(--ui-primary);container-type:inline-size}
+.certificate-paper h3{color:#253745;font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:5.4cqw;letter-spacing:-.065em;line-height:1.1;margin:1.4% 0 2.1%}
+.certificate-paper[data-course="excel"]{--cert-accent:#566B36}
+.certificate-paper[data-course="sql"]{--cert-accent:#397BAE}
+.certificate-paper[data-course="powerbi"]{--cert-accent:#758C46}
 @media (max-width:670px){.certificate-paper{min-width:520px}
 .certificate-paper-wrapper{overflow-x:auto}}
 @media  print{#certificateContainer, .certificate-paper{display:block!important;visibility:visible!important;margin:0!important;padding:0!important;border:0!important;box-shadow:none!important;overflow:visible!important}
 .cap-main>*:not(#certSection), #certSection>*:not(#certificateContainer){display:none!important}
 .certificate-paper{width:297mm!important;height:210mm!important;min-width:0!important;aspect-ratio:auto!important;page-break-inside:avoid!important;print-color-adjust:exact!important;-webkit-print-color-adjust:exact!important}}
-.certificate-paper{background:transparent!important;width:100%!important;aspect-ratio:1684/1191!important;border:0!important;outline:0!important;box-shadow:0 18px 65px rgba(15,40,58,.14)!important;container-type:normal!important;overflow:hidden!important;min-width:0!important;border-radius:4px!important}
-.certificate-paper svg{display:block;width:100%;height:auto;max-width:100%;background:#fffcf6}
+.certificate-paper{background:transparent!important;width:100%!important;aspect-ratio:1684/1191!important;border:0!important;outline:0!important;box-shadow:0 18px 65px rgba(17,33,45,.14)!important;container-type:normal!important;overflow:hidden!important;min-width:0!important;border-radius:4px!important}
+.certificate-paper svg{display:block;width:100%;height:auto;max-width:100%;background:#FBFBF8}
 .certificate-paper-wrapper{overflow:visible!important;max-width:100%}
 #certificateContainer{min-width:0}
 .dalp-cert-viewer{padding:44px 0 80px;min-height:90vh;background:var(--ui-canvas)}
 .dalp-cert-viewer .cert-view-wrap{width:min(1270px,calc(100% - 36px));margin:0 auto}
 .dalp-cert-viewer .cert-view-header{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:22px;flex-wrap:wrap}
-.dalp-cert-viewer .cert-view-header h1{margin:6px 0;font-size:clamp(26px,3vw,37px);color:#172f43}
-.dalp-cert-viewer .cert-view-header p{color:#627581;font-size:13px;margin:0}
+.dalp-cert-viewer .cert-view-header h1{margin:6px 0;font-size:clamp(26px,3vw,37px);color:#253745}
+.dalp-cert-viewer .cert-view-header p{color:#4A5C6A;font-size:13px;margin:0}
 .dalp-cert-viewer .cert-view-controls{display:flex;gap:10px;flex-wrap:wrap}
-.dalp-cert-viewer .cert-view-controls button,.dalp-cert-viewer .cert-view-controls a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;border:1px solid #cad8da;background:white;border-radius:12px;padding:12px 17px;font-size:13px;font-weight:700;color:#1c3b4d;text-decoration:none;cursor:pointer}
-.dalp-cert-viewer .cert-view-controls .primary{background:#1b3a4a;color:white;border-color:#1b3a4a}
-.dalp-cert-viewer .cert-view-panel{padding:16px;background:white;border:1px solid #d7e4e2;border-radius:18px;box-shadow:0 15px 45px rgba(30,60,71,.08)}
+.dalp-cert-viewer .cert-view-controls button,.dalp-cert-viewer .cert-view-controls a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;border:1px solid #CCD0CF;background:white;border-radius:12px;padding:12px 17px;font-size:13px;font-weight:700;color:#253745;text-decoration:none;cursor:pointer}
+.dalp-cert-viewer .cert-view-controls .primary{background:#253745;color:white;border-color:#253745}
+.dalp-cert-viewer .cert-view-panel{padding:16px;background:white;border:1px solid #DCE5E7;border-radius:18px;box-shadow:0 15px 45px rgba(37,55,69,.08)}
 .dalp-cert-viewer .cert-view-panel .certificate-paper{max-width:100%}
-.dalp-cert-viewer .cert-view-caption{color:#546973;font-size:13px;margin:20px 4px;line-height:1.8}
-.dalp-cert-viewer .cert-view-message{border:1px solid #bcd6d4;background:#f0faf8;border-radius:12px;padding:16px;color:#17443f}
+.dalp-cert-viewer .cert-view-caption{color:#4A5C6A;font-size:13px;margin:20px 4px;line-height:1.8}
+.dalp-cert-viewer .cert-view-message{border:1px solid #CCD0CF;background:#F3F8FC;border-radius:12px;padding:16px;color:#253745}
 @media (max-width:670px){.certificate-paper{min-width:610px!important}
 .certificate-paper-wrapper{overflow-x:auto!important;overscroll-behavior-x:contain}
 .dalp-cert-viewer{padding:22px 0 50px}
@@ -54,7 +54,7 @@ html[data-theme] body .cert-view-header h1 {
   color:var(--ui-ink)!important;-webkit-text-fill-color:currentColor!important;
 }
 html[data-theme] body .cert-view-header p {
-  color:#50627a!important;-webkit-text-fill-color:currentColor!important;
+  color:#4A5C6A!important;-webkit-text-fill-color:currentColor!important;
 }
 
 /* Certificate viewer actions and links consistent with the other protected utilities. */

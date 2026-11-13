@@ -1,28 +1,28 @@
 /* DataLearning 2026-11-12 — one shared header search component and public session cards.
    This is intentionally loaded after the private/public navigation bundles. */
-:root{--dl-nav-ink:#183e53;--dl-nav-teal:#276766;--dl-nav-orange:#6AA6DA}
+:root{--dl-nav-ink:#253745;--dl-nav-teal:#235A83;--dl-nav-orange:#6AA6DA}
 html body button.premium-search-trigger.dalp-unified-search{
  position:static!important;inset:auto!important;float:none!important;transform:none!important;
  box-sizing:border-box!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;
  flex:0 0 auto!important;gap:9px!important;width:44px!important;min-width:44px!important;max-width:44px!important;
  height:44px!important;min-height:44px!important;padding:0!important;margin:0!important;
- border:1px solid #bdd8d5!important;border-radius:13px!important;
- background:linear-gradient(135deg,#f0f9f6,#fffdf8)!important;
+ border:1px solid #CCD0CF!important;border-radius:13px!important;
+ background:linear-gradient(135deg,#F4F8E9,#FFFFFF)!important;
  color:var(--dl-nav-ink)!important;-webkit-text-fill-color:var(--dl-nav-ink)!important;
- box-shadow:0 4px 13px #163b4f11,inset 0 1px #fff!important;
+ box-shadow:0 4px 13px #25374511,inset 0 1px #FFFFFF!important;
  font:750 12px/1.2 'Plus Jakarta Sans','DM Sans',system-ui,sans-serif!important;
  text-transform:none!important;text-decoration:none!important;white-space:nowrap!important;cursor:pointer!important;
  transition:border-color .18s,background .18s,box-shadow .18s!important;
 }
 html body button.premium-search-trigger.dalp-unified-search svg{
  display:block!important;flex:0 0 19px!important;width:19px!important;height:19px!important;
- stroke:#24596a!important;color:#24596a!important;fill:none!important;
+ stroke:#235A83!important;color:#235A83!important;fill:none!important;
 }
 html body button.premium-search-trigger.dalp-unified-search>span,
 html body button.premium-search-trigger.dalp-unified-search>kbd{display:none!important}
 html body button.premium-search-trigger.dalp-unified-search:hover,
 html body button.premium-search-trigger.dalp-unified-search[aria-expanded="true"]{
- background:#e3f3ef!important;border-color:#79b3a8!important;box-shadow:0 7px 19px #153d5422!important;
+ background:#EAF3FA!important;border-color:#6AA6DA!important;box-shadow:0 7px 19px #25374522!important;
 }
 html body button.premium-search-trigger.dalp-unified-search:focus-visible{outline:3px solid var(--dl-nav-orange)!important;outline-offset:3px!important}
 /* Uniform desktop shape and label, whether inside the public header or private toolbar. */
@@ -41,8 +41,8 @@ html body button.premium-search-trigger.dalp-unified-search:focus-visible{outlin
  html body button.premium-search-trigger.dalp-unified-search{width:209px!important;min-width:209px!important;max-width:209px!important}
  html body button.premium-search-trigger.dalp-unified-search>kbd{
   display:inline-flex!important;flex:0 0 auto!important;align-items:center!important;justify-content:center!important;
-  padding:4px 6px!important;border:1px solid #d7e5e3!important;border-radius:6px!important;
-  background:#fff!important;color:#557781!important;-webkit-text-fill-color:#557781!important;
+  padding:4px 6px!important;border:1px solid #DCE5E7!important;border-radius:6px!important;
+  background:#FFFFFF!important;color:#4A5C6A!important;-webkit-text-fill-color:#4A5C6A!important;
   font:800 9px/1.1 system-ui,sans-serif!important;
  }
 }
@@ -55,10 +55,10 @@ html body button.dalp-gate-logout.dalp-public-signout{
  position:static!important;inset:auto!important;flex:0 0 auto!important;
  width:auto!important;min-width:104px!important;max-width:none!important;height:46px!important;min-height:46px!important;
  margin:0!important;padding:5px 12px 5px 6px!important;
- border:1px solid #28596b!important;border-radius:14px!important;
- color:#fff!important;-webkit-text-fill-color:#fff!important;
- background:linear-gradient(125deg,#173c55,#24596c 70%,#286e6d)!important;
- box-shadow:0 7px 18px #133c5026!important;
+ border:1px solid #235A83!important;border-radius:14px!important;
+ color:#FFFFFF!important;-webkit-text-fill-color:#FFFFFF!important;
+ background:linear-gradient(125deg,#253745,#235A83 70%,#235A83)!important;
+ box-shadow:0 7px 18px #25374526!important;
  font:800 11px/1.2 'Plus Jakarta Sans',system-ui,sans-serif!important;
  text-decoration:none!important;cursor:pointer!important;
  transition:box-shadow .18s,border-color .18s!important;
@@ -66,14 +66,14 @@ html body button.dalp-gate-logout.dalp-public-signout{
 html body button.dalp-public-signout .dalp-logout-icon{
  display:grid!important;place-items:center!important;flex:0 0 34px!important;
  width:34px!important;height:34px!important;border-radius:10px!important;
- background:#ffffff1e!important;color:#fff!important;
+ background:#FFFFFF1E!important;color:#FFFFFF!important;
 }
-html body button.dalp-public-signout .dalp-logout-icon svg{display:block!important;width:18px!important;height:18px!important;stroke:#fff!important}
+html body button.dalp-public-signout .dalp-logout-icon svg{display:block!important;width:18px!important;height:18px!important;stroke:#FFFFFF!important}
 html body button.dalp-public-signout .dalp-logout-copy{display:flex!important;align-items:flex-start!important;flex-direction:column!important;gap:3px!important;text-align:left!important;white-space:nowrap!important}
-html body button.dalp-public-signout .dalp-logout-copy strong{color:#fff!important;-webkit-text-fill-color:#fff!important;font:800 11px/1 'Plus Jakarta Sans',system-ui!important}
-html body button.dalp-public-signout .dalp-logout-copy small{display:none!important;color:#c5ebe5!important;-webkit-text-fill-color:#c5ebe5!important;font:600 9px/1 'DM Sans',system-ui!important}
+html body button.dalp-public-signout .dalp-logout-copy strong{color:#FFFFFF!important;-webkit-text-fill-color:#FFFFFF!important;font:800 11px/1 'Plus Jakarta Sans',system-ui!important}
+html body button.dalp-public-signout .dalp-logout-copy small{display:none!important;color:#D6E8F5!important;-webkit-text-fill-color:#D6E8F5!important;font:600 9px/1 'DM Sans',system-ui!important}
 @media(min-width:1660px){html body button.dalp-public-signout .dalp-logout-copy small{display:block!important}}
-html body button.dalp-public-signout:hover{border-color:#77b5aa!important;box-shadow:0 11px 24px #133c5036!important;background:linear-gradient(125deg,#214d62,#2a7171)!important}
+html body button.dalp-public-signout:hover{border-color:#6AA6DA!important;box-shadow:0 11px 24px #25374536!important;background:linear-gradient(125deg,#304F66,#397BAE)!important}
 html body button.dalp-public-signout:focus-visible{outline:3px solid #6AA6DA!important;outline-offset:3px!important}
 html body button.dalp-public-signout:disabled{opacity:.7!important;cursor:wait!important}
 /* Small screens use the account card in the full-screen navigation drawer. */
@@ -81,30 +81,30 @@ html body button.dalp-public-signout:disabled{opacity:.7!important;cursor:wait!i
 html body .dlu-nav-content .dalp-public-session-card{
  box-sizing:border-box!important;display:flex!important;flex-direction:column!important;gap:17px!important;
  grid-column:1/-1!important;min-width:0!important;padding:18px!important;margin:2px 0 0!important;
- background:linear-gradient(135deg,#163a52 0%,#205768 68%,#297370 100%)!important;
- border:1px solid #367d80!important;border-radius:19px!important;
- box-shadow:0 14px 30px #143a5024!important;color:#fff!important;
+ background:linear-gradient(135deg,#253745 0%,#304F66 68%,#397BAE 100%)!important;
+ border:1px solid #397BAE!important;border-radius:19px!important;
+ box-shadow:0 14px 30px #25374524!important;color:#FFFFFF!important;
 }
 html body .dalp-public-session-card .dalp-session-head{display:flex!important;align-items:center!important;gap:12px!important;min-width:0!important}
 html body .dalp-public-session-card .dalp-session-avatar{
  display:grid!important;place-items:center!important;flex:0 0 47px!important;width:47px!important;height:47px!important;
- border:1px solid #ffffff49!important;border-radius:15px!important;background:#ffffff22!important;color:#fff!important;
+ border:1px solid #FFFFFF49!important;border-radius:15px!important;background:#FFFFFF22!important;color:#FFFFFF!important;
 }
-html body .dalp-public-session-card .dalp-session-avatar svg{width:22px;height:22px;stroke:#fff}
+html body .dalp-public-session-card .dalp-session-avatar svg{width:22px;height:22px;stroke:#FFFFFF}
 html body .dalp-public-session-card .dalp-session-copy{display:flex!important;flex-direction:column!important;gap:5px!important;min-width:0!important;flex:1!important}
-html body .dalp-public-session-card .dalp-session-kicker{color:#c1e9e3!important;letter-spacing:.1em!important;font:750 9px/1.4 'Plus Jakarta Sans',system-ui!important}
-html body .dalp-public-session-card .dalp-session-role{color:#fff!important;font:850 15px/1.3 'Plus Jakarta Sans',system-ui!important}
-html body .dalp-public-session-card .dalp-session-email{color:#d7eff0!important;font:600 12px/1.4 'DM Sans',system-ui!important;overflow-wrap:anywhere!important}
+html body .dalp-public-session-card .dalp-session-kicker{color:#D6E8F5!important;letter-spacing:.1em!important;font:750 9px/1.4 'Plus Jakarta Sans',system-ui!important}
+html body .dalp-public-session-card .dalp-session-role{color:#FFFFFF!important;font:850 15px/1.3 'Plus Jakarta Sans',system-ui!important}
+html body .dalp-public-session-card .dalp-session-email{color:#D6E8F5!important;font:600 12px/1.4 'DM Sans',system-ui!important;overflow-wrap:anywhere!important}
 html body .dalp-public-session-card .dalp-session-signout{
  display:flex!important;align-items:center!important;justify-content:center!important;gap:10px!important;min-width:0!important;
  width:100%!important;min-height:47px!important;margin:0!important;padding:11px 13px!important;
- background:linear-gradient(120deg,#ffddc3,#ffece0)!important;color:#65361b!important;
- border:1px solid #ffd8ba!important;border-radius:12px!important;box-shadow:0 5px 13px #091d2b21!important;
+ background:linear-gradient(120deg,#DCEBAE,#EAF3D2)!important;color:#253745!important;
+ border:1px solid #DCEBAE!important;border-radius:12px!important;box-shadow:0 5px 13px #11212D21!important;
  font:800 12px/1.3 'Plus Jakarta Sans',system-ui!important;cursor:pointer!important;
 }
-html body .dalp-public-session-card .dalp-session-signout svg{display:block!important;flex:0 0 19px!important;width:19px!important;height:19px!important;stroke:#8f4423!important}
+html body .dalp-public-session-card .dalp-session-signout svg{display:block!important;flex:0 0 19px!important;width:19px!important;height:19px!important;stroke:#566B36!important}
 html body .dalp-public-session-card .dalp-session-signout span:last-child{margin-left:auto!important}
-html body .dalp-public-session-card .dalp-session-signout:hover{background:#fff6ed!important;box-shadow:0 8px 17px #091d2b31!important}
+html body .dalp-public-session-card .dalp-session-signout:hover{background:#F4F8E9!important;box-shadow:0 8px 17px #11212D31!important}
 html body .dalp-public-session-card .dalp-session-signout:focus-visible{outline:3px solid #6AA6DA!important;outline-offset:3px!important}
 html body .dalp-public-session-card .dalp-session-signout:disabled{opacity:.72!important;cursor:wait!important}
 @media(prefers-reduced-motion:reduce){html body :is(button.dalp-unified-search,button.dalp-public-signout){transition:none!important}}

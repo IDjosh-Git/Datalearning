@@ -2,8 +2,8 @@
    Loaded LAST only by administrator overview and assessment desk.
    Clears decorative underlays and wide divider strips without touching learning pages. */
 html[data-theme] body:is(.dalp-admin-page,[data-admin-console="reviews"]).ac-ready {
-  --admin-surface:#fff;--admin-ink:#183249;--admin-muted:#607385;--admin-line:#e3eaf0;
-  background:#f7f9fa!important;background-image:none!important;color:var(--admin-ink);
+  --admin-surface:#FFFFFF;--admin-ink:#253745;--admin-muted:#657A86;--admin-line:#D6E8F5;
+  background:#FBFBF8!important;background-image:none!important;color:var(--admin-ink);
 }
 html[data-theme] body:is(.dalp-admin-page,[data-admin-console="reviews"]).ac-ready :is(.ac-page-area,.dalp-admin-main,.review-content) {
   min-width:0;max-width:100%;background-image:none!important;
@@ -14,7 +14,7 @@ html[data-theme] body:is(.dalp-admin-page,[data-admin-console="reviews"]).ac-rea
 html[data-theme] body:is(.dalp-admin-page,[data-admin-console="reviews"]).ac-ready :is(.ac-welcome,.ac-courses-heading,.review-hero)::after {display:none!important;content:none!important}
 html[data-theme] body:is(.dalp-admin-page,[data-admin-console="reviews"]).ac-ready .ac-topbar,
 html[data-theme] body:is(.dalp-admin-page,[data-admin-console="reviews"]).ac-ready .ac-sidebar {border:0!important;box-shadow:none!important}
-html[data-theme] body:is(.dalp-admin-page,[data-admin-console="reviews"]).ac-ready .ac-topbar {box-shadow:0 4px 18px rgba(13,45,71,.045)!important}
+html[data-theme] body:is(.dalp-admin-page,[data-admin-console="reviews"]).ac-ready .ac-topbar {box-shadow:0 4px 18px rgba(37,55,69,.045)!important}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-welcome.ac-command-hero,
 html[data-theme] body.dalp-admin-page.ac-ready .ac-courses-heading,
 html[data-theme] body[data-admin-console="reviews"].ac-ready .review-hero {
@@ -30,48 +30,48 @@ html[data-theme] body.dalp-admin-page.ac-ready .ac-admin-actions-unified .ac-act
 html[data-theme] body.dalp-admin-page.ac-ready .ac-admin-actions-unified .ac-action-card strong{font-size:14px}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-admin-actions-unified .ac-action-card small{font-size:12px;line-height:1.55}
 html[data-theme] body.dalp-admin-page.ac-ready :is(.ac-section-header,.ac-card-head,.ac-analysis-chapter,.ac-chart-head){border:0!important;box-shadow:none!important;background-image:none!important}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-admin-capstone{background:#fff!important;background-image:none!important;box-shadow:none!important;border:1px solid var(--admin-line)!important}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-admin-capstone{background:#FFFFFF!important;background-image:none!important;box-shadow:none!important;border:1px solid var(--admin-line)!important}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-roster{max-width:100%;min-width:0}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-roster-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:20px 0}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-roster-summary article{display:flex;flex-direction:column;gap:5px;min-width:0;padding:17px 18px;background:var(--admin-surface);border:1px solid var(--admin-line);border-radius:16px;box-shadow:0 5px 16px #25455906}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-roster-summary article{display:flex;flex-direction:column;gap:5px;min-width:0;padding:17px 18px;background:var(--admin-surface);border:1px solid var(--admin-line);border-radius:16px;box-shadow:0 5px 16px #304F6606}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-roster-summary article span{font-size:11px;font-weight:750;color:var(--admin-muted)}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-roster-summary article strong{font:800 clamp(23px,2.7vw,31px)/1.1 "Plus Jakarta Sans",sans-serif;color:var(--admin-ink)}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-roster-summary article small{font-size:10.5px;line-height:1.5;color:#708192}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-roster-summary article small{font-size:10.5px;line-height:1.5;color:#4A5C6A}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-roster-panel{padding:clamp(15px,2vw,26px)!important;border:1px solid var(--admin-line)!important;border-radius:18px!important;box-shadow:none!important}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-roster-filters{display:grid;grid-template-columns:repeat(4,minmax(155px,1fr));gap:12px;margin-bottom:18px;min-width:0}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-roster-filters label{min-width:0;display:flex;flex-direction:column;gap:6px;font-size:11px;font-weight:700}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-roster-filters :is(input,select){width:100%;min-width:0;min-height:45px;background:#f8fafb!important;border:1px solid #d8e2e9!important;border-radius:11px!important;color:var(--admin-ink)}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-roster-filters :is(input,select){width:100%;min-width:0;min-height:45px;background:#FBFBF8!important;border:1px solid #D6E8F5!important;border-radius:11px!important;color:var(--admin-ink)}
 html[data-theme] body.dalp-admin-page.ac-ready .dalp-admin-table-wrap{width:100%;min-width:0;max-width:100%;overflow-x:auto;overscroll-behavior-x:contain;border:1px solid var(--admin-line);border-radius:14px;box-shadow:none!important}
 html[data-theme] body.dalp-admin-page.ac-ready .dalp-admin-table{min-width:830px;width:100%;table-layout:auto;border-collapse:separate;border-spacing:0}
-html[data-theme] body.dalp-admin-page.ac-ready .dalp-admin-table th{background:#f6f9fa!important;color:#566d7b!important;font-size:11px;font-weight:800;text-transform:none;white-space:nowrap;padding:15px 13px;border:0!important}
-html[data-theme] body.dalp-admin-page.ac-ready .dalp-admin-table td{vertical-align:middle;padding:15px 13px!important;border:0!important;border-bottom:1px solid #ebeff2!important;background:#fff!important;font-size:12px;color:var(--admin-ink)}
+html[data-theme] body.dalp-admin-page.ac-ready .dalp-admin-table th{background:#F3F8FC!important;color:#4A5C6A!important;font-size:11px;font-weight:800;text-transform:none;white-space:nowrap;padding:15px 13px;border:0!important}
+html[data-theme] body.dalp-admin-page.ac-ready .dalp-admin-table td{vertical-align:middle;padding:15px 13px!important;border:0!important;border-bottom:1px solid #EAF0F3!important;background:#FFFFFF!important;font-size:12px;color:var(--admin-ink)}
 html[data-theme] body.dalp-admin-page.ac-ready .dalp-admin-table tr:last-child td{border-bottom:0!important}
-html[data-theme] body.dalp-admin-page.ac-ready .dalp-admin-table tbody tr:hover td{background:#f8fbfb!important}
+html[data-theme] body.dalp-admin-page.ac-ready .dalp-admin-table tbody tr:hover td{background:#FBFBF8!important}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-directory-account{display:flex;align-items:center;gap:11px;min-width:190px}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-directory-account>span:last-child{min-width:0}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-directory-account strong{display:block;line-height:1.5;font-weight:800;color:var(--admin-ink)}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-directory-account small{display:block;font-size:11px;line-height:1.4;color:#728391;overflow-wrap:anywhere;max-width:245px}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-account-initial{flex:none;display:grid;place-items:center;width:36px;height:36px;border-radius:12px;background:#e4eff3;color:#11212D;font-weight:900;font-size:14px}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-account-role{margin:0!important;padding:5px 10px!important;border-radius:99px;background:#edf4f7;color:#36576a;font-size:11px;font-weight:750;white-space:nowrap}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-account-role.is-admin{background:#e6f4ef;color:#176b54;border-color:#c4e4d7}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-directory-account small{display:block;font-size:11px;line-height:1.4;color:#4A5C6A;overflow-wrap:anywhere;max-width:245px}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-account-initial{flex:none;display:grid;place-items:center;width:36px;height:36px;border-radius:12px;background:#EAF3FA;color:#11212D;font-weight:900;font-size:14px}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-account-role{margin:0!important;padding:5px 10px!important;border-radius:99px;background:#EAF3FA;color:#235A83;font-size:11px;font-weight:750;white-space:nowrap}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-account-role.is-admin{background:#EAF3D2;color:#566B36;border-color:#C5E384}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-numeric{font-weight:800;font-size:14px;white-space:nowrap}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-numeric small{font-weight:500;font-size:10px;color:#81909a}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-numeric small{font-weight:500;font-size:10px;color:#4A5C6A}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-progress-cell{min-width:155px;max-width:240px;display:grid;gap:7px}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-progress-cell>div:first-child{display:flex;justify-content:space-between;align-items:center;gap:10px}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-progress-cell small{font-size:11px;color:#5b7383}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-mini-meter,html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-track{height:7px;border-radius:100px;overflow:hidden;background:#e8eef0}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-progress-cell small{font-size:11px;color:#4A5C6A}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-mini-meter,html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-track{height:7px;border-radius:100px;overflow:hidden;background:#EAF0F3}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-mini-meter>span,html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-track>span{display:block;height:100%;border-radius:100px;background:#6AA6DA}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-time-cell{font-size:11px;color:#5b7383;white-space:nowrap}
-html[data-theme] body.dalp-admin-page.ac-ready .dalp-learner-view{min-width:108px;min-height:39px!important;white-space:nowrap;padding:9px 11px!important;background:#eaf2f5!important;color:#11212D!important;border:1px solid #d0e2e9!important;border-radius:10px;font-size:11px;font-weight:800}
-html[data-theme] body.dalp-admin-page.ac-ready .dalp-learner-view:hover{background:#dceef2!important}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-time-cell{font-size:11px;color:#4A5C6A;white-space:nowrap}
+html[data-theme] body.dalp-admin-page.ac-ready .dalp-learner-view{min-width:108px;min-height:39px!important;white-space:nowrap;padding:9px 11px!important;background:#EAF3FA!important;color:#11212D!important;border:1px solid #D6E8F5!important;border-radius:10px;font-size:11px;font-weight:800}
+html[data-theme] body.dalp-admin-page.ac-ready .dalp-learner-view:hover{background:#D6E8F5!important}
 /* The detail sheet is defined once in the final section of this stylesheet. */
 /* Keep the sidebar account identity directly above Sign Out and its separator local. */
 html[data-theme] body.ac-ready .ac-side-bottom{border:0!important;padding:10px 4px max(12px,env(safe-area-inset-bottom))!important}
 html[data-theme] body.ac-ready .ac-logout{width:100%;margin:0!important}
 /* Review Desk: coherent premium surfaces without backdrop rings or long horizontal rules. */
-html[data-theme] body[data-admin-console="reviews"].ac-ready :is(.review-inbox,.review-detail,.review-stat){box-shadow:none!important;border:1px solid var(--admin-line)!important;background:#fff!important}
+html[data-theme] body[data-admin-console="reviews"].ac-ready :is(.review-inbox,.review-detail,.review-stat){box-shadow:none!important;border:1px solid var(--admin-line)!important;background:#FFFFFF!important}
 html[data-theme] body[data-admin-console="reviews"].ac-ready :is(.review-inbox-head,.review-filters,.review-publish){border-top:0!important}
-html[data-theme] body[data-admin-console="reviews"].ac-ready .review-empty{background:#f8fafb!important;background-image:none!important}
+html[data-theme] body[data-admin-console="reviews"].ac-ready .review-empty{background:#FBFBF8!important;background-image:none!important}
 @media(max-width:960px){
  html[data-theme] body.dalp-admin-page.ac-ready .ac-roster-filters{grid-template-columns:repeat(2,minmax(0,1fr))}
  html[data-theme] body.dalp-admin-page.ac-ready .ac-roster-summary{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -99,30 +99,30 @@ html[data-theme] body.dalp-admin-page.ac-ready .ac-roster>.ac-section-header{
   border:0!important;border-radius:21px!important;outline:0!important;
   box-shadow:none!important;
   background-color:#11212D!important;
-  background-image:linear-gradient(117deg,#132d40 0%,#11212D 58%,#28636b 100%)!important;
-  color:#fff!important;
+  background-image:linear-gradient(117deg,#253745 0%,#11212D 58%,#235A83 100%)!important;
+  color:#FFFFFF!important;
 }
 html[data-theme] body.dalp-admin-page.ac-ready .ac-roster>.ac-section-header>div:first-child{min-width:0;flex:1 1 440px;max-width:790px}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-roster>.ac-section-header :is(h2,h3){
-  margin:9px 0 10px!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
+  margin:9px 0 10px!important;color:#FFFFFF!important;-webkit-text-fill-color:#FFFFFF!important;
   font:800 clamp(25px,3.2vw,38px)/1.14 "Plus Jakarta Sans",system-ui,sans-serif!important;letter-spacing:-.045em;
 }
-html[data-theme] body.dalp-admin-page.ac-ready .ac-roster>.ac-section-header p{margin:0!important;color:#deebed!important;-webkit-text-fill-color:#deebed!important;max-width:69ch;font-size:clamp(12px,1.25vw,14px)!important;line-height:1.7}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-roster>.ac-section-header p{margin:0!important;color:#D6E8F5!important;-webkit-text-fill-color:#D6E8F5!important;max-width:69ch;font-size:clamp(12px,1.25vw,14px)!important;line-height:1.7}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-roster>.ac-section-header .ac-section-eyebrow{
-  color:#fcb98a!important;-webkit-text-fill-color:#fcb98a!important;font-size:10px;font-weight:850;letter-spacing:.14em;
+  color:#C5E384!important;-webkit-text-fill-color:#C5E384!important;font-size:10px;font-weight:850;letter-spacing:.14em;
 }
 html[data-theme] body.dalp-admin-page.ac-ready .ac-roster>.ac-section-header .dalp-admin-tools{
   display:flex;flex:0 1 auto;flex-wrap:wrap;align-items:center;justify-content:flex-start;gap:9px;
 }
 html[data-theme] body.dalp-admin-page.ac-ready .ac-roster>.ac-section-header .dalp-admin-tools button{
   display:inline-flex;align-items:center;justify-content:center;min-width:115px;min-height:43px!important;
-  padding:10px 15px!important;border:1px solid rgba(229,248,247,.48)!important;
+  padding:10px 15px!important;border:1px solid rgba(234,243,250,.48)!important;
   border-radius:11px!important;background:rgba(255,255,255,.12)!important;
-  color:#fff!important;-webkit-text-fill-color:#fff!important;font-size:12px;font-weight:800;
+  color:#FFFFFF!important;-webkit-text-fill-color:#FFFFFF!important;font-size:12px;font-weight:800;
   box-shadow:none!important;white-space:normal;line-height:1.3;
 }
 html[data-theme] body.dalp-admin-page.ac-ready .ac-roster>.ac-section-header .dalp-admin-tools button:hover{
-  background:rgba(255,255,255,.23)!important;border-color:#d7eef0!important;
+  background:rgba(255,255,255,.23)!important;border-color:#D6E8F5!important;
 }
 html[data-theme] body.dalp-admin-page.ac-ready :is(.ac-roster>.ac-section-header,.ac-analysis-chapter)::before,
 html[data-theme] body.dalp-admin-page.ac-ready :is(.ac-roster>.ac-section-header,.ac-analysis-chapter)::after{content:none!important;display:none!important}
@@ -138,15 +138,15 @@ html[data-theme] body.dalp-admin-page.ac-ready #admin-courses .ac-courses-headin
   min-height:240px!important;margin:18px 0 24px!important;
   padding:clamp(24px,4vw,46px)!important;
   border:0!important;border-radius:22px!important;box-shadow:none!important;
-  background:radial-gradient(ellipse at 91% 6%,rgba(64,150,154,.45),transparent 45%),linear-gradient(120deg,#102f45 0%,#1d4558 55%,#265d63 100%)!important;
-  color:#fff!important;
+  background:radial-gradient(ellipse at 91% 6%,rgba(77,146,197,.45),transparent 45%),linear-gradient(120deg,#253745 0%,#304F66 55%,#235A83 100%)!important;
+  color:#FFFFFF!important;
 }
-html[data-theme] body.dalp-admin-page.ac-ready #admin-courses .ac-courses-heading :is(h2,h3){color:#fff!important;-webkit-text-fill-color:#fff!important}
-html[data-theme] body.dalp-admin-page.ac-ready #admin-courses .ac-courses-heading h2 em{color:#ffb684!important;-webkit-text-fill-color:#ffb684!important}
-html[data-theme] body.dalp-admin-page.ac-ready #admin-courses .ac-courses-heading p{color:#e0ecee!important;-webkit-text-fill-color:#e0ecee!important}
-html[data-theme] body.dalp-admin-page.ac-ready #admin-courses .ac-courses-heading .ac-courses-kicker{color:#d4f4e7!important;-webkit-text-fill-color:#d4f4e7!important}
-html[data-theme] body.dalp-admin-page.ac-ready #admin-courses .ac-courses-hero-link{background:#f9aa78!important;border-color:#f9aa78!important;color:#173a4c!important;-webkit-text-fill-color:#173a4c!important}
-html[data-theme] body.dalp-admin-page.ac-ready #admin-courses .ac-courses-hero-outline{background:#ffffff12!important;border-color:#ffffff70!important;color:#fff!important;-webkit-text-fill-color:#fff!important}
+html[data-theme] body.dalp-admin-page.ac-ready #admin-courses .ac-courses-heading :is(h2,h3){color:#FFFFFF!important;-webkit-text-fill-color:#FFFFFF!important}
+html[data-theme] body.dalp-admin-page.ac-ready #admin-courses .ac-courses-heading h2 em{color:#C5E384!important;-webkit-text-fill-color:#C5E384!important}
+html[data-theme] body.dalp-admin-page.ac-ready #admin-courses .ac-courses-heading p{color:#D6E8F5!important;-webkit-text-fill-color:#D6E8F5!important}
+html[data-theme] body.dalp-admin-page.ac-ready #admin-courses .ac-courses-heading .ac-courses-kicker{color:#EAF3D2!important;-webkit-text-fill-color:#EAF3D2!important}
+html[data-theme] body.dalp-admin-page.ac-ready #admin-courses .ac-courses-hero-link{background:#9BB765!important;border-color:#9BB765!important;color:#253745!important;-webkit-text-fill-color:#253745!important}
+html[data-theme] body.dalp-admin-page.ac-ready #admin-courses .ac-courses-hero-outline{background:#FFFFFF12!important;border-color:#FFFFFF70!important;color:#FFFFFF!important;-webkit-text-fill-color:#FFFFFF!important}
 html[data-theme] body.dalp-admin-page.ac-ready #admin-courses :is(.ac-insights-metrics,.ac-analytics-toolbar,.ac-analytics-chart,.ac-course-grid,.ac-analysis-chapter){max-width:100%;min-width:0}
 html[data-theme] body.dalp-admin-page.ac-ready #admin-courses .ac-analysis-chapter{border:0!important;box-shadow:none!important;background:transparent!important}
 
@@ -157,73 +157,73 @@ html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-sheet:not([hidden]){
   overflow-y:auto!important;overflow-x:hidden!important;overscroll-behavior:contain;
   padding:0 clamp(16px,3vw,30px) 30px!important;
   border:0!important;border-radius:22px 0 0 22px!important;
-  background:#f8fafb!important;box-shadow:-14px 0 50px rgba(13,40,58,.19)!important;
+  background:#FBFBF8!important;box-shadow:-14px 0 50px rgba(17,33,45,.19)!important;
 }
 html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-sheet *,html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-sheet *::before{box-sizing:border-box}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-sheet .dalp-admin-panel-title{
   display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:space-between!important;gap:14px;
   position:sticky;top:0;z-index:4;min-height:102px;padding:17px 0!important;margin:0 0 18px!important;
-  border:0!important;border-bottom:1px solid #e2eaf0!important;background:#f8fafb!important;box-shadow:none!important;
+  border:0!important;border-bottom:1px solid #D6E8F5!important;background:#FBFBF8!important;box-shadow:none!important;
 }
 html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-head-group{display:flex;align-items:center;gap:14px;flex:1;min-width:0}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-avatar{display:grid;place-items:center;flex:none;width:55px;height:55px;border-radius:17px;background:linear-gradient(135deg,#11212D,#26716e);color:#fff;font:800 24px/1 "Plus Jakarta Sans",sans-serif;box-shadow:0 7px 15px rgba(18,66,77,.12)}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-avatar{display:grid;place-items:center;flex:none;width:55px;height:55px;border-radius:17px;background:linear-gradient(135deg,#11212D,#397BAE);color:#FFFFFF;font:800 24px/1 "Plus Jakarta Sans",sans-serif;box-shadow:0 7px 15px rgba(37,55,69,.12)}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-head-text{min-width:0}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-sheet .dalp-admin-panel-title .ac-section-eyebrow{font-size:9px;letter-spacing:.1em;color:#bb612c!important}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-sheet .dalp-admin-panel-title h2{font:800 clamp(17px,2.7vw,25px)/1.2 "Plus Jakarta Sans",sans-serif!important;color:#183249!important;margin:4px 0!important;overflow-wrap:anywhere}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-sheet .dalp-admin-panel-title p{margin:0;font-size:12px;color:#637786!important;overflow-wrap:anywhere;line-height:1.5}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-sheet .ac-detail-close{width:42px;height:42px;min-width:42px;padding:0!important;display:grid;place-items:center;border:1px solid #d8e3e9!important;border-radius:13px;background:#fff!important;color:#11212D!important;font-size:17px;cursor:pointer}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-sheet .dalp-admin-panel-title .ac-section-eyebrow{font-size:9px;letter-spacing:.1em;color:#566B36!important}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-sheet .dalp-admin-panel-title h2{font:800 clamp(17px,2.7vw,25px)/1.2 "Plus Jakarta Sans",sans-serif!important;color:#253745!important;margin:4px 0!important;overflow-wrap:anywhere}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-sheet .dalp-admin-panel-title p{margin:0;font-size:12px;color:#4A5C6A!important;overflow-wrap:anywhere;line-height:1.5}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-sheet .ac-detail-close{width:42px;height:42px;min-width:42px;padding:0!important;display:grid;place-items:center;border:1px solid #D6E8F5!important;border-radius:13px;background:#FFFFFF!important;color:#11212D!important;font-size:17px;cursor:pointer}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-content{min-width:0;display:grid;gap:18px}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-snapshot{display:grid;gap:18px;padding:clamp(17px,3vw,25px);background:#fff;border:1px solid #e4ebf0;border-radius:20px;box-shadow:0 5px 20px rgba(32,73,89,.045)}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-snapshot{display:grid;gap:18px;padding:clamp(17px,3vw,25px);background:#FFFFFF;border:1px solid #D6E8F5;border-radius:20px;box-shadow:0 5px 20px rgba(48,79,102,.045)}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-overview{display:flex;align-items:center;gap:24px;min-width:0}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-score{display:flex;align-items:center;justify-content:center;flex-direction:column;flex:none;width:116px;height:116px;border-radius:50%;background:radial-gradient(closest-side,#fff 78%,transparent 80%),conic-gradient(#6AA6DA var(--ac-score),#e7edf0 0);color:#203d51}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-score strong{font:850 30px/1.1 "Plus Jakarta Sans",sans-serif;letter-spacing:-.04em;color:#183249}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-score span{font-size:11px;font-weight:700;color:#6b8090}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-score{display:flex;align-items:center;justify-content:center;flex-direction:column;flex:none;width:116px;height:116px;border-radius:50%;background:radial-gradient(closest-side,#FFFFFF 78%,transparent 80%),conic-gradient(#6AA6DA var(--ac-score),#EAF0F3 0);color:#253745}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-score strong{font:850 30px/1.1 "Plus Jakarta Sans",sans-serif;letter-spacing:-.04em;color:#253745}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-score span{font-size:11px;font-weight:700;color:#4A5C6A}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-summary-copy{min-width:0;display:grid;justify-items:start;gap:8px}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-summary-copy .ac-account-role{margin:0!important;font-size:10px}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-summary-copy h3{font:800 clamp(16px,2.5vw,20px)/1.35 "Plus Jakarta Sans",sans-serif;color:#183249;margin:0}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-summary-copy p{margin:0;font-size:12px;line-height:1.65;color:#667b89;max-width:46ch}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-summary-copy h3{font:800 clamp(16px,2.5vw,20px)/1.35 "Plus Jakarta Sans",sans-serif;color:#253745;margin:0}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-summary-copy p{margin:0;font-size:12px;line-height:1.65;color:#4A5C6A;max-width:46ch}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-metrics>div{display:grid;align-content:start;gap:7px;min-width:0;padding:13px 12px;background:#f6f9fa;border:1px solid #edf1f2;border-radius:12px}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-metrics small{font-size:9px;letter-spacing:.055em;font-weight:800;color:#68818e;line-height:1.4}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-metrics strong{font:850 18px/1.25 "Plus Jakarta Sans",sans-serif;color:#183249;overflow-wrap:anywhere}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-metrics strong span{font:600 11px/1.4 "DM Sans",sans-serif;color:#718591}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-metrics>div{display:grid;align-content:start;gap:7px;min-width:0;padding:13px 12px;background:#F3F8FC;border:1px solid #EAF0F3;border-radius:12px}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-metrics small{font-size:9px;letter-spacing:.055em;font-weight:800;color:#4A5C6A;line-height:1.4}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-metrics strong{font:850 18px/1.25 "Plus Jakarta Sans",sans-serif;color:#253745;overflow-wrap:anywhere}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-metrics strong span{font:600 11px/1.4 "DM Sans",sans-serif;color:#4A5C6A}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-metrics strong.ac-detail-date{font-size:13px;line-height:1.35}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-courses-heading{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;min-width:0;margin-top:6px}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-courses-heading>div:first-child{min-width:0;flex:1 1 310px}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-courses-heading h3{font:850 clamp(17px,2.5vw,21px)/1.25 "Plus Jakarta Sans",sans-serif;color:#183249;margin:7px 0 6px}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-courses-heading p{margin:0;font-size:12px;color:#657b88;line-height:1.6}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-course-actions{display:flex;align-items:center;flex-wrap:wrap;gap:6px;padding:5px;border:1px solid #e3ebef;border-radius:12px;background:#fff}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-course-actions button{flex:none;min-height:34px!important;padding:7px 12px!important;border:0!important;border-radius:8px!important;background:transparent!important;color:#526b78!important;font-size:11px;font-weight:800;cursor:pointer}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-course-actions button[aria-pressed="true"]{background:#11212D!important;color:#fff!important}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-courses-heading h3{font:850 clamp(17px,2.5vw,21px)/1.25 "Plus Jakarta Sans",sans-serif;color:#253745;margin:7px 0 6px}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-courses-heading p{margin:0;font-size:12px;color:#4A5C6A;line-height:1.6}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-course-actions{display:flex;align-items:center;flex-wrap:wrap;gap:6px;padding:5px;border:1px solid #D6E8F5;border-radius:12px;background:#FFFFFF}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-course-actions button{flex:none;min-height:34px!important;padding:7px 12px!important;border:0!important;border-radius:8px!important;background:transparent!important;color:#4A5C6A!important;font-size:11px;font-weight:800;cursor:pointer}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-course-actions button[aria-pressed="true"]{background:#11212D!important;color:#FFFFFF!important}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-course-list{display:grid!important;grid-template-columns:1fr!important;gap:10px!important;margin:0!important;min-width:0}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-course{margin:0!important;padding:0!important;background:#fff!important;border:1px solid #e2eaf0!important;border-radius:15px!important;box-shadow:none!important;overflow:hidden;min-width:0}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-course{margin:0!important;padding:0!important;background:#FFFFFF!important;border:1px solid #D6E8F5!important;border-radius:15px!important;box-shadow:none!important;overflow:hidden;min-width:0}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-course[hidden]{display:none!important}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-course>summary{display:flex;align-items:center;gap:12px;list-style:none;cursor:pointer;padding:16px 17px 12px}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-course>summary::-webkit-details-marker{display:none}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-course>summary:focus-visible{outline:3px solid #6AA6DA;outline-offset:-4px}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-course-symbol{display:grid;place-items:center;flex:none;width:39px;height:39px;border-radius:12px;background:#e9f1f3;color:#11212D;font-size:10px;font-weight:900}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-course-symbol{display:grid;place-items:center;flex:none;width:39px;height:39px;border-radius:12px;background:#EAF3FA;color:#11212D;font-size:10px;font-weight:900}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-track-title{display:grid;gap:3px;min-width:0;flex:1}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-track-title strong{font-size:13px;font-weight:850;line-height:1.4;color:#183249;overflow-wrap:anywhere}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-track-title small{font-size:11px;color:#6c8290}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-track-status{font-size:10px;font-weight:800;padding:6px 9px;border-radius:99px;background:#f0f3f5;color:#6e7c88;white-space:nowrap}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-track-status.is-started{background:#e6f4f2;color:#236961}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-track-status.is-complete{background:#e1f3e8;color:#196b4a}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-track-percent{font-size:13px;font-weight:850;color:#244c60;white-space:nowrap}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-track-chevron{color:#6f8591;font-size:16px;transition:transform .2s}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-track-title strong{font-size:13px;font-weight:850;line-height:1.4;color:#253745;overflow-wrap:anywhere}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-track-title small{font-size:11px;color:#4A5C6A}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-track-status{font-size:10px;font-weight:800;padding:6px 9px;border-radius:99px;background:#F2F6F7;color:#4A5C6A;white-space:nowrap}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-track-status.is-started{background:#EAF3FA;color:#235A83}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-track-status.is-complete{background:#EAF3D2;color:#566B36}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-track-percent{font-size:13px;font-weight:850;color:#304F66;white-space:nowrap}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-track-chevron{color:#4A5C6A;font-size:16px;transition:transform .2s}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-course[open] .ac-track-chevron{transform:rotate(180deg)}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-summary-meter{height:5px;overflow:hidden;border-radius:99px;margin:0 17px 4px;background:#ebeff1}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-summary-meter>span{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#277b73,#6AA6DA)}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-summary-meter{height:5px;overflow:hidden;border-radius:99px;margin:0 17px 4px;background:#EAF0F3}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-summary-meter>span{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#397BAE,#6AA6DA)}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-track-body{padding:14px 17px 18px}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-track-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin:0 0 16px}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-track-grid>div{display:grid;align-content:start;gap:4px;min-width:0;background:#f6f9fa;padding:11px 10px;border-radius:11px}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-track-grid small{font-size:10px;color:#697f8b;line-height:1.35}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-track-grid strong{font-size:12px;color:#29485a;font-weight:800;overflow-wrap:anywhere;line-height:1.4}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-week-label{margin:0 0 10px;font-size:10px;letter-spacing:.08em;font-weight:850;color:#587284}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-track-grid>div{display:grid;align-content:start;gap:4px;min-width:0;background:#F3F8FC;padding:11px 10px;border-radius:11px}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-track-grid small{font-size:10px;color:#4A5C6A;line-height:1.35}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-track-grid strong{font-size:12px;color:#304F66;font-weight:800;overflow-wrap:anywhere;line-height:1.4}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-week-label{margin:0 0 10px;font-size:10px;letter-spacing:.08em;font-weight:850;color:#4A5C6A}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-week-pills{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:5px;min-width:0}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-week-pill{text-align:center;min-width:0;padding:7px 3px;border:1px solid #e0e8ec;border-radius:8px;background:#f8fafb;font-size:10px;font-weight:750;color:#778a94}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-week-pill.is-done{background:#e1f4e9;border-color:#bfe2ce;color:#176749}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-footer-note{font-size:11px;line-height:1.6;color:#738593;margin:0 0 15px;padding:4px 2px}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-empty{padding:18px;border-radius:12px;background:#fff;color:#60798a;font-size:12px;text-align:center}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-week-pill{text-align:center;min-width:0;padding:7px 3px;border:1px solid #DCE5E7;border-radius:8px;background:#FBFBF8;font-size:10px;font-weight:750;color:#4A5C6A}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-week-pill.is-done{background:#EAF3D2;border-color:#C5E384;color:#566B36}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-footer-note{font-size:11px;line-height:1.6;color:#4A5C6A;margin:0 0 15px;padding:4px 2px}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-empty{padding:18px;border-radius:12px;background:#FFFFFF;color:#4A5C6A;font-size:12px;text-align:center}
 @media(max-width:900px){html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-metrics,html[data-theme] body.dalp-admin-page.ac-ready .ac-track-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:540px){
  html[data-theme] body.dalp-admin-page.ac-ready #admin-courses .ac-courses-heading{padding:25px 20px!important;min-height:0!important;border-radius:17px!important}
@@ -260,7 +260,7 @@ html[data-theme] body.dalp-admin-page.ac-ready #admin-courses .ac-analytics-tool
 /* One flat page canvas; remove the inherited radial overlay from the outer
    wrapper without affecting intentional dark headers or modal scrims. */
 html[data-theme] body.dalp-admin-page.ac-ready{
-  background:#f7f9fa!important;background-image:none!important;
+  background:#FBFBF8!important;background-image:none!important;
 }
 html[data-theme] body.dalp-admin-page.ac-ready :is(.ac-main-frame,.ac-page-area,.dalp-admin-main,#adminWorkspace,#admin-learners){
   background:transparent!important;background-image:none!important;

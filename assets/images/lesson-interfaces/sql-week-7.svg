@@ -5,8 +5,8 @@
 <text x="48" y="42" fill="#C5E384" font-size="17" font-family="Inter,Arial,sans-serif" font-weight="700">SQL  /  WEEK 07</text>
 <text x="48" y="85" fill="#FFFFFF" font-size="29" font-family="Inter,Arial,sans-serif" font-weight="700">Window functions and time-based comparisons</text>
 <text x="49" y="148" fill="#4A5C6A" font-size="17" font-family="Inter,Arial,sans-serif" font-weight="600">Tables → Queries → Insights</text>
-<rect x="55" y="190" width="700" height="314" rx="18" fill="#FFFFFF" stroke="#D9E3E9"/>
-<rect x="780" y="190" width="365" height="314" rx="18" fill="#FFFFFF" stroke="#D9E3E9"/>
+<rect x="55" y="190" width="700" height="314" rx="18" fill="#FFFFFF" stroke="#DCE5E7"/>
+<rect x="780" y="190" width="365" height="314" rx="18" fill="#FFFFFF" stroke="#DCE5E7"/>
 <polyline points="104,418 205,381 306,396 407,307 508,335 609,244 701,222" fill="none" stroke="#6AA6DA" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
 <circle cx="104" cy="418" r="8" fill="#253745"/>
 <circle cx="205" cy="381" r="8" fill="#253745"/>
@@ -18,6 +18,6 @@
 <text x="804" y="265" fill="#253745" font-size="18" font-family="Inter,Arial,sans-serif" font-weight="600">ROW_NUMBER() OVER (...)</text>
 <text x="804" y="344" fill="#253745" font-size="18" font-family="Inter,Arial,sans-serif" font-weight="600">LAG(sales) OVER (...)</text>
 <text x="804" y="423" fill="#253745" font-size="18" font-family="Inter,Arial,sans-serif" font-weight="600">Compare periods</text>
-<rect x="55" y="535" width="1090" height="42" rx="12" fill="#EAF1F4" stroke="none"/>
+<rect x="55" y="535" width="1090" height="42" rx="12" fill="#EAF3FA" stroke="none"/>
 <text x="77" y="563" fill="#253745" font-size="16" font-family="Inter,Arial,sans-serif" font-weight="600">LEARNING CHECK  ·  Identify the input, the method, and how you would verify the result.</text>
 </svg>

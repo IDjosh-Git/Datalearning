@@ -1,22 +1,22 @@
 /* Course identity marks — preserve their original proportions without cropping. */
-.za-card-icon:has(.dl-course-logo), .za-progress-card-head .za-card-icon:has(.dl-course-logo){background:#fff!important;box-shadow:0 4px 14px #204b5c15;overflow:hidden;border:1px solid #dfe9e6!important;display:grid;place-items:center;}
+.za-card-icon:has(.dl-course-logo), .za-progress-card-head .za-card-icon:has(.dl-course-logo){background:#FFFFFF!important;box-shadow:0 4px 14px #304F6615;overflow:hidden;border:1px solid #DCE5E7!important;display:grid;place-items:center;}
 .dl-course-logo{display:block;width:74%;height:74%;max-width:100%;max-height:100%;object-fit:contain;aspect-ratio:1/1;flex-shrink:0;vertical-align:middle;}
 .za-card-icon .dl-course-logo{width:78%;height:78%;}
 .dl-brand-aside-mark{display:flex;align-items:center;gap:13px;margin-bottom:14px;}
-.dl-brand-aside-mark img{width:47px;height:47px;object-fit:contain;flex:none;background:#fff;border:1px solid #c7e1db;border-radius:13px;padding:7px;box-shadow:0 4px 15px #0a263326;}
-.dl-brand-hero-mark{display:inline-flex;align-items:center;gap:11px;padding:7px 15px 7px 7px;border:1px solid #c6eee044;border-radius:99px;background:#ffffff13;color:#d9fbef;font-size:11px;font-weight:850;letter-spacing:.035em;max-width:100%;margin-bottom:12px;}
-.dl-brand-hero-mark img{width:33px;height:33px;flex:none;object-fit:contain;background:#fff;border-radius:9px;padding:5px;}
+.dl-brand-aside-mark img{width:47px;height:47px;object-fit:contain;flex:none;background:#FFFFFF;border:1px solid #D6E8F5;border-radius:13px;padding:7px;box-shadow:0 4px 15px #11212D26;}
+.dl-brand-hero-mark{display:inline-flex;align-items:center;gap:11px;padding:7px 15px 7px 7px;border:1px solid #DCEBAE44;border-radius:99px;background:#FFFFFF13;color:#F4F8E9;font-size:11px;font-weight:850;letter-spacing:.035em;max-width:100%;margin-bottom:12px;}
+.dl-brand-hero-mark img{width:33px;height:33px;flex:none;object-fit:contain;background:#FFFFFF;border-radius:9px;padding:5px;}
 .dl-brand-hero-mark span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .dlmx-subject-icon,.dlmx-course-icon{object-fit:contain!important;}
 .dalp-menu-symbol img.dl-course-logo{width:24px!important;height:24px!important;object-fit:contain;display:block;}
 .dalp-menu-symbol:has(img.dl-course-logo)>svg{display:none!important;}
 .ps-course-icon img.dl-course-logo{width:26px;height:26px;object-fit:contain;}
-body.ps-page .ps-course-icon:has(img.dl-course-logo){background:#fff!important;}
+body.ps-page .ps-course-icon:has(img.dl-course-logo){background:#FFFFFF!important;}
 .mld-course-icon img{object-fit:contain;}
 @media(max-width:660px){.dl-brand-hero-mark{font-size:10px;padding-right:11px;}.dl-brand-hero-mark img{width:29px;height:29px;}.dl-brand-aside-mark img{width:41px;height:41px;}}
 
-.dl-specialist-brand{display:inline-flex;align-items:center;gap:12px;margin-bottom:18px;padding:8px 16px 8px 8px;border-radius:18px;background:#ffffff12;border:1px solid #a6cec144;color:inherit;font-size:12px;font-weight:850;letter-spacing:.018em;}
-.dl-specialist-brand img{width:55px;height:55px;object-fit:contain;background:#fff;border-radius:14px;padding:7px;box-shadow:0 5px 14px #142f3620;}
+.dl-specialist-brand{display:inline-flex;align-items:center;gap:12px;margin-bottom:18px;padding:8px 16px 8px 8px;border-radius:18px;background:#FFFFFF12;border:1px solid #C5E38444;color:inherit;font-size:12px;font-weight:850;letter-spacing:.018em;}
+.dl-specialist-brand img{width:55px;height:55px;object-fit:contain;background:#FFFFFF;border-radius:14px;padding:7px;box-shadow:0 5px 14px #25374520;}
 @media(max-width:520px){.dl-specialist-brand{font-size:11px;padding-right:11px}.dl-specialist-brand img{width:43px;height:43px;}}
 
 /* Keep the product badge and the week eyebrow on distinct lines, including wide displays. */

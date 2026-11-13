@@ -5,8 +5,8 @@
 <text x="48" y="42" fill="#C5E384" font-size="17" font-family="Inter,Arial,sans-serif" font-weight="700">STATISTICS  /  WEEK 07</text>
 <text x="48" y="85" fill="#FFFFFF" font-size="29" font-family="Inter,Arial,sans-serif" font-weight="700">Correlation and exploratory relationship analysis</text>
 <text x="49" y="148" fill="#4A5C6A" font-size="17" font-family="Inter,Arial,sans-serif" font-weight="600">Data → Evidence → Uncertainty</text>
-<rect x="55" y="190" width="700" height="314" rx="18" fill="#FFFFFF" stroke="#D9E3E9"/>
-<rect x="780" y="190" width="365" height="314" rx="18" fill="#FFFFFF" stroke="#D9E3E9"/>
+<rect x="55" y="190" width="700" height="314" rx="18" fill="#FFFFFF" stroke="#DCE5E7"/>
+<rect x="780" y="190" width="365" height="314" rx="18" fill="#FFFFFF" stroke="#DCE5E7"/>
 <circle cx="110" cy="430" r="7" fill="#253745" opacity=".85"/>
 <circle cx="177" cy="409" r="7" fill="#6AA6DA" opacity=".85"/>
 <circle cx="244" cy="381" r="7" fill="#6AA6DA" opacity=".85"/>
@@ -42,6 +42,6 @@
 <text x="804" y="265" fill="#253745" font-size="18" font-family="Inter,Arial,sans-serif" font-weight="600">Scatter plot</text>
 <text x="804" y="344" fill="#253745" font-size="18" font-family="Inter,Arial,sans-serif" font-weight="600">Correlation r</text>
 <text x="804" y="423" fill="#253745" font-size="18" font-family="Inter,Arial,sans-serif" font-weight="600">Not causation</text>
-<rect x="55" y="535" width="1090" height="42" rx="12" fill="#EAF1F4" stroke="none"/>
+<rect x="55" y="535" width="1090" height="42" rx="12" fill="#EAF3FA" stroke="none"/>
 <text x="77" y="563" fill="#253745" font-size="16" font-family="Inter,Arial,sans-serif" font-weight="600">LEARNING CHECK  ·  Identify the input, the method, and how you would verify the result.</text>
 </svg>

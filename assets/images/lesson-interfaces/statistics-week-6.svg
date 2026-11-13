@@ -5,8 +5,8 @@
 <text x="48" y="42" fill="#C5E384" font-size="17" font-family="Inter,Arial,sans-serif" font-weight="700">STATISTICS  /  WEEK 06</text>
 <text x="48" y="85" fill="#FFFFFF" font-size="29" font-family="Inter,Arial,sans-serif" font-weight="700">Probability and risks in business decisions</text>
 <text x="49" y="148" fill="#4A5C6A" font-size="17" font-family="Inter,Arial,sans-serif" font-weight="600">Data → Evidence → Uncertainty</text>
-<rect x="55" y="190" width="700" height="314" rx="18" fill="#FFFFFF" stroke="#D9E3E9"/>
-<rect x="780" y="190" width="365" height="314" rx="18" fill="#FFFFFF" stroke="#D9E3E9"/>
+<rect x="55" y="190" width="700" height="314" rx="18" fill="#FFFFFF" stroke="#DCE5E7"/>
+<rect x="780" y="190" width="365" height="314" rx="18" fill="#FFFFFF" stroke="#DCE5E7"/>
 <rect x="110" y="312" width="65" height="130" rx="5" fill="#6AA6DA" stroke="none"/>
 <rect x="223" y="212" width="65" height="230" rx="5" fill="#253745" stroke="none"/>
 <rect x="336" y="272" width="65" height="170" rx="5" fill="#6AA6DA" stroke="none"/>
@@ -15,6 +15,6 @@
 <text x="804" y="265" fill="#253745" font-size="18" font-family="Inter,Arial,sans-serif" font-weight="600">Event probability</text>
 <text x="804" y="344" fill="#253745" font-size="18" font-family="Inter,Arial,sans-serif" font-weight="600">Expected loss</text>
 <text x="804" y="423" fill="#253745" font-size="18" font-family="Inter,Arial,sans-serif" font-weight="600">Risk decision</text>
-<rect x="55" y="535" width="1090" height="42" rx="12" fill="#EAF1F4" stroke="none"/>
+<rect x="55" y="535" width="1090" height="42" rx="12" fill="#EAF3FA" stroke="none"/>
 <text x="77" y="563" fill="#253745" font-size="16" font-family="Inter,Arial,sans-serif" font-weight="600">LEARNING CHECK  ·  Identify the input, the method, and how you would verify the result.</text>
 </svg>

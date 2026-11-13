@@ -4,7 +4,7 @@ const page=readFileSync('admin.html','utf8');
 const styles=readFileSync('assets/styles/admin-unified-premium.css','utf8');
 const code=readFileSync('assets/scripts/admin-dashboard.js','utf8');
 assert.match(styles, /#admin-courses \.ac-courses-heading\{/);
-assert.match(styles, /linear-gradient\(120deg,#102f45/,'Course Analysis restored dark header');
+assert.match(styles, /linear-gradient\(120deg,#253745/,'Course Analysis restored dark header');
 assert.doesNotMatch(styles, /\.ac-courses-heading\{background:transparent!important/,'No old transparent override');
 assert.match(styles,/\.ac-course-analytics\)\{[\s\S]*border:0!important/,'No page-wide outline');
 for(const id of ['adminDetailInitial','adminDetailContent','adminLearnerDetail','adminCloseDetail'])assert(page.includes('id="'+id+'"'),id);

@@ -1,44 +1,44 @@
 /* Python & AI specialist course and companion resource design.
    Isolated CSS: does not change course data, the interactive runner, or saved progress. */
-body.dlp97-learning-page{--dsp-ink:#163d4b;--dsp-teal:#116b67;--dsp-orange:#ee833b;--dsp-border:#d4e5df;--dsp-soft:#f1f8f5;background:#f6f9f8!important;color:var(--dsp-ink);font-family:'DM Sans',system-ui,sans-serif}
-body.dlp97-learning-page :is(button,a,summary,input,select):focus-visible,body.dalp-gradient-public .guide-container :is(a,button,summary):focus-visible{outline:3px solid #eb823e!important;outline-offset:3px}
-body.dlp97-learning-page :is(.hero.dalp-themed-hero,.ai-hero.dalp-themed-hero){isolation:isolate;background:radial-gradient(ellipse at 91% 10%,#2a918a5b,transparent 48%),linear-gradient(120deg,#113247,#18555c)!important;border:1px solid #28737a!important;border-radius:23px!important;padding:clamp(25px,3.6vw,48px)!important;box-shadow:0 18px 40px #173a4a16!important;color:#fff!important}
+body.dlp97-learning-page{--dsp-ink:#253745;--dsp-teal:#235A83;--dsp-orange:#9BB765;--dsp-border:#DCE5E7;--dsp-soft:#F4F8E9;background:#FBFBF8!important;color:var(--dsp-ink);font-family:'DM Sans',system-ui,sans-serif}
+body.dlp97-learning-page :is(button,a,summary,input,select):focus-visible,body.dalp-gradient-public .guide-container :is(a,button,summary):focus-visible{outline:3px solid #9BB765!important;outline-offset:3px}
+body.dlp97-learning-page :is(.hero.dalp-themed-hero,.ai-hero.dalp-themed-hero){isolation:isolate;background:radial-gradient(ellipse at 91% 10%,#4D92C55B,transparent 48%),linear-gradient(120deg,#253745,#304F66)!important;border:1px solid #397BAE!important;border-radius:23px!important;padding:clamp(25px,3.6vw,48px)!important;box-shadow:0 18px 40px #25374516!important;color:#FFFFFF!important}
 body.dlp97-learning-page :is(.hero.dalp-themed-hero,.ai-hero.dalp-themed-hero) :is(h1,h2){font:800 clamp(30px,4vw,49px)/1.15 'Plus Jakarta Sans',sans-serif!important;letter-spacing:-.045em;color:white!important;max-width:22ch}
-body.dlp97-learning-page :is(.hero.dalp-themed-hero,.ai-hero.dalp-themed-hero) p{line-height:1.75!important;color:#e4f2ef!important}
-body.dlp97-learning-page .course-portal-links{display:flex!important;gap:10px;flex-wrap:wrap;align-items:center;background:#fff!important;border:1px solid var(--dsp-border)!important;border-radius:15px!important;padding:13px 16px!important;margin-bottom:17px!important;box-shadow:0 6px 20px #1a3e4d09}
-body.dlp97-learning-page .course-portal-links .course-portal-kicker{color:#52727c!important;font-weight:850;letter-spacing:.09em;font-size:10px}
-body.dlp97-learning-page .course-portal-links a{background:#eaf4f0!important;color:#165858!important;border:1px solid #cfe5dd!important;border-radius:10px!important;text-decoration:none!important;padding:10px 13px!important;font-size:12px!important;font-weight:800!important;min-height:41px;display:inline-flex;align-items:center;justify-content:center}
-body.dlp97-learning-page .course-portal-links a:hover{background:#d4eee4!important;color:#124941!important;border-color:#8fc3b1!important}
-body.dlp97-learning-page .week,body.dlp97-learning-page .unit{scroll-margin-top:94px;border:1px solid #d5e4df!important;border-radius:22px!important;box-shadow:0 9px 27px #1744530a!important;overflow:hidden;max-width:100%;background:#fff!important;margin-block:18px!important}
-body.dlp97-learning-page :is(.week,.unit)>:is(.week-header,.unit-header){background:#eaf5f0!important;border-bottom:1px solid #cee4dc!important;padding:clamp(16px,2.6vw,27px)!important;color:#1b4e52!important}
-body.dlp97-learning-page .week .week-header h3,body.dlp97-learning-page .unit :is(h2,h3){color:#173f4b!important;letter-spacing:-.025em}
+body.dlp97-learning-page :is(.hero.dalp-themed-hero,.ai-hero.dalp-themed-hero) p{line-height:1.75!important;color:#EAF3FA!important}
+body.dlp97-learning-page .course-portal-links{display:flex!important;gap:10px;flex-wrap:wrap;align-items:center;background:#FFFFFF!important;border:1px solid var(--dsp-border)!important;border-radius:15px!important;padding:13px 16px!important;margin-bottom:17px!important;box-shadow:0 6px 20px #25374509}
+body.dlp97-learning-page .course-portal-links .course-portal-kicker{color:#4A5C6A!important;font-weight:850;letter-spacing:.09em;font-size:10px}
+body.dlp97-learning-page .course-portal-links a{background:#EAF3D2!important;color:#304F66!important;border:1px solid #DCEBAE!important;border-radius:10px!important;text-decoration:none!important;padding:10px 13px!important;font-size:12px!important;font-weight:800!important;min-height:41px;display:inline-flex;align-items:center;justify-content:center}
+body.dlp97-learning-page .course-portal-links a:hover{background:#DCEBAE!important;color:#304F66!important;border-color:#9BB765!important}
+body.dlp97-learning-page .week,body.dlp97-learning-page .unit{scroll-margin-top:94px;border:1px solid #DCE5E7!important;border-radius:22px!important;box-shadow:0 9px 27px #2537450A!important;overflow:hidden;max-width:100%;background:#FFFFFF!important;margin-block:18px!important}
+body.dlp97-learning-page :is(.week,.unit)>:is(.week-header,.unit-header){background:#EAF3D2!important;border-bottom:1px solid #DCEBAE!important;padding:clamp(16px,2.6vw,27px)!important;color:#304F66!important}
+body.dlp97-learning-page .week .week-header h3,body.dlp97-learning-page .unit :is(h2,h3){color:#253745!important;letter-spacing:-.025em}
 body.dlp97-learning-page :is(.week-body,.unit-body){min-width:0;max-width:100%}
 body.dlp97-learning-page :is(.guided-lab,.cv88-lesson-contract,.ai-quiz,.quiz){border-radius:15px!important;box-shadow:none!important}
-body.dlp97-learning-page .cv88-lesson-contract{background:#eff8f5!important;border:1px solid #cbe2d9!important;padding:clamp(16px,2.3vw,24px)!important;margin-block:18px}
-body.dlp97-learning-page .cv88-lesson-contract :is(h2,h3,strong){color:#1a4e51!important}
+body.dlp97-learning-page .cv88-lesson-contract{background:#F4F8E9!important;border:1px solid #C5E384!important;padding:clamp(16px,2.3vw,24px)!important;margin-block:18px}
+body.dlp97-learning-page .cv88-lesson-contract :is(h2,h3,strong){color:#304F66!important}
 body.dlp97-learning-page :is(.week,.unit) :is(pre,code){max-width:100%}
 body.dlp97-learning-page :is(.week,.unit) pre{white-space:pre;overflow-x:auto;border-radius:12px}
-body.dlp97-learning-page :is(.mastery-check,.learning-answer)>summary{cursor:pointer;color:#165b54!important;background:#eaf6f0!important;border:1px solid #cfe7dd!important;border-radius:11px;padding:12px 15px;line-height:1.5;font-weight:800}
-body.dlp97-learning-page :is(.mastery-check,.learning-answer)>summary:hover{background:#d7efe5!important;color:#13463f!important}
-body.dlp97-learning-page .dl-lesson-mobile-bar{background:#123f50!important;border:1px solid #296e71!important;color:#fff!important;border-radius:13px!important}
-body.dlp97-learning-page .dl-lesson-mobile-bar button{color:#fff!important}
-body.dlp97-learning-page .dl-lesson-rail{background:#f9fcfa!important;border-right:1px solid #cbe0da!important}
-body.dlp97-learning-page .dl-lesson-rail :is(a,button):hover{color:#184d4a!important}
-body.dlp97-learning-page .dl-lesson-rail :is(a,button)[aria-current="true"]{color:#154b45!important;background:#d7eee6!important}
-body.dlp97-learning-page .dl-lesson-rail .dl-rail-close{background:#164c55!important;color:#fff!important}
+body.dlp97-learning-page :is(.mastery-check,.learning-answer)>summary{cursor:pointer;color:#235A83!important;background:#F4F8E9!important;border:1px solid #DCEBAE!important;border-radius:11px;padding:12px 15px;line-height:1.5;font-weight:800}
+body.dlp97-learning-page :is(.mastery-check,.learning-answer)>summary:hover{background:#DCEBAE!important;color:#253745!important}
+body.dlp97-learning-page .dl-lesson-mobile-bar{background:#253745!important;border:1px solid #235A83!important;color:#FFFFFF!important;border-radius:13px!important}
+body.dlp97-learning-page .dl-lesson-mobile-bar button{color:#FFFFFF!important}
+body.dlp97-learning-page .dl-lesson-rail{background:#FBFBF8!important;border-right:1px solid #DCE5E7!important}
+body.dlp97-learning-page .dl-lesson-rail :is(a,button):hover{color:#304F66!important}
+body.dlp97-learning-page .dl-lesson-rail :is(a,button)[aria-current="true"]{color:#304F66!important;background:#DCEBAE!important}
+body.dlp97-learning-page .dl-lesson-rail .dl-rail-close{background:#304F66!important;color:#FFFFFF!important}
 body.dalp-gradient-public .guide-container{max-width:1180px;margin-inline:auto;padding:clamp(16px,3vw,32px) clamp(14px,3vw,30px) 80px}
-body.dalp-gradient-public .guide-container .guide-hero{position:relative;overflow:hidden;background:radial-gradient(ellipse at right top,#3c9a9b66,transparent 44%),linear-gradient(115deg,#123247,#185c60)!important;border:1px solid #2f7575!important;border-radius:24px!important;box-shadow:0 15px 37px #1b475316!important;color:#fff!important;padding:clamp(25px,4vw,45px)!important}
-body.dalp-gradient-public .guide-container .guide-hero :is(h1,h2){font:800 clamp(27px,4.4vw,46px)/1.18 'Plus Jakarta Sans',sans-serif!important;color:#fff!important;letter-spacing:-.04em}
-body.dalp-gradient-public .guide-container .guide-hero :is(p,.guide-eyebrow,.guide-back){color:#e6f4ef!important}
-body.dalp-gradient-public .guide-container .guide-hero .guide-button{border:1px solid #c7e2d8!important;border-radius:11px!important;background:#edf8f2!important;color:#17464e!important;min-height:44px;font-weight:800}
-body.dalp-gradient-public .guide-container .guide-hero .guide-button:hover{background:#ffcfaa!important;color:#183749!important}
-body.dalp-gradient-public .guide-container .guide-block{border-radius:20px!important;border:1px solid #d5e5df!important;box-shadow:0 10px 27px #173e4b08!important;padding:clamp(20px,3vw,32px)!important;background:#fff!important}
-body.dalp-gradient-public .guide-container :is(.dlp29-milestone,.cv88-roadmap li,.extension-block .dlp-module){border:1px solid #d4e7df!important;border-radius:15px!important;background:#f5faf7!important;transition:border-color .16s,background .16s}
-body.dalp-gradient-public .guide-container :is(.dlp29-milestone,.cv88-roadmap li):hover{background:#e4f3ed!important;border-color:#95c7b6!important;color:#1c4c4a!important}
-body.dalp-gradient-public .guide-container .guide-block :is(h2,h3,h4){color:#173f4e!important}
-body.dalp-gradient-public .guide-container .guide-bottom{background:linear-gradient(120deg,#15394b,#1b565e)!important;border-radius:19px;color:#fff!important}
-body.dalp-gradient-public .guide-container .guide-bottom :is(h2,p){color:#f1fcf9!important}
-body.dalp-gradient-public .guide-container .guide-bottom a{color:#ffc596!important}
+body.dalp-gradient-public .guide-container .guide-hero{position:relative;overflow:hidden;background:radial-gradient(ellipse at right top,#4D92C566,transparent 44%),linear-gradient(115deg,#253745,#235A83)!important;border:1px solid #397BAE!important;border-radius:24px!important;box-shadow:0 15px 37px #304F6616!important;color:#FFFFFF!important;padding:clamp(25px,4vw,45px)!important}
+body.dalp-gradient-public .guide-container .guide-hero :is(h1,h2){font:800 clamp(27px,4.4vw,46px)/1.18 'Plus Jakarta Sans',sans-serif!important;color:#FFFFFF!important;letter-spacing:-.04em}
+body.dalp-gradient-public .guide-container .guide-hero :is(p,.guide-eyebrow,.guide-back){color:#EAF3D2!important}
+body.dalp-gradient-public .guide-container .guide-hero .guide-button{border:1px solid #C5E384!important;border-radius:11px!important;background:#F4F8E9!important;color:#253745!important;min-height:44px;font-weight:800}
+body.dalp-gradient-public .guide-container .guide-hero .guide-button:hover{background:#C5E384!important;color:#253745!important}
+body.dalp-gradient-public .guide-container .guide-block{border-radius:20px!important;border:1px solid #DCE5E7!important;box-shadow:0 10px 27px #25374508!important;padding:clamp(20px,3vw,32px)!important;background:#FFFFFF!important}
+body.dalp-gradient-public .guide-container :is(.dlp29-milestone,.cv88-roadmap li,.extension-block .dlp-module){border:1px solid #DCEBAE!important;border-radius:15px!important;background:#FBFBF8!important;transition:border-color .16s,background .16s}
+body.dalp-gradient-public .guide-container :is(.dlp29-milestone,.cv88-roadmap li):hover{background:#EAF3D2!important;border-color:#9BB765!important;color:#304F66!important}
+body.dalp-gradient-public .guide-container .guide-block :is(h2,h3,h4){color:#253745!important}
+body.dalp-gradient-public .guide-container .guide-bottom{background:linear-gradient(120deg,#253745,#304F66)!important;border-radius:19px;color:#FFFFFF!important}
+body.dalp-gradient-public .guide-container .guide-bottom :is(h2,p){color:#FBFBF8!important}
+body.dalp-gradient-public .guide-container .guide-bottom a{color:#C5E384!important}
 @media(max-width:800px){body.dlp97-learning-page .course-portal-links{display:grid!important;grid-template-columns:1fr 1fr;align-items:stretch}body.dlp97-learning-page .course-portal-links .course-portal-kicker{grid-column:1/-1}body.dlp97-learning-page .course-portal-links a{min-width:0;justify-content:center;text-align:center}}
 @media(max-width:520px){body.dlp97-learning-page .course-portal-links{grid-template-columns:1fr}body.dlp97-learning-page :is(.hero.dalp-themed-hero,.ai-hero.dalp-themed-hero){padding:25px 18px!important;border-radius:18px!important}body.dlp97-learning-page .week,body.dlp97-learning-page .unit{border-radius:16px!important}body.dlp97-learning-page .week .week-header{padding:18px!important}body.dalp-gradient-public .guide-container .guide-hero{padding:25px 19px!important;border-radius:18px!important}body.dalp-gradient-public .guide-container .guide-block{padding:20px 17px!important}}
 @media(prefers-reduced-motion:reduce){body.dalp-gradient-public .guide-container :is(.dlp29-milestone,.cv88-roadmap li){transition:none!important}}

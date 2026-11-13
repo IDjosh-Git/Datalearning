@@ -20,7 +20,7 @@ assert(css.includes('body.za-courses #zaCatalogCards'));
 assert(css.includes('align-items:start'));
 assert(css.includes('max-height:330px'));
 assert(teaching.includes('.dlm-masterclass .dlm-section-label{display:flex'));
-assert(teaching.includes('border-left:4px solid #168479'));
+assert(teaching.includes('border-left:4px solid #397BAE'));
 assert(teaching.includes('padding:15px 17px 15px 19px!important'));
 assert(js.includes('class="za-course-card" data-course="${s}"'));
 assert(js.includes('class="za-catalog-item dlc-course-card"'));

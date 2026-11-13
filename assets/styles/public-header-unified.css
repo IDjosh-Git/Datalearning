@@ -1,55 +1,55 @@
 /* DataLearning public navigation and Study Pulse: single source of truth. */
-:root {--dlu-navy:#173e55;--dlu-deep:#11212D;--dlu-ink:#11212D;--dlu-soft:#f4f9f8;--dlu-peach:#6AA6DA;--dlu-border:#dbe8e8;}
+:root {--dlu-navy:#253745;--dlu-deep:#11212D;--dlu-ink:#11212D;--dlu-soft:#F3F8FC;--dlu-peach:#6AA6DA;--dlu-border:#DCE5E7;}
 body>.dlu-header,body .dlu-header{
  position:sticky!important;top:0!important;z-index:1400!important;isolation:isolate;
  width:100%!important;min-height:72px!important;margin:0!important;padding:0!important;
  border:0!important;border-bottom:1px solid var(--dlu-border)!important;border-radius:0!important;
- background:rgba(255,255,253,.96)!important;box-shadow:0 7px 26px rgba(19,53,68,.065)!important;
+ background:rgba(255,255,255,.96)!important;box-shadow:0 7px 26px rgba(37,55,69,.065)!important;
  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);color:var(--dlu-ink)!important;
 }
 .dlu-header *{box-sizing:border-box}
 .dlu-header-inner{width:100%;max-width:1700px;min-height:72px;margin-inline:auto;padding:0 clamp(15px,3.2vw,56px);
  display:flex;align-items:center;gap:clamp(10px,1.5vw,23px);}
 .dlu-brand{display:inline-flex;align-items:center;gap:10px;min-width:0;flex:none;text-decoration:none!important;color:var(--dlu-deep)!important}
-.dlu-brand-mark{display:grid;place-items:center;width:43px;height:43px;border-radius:13px;background:linear-gradient(135deg,#eaf7f5,#fdf7f0);border:1px solid #dbe9e6;box-shadow:0 4px 13px #123f4820}
+.dlu-brand-mark{display:grid;place-items:center;width:43px;height:43px;border-radius:13px;background:linear-gradient(135deg,#EAF3FA,#F4F8E9);border:1px solid #DCE5E7;box-shadow:0 4px 13px #25374520}
 .dlu-brand-mark img{display:block;width:36px;height:36px;object-fit:contain}
 .dlu-brand-copy{display:flex;flex-direction:column;gap:4px;min-width:0}
 .dlu-brand-name{font:800 clamp(16px,1.45vw,20px)/1 "Plus Jakarta Sans",system-ui,sans-serif;letter-spacing:-.065em;color:var(--dlu-deep)!important;white-space:nowrap}
-.dlu-brand-name b{font-weight:800;color:#ad542b}
-.dlu-brand-caption{font:800 8px/1.2 "Plus Jakarta Sans",system-ui,sans-serif;letter-spacing:.16em;color:#617b86;white-space:nowrap}
+.dlu-brand-name b{font-weight:800;color:#566B36}
+.dlu-brand-caption{font:800 8px/1.2 "Plus Jakarta Sans",system-ui,sans-serif;letter-spacing:.16em;color:#4A5C6A;white-space:nowrap}
 .dlu-primary-links{display:flex;align-items:center;justify-content:center;gap:clamp(3px,.65vw,12px);margin-left:auto;min-width:0;flex:1 1 auto}
 .dlu-primary-links a{position:relative;display:inline-flex;align-items:center;justify-content:center;min-height:43px;padding:8px clamp(7px,.75vw,14px);border-radius:11px;text-decoration:none!important;white-space:nowrap;
- font:750 clamp(11px,.83vw,13px)/1.2 "Plus Jakarta Sans",system-ui,sans-serif;color:#315567!important;transition:color .16s,background .16s}
-.dlu-primary-links a:hover,.dlu-primary-links a[aria-current=page]{background:#edf6f5;color:#0e575a!important}
+ font:750 clamp(11px,.83vw,13px)/1.2 "Plus Jakarta Sans",system-ui,sans-serif;color:#304F66!important;transition:color .16s,background .16s}
+.dlu-primary-links a:hover,.dlu-primary-links a[aria-current=page]{background:#EAF3FA;color:#304F66!important}
 .dlu-primary-links a[aria-current=page]::after{content:"";position:absolute;bottom:3px;left:20%;right:20%;height:2px;background:#6AA6DA;border-radius:9px}
 .dlu-header-actions{display:flex;align-items:center;justify-content:flex-end;flex:0 0 auto;gap:9px;margin-left:4px;min-width:0}
 .dlu-header-actions .premium-search-trigger{position:static!important;inset:auto!important;display:grid!important;place-items:center!important;flex:0 0 42px!important;
  width:42px!important;height:42px!important;min-width:42px!important;max-width:42px!important;min-height:42px!important;padding:0!important;margin:0!important;
- border:1px solid #d5e6e5!important;border-radius:12px!important;background:#f0f7f5!important;color:#21495b!important;box-shadow:none!important}
+ border:1px solid #DCE5E7!important;border-radius:12px!important;background:#F4F8E9!important;color:#304F66!important;box-shadow:none!important}
 .dlu-header-actions .premium-search-trigger :is(span,kbd){display:none!important}
-.dlu-header-actions .premium-search-trigger svg{width:19px!important;height:19px!important;stroke:#21495b!important}
+.dlu-header-actions .premium-search-trigger svg{width:19px!important;height:19px!important;stroke:#304F66!important}
 .dlu-account{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;gap:6px;padding:0 14px;min-height:43px;
- border:1px solid #173e55;border-radius:12px;background:linear-gradient(145deg,#244d64,#13384e);box-shadow:0 5px 13px #13384e20;
- text-decoration:none!important;color:#fff!important;font:800 12px/1.2 "Plus Jakarta Sans",system-ui,sans-serif}
-.dlu-account:hover{background:#253745;color:#fff!important}
+ border:1px solid #253745;border-radius:12px;background:linear-gradient(145deg,#304F66,#253745);box-shadow:0 5px 13px #25374520;
+ text-decoration:none!important;color:#FFFFFF!important;font:800 12px/1.2 "Plus Jakarta Sans",system-ui,sans-serif}
+.dlu-account:hover{background:#253745;color:#FFFFFF!important}
 .dlu-menu-open-button{display:none;align-items:center;justify-content:center;gap:7px;min-width:44px;width:44px;height:44px;
- border:1px solid #cadcdd;border-radius:12px;background:#f1f8f6;color:#22465a;font-size:20px;cursor:pointer}
+ border:1px solid #CCD0CF;border-radius:12px;background:#F4F8E9;color:#304F66;font-size:20px;cursor:pointer}
 .dlu-nav-panel[hidden]{display:none!important}
 .dlu-nav-panel{box-sizing:border-box;position:fixed!important;inset:0!important;z-index:50000!important;display:flex;flex-direction:column;
- width:100vw;height:100dvh;min-height:0;margin:0;padding:0;background:linear-gradient(145deg,#ffffff 0%,#f1f7f6 100%);color:#203f52;
+ width:100vw;height:100dvh;min-height:0;margin:0;padding:0;background:linear-gradient(145deg,#FFFFFF 0%,#F3F8FC 100%);color:#253745;
  overflow:hidden;overscroll-behavior:contain;}
-.dlu-nav-head{display:flex;flex:none;align-items:center;justify-content:space-between;gap:14px;min-height:76px;padding:12px clamp(16px,4vw,34px);background:#fff;border-bottom:1px solid #dce9e9}
-.dlu-nav-close{display:grid;place-items:center;width:45px;height:45px;border:0;border-radius:12px;background:#173e55;color:#fff;font-size:23px;cursor:pointer}
+.dlu-nav-head{display:flex;flex:none;align-items:center;justify-content:space-between;gap:14px;min-height:76px;padding:12px clamp(16px,4vw,34px);background:#FFFFFF;border-bottom:1px solid #DCE5E7}
+.dlu-nav-close{display:grid;place-items:center;width:45px;height:45px;border:0;border-radius:12px;background:#253745;color:#FFFFFF;font-size:23px;cursor:pointer}
 .dlu-nav-scroll{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;padding:clamp(18px,4vw,36px);padding-bottom:calc(32px + env(safe-area-inset-bottom));width:100%;}
 .dlu-nav-content{width:100%;max-width:1000px;margin-inline:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(19px,3.4vw,38px)}
 .dlu-nav-group{min-width:0;display:flex;flex-direction:column;gap:6px}
-.dlu-nav-group h2{font:850 11px/1.3 "Plus Jakarta Sans",system-ui,sans-serif;letter-spacing:.15em;color:#7b5643;margin:0 0 8px}
+.dlu-nav-group h2{font:850 11px/1.3 "Plus Jakarta Sans",system-ui,sans-serif;letter-spacing:.15em;color:#566B36;margin:0 0 8px}
 .dlu-nav-group a{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:49px;padding:12px 14px;
- text-decoration:none!important;color:#11212D!important;border-radius:12px;border:1px solid transparent;background:#ffffffaa;
+ text-decoration:none!important;color:#11212D!important;border-radius:12px;border:1px solid transparent;background:#FFFFFFAA;
  font:750 14px/1.3 "Plus Jakarta Sans",system-ui,sans-serif}
-.dlu-nav-group a:hover,.dlu-nav-group a[aria-current=page]{background:#e9f4f1;border-color:#cfe3de;color:#195755!important}
+.dlu-nav-group a:hover,.dlu-nav-group a[aria-current=page]{background:#EAF3D2;border-color:#DCE5E7;color:#304F66!important}
 .dlu-nav-group a[aria-current=page]{box-shadow:inset 3px 0 0 #6AA6DA}
-.dlu-nav-group a span:last-child{color:#a95b30;font-weight:800}
+.dlu-nav-group a span:last-child{color:#566B36;font-weight:800}
 
 
 .dlu-header :is(a,button):focus-visible,.dlu-nav-panel :is(a,button):focus-visible{outline:3px solid #6AA6DA!important;outline-offset:3px!important}
@@ -64,57 +64,57 @@ html body .lc-launch.lc-pulse-trigger,html body.dl-workspace .lc-launch.lc-pulse
  display:grid!important;place-items:center!important;z-index:1600!important;
  width:56px!important;height:56px!important;min-width:56px!important;min-height:56px!important;max-width:56px!important;
  padding:0!important;margin:0!important;flex:none!important;border-radius:18px!important;
- border:1px solid #55879b!important;background:linear-gradient(140deg,#253745,#153f59)!important;
- box-shadow:0 13px 35px rgba(14,47,69,.29),inset 0 1px 0 #ffffff55!important;color:#fff!important;cursor:pointer;
- -webkit-text-fill-color:#fff!important;transform:none!important;transition:transform .18s,box-shadow .18s!important;
+ border:1px solid #397BAE!important;background:linear-gradient(140deg,#253745,#253745)!important;
+ box-shadow:0 13px 35px rgba(37,55,69,.29),inset 0 1px 0 #FFFFFF55!important;color:#FFFFFF!important;cursor:pointer;
+ -webkit-text-fill-color:#FFFFFF!important;transform:none!important;transition:transform .18s,box-shadow .18s!important;
 }
-html body .lc-launch.lc-pulse-trigger:hover{transform:translateY(-3px)!important;box-shadow:0 17px 38px #0b354c60!important}
-html body .lc-launch.lc-pulse-trigger svg{width:25px;height:25px;stroke:#fff;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+html body .lc-launch.lc-pulse-trigger:hover{transform:translateY(-3px)!important;box-shadow:0 17px 38px #25374560!important}
+html body .lc-launch.lc-pulse-trigger svg{width:25px;height:25px;stroke:#FFFFFF;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 html body .lc-launch.lc-pulse-trigger-label{position:absolute;clip-path:inset(50%);width:1px;height:1px;overflow:hidden;white-space:nowrap}
-html body .lc-backdrop{position:fixed!important;inset:0!important;z-index:1700!important;background:rgba(9,31,45,.5)!important}
+html body .lc-backdrop{position:fixed!important;inset:0!important;z-index:1700!important;background:rgba(17,33,45,.5)!important}
 html body .lc-backdrop[hidden],html body .lc-panel.lc-pulse-panel[hidden]{display:none!important}
 html body .lc-panel.lc-pulse-panel{position:fixed!important;inset:auto auto calc(88px + env(safe-area-inset-bottom)) calc(17px + env(safe-area-inset-left))!important;
  z-index:1701!important;box-sizing:border-box!important;width:min(440px,calc(100vw - 34px))!important;
  height:auto!important;max-height:min(74dvh,730px)!important;overflow:auto!important;overscroll-behavior:contain;
- background:#f8fbfa!important;color:#11212D!important;border:1px solid #d8e9e6!important;border-radius:21px!important;
- box-shadow:0 22px 75px #102f4955!important;padding:0!important;font-family:"DM Sans",system-ui,sans-serif!important;}
+ background:#FBFBF8!important;color:#11212D!important;border:1px solid #D6E8F5!important;border-radius:21px!important;
+ box-shadow:0 22px 75px #25374555!important;padding:0!important;font-family:"DM Sans",system-ui,sans-serif!important;}
 html body .lc-panel.lc-pulse-panel .lc-top{position:sticky!important;top:0!important;z-index:2!important;margin:0!important;padding:15px 18px!important;
- background:linear-gradient(135deg,#253745,#153b52)!important;border-bottom:1px solid #ffffff26!important;
+ background:linear-gradient(135deg,#253745,#253745)!important;border-bottom:1px solid #FFFFFF26!important;
  display:flex;align-items:center;justify-content:space-between;gap:10px}
 html body .lc-panel.lc-pulse-panel .lc-brand{display:flex;align-items:center;gap:10px}
-html body .lc-panel.lc-pulse-panel .lc-brand-symbol{display:grid;place-items:center;width:37px;height:37px;border-radius:11px;background:#ffffff1c;color:#fff;font-size:21px}
-html body .lc-panel.lc-pulse-panel .lc-brand small{display:block;color:#d9e9e6!important;font-size:9px;letter-spacing:.13em;font-weight:850}
-html body .lc-panel.lc-pulse-panel .lc-top h2{font:800 20px/1.1 "Plus Jakarta Sans",system-ui,sans-serif!important;color:#fff!important;margin:4px 0 0!important}
+html body .lc-panel.lc-pulse-panel .lc-brand-symbol{display:grid;place-items:center;width:37px;height:37px;border-radius:11px;background:#FFFFFF1C;color:#FFFFFF;font-size:21px}
+html body .lc-panel.lc-pulse-panel .lc-brand small{display:block;color:#DCE5E7!important;font-size:9px;letter-spacing:.13em;font-weight:850}
+html body .lc-panel.lc-pulse-panel .lc-top h2{font:800 20px/1.1 "Plus Jakarta Sans",system-ui,sans-serif!important;color:#FFFFFF!important;margin:4px 0 0!important}
 html body .lc-panel.lc-pulse-panel .lc-close{display:grid!important;place-items:center;width:40px!important;height:40px!important;min-width:40px!important;
- color:#fff!important;background:#ffffff20!important;border:1px solid #ffffff4f!important;border-radius:11px!important;cursor:pointer}
+ color:#FFFFFF!important;background:#FFFFFF20!important;border:1px solid #FFFFFF4F!important;border-radius:11px!important;cursor:pointer}
 html body .lc-panel.lc-pulse-panel .lc-inner{display:grid;gap:15px;padding:17px}
-html body .lc-panel.lc-pulse-panel .lc-welcome{background:linear-gradient(135deg,#e9f4f2,#fff8f1)!important;color:#11212D!important;border:1px solid #cfe3de!important;border-radius:16px!important;padding:19px!important}
+html body .lc-panel.lc-pulse-panel .lc-welcome{background:linear-gradient(135deg,#EAF3FA,#FBFBF8)!important;color:#11212D!important;border:1px solid #DCE5E7!important;border-radius:16px!important;padding:19px!important}
 html body .lc-panel.lc-pulse-panel .lc-welcome :is(h3,p){color:#11212D!important}
 html body .lc-panel.lc-pulse-panel .lc-welcome h3{font:800 23px/1.16 "Plus Jakarta Sans",system-ui,sans-serif!important;margin:8px 0!important}
-html body .lc-panel.lc-pulse-panel .lc-welcome-eyebrow{font-size:10px!important;letter-spacing:.11em;color:#146159!important;font-weight:850}
+html body .lc-panel.lc-pulse-panel .lc-welcome-eyebrow{font-size:10px!important;letter-spacing:.11em;color:#235A83!important;font-weight:850}
 html body .lc-panel.lc-pulse-panel .lc-welcome p{line-height:1.5;margin:0;font-size:13px}
-html body .lc-panel.lc-pulse-panel .lc-section{background:#fff!important;color:#11212D!important;border-radius:16px!important;
- border:1px solid #dce8e8!important;box-shadow:0 3px 12px #102f4908!important;padding:17px!important}
-html body .lc-panel.lc-pulse-panel .lc-section h3{color:#173e55!important;font-size:16px!important;line-height:1.3!important;margin:3px 0}
-html body .lc-panel.lc-pulse-panel .lc-section-label{font-size:10px;color:#286b66!important;letter-spacing:.1em;font-weight:850}
+html body .lc-panel.lc-pulse-panel .lc-section{background:#FFFFFF!important;color:#11212D!important;border-radius:16px!important;
+ border:1px solid #DCE5E7!important;box-shadow:0 3px 12px #25374508!important;padding:17px!important}
+html body .lc-panel.lc-pulse-panel .lc-section h3{color:#253745!important;font-size:16px!important;line-height:1.3!important;margin:3px 0}
+html body .lc-panel.lc-pulse-panel .lc-section-label{font-size:10px;color:#235A83!important;letter-spacing:.1em;font-weight:850}
 html body .lc-panel.lc-pulse-panel .lc-section-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
 html body .lc-panel.lc-pulse-panel .lc-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0 0 16px!important}
-html body .lc-panel.lc-pulse-panel .lc-stat{display:flex;flex-direction:column;gap:3px;min-width:0;padding:12px 8px!important;background:#f2f7f6!important;border:1px solid #dbe9e6!important;border-radius:13px!important}
-html body .lc-panel.lc-pulse-panel .lc-stat strong{font-size:23px!important;color:#153f59!important;line-height:1.15!important}
-html body .lc-panel.lc-pulse-panel .lc-stat small{font-size:10px!important;color:#54717d!important}
+html body .lc-panel.lc-pulse-panel .lc-stat{display:flex;flex-direction:column;gap:3px;min-width:0;padding:12px 8px!important;background:#F2F6F7!important;border:1px solid #DCE5E7!important;border-radius:13px!important}
+html body .lc-panel.lc-pulse-panel .lc-stat strong{font-size:23px!important;color:#253745!important;line-height:1.15!important}
+html body .lc-panel.lc-pulse-panel .lc-stat small{font-size:10px!important;color:#4A5C6A!important}
 html body .lc-panel.lc-pulse-panel .lc-stat-icon{font-size:19px}
-html body .lc-panel.lc-pulse-panel :is(select,textarea,input){width:100%;box-sizing:border-box;min-height:43px;font:inherit!important;color:#11212D!important;background:#fff!important;border:1px solid #c6dcdf!important;border-radius:11px!important;padding:9px 11px}
+html body .lc-panel.lc-pulse-panel :is(select,textarea,input){width:100%;box-sizing:border-box;min-height:43px;font:inherit!important;color:#11212D!important;background:#FFFFFF!important;border:1px solid #D6E8F5!important;border-radius:11px!important;padding:9px 11px}
 html body .lc-panel.lc-pulse-panel :is(label){color:#11212D!important;font-weight:750;font-size:12px}
 html body .lc-panel.lc-pulse-panel .lc-actions{display:flex;flex-wrap:wrap;gap:8px}
-html body .lc-panel.lc-pulse-panel .lc-actions button{min-height:43px;flex:1 1 auto;border:1px solid #c8dfe0;border-radius:11px;background:#edf6f4;color:#11212D;font-weight:800;font-size:12px;padding:9px 10px;cursor:pointer}
-html body .lc-panel.lc-pulse-panel .lc-actions .lc-cta{color:#fff!important;background:#254f65!important;border-color:#254f65!important}
-html body .lc-panel.lc-pulse-panel :is(.lc-feedback,.lc-section-description){color:#536c79!important;font-size:12px;line-height:1.55}
-html body .lc-panel.lc-pulse-panel .lc-progress{height:9px;border-radius:18px;overflow:hidden;background:#dbeae7}
-html body .lc-panel.lc-pulse-panel .lc-progress>div{height:100%;background:#3e948a}
-html body .lc-panel.lc-pulse-panel .lc-review{border:1px solid #dce6e6;border-radius:12px;padding:11px;background:#f7faf9}
+html body .lc-panel.lc-pulse-panel .lc-actions button{min-height:43px;flex:1 1 auto;border:1px solid #D6E8F5;border-radius:11px;background:#EAF3FA;color:#11212D;font-weight:800;font-size:12px;padding:9px 10px;cursor:pointer}
+html body .lc-panel.lc-pulse-panel .lc-actions .lc-cta{color:#FFFFFF!important;background:#304F66!important;border-color:#304F66!important}
+html body .lc-panel.lc-pulse-panel :is(.lc-feedback,.lc-section-description){color:#4A5C6A!important;font-size:12px;line-height:1.55}
+html body .lc-panel.lc-pulse-panel .lc-progress{height:9px;border-radius:18px;overflow:hidden;background:#DCE5E7}
+html body .lc-panel.lc-pulse-panel .lc-progress>div{height:100%;background:#4D92C5}
+html body .lc-panel.lc-pulse-panel .lc-review{border:1px solid #DCE5E7;border-radius:12px;padding:11px;background:#FBFBF8}
 html body .lc-panel.lc-pulse-panel .lc-review summary{cursor:pointer;color:#11212D;font-weight:750}
 html body .lc-panel.lc-pulse-panel .lc-badges{display:flex;gap:6px;flex-wrap:wrap}
-html body .lc-panel.lc-pulse-panel .lc-badge{padding:6px 9px;border-radius:50px;background:#ffefe1;color:#815025;font-size:11px;font-weight:800}
+html body .lc-panel.lc-pulse-panel .lc-badge{padding:6px 9px;border-radius:50px;background:#EAF3D2;color:#566B36;font-size:11px;font-weight:800}
 html body .lc-panel.lc-pulse-panel :is(button,a,textarea,select):focus-visible{outline:3px solid #6AA6DA!important;outline-offset:2px!important}
 @media(max-width:580px){html body .lc-launch.lc-pulse-trigger{width:52px!important;height:52px!important;min-width:52px!important;min-height:52px!important;max-width:52px!important;border-radius:16px!important;inset:auto auto calc(14px + env(safe-area-inset-bottom)) calc(12px + env(safe-area-inset-left))!important}
  html body .lc-panel.lc-pulse-panel{inset:auto 0 0 0!important;width:100vw!important;max-height:min(88dvh,790px)!important;border-radius:20px 20px 0 0!important;padding-bottom:env(safe-area-inset-bottom)!important}}
@@ -123,8 +123,8 @@ html body .lc-panel.lc-pulse-panel :is(button,a,textarea,select):focus-visible{o
 /* The launcher is icon-only; its accessible name remains on the button. */
 html body .lc-launch.lc-pulse-trigger .lc-launch-label {display:none!important;visibility:hidden!important;position:absolute!important;width:0!important;height:0!important;overflow:hidden!important}
 html body .lc-launch.lc-pulse-trigger svg{display:block!important;flex:none!important}
-html body .lc-panel.lc-pulse-panel .lc-goal-topline{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 9px;color:#315568;font-size:12px}
-html body .lc-panel.lc-pulse-panel .lc-goal-topline span{font-weight:800;color:#1c655f}
+html body .lc-panel.lc-pulse-panel .lc-goal-topline{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 9px;color:#304F66;font-size:12px}
+html body .lc-panel.lc-pulse-panel .lc-goal-topline span{font-weight:800;color:#235A83}
 /* Prevent older generic dialog animations and max-height rules from shifting the mobile menu. */
 html body .dlu-nav-panel:not([hidden]){
  position:fixed!important;inset:0!important;top:0!important;left:0!important;
@@ -136,48 +136,48 @@ html body .dlu-nav-panel:not([hidden]){
 html body .lc-panel.lc-pulse-panel:not([hidden]){z-index:30001!important;transform:none!important;animation:none!important}
 
 /* Audit: labelled close and legible hover for shared full-screen mobile navigation. */
-.dlu-nav-close{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:7px!important;min-width:83px!important;width:auto!important;min-height:44px!important;padding:0 12px!important;background:#173e55!important;color:#fff!important;-webkit-text-fill-color:#fff!important;font:800 12px/1 "DM Sans",system-ui,sans-serif!important}
+.dlu-nav-close{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:7px!important;min-width:83px!important;width:auto!important;min-height:44px!important;padding:0 12px!important;background:#253745!important;color:#FFFFFF!important;-webkit-text-fill-color:#FFFFFF!important;font:800 12px/1 "DM Sans",system-ui,sans-serif!important}
 .dlu-nav-close>span:first-child{font-size:21px;line-height:1}
-.dlu-nav-close:is(:hover,:focus-visible){background:#235e69!important;color:#fff!important;-webkit-text-fill-color:#fff!important}
-.dlu-nav-group a:is(:hover,:focus-visible),.dlu-nav-group a:is(:hover,:focus-visible) span{background-color:#e8f5ef!important;color:#163d4b!important;-webkit-text-fill-color:#163d4b!important}
+.dlu-nav-close:is(:hover,:focus-visible){background:#235A83!important;color:#FFFFFF!important;-webkit-text-fill-color:#FFFFFF!important}
+.dlu-nav-group a:is(:hover,:focus-visible),.dlu-nav-group a:is(:hover,:focus-visible) span{background-color:#EAF3D2!important;color:#253745!important;-webkit-text-fill-color:#253745!important}
 @media(max-width:390px){.dlu-nav-head{padding-inline:12px!important;gap:8px!important}.dlu-nav-head .dlu-brand{min-width:0!important}.dlu-nav-head .dlu-brand-name{font-size:17px!important}.dlu-nav-close{min-width:73px!important;padding-inline:9px!important}}
 
 /* Study Pulse follows the same legible mobile close-button convention. */
-html body .lc-panel.lc-pulse-panel .lc-top .lc-close{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:6px!important;width:auto!important;min-width:77px!important;min-height:42px!important;padding:0 11px!important;border:1px solid #c0dad2!important;border-radius:11px!important;background:#f1faf6!important;color:#153e4e!important;-webkit-text-fill-color:#153e4e!important;font:800 12px/1 "DM Sans",system-ui,sans-serif!important;cursor:pointer!important}
+html body .lc-panel.lc-pulse-panel .lc-top .lc-close{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:6px!important;width:auto!important;min-width:77px!important;min-height:42px!important;padding:0 11px!important;border:1px solid #CCD0CF!important;border-radius:11px!important;background:#F4F8E9!important;color:#253745!important;-webkit-text-fill-color:#253745!important;font:800 12px/1 "DM Sans",system-ui,sans-serif!important;cursor:pointer!important}
 html body .lc-panel.lc-pulse-panel .lc-top .lc-close>span:first-child{font-size:20px!important;line-height:1!important}
-html body .lc-panel.lc-pulse-panel .lc-top .lc-close:is(:hover,:focus-visible){background:#d9f0e8!important;border-color:#8fbfb4!important;color:#153e4e!important;-webkit-text-fill-color:#153e4e!important}
+html body .lc-panel.lc-pulse-panel .lc-top .lc-close:is(:hover,:focus-visible){background:#EAF3D2!important;border-color:#A8CBE8!important;color:#253745!important;-webkit-text-fill-color:#253745!important}
 
 /* Study Pulse: truthful cloud sync state instead of obsolete local-browser privacy copy. */
-html body .lc-panel.lc-pulse-panel .lc-privacy{display:flex!important;gap:9px;align-items:flex-start;line-height:1.5!important;margin:0!important;border:1px solid #d4e5e8!important;background:#edf5f7!important;border-radius:12px!important;padding:12px 13px!important;color:#31566a!important;font-size:12px!important;font-weight:650!important}
-html body .lc-panel.lc-pulse-panel .lc-privacy-icon{font-size:16px;line-height:1.3;color:#41758a;flex:none}
-html body .lc-panel.lc-pulse-panel [data-lc-sync-status][data-state="synced"],html body .lc-panel.lc-pulse-panel [data-lc-sync-status][data-state="ready"]{color:#216954!important}
-html body .lc-panel.lc-pulse-panel [data-lc-sync-status][data-state="unsynced"],html body .lc-panel.lc-pulse-panel [data-lc-sync-status][data-state="unsigned"]{color:#8b4c23!important}
+html body .lc-panel.lc-pulse-panel .lc-privacy{display:flex!important;gap:9px;align-items:flex-start;line-height:1.5!important;margin:0!important;border:1px solid #D6E8F5!important;background:#EAF3FA!important;border-radius:12px!important;padding:12px 13px!important;color:#235A83!important;font-size:12px!important;font-weight:650!important}
+html body .lc-panel.lc-pulse-panel .lc-privacy-icon{font-size:16px;line-height:1.3;color:#397BAE;flex:none}
+html body .lc-panel.lc-pulse-panel [data-lc-sync-status][data-state="synced"],html body .lc-panel.lc-pulse-panel [data-lc-sync-status][data-state="ready"]{color:#566B36!important}
+html body .lc-panel.lc-pulse-panel [data-lc-sync-status][data-state="unsynced"],html body .lc-panel.lc-pulse-panel [data-lc-sync-status][data-state="unsigned"]{color:#566B36!important}
 
 /* Premium Learning Dashboard entry. Uses compact dimensions in the busy header. */
 .dlu-header-actions a.dlu-dashboard-card{
  box-sizing:border-box;display:inline-flex;align-items:center;justify-content:flex-start;gap:9px;
  min-height:51px;padding:7px 12px 7px 8px;border-radius:14px;
- color:#fff!important;background:linear-gradient(130deg,#17374e 0%,#24566c 68%,#286d70 100%)!important;
- border:1px solid #294e61;box-shadow:0 7px 17px rgba(19,52,71,.18);text-decoration:none!important;
+ color:#FFFFFF!important;background:linear-gradient(130deg,#253745 0%,#304F66 68%,#235A83 100%)!important;
+ border:1px solid #304F66;box-shadow:0 7px 17px rgba(37,55,69,.18);text-decoration:none!important;
  transition:transform .18s ease,box-shadow .18s ease;
 }
-.dlu-header-actions a.dlu-dashboard-card:hover{transform:translateY(-1px);box-shadow:0 10px 21px rgba(19,52,71,.23)}
+.dlu-header-actions a.dlu-dashboard-card:hover{transform:translateY(-1px);box-shadow:0 10px 21px rgba(37,55,69,.23)}
 .dlu-header-actions a.dlu-dashboard-card:focus-visible,.dlu-nav-panel .dlu-dashboard-drawer-link:focus-visible{outline:3px solid #6AA6DA;outline-offset:3px}
 .dlu-dashboard-icon{flex:0 0 33px;width:33px;height:33px;border-radius:10px;display:grid;place-items:center;background:rgba(255,255,255,.14)}
-.dlu-dashboard-icon svg{width:19px;height:19px;stroke:#f6ffff}
+.dlu-dashboard-icon svg{width:19px;height:19px;stroke:#FFFFFF}
 .dlu-dashboard-copy{display:flex;flex-direction:column;gap:3px;text-align:left;min-width:0}
-.dlu-dashboard-copy strong{font:800 11.5px/1.15 "Plus Jakarta Sans",system-ui,sans-serif;color:#fff;white-space:nowrap}
-.dlu-dashboard-copy small{font:650 9.5px/1.1 "DM Sans",system-ui,sans-serif;color:#bde7e1;white-space:nowrap}
+.dlu-dashboard-copy strong{font:800 11.5px/1.15 "Plus Jakarta Sans",system-ui,sans-serif;color:#FFFFFF;white-space:nowrap}
+.dlu-dashboard-copy small{font:650 9.5px/1.1 "DM Sans",system-ui,sans-serif;color:#D6E8F5;white-space:nowrap}
 .dlu-nav-panel .dlu-dashboard-drawer-link{
  display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:17px;
- border:1px solid #c9e3e0;background:linear-gradient(132deg,#edf8f5,#f8fcff);
- box-shadow:0 8px 19px rgba(20,68,77,.07);min-height:73px;text-decoration:none!important;
+ border:1px solid #D6E8F5;background:linear-gradient(132deg,#F4F8E9,#FBFBF8);
+ box-shadow:0 8px 19px rgba(37,55,69,.07);min-height:73px;text-decoration:none!important;
 }
-.dlu-dashboard-drawer-link .dlu-drawer-dash-icon{width:42px;height:42px;border-radius:13px;flex:none;display:grid;place-items:center;color:#fff;background:linear-gradient(130deg,#214d62,#2d7373)}
+.dlu-dashboard-drawer-link .dlu-drawer-dash-icon{width:42px;height:42px;border-radius:13px;flex:none;display:grid;place-items:center;color:#FFFFFF;background:linear-gradient(130deg,#304F66,#397BAE)}
 .dlu-drawer-dash-icon svg{width:22px;height:22px}
 .dlu-drawer-dash-copy{min-width:0;flex:1;display:flex;flex-direction:column;gap:4px}
-.dlu-drawer-dash-copy strong{color:#1b4355;font-size:14px;font-weight:850}
-.dlu-drawer-dash-copy small{color:#587b82;font-size:11px;font-weight:600}
+.dlu-drawer-dash-copy strong{color:#253745;font-size:14px;font-weight:850}
+.dlu-drawer-dash-copy small{color:#4A5C6A;font-size:11px;font-weight:600}
 @media(max-width:1280px) and (min-width:1101px){.dlu-dashboard-copy small{display:none}.dlu-header-actions a.dlu-dashboard-card{min-height:45px;padding:6px 10px 6px 7px}}
 @media(max-width:600px){.dlu-header-actions a.dlu-dashboard-card{display:none}}
 @media(prefers-reduced-motion:reduce){.dlu-header-actions a.dlu-dashboard-card{transition:none}}

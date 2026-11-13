@@ -1,8 +1,8 @@
 /* progress.css: scoped, actively used report layout. Shared theme and access gate are separate. */
-.ip-hero{color:#fff;background:var(--ui-nav-ink);padding:54px 0 78px}
+.ip-hero{color:#FFFFFF;background:var(--ui-nav-ink);padding:54px 0 78px}
 .ip-hero h1{font-size:clamp(36px,4.8vw,61px);letter-spacing:-.055em;line-height:1.12;margin:16px 0}
-.ip-hero p{color:#d8e2e7;line-height:1.8;max-width:760px;font-size:14px}
-.ip-secure{display:inline-flex;padding:9px 13px;border:1px solid rgba(207,226,234,.35);border-radius:10px;color:#e6f0f3;font-size:11px;margin-top:16px}
+.ip-hero p{color:#DCE5E7;line-height:1.8;max-width:760px;font-size:14px}
+.ip-secure{display:inline-flex;padding:9px 13px;border:1px solid rgba(214,232,245,.35);border-radius:10px;color:#EAF3FA;font-size:11px;margin-top:16px}
 .ip-content{margin:0 auto 42px;position:relative;z-index:2}
 .ip-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin:21px 0}
 .ip-stats article{padding:20px;border:1px solid var(--line);border-radius:16px;background:var(--surface);box-shadow:var(--shadow)}
@@ -27,13 +27,13 @@
 .ip-progress{width:110px;height:8px;background:var(--line);border-radius:999px;overflow:hidden}
 .ip-progress>span{display:block;height:100%;background:var(--ui-primary);border-radius:inherit}
 .ip-status{display:inline-flex;align-items:center;padding:5px 8px;border-radius:999px;font-size:9px;font-weight:850;background:var(--surface-alt);color:var(--muted);white-space:nowrap}
-.ip-status.completed{background:#e6f6ee;color:#16764f}
-.ip-status.awaiting_review{background:#fff1d5;color:#8b6110}
-.ip-status.revision{background:#fce8e9;color:#a34451}
-.ip-status.ready{background:#e8edf9;color:#365a97}
+.ip-status.completed{background:#EAF3D2;color:#566B36}
+.ip-status.awaiting_review{background:#EAF3D2;color:#566B36}
+.ip-status.revision{background:#EAF3FA;color:#A3333A}
+.ip-status.ready{background:#EAF3FA;color:#235A83}
 .ip-status.in_progress{background:var(--brand-soft);color:var(--brand)}
-.ip-status.not_started{background:#eef1f5;color:#596579}
-.ip-status.inactive{background:#f0eceb;color:#6b5a57}
+.ip-status.not_started{background:#EAF0F3;color:#4A5C6A}
+.ip-status.inactive{background:#EAF0F3;color:#4A5C6A}
 .ip-view{border:0;background:transparent;color:var(--brand);font-weight:850;cursor:pointer;white-space:nowrap}
 .ip-view:hover{text-decoration:underline}
 .ip-empty{text-align:center!important;color:var(--muted)!important;padding:30px!important}
@@ -50,14 +50,14 @@
 .ip-detail h3{color:var(--ink);font-size:15px}
 .ip-weeks{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
 .ip-week{border:1px solid var(--line);background:var(--surface-alt);border-radius:13px;padding:12px;min-height:102px}
-.ip-week.done{border-color:#a7d8bd;background:#f0faf5}
+.ip-week.done{border-color:#C5E384;background:#F4F8E9}
 .ip-week strong{display:block;color:var(--ink);font-size:12px}
 .ip-week .week-state{display:inline-block;margin:8px 0 4px;font-size:9px;font-weight:850;color:var(--muted)}
-.ip-week.done .week-state{color:#16764f}
+.ip-week.done .week-state{color:#566B36}
 .ip-week small{display:block;color:var(--muted);font-size:9px;line-height:1.5}
-.review-track{padding:7px 10px;border-radius:8px;font-size:10px;letter-spacing:.1em;font-weight:900;background:#e5f4ec;color:#167348}
-.review-track.sql{background:#e7eefb;color:#31599b}
-.review-track.powerbi{background:#fff2cf;color:#8d6514}
+.review-track{padding:7px 10px;border-radius:8px;font-size:10px;letter-spacing:.1em;font-weight:900;background:#EAF3D2;color:#566B36}
+.review-track.sql{background:#EAF3FA;color:#235A83}
+.review-track.powerbi{background:#F4F8E9;color:#566B36}
 @media(max-width:980px){.ip-stats{grid-template-columns:1fr 1fr}
 .ip-filters{grid-template-columns:1fr 1fr}
 .ip-filters label:first-child{grid-column:1/-1}
@@ -91,4 +91,4 @@
 .ip-detail-summary{grid-template-columns:1fr}
 .ip-hero h1{font-size:36px}
 .ip-content{width:min(100% - 16px,1180px)!important}}
-.ip-cert-link{display:inline-block;margin-top:5px;color:#216b67!important;text-decoration:underline;text-underline-offset:3px;font-weight:800;font-size:11px}
+.ip-cert-link{display:inline-block;margin-top:5px;color:#235A83!important;text-decoration:underline;text-underline-offset:3px;font-weight:800;font-size:11px}

@@ -22,14 +22,14 @@ function contrast(a, b) {
   return (values[0]+.05)/(values[1]+.05);
 }
 const pairs = {
-  'active output tab': ['#ffffff', '#173e55'],
-  'inactive output tab': ['#24485c', '#ffffff'],
-  'hovered output tab': ['#153d50', '#e3f0f0'],
-  'console diagnostics': ['#f3fbfe', '#142e42'],
-  'selected challenge': ['#1b4051', '#ecf7f3'],
-  'selection badge': ['#ffffff', '#173e55'],
-  'selected subject': ['#ffffff', '#173f54'],
-  'challenge filter label': ['#24485a', '#ffffff'],
+  'active output tab': ['#FFFFFF', '#253745'],
+  'inactive output tab': ['#304F66', '#FFFFFF'],
+  'hovered output tab': ['#253745', '#EAF3FA'],
+  'console diagnostics': ['#FBFBF8', '#253745'],
+  'selected challenge': ['#253745', '#F4F8E9'],
+  'selection badge': ['#FFFFFF', '#253745'],
+  'selected subject': ['#FFFFFF', '#253745'],
+  'challenge filter label': ['#304F66', '#FFFFFF'],
 };
 for (const [label,[fg,bg]] of Object.entries(pairs)) {
   assert(contrast(fg,bg) >= 4.5, `${label} contrast must meet WCAG AA normal text`);
@@ -40,7 +40,7 @@ for (const key of ['results','schema','console','hints']) {
 }
 assert(root.includes('button[data-ide-tab][aria-selected="true"]'), 'Selected output tab needs explicit text and fill colour');
 assert(root.includes('button[data-ide-tab].is-active'), 'Selected output tab must share visual state with controller');
-assert(root.includes('-webkit-text-fill-color:#fff!important'), 'WebKit selected text must remain light');
+assert(root.includes('-webkit-text-fill-color:#FFFFFF!important'), 'WebKit selected text must remain light');
 assert(root.includes('#challengeModal .pc-card-selection'), 'Selected challenge badge must be visually styled');
 assert(code.includes('class="pc-card-selection">Selected</span>'), 'Currently selected challenge must have a visible badge');
 assert(code.includes('aria-pressed="${selected?\'true\':\'false\'}"'), 'Accessible challenge selection must remain connected to state');

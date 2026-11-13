@@ -1,8 +1,8 @@
 /* Scoped link from relevant weekly skills to the Formula & Code Lab. */
-.za-lesson-block.za-formula-companion{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:clamp(18px,2.5vw,30px);border:1px solid rgba(21,92,106,.16);border-radius:20px;background:linear-gradient(123deg,#f2faf8,#ffffff 61%,#fff6ec);box-shadow:0 10px 32px rgba(15,51,66,.06)}
+.za-lesson-block.za-formula-companion{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:clamp(18px,2.5vw,30px);border:1px solid rgba(35,90,131,.16);border-radius:20px;background:linear-gradient(123deg,#F3F8FC,#FFFFFF 61%,#F4F8E9);box-shadow:0 10px 32px rgba(37,55,69,.06)}
 .za-formula-companion-copy{flex:1;min-width:0;max-width:760px}
-.za-formula-companion .za-block-kicker{color:#086e72;font-size:.69rem;letter-spacing:.11em;font-weight:800}
-.za-formula-companion h2{margin:.45rem 0 .6rem;color:#173a4a;font-size:clamp(1.06rem,2vw,1.35rem);line-height:1.3}
-.za-formula-companion p{max-width:67ch;margin:0;color:#446272;font-size:.94rem;line-height:1.65}
+.za-formula-companion .za-block-kicker{color:#235A83;font-size:.69rem;letter-spacing:.11em;font-weight:800}
+.za-formula-companion h2{margin:.45rem 0 .6rem;color:#253745;font-size:clamp(1.06rem,2vw,1.35rem);line-height:1.3}
+.za-formula-companion p{max-width:67ch;margin:0;color:#4A5C6A;font-size:.94rem;line-height:1.65}
 .za-formula-companion a.za-btn{flex-shrink:0;text-align:center;white-space:normal;max-width:260px;line-height:1.35}
 @media(max-width:760px){.za-lesson-block.za-formula-companion{flex-direction:column;align-items:stretch;gap:16px}.za-formula-companion a.za-btn{max-width:none;width:100%}}

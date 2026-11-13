@@ -11,9 +11,9 @@
 <text x="90" y="295" fill="#9BA8AB" font-size="19" font-family="Inter,Arial,sans-serif" font-weight="600">01</text>
 <text x="160" y="295" fill="#FFFFFF" font-size="24" font-family="Inter,Arial,sans-serif" font-weight="500">=IF(D2&gt;100,"High","Low")</text>
 <text x="90" y="357" fill="#9BA8AB" font-size="19" font-family="Inter,Arial,sans-serif" font-weight="600">02</text>
-<text x="160" y="357" fill="#B9D9EF" font-size="24" font-family="Inter,Arial,sans-serif" font-weight="500">=SUMIFS(Sales,Region,"East")</text>
+<text x="160" y="357" fill="#A8CBE8" font-size="24" font-family="Inter,Arial,sans-serif" font-weight="500">=SUMIFS(Sales,Region,"East")</text>
 <text x="90" y="419" fill="#9BA8AB" font-size="19" font-family="Inter,Arial,sans-serif" font-weight="600">03</text>
-<text x="160" y="419" fill="#B9D9EF" font-size="24" font-family="Inter,Arial,sans-serif" font-weight="500">=XLOOKUP(A2,IDs,Names)</text>
-<rect x="55" y="535" width="1090" height="42" rx="12" fill="#EAF1F4" stroke="none"/>
+<text x="160" y="419" fill="#A8CBE8" font-size="24" font-family="Inter,Arial,sans-serif" font-weight="500">=XLOOKUP(A2,IDs,Names)</text>
+<rect x="55" y="535" width="1090" height="42" rx="12" fill="#EAF3FA" stroke="none"/>
 <text x="77" y="563" fill="#253745" font-size="16" font-family="Inter,Arial,sans-serif" font-weight="600">LEARNING CHECK  ·  Identify the input, the method, and how you would verify the result.</text>
 </svg>

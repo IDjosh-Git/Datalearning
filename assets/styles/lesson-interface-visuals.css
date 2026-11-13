@@ -1,9 +1,9 @@
 /* Premium weekly interface diagrams, decoded on demand. */
-.za-week-interface-visual{margin:22px 0 30px;padding:20px;background:linear-gradient(150deg,#fff 30%,#f5fafb 100%);border:1px solid #dbe6e9;border-radius:22px;box-shadow:0 12px 40px rgba(20,51,70,.065);min-width:0;overflow:hidden}
+.za-week-interface-visual{margin:22px 0 30px;padding:20px;background:linear-gradient(150deg,#FFFFFF 30%,#FBFBF8 100%);border:1px solid #DCE5E7;border-radius:22px;box-shadow:0 12px 40px rgba(37,55,69,.065);min-width:0;overflow:hidden}
 .za-week-interface-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px;flex-wrap:wrap}
-.za-week-interface-head span:first-child{color:#2c8583;font-size:11px;font-weight:800;letter-spacing:.1em}
-.za-week-interface-head h2{font-size:clamp(19px,2.2vw,25px)!important;line-height:1.25!important;color:#163a50;margin:6px 0 0!important}
-.za-visual-badge{background:#e6f1ee;color:#1e6555;font-size:11px;font-weight:700;padding:8px 12px;border-radius:999px}
-.za-week-interface-visual img{display:block;width:100%;height:auto;max-height:590px;object-fit:contain;aspect-ratio:2/1;border:1px solid #dbe7eb;border-radius:15px;background:#f6fafb}
-.za-week-interface-visual figcaption{padding-top:14px;font-size:14px;line-height:1.65;color:#456577}
+.za-week-interface-head span:first-child{color:#397BAE;font-size:11px;font-weight:800;letter-spacing:.1em}
+.za-week-interface-head h2{font-size:clamp(19px,2.2vw,25px)!important;line-height:1.25!important;color:#253745;margin:6px 0 0!important}
+.za-visual-badge{background:#EAF3D2;color:#235A83;font-size:11px;font-weight:700;padding:8px 12px;border-radius:999px}
+.za-week-interface-visual img{display:block;width:100%;height:auto;max-height:590px;object-fit:contain;aspect-ratio:2/1;border:1px solid #D6E8F5;border-radius:15px;background:#FBFBF8}
+.za-week-interface-visual figcaption{padding-top:14px;font-size:14px;line-height:1.65;color:#4A5C6A}
 @media(max-width:640px){.za-week-interface-visual{margin:14px -2px 22px;padding:12px;border-radius:16px}.za-week-interface-visual img{border-radius:9px}.za-week-interface-visual figcaption{font-size:13px}.za-visual-badge{font-size:10px}}

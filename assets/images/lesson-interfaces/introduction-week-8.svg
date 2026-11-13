@@ -5,20 +5,20 @@
 <text x="48" y="42" fill="#C5E384" font-size="17" font-family="Inter,Arial,sans-serif" font-weight="700">DATA ANALYSIS  /  WEEK 08</text>
 <text x="48" y="85" fill="#FFFFFF" font-size="29" font-family="Inter,Arial,sans-serif" font-weight="700">Planning the first dashboard and selecting KPIs</text>
 <text x="49" y="148" fill="#4A5C6A" font-size="17" font-family="Inter,Arial,sans-serif" font-weight="600">Question → Evidence → Decision</text>
-<rect x="55" y="190" width="1090" height="310" rx="18" fill="#FFFFFF" stroke="#D9E3E9"/>
-<rect x="80" y="218" width="327" height="244" rx="15" fill="#F2F6F8" stroke="none"/>
+<rect x="55" y="190" width="1090" height="310" rx="18" fill="#FFFFFF" stroke="#DCE5E7"/>
+<rect x="80" y="218" width="327" height="244" rx="15" fill="#F3F8FC" stroke="none"/>
 <text x="98" y="255" fill="#253745" font-size="20" font-family="Inter,Arial,sans-serif" font-weight="700">Revenue · KPI</text>
 <text x="100" y="356" fill="#06141B" font-size="46" font-family="Inter,Arial,sans-serif" font-weight="700">₦ 248K</text>
-<text x="100" y="390" fill="#34675E" font-size="16" font-family="Inter,Arial,sans-serif" font-weight="600">↑ 12.8% vs last period</text>
-<rect x="436" y="218" width="327" height="244" rx="15" fill="#F2F6F8" stroke="none"/>
+<text x="100" y="390" fill="#235A83" font-size="16" font-family="Inter,Arial,sans-serif" font-weight="600">↑ 12.8% vs last period</text>
+<rect x="436" y="218" width="327" height="244" rx="15" fill="#F3F8FC" stroke="none"/>
 <text x="454" y="255" fill="#253745" font-size="20" font-family="Inter,Arial,sans-serif" font-weight="700">Trend · line chart</text>
 <path d="M461 407 L729 407" fill="none" stroke="#9BA8AB" stroke-width="2" stroke-linecap="round"/>
 <polyline points="461,350 504,331 547,341 590,295 633,306 676,265 719,240" fill="none" stroke="#6AA6DA" stroke-width="6"/>
-<rect x="792" y="218" width="327" height="244" rx="15" fill="#F2F6F8" stroke="none"/>
+<rect x="792" y="218" width="327" height="244" rx="15" fill="#F3F8FC" stroke="none"/>
 <text x="810" y="255" fill="#253745" font-size="20" font-family="Inter,Arial,sans-serif" font-weight="700">Region · bar chart</text>
 <rect x="816" y="295" width="182" height="21" rx="5" fill="#6AA6DA" stroke="none"/>
 <rect x="816" y="342" width="245" height="21" rx="5" fill="#253745" stroke="none"/>
 <rect x="816" y="389" width="129" height="21" rx="5" fill="#6AA6DA" stroke="none"/>
-<rect x="55" y="535" width="1090" height="42" rx="12" fill="#EAF1F4" stroke="none"/>
+<rect x="55" y="535" width="1090" height="42" rx="12" fill="#EAF3FA" stroke="none"/>
 <text x="77" y="563" fill="#253745" font-size="16" font-family="Inter,Arial,sans-serif" font-weight="600">LEARNING CHECK  ·  Identify the input, the method, and how you would verify the result.</text>
 </svg>
