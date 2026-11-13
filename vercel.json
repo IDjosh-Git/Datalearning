@@ -104,8 +104,40 @@
       "destination": "/course-info/catalog.html"
     },
     {
-      "source": "/courses/:course",
-      "destination": "/course-info/:course.html"
+      "source": "/courses/introduction",
+      "destination": "/course-info/introduction.html"
+    },
+    {
+      "source": "/courses/excel",
+      "destination": "/course-info/excel.html"
+    },
+    {
+      "source": "/courses/sql",
+      "destination": "/course-info/sql.html"
+    },
+    {
+      "source": "/courses/powerbi",
+      "destination": "/course-info/powerbi.html"
+    },
+    {
+      "source": "/courses/tableau",
+      "destination": "/course-info/tableau.html"
+    },
+    {
+      "source": "/courses/powerquery",
+      "destination": "/course-info/powerquery.html"
+    },
+    {
+      "source": "/courses/statistics",
+      "destination": "/course-info/statistics.html"
+    },
+    {
+      "source": "/courses/python",
+      "destination": "/course-info/python.html"
+    },
+    {
+      "source": "/courses/ai",
+      "destination": "/course-info/ai.html"
     },
     {
       "source": "/dashboard",
@@ -122,10 +154,6 @@
     {
       "source": "/practice",
       "destination": "/practice.html"
-    },
-    {
-      "source": "/courses/:course",
-      "destination": "/courses/:course.html"
     }
   ],
   "outputDirectory": ".",
@@ -169,6 +197,21 @@
       "source": "/courses/powerbi-extension.html",
       "destination": "/courses/powerbi.html",
       "permanent": false
+    },
+    {
+      "source": "/catalog.html",
+      "destination": "/courses",
+      "permanent": true
+    },
+    {
+      "source": "/landing.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/start-here.html",
+      "destination": "/start-here",
+      "permanent": true
     }
   ]
 }
