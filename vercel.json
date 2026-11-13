@@ -23,6 +23,24 @@
       ]
     },
     {
+      "source": "/public-course-guide.css",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store, max-age=0"
+        }
+      ]
+    },
+    {
+      "source": "/public-pages/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store, max-age=0"
+        }
+      ]
+    },
+    {
       "source": "/courses/(.*)",
       "headers": [
         {
