@@ -24,3 +24,28 @@ button,input{font:inherit}button{cursor:pointer}button:disabled{cursor:wait;opac
 @media(max-width:600px){.auth-shell{width:calc(100% - 20px);padding:12px 0 16px;gap:12px}.auth-top-brand img{width:38px;height:38px}.auth-brand-wordmark{font-size:19px}.auth-brand-wordmark small{font-size:8px;letter-spacing:.16em}.auth-secure-chip{font-size:0;padding:10px;border-radius:50%}.auth-secure-chip svg{width:17px;height:17px}.auth-layout{border-radius:20px}.auth-forms{padding:28px clamp(16px,5vw,28px) 24px}.auth-heading{margin-bottom:19px}.auth-heading h2{font-size:30px}.auth-story{padding:27px 22px}.auth-story h1{font-size:31px;max-width:18ch}.auth-story>div>p{font-size:13px}.auth-benefits{grid-template-columns:minmax(0,1fr)}.auth-benefit:nth-child(n+3){display:none}.auth-benefit{display:flex}.auth-benefit svg{margin:0}.auth-account-note{margin-top:20px}.auth-minimal-foot{font-size:10px;padding-inline:4px}}
 @media(max-width:360px){.auth-shell{width:calc(100% - 12px)}.auth-forms{padding:24px 16px 22px}.auth-story{padding:24px 17px}.auth-brand-wordmark{font-size:17px}.auth-secure-chip{padding:8px}.auth-course-chips{gap:5px}.auth-course-chips span{font-size:9px;padding:6px 9px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
+
+
+/* Auth page final visual layer: load after the global theme. */
+html[data-theme="light"] body.auth-page{background:radial-gradient(circle at 5% 8%,rgba(197,138,105,.19),transparent 34%),radial-gradient(circle at 95% 90%,rgba(2,48,72,.13),transparent 36%),#F0EDDE;color:#023048}
+body.auth-page .auth-layout{border:1px solid rgba(197,138,105,.4);box-shadow:0 30px 85px rgba(11,9,9,.16),0 8px 22px rgba(2,48,72,.09)}
+body.auth-page .auth-story{background:radial-gradient(circle at 90% 13%,rgba(197,138,105,.26),transparent 34%),radial-gradient(circle at 5% 100%,rgba(119,1,1,.55),transparent 43%),linear-gradient(132deg,#0B0909 0%,#023048 54%,#770101 135%);color:#F0EDDE}
+body.auth-page .auth-story h1,body.auth-page .auth-benefit b{color:#F0EDDE}
+body.auth-page .auth-story h1 em{color:#D9BFA4}
+body.auth-page .auth-story>div>p,body.auth-page .auth-benefit span{color:#F0EDDE}
+body.auth-page .auth-kicker{color:#F0EDDE;border-color:rgba(217,191,164,.55);background:rgba(11,9,9,.22)}
+body.auth-page .auth-benefit{background:rgba(11,9,9,.22);border-color:rgba(217,191,164,.25)}
+body.auth-page .auth-benefit svg{color:#D9BFA4;stroke-width:2.25}
+body.auth-page .auth-course-chips span{background:rgba(240,237,222,.10);border-color:rgba(217,191,164,.43);color:#F0EDDE}
+body.auth-page .auth-story-foot{color:#D9BFA4}
+body.auth-page .auth-forms{background:linear-gradient(165deg,#FFFFFF 0%,#F7F3EA 100%)}
+body.auth-page .auth-heading small{color:#770101}
+body.auth-page .auth-heading h2{color:#023048}
+body.auth-page .auth-tabs{background:#F0EDDE;border-color:#D9BFA4}
+body.auth-page .auth-tab.active{background:#FFFFFF;color:#770101;box-shadow:0 3px 12px rgba(11,9,9,.10)}
+body.auth-page .auth-field input:focus{border-color:#770101;box-shadow:0 0 0 4px rgba(197,138,105,.22)}
+html[data-theme="light"] body.auth-page .auth-submit,html[data-theme="light"] body.auth-page button.auth-submit[type="submit"]{background:linear-gradient(110deg,#770101 0%,#023048 100%)!important;color:#FFFFFF!important;border:1px solid rgba(11,9,9,.15)!important;box-shadow:0 12px 25px rgba(119,1,1,.20)}
+html[data-theme="light"] body.auth-page .auth-submit:not(:disabled):hover,html[data-theme="light"] body.auth-page button.auth-submit[type="submit"]:hover{background:linear-gradient(110deg,#023048 0%,#770101 100%)!important;box-shadow:0 16px 30px rgba(2,48,72,.22)}
+body.auth-page .auth-secure-chip{color:#023048;background:#FFFFFF;border-color:#D9BFA4}
+body.auth-page .auth-top-brand img{box-shadow:0 8px 22px rgba(2,48,72,.15)}
+@media(max-width:900px){body.auth-page .auth-story{background:radial-gradient(circle at 92% 5%,rgba(197,138,105,.24),transparent 38%),linear-gradient(132deg,#0B0909,#023048 60%,#770101 145%)}}
