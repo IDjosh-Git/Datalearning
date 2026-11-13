@@ -18,16 +18,16 @@ const mock=(admin=false,unavailable=false,invalid=false,anonymous=false)=>async 
 };
 try{
  assert(config.matcher.includes('/:path*'),'Middleware must cover all app paths');
- for(const route of ['/','/index.html','/catalog.html','/courses/excel.html','/practice.html','/tutor.html','/preview.html','/verify.html','/dashboard']){
+ for(const route of ['/index.html','/catalog.html','/courses/excel.html','/practice.html','/tutor.html','/preview.html','/verify.html','/dashboard']){
   const r=await middleware(req(route));assert.equal(r.status,302,route);const url=new URL(r.headers.get('location'));assert.equal(url.pathname,'/auth.html');
  }
  for(const route of ['/assets/scripts/academy-app.js','/assets/styles/practice.css','/downloads/learning_sales_2026.csv','/assets/images/lesson-interfaces/excel-week-1.png'])assert.equal((await middleware(req(route))).status,403,route);
- for(const route of ['/auth.html','/auth','/assets/scripts/auth-flow.js','/assets/styles/auth-entry-premium.css','/assets/icons/da-logo.svg','/api/auth/session'])assert.equal((await middleware(req(route))).status,204,route);
+ for(const route of ['/','/start-here','/courses','/courses/excel','/public-course-guide.css','/auth.html','/auth','/assets/scripts/auth-flow.js','/assets/styles/auth-entry-premium.css','/assets/icons/da-logo.svg','/api/auth/session'])assert.equal((await middleware(req(route))).status,204,route);
  assert.equal((await middleware(req('/api/tutor'))).status,401);
  assert.equal((await middleware(req('/lib/server-auth.js'))).status,404);
  global.fetch=mock(false);
  let cookie=sessionCookie(token('learner'),300);
- for(const route of ['/','/index.html','/courses/python.html','/assets/scripts/academy-app.js','/practice.html','/api/tutor']){
+ for(const route of ['/index.html','/courses/python.html','/assets/scripts/academy-app.js','/practice.html','/api/tutor']){
   const r=await middleware(req(route,cookie));assert.equal(r.status,204,route);assert.match(r.headers.get('cache-control'),/no-store/);
  }
  for(const route of ['/admin.html','/assets/scripts/admin-dashboard.js'])assert.equal((await middleware(req(route,cookie))).status,403,route);

@@ -20,7 +20,7 @@ assert.equal(restrictedKind('/assets/styles/admin.css'),'adminAsset');
 assert.equal(restrictedKind('/OWNER_SETUP.sql'),'deny');
 assert.equal(restrictedKind('/lib/server-auth.js'),'deny');
 assert.equal(restrictedKind('/courses/sql.html'),'appPage');
-assert.equal(restrictedKind('/'),'appPage');
+assert.equal(restrictedKind('/'),'public');
 assert.equal(restrictedKind('/assets/scripts/academy-app.js'),'appAsset');
 assert.equal(restrictedKind('/api/tutor'),'appApi');
 assert.equal(restrictedKind('/auth.html'),'public');

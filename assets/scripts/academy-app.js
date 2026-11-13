@@ -35,7 +35,7 @@
     try {
       if (!(await user())) return;
       const result = await window.ZAHProgressCloud.syncCourse(slug);
-      if (result?.ok) onUpdate?.(result);
+      if (result?.ok) {onUpdate?.(result);window.dispatchEvent(new CustomEvent('dalp:progress-synced',{detail:{slug,percent:result.percent}}));}
     } catch (error) {console.warn('Course progress sync is temporarily unavailable:',error?.message || error);}
   }
   function renderCard(path, details=false) {
@@ -190,7 +190,7 @@
         <div class="za-learning-concepts">
           <article class="za-learning-concept"><span>01 · UNDERSTAND</span><h4>Begin with the why</h4><p>${safe(educator.foundation)}</p></article>
           <article class="za-learning-concept"><span>02 · SEE IT WORK</span><h4>Small worked example</h4><p>${safe(educator.worked)}</p></article>
-          <article class="za-learning-concept"><span>03 · GO FURTHER</span><h4>Advanced extension</h4><p>${safe(educator.extension)}</p></article>
+          <article class="za-learning-concept"><span>03 · CHECK THE REASONING</span><h4>Why the method works</h4><p>Identify the input, the transformation, and the expected output. Explain which assumption could change the result.</p></article>
         </div>
         <h3>Turn this week's idea into a working result</h3>
         <ol class="za-learning-process">
@@ -209,7 +209,7 @@
       </section>` : '';
       const lessonMinutes = guide ? Math.max(6,Math.round(`${guide.concept} ${guide.reason} ${guide.steps.join(' ')} ${guide.verify} ${guide.case || ''} ${record.example} ${record.exercise} ${media?.why || ''} ${media?.workthrough || ''} ${media?.evidence || ''} ${rebuiltModule?.business || ''} ${rebuiltModule?.worked || ''} ${rebuiltModule?.task || ''} ${rebuiltModule?.check || ''} ${rebuiltModule?.topics?.map(t=>t.heading+' '+t.explanation).join(' ') || ''} ${educator ? [educator.foundation,educator.worked,educator.extension,educator.evidence].join(' ') : ''}`.split(/\s+/).length / 165)) : 4;
       const readTime = one('#zaEstimatedTime');
-      if(readTime)readTime.textContent=`About ${lessonMinutes} min · guided study`;
+      if(readTime)readTime.textContent=`Week ${num(week)} · self-paced study`; // Reading-length calculations are not verified study-time estimates.
       const guideHtml = guide ? `
         <section class="za-lesson-block za-lesson-reading" id="zaConcepts" aria-labelledby="zaConceptsTitle">
           <div class="za-block-head"><span class="za-block-ico" aria-hidden="true">◈</span><div><span class="za-block-kicker">CONCEPTS · PART ONE</span><h2 id="zaConceptsTitle">Understand the idea</h2></div></div>
@@ -274,7 +274,7 @@
           <button type="button" data-jump="zaExercise">Try an exercise</button>
           <button type="button" data-jump="zaRecap">Review & recap</button>
         </nav>
-        <section class="za-lesson-block za-lesson-objective" id="zaGoals"><div class="za-block-head"><span class="za-block-ico" aria-hidden="true">◎</span><div><span class="za-block-kicker">01 · LEARNING GOAL</span><h2>What you will understand</h2></div></div><p>${safe(record.outcome)}.</p><div class="za-tip"><b>How to study this module:</b> Read both explanations, follow the guided workflow, examine the example, and solve the exercise before opening its answer. Finish with the separate weekly questions.</div></section>
+        <section class="za-lesson-block za-lesson-objective" id="zaGoals"><div class="za-block-head"><span class="za-block-ico" aria-hidden="true">◎</span><div><span class="za-block-kicker">01 · LEARNING GOAL</span><h2>What you will understand</h2></div></div><p>${safe(record.outcome)}.</p><p><strong>Learning evidence:</strong> ${safe(educator?.evidence || record.exercise)}</p><div class="za-tip"><b>How to study this module:</b> Read both explanations, follow the guided workflow, examine the example, and solve the exercise before opening its answer. Finish with the separate weekly questions.</div></section>
         <figure class="za-week-interface-visual" id="zaVisualGuide">
           <div class="za-week-interface-head"><div><span>VISUAL LEARNING GUIDE · WEEK ${num(week)}</span><h2>${safe(record.title)}</h2></div><span class="za-visual-badge">Illustrative interface</span></div>
           <img src="${base}assets/images/lesson-interfaces/${safe(slug)}-week-${week}.${slug==='excel'&&week===1?'png':'svg'}" alt="Illustrated interface for ${safe(path.title)} Week ${week}: ${safe(record.title)}" width="1200" height="600" loading="lazy" decoding="async" />
@@ -289,7 +289,12 @@
         ${journeyHtml}
         ${aiPromptHtml}
         <section class="za-lesson-block" id="zaExample"><div class="za-block-head"><span class="za-block-ico" aria-hidden="true">▥</span><div><span class="za-block-kicker">02 · WORKED EXAMPLE</span><h2>See the idea in practice</h2></div></div><p class="za-example-intro">Read the scenario. Identify the input, the operation, and what the result means for the business question.</p><div class="za-example">${safe(record.example)}</div>${guide?.case ? `<div class="za-case-study"><div class="za-case-label">APPLY IT TO A REALISTIC CASE</div><p>${safe(guide.case)}</p></div>` : ''}</section>
-        <section class="za-lesson-block" id="zaExercise"><div class="za-block-head"><span class="za-block-ico orange" aria-hidden="true">✎</span><div><span class="za-block-kicker">03 · YOUR TURN</span><h2>Try the practical exercise</h2></div></div><p>${safe(record.exercise)}</p><div class="za-exercise-help">Before revealing the answer: identify the correct input fields, state the rule or formula, and check that your result addresses the question.</div><details class="za-exercise-solution"><summary>Reveal the worked answer and compare your reasoning</summary><div class="za-solution">${safe(record.solution)}</div></details><div class="za-tip"><b>Common mistake to avoid:</b> ${safe(record.pitfall)}.</div></section>
+        <section class="za-lesson-block" id="zaExercise"><div class="za-block-head"><span class="za-block-ico orange" aria-hidden="true">✎</span><div><span class="za-block-kicker">03 · YOUR TURN</span><h2>Try the practical exercise</h2></div></div><p>${safe(record.exercise)}</p><div class="za-exercise-help"><strong>Attempt first · independent practice.</strong> Identify the input fields, write down your expected result, complete the task in the relevant tool, and explain what the output means. This is practice, not an instructor-graded submission.</div>
+          <details class="za-teaching-hint"><summary>Show hint — reveal the next step, not the answer</summary><p>Start by identifying what one source row represents and which fields the question needs. Choose the operation that matches the outcome: filter, calculate, group, compare or explain. Test your approach on a small sample before using the full dataset.</p></details>
+          <div class="za-practice-check"><h3>Check your work before viewing the solution</h3><p>${safe(guide?.verify || rebuiltModule?.check || record.outcome)}</p><p><strong>Evidence to keep:</strong> ${safe(educator?.evidence || record.exercise)}</p><p>Confirm the output matches the question, verify a sample independently, and record one assumption or limitation.</p></div>
+          <details class="za-exercise-solution"><summary>Show solution and explanation — open after your attempt</summary><div class="za-solution">${safe(record.solution)}</div><p><strong>Why a common approach fails:</strong> ${safe(record.pitfall)}</p><p>Compare the method, intermediate steps and final interpretation with your own work. If your result differs, check source types, filters, grouping level and calculation order.</p></details>
+          ${educator ? `<div class="za-practice-transfer"><h3>Apply the skill to a new situation</h3><p>${safe(educator.extension)}</p><p><strong>Success check:</strong> ${safe(educator.evidence)}</p></div>` : ''}
+          <div class="za-practice-support"><h3>If you are stuck</h3><p>Review the worked example and guided steps above, try the hint, then compare your attempt with the solution. Revisit the practice file and relevant reference material before continuing.</p>${formulaHref ? `<a href="${formulaHref}">Open the verified formula and code reference for this week</a>` : ''}</div></section>
         <section class="za-lesson-block za-lesson-recap" id="zaRecap"><div class="za-block-head"><span class="za-block-ico" aria-hidden="true">✓</span><div><span class="za-block-kicker">LEARNING RECAP</span><h2>Check your understanding</h2></div></div><p class="za-recap-lead">Before you move on, explain the main idea in your own words and confirm that your calculations or decisions can be checked independently.</p><div class="za-recap-card"><strong>What a correct result should show</strong><p>${safe(guide?.verify || record.outcome)}</p></div><div class="za-recap-card za-recap-warning"><strong>Remember this limitation</strong><p>${safe(record.pitfall)}.</p></div><p class="za-recap-next">When you are ready, select <b>Questions to Try</b> below. Questions open on a separate assessment page; completing the lesson and submitting a quiz remain separate actions.</p></section>${capstoneProjectHtml}${['python','ai'].includes(slug)?'':deepDive}`;
       all('.za-lesson-sections button',one('#zaLessonBody')).forEach(button=>button.addEventListener('click',()=>{
         const section=document.getElementById(button.dataset.jump);
@@ -570,8 +575,8 @@
       const u=await user();
       if(!u){status.textContent='You are viewing progress saved on this device. Sign in to securely sync across devices.';return;}
       status.textContent='Checking your synced course progress…';
-      await Promise.all(completeCatalog.map(p=>syncCourse(p.slug,render)));
-      render();status.textContent='Synced with your signed-in DataLearning account where a connection was available.';
+      const outcomes=await Promise.all(completeCatalog.map(async p=>{try{const result=await window.ZAHProgressCloud?.syncCourse(p.slug);render();return result;}catch(error){console.warn('Progress sync failed',p.slug,error);return {ok:false};}}));
+      render();status.textContent=outcomes.every(r=>r?.ok)?'Your course progress is synced with your account.':'Showing available progress. Some cloud records could not be refreshed; retry when connected.';
     })();
   }
   function init(){attachMenu();

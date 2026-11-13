@@ -93,3 +93,12 @@ html[data-theme] body.ac-ready .ac-mobile-menu {
 @media(prefers-reduced-motion:reduce){
   html[data-theme] body.ac-ready .ac-side-link {transition:none!important}
 }
+
+/* Additive, course-agnostic teaching scaffold; existing lesson styles remain intact. */
+.za-teaching-hint,.za-practice-check,.za-practice-transfer,.za-practice-support{margin:1rem 0;padding:1rem 1.15rem;border:1px solid var(--line, var(--dl-border, currentColor));border-radius:14px;background:var(--surface,rgba(255,255,255,.055));line-height:1.65}
+.za-teaching-hint summary{cursor:pointer;font-weight:750;min-height:44px;display:list-item;padding:.55rem 0}
+.za-teaching-hint summary:focus-visible,.za-exercise-solution summary:focus-visible,.za-practice-support a:focus-visible{outline:3px solid var(--dl-accent, currentColor);outline-offset:4px;border-radius:4px}
+.za-practice-check h3,.za-practice-transfer h3,.za-practice-support h3{font-size:1.1rem;line-height:1.4;margin:0 0 .5rem}
+.za-practice-check p,.za-practice-transfer p,.za-practice-support p{margin:.45rem 0}
+.za-practice-support a{display:inline-block;margin-top:.5rem;text-underline-offset:3px}
+@media(max-width:600px){.za-teaching-hint,.za-practice-check,.za-practice-transfer,.za-practice-support{padding:.85rem;overflow-wrap:anywhere}}

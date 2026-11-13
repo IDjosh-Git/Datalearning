@@ -92,6 +92,14 @@
   ],
   "rewrites": [
     {
+      "source": "/",
+      "destination": "/public-pages/landing.html"
+    },
+    {
+      "source": "/start-here",
+      "destination": "/public-pages/start-here.html"
+    },
+    {
       "source": "/courses",
       "destination": "/course-info/catalog.html"
     },

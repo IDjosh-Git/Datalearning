@@ -38,7 +38,7 @@
    el('progressBody').innerHTML='<tr><td colspan="10" class="ip-empty">Loading learner progress…</td></tr>';
    const {data,error}=await db().rpc('instructor_progress_overview');
    if(error){el('progressBody').innerHTML='<tr><td colspan="10" class="ip-empty"><strong>Progress reports are unavailable.</strong><br>Please try again in a moment.</td></tr>';return}
-   rows=(data||[]).map(r=>({...r,completed_weeks:Number(r.completed_weeks||0),progress_percent:Number(r.progress_percent||0),quizzes_taken:Number(r.quizzes_taken||0),quiz_average:r.quizzes_taken?Number(r.quiz_average||0):null}));
+   rows=(data||[]).map(r=>{const total=UNITS[r.course_slug]||10;const completed=Math.max(0,Math.min(total,Number(r.completed_weeks)||0));return {...r,completed_weeks:completed,progress_percent:Math.round(completed/total*100),quizzes_taken:Number(r.quizzes_taken||0),quiz_average:r.quizzes_taken?Number(r.quiz_average||0):null};});
    populateLearners();paintStats();applyFilters();
  }
  function paintStats(){
