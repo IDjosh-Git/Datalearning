@@ -14,7 +14,7 @@ for(const p of pages){
  assert.equal((src.match(/id="dluNavOpen"/g)||[]).length,1,`${p}: mobile open control`);
  assert.equal((src.match(/id="dluNavClose"/g)||[]).length,1,`${p}: close control`);
  assert(!src.includes('class="za-header"')&&!src.includes('class="dlx-header"')&&!src.includes('class="dalp-global-header"'),`${p}: old navigation markup removed`);
- for(const dest of navs)assert(src.includes(`href="${base}${dest}"`),`${p}: missing common nav destination ${dest}`);
+ for(const dest of navs)assert(src.includes(`href="${base}${dest}"`) || (dest==='catalog.html' && src.includes('href="/courses"')),`${p}: missing common nav destination ${dest}`);
  for(const fname of ['public-header-unified.js','premium-search.js','learner-companion.js']){
   assert.equal((src.match(new RegExp(`src="${base}assets/scripts/${fname.replaceAll('.','\\.')}"`,'g'))||[]).length,1,`${p}: ${fname} included once`);
  }

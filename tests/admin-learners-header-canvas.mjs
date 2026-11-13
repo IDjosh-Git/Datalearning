@@ -11,6 +11,6 @@ assert.match(css,/\.ac-roster>\.ac-section-header :is\(h2,h3\)[\s\S]*?color:#FFF
 assert.match(css,/\.ac-roster>\.ac-section-header \.dalp-admin-tools button\{[\s\S]*?color:#FFFFFF!important/,'Contrast-safe action buttons');
 assert.match(css,/body\.dalp-admin-page\.ac-ready :is\(\.ac-main-frame,\.ac-page-area,\.dalp-admin-main,#adminWorkspace,#admin-learners\)\{[\s\S]*?background:transparent!important;background-image:none!important/,'No secondary page background or overlay');
 assert.match(css,/@media\(max-width:700px\)[\s\S]*?\.ac-roster>\.ac-section-header/,'Responsive header layout exists');
-assert.match(page,/admin-unified-premium\.css\?v=20261112-roster-hero-v3/,'Fresh CSS version avoids stale mobile cache');
+assert.match(page,/admin-unified-premium\.css\?v=20261113-snapshot-clean-v1/,'Fresh CSS version avoids stale mobile cache');
 for (const id of ['adminRosterTotal','adminRosterEngaged','adminLearnerRows','adminLearnerDetail','adminReload','adminExport']) assert(page.includes(`id="${id}"`),`${id} retained`);
 console.log('PASS Admin Learners & Progress premium header, no background overlay, controls and responsive layout retained');

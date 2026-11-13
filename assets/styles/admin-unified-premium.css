@@ -284,3 +284,22 @@ html[data-theme] body.dalp-admin-page.ac-ready :is(.ac-main-frame,.ac-page-area,
   html[data-theme] body.dalp-admin-page.ac-ready .ac-roster>.ac-section-header{padding:22px 15px!important}
   html[data-theme] body.dalp-admin-page.ac-ready .ac-roster>.ac-section-header .dalp-admin-tools{grid-template-columns:1fr}
 }
+
+/* Admin overview: Performance Snapshot has no extra overlay, frame or backing
+   panel. The four individual KPI cards retain their own accessible surfaces. */
+html[data-theme] body.dalp-admin-page.ac-ready #adminWorkspace .ac-performance-section,
+html[data-theme] body.dalp-admin-page.ac-ready #adminWorkspace .ac-performance-section>.ac-section-header,
+html[data-theme] body.dalp-admin-page.ac-ready #adminWorkspace .ac-performance-section>.ac-kpis{
+  background:transparent!important;background-image:none!important;
+  border:0!important;outline:0!important;box-shadow:none!important;
+  backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+}
+html[data-theme] body.dalp-admin-page.ac-ready #adminWorkspace .ac-performance-section{
+  padding:0!important;
+}
+html[data-theme] body.dalp-admin-page.ac-ready #adminWorkspace .ac-performance-section::before,
+html[data-theme] body.dalp-admin-page.ac-ready #adminWorkspace .ac-performance-section::after,
+html[data-theme] body.dalp-admin-page.ac-ready #adminWorkspace .ac-performance-section>.ac-kpis::before,
+html[data-theme] body.dalp-admin-page.ac-ready #adminWorkspace .ac-performance-section>.ac-kpis::after{
+  content:none!important;display:none!important;
+}
