@@ -90,6 +90,30 @@ html[data-theme] body.ac-ready .ac-topbar{
 html[data-theme] body.ac-ready .ac-topbar :is(.ac-breadcrumb,.ac-breadcrumb-prefix,.ac-breadcrumb strong,.ac-secure){
  color:#EAF3FA!important;-webkit-text-fill-color:#EAF3FA!important;
 }
+/* Administration navigation: no pale badge under pale lettering. The label
+   and its single status dot sit on a restrained glass surface over the header. */
+html[data-theme] body.ac-ready .ac-topbar .ac-secure{
+ align-items:center;gap:8px;
+ background:rgba(6,20,27,.34)!important;background-image:none!important;
+ border:1px solid rgba(204,208,207,.32)!important;
+ border-radius:999px;padding:8px 12px;
+ color:#FFFFFF!important;-webkit-text-fill-color:#FFFFFF!important;
+ box-shadow:none!important;text-shadow:none!important;
+ line-height:1.4;white-space:nowrap;
+}
+html[data-theme] body.ac-ready .ac-topbar .ac-secure::before{content:none!important;display:none!important}
+html[data-theme] body.ac-ready .ac-topbar .ac-secure-dot{
+ display:inline-block;flex:none;width:8px;height:8px;border-radius:50%;
+ background:#C5E384!important;box-shadow:0 0 0 3px rgba(197,227,132,.18)!important;
+}
+/* Administration pages use one neutral mist canvas, not a white page-sized
+   underlay. White is reserved for content cards and editable controls. */
+html[data-theme="light"] body.ac-ready:is(.dalp-admin-page,[data-admin-console="reviews"],[data-admin-console="connection"],[data-admin-console="sync"]){
+ background-color:#EAF0F3!important;background-image:none!important;
+}
+html[data-theme="light"] body.ac-ready:is(.dalp-admin-page,[data-admin-console="reviews"],[data-admin-console="connection"],[data-admin-console="sync"]) :is(.ac-main-frame,.ac-page-area,.dalp-admin-main,.review-content,.px-utility-main){
+ background:transparent!important;background-image:none!important;
+}
 html[data-theme] body.ac-ready .ac-topbar a.ac-topbar-link{
  color:#FFFFFF!important;-webkit-text-fill-color:#FFFFFF!important;
  background:rgba(255,255,255,.10)!important;border:1px solid rgba(204,208,207,.32)!important;

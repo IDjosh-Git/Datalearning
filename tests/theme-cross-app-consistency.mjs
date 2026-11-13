@@ -15,7 +15,7 @@ assert.equal(cssFiles.length, 54, 'All active CSS modules remain available');
 
 for (const page of pages) {
   const html = fs.readFileSync(page, 'utf8');
-  const hits = html.match(/palette-premium-20261113\.css\?v=20261113-theme-v2/g) || [];
+  const hits = html.match(/palette-premium-20261113\.css\?v=20261113-theme-v3/g) || [];
   assert.equal(hits.length, 1, `${page} must use the current theme exactly once`);
   const links = [...html.matchAll(/<link\b[^>]*?href="([^"]+\.css(?:\?[^"]*)?)"[^>]*>/gi)].map(match => match[1]);
   assert(links.length > 0, `${page} must have styles`);

@@ -124,7 +124,7 @@ html[data-theme] body.ac-ready .ac-breadcrumb-prefix{color:#4A5C6A!important;fon
 html[data-theme] body.ac-ready .ac-breadcrumb strong{color:#11212D!important;-webkit-text-fill-color:#11212D!important;font-size:13px;font-weight:850;white-space:nowrap}
 
 html[data-theme] body.ac-ready .ac-top-actions{display:flex;align-items:center;gap:14px;min-width:0;margin-left:auto}
-html[data-theme] body.ac-ready .ac-secure{display:inline-flex;align-items:center;gap:8px;color:#4A5C6A!important;font-size:11px;font-weight:750;white-space:nowrap}
+html[data-theme] body.ac-ready .ac-secure{display:inline-flex;align-items:center;gap:8px;color:#FFFFFF!important;-webkit-text-fill-color:#FFFFFF!important;font-size:11px;font-weight:750;white-space:nowrap}
 html[data-theme] body.ac-ready .ac-secure-dot{width:8px;height:8px;flex:none;border-radius:50%;background:#758C46;box-shadow:0 0 0 3px #EAF3D2}
 html[data-theme] body.ac-ready a.ac-topbar-link{
  display:inline-flex;align-items:center;gap:8px;min-height:39px;padding:9px 15px!important;

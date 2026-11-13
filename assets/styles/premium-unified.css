@@ -4824,7 +4824,7 @@ html[data-theme] body.ac-ready .ac-topbar{
   color:#11212D!important;box-shadow:0 5px 18px rgba(35,90,131,.06)!important;
 }
 html[data-theme] body.ac-ready .ac-breadcrumb :is(strong,span),
-html[data-theme] body.ac-ready .ac-secure{color:#11212D!important;-webkit-text-fill-color:#11212D!important;}
+html[data-theme] body.ac-ready .ac-secure{color:#FFFFFF!important;-webkit-text-fill-color:#FFFFFF!important;}
 
 html[data-theme] body.ac-ready .ac-topbar-link{
   background:#EAF3FA!important;border-color:#D6E8F5!important;

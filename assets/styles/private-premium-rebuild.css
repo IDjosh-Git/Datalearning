@@ -98,7 +98,7 @@ html[data-theme] body.ac-ready .ac-breadcrumb-prefix{color:#4A5C6A!important;fon
 html[data-theme] body.ac-ready .ac-breadcrumb strong{color:#253745!important;-webkit-text-fill-color:#253745!important;font-size:13px!important;font-weight:850!important;white-space:nowrap}
 html[data-theme] body.ac-ready .ac-crumb-divider{color:#9BA8AB}
 html[data-theme] body.ac-ready .ac-top-actions{gap:10px!important}
-html[data-theme] body.ac-ready .ac-secure{color:#4A5C6A!important;font-weight:750!important;font-size:10.5px!important}
+html[data-theme] body.ac-ready .ac-secure{color:#FFFFFF!important;-webkit-text-fill-color:#FFFFFF!important;font-weight:750!important;font-size:10.5px!important}
 html[data-theme] body.ac-ready .ac-secure-dot{background:#758C46!important;box-shadow:0 0 0 3px #DCEBAE!important}
 html[data-theme] body.ac-ready a.ac-topbar-link{
   min-height:43px!important;background:#EAF3D2!important;border:1px solid #A8CBE8!important;

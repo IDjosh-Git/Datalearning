@@ -1,3 +1,13 @@
+# 13 November 2026 — Administration contrast and canvas refinement
+
+- Corrected the Admin access badge in the private top navigation: dark translucent surface, white text, one pistachio status indicator, and no conflicting pale legacy background.
+- Aligned the administrator topbar source styles with the premium navy gradient to avoid a temporary white header during CSS loading.
+- Removed page-sized white background underlays from the Admin Overview, Review Desk, Connection Check, and Progress Sync workspaces; the page canvas is now flat slate-mist (#EAF0F3), while content cards retain accessible white surfaces.
+- Preserved mobile breakpoint hiding of the status badge, account permissions, learner data, and all existing navigation functionality.
+- Cache-busted the canonical theme across all 38 pages; added a dedicated regression test for badge contrast and administration canvas. Source only; no live deployment or authenticated browser QA.
+
+---
+
 # 13 November 2026 — Educator curriculum 2.3.0
 
 - 90 progressively structured teaching ladders across Data Analysis, Excel, SQL, Power BI, Tableau, Power Query, Statistics, Python and AI. Each includes plain-language explanation, realistic worked miniature, deeper extension and measurable evidence check.
