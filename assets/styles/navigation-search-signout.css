@@ -1,6 +1,6 @@
 /* DataLearning 2026-11-12 — one shared header search component and public session cards.
    This is intentionally loaded after the private/public navigation bundles. */
-:root{--dl-nav-ink:#183e53;--dl-nav-teal:#276766;--dl-nav-orange:#f27329}
+:root{--dl-nav-ink:#183e53;--dl-nav-teal:#276766;--dl-nav-orange:#6AA6DA}
 html body button.premium-search-trigger.dalp-unified-search{
  position:static!important;inset:auto!important;float:none!important;transform:none!important;
  box-sizing:border-box!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;
@@ -74,7 +74,7 @@ html body button.dalp-public-signout .dalp-logout-copy strong{color:#fff!importa
 html body button.dalp-public-signout .dalp-logout-copy small{display:none!important;color:#c5ebe5!important;-webkit-text-fill-color:#c5ebe5!important;font:600 9px/1 'DM Sans',system-ui!important}
 @media(min-width:1660px){html body button.dalp-public-signout .dalp-logout-copy small{display:block!important}}
 html body button.dalp-public-signout:hover{border-color:#77b5aa!important;box-shadow:0 11px 24px #133c5036!important;background:linear-gradient(125deg,#214d62,#2a7171)!important}
-html body button.dalp-public-signout:focus-visible{outline:3px solid #f27329!important;outline-offset:3px!important}
+html body button.dalp-public-signout:focus-visible{outline:3px solid #6AA6DA!important;outline-offset:3px!important}
 html body button.dalp-public-signout:disabled{opacity:.7!important;cursor:wait!important}
 /* Small screens use the account card in the full-screen navigation drawer. */
 @media(max-width:1100px){html body .dlu-header-actions button.dalp-public-signout{display:none!important}}
@@ -105,7 +105,7 @@ html body .dalp-public-session-card .dalp-session-signout{
 html body .dalp-public-session-card .dalp-session-signout svg{display:block!important;flex:0 0 19px!important;width:19px!important;height:19px!important;stroke:#8f4423!important}
 html body .dalp-public-session-card .dalp-session-signout span:last-child{margin-left:auto!important}
 html body .dalp-public-session-card .dalp-session-signout:hover{background:#fff6ed!important;box-shadow:0 8px 17px #091d2b31!important}
-html body .dalp-public-session-card .dalp-session-signout:focus-visible{outline:3px solid #f27329!important;outline-offset:3px!important}
+html body .dalp-public-session-card .dalp-session-signout:focus-visible{outline:3px solid #6AA6DA!important;outline-offset:3px!important}
 html body .dalp-public-session-card .dalp-session-signout:disabled{opacity:.72!important;cursor:wait!important}
 @media(prefers-reduced-motion:reduce){html body :is(button.dalp-unified-search,button.dalp-public-signout){transition:none!important}}
 /* Retire the private header's obsolete 190px width at tablet/mobile breakpoints. */

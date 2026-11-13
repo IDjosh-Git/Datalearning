@@ -45,7 +45,7 @@ html.dalp-auth-checking,html.dalp-auth-checking body{min-height:100%;background:
   padding:clamp(25px,5vw,42px);
   border-radius:28px;
   border:1px solid #e1e6f6;
-  background:linear-gradient(155deg,#fff 0%,#fff 64%,#F9F7F6 100%);
+  background:linear-gradient(155deg,#fff 0%,#fff 64%,#FBFBF8 100%);
   box-shadow:0 28px 72px rgba(24,38,84,.11),0 5px 16px rgba(31,37,75,.04);
   text-align:center;
 }
@@ -80,7 +80,7 @@ html.dalp-auth-checking,html.dalp-auth-checking body{min-height:100%;background:
   min-height:46px;display:inline-flex;align-items:center;justify-content:center;
   padding:12px 19px;border-radius:13px;
   border:1px solid transparent;
-  background:linear-gradient(105deg,#6590A4,#35637C);
+  background:linear-gradient(105deg,#6590A4,#253745);
   color:#fff;font:inherit;font-size:13px;font-weight:750;
   box-shadow:0 9px 18px rgba(53,99,124,.15);
   transition:transform .18s ease,box-shadow .18s ease,filter .18s ease;
@@ -92,7 +92,7 @@ html.dalp-auth-checking,html.dalp-auth-checking body{min-height:100%;background:
 #dalp-auth-gate :is(button,a):focus-visible{outline:3px solid #D6E7EA;outline-offset:4px}
 #dalp-auth-gate .dalp-gate-actions{gap:10px}
 #dalp-auth-gate .dalp-gate-actions .dalp-gate-go{
-  color:#35637C!important;background:#EDF4F4;border-color:#E9F2F3;box-shadow:none;
+  color:#253745!important;background:#EDF4F4;border-color:#E9F2F3;box-shadow:none;
 }
 @media(max-width:380px){
  #dalp-auth-gate .dalp-gate-box{padding:25px 21px;border-radius:22px}

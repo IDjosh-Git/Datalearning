@@ -20,7 +20,7 @@ html[data-theme] body.dalp-admin-page.ac-ready .ac-courses-heading,
 html[data-theme] body[data-admin-console="reviews"].ac-ready .review-hero {
   min-height:0!important;margin:18px 0 22px!important;border:0!important;border-radius:18px!important;
   padding:clamp(22px,3.5vw,39px)!important;
-  background:#254559!important;background-image:none!important;box-shadow:none!important;
+  background:#11212D!important;background-image:none!important;box-shadow:none!important;
 }
 html[data-theme] body.dalp-admin-page.ac-ready .ac-welcome h1 {font-size:clamp(26px,3vw,40px)!important;line-height:1.16!important;max-width:680px}
 html[data-theme] body.dalp-admin-page.ac-ready :is(.ac-welcome p,.ac-courses-heading p){max-width:680px;line-height:1.7}
@@ -51,7 +51,7 @@ html[data-theme] body.dalp-admin-page.ac-ready .ac-directory-account{display:fle
 html[data-theme] body.dalp-admin-page.ac-ready .ac-directory-account>span:last-child{min-width:0}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-directory-account strong{display:block;line-height:1.5;font-weight:800;color:var(--admin-ink)}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-directory-account small{display:block;font-size:11px;line-height:1.4;color:#728391;overflow-wrap:anywhere;max-width:245px}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-account-initial{flex:none;display:grid;place-items:center;width:36px;height:36px;border-radius:12px;background:#e4eff3;color:#254559;font-weight:900;font-size:14px}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-account-initial{flex:none;display:grid;place-items:center;width:36px;height:36px;border-radius:12px;background:#e4eff3;color:#11212D;font-weight:900;font-size:14px}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-account-role{margin:0!important;padding:5px 10px!important;border-radius:99px;background:#edf4f7;color:#36576a;font-size:11px;font-weight:750;white-space:nowrap}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-account-role.is-admin{background:#e6f4ef;color:#176b54;border-color:#c4e4d7}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-numeric{font-weight:800;font-size:14px;white-space:nowrap}
@@ -60,9 +60,9 @@ html[data-theme] body.dalp-admin-page.ac-ready .ac-progress-cell{min-width:155px
 html[data-theme] body.dalp-admin-page.ac-ready .ac-progress-cell>div:first-child{display:flex;justify-content:space-between;align-items:center;gap:10px}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-progress-cell small{font-size:11px;color:#5b7383}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-mini-meter,html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-track{height:7px;border-radius:100px;overflow:hidden;background:#e8eef0}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-mini-meter>span,html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-track>span{display:block;height:100%;border-radius:100px;background:#f27329}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-mini-meter>span,html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-track>span{display:block;height:100%;border-radius:100px;background:#6AA6DA}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-time-cell{font-size:11px;color:#5b7383;white-space:nowrap}
-html[data-theme] body.dalp-admin-page.ac-ready .dalp-learner-view{min-width:108px;min-height:39px!important;white-space:nowrap;padding:9px 11px!important;background:#eaf2f5!important;color:#254559!important;border:1px solid #d0e2e9!important;border-radius:10px;font-size:11px;font-weight:800}
+html[data-theme] body.dalp-admin-page.ac-ready .dalp-learner-view{min-width:108px;min-height:39px!important;white-space:nowrap;padding:9px 11px!important;background:#eaf2f5!important;color:#11212D!important;border:1px solid #d0e2e9!important;border-radius:10px;font-size:11px;font-weight:800}
 html[data-theme] body.dalp-admin-page.ac-ready .dalp-learner-view:hover{background:#dceef2!important}
 /* The detail sheet is defined once in the final section of this stylesheet. */
 /* Keep the sidebar account identity directly above Sign Out and its separator local. */
@@ -98,8 +98,8 @@ html[data-theme] body.dalp-admin-page.ac-ready .ac-roster>.ac-section-header{
   width:100%;min-width:0;min-height:185px!important;box-sizing:border-box;
   border:0!important;border-radius:21px!important;outline:0!important;
   box-shadow:none!important;
-  background-color:#254559!important;
-  background-image:linear-gradient(117deg,#132d40 0%,#254559 58%,#28636b 100%)!important;
+  background-color:#11212D!important;
+  background-image:linear-gradient(117deg,#132d40 0%,#11212D 58%,#28636b 100%)!important;
   color:#fff!important;
 }
 html[data-theme] body.dalp-admin-page.ac-ready .ac-roster>.ac-section-header>div:first-child{min-width:0;flex:1 1 440px;max-width:790px}
@@ -166,16 +166,16 @@ html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-sheet .dalp-admin-pane
   border:0!important;border-bottom:1px solid #e2eaf0!important;background:#f8fafb!important;box-shadow:none!important;
 }
 html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-head-group{display:flex;align-items:center;gap:14px;flex:1;min-width:0}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-avatar{display:grid;place-items:center;flex:none;width:55px;height:55px;border-radius:17px;background:linear-gradient(135deg,#254559,#26716e);color:#fff;font:800 24px/1 "Plus Jakarta Sans",sans-serif;box-shadow:0 7px 15px rgba(18,66,77,.12)}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-avatar{display:grid;place-items:center;flex:none;width:55px;height:55px;border-radius:17px;background:linear-gradient(135deg,#11212D,#26716e);color:#fff;font:800 24px/1 "Plus Jakarta Sans",sans-serif;box-shadow:0 7px 15px rgba(18,66,77,.12)}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-head-text{min-width:0}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-sheet .dalp-admin-panel-title .ac-section-eyebrow{font-size:9px;letter-spacing:.1em;color:#bb612c!important}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-sheet .dalp-admin-panel-title h2{font:800 clamp(17px,2.7vw,25px)/1.2 "Plus Jakarta Sans",sans-serif!important;color:#183249!important;margin:4px 0!important;overflow-wrap:anywhere}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-sheet .dalp-admin-panel-title p{margin:0;font-size:12px;color:#637786!important;overflow-wrap:anywhere;line-height:1.5}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-sheet .ac-detail-close{width:42px;height:42px;min-width:42px;padding:0!important;display:grid;place-items:center;border:1px solid #d8e3e9!important;border-radius:13px;background:#fff!important;color:#254559!important;font-size:17px;cursor:pointer}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-sheet .ac-detail-close{width:42px;height:42px;min-width:42px;padding:0!important;display:grid;place-items:center;border:1px solid #d8e3e9!important;border-radius:13px;background:#fff!important;color:#11212D!important;font-size:17px;cursor:pointer}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-content{min-width:0;display:grid;gap:18px}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-snapshot{display:grid;gap:18px;padding:clamp(17px,3vw,25px);background:#fff;border:1px solid #e4ebf0;border-radius:20px;box-shadow:0 5px 20px rgba(32,73,89,.045)}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-overview{display:flex;align-items:center;gap:24px;min-width:0}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-score{display:flex;align-items:center;justify-content:center;flex-direction:column;flex:none;width:116px;height:116px;border-radius:50%;background:radial-gradient(closest-side,#fff 78%,transparent 80%),conic-gradient(#f27329 var(--ac-score),#e7edf0 0);color:#203d51}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-score{display:flex;align-items:center;justify-content:center;flex-direction:column;flex:none;width:116px;height:116px;border-radius:50%;background:radial-gradient(closest-side,#fff 78%,transparent 80%),conic-gradient(#6AA6DA var(--ac-score),#e7edf0 0);color:#203d51}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-score strong{font:850 30px/1.1 "Plus Jakarta Sans",sans-serif;letter-spacing:-.04em;color:#183249}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-score span{font-size:11px;font-weight:700;color:#6b8090}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-summary-copy{min-width:0;display:grid;justify-items:start;gap:8px}
@@ -194,14 +194,14 @@ html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-courses-heading h3{fon
 html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-courses-heading p{margin:0;font-size:12px;color:#657b88;line-height:1.6}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-course-actions{display:flex;align-items:center;flex-wrap:wrap;gap:6px;padding:5px;border:1px solid #e3ebef;border-radius:12px;background:#fff}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-course-actions button{flex:none;min-height:34px!important;padding:7px 12px!important;border:0!important;border-radius:8px!important;background:transparent!important;color:#526b78!important;font-size:11px;font-weight:800;cursor:pointer}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-course-actions button[aria-pressed="true"]{background:#254559!important;color:#fff!important}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-course-actions button[aria-pressed="true"]{background:#11212D!important;color:#fff!important}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-course-list{display:grid!important;grid-template-columns:1fr!important;gap:10px!important;margin:0!important;min-width:0}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-course{margin:0!important;padding:0!important;background:#fff!important;border:1px solid #e2eaf0!important;border-radius:15px!important;box-shadow:none!important;overflow:hidden;min-width:0}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-course[hidden]{display:none!important}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-course>summary{display:flex;align-items:center;gap:12px;list-style:none;cursor:pointer;padding:16px 17px 12px}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-course>summary::-webkit-details-marker{display:none}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-course>summary:focus-visible{outline:3px solid #f27329;outline-offset:-4px}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-course-symbol{display:grid;place-items:center;flex:none;width:39px;height:39px;border-radius:12px;background:#e9f1f3;color:#254559;font-size:10px;font-weight:900}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-course>summary:focus-visible{outline:3px solid #6AA6DA;outline-offset:-4px}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-course-symbol{display:grid;place-items:center;flex:none;width:39px;height:39px;border-radius:12px;background:#e9f1f3;color:#11212D;font-size:10px;font-weight:900}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-track-title{display:grid;gap:3px;min-width:0;flex:1}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-track-title strong{font-size:13px;font-weight:850;line-height:1.4;color:#183249;overflow-wrap:anywhere}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-track-title small{font-size:11px;color:#6c8290}
@@ -212,7 +212,7 @@ html[data-theme] body.dalp-admin-page.ac-ready .ac-track-percent{font-size:13px;
 html[data-theme] body.dalp-admin-page.ac-ready .ac-track-chevron{color:#6f8591;font-size:16px;transition:transform .2s}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-course[open] .ac-track-chevron{transform:rotate(180deg)}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-summary-meter{height:5px;overflow:hidden;border-radius:99px;margin:0 17px 4px;background:#ebeff1}
-html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-summary-meter>span{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#277b73,#f27329)}
+html[data-theme] body.dalp-admin-page.ac-ready .ac-detail-summary-meter>span{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#277b73,#6AA6DA)}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-track-body{padding:14px 17px 18px}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-track-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin:0 0 16px}
 html[data-theme] body.dalp-admin-page.ac-ready .ac-track-grid>div{display:grid;align-content:start;gap:4px;min-width:0;background:#f6f9fa;padding:11px 10px;border-radius:11px}

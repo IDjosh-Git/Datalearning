@@ -7,7 +7,7 @@ body[data-library-page] {
   --lib-ink: #183649;
   --lib-muted: #5f7280;
   --lib-teal: #087b7a;
-  --lib-orange: #f27329;
+  --lib-orange: #6AA6DA;
   --lib-line: #dfe8eb;
   --lib-bg: #f6f8f9;
   --lib-paper: #fff;
@@ -109,7 +109,7 @@ body[data-library-page] .dl-lib-snippet { margin:0 0 17px; padding:13px; border-
 body[data-library-page] .dl-lib-card-actions { margin-top:auto; padding-top:15px; border-top:1px solid #edf1f2; display:flex; }
 body[data-library-page] .dl-lib-open { display:inline-flex; justify-content:center; align-items:center; width:100%; min-height:38px; border:1px solid #cce5e1; background:#edf8f6; border-radius:10px; color:#126e6b; font-size:12px; font-weight:850; cursor:pointer; }
 body[data-library-page] .dl-lib-open:hover { background:#d9f0e9; border-color:#86c9bd; }
-body[data-library-page] .dl-lib-prompt-id { font-size:11px; font-weight:900; letter-spacing:.06em; color:#f27329; background:#fff1e6; border:1px solid #ffdfca; border-radius:8px; padding:7px 9px; white-space:nowrap; }
+body[data-library-page] .dl-lib-prompt-id { font-size:11px; font-weight:900; letter-spacing:.06em; color:#6AA6DA; background:#fff1e6; border:1px solid #ffdfca; border-radius:8px; padding:7px 9px; white-space:nowrap; }
 body[data-library-page="prompts"] .dl-lib-card .dl-lib-card-tags { margin-bottom:16px; }
 body[data-library-page="prompts"] .dl-lib-card .dl-lib-card-description { -webkit-line-clamp:4; }
 body[data-library-page="prompts"] .dl-lib-card { min-height:287px; }
@@ -122,7 +122,7 @@ body[data-library-page] .dl-lib-page-info { display:flex; flex-direction:column;
 body[data-library-page] .dl-lib-page-info span:first-child { font-weight:850; color:#1b4051; font-size:12px; }
 body[data-library-page] .dl-lib-page-info span:last-child { font-size:11px; color:#748c96; }
 body[data-library-page] .dl-lib-empty { border:1px dashed #bfced2; border-radius:18px; padding:40px 23px; text-align:center; background:#fff; grid-column:1/-1; }
-body[data-library-page] .dl-lib-empty h3 { margin:0 0 8px; color:#254559; }
+body[data-library-page] .dl-lib-empty h3 { margin:0 0 8px; color:#11212D; }
 body[data-library-page] .dl-lib-empty p { margin:0; color:#5f7280; }
 body[data-library-page] .dl-lib-bottom { padding:clamp(24px,3vw,38px); background:#ecf5f3; border:1px solid #cce6df; border-radius:21px; display:flex; justify-content:space-between; align-items:center; gap:22px; }
 body[data-library-page] .dl-lib-bottom p { margin:0; color:#547278; font-size:13px; line-height:1.6; }
@@ -131,7 +131,7 @@ body[data-library-page] .dl-lib-guidance { overflow:hidden; }
 body[data-library-page] .dl-lib-guidance summary { cursor:pointer; display:flex; gap:15px; align-items:center; padding:19px 24px; list-style:none; }
 body[data-library-page] .dl-lib-guidance summary::-webkit-details-marker { display:none; }
 body[data-library-page] .dl-lib-guidance .dl-lib-guide-icon { display:grid; place-items:center; flex:none; width:39px; height:39px; background:#dff4ee; border-radius:11px; color:#238479; font-size:22px; }
-body[data-library-page] .dl-lib-guidance summary strong { display:block; color:#254559; font-size:14px; margin-bottom:2px; }
+body[data-library-page] .dl-lib-guidance summary strong { display:block; color:#11212D; font-size:14px; margin-bottom:2px; }
 body[data-library-page] .dl-lib-guidance summary small { font-size:12px; color:#6d808b; }
 body[data-library-page] .dl-lib-chevron { margin-left:auto; font-size:24px; line-height:1; color:#587680; transition:transform .15s ease; }
 body[data-library-page] .dl-lib-guidance[open] .dl-lib-chevron { transform:rotate(180deg); }
@@ -151,7 +151,7 @@ body[data-library-page] .dl-lib-dialog-head h2 { color:#1c3b4f; margin:0 0 7px; 
 body[data-library-page] .dl-lib-dialog-head p { color:#6d8390; margin:0; font-size:12px; line-height:1.5; }
 body[data-library-page] .dl-lib-icon-close { width:34px; height:34px; border:1px solid #e2ecec; border-radius:10px; color:#536873; background:#f7fafa; cursor:pointer; font-size:23px; line-height:1; flex:none; }
 body[data-library-page] .dl-lib-dialog-scroll { min-height:0; overflow:auto; padding:22px 25px 25px; overscroll-behavior:contain; }
-body[data-library-page] .dl-lib-dialog-scroll h3 { font-size:13px; font-weight:850; color:#254559; margin:19px 0 7px; }
+body[data-library-page] .dl-lib-dialog-scroll h3 { font-size:13px; font-weight:850; color:#11212D; margin:19px 0 7px; }
 body[data-library-page] .dl-lib-dialog-scroll h3:first-child { margin-top:0; }
 body[data-library-page] .dl-lib-dialog-scroll p { margin:0; font-size:13px; line-height:1.75; color:#526b7b; white-space:pre-wrap; }
 body[data-library-page] .dl-lib-dialog-scroll pre { margin:0; border:1px solid #244a61; border-radius:12px; padding:19px; color:#dcf7ed; background:#18364b; font:12px/1.8 ui-monospace,SFMono-Regular,Consolas,monospace; white-space:pre-wrap; overflow-wrap:anywhere; overflow:auto; }

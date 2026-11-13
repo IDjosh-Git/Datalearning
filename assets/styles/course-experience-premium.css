@@ -1,7 +1,7 @@
 /* DataLearning premium course experience, November 2026.
    Scoped to the course library, seven guided readers, and four-level pathway.
    Functional lesson data, assessment controls and completion IDs are unchanged. */
-:root{--dlc-navy:#102f49;--dlc-navy-2:#1a4e5b;--dlc-teal:#126b68;--dlc-orange:#f27329;--dlc-ink:#183e4c;--dlc-muted:#506b76;--dlc-line:#d5e3e2;--dlc-surface:#fff;--dlc-mist:#f1f8f6}
+:root{--dlc-navy:#11212D;--dlc-navy-2:#1a4e5b;--dlc-teal:#126b68;--dlc-orange:#6AA6DA;--dlc-ink:#183e4c;--dlc-muted:#506b76;--dlc-line:#d5e3e2;--dlc-surface:#fff;--dlc-mist:#f1f8f6}
 body.za-courses,body.za-lesson{color:var(--dlc-ink)}
 body.za-courses :is(a,button,input,select,summary):focus-visible,body.za-lesson :is(a,button,summary):focus-visible{outline:3px solid #f78b47!important;outline-offset:3px}
 body.za-courses .dlc-catalog-hero{position:relative;isolation:isolate;margin-top:34px;margin-bottom:42px;padding:clamp(27px,4.2vw,58px);background:radial-gradient(ellipse at 87% 0%,#278b8350 0%,transparent 44%),linear-gradient(125deg,#0b293f,#174d5a 76%,#16575a);border:1px solid #2d7376;border-radius:30px;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(275px,.85fr);align-items:center;gap:clamp(24px,4vw,60px);overflow:hidden;box-shadow:0 22px 54px #132d421a}

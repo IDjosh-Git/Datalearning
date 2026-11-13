@@ -2,7 +2,7 @@
    Supabase operations are intentionally maintained by their existing scripts. */
 html[data-theme] body.ac-ready.dalp-utility-page{
   --utility-ink:#173c4b;--utility-muted:#4d6570;--utility-stroke:#d6e8e2;
-  --utility-navy:#153b4e;--utility-teal:#226c68;--utility-orange:#f27329;
+  --utility-navy:#153b4e;--utility-teal:#226c68;--utility-orange:#6AA6DA;
   background:#f6faf8!important;
 }
 html[data-theme] body.ac-ready.dalp-utility-page .px-utility-main{
@@ -50,7 +50,7 @@ html[data-theme] body.ac-ready.dalp-utility-page .px-utility-actions button{disp
 html[data-theme] body.ac-ready.dalp-utility-page .px-utility-actions button:hover:not(:disabled){background:#164d50!important}
 html[data-theme] body.ac-ready.dalp-utility-page .px-utility-actions button:disabled{opacity:.7;cursor:progress}
 html[data-theme] body.ac-ready.dalp-utility-page .px-utility-actions a{display:inline-flex!important;align-items:center;min-height:45px;padding:8px 4px!important;font-size:12px!important;font-weight:800;color:#196660!important;-webkit-text-fill-color:#196660!important;text-decoration:none!important;background:none!important;border:0!important}
-html[data-theme] body.ac-ready.dalp-utility-page :is(.px-utility-actions a,.px-utility-hero-links a,.px-guide-panel a,button):focus-visible{outline:3px solid #f27329!important;outline-offset:3px}
+html[data-theme] body.ac-ready.dalp-utility-page :is(.px-utility-actions a,.px-utility-hero-links a,.px-guide-panel a,button):focus-visible{outline:3px solid #6AA6DA!important;outline-offset:3px}
 /* Connection health: status is a standalone, high contrast panel. */
 html[data-theme] body.ac-ready.dalp-utility-page.px-connection #status,
 html[data-theme] body.ac-ready.dalp-utility-page #status{padding:15px 17px;border:1px solid #d1e4df;border-radius:12px;background:#eef7f3;color:#23565d;font-size:12.5px;font-weight:750;line-height:1.6;margin:14px 0 20px}

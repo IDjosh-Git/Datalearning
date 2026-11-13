@@ -1,6 +1,6 @@
 /* DataLearning v5 · Unified public + private finish
    Keeps original functional DOM/controllers; shared footer, tool hub, coach and tutor. */
-:root{--v5-navy:#173e55;--v5-night:#102f45;--v5-ink:#1d4052;--v5-muted:#4d6875;--v5-orange:#b55125;--v5-melon:#f69268;--v5-sage:#e9f4f1;--v5-canvas:#f8faf9;--v5-line:#d7e5e8;--v5-shadow:0 20px 52px rgba(15,48,63,.09)}
+:root{--v5-navy:#173e55;--v5-night:#102f45;--v5-ink:#1d4052;--v5-muted:#4d6875;--v5-orange:#b55125;--v5-melon:#C5E384;--v5-sage:#e9f4f1;--v5-canvas:#f8faf9;--v5-line:#d7e5e8;--v5-shadow:0 20px 52px rgba(15,48,63,.09)}
 html{scroll-padding-top:94px}body{overflow-x:clip}*,*::before,*::after{box-sizing:border-box}
 body :is(.dlx-v5-footer,.dlx-tools-shell,.dlx-v5-learning-hero,.dlx-v5-tutor-hero) :is(a,button):focus-visible{outline:3px solid #ec9968!important;outline-offset:3px}
 /* The same navigation density and logo hierarchy on both public screen generations. */
@@ -188,7 +188,7 @@ body.dlx-rebuilt[data-private-workspace="true"] :is(.ac-page-area,.dalp-admin-ma
 :where(.dlx-header-inner,.za-header-inner) .dlx-utility-actions .lc-launch .lc-launch-label,
 :where(.dlx-header-inner,.za-header-inner) .dlx-utility-actions .premium-search-trigger :is(span,kbd){display:none!important}
 :where(.dlx-header-inner,.za-header-inner) .dlx-utility-actions .premium-search-trigger svg{width:19px;height:19px;color:#173d51!important}
-:where(.dlx-header-inner,.za-header-inner) .dlx-utility-actions :is(button):focus-visible{outline:3px solid #f69268!important;outline-offset:2px!important}
+:where(.dlx-header-inner,.za-header-inner) .dlx-utility-actions :is(button):focus-visible{outline:3px solid #C5E384!important;outline-offset:2px!important}
 .dlx-header-inner:has(.dlx-utility-actions),.za-header-inner:has(.dlx-utility-actions){flex-wrap:nowrap!important;min-height:70px;gap:clamp(8px,1vw,18px)}
 .dlx-header-inner:has(.dlx-utility-actions) .dlx-topnav,.za-header-inner:has(.dlx-utility-actions) .za-nav{min-width:0;flex:1 1 auto;gap:clamp(2px,.55vw,10px)!important}
 .dlx-header-inner:has(.dlx-utility-actions) .dlx-brand,.za-header-inner:has(.dlx-utility-actions) .za-brand{flex:none;min-width:0}

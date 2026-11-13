@@ -1,3 +1,13 @@
+# 13 November 2026 — Educator curriculum 2.3.0
+
+- 90 progressively structured teaching ladders across Data Analysis, Excel, SQL, Power BI, Tableau, Power Query, Statistics, Python and AI. Each includes plain-language explanation, realistic worked miniature, deeper extension and measurable evidence check.
+- All nine courses use the same weekly explanation / masterclass / capstone structure; the old special-case AI/Python rendering is retired and unused specialist styles are removed.
+- Added one concise, responsive teaching stylesheet in place of duplicated casework styles; code examples have disclosure-based scrolling containers and real mobile card heights.
+- Curated SQL examples were reconciled to the supplied retail SQLite schema. Existing assessments, cloud progress, authentication, administrators, Tutors, Practice Arena and capstones are preserved.
+- Source only; deployment and authenticated browser QA still required. See `docs/EDUCATOR_CURRICULUM_20261113.md`.
+
+---
+
 ## 2026-11-12 – Unified header Search & premium public Sign Out
 - Replaced the divergent public icon-only search and private input-width search treatment with one shared navigation search control (`navigation-search-signout.css`) across all 37 authenticated app routes. The existing keyboard shortcuts, accessible dialog, search filters and destinations are preserved.
 - On wide displays, Search uses the same field-like pill, icon, label and focus treatment on both public and private pages; on smaller viewports, both collapse to the same labeled accessible search icon.

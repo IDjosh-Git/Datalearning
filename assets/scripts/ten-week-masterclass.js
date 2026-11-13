@@ -61,23 +61,11 @@
       ${module.week===8?visual(slug,base,'dashboard'):''}${module.week===9?visual(slug,base,'report'):''}${module.week===10?`<div class="dlm-visual-pair">${visual(slug,base,'dashboard')}${visual(slug,base,'report')}</div>`:''}
       </section>`;
   }
+  // Python and AI now use the identical masterclass card hierarchy as all seven
+  // other paths. Their dedicated guide is rendered by the shared Academy reader.
   function specialist(module,base){
     if(!module)return '';
-    const guide=module.guide;
-    const s=esc;
-    return `<section class="dlm-specialist dlm-masterclass" id="zaMasterclass" aria-label="New comprehensive week ${module.week} learning experience">
-      <header class="dlm-masterclass-head"><div><span class="dlm-kicker">TEN-WEEK TOOL-TO-REPORT MASTERCLASS · WEEK ${two(module.week)}</span><h2>${s(module.title)}</h2><p>${s(module.goal)}. Learn using the interface, reproduce an example, then create evidence you can present.</p></div><span class="dlm-week-stamp">${two(module.week)}<small>/10</small></span></header>
-      <div class="dlm-where"><div class="dlm-where-icon" aria-hidden="true">⌘</div><div><h3>01 · Find the tool controls</h3><p>${s(module.where)}</p><p class="dlm-context">Keep the tool open as you read. Locate every named control before running the example so that you can repeat the task independently.</p></div></div>
-      ${dataDictionary(module)}
-      <div class="dlm-specialist-reading"><h3>02 · Understand the underlying ideas</h3><p>${s(guide.concept)}</p><h3>03 · Why this matters in real analysis</h3><p>${s(guide.reason)}</p></div>
-      <div class="dlm-topic-grid">${module.topics.map((t,i)=>`<article class="dlm-topic"><span>CONCEPT ${two(i+1)}</span><h4>${s(t.heading)}</h4><p>${s(t.explanation)}</p></article>`).join('')}</div>
-      <div class="dlm-specialist-reading"><h3>04 · Follow a complete guided walkthrough</h3><ol class="dlm-steps">${asList(guide.steps)}</ol>
-      <h3>05 · Examine the worked example</h3><pre class="dlm-code"><code>${s(module.worked)}</code></pre><p>${s(guide.case)}</p>
-      <h3>06 · Practise without copying</h3><p><strong>Independent exercise:</strong> ${s(module.task)}</p><details class="dlm-answer"><summary>Reveal the expected result and verification method</summary><p>${s(guide.verify)}</p></details></div>
-      <div class="dlm-practice"><div><span class="dlm-kicker">YOUR WEEKLY DELIVERABLE</span><h3>What you should be able to show</h3><p>${s(module.check)}</p></div><div class="dlm-result"><strong>Review before moving on</strong><p>${s(module.trap)}</p><p>Explain your results in your own words and retain original data for reproducibility.</p></div></div>
-      ${module.week===8?visual(module.slug,base,'dashboard'):''}${module.week===9?visual(module.slug,base,'report'):''}${module.week===10?`<div class="dlm-visual-pair">${visual(module.slug,base,'dashboard')}${visual(module.slug,base,'report')}</div>`:''}
-      ${module.week===10?capstone(module,base):''}
-    </section>`;
+    return core(module,base) + (module.week===10 ? capstone(module,base) : '');
   }
   window.DALP_TEN_WEEK_UI={renderCore:core,renderSpecialist:specialist,renderCapstone:capstone};
 })();

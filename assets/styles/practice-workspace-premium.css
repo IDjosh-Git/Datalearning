@@ -1,6 +1,6 @@
 /* DataLearning • Practice-first premium workspace • 10 Nov 2026
    Loaded after the unified theme. Cosmetic changes only; engines and RLS remain unchanged. */
-:root{--dlp-night:#12374c;--dlp-navy:#173e55;--dlp-text:#193c4d;--dlp-muted:#506c77;--dlp-line:#d5e5e9;--dlp-melon:#F69268;--dlp-melon-deep:#ad4c21;--dlp-white:#fff;--dlp-ivory:#f9f7f6;--dlp-mist:#eef6f5;--dlp-surface-shadow:0 16px 42px rgba(19,60,77,.07)}
+:root{--dlp-night:#12374c;--dlp-navy:#173e55;--dlp-text:#193c4d;--dlp-muted:#506c77;--dlp-line:#d5e5e9;--dlp-melon:#C5E384;--dlp-melon-deep:#ad4c21;--dlp-white:#fff;--dlp-ivory:#FBFBF8;--dlp-mist:#eef6f5;--dlp-surface-shadow:0 16px 42px rgba(19,60,77,.07)}
 /* Premium practice identity: self-contained, no changes to challenge or evaluation logic. */
 body.dlx-rebuilt[data-responsive-page="practice"] .pc-wrap{width:min(1500px,calc(100% - 48px))!important;max-width:1500px!important;padding-bottom:24px}
 body.dlx-rebuilt[data-responsive-page="practice"] .pc-hero{margin:22px 0 20px!important;border-radius:24px!important;padding:clamp(23px,3.6vw,48px)!important;background:radial-gradient(circle at 90% 10%,rgba(246,146,104,.17),transparent 34%),linear-gradient(124deg,#12364b,#1e5165 70%,#346b71)!important}

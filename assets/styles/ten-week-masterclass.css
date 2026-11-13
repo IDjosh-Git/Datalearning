@@ -12,7 +12,7 @@
 .dlm-week-stamp small{display:block;font-size:10px;letter-spacing:.12em;color:#bcd4db}
 .dlm-where{display:flex;align-items:start;gap:17px;padding:clamp(18px,3vw,28px);background:#edf7f6;border-bottom:1px solid #dbeae8}
 .dlm-where-icon{display:grid;place-items:center;flex:0 0 48px;height:48px;color:#18676b;border:1px solid #bce5e2;border-radius:14px;background:#fff;font-size:25px}
-.dlm-where h3,.dlm-specialist-reading h3{font-size:19px;letter-spacing:-.02em;margin-bottom:9px;color:#15394a}
+.dlm-where h3{font-size:19px;letter-spacing:-.02em;margin-bottom:9px;color:#15394a}
 .dlm-where p{font-size:14px;color:#244b5e;margin-bottom:9px}
 .dlm-where .dlm-context{font-size:13px;color:#506e79;margin-bottom:0}
 /* A padded in-section heading: the title must never touch the section border. */
@@ -36,18 +36,6 @@
 .dlm-layout-sample figcaption{padding:10px 15px;font-size:12px;color:#c1d9dc;line-height:1.6}
 .dlm-visual-pair{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 clamp(18px,3vw,28px) 20px}
 .dlm-visual-pair .dlm-layout-sample{margin:0;align-self:start}
-.dlm-specialist-reading{padding:20px clamp(18px,3vw,28px);font-size:14px;color:#3d5b69}
-.dlm-specialist-reading p{line-height:1.84;margin-bottom:16px}
-.dlm-specialist-reading :where(ol,ul){padding-left:22px}
-.dlm-specialist-reading li{margin:0 0 13px;line-height:1.75}
-.dlm-specialist-reading h3:not(:first-child){margin-top:25px}
-.dlm-code{white-space:pre;overflow:auto;border-radius:13px;background:#0e2a3d;color:#ebf7ed;padding:18px;font-size:13px;line-height:1.7;tab-size:2;max-width:100%}
-.dlm-answer{border:1px solid #c9dfdf;background:#f0f7f7;border-radius:13px;padding:13px 17px;margin:15px 0}
-.dlm-answer summary{cursor:pointer;font-weight:800;color:#165c6d}
-.dlm-answer[open] p{margin-top:12px;margin-bottom:0;color:#385663}
-.dlm-extended-reference{margin-top:20px}
-.dlm-reference-kicker{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:17px 20px;margin-top:24px;background:#eaf4f4;border-top:1px solid #cbdfe0;border-radius:14px 14px 0 0;color:#1b4a5c}
-.dlm-reference-kicker strong{font-size:14px}.dlm-reference-kicker span{font-size:12px;color:#476978}
 .dlm-capstone{background:#fff;border:1px solid #cbe2df;border-radius:20px;padding:clamp(18px,3vw,30px);margin:12px 0 28px;box-shadow:0 15px 35px rgba(8,70,72,.07)}
 .dlm-masterclass .dlm-capstone{margin:6px 24px 25px}
 .dlm-capstone-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
@@ -69,7 +57,7 @@
 .dlm-capstone-actions a{display:inline-flex;align-items:center;justify-content:center;min-height:43px;border-radius:12px;font-size:13px;font-weight:800;text-decoration:none;padding:12px 18px;line-height:1.4;text-align:center}
 .dlm-primary{background:#155d68;color:#fff!important}.dlm-primary:hover{background:#0c4750}
 .dlm-secondary{background:#eef5f5;color:#155866!important;border:1px solid #d8e5e7}
-.dlm-primary:focus-visible,.dlm-secondary:focus-visible,.dlm-image-top a:focus-visible,.dlm-answer summary:focus-visible{outline:3px solid #f59a48;outline-offset:3px}
+.dlm-primary:focus-visible,.dlm-secondary:focus-visible,.dlm-image-top a:focus-visible{outline:3px solid #f59a48;outline-offset:3px}
 @media(max-width:820px){.dlm-topic-grid,.dlm-practice,.dlm-capstone-grid,.dlm-visual-pair{grid-template-columns:1fr}.dlm-visual-pair .dlm-layout-sample{width:100%}}
 @media(max-width:540px){.dlm-masterclass{border-radius:16px;margin:16px 0}.dlm-masterclass-head{padding:20px 16px}.dlm-week-stamp{min-width:48px;height:53px;font-size:23px;border-radius:12px}.dlm-week-stamp small{font-size:9px}.dlm-where{padding:18px 14px;gap:11px}.dlm-where-icon{flex-basis:36px;height:36px;font-size:18px}.dlm-topic-grid,.dlm-practice{padding-left:14px;padding-right:14px}.dlm-topic{padding:16px}.dlm-masterclass .dlm-section-label{margin-left:14px!important;margin-right:14px!important;padding:13px 13px 13px 16px!important}.dlm-layout-sample{margin-left:14px;margin-right:14px}.dlm-visual-pair{margin-left:14px;margin-right:14px}.dlm-capstone{padding:16px}.dlm-masterclass .dlm-capstone{margin:6px 14px 16px}.dlm-image-top{font-size:10px;letter-spacing:0}.dlm-capstone-actions a{width:100%}}
 @media(prefers-reduced-motion:reduce){.dlm-masterclass *{scroll-behavior:auto!important}}

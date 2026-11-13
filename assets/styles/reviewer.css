@@ -1,5 +1,5 @@
 /* reviewer.css: scoped, actively used report layout. Shared theme and access gate are separate. */
-.review-hero{color:#fff;background:#203F58;padding:54px 0 78px}
+.review-hero{color:#fff;background:#11212D;padding:54px 0 78px}
 .review-hero h1{font-size:clamp(36px,4.8vw,61px);letter-spacing:-.055em;line-height:1.14;margin:16px 0}
 .review-hero p{color:#d4cedb;line-height:1.8;max-width:700px;font-size:14px}
 .review-secure{display:inline-flex;padding:9px 13px;border:1px solid #846b82;border-radius:10px;color:#e3d9e4;font-size:11px;margin-top:16px}

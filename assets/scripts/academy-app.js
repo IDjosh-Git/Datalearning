@@ -163,9 +163,11 @@
       one('#zaLessonKicker').textContent=`${path.title.toUpperCase()} · WEEK ${num(week)}`;
       one('#zaLessonTitle').textContent=record.title;
       one('#zaLessonOutcome').textContent=record.outcome;
-      const guide = window.DALP_GUIDED_LESSONS?.[slug]?.[week-1];
-      const media = window.DALP_WEEK_MEDIA?.[slug]?.[week-1];
       const rebuiltModule = window.DALP_TOOL_TO_REPORT?.[slug]?.[week-1];
+      // AI and Python use the same guided reading/steps structure as all other courses.
+      const guide = window.DALP_GUIDED_LESSONS?.[slug]?.[week-1] || rebuiltModule?.guide;
+      const media = window.DALP_WEEK_MEDIA?.[slug]?.[week-1];
+      const educator = window.DALP_EDUCATOR_DEPTH?.[slug]?.[week-1];
       const masterclassHtml = path.specialist ? (window.DALP_TEN_WEEK_UI?.renderSpecialist?.(rebuiltModule,base) || '') : (window.DALP_TEN_WEEK_UI?.renderCore?.(rebuiltModule,base) || '');
       const capstoneProjectHtml = week === 10 && !path.specialist ? (window.DALP_TEN_WEEK_UI?.renderCapstone?.(rebuiltModule,base) || '') : '';
       const kitHtml = media ? `<section class="dl-week-kit" id="zaLessonResources" aria-labelledby="dl-week-kit-title">
@@ -179,27 +181,33 @@
         <article class="dl-deep-step"><span class="dl-deep-number">02 · APPLY</span><h3>Follow along in the tool</h3><p>${safe(media.workthrough)}</p></article>
         <article class="dl-deep-step"><span class="dl-deep-number">03 · EXPLAIN</span><h3>Present and verify your result</h3><p>${safe(media.evidence)}</p></article>
         </div><footer><strong>Analyst's quality check:</strong> ${safe(guide?.verify || record.outcome)} Keep the original practice file intact so you can reproduce the result.</footer></section>` : '';
-      // Concept-by-concept teaching, a vivid source example, and independent validation
-      // complement rather than duplicate the original guided steps and weekly practice.
-      const deeperLearningHtml = rebuiltModule ? `<section class="za-lesson-block za-learning-depth" id="zaDeeperLearning" aria-labelledby="zaDeeperLearningTitle">
-        <div class="za-block-head"><span class="za-block-ico orange" aria-hidden="true">✦</span><div><span class="za-learning-depth-kicker">DEEPER LEARNING · STUDY THE WHY</span><h2 id="zaDeeperLearningTitle">Understand, practise and explain this week's skill</h2></div></div>
-        <p>${safe(rebuiltModule.goal)}. </p>
-        <div class="za-learning-depth-case"><strong>BUSINESS CASE · PUT THE THEORY INTO CONTEXT</strong><p>${safe(rebuiltModule.business)}</p></div>
-        <h3>Four core ideas to understand</h3>
-        <div class="za-learning-concepts">${rebuiltModule.topics.map((t,i)=>`<article class="za-learning-concept"><span>CONCEPT ${num(i+1)}</span><h4>${safe(t.heading)}</h4><p>${safe(t.explanation)}.</p></article>`).join('')}</div>
-        <h3>Guided real-world walkthrough</h3>
+      // One non-repeating skill ladder per week, edited for first-time learners and
+      // independently verifiable advanced practice. Existing mastery, scoring and
+      // course progress remain untouched.
+      const deeperLearningHtml = educator && rebuiltModule ? `<section class="za-lesson-block za-learning-depth" id="zaDeeperLearning" aria-labelledby="zaDeeperLearningTitle">
+        <div class="za-block-head"><span class="za-block-ico orange" aria-hidden="true">✦</span><div><span class="za-learning-depth-kicker">${safe(educator.level.toUpperCase())} · WEEK ${num(week)} OF 10</span><h2 id="zaDeeperLearningTitle">From first understanding to professional practice</h2></div></div>
+        <p class="za-learning-stage-lead">Start with the idea, test it on a small example, and then build the judgment used in real analysis. Advance only after you can explain and verify your result.</p>
+        <div class="za-learning-concepts">
+          <article class="za-learning-concept"><span>01 · UNDERSTAND</span><h4>Begin with the why</h4><p>${safe(educator.foundation)}</p></article>
+          <article class="za-learning-concept"><span>02 · SEE IT WORK</span><h4>Small worked example</h4><p>${safe(educator.worked)}</p></article>
+          <article class="za-learning-concept"><span>03 · GO FURTHER</span><h4>Advanced extension</h4><p>${safe(educator.extension)}</p></article>
+        </div>
+        <h3>Turn this week's idea into a working result</h3>
         <ol class="za-learning-process">
-          <li><span><strong>Locate your starting point.</strong> ${safe(rebuiltModule.where)}. Inspect the available inputs before changing anything; keep an untouched original so your work remains auditable.</span></li>
-          <li><span><strong>Define the operation.</strong> Identify exactly which fields, rules, calculations or relationships this example uses. Name the expected output and its business units. If there is a filter or exclusion, explain why it exists.</span></li>
-          <li><span><strong>Reproduce the calculation or transformation.</strong> Work through the example below one step at a time. Trace where every number or label comes from, and try changing one input to understand what should change in the result.</span></li>
-          <li><span><strong>Validate and communicate.</strong> ${safe(rebuiltModule.check)}. Then describe the result to a colleague in plain language, state one limitation, and link the finding back to the original business question.</span></li>
+          <li><span><strong>Predict:</strong> State the expected output before executing any formula, query, prompt or visual change.</span></li>
+          <li><span><strong>Reproduce:</strong> Recreate the worked example using its named fields. Check your input values and the grain of the result.</span></li>
+          <li><span><strong>Challenge:</strong> Change one assumption or input, and explain the observed difference without guessing.</span></li>
+          <li><span><strong>Defend:</strong> Independently validate the output and document one limitation relevant to the decision.</span></li>
         </ol>
-        <h3>Worked example · inspect the actual inputs and output</h3>
-        <pre class="za-learning-depth-worked"><code>${safe(rebuiltModule.worked)}</code></pre>
-        <div class="za-learning-interpretation"><div><strong>✓ What a good answer demonstrates</strong><p>${safe(rebuiltModule.check)}. A second person should be able to reproduce your work from the same inputs.</p></div><div><strong>! A realistic mistake to prevent</strong><p>${safe(rebuiltModule.trap)}. If that happens, identify the affected records and correct the method before drawing conclusions.</p></div></div>
-        <div class="za-learning-depth-next"><strong>Independent practice:</strong> ${safe(rebuiltModule.task)}. Try without looking at the solution, record your assumptions, and use the separate quiz to test whether you can explain the reasoning.</div>
+        <details class="za-learning-example-disclosure"><summary>Inspect the companion formula, code or model example</summary>
+          <pre class="za-learning-depth-worked"><code>${safe(rebuiltModule.worked)}</code></pre>
+          <p>This is a teaching illustration. Match its table and column names to the source file or editor before executing it.</p>
+        </details>
+        <div class="za-learning-depth-case"><strong>CHECKPOINT · EVIDENCE TO PRODUCE</strong><p>${safe(educator.evidence)}</p></div>
+        <div class="za-learning-interpretation"><div><strong>✓ Acceptance criteria</strong><p>${safe(rebuiltModule.check)}</p></div><div><strong>! Mistake to avoid</strong><p>${safe(rebuiltModule.trap)}</p></div></div>
+        <div class="za-learning-depth-next"><strong>Continue your practice:</strong> ${safe(rebuiltModule.task)}. Use the included dataset and submit an explanation alongside your output.</div>
       </section>` : '';
-      const lessonMinutes = guide ? Math.max(6,Math.round(`${guide.concept} ${guide.reason} ${guide.steps.join(' ')} ${guide.verify} ${guide.case || ''} ${record.example} ${record.exercise} ${media?.why || ''} ${media?.workthrough || ''} ${media?.evidence || ''} ${rebuiltModule?.business || ''} ${rebuiltModule?.worked || ''} ${rebuiltModule?.task || ''} ${rebuiltModule?.check || ''} ${rebuiltModule?.topics?.map(t=>t.heading+' '+t.explanation).join(' ') || ''}`.split(/\s+/).length / 165)) : 4;
+      const lessonMinutes = guide ? Math.max(6,Math.round(`${guide.concept} ${guide.reason} ${guide.steps.join(' ')} ${guide.verify} ${guide.case || ''} ${record.example} ${record.exercise} ${media?.why || ''} ${media?.workthrough || ''} ${media?.evidence || ''} ${rebuiltModule?.business || ''} ${rebuiltModule?.worked || ''} ${rebuiltModule?.task || ''} ${rebuiltModule?.check || ''} ${rebuiltModule?.topics?.map(t=>t.heading+' '+t.explanation).join(' ') || ''} ${educator ? [educator.foundation,educator.worked,educator.extension,educator.evidence].join(' ') : ''}`.split(/\s+/).length / 165)) : 4;
       const readTime = one('#zaEstimatedTime');
       if(readTime)readTime.textContent=`About ${lessonMinutes} min · guided study`;
       const guideHtml = guide ? `
@@ -261,23 +269,23 @@
           <button type="button" data-jump="zaLessonResources">Dataset & video</button>
           ${formulaHtml?'<button type="button" data-jump="zaFormulaCompanion">Formula & code lab</button>':''}
           ${guide?'<button type="button" data-jump="zaMethod">Guided walkthrough</button>':''}
-          ${rebuiltModule?'<button type="button" data-jump="zaDeeperLearning">In-depth case study</button>':''}
+          ${rebuiltModule?'<button type="button" data-jump="zaDeeperLearning">Beginner to advanced practice</button>':''}
           <button type="button" data-jump="zaExample">Worked example</button>
           <button type="button" data-jump="zaExercise">Try an exercise</button>
           <button type="button" data-jump="zaRecap">Review & recap</button>
         </nav>
         <section class="za-lesson-block za-lesson-objective" id="zaGoals"><div class="za-block-head"><span class="za-block-ico" aria-hidden="true">◎</span><div><span class="za-block-kicker">01 · LEARNING GOAL</span><h2>What you will understand</h2></div></div><p>${safe(record.outcome)}.</p><div class="za-tip"><b>How to study this module:</b> Read both explanations, follow the guided workflow, examine the example, and solve the exercise before opening its answer. Finish with the separate weekly questions.</div></section>
         <figure class="za-week-interface-visual" id="zaVisualGuide">
-          <div class="za-week-interface-head"><div><span>VISUAL LEARNING GUIDE · WEEK ${num(week)}</span><h2>Find the tools as you learn</h2></div><span class="za-visual-badge">Illustrative interface</span></div>
+          <div class="za-week-interface-head"><div><span>VISUAL LEARNING GUIDE · WEEK ${num(week)}</span><h2>${safe(record.title)}</h2></div><span class="za-visual-badge">Illustrative interface</span></div>
           <img src="${base}assets/images/lesson-interfaces/${safe(slug)}-week-${week}.${slug==='excel'&&week===1?'png':'svg'}" alt="Illustrated interface for ${safe(path.title)} Week ${week}: ${safe(record.title)}" width="1200" height="600" loading="lazy" decoding="async" />
-          <figcaption><strong>Explore, then practise:</strong> ${safe(record.outcome)}. Use the labelled controls and example interface to find the corresponding tools in your own application.</figcaption>
+          <figcaption><strong>Study the visual:</strong> ${safe(record.outcome)}. This topic-specific diagram illustrates the workflow or analytical concept; use your practice dataset to reproduce and verify it.</figcaption>
         </figure>
         ${kitHtml}
         ${formulaHtml}
         ${masterclassHtml}
         ${guideHtml}
-        ${deepHtml}
         ${deeperLearningHtml}
+        ${deepHtml}
         ${journeyHtml}
         ${aiPromptHtml}
         <section class="za-lesson-block" id="zaExample"><div class="za-block-head"><span class="za-block-ico" aria-hidden="true">▥</span><div><span class="za-block-kicker">02 · WORKED EXAMPLE</span><h2>See the idea in practice</h2></div></div><p class="za-example-intro">Read the scenario. Identify the input, the operation, and what the result means for the business question.</p><div class="za-example">${safe(record.example)}</div>${guide?.case ? `<div class="za-case-study"><div class="za-case-label">APPLY IT TO A REALISTIC CASE</div><p>${safe(guide.case)}</p></div>` : ''}</section>

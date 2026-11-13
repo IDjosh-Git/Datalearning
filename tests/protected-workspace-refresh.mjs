@@ -23,7 +23,7 @@ for (const href of ['admin.html','admin.html#admin-courses','admin.html#admin-le
 }
 assert(shared.includes('background:#203a57!important'),'Admin toolbar uses dark contrast colour');
 assert(shared.includes('background:#263d5d!important'),'Admin overview has a dark coloured hero');
-assert(shared.includes('.review-hero{background:#203F58!important'),'Review desk has distinct dark banner');
+assert(shared.includes('.review-hero{background:#11212D!important'),'Review desk has distinct dark banner');
 assert(shared.includes('background:var(--ui-nav-ink)!important'),'Progress banner has dark slate treatment');
 for(const c of ['auth-entry-premium','progress','reviewer','certificate','private-utilities-premium']){
  assert(fs.statSync('assets/styles/'+c+'.css').size<45000,`${c} contains old oversized site-wide styling`);

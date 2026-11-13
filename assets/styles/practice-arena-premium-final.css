@@ -3,7 +3,7 @@
 /* Source module: practice-workspace-premium.css */
 /* DataLearning • Practice-first premium workspace • 10 Nov 2026
    Loaded after the unified theme. Cosmetic changes only; engines and RLS remain unchanged. */
-:root{--dlp-night:#12374c;--dlp-navy:#173e55;--dlp-text:#193c4d;--dlp-muted:#506c77;--dlp-line:#d5e5e9;--dlp-melon:#F69268;--dlp-melon-deep:#ad4c21;--dlp-white:#fff;--dlp-ivory:#f9f7f6;--dlp-mist:#eef6f5;--dlp-surface-shadow:0 16px 42px rgba(19,60,77,.07)}
+:root{--dlp-night:#12374c;--dlp-navy:#173e55;--dlp-text:#193c4d;--dlp-muted:#506c77;--dlp-line:#d5e5e9;--dlp-melon:#C5E384;--dlp-melon-deep:#ad4c21;--dlp-white:#fff;--dlp-ivory:#FBFBF8;--dlp-mist:#eef6f5;--dlp-surface-shadow:0 16px 42px rgba(19,60,77,.07)}
 /* Premium practice identity: self-contained, no changes to challenge or evaluation logic. */
 body.dlx-rebuilt[data-responsive-page="practice"] .pc-wrap{width:min(1500px,calc(100% - 48px))!important;max-width:1500px!important;padding-bottom:24px}
 body.dlx-rebuilt[data-responsive-page="practice"] .pc-hero{margin:22px 0 20px!important;border-radius:24px!important;padding:clamp(23px,3.6vw,48px)!important;background:radial-gradient(circle at 90% 10%,rgba(246,146,104,.17),transparent 34%),linear-gradient(124deg,#12364b,#1e5165 70%,#346b71)!important}
@@ -414,7 +414,7 @@ html[data-theme] body[data-responsive-page="practice"] #challengeModal .pc-chall
   justify-content:space-between!important;gap:18px!important;
   padding:23px clamp(21px,3vw,35px) 20px!important;margin:0!important;
   background:radial-gradient(circle at 80% 4%,#377c84 0%,transparent 44%),linear-gradient(115deg,#122d41,#204b60 72%,#235a66)!important;
-  border:0!important;border-bottom:3px solid #f27329!important;
+  border:0!important;border-bottom:3px solid #6AA6DA!important;
 }
 html[data-theme] body[data-responsive-page="practice"] #challengeModal .pc-challenge-heading .pc-kicker{
   color:#b9f3e7!important;-webkit-text-fill-color:#b9f3e7!important;
@@ -549,7 +549,7 @@ html[data-theme] body[data-responsive-page="practice"] #challengeModal #practice
 }
 html[data-theme] body[data-responsive-page="practice"] #challengeModal #practiceReset:hover{background:#e2f0ec!important;border-color:#78a6a7!important;}
 html[data-theme] body[data-responsive-page="practice"] #challengeModal :is(button,input,select,summary):focus-visible{
-  outline:3px solid #f27329!important;outline-offset:2px!important;
+  outline:3px solid #6AA6DA!important;outline-offset:2px!important;
 }
 body[data-responsive-page="practice"] .ide-worksheet-hint .ide-let-example{
   margin-left:6px!important;padding:5px 9px!important;min-height:31px!important;
@@ -1340,15 +1340,15 @@ html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .arena-panel-
    Presentation only: challenge engine, worker, events, local drafts and grading unchanged.
    Last-in-cascade, route-scoped. Uses the academy's navy, warm off-white and orange. */
 html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"]{
-  --ar-v3-canvas:var(--ui-canvas,#f9f7f6);
+  --ar-v3-canvas:var(--ui-canvas,#FBFBF8);
   --ar-v3-paper:var(--ui-paper,#fff);
-  --ar-v3-ink:var(--ui-ink,#102030);
+  --ar-v3-ink:var(--ui-ink,#11212D);
   --ar-v3-muted:var(--ui-muted,#465e6d);
   --ar-v3-line:var(--ui-stroke,#d8e2e6);
-  --ar-v3-brand:var(--ui-primary,#35637c);
-  --ar-v3-brand-hover:var(--ui-primary-hover,#274f66);
-  --ar-v3-soft:var(--ui-primary-soft,#e8f1f2);
-  --ar-v3-coral:#f27329;
+  --ar-v3-brand:var(--ui-primary,#253745);
+  --ar-v3-brand-hover:var(--ui-primary-hover,#11212D);
+  --ar-v3-soft:var(--ui-primary-soft,#EAF0F3);
+  --ar-v3-coral:#6AA6DA;
   --ar-v3-shadow:0 18px 45px rgba(17,44,65,.075);
   background:radial-gradient(circle at 92% 8%,rgba(53,99,124,.09),transparent 23%),
              radial-gradient(circle at 4% 42%,rgba(242,115,41,.055),transparent 24%),
@@ -1375,7 +1375,7 @@ html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] nav.arena-sub
   box-shadow:0 5px 20px rgba(19,47,67,.045)!important;
 }
 html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] nav.arena-subject-launcher .arena-editor-choice[aria-pressed="true"]{
-  background:linear-gradient(130deg,#23475c,#35637c)!important;border-color:#35637c!important;
+  background:linear-gradient(130deg,#23475c,#253745)!important;border-color:#253745!important;
   color:#fff!important;-webkit-text-fill-color:#fff!important;box-shadow:0 12px 27px #203f602a!important;
 }
 html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .hub-topbar{
@@ -1788,7 +1788,7 @@ html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] .arena-trust>
 html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail[data-active-editor="SQL"] #practiceCheck{display:none!important;}
 html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail .arena-mobile-action{display:none!important;}
 @media(max-width:900px){html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail #ideRun{display:inline-flex!important;}html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail .ide-editor-toolbar{position:relative!important;z-index:3!important;}}
-html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail :is(.ide-run,#pythonRun){background:linear-gradient(112deg,#f27329,#e76621)!important;border:1px solid #f27329!important;color:#fff!important;-webkit-text-fill-color:#fff!important;border-radius:12px!important;box-shadow:0 8px 21px rgba(215,94,33,.18)!important;min-height:44px!important;}
+html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail :is(.ide-run,#pythonRun){background:linear-gradient(112deg,#6AA6DA,#e76621)!important;border:1px solid #6AA6DA!important;color:#fff!important;-webkit-text-fill-color:#fff!important;border-radius:12px!important;box-shadow:0 8px 21px rgba(215,94,33,.18)!important;min-height:44px!important;}
 html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail :is(.ide-run,#pythonRun):hover:not(:disabled){filter:brightness(1.06);transform:translateY(-1px);}
 html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail .ide-shell{border-radius:22px!important;overflow:hidden;}
 html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] #practiceDetail .ide-content{min-width:0;}

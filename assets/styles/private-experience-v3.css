@@ -1,7 +1,7 @@
 /* DataLearning premium private experience — November 2026.
    Single final layer for authenticated pages; no auth, query or business logic here.
    Brand: deep navy / blue-teal, warm orange, ivory; WCAG AA body copy. */
-:root{--px-ink:#163849;--px-muted:#4d6976;--px-line:#d5e5e4;--px-canvas:#f6faf8;--px-orange:#f27329;--px-teal:#276a6a;--px-radius:22px;--px-shadow:0 16px 43px rgba(20,56,69,.085)}
+:root{--px-ink:#163849;--px-muted:#4d6976;--px-line:#d5e5e4;--px-canvas:#f6faf8;--px-orange:#6AA6DA;--px-teal:#276a6a;--px-radius:22px;--px-shadow:0 16px 43px rgba(20,56,69,.085)}
 html[data-theme] body[data-private-workspace="true"].ac-ready .ac-page-area{padding-bottom:80px;background:radial-gradient(ellipse at 96% -10%,#dcefe8 0%,transparent 43%),transparent!important}
 html[data-theme] body.ac-ready :is(.ac-page-area,.mld-container,.ip-content,.review-content,.profile-container){min-width:0}
 html[data-theme] body.ac-ready :is(.ac-page-area,.mld-container,.ip-content,.review-content,.profile-container) :is(button,a,input,select,textarea):focus-visible{outline:3px solid #e68144!important;outline-offset:3px!important}
