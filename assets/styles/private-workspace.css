@@ -446,3 +446,24 @@ body.ac-dashboard-no-sidebar .ac-account-signout{border-top:1px solid var(--ac-s
 body.ac-dashboard-no-sidebar .ac-account-trigger:focus-visible,body.ac-dashboard-no-sidebar .ac-account-panel :is(a,button):focus-visible,body.ac-dashboard-no-sidebar .ac-dashboard-quicklink:focus-visible{outline:3px solid var(--ac-focus,currentColor);outline-offset:3px}
 @media(max-width:600px){body.ac-dashboard-no-sidebar .ac-topbar{min-height:66px;padding:10px 14px}body.ac-dashboard-no-sidebar .ac-top-actions{width:100%;justify-content:space-between}body.ac-dashboard-no-sidebar .ac-account-trigger{max-width:53vw}body.ac-dashboard-no-sidebar .ac-account-panel{right:0}}
 @media(prefers-reduced-motion:reduce){body.ac-dashboard-no-sidebar .ac-account-trigger,body.ac-dashboard-no-sidebar .ac-account-panel a{transition:none}}
+
+/* Premium learner identity card and accessible iconography */
+body.ac-dashboard-no-sidebar .ac-account-trigger{min-height:58px;max-width:min(310px,52vw);padding:7px 11px 7px 7px;gap:11px;border-radius:17px;border:1px solid color-mix(in srgb,var(--ac-stroke) 70%,var(--ac-accent) 30%);background:linear-gradient(135deg,var(--ac-panel),color-mix(in srgb,var(--ac-panel) 89%,var(--ac-accent) 11%));box-shadow:0 5px 18px rgba(0,0,0,.09),inset 0 1px rgba(255,255,255,.12)}
+body.ac-dashboard-no-sidebar .ac-account-avatar{width:42px;height:42px;border-radius:13px;background:linear-gradient(145deg,var(--ac-accent),var(--ac-text));color:#fff;box-shadow:0 4px 12px rgba(0,0,0,.22)}
+body.ac-dashboard-no-sidebar .ac-account-avatar::before{content:none}
+body.ac-dashboard-no-sidebar .ac-account-avatar svg{width:23px;height:23px;display:block}
+body.ac-dashboard-no-sidebar .ac-account-copy{min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:3px}
+body.ac-dashboard-no-sidebar .ac-account-overline{font-size:9px;letter-spacing:.13em;font-weight:800;color:var(--ac-muted);line-height:1}
+body.ac-dashboard-no-sidebar .ac-account-display{display:block;font-size:13px;line-height:1.25;font-weight:800;max-width:170px}
+body.ac-dashboard-no-sidebar .ac-account-chevron{display:grid;place-items:center;flex:none;width:27px;height:27px;margin-left:auto;border-radius:9px;background:var(--ac-panel-raised);color:var(--ac-text);transition:transform .2s,background .2s}
+body.ac-dashboard-no-sidebar .ac-account-chevron svg{width:16px;height:16px}
+body.ac-dashboard-no-sidebar .ac-account-menu[open] .ac-account-chevron{transform:rotate(180deg);background:color-mix(in srgb,var(--ac-panel-raised) 75%,var(--ac-accent) 25%)}
+body.ac-dashboard-no-sidebar .ac-account-panel{top:calc(100% + 13px);border-radius:20px;padding:10px;background:var(--ac-panel);box-shadow:0 25px 65px rgba(0,0,0,.22),0 2px 10px rgba(0,0,0,.07)}
+body.ac-dashboard-no-sidebar .ac-account-panel a,body.ac-dashboard-no-sidebar .ac-account-signout{padding-left:49px;min-height:48px;border-radius:12px}
+body.ac-dashboard-no-sidebar .ac-account-panel [data-menu-icon]::before{display:grid;place-items:center;width:27px;height:27px;left:10px;top:50%;transform:translateY(-50%);border-radius:9px;background:var(--ac-panel-raised);font-size:16px;font-weight:700}
+body.ac-dashboard-no-sidebar [data-menu-icon=profile]::before{content:'♙'}
+body.ac-dashboard-no-sidebar [data-menu-icon=progress]::before{content:'▥'}
+body.ac-dashboard-no-sidebar [data-menu-icon=logout]::before{content:'↪'}
+body.ac-dashboard-no-sidebar .ac-account-panel [data-menu-icon=logout]{color:var(--ac-text)}
+@media(max-width:600px){body.ac-dashboard-no-sidebar .ac-account-trigger{min-height:49px;max-width:55vw;gap:7px}body.ac-dashboard-no-sidebar .ac-account-avatar{width:35px;height:35px}body.ac-dashboard-no-sidebar .ac-account-overline{display:none}body.ac-dashboard-no-sidebar .ac-account-display{max-width:95px;font-size:12px}body.ac-dashboard-no-sidebar .ac-account-chevron{width:23px;height:23px}}
+@media(prefers-reduced-motion:reduce){body.ac-dashboard-no-sidebar .ac-account-chevron{transition:none}}

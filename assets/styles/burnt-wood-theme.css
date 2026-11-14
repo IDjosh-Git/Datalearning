@@ -102,3 +102,63 @@ html[data-theme] body.ac-ready .ac-mobile-menu {
 .za-practice-check p,.za-practice-transfer p,.za-practice-support p{margin:.45rem 0}
 .za-practice-support a{display:inline-block;margin-top:.5rem;text-underline-offset:3px}
 @media(max-width:600px){.za-teaching-hint,.za-practice-check,.za-practice-transfer,.za-practice-support{padding:.85rem;overflow-wrap:anywhere}}
+
+/* Shared premium finish — 2026-11-14. Uses canonical Burnt Wood tokens only.
+   Intentionally additive: existing page-specific components keep their layouts. */
+html[data-theme] {
+  --dl-polish-line:rgba(217,191,164,.42);
+  --dl-polish-ring:rgba(197,138,105,.24);
+  --dl-polish-shadow:0 12px 34px rgba(11,9,9,.12);
+}
+html[data-theme] :is(.course-card,.course-tile,.dashboard-card,.stat-card,.metric-card,.feature-card,.lesson-card,.resource-card,.tool-card,.panel,.surface-card) {
+  border-radius:18px;
+  border-color:var(--dl-polish-line);
+  box-shadow:var(--dl-polish-shadow);
+  transition:box-shadow .22s ease,border-color .22s ease,transform .22s ease;
+}
+@media(hover:hover) and (pointer:fine){
+  html[data-theme] :is(.course-card,.course-tile,.dashboard-card,.feature-card,.lesson-card,.resource-card,.tool-card):hover {
+    border-color:#C58A69;
+    box-shadow:0 17px 42px rgba(11,9,9,.17);
+    transform:translateY(-2px);
+  }
+}
+html[data-theme] :is(input:not([type="checkbox"]):not([type="radio"]),textarea,select) {
+  border-radius:12px;
+  transition:border-color .18s ease,box-shadow .18s ease;
+}
+html[data-theme] :is(input:not([type="checkbox"]):not([type="radio"]),textarea,select):focus-visible {
+  border-color:#C58A69;
+  box-shadow:0 0 0 4px var(--dl-polish-ring);
+  outline:2px solid #C58A69;
+  outline-offset:1px;
+}
+html[data-theme] :is(button,.btn,[role="button"]):not(:disabled):not([aria-disabled="true"]) {
+  transition:background-color .18s ease,border-color .18s ease,box-shadow .18s ease,transform .18s ease;
+}
+html[data-theme] :is(button,.btn,[role="button"]):focus-visible {
+  outline:3px solid #C58A69;
+  outline-offset:3px;
+}
+html[data-theme] :is(.dropdown-menu,.profile-dropdown,.menu-panel,[role="menu"]) {
+  border-radius:16px;
+  border-color:var(--dl-polish-line);
+  box-shadow:0 20px 48px rgba(11,9,9,.2);
+}
+html[data-theme] :is(.dropdown-menu,.profile-dropdown,.menu-panel,[role="menu"]) :is(a,button,[role="menuitem"]):focus-visible {
+  outline:2px solid #C58A69;
+  outline-offset:-2px;
+  border-radius:9px;
+}
+html[data-theme] :is(table,.data-table) {border-collapse:separate;border-spacing:0}
+html[data-theme] :is(table,.data-table) :is(th,td) {border-bottom-color:var(--dl-polish-line)}
+html[data-theme] :is(table,.data-table) thead th {font-weight:750;letter-spacing:.015em}
+html[data-theme] :is(progress,[role="progressbar"]) {accent-color:#770101}
+html[data-theme] :is(.modal,.dialog-panel,[role="dialog"]) {border-radius:20px;border-color:var(--dl-polish-line)}
+@media(max-width:600px){
+  html[data-theme] :is(.course-card,.course-tile,.dashboard-card,.stat-card,.feature-card,.lesson-card,.resource-card,.tool-card,.panel,.surface-card) {border-radius:15px}
+  html[data-theme] :is(.dropdown-menu,.profile-dropdown,.menu-panel,[role="menu"]) {max-width:min(92vw,360px)}
+}
+@media(prefers-reduced-motion:reduce){
+  html[data-theme] :is(.course-card,.course-tile,.dashboard-card,.stat-card,.metric-card,.feature-card,.lesson-card,.resource-card,.tool-card,.panel,.surface-card,button,.btn,[role="button"],input,textarea,select){transition:none!important;transform:none!important}
+}
