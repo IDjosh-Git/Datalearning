@@ -21,7 +21,7 @@
  function loginDestination(){const u=toPage('auth.html');u.searchParams.set('return',location.pathname+location.search+location.hash);return u.href;}
  function clearLocalCourseCache(){courseKeys.forEach(k=>window.DALP_STORAGE?.removeItem(k));['introduction','excel','sql','powerbi','python','ai'].forEach(k=>window.DALP_STORAGE?.removeItem('zahPendingAnonymous:'+k));}
  function prepareWorkspace(user){if(user?.id){window.DALP_WORKSPACE_OWNER=user.id;window.DALP_CLOUD_WORKSPACE?.setOwner?.(user.id);}}
- function exit(clearCache=true){if(clearCache)clearLocalCourseCache();location.replace(loginDestination());}
+ function exit(clearCache=true,signedOut=false){if(clearCache)clearLocalCourseCache();location.replace(signedOut?root.href:loginDestination());}
  function paint(kind='loading'){
   if(!document.body)return;
   if(!gate){gate=document.createElement('div');gate.id='dalp-auth-gate';gate.setAttribute('role','status');gate.setAttribute('aria-live','polite');document.body.prepend(gate);}
@@ -41,7 +41,7 @@
    if(button)button.querySelector('[data-dalp-signout-label]').textContent='Signing out…';
    try{await window.DALP_SERVER_SESSION?.clear();await window.ZAH_DB?.client?.auth.signOut();}
    catch(e){console.warn('Sign-out did not complete cleanly',e)}
-   exit();
+   exit(true,true);
   };
   const icon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h3"/><path d="M15 16l4-4-4-4M9 12h10"/></svg>';
   if(!document.getElementById('dalpGlobalLogout')&&!document.getElementById('logout')){
@@ -132,7 +132,7 @@
    if(gate){gate.remove();gate=null;}
    const init=()=>{addSignOut();enhanceRoleUI();};
    if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
-   client.auth.onAuthStateChange((event,newSession)=>{if(event==='SIGNED_OUT'||event==='USER_DELETED'){void window.DALP_SERVER_SESSION?.clear();exit();}else if(event==='TOKEN_REFRESHED'&&newSession){void window.DALP_SERVER_SESSION?.establish(newSession).catch(()=>{});}});
+   client.auth.onAuthStateChange((event,newSession)=>{if(event==='SIGNED_OUT'||event==='USER_DELETED'){void window.DALP_SERVER_SESSION?.clear();exit(true,true);}else if(event==='TOKEN_REFRESHED'&&newSession){void window.DALP_SERVER_SESSION?.establish(newSession).catch(()=>{});}});
   }catch(e){console.warn('Unable to validate permissions',e);showError();}
   finally{working=false;}
  }

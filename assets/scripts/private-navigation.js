@@ -65,7 +65,7 @@
  const accountEmail=document.createElement('span');accountEmail.className='ac-identity-email';accountEmail.textContent='Secure DataLearning account';
  identityCard.append(accountBadge,accountEmail);bottom.append(identityCard);
  const logout=document.createElement('button');logout.className='ac-logout';logout.type='button';logout.innerHTML='<span aria-hidden="true">↪</span> Sign out';
- logout.addEventListener('click',async()=>{logout.disabled=true;logout.textContent='Signing out…';try{await window.DALP_SERVER_SESSION?.clear();await window.ZAH_DB?.client?.auth.signOut()}finally{location.replace('auth.html')}});
+ logout.addEventListener('click',async()=>{logout.disabled=true;logout.textContent='Signing out…';try{await window.DALP_SERVER_SESSION?.clear();await window.ZAH_DB?.client?.auth.signOut()}finally{location.replace('/')}});
  bottom.append(logout);aside.append(bottom);
  const backdrop=document.createElement('div');backdrop.className='ac-nav-overlay';backdrop.setAttribute('aria-hidden','true');
  const frame=document.createElement('div');frame.className='ac-main-frame';

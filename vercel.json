@@ -162,10 +162,6 @@
       "destination": "/index.html"
     },
     {
-      "source": "/overview",
-      "destination": "/overview.html"
-    },
-    {
       "source": "/studio",
       "destination": "/studio.html"
     },
@@ -174,7 +170,7 @@
       "destination": "/practice.html"
     }
   ],
-  "outputDirectory": ".",
+  "outputDirectory": "dist",
   "redirects": [
     {
       "source": "/courses/introduction-roadmap.html",
@@ -230,6 +226,21 @@
       "source": "/start-here.html",
       "destination": "/start-here",
       "permanent": true
+    },
+    {
+      "source": "/overview.html",
+      "destination": "/account.html#course-progress-heading",
+      "permanent": false
+    },
+    {
+      "source": "/overview",
+      "destination": "/account.html#course-progress-heading",
+      "permanent": false
+    },
+    {
+      "source": "/progress.html",
+      "destination": "/admin.html#admin-learners",
+      "permanent": false
     }
   ]
 }

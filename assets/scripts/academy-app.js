@@ -28,6 +28,8 @@
   const completedCount = slug => Object.values(readProgress(slug)).filter(v => v === true).length;
   const percent = slug => Math.min(100, Math.round(completedCount(slug) * 100 / (courses[slug]?.weeks.length || 10)));
   const user = async () => {
+    if(window.DALP_AUTH_GATE?.whenReady)return window.DALP_AUTH_GATE.whenReady;
+    await window.DALP_AUTH_RESTORE;
     try {return (await window.ZAH_DB?.client?.auth?.getUser())?.data?.user || null;} catch (_) {return null;}
   };
   async function syncCourse(slug, onUpdate) {
@@ -307,8 +309,8 @@
         this.disabled=true;one('#zaSaveStatus').textContent='Saving your week…';
         try{
           const result=await window.ZAHProgressCloud.saveWeek(slug,week,true);
-          this.textContent='✓ Marked as complete';
-          one('#zaSaveStatus').textContent=result.ok?'Week completed and synced to your account.':result.reason==='signed_out'?'Saved on this device. Sign in to sync on other devices.':'Saved locally. Cloud sync is currently unavailable.';
+          this.textContent=result.ok?'✓ Marked as complete':'Retry saving week';
+          one('#zaSaveStatus').textContent=result.ok?'Week completed and synced to your account.':'This completion has not reached your account yet. Keep this page open and retry saving before leaving.';
           progressView();
         }catch(error){one('#zaSaveStatus').textContent='Unable to save this week right now. Please retry.';}
         finally{this.disabled=false;}
@@ -325,6 +327,8 @@
     showLesson(current,false);
     window.addEventListener('popstate',()=>showLesson(currentUrl(),false));
     syncCourse(slug,progressView);
+    window.addEventListener('dalp:progress-updated',event=>{if(event.detail?.slug===slug)progressView();});
+    window.addEventListener('pageshow',event=>{if(event.persisted)void syncCourse(slug,progressView);});
   }
   /* A standalone guided exam: 50 original questions, exactly one visible at a time.
      Only a chosen answer enables Check Answer. Results are never revealed early. */

@@ -15,6 +15,9 @@
   let allSyncPromise=null;
   // Serialize writes per course. Rapid mobile taps must not arrive at Supabase out of order.
   const courseWriteLanes=new Map();
+  const revisions=new Map(),changes=new Map();
+  function changed(slug,week,completed){const revision=(revisions.get(slug)||0)+1;revisions.set(slug,revision);if(!changes.has(slug))changes.set(slug,new Map());changes.get(slug).set(String(week),{revision,completed:!!completed});}
+  function notify(slug){window.dispatchEvent(new CustomEvent('dalp:progress-updated',{detail:{slug}}));}
 
   function safeParse(value, fallback={}){ try { return JSON.parse(value || '') ?? fallback; } catch { return fallback; } }
   function readLocal(key){ try{return safeParse(window.DALP_STORAGE.getItem(key), {});}catch{return {};} }
@@ -38,6 +41,7 @@
   }
 
   async function getUser(){
+    try{if(window.DALP_AUTH_GATE?.whenReady)await window.DALP_AUTH_GATE.whenReady;else await window.DALP_AUTH_RESTORE;}catch{return null;}
     if(!window.ZAH_DB?.configured||!window.ZAH_DB?.client) return null;
     // Reuse the identity already verified by the global auth gate this page load.
     // Database RLS still verifies the JWT independently on each cloud request.
@@ -74,6 +78,7 @@
   function rowFor(userId,slug,week,completed,changedAt){ const now=changedAt||new Date().toISOString(); return {user_id:userId,course_slug:slug,week_no:Number(week),completed:!!completed,completed_at:completed?now:null,updated_at:now}; }
 
   async function syncCourse(slug,opts={}){
+    const revision=revisions.get(slug)||0;
     const info=COURSE_MAP[slug]; if(!info) throw new Error(`Unknown course: ${slug}`);
     const local=readLocal(info.key);
     if(!window.ZAH_DB?.configured||!window.ZAH_DB?.client) return {ok:false,reason:'not_configured',user:null,progress:local};
@@ -105,7 +110,11 @@
     try{ window.DALP_STORAGE.setItem(migratedKey(user.id,slug),'1'); }catch(_){}
 
     // Cloud becomes the shared source of truth after recovery.
-    const progress=normalizedProgress(remoteRows,info.units); writeLocal(info.key,progress);
+    const progress=normalizedProgress(remoteRows,info.units);
+    // A read started before a completion click must not overwrite that newer action.
+    for(const [week,change] of changes.get(slug)||[])if(change.revision>revision)progress[week]=change.completed;
+    for(const [week,change] of Object.entries(readPending(pendingKey(user.id,slug))))progress[week]=change.completed;
+    writeLocal(info.key,progress);notify(slug);
     const latest=(remoteRows||[]).map(r=>r.updated_at).filter(Boolean).sort().at(-1)||new Date().toISOString();
     try{ window.DALP_STORAGE.setItem(`zahLastSync:${user.id}:${slug}`,latest); }catch(_){}
     return {ok:true,reason:'synced',user,progress,completed:Object.values(progress).filter(Boolean).length,percent:Math.round(Object.values(progress).filter(Boolean).length/info.units*100),lastSync:latest};
@@ -114,7 +123,8 @@
   async function saveWeek(slug,week,completed,user=null){
     const info=COURSE_MAP[slug]; if(!info) throw new Error(`Unknown course: ${slug}`);
     if(!Number.isInteger(Number(week))||Number(week)<1||Number(week)>info.units)throw new RangeError('Invalid course unit');
-    const local=readLocal(info.key); local[String(week)]=!!completed; writeLocal(info.key,local);
+    changed(slug,week,completed);
+    const local=readLocal(info.key); local[String(week)]=!!completed; writeLocal(info.key,local);notify(slug);
     if(!window.ZAH_DB?.configured||!window.ZAH_DB?.client){ queueAnonymous(slug,week,completed); return {ok:false,reason:'not_configured',progress:local}; }
     user=user||await getUser(); if(!user){ queueAnonymous(slug,week,completed); return {ok:false,reason:'signed_out',progress:local}; }
     queueForUser(user.id,slug,week,completed);
@@ -129,6 +139,7 @@
   }
 
   async function saveSnapshot(slug,progress,user=null){
+    for(const [week,value] of Object.entries(progress||{}))changed(slug,week,value);
     const info=COURSE_MAP[slug]; if(!info) throw new Error(`Unknown course: ${slug}`); writeLocal(info.key,progress);
     if(!window.ZAH_DB?.configured||!window.ZAH_DB?.client){ Object.entries(progress).forEach(([w,v])=>queueAnonymous(slug,w,v)); return {ok:false,reason:'not_configured'}; }
     user=user||await getUser(); if(!user){ Object.entries(progress).forEach(([w,v])=>queueAnonymous(slug,w,v)); return {ok:false,reason:'signed_out'}; }
