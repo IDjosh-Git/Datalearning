@@ -239,3 +239,14 @@ html[data-theme] body.dlx-rebuilt.ac-ready[data-private-workspace="true"] .ac-si
 html[data-theme] body.dlx-rebuilt.ac-ready[data-private-workspace="true"] .ac-sidebar .ac-side-nav a.ac-side-link:is(.ac-selected,[aria-current="page"]){
  background:#EAD7C0!important;border-left:3px solid #C58A69!important;font-weight:850!important;
 }
+
+/* Learner dashboard: single compact top navigation, no redundant sidebar. */
+body.ac-dashboard-no-sidebar .ac-shell{display:block!important}
+body.ac-dashboard-no-sidebar .ac-main-frame{margin-left:0!important;width:100%!important;max-width:none!important}
+body.ac-dashboard-no-sidebar .ac-topbar{display:flex;justify-content:space-between;align-items:center;gap:1rem}
+body.ac-dashboard-no-sidebar .ac-top-actions{display:flex;align-items:center;flex-wrap:wrap;gap:.75rem}
+body.ac-dashboard-no-sidebar .ac-dashboard-quicklink{color:inherit;text-decoration:none;font-weight:650;padding:.5rem .65rem;border-radius:.5rem}
+body.ac-dashboard-no-sidebar .ac-dashboard-quicklink:hover{background:var(--dl-surface-hover, transparent)}
+body.ac-dashboard-no-sidebar .ac-dashboard-quicklink:focus-visible,body.ac-dashboard-no-sidebar .ac-logout:focus-visible{outline:3px solid var(--dl-accent, currentColor);outline-offset:3px}
+body.ac-dashboard-no-sidebar .ac-logout{position:static;margin:0;white-space:nowrap}
+@media(max-width:600px){body.ac-dashboard-no-sidebar .ac-topbar{flex-wrap:wrap}body.ac-dashboard-no-sidebar .ac-top-actions{width:100%;justify-content:space-between;gap:.25rem}body.ac-dashboard-no-sidebar .ac-dashboard-quicklink{font-size:.85rem;padding:.45rem .25rem}body.ac-dashboard-no-sidebar .ac-secure{display:none}}

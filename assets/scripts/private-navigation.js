@@ -67,6 +67,10 @@
  const logout=document.createElement('button');logout.className='ac-logout';logout.type='button';logout.innerHTML='<span aria-hidden="true">↪</span> Sign out';
  logout.addEventListener('click',async()=>{logout.disabled=true;logout.textContent='Signing out…';try{await window.DALP_SERVER_SESSION?.clear();await window.ZAH_DB?.client?.auth.signOut()}finally{location.replace('/')}});
  bottom.append(logout);aside.append(bottom);
+ // The learner dashboard is the navigation hub itself. Avoid a second sidebar navigator.
+ // Keep account access and sign-out in the compact dashboard header.
+ const compactDashboard=current==='account';
+
  const backdrop=document.createElement('div');backdrop.className='ac-nav-overlay';backdrop.setAttribute('aria-hidden','true');
  const frame=document.createElement('div');frame.className='ac-main-frame';
  const header=document.createElement('header');header.className='ac-topbar';
@@ -75,9 +79,18 @@
  const trail=document.createElement('div');trail.className='ac-breadcrumb';trail.innerHTML='<span class="ac-breadcrumb-prefix">Workspace</span><span class="ac-crumb-divider" aria-hidden="true">/</span><strong>'+(titles[current]||'Learning Dashboard')+'</strong>';
  const right=document.createElement('div');right.className='ac-top-actions';
  right.innerHTML='<span class="ac-secure"><span class="ac-secure-dot" aria-hidden="true"></span> Learner space</span>'; // No duplicate course or admin links in the top bar.
- header.append(mobileToggle,trail,right);
+ if(compactDashboard){
+  const home=document.createElement('a');home.href='index.html#zaDiscoverCards';home.className='ac-dashboard-quicklink';home.textContent='Discover courses';
+  const profile=document.createElement('a');profile.href='profile.html';profile.className='ac-dashboard-quicklink';profile.textContent='My profile';
+  right.append(home,profile,logout);
+  mobileToggle.remove();
+  aside.remove();
+  backdrop.remove();
+  root.classList.add('ac-dashboard-no-sidebar');
+ }
+ header.append(...(compactDashboard?[]:[mobileToggle]),trail,right);
  const area=document.createElement('div');area.className='ac-page-area';
- main.parentNode.insertBefore(shell,main);shell.append(aside,backdrop,frame);frame.append(header,area);area.append(main);
+ main.parentNode.insertBefore(shell,main);if(compactDashboard)shell.append(frame);else shell.append(aside,backdrop,frame);frame.append(header,area);area.append(main);
  root.classList.add('ac-ready');
  const bp=window.matchMedia('(min-width: 1025px)');let drawerPreviousFocus=null;
  function closeMenu(){const wasOpen=root.classList.contains('ac-menu-open');root.classList.remove('ac-menu-open');mobileToggle.setAttribute('aria-expanded','false');mobileToggle.setAttribute('aria-label','Open navigation');aside.inert=!bp.matches;if(wasOpen&&drawerPreviousFocus?.isConnected)drawerPreviousFocus.focus({preventScroll:true});drawerPreviousFocus=null;}
