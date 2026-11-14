@@ -2,10 +2,8 @@
    The authenticated shell keeps this visible during the session check; it never exposes private content. */
 #dlxPageLoader{position:fixed;inset:0;z-index:2147483450;display:none;place-items:center;
   isolation:isolate;overflow:hidden;padding:24px;box-sizing:border-box;text-align:center;
-  background:radial-gradient(ellipse at 12% 18%,rgba(197,138,105,.27),transparent 56%),
-             radial-gradient(ellipse at 84% 80%,rgba(217,191,164,.22),transparent 52%),
-             linear-gradient(145deg,rgba(11,9,9,.27),rgba(2,48,72,.22));
-  -webkit-backdrop-filter:blur(14px) saturate(125%);backdrop-filter:blur(14px) saturate(125%);
+  background:rgba(2,48,72,.24);
+  -webkit-backdrop-filter:blur(22px) saturate(112%);backdrop-filter:blur(22px) saturate(112%);
   color:var(--bw-ivory);font-family:'Plus Jakarta Sans','DM Sans',system-ui,sans-serif;
   opacity:1;visibility:visible;transition:opacity .34s ease,visibility .34s ease}
 html.dlx-loader-pending #dlxPageLoader{display:grid}

@@ -4,7 +4,7 @@
    const open=document.getElementById('dluNavOpen'),close=document.getElementById('dluNavClose'),panel=document.getElementById('dluNavPanel');
    if(!open||!close||!panel)return;
    function updateActiveNavigation(){
-     const aliases={'/dashboard':'/index.html','/practice':'/practice.html','/overview':'/overview.html','/studio':'/studio.html'};
+     const aliases={'/dashboard':'/index.html','/practice':'/practice.html','/overview':'/account.html','/studio':'/studio.html'};
      const currentPath=aliases[location.pathname]||location.pathname;
      const courseSection=currentPath.endsWith('/index.html')&&location.hash==='#zaDiscoverCards';
      document.querySelectorAll('.dlu-primary-links a[href],#dluNavPanel a[href]').forEach(anchor=>{
