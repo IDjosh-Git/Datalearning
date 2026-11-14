@@ -1,5 +1,6 @@
 /* Authentication is required for every DataLearning route other than sign-in and its minimal assets. */
 import { next } from '@vercel/functions';
+import { rewrite } from '@vercel/functions';
 import { restrictedKind,readServerToken,verifyAccount,verifyAdmin,PRIVATE_HEADERS,readRefreshCookie,tokenSecondsLeft } from './lib/server-auth.js';
 
 // Vercel invokes this at the edge before serving public and private static HTML and bundles.
@@ -27,6 +28,13 @@ function continueSession(url){
 }
 export default async function middleware(request){
  const url=new URL(request.url);
+ // Root index.html is the authenticated Discover page. A config rewrite alone
+ // can lose to Vercel's filesystem index resolution; select the public entry
+ // here before the filesystem is consulted, without exposing private assets.
+ if(url.pathname==='/'){
+  const landing=new URL(url);landing.pathname='/public-pages/landing.html';
+  return rewrite(landing,{headers:{'Cache-Control':'no-store, max-age=0'}});
+ }
  const kind=restrictedKind(url.pathname);
  if(kind==='deny')return fail(404,'Not found');
  if(kind==='public')return next({headers:{'Cache-Control':'no-store, max-age=0'}});

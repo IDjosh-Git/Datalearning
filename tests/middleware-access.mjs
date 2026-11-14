@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 let src=await fs.readFile(new URL('../middleware.js',import.meta.url),'utf8');
 const modPath=new URL('../lib/server-auth.js',import.meta.url).href;
+src=src.replace("import { rewrite } from '@vercel/functions';","const rewrite=(url,{headers}={})=>new Response(null,{status:200,headers:{...headers,'x-middleware-rewrite':String(url)}});");
 src=src.replace("import { next } from '@vercel/functions';","const next=({headers}={})=>new Response(null,{status:204,headers:{...headers,'x-middleware-next':'true'}});").replace("from './lib/server-auth.js'","from '"+modPath+"'");
 const {default:middleware,config}=await import('data:text/javascript;base64,'+Buffer.from(src).toString('base64'));
 const {sessionCookie}=await import('../lib/server-auth.js');
@@ -21,7 +22,13 @@ try{
   const r=await middleware(req(route));assert.equal(r.status,302,route);const url=new URL(r.headers.get('location'));assert.equal(url.pathname,'/auth.html');
  }
  for(const route of ['/assets/scripts/academy-app.js','/assets/styles/practice.css','/downloads/learning_sales_2026.csv','/assets/images/lesson-interfaces/excel-week-1.png'])assert.equal((await middleware(req(route))).status,403,route);
- for(const route of ['/','/start-here','/courses','/courses/excel','/public-course-guide.css','/auth.html','/auth','/assets/scripts/auth-flow.js','/assets/styles/auth-entry-premium.css','/assets/icons/da-logo.svg','/api/auth/session'])assert.equal((await middleware(req(route))).status,204,route);
+ const home=await middleware(req('/?campaign=welcome'));
+ assert.equal(home.status,200);
+ assert.equal(home.headers.get('x-middleware-rewrite'),'https://learning.example/public-pages/landing.html?campaign=welcome','public homepage must bypass filesystem index.html resolution');
+ assert.equal(home.headers.get('cache-control'),'no-store, max-age=0');
+ const signedHome=await middleware(req('/',sessionCookie(token('home'),300)));
+ assert.equal(new URL(signedHome.headers.get('x-middleware-rewrite')).pathname,'/public-pages/landing.html','root consistently serves public landing; dashboard stays at /dashboard');
+ for(const route of ['/start-here','/public-pages/landing.html','/courses','/courses/excel','/public-course-guide.css','/auth.html','/auth','/assets/scripts/auth-flow.js','/assets/styles/auth-entry-premium.css','/assets/icons/da-logo.svg','/api/auth/session'])assert.equal((await middleware(req(route))).status,204,route);
  assert.equal((await middleware(req('/api/tutor'))).status,401);
  assert.equal((await middleware(req('/lib/server-auth.js'))).status,404);
  global.fetch=mock(false);
