@@ -163,14 +163,24 @@ html[data-theme] :is(.modal,.dialog-panel,[role="dialog"]) {border-radius:20px;b
   html[data-theme] :is(.course-card,.course-tile,.dashboard-card,.stat-card,.metric-card,.feature-card,.lesson-card,.resource-card,.tool-card,.panel,.surface-card,button,.btn,[role="button"],input,textarea,select){transition:none!important;transform:none!important}
 }
 
-/* 2026-11-14: Shared light, layered canvas across public, learner, and admin pages.
-   Keep content surfaces, navigation, overlays, and the page loader independently styled. */
-html, html[data-theme] body, html body {
-  background-color:#F0EDDE!important;
-  background-image:
-    radial-gradient(ellipse 78% 58% at 7% 4%,rgba(197,138,105,.16) 0%,rgba(197,138,105,0) 72%),
-    radial-gradient(ellipse 72% 66% at 94% 22%,rgba(2,48,72,.075) 0%,rgba(2,48,72,0) 72%),
-    radial-gradient(ellipse 65% 58% at 45% 98%,rgba(217,191,164,.23) 0%,rgba(217,191,164,0) 76%),
-    linear-gradient(145deg,#FFFFFF 0%,#F7F3EA 47%,#F0EDDE 100%)!important;
-  background-attachment:scroll!important;
+
+/* Consistent, visible, light premium canvas on every application page.
+   Stronger blue/copper bands are deliberate: previous 7%-16% overlays were imperceptible. */
+:root { --dl-page-canvas: radial-gradient(ellipse 95% 78% at 0% 0%,rgba(197,138,105,.32) 0%,rgba(197,138,105,0) 72%), radial-gradient(ellipse 95% 78% at 100% 34%,rgba(2,48,72,.19) 0%,rgba(2,48,72,0) 75%), radial-gradient(ellipse 105% 80% at 14% 96%,rgba(217,191,164,.44) 0%,rgba(217,191,164,0) 76%), linear-gradient(135deg,#FFFFFF 0%,#F7F3EA 42%,#E9DDD0 100%); }
+html,html body,html[data-theme] body {
+  background-color:#F7F3EA!important;
+  background-image:var(--dl-page-canvas)!important;
+  background-repeat:no-repeat!important;
+  background-size:cover!important;
+  background-attachment:fixed!important;
+  min-height:100%;
 }
+/* A full-page solid main container can conceal the body canvas entirely. */
+html body > main, html body > #main-content,
+html body > .app-shell,html body > .page-shell,
+html body > .ac-main,html body > .ac-layout,
+html body > .dashboard-layout {
+  background-color:transparent!important;
+  background-image:none!important;
+}
+@media(max-width:700px){html,html body,html[data-theme] body{background-attachment:scroll!important}}
