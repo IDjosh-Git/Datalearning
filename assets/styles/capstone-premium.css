@@ -205,3 +205,24 @@ body.capstone-studio-r3 :is(.cap-track,.cap-rebuild-steps a):focus-visible{outli
 @media(max-width:780px){body.capstone-studio-r3 .cap-rebuild-steps{grid-template-columns:repeat(2,minmax(0,1fr))}body.capstone-studio-r3 .cap-rebuild-workspace-head{align-items:start;flex-direction:column}body.capstone-studio-r3 .cap-side{grid-template-columns:1fr}body.capstone-studio-r3 .cap-hero.dalp-themed-hero{padding:52px 0 90px!important}}
 @media(max-width:460px){body.capstone-studio-r3 .cap-rebuild-steps a{grid-template-columns:32px 1fr;padding:12px 9px;column-gap:7px}body.capstone-studio-r3 .cap-rebuild-steps a span{width:30px;height:30px;font-size:10px}body.capstone-studio-r3 .cap-rebuild-steps a strong{font-size:10px}body.capstone-studio-r3 .cap-rebuild-steps a small{font-size:9px}body.capstone-studio-r3 .cap-rebuild-review-journey{grid-template-columns:1fr}body.capstone-studio-r3 .cap-content{margin-top:-28px!important}}
 @media(prefers-reduced-motion:reduce){body.capstone-studio-r3 .cap-rebuild-steps a{transition:none}}
+
+/* Capstone Studio v4: premium editorial workspace */
+body[data-responsive-page="capstone"] .cap-hero{position:relative;overflow:hidden;border-radius:0 0 38px 38px!important;background:radial-gradient(ellipse at 80% 20%,rgba(197,138,105,.28),transparent 44%),linear-gradient(120deg,#023048,#0B0909 72%)!important;border-bottom:4px solid #C58A69!important}
+body[data-responsive-page="capstone"] .cap-hero:after{content:"";position:absolute;right:-110px;top:-140px;width:420px;height:420px;border:1px solid rgba(217,191,164,.25);border-radius:50%;box-shadow:0 0 0 54px rgba(217,191,164,.035),0 0 0 110px rgba(217,191,164,.025);pointer-events:none}
+body[data-responsive-page="capstone"] .cap-hero h1{letter-spacing:-.065em!important;line-height:1.03!important;max-width:850px;text-wrap:balance}
+body[data-responsive-page="capstone"] .cap-content{padding-block:clamp(25px,4vw,60px)!important}
+body[data-responsive-page="capstone"] .cap-panel{background:linear-gradient(155deg,#FFFFFF,#F7F3EA)!important;border:1px solid #E9DDD0!important;border-radius:24px!important;box-shadow:0 18px 46px rgba(2,48,72,.085)!important;overflow:hidden}
+body[data-responsive-page="capstone"] .cap-panel-title{border-bottom:1px solid #E9DDD0;padding-bottom:22px;margin-bottom:23px}
+body[data-responsive-page="capstone"] .cap-kicker{color:#770101!important;letter-spacing:.13em!important;font-weight:850!important}
+body[data-responsive-page="capstone"] .cap-track{background:#FFFFFF!important;border:1px solid #E9DDD0!important;border-radius:16px!important;min-height:76px;transition:transform .18s,box-shadow .18s,border-color .18s}
+body[data-responsive-page="capstone"] .cap-track:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(2,48,72,.12)!important;border-color:#C58A69!important}
+body[data-responsive-page="capstone"] .cap-track[aria-pressed="true"]{background:linear-gradient(125deg,#F7F3EA,#F1E3D0)!important;border:2px solid #770101!important;box-shadow:0 0 0 3px rgba(119,1,1,.09)!important}
+body[data-responsive-page="capstone"] .cap-drop{background:linear-gradient(130deg,#FFFFFF,#F1E3D0)!important;border:2px dashed #C58A69!important;border-radius:19px!important;padding:30px!important}
+body[data-responsive-page="capstone"] .cap-input{background:#FFFFFF!important;border-radius:12px!important}
+body[data-responsive-page="capstone"] .cap-input:focus-visible,body[data-responsive-page="capstone"] .cap-track:focus-visible{outline:3px solid #C58A69!important;outline-offset:3px}
+body[data-responsive-page="capstone"] .cap-side-panel{background:linear-gradient(155deg,#FFFFFF,#F7F3EA)!important;border:1px solid #E9DDD0!important;border-top:4px solid #C58A69!important;border-radius:22px!important;box-shadow:0 14px 34px rgba(2,48,72,.07)!important}
+body[data-responsive-page="capstone"] .cap-rubric>div{border-bottom:1px solid #E9DDD0;padding-block:12px}
+body[data-responsive-page="capstone"] .cap-rubric b{color:#770101!important;font-variant-numeric:tabular-nums}
+body[data-responsive-page="capstone"] .cap-progress-track>div{background:linear-gradient(90deg,#023048,#C58A69)!important}
+@media(max-width:760px){body[data-responsive-page="capstone"] .cap-hero{border-radius:0 0 22px 22px!important}body[data-responsive-page="capstone"] .cap-drop{padding:20px!important}}
+@media(prefers-reduced-motion:reduce){body[data-responsive-page="capstone"] .cap-track{transition:none}}

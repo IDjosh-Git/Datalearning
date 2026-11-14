@@ -234,20 +234,25 @@ html body[data-responsive-page="capstone"] .cap-side-panel {border-radius:22px!i
 
 /* Capstone navigation refinement */
 /* Focused Capstone navigation — isolated to Capstone Studio and Project Guide. */
-body:is([data-responsive-page="capstone"],[data-responsive-page="capstone-guide"]) .dlu-header{background:#FFFFFF!important;border-bottom:1px solid #E9DDD0!important;box-shadow:0 5px 24px rgba(2,48,72,.065)!important;position:relative;z-index:30}
-body:is([data-responsive-page="capstone"],[data-responsive-page="capstone-guide"]) .dlu-header-inner{max-width:1340px!important;min-height:76px!important;margin:auto!important;padding:10px clamp(18px,3.5vw,48px)!important;display:flex!important;align-items:center!important;gap:clamp(12px,2vw,32px)!important}
-body:is([data-responsive-page="capstone"],[data-responsive-page="capstone-guide"]) .dlu-brand{flex:0 0 auto!important;text-decoration:none!important}
-body:is([data-responsive-page="capstone"],[data-responsive-page="capstone-guide"]) .dlu-brand-name{color:#023048!important;font-weight:850!important;letter-spacing:-.045em!important}
-body:is([data-responsive-page="capstone"],[data-responsive-page="capstone-guide"]) .dlu-brand-caption{color:#770101!important;letter-spacing:.11em!important}
-body:is([data-responsive-page="capstone"],[data-responsive-page="capstone-guide"]) .dlu-primary-links{display:flex!important;align-items:center!important;justify-content:center!important;gap:5px!important;flex:1 1 auto!important;min-width:0!important}
-body:is([data-responsive-page="capstone"],[data-responsive-page="capstone-guide"]) .dlu-primary-links a{color:#023048!important;background:transparent!important;border:1px solid transparent!important;border-radius:11px!important;padding:11px 13px!important;font-size:.91rem!important;font-weight:680!important;white-space:nowrap!important;text-decoration:none!important;transition:background .15s,border-color .15s!important}
-body:is([data-responsive-page="capstone"],[data-responsive-page="capstone-guide"]) .dlu-primary-links a:hover{background:#F7F3EA!important;border-color:#E9DDD0!important}
-body:is([data-responsive-page="capstone"],[data-responsive-page="capstone-guide"]) .dlu-primary-links a[aria-current="page"]{background:#023048!important;color:#FFFFFF!important;border-color:#023048!important;box-shadow:0 4px 12px rgba(2,48,72,.13)!important}
-body:is([data-responsive-page="capstone"],[data-responsive-page="capstone-guide"]) .dlu-header-actions{flex:0 0 auto!important}
-body:is([data-responsive-page="capstone"],[data-responsive-page="capstone-guide"]) .dlu-dashboard-card{background:#F7F3EA!important;border:1px solid #E9DDD0!important;border-radius:12px!important;box-shadow:none!important;padding:9px 13px!important;min-height:46px!important}
-body:is([data-responsive-page="capstone"],[data-responsive-page="capstone-guide"]) .dlu-dashboard-card *{color:#023048!important}
-body:is([data-responsive-page="capstone"],[data-responsive-page="capstone-guide"]) .dlu-dashboard-copy small{display:none!important}
-body:is([data-responsive-page="capstone"],[data-responsive-page="capstone-guide"]) .dlu-dashboard-copy strong{font-size:.86rem!important}
-body:is([data-responsive-page="capstone"],[data-responsive-page="capstone-guide"]) .dlu-header :is(a,button):focus-visible{outline:3px solid #C58A69!important;outline-offset:3px!important}
-@media(max-width:1050px){body:is([data-responsive-page="capstone"],[data-responsive-page="capstone-guide"]) .dlu-primary-links{display:none!important}body:is([data-responsive-page="capstone"],[data-responsive-page="capstone-guide"]) .dlu-header-inner{justify-content:space-between!important}body:is([data-responsive-page="capstone"],[data-responsive-page="capstone-guide"]) .dlu-menu-open-button{display:inline-flex!important;align-items:center!important;justify-content:center!important;border-radius:11px!important;background:#F7F3EA!important;color:#023048!important;border:1px solid #E9DDD0!important;width:45px!important;height:45px!important}}
-@media(max-width:580px){body:is([data-responsive-page="capstone"],[data-responsive-page="capstone-guide"]) .dlu-header-inner{min-height:68px!important;padding:9px 16px!important;gap:10px!important}body:is([data-responsive-page="capstone"],[data-responsive-page="capstone-guide"]) .dlu-header-actions{display:none!important}body:is([data-responsive-page="capstone"],[data-responsive-page="capstone-guide"]) .dlu-brand-caption{font-size:.56rem!important}}
+/* Capstone and Guide use the shared learner navigation without route-specific overrides. */
+
+/* Compact Capstone hero: premium editorial split layout with a real dashboard preview. */
+html body[data-responsive-page="capstone"] main#main-content > .cap-hero.dalp-themed-hero,
+html body.capstone-studio-r3 main#main-content > .cap-hero.dalp-themed-hero {
+ min-height:0!important; padding:34px 0 42px!important;
+ border-radius:0 0 26px 26px!important;
+ background:radial-gradient(ellipse at 82% 10%,rgba(197,138,105,.22),transparent 43%),linear-gradient(116deg,#023048 0%,#0B0909 100%)!important;
+}
+html body[data-responsive-page="capstone"] .cap-hero>.wrap{width:min(1180px,calc(100% - 48px))!important;max-width:1180px!important}
+html body[data-responsive-page="capstone"] .cap-hero-layout{display:grid!important;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr)!important;align-items:center!important;gap:clamp(24px,4vw,56px)!important}
+html body[data-responsive-page="capstone"] .cap-hero-copy{max-width:520px!important}
+html body[data-responsive-page="capstone"] .cap-hero .cap-hero-copy h1{font-size:clamp(32px,3.45vw,52px)!important;line-height:1.08!important;letter-spacing:-.045em!important;margin:14px 0!important;max-width:520px!important}
+html body[data-responsive-page="capstone"] .cap-hero .cap-hero-copy h1 em{display:block!important;color:#D9BFA4!important}
+html body[data-responsive-page="capstone"] .cap-hero .cap-hero-copy>p{font-size:clamp(13px,1.05vw,15px)!important;line-height:1.65!important;max-width:470px!important;margin:0!important;color:#F0EDDE!important}
+html body[data-responsive-page="capstone"] .cap-hero .lp-eyebrow{font-size:10px!important;padding:7px 12px!important}
+html body[data-responsive-page="capstone"] .cap-dashboard-preview{position:relative;min-width:0;padding:7px;background:rgba(255,255,255,.11);border:1px solid rgba(217,191,164,.45);border-radius:18px;box-shadow:0 18px 40px rgba(0,0,0,.24);transform:rotate(-1deg)}
+html body[data-responsive-page="capstone"] .cap-dashboard-preview img{display:block;width:100%;height:auto;aspect-ratio:1.68;object-fit:cover;object-position:center;border-radius:12px;background:#F0EDDE}
+html body[data-responsive-page="capstone"] .cap-dashboard-caption{position:absolute;bottom:14px;left:16px;right:16px;width:fit-content;max-width:calc(100% - 32px);padding:6px 10px;border-radius:8px;background:#023048;color:#FFFFFF;font-size:10px;font-weight:700;box-shadow:0 3px 12px rgba(0,0,0,.22)}
+html body[data-responsive-page="capstone"] .cap-hero:after{display:none!important}
+@media(max-width:850px){html body[data-responsive-page="capstone"] .cap-hero-layout{grid-template-columns:1fr!important;gap:20px!important}html body[data-responsive-page="capstone"] .cap-hero-copy{max-width:700px!important}html body[data-responsive-page="capstone"] .cap-dashboard-preview{max-width:650px;transform:none}html body[data-responsive-page="capstone"] main#main-content>.cap-hero.dalp-themed-hero{padding:28px 0 35px!important}}
+@media(max-width:560px){html body[data-responsive-page="capstone"] .cap-hero>.wrap{width:calc(100% - 32px)!important}html body[data-responsive-page="capstone"] .cap-hero .cap-hero-copy h1{font-size:clamp(30px,8vw,42px)!important}html body[data-responsive-page="capstone"] .cap-dashboard-caption{font-size:9px;bottom:11px;left:11px}html body[data-responsive-page="capstone"] main#main-content>.cap-hero.dalp-themed-hero{padding:24px 0 28px!important}}

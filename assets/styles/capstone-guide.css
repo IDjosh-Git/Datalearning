@@ -2552,3 +2552,9 @@ html[data-theme] body .review-hero :is(p,.review-secure) {
 html[data-theme] body .pl-hero :is(.pl-art-panel,.pl-art-panel span) {
   color:#F7F3EA!important;-webkit-text-fill-color:currentColor!important;
 }
+
+/* Capstone guide v4: same navigation system, premium guide content */
+body[data-responsive-page="capstone-guide"] .cap-guide .hero{background:radial-gradient(ellipse at 78% 16%,rgba(197,138,105,.30),transparent 44%),linear-gradient(120deg,#023048,#0B0909)!important;border-bottom:4px solid #C58A69;border-radius:0 0 32px 32px}
+body[data-responsive-page="capstone-guide"] .cap-guide h1{letter-spacing:-.065em!important;text-wrap:balance}
+body[data-responsive-page="capstone-guide"] .cap-guide .card,body[data-responsive-page="capstone-guide"] .cap-guide .step,body[data-responsive-page="capstone-guide"] .cap-guide .metric{border-radius:20px;box-shadow:0 12px 30px rgba(2,48,72,.08)}
+body[data-responsive-page="capstone-guide"] .cap-guide .button:focus-visible{outline:3px solid #C58A69;outline-offset:3px}
