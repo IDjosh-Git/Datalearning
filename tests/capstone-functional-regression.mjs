@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const js=readFileSync(new URL('../assets/scripts/capstone.js',import.meta.url),'utf8');
+const html=readFileSync(new URL('../capstone.html',import.meta.url),'utf8');
+for(const id of ['capstoneForm','submitCapstone','courseProgress','courseProgressBar','reviewStatus','certificatePaper','evidenceInput','fileList','downloadCertificate','printCertificate','certificateControls','cloudNotice'])assert.match(html,new RegExp(`id="${id}"`),`Missing ${id}`);
+for(const course of ['introduction','excel','sql','powerbi','tableau','powerquery','statistics','python','ai'])assert.match(html,new RegExp(`data-course="${course}"`));
+assert.match(js,/if\(loading\)\{notice\('Please wait until your submission finishes/);
+assert.match(js,/new Set\(\(pr\.data\|\|\[\]\)/);
+assert.match(js,/new Set\(\(check\.data\|\|\[\]\)/);
+assert.match(js,/let recordSaved=false/);
+assert.match(js,/if\(recordSaved\)\{notice\('Your project was saved/);
+assert.match(js,/if\(uploaded\.length\)\{try\{const cleanup=/);
+assert.match(js,/reviewLoaded&&cloudDone===10/);
+assert.match(js,/DB\(\)\.storage\.from\('capstone-evidence'\)\.upload/);
+assert.match(js,/DB\(\)\.from\('capstone_submissions'\)\.insert/);
+assert.match(js,/window\.DALP_CERT\.downloadPNG/);
+console.log('PASS Capstone form, all nine tracks, submission safeguards, storage cleanup, review and certificate controls');

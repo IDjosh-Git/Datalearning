@@ -208,3 +208,26 @@ html[data-theme] body[data-responsive-page="capstone"] .cap-rubric>div{border-bo
 html[data-theme] body[data-responsive-page="capstone"] .cap-rubric b{color:#770101;font-variant-numeric:tabular-nums}
 html[data-theme] body[data-responsive-page="capstone"] .cap-cert-controls{gap:12px;flex-wrap:wrap}
 @media(max-width:760px){html[data-theme] body[data-responsive-page="capstone"] .cap-panel::before{left:18px;right:18px}html[data-theme] body[data-responsive-page="capstone"] .cap-panel-title{padding-bottom:14px}html[data-theme] body[data-responsive-page="capstone"] .cap-side-panel{padding:20px!important}}
+
+/* CAPSTONE VISUAL RELEASE 20261114-v2: intentionally distinct editorial layout */
+html body[data-responsive-page="capstone"] main#main-content>.cap-hero.dalp-themed-hero {
+  min-height:350px!important;display:flex!important;align-items:center!important;
+  background:radial-gradient(circle at 85% 12%,rgba(197,138,105,.45),transparent 38%),linear-gradient(122deg,#023048 4%,#0B0909 72%,#770101 115%)!important;
+  border-bottom:6px solid #C58A69!important;border-radius:0 0 38px 38px!important;
+  box-shadow:0 25px 48px rgba(2,48,72,.18)!important;padding:58px 0 70px!important;
+}
+html body[data-responsive-page="capstone"] .cap-hero .cap-hero-copy h1 {font-size:clamp(2.6rem,5vw,5rem)!important;line-height:1.07!important;letter-spacing:-.055em!important;max-width:850px!important;color:#FFFFFF!important}
+html body[data-responsive-page="capstone"] .cap-hero .cap-hero-copy p {font-size:1.1rem!important;max-width:690px!important;color:#F0EDDE!important}
+html body[data-responsive-page="capstone"] .cap-hero .lp-eyebrow {display:inline-flex!important;padding:9px 15px!important;border:1px solid #C58A69!important;border-radius:999px!important;background:rgba(197,138,105,.18)!important;color:#F0EDDE!important;letter-spacing:.16em!important}
+html body[data-responsive-page="capstone"] .cap-content {margin-top:32px!important}
+html body[data-responsive-page="capstone"] .cap-layout {gap:28px!important}
+html body[data-responsive-page="capstone"] .cap-main>.cap-panel {background:#FFFFFF!important;border:1px solid #E9DDD0!important;border-radius:24px!important;padding:clamp(20px,3vw,36px)!important;margin-bottom:26px!important;box-shadow:0 16px 44px rgba(2,48,72,.11)!important}
+html body[data-responsive-page="capstone"] .cap-main>.cap-panel .cap-panel-title h2 {color:#023048!important;font-size:clamp(1.55rem,2.7vw,2.2rem)!important;letter-spacing:-.035em!important}
+html body[data-responsive-page="capstone"] .cap-main>.cap-panel .cap-kicker {color:#770101!important;font-size:.8rem!important;letter-spacing:.17em!important}
+html body[data-responsive-page="capstone"] .cap-track-picker {gap:12px!important}
+html body[data-responsive-page="capstone"] button.cap-track {border:1px solid #E9DDD0!important;background:linear-gradient(145deg,#FFFFFF,#F7F3EA)!important;border-radius:16px!important;padding:16px!important;min-height:76px!important;box-shadow:0 6px 15px rgba(2,48,72,.06)!important}
+html body[data-responsive-page="capstone"] button.cap-track[aria-pressed="true"] {background:linear-gradient(130deg,#023048,#0B0909)!important;border-color:#C58A69!important;color:#FFFFFF!important;box-shadow:0 12px 26px rgba(2,48,72,.2)!important}
+html body[data-responsive-page="capstone"] button.cap-track[aria-pressed="true"] .za-cap-icon {color:#F0EDDE!important;background:rgba(197,138,105,.22)!important}
+html body[data-responsive-page="capstone"] .cap-drop {border:2px dashed #C58A69!important;border-radius:22px!important;padding:32px!important;background:linear-gradient(125deg,#FFFFFF,#F7F3EA 70%,#F1E3D0)!important}
+html body[data-responsive-page="capstone"] .cap-side-panel {border-radius:22px!important;border-top:5px solid #C58A69!important;background:#FFFFFF!important;box-shadow:0 14px 35px rgba(2,48,72,.09)!important}
+@media(max-width:700px){html body[data-responsive-page="capstone"] main#main-content>.cap-hero.dalp-themed-hero{min-height:0!important;padding:42px 0 52px!important;border-radius:0 0 24px 24px!important}html body[data-responsive-page="capstone"] .cap-content{margin-top:20px!important}html body[data-responsive-page="capstone"] button.cap-track{min-height:62px!important;padding:12px!important}}
