@@ -22,4 +22,7 @@ for (const route of routes) {
 for (const retired of ['catalog.html', 'overview.html', 'progress.html']) {
   assert.ok(!existsSync(join(dist, retired)), `Retired page unexpectedly published: ${retired}`);
 }
+for (const legacy of ['courses/ai-extension.html', 'courses/python-extension.html']) {
+  assert.ok(!existsSync(join(dist, legacy)), `Legacy course page unexpectedly published: ${legacy}`);
+}
 console.log(`PASS release routes: ${routes.length} published pages and 3 retired-page exclusions`);

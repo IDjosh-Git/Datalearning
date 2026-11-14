@@ -173,6 +173,16 @@
   "outputDirectory": "dist",
   "redirects": [
     {
+      "source": "/courses/python-extension.html",
+      "destination": "/courses/python.html",
+      "permanent": true
+    },
+    {
+      "source": "/courses/ai-extension.html",
+      "destination": "/courses/ai.html",
+      "permanent": true
+    },
+    {
       "source": "/courses/introduction-roadmap.html",
       "destination": "/courses/introduction.html",
       "permanent": false
