@@ -1,0 +1,85 @@
+{
+  "removedLinks": 10,
+  "changedPages": 38,
+  "cssFilesOptimized": 15,
+  "removedDuplicateDeclarations": 820,
+  "removedEmptyRules": 127,
+  "bytesRemoved": 24734,
+  "files": [
+    {
+      "name": "account.css",
+      "before": 24827,
+      "after": 24813
+    },
+    {
+      "name": "capstone-guide.css",
+      "before": 136063,
+      "after": 134423
+    },
+    {
+      "name": "capstone.css",
+      "before": 244398,
+      "after": 241576
+    },
+    {
+      "name": "course-guide-pages.css",
+      "before": 16207,
+      "after": 16029
+    },
+    {
+      "name": "design-system.css",
+      "before": 147652,
+      "after": 146833
+    },
+    {
+      "name": "learning-lab.css",
+      "before": 217138,
+      "after": 214222
+    },
+    {
+      "name": "practice-arena-premium-final.css",
+      "before": 197432,
+      "after": 196864
+    },
+    {
+      "name": "practice.css",
+      "before": 238304,
+      "after": 232870
+    },
+    {
+      "name": "premium-unified.css",
+      "before": 514790,
+      "after": 513490
+    },
+    {
+      "name": "preview.css",
+      "before": 142100,
+      "after": 140501
+    },
+    {
+      "name": "private-workspace.css",
+      "before": 44264,
+      "after": 44047
+    },
+    {
+      "name": "public-experience.css",
+      "before": 166267,
+      "after": 166235
+    },
+    {
+      "name": "studio.css",
+      "before": 183860,
+      "after": 181820
+    },
+    {
+      "name": "tutor.css",
+      "before": 262989,
+      "after": 260101
+    },
+    {
+      "name": "verify.css",
+      "before": 205457,
+      "after": 203190
+    }
+  ]
+}

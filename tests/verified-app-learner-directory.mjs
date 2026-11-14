@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const sql=readFileSync('database/migrations/20261111_verified_datalearning_members_only.sql','utf8');
+const dashboard=readFileSync('assets/scripts/admin-dashboard.js','utf8');
+const flow=readFileSync('assets/scripts/auth-flow.js','utf8');
+assert.match(sql,/DROP TRIGGER IF EXISTS dalp_user_profile_sync ON auth\.users/);
+assert.match(sql,/datalearning_private\.learner_profiles_archive/);
+assert.match(sql,/EXISTS\(SELECT 1 FROM public\.datalearning_app_users/);
+assert.match(sql,/EXISTS\(SELECT 1 FROM public\.site_admins/);
+assert.match(sql,/CREATE TRIGGER dalp_app_user_profile_sync/);
+assert.match(sql,/DELETE FROM public\.learner_profiles p/);
+assert.match(dashboard,/profiles=p\.map\(person=>/);
+assert.doesNotMatch(dashboard,/profiles=p\.filter\(person=>realParticipants/);
+assert.match(dashboard,/adminTotal'\)\.textContent=profiles\.length/);
+assert.match(flow,/await window\.DALP_APP_USAGE\.record\('sign_in'\)/);
+console.log('PASS restricted learner directory, counted from one source, old Auth-wide trigger removed, sign-in sync awaited');

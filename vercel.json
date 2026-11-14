@@ -1,0 +1,246 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "version": 2,
+  "framework": null,
+  "buildCommand": "npm run build",
+  "cleanUrls": false,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(),microphone=(),geolocation=()"
+        }
+      ]
+    },
+    {
+      "source": "/public-course-guide.css",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store, max-age=0"
+        }
+      ]
+    },
+    {
+      "source": "/public-pages/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store, max-age=0"
+        }
+      ]
+    },
+    {
+      "source": "/courses/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store, max-age=0"
+        }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/assets/(scripts|styles)/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store, max-age=0"
+        }
+      ]
+    },
+    {
+      "source": "/(auth|account|profile|admin|reviewer|progress|capstone|certificate|verify|practice).html",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "private, no-store, max-age=0"
+        }
+      ]
+    },
+    {
+      "source": "/assets/(scripts|styles)/(admin-dashboard|admin-console|progress-admin|reviewer)\\.(js|css)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "private, no-store, max-age=0"
+        }
+      ]
+    },
+    {
+      "source": "/(connection-test|sync-test).html",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "private, no-store, max-age=0"
+        }
+      ]
+    },
+    {
+      "source": "/service-worker.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, no-store, must-revalidate"
+        },
+        {
+          "key": "Service-Worker-Allowed",
+          "value": "/"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/public-pages/landing.html"
+    },
+    {
+      "source": "/start-here",
+      "destination": "/public-pages/start-here.html"
+    },
+    {
+      "source": "/courses",
+      "destination": "/course-info/catalog.html"
+    },
+    {
+      "source": "/courses/introduction",
+      "destination": "/course-info/introduction.html"
+    },
+    {
+      "source": "/courses/excel",
+      "destination": "/course-info/excel.html"
+    },
+    {
+      "source": "/courses/sql",
+      "destination": "/course-info/sql.html"
+    },
+    {
+      "source": "/courses/powerbi",
+      "destination": "/course-info/powerbi.html"
+    },
+    {
+      "source": "/courses/tableau",
+      "destination": "/course-info/tableau.html"
+    },
+    {
+      "source": "/courses/powerquery",
+      "destination": "/course-info/powerquery.html"
+    },
+    {
+      "source": "/courses/statistics",
+      "destination": "/course-info/statistics.html"
+    },
+    {
+      "source": "/courses/python",
+      "destination": "/course-info/python.html"
+    },
+    {
+      "source": "/courses/ai",
+      "destination": "/course-info/ai.html"
+    },
+    {
+      "source": "/dashboard",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/studio",
+      "destination": "/studio.html"
+    },
+    {
+      "source": "/practice",
+      "destination": "/practice.html"
+    }
+  ],
+  "outputDirectory": "dist",
+  "redirects": [
+    {
+      "source": "/courses/introduction-roadmap.html",
+      "destination": "/courses/introduction.html",
+      "permanent": false
+    },
+    {
+      "source": "/courses/introduction-extension.html",
+      "destination": "/courses/introduction.html",
+      "permanent": false
+    },
+    {
+      "source": "/courses/excel-roadmap.html",
+      "destination": "/courses/excel.html",
+      "permanent": false
+    },
+    {
+      "source": "/courses/excel-extension.html",
+      "destination": "/courses/excel.html",
+      "permanent": false
+    },
+    {
+      "source": "/courses/sql-roadmap.html",
+      "destination": "/courses/sql.html",
+      "permanent": false
+    },
+    {
+      "source": "/courses/sql-extension.html",
+      "destination": "/courses/sql.html",
+      "permanent": false
+    },
+    {
+      "source": "/courses/powerbi-roadmap.html",
+      "destination": "/courses/powerbi.html",
+      "permanent": false
+    },
+    {
+      "source": "/courses/powerbi-extension.html",
+      "destination": "/courses/powerbi.html",
+      "permanent": false
+    },
+    {
+      "source": "/catalog.html",
+      "destination": "/index.html#zaDiscoverCards",
+      "permanent": false
+    },
+    {
+      "source": "/landing.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/start-here.html",
+      "destination": "/start-here",
+      "permanent": true
+    },
+    {
+      "source": "/overview.html",
+      "destination": "/account.html#course-progress-heading",
+      "permanent": false
+    },
+    {
+      "source": "/overview",
+      "destination": "/account.html#course-progress-heading",
+      "permanent": false
+    },
+    {
+      "source": "/progress.html",
+      "destination": "/admin.html#admin-learners",
+      "permanent": false
+    }
+  ]
+}
