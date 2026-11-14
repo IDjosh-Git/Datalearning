@@ -4,7 +4,7 @@
  const current=document.body?.dataset.adminConsole;
  if(!current)return;
  const root=document.body,main=document.querySelector('main');if(!main)return;
- const paths={dashboard:'account.html',academy:'index.html',courses:'catalog.html',practice:'practice.html',tools:'study-tools.html',tutor:'tutor.html',profile:'profile.html'};
+ const paths={dashboard:'account.html',academy:'index.html',courses:'index.html#zaDiscoverCards',practice:'practice.html',tools:'study-tools.html',tutor:'tutor.html',profile:'profile.html'};
  const icons={
   overview:'<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
   courses:'<path d="M4 19.5V5a2 2 0 0 1 2-2h14v18H6a2 2 0 0 1 0-4h14"/><path d="M8 7h8m-8 4h6"/>',
@@ -30,7 +30,7 @@
  // Academy remains available to every signed-in learner, including administrators.
  // Administration only appears after the server-backed site_admins role is verified.
  const learnerNav=[
-  {caption:'ACADEMY',items:[['Learning Dashboard','account.html','account'],['Explore courses','catalog.html','catalog'],['Practice Arena','practice.html','practice'],['AI Tutor','tutor.html','tutor']]}
+  {caption:'ACADEMY',items:[['Learning Dashboard','account.html','account'],['Explore courses','index.html#zaDiscoverCards','catalog'],['Practice Arena','practice.html','practice'],['AI Tutor','tutor.html','tutor']]}
  ];
  const moreNav=[['Study Tools','study-tools.html','study'],['Study plan','learning-coach.html','study-plan'],['Practice Studio','studio.html','studio'],['Learning Lab','learning-lab.html','lab'],['Capstone Studio','capstone.html','capstone'],['Certificates','account.html#certificates','certificate']];
  const adminNav=[
@@ -56,7 +56,7 @@
  const adminSummary=document.createElement('summary');adminSummary.textContent='Reports & admin tools';
  const adminLinks=document.createElement('div');adminLinks.className='ac-more-links';
  adminMoreNav.forEach(item=>adminLinks.append(navLink(item)));adminTools.append(adminSummary,adminLinks);navEl.append(adminTools);
- const academyLink=navLink(['Back to public academy','index.html','portal']);academyLink.classList.add('ac-academy-link');navEl.append(academyLink);
+ const academyLink=navLink(['Discover the academy','index.html','portal']);academyLink.classList.add('ac-academy-link');navEl.append(academyLink);
  aside.append(navEl);
  const bottom=document.createElement('div');bottom.className='ac-side-bottom';
  bottom.innerHTML=''; // Profile remains in the top bar; account identity lives above Sign out.

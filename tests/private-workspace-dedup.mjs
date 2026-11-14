@@ -15,7 +15,7 @@ for(const route of privateRoutes){
  assert(!html.includes('ac-mobile-tabs'),`${route}: no duplicate tabs`);
 }
 const nav=read('assets/scripts/private-navigation.js');
-for(const url of ['admin.html','admin.html#admin-courses','admin.html#admin-learners','reviewer.html','account.html','catalog.html','index.html','connection-test.html','sync-test.html']){
+for(const url of ['admin.html','admin.html#admin-courses','admin.html#admin-learners','reviewer.html','account.html','index.html#zaDiscoverCards','index.html','connection-test.html','sync-test.html']){
  assert(nav.includes(`'${url}'`)||nav.includes(`href=\\"${url}\\"`)||nav.includes(`href="${url}"`),`Private nav route missing: ${url}`);
  const clean=url.split('#')[0];assert(fs.existsSync(path.join(base,clean)),`${url} destination missing`);
 }

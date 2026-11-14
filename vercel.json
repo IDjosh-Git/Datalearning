@@ -218,8 +218,8 @@
     },
     {
       "source": "/catalog.html",
-      "destination": "/courses",
-      "permanent": true
+      "destination": "/index.html#zaDiscoverCards",
+      "permanent": false
     },
     {
       "source": "/landing.html",

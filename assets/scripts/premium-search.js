@@ -4,7 +4,7 @@ const base=location.pathname.includes('/courses/')?'../':'';
 const records=[
  ['overview.html','Learning overview','Explore','See recorded course interest and build a study plan','insights popularity trends overview statistics learners'],
  ['index.html','Discover','Explore','Choose a learning goal and start your next skill','discover find my path start goal home'],
- ['catalog.html','All courses','Explore','Discover the complete course catalogue','catalogue subjects browse'],
+ ['index.html#zaDiscoverCards','All courses','Explore','Discover the complete course catalogue','catalogue subjects browse'],
  ['courses/introduction.html','Introduction to data analysis','Courses','Data quality, business questions and foundations','beginner foundation types data basics'],
  ['courses/excel.html','Excel analytics','Courses','Formulas, XLOOKUP, pivots and dashboards','sumifs spreadsheet pivot tables cleaning'],
  ['courses/sql.html','SQL analytics','Courses','Queries, joins, CTEs and window functions','select group by database joins cte'],

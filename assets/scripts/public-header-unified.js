@@ -3,6 +3,19 @@
  function init(){
    const open=document.getElementById('dluNavOpen'),close=document.getElementById('dluNavClose'),panel=document.getElementById('dluNavPanel');
    if(!open||!close||!panel)return;
+   function updateActiveNavigation(){
+     const aliases={'/dashboard':'/index.html','/practice':'/practice.html','/overview':'/overview.html','/studio':'/studio.html'};
+     const currentPath=aliases[location.pathname]||location.pathname;
+     const courseSection=currentPath.endsWith('/index.html')&&location.hash==='#zaDiscoverCards';
+     document.querySelectorAll('.dlu-primary-links a[href],#dluNavPanel a[href]').forEach(anchor=>{
+       const target=new URL(anchor.href,location.href);
+       const match=target.pathname===currentPath && (target.hash ? target.hash===location.hash : !courseSection);
+       if(match)anchor.setAttribute('aria-current',target.hash?'location':'page');
+       else anchor.removeAttribute('aria-current');
+     });
+   }
+   updateActiveNavigation();
+   window.addEventListener('hashchange',updateActiveNavigation);
    close.innerHTML='<span aria-hidden="true">&#215;</span><span>Close</span>';
    let previous=null;
    const focusable=()=>[...panel.querySelectorAll('a[href],button:not([disabled])')].filter(e=>e.getClientRects().length);
@@ -16,7 +29,7 @@
    open.addEventListener('click',()=>toggle(true));
    close.addEventListener('click',()=>toggle(false));
    panel.addEventListener('click',e=>{if(e.target===panel)toggle(false)});
-   panel.querySelectorAll('a[href]').forEach(a=>a.addEventListener('click',()=>{panel.hidden=true;document.body.classList.remove('dlu-nav-open')}));
+   panel.querySelectorAll('a[href]').forEach(a=>a.addEventListener('click',()=>toggle(false)));
    document.addEventListener('keydown',e=>{
      if(panel.hidden)return;
      if(e.key==='Escape'){e.preventDefault();toggle(false);return}

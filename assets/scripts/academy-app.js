@@ -453,10 +453,10 @@
     one('#zaQuizCount').textContent='50';
     one('#zaQuizBread').textContent='Choose a course';
     one('#zaQuizCourseLink').textContent='Learning paths';
-    one('#zaQuizCourseLink').href=base+'catalog.html';
+    one('#zaQuizCourseLink').href=base+'index.html#zaDiscoverCards';
     one('#zaQuizProgressText').textContent='Your assessment has not started';
     one('#zaQuizProgressFill').style.width='0%';
-    one('#zaQuizBack').href=base+'catalog.html';
+    one('#zaQuizBack').href=base+'index.html#zaDiscoverCards';
     one('#zaQuizBack').textContent='← Explore courses';
     const form=one('#zaQuizForm');
     const actions=one('.za-quiz-actions');

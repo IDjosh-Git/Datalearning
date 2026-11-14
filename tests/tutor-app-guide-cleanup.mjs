@@ -24,9 +24,9 @@ for(const e of data.entries){
 assert.deepEqual(allowedTopics.filter(x=>['tableau','powerquery'].includes(x)),['tableau','powerquery']);
 const cases=[
  ['How can I submit my capstone?','capstone','/capstone-guide.html'],
- ['How do I get the practice datasets?','datasets','/catalog.html'],
+ ['How do I get the practice datasets?','datasets','/index.html#zaDiscoverCards'],
  ['Where is the Prompt Library?','prompt-library','/prompt-library.html'],
- ['Can I watch YouTube without leaving the app?','videos','/catalog.html'],
+ ['Can I watch YouTube without leaving the app?','videos','/index.html#zaDiscoverCards'],
  ['What is the complete data career path?','career-path','/career-path.html'],
  ['Where is the Practice Arena?','practice-arena','/practice.html'],
  ['Where do I see my learning progress?','progress','/account.html'],
@@ -50,3 +50,4 @@ for(const [name,cmd] of Object.entries(packageFile.scripts)){
  for(const match of cmd.matchAll(/node\s+(tests\/[^\s&]+\.mjs)/g))assert(fs.existsSync(match[1]),`Package script ${name} invokes missing test ${match[1]}`);
 }
 console.log('PASS lean release: 26 current app-guide flows, 90 verified course weeks, 9 route-specific questions, offline help matching, secure context and no broken test scripts');
+
