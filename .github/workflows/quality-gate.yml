@@ -1,0 +1,35 @@
+name: DataLearning quality gate
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 6 * * 1'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quality-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Build, tests and published-route audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install pinned dependencies
+        run: npm install --no-audit --no-fund --ignore-scripts
+      - name: Verify deployment and application regressions
+        run: npm run verify:deployment
+      - name: Verify published routes and retired-page exclusions
+        run: npm run test:release-routes
