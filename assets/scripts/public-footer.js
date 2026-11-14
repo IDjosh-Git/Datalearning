@@ -17,7 +17,7 @@
    <nav class="dlx-v5-footer-col" aria-label="Footer learning paths"><h3>Learning paths</h3>${links(paths)}</nav>
    <nav class="dlx-v5-footer-col" aria-label="Footer study tools"><h3>Study tools</h3>${links(tools)}</nav>
    <nav class="dlx-v5-footer-col" aria-label="Footer account and help"><h3>Account &amp; support</h3>${links([['My progress','overview.html'],['My dashboard','account.html'],['Capstone projects','capstone.html'],['Certificates','certificate.html'],['Verify certificate','verify.html']])}<a href="mailto:esoterikjoshua@gmail.com">Contact support<span aria-hidden="true">↗</span></a></nav></div>
-   <div class="dlx-v5-footer-base"><span>© ${year} DataLearning. Learn, practise, grow.</span><div><a href="${link('index.html')}">Discover</a><a href="${link('index.html#zaDiscoverCards')}">Courses</a><a href="${link('study-tools.html')}">Study Tools</a></div></div>
+   <div class="dlx-v5-footer-base"><span>© ${year} DataLearning. Learn, practise, grow.</span><div><a href="${link('index.html')}">Discover</a><a href="${link('index.html#zaDiscoverCards')}">Courses</a><a href="${link('study-tools.html')}">Study Tools</a><a href="${link('admin.html')}">Admin Login</a></div></div>
   </div>`;
   document.body.appendChild(footer);
  };
