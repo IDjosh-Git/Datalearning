@@ -10,13 +10,14 @@
     reset:['Choose a new password','Create a new password to secure your learner account.']
   };
   const landing=new URL('index.html',location.href);
+  const learnerDashboard=new URL('account.html',location.href);
   function destination(){
     try{
-      const val=new URLSearchParams(location.search).get('return');if(!val)return landing.href;
+      const val=new URLSearchParams(location.search).get('return');if(!val)return learnerDashboard.href;
       const u=new URL(val,location.href),base=landing.pathname.slice(0,-'index.html'.length);
-      if(u.origin!==location.origin||!u.pathname.startsWith(base)||u.pathname.endsWith('/auth.html'))return landing.href;
+      if(u.origin!==location.origin||!u.pathname.startsWith(base)||u.pathname.endsWith('/auth.html'))return learnerDashboard.href;
       return u.href;
-    }catch(_){return landing.href}
+    }catch(_){return learnerDashboard.href}
   }
   // Make account-gated deep links transparent while retaining their full path and query.
   function explainReturnDestination(){
@@ -40,7 +41,7 @@
   function nextAuthUrl(mode){
     const url=new URL('auth.html',location.href);
     const dest=new URL(destination());
-    url.searchParams.set('return',dest.pathname+dest.search+dest.hash);
+    if(new URLSearchParams(location.search).has('return'))url.searchParams.set('return',dest.pathname+dest.search+dest.hash);
     if(mode)url.searchParams.set('mode',mode);
     return url.href;
   }
@@ -72,7 +73,7 @@
   }
   const emailOk=e=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
   let completing=false;
-  async function enter(user,msgId){
+  async function enter(user,msgId,justRegistered=false){
     if(completing)return;
     completing=true;
     // Register a verified DataLearning login before navigation. The DB trigger
@@ -93,6 +94,10 @@
       }
     }catch(e){console.warn('Post-login preparation will retry',e)}
     let target=destination();
+    const firstVisit=justRegistered || new URLSearchParams(location.search).get('mode')==='welcome';
+    // New learners arrive at the homepage; returning learners open their Learning Dashboard.
+    // An explicit deep link takes precedence over the default destination.
+    if(firstVisit && !new URLSearchParams(location.search).has('return')) target=landing.href;
     // Administrators use the same credentials and form as learners. An
     // explicit requested destination always takes precedence.
     try {
@@ -171,14 +176,18 @@
     if(password!==confirmation){flagInvalid('signupConfirm');message('signupMsg','The passwords do not match.');return;}
     const button=$('signupBtn');busy(button,true,'Create account');
     try{
-      const {data,error}=await db().auth.signUp({email,password,options:{data:{full_name},emailRedirectTo:nextAuthUrl()}});
+      const {data,error}=await db().auth.signUp({email,password,options:{data:{full_name},emailRedirectTo:nextAuthUrl('welcome')}});
       if(error)throw error;
-      // When confirmations are disabled, Supabase can create an active session.
-      // Still require explicit sign-in after creating a password account.
-      if(data?.session){await window.DALP_SERVER_SESSION?.clear();await db().auth.signOut({scope:'local'});}
+      // Preserve the first-visit destination across email confirmation.
+      // When email confirmation is disabled, open the homepage immediately.
+      if(data?.session && data?.user){
+        const entered=await enter(data.user,'signupMsg',true);
+        if(entered===false)busy(button,false,'Create account');
+        return;
+      }
       $('loginEmail').value=email;
       setMode('login');
-      message('loginMsg',data?.session?'Account created! Sign in with the email and password you just chose.':'Account request received. Check your email for the verification link, then return to sign in.','success');
+      message('loginMsg','Account request received. Check your email for the verification link, then sign in to open your homepage.','success');
       $('loginEmail').focus();
     }catch(error){message('signupMsg',errorText(error))}
     finally{busy(button,false,'Create account')}

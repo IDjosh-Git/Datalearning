@@ -181,3 +181,13 @@ html body .lc-panel.lc-pulse-panel [data-lc-sync-status][data-state="unsynced"],
 @media(max-width:1280px) and (min-width:1101px){.dlu-dashboard-copy small{display:none}.dlu-header-actions a.dlu-dashboard-card{min-height:45px;padding:6px 10px 6px 7px}}
 @media(max-width:600px){.dlu-header-actions a.dlu-dashboard-card{display:none}}
 @media(prefers-reduced-motion:reduce){.dlu-header-actions a.dlu-dashboard-card{transition:none}}
+
+/* Consistent accessible dashboard action across the learner workspace. */
+html body .dlu-header-actions .dlu-dashboard-card,
+html body .dlu-header-actions .dlu-dashboard-card:hover,
+html body .dlu-header-actions .dlu-dashboard-card:visited {background:#023048!important;color:#fff!important;border-color:#023048!important}
+html body .dlu-header-actions .dlu-dashboard-card .dlu-dashboard-copy strong,
+html body .dlu-header-actions .dlu-dashboard-card .dlu-dashboard-icon {color:#fff!important}
+html body .dlu-header-actions .dlu-dashboard-card .dlu-dashboard-copy small {color:#f0edde!important}
+html body .dlu-nav-panel .dlu-dashboard-drawer-link .dlu-drawer-dash-copy strong {color:#023048!important}
+html body .dlu-nav-panel .dlu-dashboard-drawer-link .dlu-drawer-dash-copy small {color:#675d58!important}
