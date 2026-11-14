@@ -416,3 +416,33 @@ html[data-theme] body[data-responsive-page="certificate"] .cert-view-controls>*{
 .ac-account-signout{border-top:1px solid var(--ac-stroke);color:var(--ac-text)}
 .ac-account-trigger:focus-visible,.ac-account-panel a:focus-visible,.ac-account-signout:focus-visible{outline:3px solid var(--ac-focus);outline-offset:3px}
 @media(max-width:680px){.ac-dashboard-no-sidebar .ac-topbar{flex-wrap:wrap}.ac-dashboard-no-sidebar .ac-top-actions{width:100%;justify-content:space-between}.ac-dashboard-no-sidebar .ac-secure{display:none}.ac-dashboard-no-sidebar .ac-dashboard-quicklink{font-size:12px}.ac-account-trigger{max-width:160px}.ac-account-panel{right:0;max-width:calc(100vw - 24px)}}
+
+/* Unified premium account control: dashboard and profile; no extra admin topbar account. */
+body.ac-dashboard-no-sidebar .ac-topbar{min-height:76px;padding:14px clamp(16px,3vw,42px);border-bottom:1px solid color-mix(in srgb,var(--ac-stroke,currentColor) 85%,transparent);background:var(--ac-panel)}
+body.ac-dashboard-no-sidebar .ac-top-actions{margin-left:auto;gap:clamp(10px,2vw,22px)}
+body.ac-dashboard-no-sidebar .ac-dashboard-quicklink{border:1px solid transparent;border-radius:12px;padding:11px 15px;font-weight:700;transition:background .18s,border-color .18s}
+body.ac-dashboard-no-sidebar .ac-dashboard-quicklink:hover{background:var(--ac-panel-raised);border-color:var(--ac-stroke,currentColor)}
+body.ac-dashboard-no-sidebar .ac-account-menu{z-index:150}
+body.ac-dashboard-no-sidebar .ac-account-trigger{min-height:45px;max-width:min(270px,48vw);padding:7px 13px 7px 8px;gap:10px;border:1px solid var(--ac-stroke,currentColor);border-radius:14px;background:var(--ac-panel);box-shadow:0 3px 12px color-mix(in srgb,currentColor 6%,transparent);transition:box-shadow .18s,transform .18s,border-color .18s}
+body.ac-dashboard-no-sidebar .ac-account-trigger:hover,body.ac-dashboard-no-sidebar .ac-account-menu[open] .ac-account-trigger{border-color:var(--ac-focus,currentColor);box-shadow:0 8px 22px color-mix(in srgb,currentColor 12%,transparent);transform:translateY(-1px)}
+body.ac-dashboard-no-sidebar .ac-account-avatar{display:grid;place-items:center;width:32px;height:32px;flex:none;border-radius:11px;background:var(--ac-panel-raised);color:var(--ac-text);font-size:15px}
+body.ac-dashboard-no-sidebar .ac-account-avatar::before{content:'✦'}
+body.ac-dashboard-no-sidebar .ac-account-avatar{font-size:0}
+body.ac-dashboard-no-sidebar .ac-account-avatar::before{font-size:15px}
+body.ac-dashboard-no-sidebar .ac-account-display{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+body.ac-dashboard-no-sidebar .ac-account-panel{width:min(320px,calc(100vw - 28px));min-width:0;top:calc(100% + 12px);padding:9px;gap:5px;border:1px solid var(--ac-stroke,currentColor);border-radius:20px;background:var(--ac-panel);color:var(--ac-text,currentColor);box-shadow:0 24px 65px color-mix(in srgb,currentColor 16%,transparent),0 6px 18px color-mix(in srgb,currentColor 7%,transparent);overflow:hidden}
+body.ac-dashboard-no-sidebar .ac-account-panel-heading{display:flex;flex-direction:column;gap:4px;padding:16px 15px 17px;margin-bottom:5px;border-bottom:1px solid var(--ac-stroke,currentColor);color:var(--ac-text,currentColor)}
+body.ac-dashboard-no-sidebar .ac-account-panel-heading strong{font-size:17px;line-height:1.3;overflow-wrap:anywhere}
+body.ac-dashboard-no-sidebar .ac-account-panel-heading small{font-size:12px;line-height:1.5;color:var(--ac-muted,currentColor)}
+body.ac-dashboard-no-sidebar .ac-account-panel-eyebrow{font-size:10px;font-weight:800;letter-spacing:.13em;color:var(--ac-muted,currentColor)}
+body.ac-dashboard-no-sidebar .ac-account-panel a,body.ac-dashboard-no-sidebar .ac-account-signout{position:relative;display:flex;align-items:center;min-height:44px;padding:11px 12px 11px 43px;border-radius:11px;color:var(--ac-text,currentColor);font-weight:650;transition:background .16s}
+body.ac-dashboard-no-sidebar .ac-account-panel a::before,body.ac-dashboard-no-sidebar .ac-account-signout::before{position:absolute;left:15px;font-size:17px;line-height:1}
+body.ac-dashboard-no-sidebar [data-menu-icon=profile]::before{content:'◉'}
+body.ac-dashboard-no-sidebar [data-menu-icon=progress]::before{content:'↗'}
+body.ac-dashboard-no-sidebar [data-menu-icon=logout]::before{content:'⇥'}
+body.ac-dashboard-no-sidebar .ac-account-panel a:hover,body.ac-dashboard-no-sidebar .ac-account-signout:hover{background:var(--ac-panel-raised)}
+body.ac-dashboard-no-sidebar .ac-account-panel a[aria-current=page]{background:var(--ac-panel-raised)}
+body.ac-dashboard-no-sidebar .ac-account-signout{border-top:1px solid var(--ac-stroke,currentColor);border-radius:0 0 10px 10px;margin-top:5px;color:var(--ac-text,currentColor)}
+body.ac-dashboard-no-sidebar .ac-account-trigger:focus-visible,body.ac-dashboard-no-sidebar .ac-account-panel :is(a,button):focus-visible,body.ac-dashboard-no-sidebar .ac-dashboard-quicklink:focus-visible{outline:3px solid var(--ac-focus,currentColor);outline-offset:3px}
+@media(max-width:600px){body.ac-dashboard-no-sidebar .ac-topbar{min-height:66px;padding:10px 14px}body.ac-dashboard-no-sidebar .ac-top-actions{width:100%;justify-content:space-between}body.ac-dashboard-no-sidebar .ac-account-trigger{max-width:53vw}body.ac-dashboard-no-sidebar .ac-account-panel{right:0}}
+@media(prefers-reduced-motion:reduce){body.ac-dashboard-no-sidebar .ac-account-trigger,body.ac-dashboard-no-sidebar .ac-account-panel a{transition:none}}

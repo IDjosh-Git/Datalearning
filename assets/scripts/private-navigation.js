@@ -54,6 +54,7 @@
  const extraLinks=document.createElement('div');extraLinks.className='ac-more-links';
  if(!adminWorkspace){moreNav.forEach(item=>extraLinks.append(navLink(item)));extras.append(moreSummary,extraLinks);navEl.append(extras);}
  adminNav.forEach(group=>appendGroup(group,true));
+ if(adminWorkspace){const publicLink=navLink(['Browse public site','index.html','portal']);publicLink.classList.add('ac-academy-link','ac-admin-public-link');navEl.append(publicLink);}
  const adminTools=document.createElement('details');adminTools.className='ac-more-details ac-admin-more-details';adminTools.dataset.adminOnly='';adminTools.hidden=true;
  const adminSummary=document.createElement('summary');adminSummary.textContent='Reports & admin tools';
  const adminLinks=document.createElement('div');adminLinks.className='ac-more-links';
@@ -71,7 +72,7 @@
  bottom.append(logout);aside.append(bottom);
  // The learner dashboard is the navigation hub itself. Avoid a second sidebar navigator.
  // Keep account access and sign-out in the compact dashboard header.
- const compactDashboard=current==='account';
+ const compactDashboard=current==='account'||current==='profile';
 
  const backdrop=document.createElement('div');backdrop.className='ac-nav-overlay';backdrop.setAttribute('aria-hidden','true');
  const frame=document.createElement('div');frame.className='ac-main-frame';
@@ -86,13 +87,13 @@
   const menu=document.createElement('details');menu.className='ac-account-menu';
   const trigger=document.createElement('summary');trigger.className='ac-account-trigger';trigger.innerHTML='<span class="ac-account-avatar" aria-hidden="true">●</span><span class="ac-account-display">My account</span><span aria-hidden="true">⌄</span>';
   const panel=document.createElement('div');panel.className='ac-account-panel';
-  const heading=document.createElement('div');heading.className='ac-account-panel-heading';heading.textContent='Learner account';
-  const profile=document.createElement('a');profile.href='profile.html';profile.textContent='My Profile';
-  const progress=document.createElement('a');progress.href='account.html#course-progress-heading';progress.textContent='Learning Progress';
-  logout.className='ac-account-signout';logout.textContent='Sign Out';
+  const heading=document.createElement('div');heading.className='ac-account-panel-heading';heading.innerHTML='<span class="ac-account-panel-eyebrow">YOUR WORKSPACE</span><strong>Account & learning</strong><small>Manage your profile and learning journey</small>';
+  const profile=document.createElement('a');profile.href='profile.html';profile.textContent='My Profile';profile.dataset.menuIcon='profile';if(current==='profile')profile.setAttribute('aria-current','page');
+  const progress=document.createElement('a');progress.href='account.html#course-progress-heading';progress.textContent='Learning Progress';progress.dataset.menuIcon='progress';
+  logout.className='ac-account-signout';logout.textContent='Sign Out';logout.dataset.menuIcon='logout';
   panel.append(heading,profile,progress,logout);menu.append(trigger,panel);
   right.append(home,menu);
-  const updateName=()=>{const user=window.DALP_AUTH_USER;const label=user?.user_metadata?.full_name||user?.user_metadata?.name||user?.email?.split('@')[0]||'My account';menu.querySelector('.ac-account-display').textContent=String(label).slice(0,32);};
+  const updateName=()=>{const user=window.DALP_AUTH_USER;const label=user?.user_metadata?.full_name||user?.user_metadata?.name||user?.email?.split('@')[0]||'My account';menu.querySelector('.ac-account-display').textContent=String(label).slice(0,32);heading.querySelector('strong').textContent=String(label).slice(0,48);};
   updateName();window.addEventListener('dalp:auth-change',updateName);document.addEventListener('dalp:auth-change',updateName);
   document.addEventListener('click',e=>{if(!menu.contains(e.target))menu.open=false;});
   menu.addEventListener('keydown',e=>{if(e.key==='Escape'){menu.open=false;trigger.focus();}});
@@ -160,7 +161,7 @@
  window.addEventListener('popstate',switchAdminView);
  if(['connection','sync'].includes(current))adminTools.open=true;
  updateActive();
- function roleUpdate(){const account=window.DALP_AUTH_USER;const menuName=document.querySelector('.ac-account-display');if(menuName){menuName.textContent=String(account?.user_metadata?.full_name||account?.user_metadata?.name||account?.email?.split('@')[0]||'My account').slice(0,32)}const admin=window.DALP_ROLE==='admin';navEl.querySelectorAll('[data-admin-only]').forEach(group=>group.hidden=!admin);if(adminPages.has(current)&&!admin)root.classList.remove('ac-menu-open');right.querySelector('.ac-secure').lastChild.textContent=adminWorkspace?' Admin workspace':(admin?' Admin access':' Learner space');accountBadge.textContent=admin?'Administrator account':window.DALP_ROLE==='learner'?'Learner account':'Checking account…';accountBadge.classList.toggle('is-admin',admin);accountEmail.textContent=account?.email||'Email unavailable';accountEmail.title=account?.email||'';branding.href=adminWorkspace?'admin.html':'account.html';branding.querySelector('small').textContent=adminWorkspace?'ADMIN WORKSPACE':'LEARNING WORKSPACE';updateActive();}
+ function roleUpdate(){const account=window.DALP_AUTH_USER;const menuName=document.querySelector('.ac-account-display');if(menuName){menuName.textContent=String(account?.user_metadata?.full_name||account?.user_metadata?.name||account?.email?.split('@')[0]||'My account').slice(0,32)}const admin=window.DALP_ROLE==='admin';navEl.querySelectorAll('[data-admin-only]').forEach(group=>group.hidden=!admin);if(adminPages.has(current)&&!admin)root.classList.remove('ac-menu-open');const secureLabel=right.querySelector('.ac-secure');if(secureLabel)secureLabel.lastChild.textContent=adminWorkspace?' Admin workspace':(admin?' Admin access':' Learner space');accountBadge.textContent=admin?'Administrator account':window.DALP_ROLE==='learner'?'Learner account':'Checking account…';accountBadge.classList.toggle('is-admin',admin);accountEmail.textContent=account?.email||'Email unavailable';accountEmail.title=account?.email||'';branding.href=adminWorkspace?'admin.html':'account.html';branding.querySelector('small').textContent=adminWorkspace?'ADMIN WORKSPACE':'LEARNING WORKSPACE';updateActive();}
  window.addEventListener('dalp:auth-ready',roleUpdate);roleUpdate();
  function identity(){ /* Top Profile control owns account name and photo. */ }
  window.addEventListener('dalp:auth-ready',identity);identity();

@@ -3,7 +3,10 @@
  const run=()=>{
   const pub=document.querySelector('.dalp-global-header[data-public-nav] .dalp-global-inner');
   const priv=document.querySelector('.ac-topbar .ac-top-actions');
-  const host=priv||pub;if(!host)return;
+  // Private workspace account controls are owned by private-navigation.js.
+  // Admin pages intentionally have no profile shortcut in the top bar.
+  if(priv)return;
+  const host=pub;if(!host)return;
   if(host.querySelector('.dl-profile-control'))return;
   const base=location.pathname.includes('/courses/')?'../':'';
   const isPrivate=!!priv;

@@ -303,3 +303,69 @@ html[data-theme] body.dalp-admin-page.ac-ready #adminWorkspace .ac-performance-s
 html[data-theme] body.dalp-admin-page.ac-ready #adminWorkspace .ac-performance-section>.ac-kpis::after{
   content:none!important;display:none!important;
 }
+/* Administration-only sidebar refinement. Loaded after all existing themes. */
+html[data-theme] body:is(.dalp-admin-page,[data-admin-console="reviews"]).ac-ready .ac-shell>.ac-sidebar{
+  --admin-nav-ink:#F0EDDE;--admin-nav-muted:#D9BFA4;
+  background:linear-gradient(160deg,#023048 0%,#0B0909 46%,#023048 100%)!important;
+  color:var(--admin-nav-ink)!important;border-right:1px solid rgba(255,255,255,.11)!important;
+  box-shadow:12px 0 35px rgba(11,9,9,.10)!important;
+}
+html[data-theme] body:is(.dalp-admin-page,[data-admin-console="reviews"]).ac-ready .ac-sidebar .ac-drawer-header{
+  padding-bottom:20px!important;margin-bottom:14px!important;border-bottom:1px solid rgba(255,255,255,.14)!important;
+}
+html[data-theme] body:is(.dalp-admin-page,[data-admin-console="reviews"]).ac-ready .ac-sidebar .ac-brand,
+html[data-theme] body:is(.dalp-admin-page,[data-admin-console="reviews"]).ac-ready .ac-sidebar .ac-brand strong{
+  color:#F0EDDE!important;-webkit-text-fill-color:#F0EDDE!important;
+}
+html[data-theme] body:is(.dalp-admin-page,[data-admin-console="reviews"]).ac-ready .ac-sidebar .ac-brand small{
+  color:#D9BFA4!important;-webkit-text-fill-color:#D9BFA4!important;letter-spacing:.13em!important;font-weight:700!important;
+}
+html[data-theme] body:is(.dalp-admin-page,[data-admin-console="reviews"]).ac-ready .ac-sidebar .ac-side-label{
+  color:#D9BFA4!important;-webkit-text-fill-color:#D9BFA4!important;letter-spacing:.15em!important;font-size:10px!important;font-weight:800!important;
+}
+html[data-theme] body:is(.dalp-admin-page,[data-admin-console="reviews"]).ac-ready .ac-sidebar .ac-side-nav a.ac-side-link{
+  border:1px solid transparent!important;border-radius:13px!important;margin:3px 0!important;min-height:45px!important;
+  background:transparent!important;box-shadow:none!important;transition:background .18s ease,border-color .18s ease,transform .18s ease!important;
+}
+html[data-theme] body:is(.dalp-admin-page,[data-admin-console="reviews"]).ac-ready .ac-sidebar .ac-side-nav a.ac-side-link :is(.ac-side-name,.ac-side-icon){
+  color:#F0EDDE!important;-webkit-text-fill-color:#F0EDDE!important;
+}
+html[data-theme] body:is(.dalp-admin-page,[data-admin-console="reviews"]).ac-ready .ac-sidebar .ac-side-nav a.ac-side-link:is(:hover,:focus-visible){
+  background:rgba(255,255,255,.105)!important;border-color:rgba(255,255,255,.14)!important;transform:translateX(2px);
+}
+html[data-theme] body:is(.dalp-admin-page,[data-admin-console="reviews"]).ac-ready .ac-sidebar .ac-side-nav a.ac-side-link:is(.ac-selected,[aria-current="page"]){
+  background:linear-gradient(95deg,rgba(197,138,105,.27),rgba(255,255,255,.085))!important;
+  border-color:rgba(217,191,164,.43)!important;box-shadow:inset 3px 0 0 #C58A69!important;
+}
+html[data-theme] body:is(.dalp-admin-page,[data-admin-console="reviews"]).ac-ready .ac-sidebar .ac-side-nav a.ac-side-link:is(.ac-selected,[aria-current="page"]) :is(.ac-side-name,.ac-side-icon){
+  color:#FFFFFF!important;-webkit-text-fill-color:#FFFFFF!important;
+}
+html[data-theme] body:is(.dalp-admin-page,[data-admin-console="reviews"]).ac-ready .ac-sidebar .ac-side-nav :is(.ac-more-details>summary,.ac-admin-public-link){
+  border-radius:12px!important;color:#F0EDDE!important;-webkit-text-fill-color:#F0EDDE!important;
+}
+html[data-theme] body:is(.dalp-admin-page,[data-admin-console="reviews"]).ac-ready .ac-sidebar .ac-more-details>summary:hover{
+  background:rgba(255,255,255,.1)!important;
+}
+html[data-theme] body:is(.dalp-admin-page,[data-admin-console="reviews"]).ac-ready .ac-sidebar .ac-admin-public-link{
+  margin-top:17px!important;border-top:1px solid rgba(255,255,255,.15)!important;padding-top:14px!important;
+}
+html[data-theme] body:is(.dalp-admin-page,[data-admin-console="reviews"]).ac-ready .ac-sidebar .ac-side-bottom{
+  border-top:1px solid rgba(255,255,255,.15)!important;padding-top:16px!important;
+}
+html[data-theme] body:is(.dalp-admin-page,[data-admin-console="reviews"]).ac-ready .ac-sidebar .ac-side-identity{
+  background:rgba(255,255,255,.075)!important;border:1px solid rgba(255,255,255,.12)!important;border-radius:14px!important;
+}
+html[data-theme] body:is(.dalp-admin-page,[data-admin-console="reviews"]).ac-ready .ac-sidebar .ac-side-identity :is(.ac-identity-role,.ac-identity-email){
+  color:#F0EDDE!important;-webkit-text-fill-color:#F0EDDE!important;
+}
+html[data-theme] body:is(.dalp-admin-page,[data-admin-console="reviews"]).ac-ready .ac-sidebar .ac-logout{
+  background:rgba(255,255,255,.08)!important;color:#F0EDDE!important;-webkit-text-fill-color:#F0EDDE!important;
+  border:1px solid rgba(255,255,255,.18)!important;border-radius:12px!important;
+}
+html[data-theme] body:is(.dalp-admin-page,[data-admin-console="reviews"]).ac-ready .ac-sidebar .ac-logout:hover{
+  background:rgba(255,255,255,.16)!important;
+}
+html[data-theme] body:is(.dalp-admin-page,[data-admin-console="reviews"]).ac-ready .ac-sidebar :is(a,button,summary):focus-visible{
+  outline:3px solid #D9BFA4!important;outline-offset:3px!important;
+}
+@media(prefers-reduced-motion:reduce){html[data-theme] body:is(.dalp-admin-page,[data-admin-console="reviews"]).ac-ready .ac-sidebar .ac-side-nav a.ac-side-link{transition:none!important;transform:none!important}}
