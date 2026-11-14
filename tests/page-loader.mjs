@@ -10,7 +10,7 @@ const extract=(markup)=>markup.slice(markup.indexOf('<div id="dlxPageLoader"'),m
 const shared=extract(fs.readFileSync('index.html','utf8'));
 assert(fs.readFileSync('auth.html','utf8').includes('auth-entry-premium.css'),'Sign-in uses its own responsive design');
 assert(shared.includes('dlx-loader-wordmark')&&shared.includes('dlx-loader-orbit'));
-for(const file of pages.filter(file=>!file.endsWith('/auth.html'))){
+for(const file of pages.filter(file=>path.basename(file)!=='auth.html')){
  const html=fs.readFileSync(file,'utf8');
  const prefix=file.includes(`${path.sep}courses${path.sep}`)?'../':'';
  for(const text of [`${prefix}assets/styles/page-loader.css?v=unified-20261110-r2`,`${prefix}assets/scripts/page-loader.js?v=unified-20261110-r2`,"classList.add('dlx-loader-pending')",'id="dlxPageLoader"','Preparing your next insight'])assert.ok(html.includes(text),`${path.relative(root,file)} missing ${text}`);
