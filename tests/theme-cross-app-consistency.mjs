@@ -11,7 +11,7 @@ assert.equal(pages.length, 38, 'All 38 pages must share the same theme');
 const themePath = 'assets/styles/palette-premium-20261113.css';
 const theme = fs.readFileSync(themePath, 'utf8');
 const cssFiles = fs.readdirSync('assets/styles').filter(name => name.endsWith('.css'));
-assert.equal(cssFiles.length, 55, 'All active CSS modules remain available');
+assert.equal(cssFiles.length, 56, 'All active CSS modules remain available');
 
 for (const page of pages) {
   const html = fs.readFileSync(page, 'utf8');
@@ -19,7 +19,7 @@ for (const page of pages) {
   assert.equal(hits.length, 1, `${page} must use the current theme exactly once`);
   const links = [...html.matchAll(/<link\b[^>]*?href="([^"]+\.css(?:\?[^"]*)?)"[^>]*>/gi)].map(match => match[1]);
   assert(links.length > 0, `${page} must have styles`);
-  assert(links[links.length - 1].includes('burnt-wood-theme.css') || (page === 'tutor.html' && links[links.length - 1].includes('ai-response-premium.css')) || (page === 'auth.html' && links[links.length - 1].includes('auth-entry-premium.css')),
+  assert(links[links.length - 1].includes('burnt-wood-theme.css') || (page === 'tutor.html' && links[links.length - 1].includes('ai-response-premium.css')) || (page === 'auth.html' && links[links.length - 1].includes('auth-entry-premium.css')) || (page === 'index.html' && links[links.length - 1].includes('home-premium-20261114.css')),
     `${page}: canonical theme or isolated route-specific stylesheet must be last`);
   assert(!/#(?:F27329|254559|203F58|35637C|F9F7F6|6590A4|F2A675|2E4098|172848)(?![a-f\d])/i.test(html),
     `${page}: retired color remains in markup`);
