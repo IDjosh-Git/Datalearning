@@ -184,3 +184,27 @@ html body > .dashboard-layout {
   background-image:none!important;
 }
 @media(max-width:700px){html,html body,html[data-theme] body{background-attachment:scroll!important}}
+test
+/* Capstone Studio: premium visual system, without changing functional hooks. */
+html[data-theme] body[data-responsive-page="capstone"] .cap-hero.dalp-themed-hero{background-image:radial-gradient(ellipse at 84% 12%,rgba(197,138,105,.35),transparent 38%),radial-gradient(ellipse at 10% 96%,rgba(119,1,1,.30),transparent 45%),linear-gradient(124deg,#023048 0%,#0B0909 100%)!important;border-bottom:3px solid #C58A69!important}
+html[data-theme] body[data-responsive-page="capstone"] .cap-hero h1{max-width:820px;text-wrap:balance;letter-spacing:-.055em!important}
+html[data-theme] body[data-responsive-page="capstone"] .capstone-path-v74{background:linear-gradient(120deg,#FFFFFF 0%,#F7F3EA 68%,#F1E3D0 100%)!important;border-left:5px solid #C58A69!important;box-shadow:0 18px 42px rgba(2,48,72,.12)!important}
+html[data-theme] body[data-responsive-page="capstone"] .cap-layout{align-items:start}
+html[data-theme] body[data-responsive-page="capstone"] .cap-panel{position:relative;box-shadow:0 14px 38px rgba(2,48,72,.09)!important;border:1px solid #E9DDD0!important}
+html[data-theme] body[data-responsive-page="capstone"] .cap-panel::before{content:"";position:absolute;top:0;left:24px;right:24px;height:3px;border-radius:0 0 8px 8px;background:linear-gradient(90deg,#C58A69,#770101,#023048)}
+html[data-theme] body[data-responsive-page="capstone"] .cap-panel-title{padding-bottom:19px;border-bottom:1px solid #E9DDD0}
+html[data-theme] body[data-responsive-page="capstone"] .cap-kicker{display:inline-block;color:#770101!important;letter-spacing:.14em;font-weight:850}
+html[data-theme] body[data-responsive-page="capstone"] .cap-track{position:relative;border-radius:16px!important;background:linear-gradient(145deg,#FFFFFF,#F7F3EA)!important;box-shadow:0 4px 14px rgba(2,48,72,.045)!important}
+html[data-theme] body[data-responsive-page="capstone"] .cap-track[aria-pressed="true"]{border-color:#770101!important;background:linear-gradient(140deg,#F7F2EA,#F1E3D0)!important;box-shadow:0 0 0 3px rgba(119,1,1,.10)!important}
+html[data-theme] body[data-responsive-page="capstone"] .za-cap-icon{background:#F1E3D0;border:1px solid #E9DDD0;border-radius:10px}
+html[data-theme] body[data-responsive-page="capstone"] .cap-course-status{background:linear-gradient(120deg,#F7F3EA,#F1E3D0)!important}
+html[data-theme] body[data-responsive-page="capstone"] .cap-progress-track>div{background:linear-gradient(90deg,#023048,#C58A69)!important}
+html[data-theme] body[data-responsive-page="capstone"] .cap-input:focus-visible,html[data-theme] body[data-responsive-page="capstone"] :is(.cap-track,.cap-choose,.lp-primary,.cap-outline):focus-visible{outline:3px solid #C58A69!important;outline-offset:3px}
+html[data-theme] body[data-responsive-page="capstone"] .cap-drop{background:linear-gradient(135deg,#FFFFFF,#F7F3EA 55%,#F1E3D0)!important;border:2px dashed #C58A69!important}
+html[data-theme] body[data-responsive-page="capstone"] .cap-drop:focus-within{box-shadow:0 0 0 4px rgba(197,138,105,.18)}
+html[data-theme] body[data-responsive-page="capstone"] .cap-actions .lp-primary:not(:disabled){background:linear-gradient(115deg,#023048,#770101)!important;box-shadow:0 12px 24px rgba(2,48,72,.20)!important}
+html[data-theme] body[data-responsive-page="capstone"] .cap-side-panel{background:linear-gradient(155deg,#FFFFFF 0%,#F7F3EA 100%)!important;border-top:3px solid #C58A69!important;box-shadow:0 10px 30px rgba(2,48,72,.07)!important}
+html[data-theme] body[data-responsive-page="capstone"] .cap-rubric>div{border-bottom:1px solid #E9DDD0}
+html[data-theme] body[data-responsive-page="capstone"] .cap-rubric b{color:#770101;font-variant-numeric:tabular-nums}
+html[data-theme] body[data-responsive-page="capstone"] .cap-cert-controls{gap:12px;flex-wrap:wrap}
+@media(max-width:760px){html[data-theme] body[data-responsive-page="capstone"] .cap-panel::before{left:18px;right:18px}html[data-theme] body[data-responsive-page="capstone"] .cap-panel-title{padding-bottom:14px}html[data-theme] body[data-responsive-page="capstone"] .cap-side-panel{padding:20px!important}}
