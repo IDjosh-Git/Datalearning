@@ -8003,3 +8003,54 @@ html.dl-course-initializing main::before {
 .dl-float-answer pre{max-width:100%;overflow-x:auto;white-space:pre;padding:12px;border-radius:9px}
 .dl-float-answer table{display:block;max-width:100%;overflow-x:auto}
 @media(max-width:600px){.dl-float-coach .dl-float-panel,.dl-float-coach.is-expanded .dl-float-panel{position:fixed;inset:0;width:100vw;max-width:none;height:100dvh;max-height:none;border:0;border-radius:0;box-shadow:none}.dl-float-expand{display:none}.dl-float-actions{gap:4px}.dl-float-actions button{font-size:.68rem;padding:6px}}
+
+/* 2026-11-22: AI-first floating assistant with collapsible tools rail and roomy chat. */
+.dl-float-coach .dl-float-panel{width:min(820px,calc(100vw - 28px));height:min(830px,calc(100dvh - 24px));max-height:calc(100dvh - 24px)}
+.dl-float-coach.is-expanded .dl-float-panel{width:min(1100px,calc(100vw - 28px));height:calc(100dvh - 24px)}
+.dl-float-workspace{display:flex;flex:1;min-height:0;position:relative;overflow:hidden}
+.dl-float-chat{display:flex;flex-direction:column;flex:1;min-width:0;min-height:0;background:#fff}
+.dl-float-chat .dl-float-messages{flex:1;min-height:0;overflow-y:auto;overscroll-behavior-y:contain;-webkit-overflow-scrolling:touch}
+.dl-float-chat .dl-float-status{margin:0!important;padding:7px 16px;background:#F6F0E8;border-bottom:1px solid #e9ddd0;font-size:.7rem}
+.dl-float-sidebar{display:flex;flex-direction:column;gap:14px;width:238px;flex:0 0 238px;padding:18px 12px;background:#f6f0e8;border-right:1px solid #e9ddd0;overflow-y:auto;overscroll-behavior:contain}
+.dl-float-sidebar-heading{display:flex;align-items:center;justify-content:space-between;padding:0 6px;color:#023048}
+.dl-float-sidebar-close{border:0;background:transparent;color:#023048;font-size:24px;cursor:pointer}
+.dl-float-sidebar .dl-float-context{padding:5px 7px;font-size:.75rem}
+.dl-float-sidebar .dl-float-actions{display:grid;grid-template-columns:1fr;gap:7px;padding:0}
+.dl-float-sidebar .dl-float-actions button{padding:12px;text-align:left;font-size:.8rem;border-radius:10px}
+.dl-float-sidebar .dl-float-suggestions{display:flex;flex-direction:column;overflow:visible;padding:0;background:transparent}
+.dl-float-sidebar .dl-float-suggestions button{max-width:none;width:100%;white-space:normal;text-align:left;min-height:38px}
+.dl-float-tutor-link{display:block;margin-top:auto;padding:12px;border-top:1px solid #e9ddd0;color:#023048;font-size:.8rem;font-weight:750}
+.dl-float-sidebar-toggle{display:grid;place-items:center;flex:none;width:36px;height:36px;border:1px solid rgba(255,255,255,.25);border-radius:9px;background:rgba(255,255,255,.12);color:#fff;cursor:pointer;font-size:1.2rem}
+.dl-float-sidebar-backdrop[hidden]{display:none!important}
+.dl-float-footer{padding:5px 14px 8px}
+@media(min-width:801px){.dl-float-coach:not(.is-sidebar-open) .dl-float-sidebar{display:none}.dl-float-sidebar-backdrop{display:none!important}}
+@media(max-width:800px){
+ .dl-float-coach .dl-float-panel,.dl-float-coach.is-expanded .dl-float-panel{width:min(760px,calc(100vw - 20px));height:calc(100dvh - 20px);max-height:calc(100dvh - 20px)}
+ .dl-float-sidebar{position:absolute;z-index:4;inset:0 auto 0 0;width:min(300px,85%);box-shadow:12px 0 36px #02304825;transform:translateX(-105%);transition:transform .18s ease}
+ .dl-float-coach.is-sidebar-open .dl-float-sidebar{transform:translateX(0)}
+ .dl-float-sidebar-backdrop{position:absolute;z-index:3;inset:0;border:0;background:#02304855}
+ .dl-float-coach.is-sidebar-open .dl-float-sidebar-backdrop{display:block}
+}
+@media(max-width:600px){
+ .dl-float-coach .dl-float-panel,.dl-float-coach.is-expanded .dl-float-panel{position:fixed;inset:0;width:100vw;height:100dvh;max-height:100dvh;max-width:none;border:0;border-radius:0;box-shadow:none}
+ .dl-float-head{padding:11px 12px;gap:7px}.dl-float-head-icon{width:34px;height:34px}.dl-float-head-copy small{font-size:.66rem}
+ .dl-float-chat .dl-float-messages{padding:10px 10px 14px}
+ .dl-float-composer{padding-bottom:max(10px,env(safe-area-inset-bottom))}
+}
+@media(prefers-reduced-motion:reduce){.dl-float-sidebar{transition:none}}
+/* Practice Arena: native momentum scrolling without smooth-scroll lag or scroll chaining. */
+html body[data-responsive-page="practice"]{scroll-behavior:auto!important}
+html body[data-responsive-page="practice"] :is(#practiceList,#challengeModal,.pc-detail,.pc-sidebar,.hub-dialog,.ide-results,.pc-sheet,.pc-schema){scroll-behavior:auto!important;-webkit-overflow-scrolling:touch;touch-action:pan-y;overscroll-behavior-y:auto}
+html body[data-responsive-page="practice"] :is(textarea,input,[contenteditable="true"]){touch-action:auto}
+
+/* Floating AI: keep composer visible, allow reader-controlled streaming scroll. */
+.dl-float-chat{position:relative;min-height:0!important}
+.dl-float-chat .dl-float-messages{min-height:0!important;overflow-y:auto!important;scroll-behavior:auto!important;overflow-anchor:none;contain:layout style}
+.dl-float-chat .dl-float-composer{flex-shrink:0;position:relative;z-index:2}
+.dl-float-jump-latest{position:absolute;bottom:112px;left:50%;transform:translateX(-50%);z-index:3;border:1px solid #e9ddd0;border-radius:999px;padding:9px 15px;background:#fff;color:#023048;font-size:.78rem;font-weight:750;box-shadow:0 8px 26px #02304822;cursor:pointer}
+.dl-float-jump-latest[hidden]{display:none!important}
+@media(max-width:600px){.dl-float-coach .dl-float-panel{height:100dvh!important;max-height:100dvh!important}.dl-float-chat .dl-float-composer textarea{resize:none}.dl-float-jump-latest{bottom:108px}}
+/* Arena: prevent global smooth scrolling from affecting heavy interactive workspaces. */
+html:has(body[data-responsive-page="practice"]){scroll-behavior:auto!important}
+body[data-responsive-page="practice"] :is(.pc-editor,.pc-results,.ide-results,.pc-detail,.pc-sheet,.pc-schema,#practiceList){scroll-behavior:auto!important}
+@media(prefers-reduced-motion:reduce){.dl-float-jump-latest{transition:none!important}}

@@ -3,12 +3,25 @@
  const records=new Map(),dirty=new Set(),revisions=new Map(),conflicts=new Map(),generations=new Map();let recoveredOwner="";let recoveryReady=Promise.resolve(),offlineStatus="cloud";let currentUser='',loading=null,saveTimer=0,serial=Promise.resolve(),lastSaveOk=false;
  // Only unsynchronised authenticated workspace changes are persisted locally.
  // IndexedDB is scoped by Supabase user ID; confirmed cloud records are removed.
- const DB_NAME='dalp-pending-drafts-v1', STORE='pending';
+ const DB_NAME='dalp-pending-drafts-v1', STORE='pending', BACKUPS='recovered';
  let dbPromise;
  function db(){if(!('indexedDB' in window))return Promise.reject(Error('IndexedDB unavailable'));
-  if(!dbPromise)dbPromise=new Promise((resolve,reject)=>{const r=indexedDB.open(DB_NAME,1);r.onupgradeneeded=()=>{if(!r.result.objectStoreNames.contains(STORE))r.result.createObjectStore(STORE,{keyPath:'id'})};r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error)});return dbPromise}
+  if(!dbPromise)dbPromise=new Promise((resolve,reject)=>{const r=indexedDB.open(DB_NAME,2);r.onupgradeneeded=()=>{if(!r.result.objectStoreNames.contains(STORE))r.result.createObjectStore(STORE,{keyPath:'id'});if(!r.result.objectStoreNames.contains(BACKUPS))r.result.createObjectStore(BACKUPS,{keyPath:'id'})};r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error)});return dbPromise}
  async function pendingOp(mode,run){const database=await db();return new Promise((resolve,reject)=>{const tx=database.transaction(STORE,mode),store=tx.objectStore(STORE);let result;try{result=run(store)}catch(e){reject(e);return}tx.oncomplete=()=>resolve(result?.result);tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error)})}
  async function stash(key,value,revision){if(!currentUser)return false;try{await pendingOp('readwrite',st=>st.put({id:currentUser+':'+key,user_id:currentUser,key,value,revision,at:Date.now()}));return true}catch(e){console.warn('Draft recovery unavailable:',e);return false}}
+ async function archiveConflict(key,value,revision,user=currentUser){
+  if(!user)return false;
+  try{const database=await db();await new Promise((resolve,reject)=>{const tx=database.transaction(BACKUPS,'readwrite');tx.objectStore(BACKUPS).put({id:user+':'+key+':'+Date.now()+':'+Math.random().toString(36).slice(2),user_id:user,key,value,revision,at:Date.now()});tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error)});return true}
+  catch(e){console.warn('Could not preserve conflicting draft:',e);return false}
+ }
+ async function listBackups(user=currentUser){if(!user)return [];try{const database=await db();return await new Promise((resolve,reject)=>{const tx=database.transaction(BACKUPS,'readonly'),r=tx.objectStore(BACKUPS).getAll();r.onsuccess=()=>resolve((r.result||[]).filter(x=>x.user_id===user).sort((a,b)=>b.at-a.at));r.onerror=()=>reject(r.error)})}catch{return []}}
+ async function deleteBackup(id){try{const database=await db();await new Promise((resolve,reject)=>{const tx=database.transaction(BACKUPS,'readwrite');tx.objectStore(BACKUPS).delete(id);tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error)})}catch(e){console.warn('Recovery backup cleanup failed:',e)}}
+ function offerRecovery(){if(document.getElementById('dalp-recovery-access'))return;const b=document.createElement('button');b.id='dalp-recovery-access';b.type='button';b.textContent='Review saved draft';b.setAttribute('aria-label','Review automatically preserved conflicting draft');b.style.cssText='position:fixed;bottom:52px;right:12px;z-index:99991;background:#fff;color:#023048;border:1px solid #E2DCD3;border-radius:8px;padding:8px 12px;font:12px system-ui;box-shadow:0 2px 12px #0b090922;cursor:pointer';b.addEventListener('click',()=>void showRecovery());document.body?.append(b)}
+ async function showRecovery(){const entries=await listBackups();if(!entries.length){document.getElementById('dalp-recovery-access')?.remove();return}if(document.getElementById('dalp-recovery-dialog'))return;
+  const layer=document.createElement('div');layer.id='dalp-recovery-dialog';layer.setAttribute('role','dialog');layer.setAttribute('aria-modal','true');layer.setAttribute('aria-label','Recovered drafts');layer.style.cssText='position:fixed;inset:0;z-index:2147483646;background:#023048c9;display:grid;place-items:center;padding:20px';const panel=document.createElement('div');panel.style.cssText='background:white;color:#023048;border-radius:12px;max-width:620px;width:100%;padding:24px;max-height:85vh;overflow:auto';const h=document.createElement('h2');h.textContent='Recovered drafts';panel.append(h);const intro=document.createElement('p');intro.textContent='Your latest cloud workspace was loaded automatically. These older local edits were preserved rather than overwritten. You can copy or restore them when needed.';panel.append(intro);
+  for(const entry of entries){const title=document.createElement('p');title.textContent='Item: '+entry.key+' · '+new Date(entry.at).toLocaleString();panel.append(title);const t=document.createElement('textarea');t.readOnly=true;t.value=String(entry.value??'');t.setAttribute('aria-label','Recovered local draft for '+entry.key);t.style.cssText='width:100%;min-height:90px';panel.append(t);const copy=document.createElement('button');copy.type='button';copy.textContent='Copy draft';copy.addEventListener('click',()=>void navigator.clipboard?.writeText(t.value));panel.append(copy);const restore=document.createElement('button');restore.type='button';restore.textContent='Restore this draft';restore.style.margin='8px';restore.addEventListener('click',()=>{if(entry.value===null)storage.removeItem(entry.key);else storage.setItem(entry.key,entry.value);layer.remove();window.dispatchEvent(new CustomEvent('dalp:cloud-hydrated'));});panel.append(restore);}
+  const close=document.createElement('button');close.type='button';close.textContent='Close';close.addEventListener('click',()=>layer.remove());panel.append(close);layer.append(panel);document.body.append(layer)
+ }
  async function unStash(key,user=currentUser){if(!user)return;try{await pendingOp('readwrite',st=>st.delete(user+':'+key))}catch(e){console.warn('Pending draft cleanup unavailable:',e)}}
  async function recover(user){if(recoveredOwner===user)return true;try{const database=await db();const rows=await new Promise((resolve,reject)=>{const tx=database.transaction(STORE,'readonly'),r=tx.objectStore(STORE).getAll();r.onsuccess=()=>resolve(r.result||[]);r.onerror=()=>reject(r.error)});
    for(const row of rows){if(row.user_id!==user||!cloudKey(row.key))continue;if(dirty.has(row.key))continue;
@@ -63,8 +76,20 @@
      if(currentUser!==user)return false;
      const result=Array.isArray(data)?data[0]:data;
      if(!result?.saved){
-      conflicts.set(k,{local:records.has(k)?records.get(k):null,remote:result?.current_value??null,revision:Number(result?.current_revision)||0});
-      success=false;window.dispatchEvent(new CustomEvent('dalp:workspace-conflict',{detail:{key:k}}));showConflict(k);continue;
+      const remote=result?.current_value??null,remoteRevision=Number(result?.current_revision)||0;
+      // Cloud wins for the active workspace, but a local divergent edit is archived first.
+      // If the recovery store is unavailable, retain the existing manual safety dialog.
+      if(!(await archiveConflict(k,value,rev,user))){conflicts.set(k,{local:value,remote,revision:remoteRevision});success=false;showConflict(k);continue}
+      revisions.set(k,remoteRevision);offerRecovery();
+      if((generations.get(k)||0)===gen){
+       if(remote===null)records.delete(k);else records.set(k,String(remote));
+       await unStash(k,user);dirty.delete(k);
+       window.dispatchEvent(new CustomEvent('dalp:cloud-hydrated',{detail:{key:k,source:'cloud'}}));
+      }else{
+       // A newer edit was made while the save was in flight; do not discard it.
+       await stash(k,records.get(k)??null,remoteRevision);success=false;
+      }
+      continue;
      }
      revisions.set(k,Number(result.current_revision)||rev+1);
      if((generations.get(k)||0)===gen){
@@ -93,7 +118,7 @@
  }
  async function hydrate(){if(loading)return loading;loading=(async()=>{
   await (window.DALP_AUTH_RESTORE||Promise.resolve());const client=window.ZAH_DB?.client;const user=await clientUser();if(!client||!user)return false;
-  if(currentUser&&currentUser!==user.id){records.clear();dirty.clear();revisions.clear();conflicts.clear();generations.clear();recoveredOwner="";lastSaveOk=false;}currentUser=user.id;await recover(user.id);
+  if(currentUser&&currentUser!==user.id){records.clear();dirty.clear();revisions.clear();conflicts.clear();generations.clear();recoveredOwner="";lastSaveOk=false;}currentUser=user.id;await recover(user.id);if((await listBackups(user.id)).length)offerRecovery();
   if(legacyOwner&&legacyOwner!==user.id){for(const k of legacy.keys()){records.delete(k);try{localStorage.removeItem(k)}catch{}}legacy.clear();}
   const {data,error}=await client.from('learner_workspace_state').select('state_key,state_value,revision').eq('user_id',user.id).limit(1000);
   if(error){console.warn('Cloud workspace read unavailable:',error.message);return false;}

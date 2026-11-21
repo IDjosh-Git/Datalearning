@@ -1,4 +1,4 @@
-/** DataLearning site-wide assistant: guest-safe offline guide plus authenticated provider AI. */
+/** DataLearning site-wide assistant: authenticated streaming AI with collapsible tools. */
 (() => {
   'use strict';
   // Tutor Studio already provides its own full AI interface. Do not create a second coach.
@@ -24,38 +24,12 @@
     const scope = context.week ? `${subject} Week ${context.week}` : subject;
     return [`Give me a hint for ${scope}`,`Explain a ${subject} concept`,`Show a worked ${subject} example`,`Check my ${subject} approach`];
   }
-  const STOP = new Set(['a','an','the','is','are','of','to','in','at','and','or','what','how','why','can','i','do','does','for','with','me','please','explain','about','my','your','difference','between','on','use','using','from','when','it','this']);
-  let mode = 'guide', liveEnabled = false, providerName = 'AI', history = [], abort = null, guidePromise = null;
+  let liveEnabled = false, providerName = 'AI', history = [], abort = null;
   const context = pageContext();
+  const SIDEBAR_KEY = 'dalp-floating-ai-sidebar-open';
   let lastQuestion = '', responseStyle = 'explain', cloudReady = false, generation = 0;
   const path = BASE + 'tutor.html';
   const sanitize = value => String(value || '').slice(0, 10000);
-  const tokenize = value => [...new Set(sanitize(value).toLowerCase().match(/[a-z0-9][a-z0-9+_.-]*/g) || [])].filter(x => x.length >= 2 && !STOP.has(x));
-  function loadGuide() {
-    if (Array.isArray(window.DALP_KNOWLEDGE)) return Promise.resolve(window.DALP_KNOWLEDGE);
-    if (guidePromise) return guidePromise;
-    guidePromise = new Promise((resolve, reject) => {
-      const script = document.createElement('script');
-      script.src = BASE + 'assets/scripts/offline-knowledge.js';
-      script.async = true;
-      script.onload = () => resolve(Array.isArray(window.DALP_KNOWLEDGE) ? window.DALP_KNOWLEDGE : []);
-      script.onerror = () => reject(new Error('Could not load the offline study guide.'));
-      document.head.append(script);
-    });
-    return guidePromise;
-  }
-  function matchGuide(question, entries) {
-    const tokens = tokenize(question);
-    let best = null, bestScore = 0;
-    for (const entry of entries) {
-      if (!entry || typeof entry.question !== 'string' || typeof entry.explanation !== 'string') continue;
-      const title = entry.question.toLowerCase(), keys = String(entry.keywords || '').toLowerCase(), text = title + ' ' + keys;
-      const score = tokens.reduce((sum,t) => sum + (title.includes(t) ? 5 : 0) + (keys.includes(t) ? 3 : 0), 0)
-        + (title.includes(question.toLowerCase().trim()) ? 12 : 0);
-      if (score > bestScore) {best = entry;bestScore = score;}
-    }
-    return bestScore >= (tokens.length > 1 ? 5 : 4) ? best : null;
-  }
   // Shared renderer is loaded before this script on every floating-coach page.
   function renderAnswer(container, input) {
     window.DALP_AI_RESPONSE.render(container, sanitize(input));
@@ -71,42 +45,69 @@
         <header class="dl-float-head">
           <span class="dl-float-head-icon">${ICON}</span>
           <span class="dl-float-head-copy"><strong>Learning AI</strong><small id="dl-float-mode-label">On-demand study guidance</small></span>
+          <button class="dl-float-sidebar-toggle" type="button" aria-label="Open AI tools" aria-expanded="false" aria-controls="dl-float-sidebar" title="AI tools">☰</button>
           <button class="dl-float-expand" type="button" aria-label="Expand AI panel" aria-pressed="false" title="Expand panel">⛶</button>
           <button class="dl-float-new" type="button" aria-label="New Chat" title="New Chat">✎</button>
           <button class="dl-float-close" type="button" aria-label="Close learning coach">${CLOSE}</button>
         </header>
-        <div class="dl-float-mode" role="group" aria-label="Choose coach mode">
-          <button class="dl-float-mode-btn is-active" data-mode="guide" type="button" aria-pressed="true">Study guide</button>
-          <button class="dl-float-mode-btn" data-mode="live" type="button" aria-pressed="false" disabled>Live AI</button>
-        </div>
-        <div class="dl-float-context" id="dl-float-context"></div>
-        <div class="dl-float-actions" role="group" aria-label="Choose how to learn">
-          <button type="button" data-style="hint">Give a hint</button><button type="button" data-style="explain" class="is-active">Explain</button><button type="button" data-style="example">Worked example</button><button type="button" data-style="check">Check my answer</button>
-        </div>
-        <p class="dl-float-status" id="dl-float-status" role="status">Your learning assistant is available in your signed-in workspace. Live AI requires a configured provider.</p>
+        <div class="dl-float-workspace">
+          <nav class="dl-float-sidebar" id="dl-float-sidebar" aria-label="AI tools">
+            <div class="dl-float-sidebar-heading"><strong>AI tools</strong><button type="button" class="dl-float-sidebar-close" aria-label="Close AI tools">×</button></div>
+            <div class="dl-float-context" id="dl-float-context"></div>
+            <div class="dl-float-actions" role="group" aria-label="Choose how to learn">
+              <button type="button" data-style="hint">Give a hint</button><button type="button" data-style="explain" class="is-active">Explain</button><button type="button" data-style="example">Worked example</button><button type="button" data-style="check">Check my answer</button>
+            </div>
+            <div class="dl-float-suggestions" id="dl-float-suggestions" aria-label="Suggested study questions"></div>
+            <a class="dl-float-tutor-link" href="${path}">Open Tutor Studio ↗</a>
+          </nav>
+          <button class="dl-float-sidebar-backdrop" type="button" aria-label="Close AI tools" hidden></button>
+          <div class="dl-float-chat">
+            <p class="dl-float-status" id="dl-float-status" role="status">Checking live AI availability…</p>
         <div class="dl-float-messages" id="dl-float-messages" role="log" aria-label="Coach conversation" aria-live="polite"></div>
         <div class="dl-float-request-actions"><button class="dl-float-stop" type="button" hidden>Stop generating</button><button class="dl-float-retry" type="button" hidden>Retry last question</button></div>
-        <div class="dl-float-suggestions" id="dl-float-suggestions" aria-label="Suggested study questions"></div>
         <form class="dl-float-composer" id="dl-float-form">
           <label class="dl-float-sr" for="dl-float-question">Ask a learning question</label>
           <textarea id="dl-float-question" rows="2" maxlength="2000" placeholder="Ask about Excel, SQL, Power BI…" required></textarea>
           <button type="submit" class="dl-float-send" aria-label="Send question">${SEND}</button>
         </form>
-        <footer class="dl-float-footer"><span>Do not share passwords or sensitive data.</span><a href="${path}">Open Tutor Studio</a></footer>
+        <footer class="dl-float-footer"><span>Do not share passwords or sensitive data.</span></footer>
+          </div>
+        </div>
       </section>`;
     document.body.append(root);
     const launcher = root.querySelector('.dl-float-launcher'), panel = root.querySelector('.dl-float-panel'), close = root.querySelector('.dl-float-close');
     const log = root.querySelector('#dl-float-messages'), status = root.querySelector('#dl-float-status');
     const textarea = root.querySelector('#dl-float-question'), form = root.querySelector('#dl-float-form');
-    const send = root.querySelector('.dl-float-send'), guide = root.querySelector('[data-mode="guide"]'), live = root.querySelector('[data-mode="live"]');
+    const send = root.querySelector('.dl-float-send');
     const suggestions = root.querySelector('#dl-float-suggestions'), label = root.querySelector('#dl-float-mode-label');
     const note = (msg) => {status.textContent = msg;};
     const stop = root.querySelector('.dl-float-stop'), retry = root.querySelector('.dl-float-retry');
     const contextLabel = root.querySelector('#dl-float-context');
     contextLabel.textContent = context.topic === 'general' ? 'General study help' : `${TOPIC_LABELS[context.topic]}${context.week?' · Week '+context.week:''}`;
+    const sidebarToggle=root.querySelector('.dl-float-sidebar-toggle');
+    const sidebarClose=root.querySelector('.dl-float-sidebar-close');
+    const sidebarBackdrop=root.querySelector('.dl-float-sidebar-backdrop');
+    const jumpLatest=document.createElement('button');
+    jumpLatest.type='button';jumpLatest.className='dl-float-jump-latest';jumpLatest.textContent='↓ Latest messages';
+    jumpLatest.hidden=true;jumpLatest.setAttribute('aria-label','Jump to latest messages');
+    log.insertAdjacentElement('afterend',jumpLatest);
+    const nearBottom=()=>log.scrollHeight-log.scrollTop-log.clientHeight<110;
+    let followLatest=true, scrollFrame=0;
+    function followMessages(force=false){
+      if(!force&&!followLatest)return;
+      if(scrollFrame)return;
+      scrollFrame=requestAnimationFrame(()=>{scrollFrame=0;log.scrollTop=log.scrollHeight;jumpLatest.hidden=true;});
+    }
+    log.addEventListener('scroll',()=>{followLatest=nearBottom();jumpLatest.hidden=followLatest;},{passive:true});
+    jumpLatest.addEventListener('click',()=>{followLatest=true;followMessages(true);});
+    try{if(document.cookie.split('; ').includes(SIDEBAR_KEY+'=true')&&matchMedia('(min-width: 801px)').matches){root.classList.add('is-sidebar-open');sidebarToggle.setAttribute('aria-expanded','true');}}catch{}
+    function setSidebar(open){root.classList.toggle('is-sidebar-open',open);sidebarToggle.setAttribute('aria-expanded',String(open));sidebarBackdrop.hidden=!open;try{document.cookie=SIDEBAR_KEY+'='+String(open)+'; Path=/; SameSite=Lax; Secure'}catch{}}
+    sidebarToggle.addEventListener('click',()=>setSidebar(!root.classList.contains('is-sidebar-open')));
+    sidebarClose.addEventListener('click',()=>setSidebar(false));
+    sidebarBackdrop.addEventListener('click',()=>setSidebar(false));
     const styleButtons = [...root.querySelectorAll('[data-style]')];
     styleButtons.forEach(button=>button.addEventListener('click',()=>{
-      responseStyle=button.dataset.style;
+      responseStyle=button.dataset.style;setSidebar(false);
       styleButtons.forEach(b=>{b.classList.toggle('is-active',b===button);b.setAttribute('aria-pressed',String(b===button));});
     }));
     root.querySelector('.dl-float-expand').addEventListener('click',event=>{
@@ -126,7 +127,7 @@
         }
       }catch{cloudReady=false}
     }
-    root.querySelector('.dl-float-new').addEventListener('click',async()=>{if(abort)abort.abort();generation++;history=[];lastQuestion='';log.replaceChildren();retry.hidden=true;note('New chat started.');if(cloudReady){try{await fetch(HISTORY_URL,{method:'DELETE',credentials:'same-origin',headers:{'Content-Type':'application/json'}})}catch{note('Could not clear saved history.')}}textarea.focus();});
+    root.querySelector('.dl-float-new').addEventListener('click',async()=>{followLatest=true;jumpLatest.hidden=true;if(abort)abort.abort();generation++;history=[];lastQuestion='';log.replaceChildren();retry.hidden=true;note('New chat started.');if(cloudReady){try{await fetch(HISTORY_URL,{method:'DELETE',credentials:'same-origin',headers:{'Content-Type':'application/json'}})}catch{note('Could not clear saved history.')}}textarea.focus();});
     stop.addEventListener('click',()=>{if(abort)abort.abort();note('Response stopped.');});
     retry.addEventListener('click',()=>{if(lastQuestion&&!send.disabled){textarea.value=lastQuestion;form.requestSubmit();}});
     function bubble(text, who, heading) {
@@ -140,17 +141,16 @@
         copy.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(sanitize(text));copy.textContent='Copied';}catch{copy.textContent='Copy unavailable';}});
         el.append(copy);
       }
-      log.scrollTop = log.scrollHeight;return el;
+      followMessages();return el;
     }
     function syncMode() {
-      guide.classList.toggle('is-active',mode==='guide');live.classList.toggle('is-active',mode==='live');
-      guide.setAttribute('aria-pressed',String(mode==='guide'));live.setAttribute('aria-pressed',String(mode==='live'));
-      label.textContent = mode==='live' ? `Live AI · ${providerName}` : 'Curated study guide';
-      note(mode==='live' ? 'Live questions go to the configured AI provider. Sign-in is required.' : 'Study guide responses come from the built-in learning library. No AI request is sent.');
+      label.textContent = liveEnabled ? `Live AI · ${providerName}` : 'AI connection unavailable';
+      note(liveEnabled ? 'Ready to help with your lesson.' : 'Live AI is unavailable. Sign in or check the AI provider configuration.');
     }
     function open() {
       panel.hidden = false;launcher.setAttribute('aria-expanded','true');root.classList.add('is-open');
-      if (!log.children.length) bubble(`Ask me about ${TOPIC_LABELS[context.topic]||'your current lesson'}. Choose Hint, Explain, Worked example or Check my answer. The study guide works without live AI.`, 'assistant', 'Welcome');
+      followLatest=true;followMessages(true);
+      if (!log.children.length) bubble(`Ask me about ${TOPIC_LABELS[context.topic]||'your current lesson'}. Open AI tools for hints, explanations and worked examples.`, 'assistant', 'Welcome');
       textarea.focus({preventScroll:true});
       if (!root.dataset.historyChecked){root.dataset.historyChecked='true';restoreHistory();}
       if (!root.dataset.checked) {
@@ -158,29 +158,15 @@
         fetch(CHAT_URL,{credentials:'same-origin',cache:'no-store'}).then(r => r.ok ? r.json() : null).then(data => {
           liveEnabled = data?.aiEnabled === true;
           providerName = data?.provider === 'groq' ? 'Groq' : data?.provider === 'openai' ? 'OpenAI' : 'AI';
-          live.disabled = !liveEnabled;
           syncMode();
-        }).catch(() => {live.disabled = true;note('The study guide is available; live AI status could not be checked.');});
+        }).catch(() => {liveEnabled=false;syncMode();});
       }
     }
     function hide() {if (abort) abort.abort();panel.hidden = true;root.classList.remove('is-open');launcher.setAttribute('aria-expanded','false');launcher.focus({preventScroll:true});}
     launcher.addEventListener('click',()=>panel.hidden?open():hide());close.addEventListener('click',hide);
     document.addEventListener('keydown',event => {if (!panel.hidden && event.key === 'Escape'){event.preventDefault();hide();}});
     for (const prompt of promptsFor(context)) {const button = document.createElement('button');button.type='button';button.textContent=prompt;button.addEventListener('click',()=>{textarea.value=prompt;form.requestSubmit();});suggestions.append(button);}
-    [guide,live].forEach(button => button.addEventListener('click',()=>{if(button.disabled)return;mode=button.dataset.mode;syncMode();}));
-    async function offlineAnswer(question) {
-      try {
-        const match = matchGuide(question, await loadGuide());
-        if (!match) {
-          bubble('I could not find a close enough match in the offline library. Try asking about data cleaning, SQL joins, DAX, Excel formulas, Power BI models or dashboard design. For a more specific question, open Tutor Studio.', 'assistant','Study guide · no close match');return;
-        }
-        let answer = responseStyle==='hint' ? (match.practice ? `**Hint**\n\n${match.practice}\n\nTry it first, then ask for an explanation.` : `**Hint**\n\nThink about the key idea in: ${match.question}. What would your first step be?`) : match.explanation;
-        if (responseStyle!=='hint' && match.example) answer += '\n\n**Example**\n\n' + match.example;
-        if (responseStyle!=='hint' && match.practice) answer += '\n\n**Try this**\n\n' + match.practice;
-        if (responseStyle!=='hint' && match.pitfall) answer += '\n\n**Watch out for**\n\n' + match.pitfall;
-        bubble(answer, 'assistant', 'From the DataLearning study guide');
-      } catch {bubble('The offline guide could not load. Open Tutor Studio or try again with a connection.', 'assistant', 'Unavailable');}
-    }
+
     async function liveAnswer(question) {
       const controller = new AbortController();abort = controller;stop.hidden=false;
       const requestGeneration=generation;
@@ -200,7 +186,7 @@
             const type=frame.match(/^event:\s*(\S+)/m)?.[1];const dataLine=frame.split(/\r?\n/).find(line=>line.startsWith('data:'));
             if(!dataLine)continue;
             let data;try{data=JSON.parse(dataLine.slice(5))}catch{continue}
-            if(type==='delta'&&typeof data.text==='string'){answer+=data.text;renderAnswer(body,answer);log.scrollTop=log.scrollHeight}
+            if(type==='delta'&&typeof data.text==='string'){answer+=data.text;renderAnswer(body,answer);followMessages()}
             if(type==='done')finished=true;
             if(type==='error')throw new Error(data.error||'Stream interrupted');
           }
@@ -212,14 +198,14 @@
         await saveHistory();
       }catch(error){
         pending.remove();if(controller.signal.aborted||generation!==requestGeneration)return;
-        bubble(answer?`The response stopped early. Partial text:\n\n${answer}`:'The AI service did not respond. Retry or use the Study guide.','assistant','Connection issue');
+        bubble(answer?`The response stopped early. Partial text:\n\n${answer}`:'The AI service did not respond. Please retry or check your connection.','assistant','Connection issue');
       }finally{if(abort===controller)abort=null;stop.hidden=true}
     }
     form.addEventListener('submit', async event => {
       event.preventDefault();const question = textarea.value.trim();if (!question || send.disabled)return;
       lastQuestion=question;retry.hidden=true;send.disabled = true;textarea.disabled = true;
       bubble(question, 'user');
-      try {if (mode==='live' && liveEnabled) await liveAnswer(question);else await offlineAnswer(question);textarea.value='';}
+      try {if (liveEnabled) await liveAnswer(question);else bubble('Live AI is unavailable. Sign in or check your connection and try again.','assistant','Connection unavailable');textarea.value='';}
       finally {send.disabled=false;textarea.disabled=false;retry.hidden=false;textarea.focus({preventScroll:true});}
     });
   }
