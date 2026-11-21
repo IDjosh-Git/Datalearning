@@ -7,5 +7,5 @@ assert(flow.includes("enter(data.user,'signupMsg',true)"),'Immediate registratio
 assert(flow.includes("get('mode')==='welcome'"),'Verified confirmation should reach homepage');
 assert(flow.includes("const learnerDashboard=new URL('account.html'"),'Returning learner defaults to dashboard');
 assert(flow.includes("new URL('admin.html'"),'Admin destination preserved');
-assert(flow.includes("if(firstVisit && !new URLSearchParams(location.search).has('return'))"),'Deep links take precedence');
+assert(flow.includes("if(firstVisit && !new URLSearchParams(location.search).has('return') && !user?.user_metadata?.dalp_career_setup_at)"),'Deep links take precedence');
 console.log('PASS new learner homepage, returning learner dashboard, admin route, deep links, and no browser flag storage');

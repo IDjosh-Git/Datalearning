@@ -1,0 +1,48 @@
+{
+  "generatedAt": "2026-11-21T17:56:09.724Z",
+  "scope": "source tree excluding generated dist and dependencies",
+  "totalFiles": 740,
+  "extensions": {
+    ".example": 1,
+    "(none)": 3,
+    ".yml": 1,
+    ".md": 152,
+    ".html": 51,
+    ".js": 112,
+    ".txt": 2,
+    ".json": 11,
+    ".svg": 141,
+    ".png": 3,
+    ".webp": 1,
+    ".css": 68,
+    ".sql": 18,
+    ".zip": 18,
+    ".csv": 38,
+    ".sqlite": 2,
+    ".ico": 1,
+    ".mjs": 117
+  },
+  "exactDuplicateGroups": 4,
+  "exactDuplicateFiles": 6,
+  "duplicatePaths": [
+    [
+      "downloads/capstone-projects/ai/retail_transactions.csv",
+      "downloads/capstone-projects/excel/retail_transactions.csv",
+      "downloads/capstone-projects/introduction/retail_transactions.csv",
+      "downloads/capstone-projects/python/retail_transactions.csv"
+    ],
+    [
+      "assets/icons/da-logo.svg",
+      "assets/icons/favicon.svg"
+    ],
+    [
+      "assets/icons/icon-intro.svg",
+      "assets/icons/icon-introduction.svg"
+    ],
+    [
+      "downloads/capstone-projects/powerbi/customers.csv",
+      "downloads/capstone-projects/sql/customers.csv"
+    ]
+  ],
+  "policy": "Audit only: never remove a file based on matching hashes without checking runtime references and dynamic imports."
+}

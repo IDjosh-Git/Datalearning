@@ -97,7 +97,7 @@
     const firstVisit=justRegistered || new URLSearchParams(location.search).get('mode')==='welcome';
     // New learners arrive at the homepage; returning learners open their Learning Dashboard.
     // An explicit deep link takes precedence over the default destination.
-    if(firstVisit && !new URLSearchParams(location.search).has('return')) target=landing.href;
+    if(firstVisit && !new URLSearchParams(location.search).has('return') && !user?.user_metadata?.dalp_career_setup_at) target=new URL('career-setup.html',location.href).href;
     // Administrators use the same credentials and form as learners. An
     // explicit requested destination always takes precedence.
     try {
@@ -187,7 +187,7 @@
       }
       $('loginEmail').value=email;
       setMode('login');
-      message('loginMsg','Account request received. Check your email for the verification link, then sign in to open your homepage.','success');
+      message('loginMsg','Account request received. Check your email for the verification link, then sign in to set up your career roadmap.','success');
       $('loginEmail').focus();
     }catch(error){message('signupMsg',errorText(error))}
     finally{busy(button,false,'Create account')}

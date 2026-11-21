@@ -1,0 +1,41 @@
+{
+  "introduction": [
+    "retail_transactions.csv"
+  ],
+  "excel": [
+    "retail_transactions.csv"
+  ],
+  "sql": [
+    "customers.csv",
+    "order_lines.csv",
+    "orders.csv",
+    "products.csv"
+  ],
+  "powerbi": [
+    "calendar.csv",
+    "customers.csv",
+    "products.csv",
+    "sales.csv",
+    "stores.csv"
+  ],
+  "tableau": [
+    "regional_sales.csv"
+  ],
+  "powerquery": [
+    "sales_2026_01.csv",
+    "sales_2026_02.csv",
+    "sales_2026_03.csv",
+    "sales_2026_04.csv",
+    "sales_2026_05.csv"
+  ],
+  "statistics": [
+    "customer_survey.csv"
+  ],
+  "python": [
+    "retail_transactions.csv"
+  ],
+  "ai": [
+    "ai_review_cases.csv",
+    "retail_transactions.csv"
+  ]
+}

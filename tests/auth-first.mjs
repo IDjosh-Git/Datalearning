@@ -29,8 +29,8 @@ assert(read('assets/scripts/profile-editor.js').includes('window.DALP_AUTH_GATE?
 for(const page of pages.filter(f=>f!=='auth.html')){
  const html=read(page);
  if(html.includes('dlu-account')){
-  assert(html.includes('Learning Dashboard'),`${page}: premium dashboard card needs new name`);
+  assert(html.includes('My Learning'),`${page}: premium dashboard card needs new name`);
   assert(!html.includes('>My learning <'),`${page}: legacy header label remains`);
  }
 }
-console.log('PASS one sign-in across learning pages and premium Learning Dashboard navigation');
+console.log('PASS one sign-in across learning pages and premium My Learning navigation');

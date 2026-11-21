@@ -1,0 +1,5 @@
+CaseID,Question,AIClaim,VerifiedValue,Issue
+1,Total transaction rows,180,181,Incorrect row count
+2,All UnitCost values present,Yes,No,Missing cost
+3,Duplicate rows,None,At least one,Duplicate not detected
+4,All revenue positive,Yes,Check calculation,Unverified generalisation

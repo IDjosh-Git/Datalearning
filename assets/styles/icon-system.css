@@ -1,0 +1,4 @@
+/* Shared icon geometry; inherits the current theme colour. */
+.dl-icon{display:inline-block;width:1.25em;height:1.25em;flex:none;vertical-align:-.18em;stroke:currentColor;stroke-width:1.85;fill:none}
+.za-tool-icon .dl-icon,.dl-intro-icon .dl-icon,.dl-note-icon .dl-icon{width:1em;height:1em;vertical-align:middle}
+@media (prefers-reduced-motion:reduce){.dl-icon{transition:none!important;animation:none!important}}

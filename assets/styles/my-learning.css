@@ -1,0 +1,6 @@
+/* My Learning: learner-owned navigation, preserving existing data and IDs */
+.my-learning-tabs{display:flex;gap:.55rem;overflow-x:auto;scrollbar-width:thin;padding:.8rem .15rem 1rem;margin:0 0 1.25rem;position:relative}
+.my-learning-tabs a{flex:0 0 auto;padding:.65rem 1rem;border:1px solid rgba(2,48,72,.18);border-radius:999px;background:#fff;color:#023048;text-decoration:none;font-size:.9rem;font-weight:700;white-space:nowrap}
+.my-learning-tabs a:hover,.my-learning-tabs a:focus-visible{background:#023048;color:#fff;outline-offset:3px}
+#my-learning-overview,#my-learning-courses,#my-learning-assessments,#my-learning-activity,#certificates{scroll-margin-top:110px}
+@media(max-width:600px){.my-learning-tabs{margin-inline:-.25rem}.my-learning-tabs a{padding:.6rem .85rem;font-size:.82rem}}

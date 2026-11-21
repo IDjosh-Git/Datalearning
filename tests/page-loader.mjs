@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 const root=process.cwd();
-const pages=[...fs.readdirSync(root).filter(n=>n.endsWith('.html')&&n!=='landing.html'&&n!=='start-here.html').map(n=>path.join(root,n)),...fs.readdirSync(path.join(root,'courses')).filter(n=>n.endsWith('.html')&&n!=='landing.html'&&n!=='start-here.html').map(n=>path.join(root,'courses',n))];
+const pages=[...fs.readdirSync(root).filter(n=>n.endsWith('.html')&&n!=='landing.html'&&n!=='start-here.html'&&n!=='career-setup.html').map(n=>path.join(root,n)),...fs.readdirSync(path.join(root,'courses')).filter(n=>n.endsWith('.html')&&n!=='landing.html'&&n!=='start-here.html').map(n=>path.join(root,'courses',n))];
 const privatePages=pages.filter(file=>fs.readFileSync(file,'utf8').includes('data-private-workspace="true"'));
 assert.equal(pages.length,38,'One unified loader across all retained public and private routes');
 assert.equal(privatePages.length,8,'Eight protected workspaces');

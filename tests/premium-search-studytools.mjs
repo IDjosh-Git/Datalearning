@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 const root=path.resolve(import.meta.dirname,'..');
 const read=(p)=>fs.readFileSync(path.join(root,p),'utf8');
-const privateRoutes=new Set(['account.html','admin.html','certificate.html','connection-test.html','profile.html','progress.html','reviewer.html','sync-test.html']);
+const privateRoutes=new Set(['account.html','admin.html','certificate.html','connection-test.html','profile.html','progress.html','reviewer.html','sync-test.html','career-setup.html']);
 const publicRoutes=[...fs.readdirSync(root).filter(x=>x.endsWith('.html')&&!privateRoutes.has(x)&&x!=='auth.html'&&x!=='landing.html'&&x!=='start-here.html'),...fs.readdirSync(path.join(root,'courses')).filter(x=>x.endsWith('.html')).map(x=>'courses/'+x)];
 const css='assets/styles/public-search-premium.css';
 for(const page of publicRoutes){

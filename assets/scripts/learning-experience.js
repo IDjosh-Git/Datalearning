@@ -80,13 +80,24 @@
   }
   const m=path.match(/\/courses\/(excel|sql|python)\.html$/);if(!m)return;
   const tool=m[1]==='sql'?'SQL':m[1]==='excel'?'Excel':'Python';
-  /* The next-lesson banner already contains the Arena action; do not duplicate it. */
-  for(const [week,id,title] of recommended[m[1]]){
-   const unit=document.getElementById(week);if(!unit)continue;
-   const aside=document.createElement('aside');aside.className='dalp-arena-lesson';aside.setAttribute('aria-label','Apply this lesson in Practice Arena');
-   const p=document.createElement('p');p.innerHTML='<strong>Ready to apply this lesson?</strong> Try a related challenge in the Practice Arena. Your attempt will be checked locally.';
-   const a=document.createElement('a');a.href='../practice.html?challenge='+encodeURIComponent(id)+'&tool='+tool;a.textContent='Try: '+title+' ↗';
-   aside.append(p,a);const heading=unit.querySelector('h2,h3');if(heading)heading.after(aside);else unit.prepend(aside);
+  // One lesson-level entry for every week; existing verified challenge IDs take precedence.
+  // Unmapped lessons open a subject-specific catalogue with a visible matching notice.
+  const known=new Map(recommended[m[1]].map(([week,id,title])=>[week,{id,title}]));
+  for(let week=1;week<=10;week++){
+   const key='week'+week,unit=document.getElementById(key);if(!unit)continue;
+   if(unit.querySelector('.dalp-arena-lesson'))continue;
+   const heading=unit.querySelector('h2,h3');
+   const title=(heading?.textContent||('Week '+week)).trim().replace(/\s+/g,' ').slice(0,150);
+   const linked=known.get(key);
+   const qs=new URLSearchParams({tool,course:m[1],week:String(week),lesson:title,return:'courses/'+m[1]+'.html#'+key});
+   if(linked)qs.set('challenge',linked.id);
+   const aside=document.createElement('aside');aside.className='dalp-arena-lesson';aside.setAttribute('aria-label','Practice this lesson');
+   const p=document.createElement('p');p.innerHTML='<strong>Practise this lesson</strong> Apply what you have just learned in the '+tool+' Practice Arena. Your previous attempts remain available on this device.';
+   const a=document.createElement('a');a.href='../practice.html?'+qs.toString();a.textContent=linked?'Practise: '+linked.title+' ↗':'Find a Week '+week+' challenge ↗';
+   const progress=document.createElement('small');progress.className='dalp-arena-practice-status';
+   if(linked){try{const state=JSON.parse(window.DALP_STORAGE.getItem('dalp-practice-v1')||'{}');const record=state[linked.id];progress.textContent=record?.pass?'Challenge passed ✓':record?.attempts?record.attempts+' attempt(s) · keep practising':'Not attempted yet';}catch{progress.textContent='Practice available';}}
+   else progress.textContent='Choose a relevant challenge; this week has no verified direct mapping yet.';
+   aside.append(p,a,progress);if(heading)heading.after(aside);else unit.prepend(aside);
   }
  }
  function init(){if(onHome){pathfinder();enhanceCards();}practiceArenaConnections();clarifyTools();activeNav();}

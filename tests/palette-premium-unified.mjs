@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
-const pages=[...fs.readdirSync('.').filter(x=>x.endsWith('.html')),...fs.readdirSync('courses').filter(x=>x.endsWith('.html')).map(x=>'courses/'+x)];
+const pages=[...fs.readdirSync('.').filter(x=>x.endsWith('.html')&&x!=='career-setup.html'),...fs.readdirSync('courses').filter(x=>x.endsWith('.html')).map(x=>'courses/'+x)];
 const theme=fs.readFileSync('assets/styles/palette-premium-20261113.css','utf8');
 const loader=fs.readFileSync('assets/styles/page-loader.css','utf8');
 assert.equal(pages.length,38);

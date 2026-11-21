@@ -38,3 +38,20 @@
 @media(max-width:900px){.dlp-guided-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:580px){.dlp-guided-courses{padding:20px 14px}.dlp-guided-grid{grid-template-columns:1fr;gap:10px}.dlp-guided-header{flex-direction:column-reverse;align-items:flex-start;gap:11px}.dlp-guided-count{font-size:25px;gap:9px}.dlp-guided-count small{width:auto;white-space:nowrap;font-size:10px}.dlp-course-card{padding:16px}.dlp-course-card-top{margin-bottom:11px}}
 @media(prefers-reduced-motion:reduce){.dlp-course-card{transition:none}}
+
+.dlp-career-tracks{margin:2rem 0;padding:clamp(1rem,3vw,2rem);border:1px solid #e8e1d8;border-radius:20px;background:linear-gradient(140deg,#f7f3ea,#fff)}
+.dlp-career-heading h3{font-size:clamp(1.35rem,2.6vw,2rem);color:#023048}
+.dlp-career-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem;margin:1.3rem 0}
+.dlp-career-choice{text-align:left;padding:1rem;border:1px solid #e2dcd3;border-radius:12px;background:#fff;color:#023048;cursor:pointer;font:inherit}
+.dlp-career-choice[aria-pressed=true]{border:2px solid #770101;background:#f7f3ea}
+.dlp-career-choice:focus-visible{outline:3px solid #c58a69;outline-offset:3px}
+.dlp-career-plan{background:#fff;border-radius:14px;padding:1rem 1.2rem;border:1px solid #e8e1d8}
+.dlp-career-steps{list-style:none;margin:1.2rem 0;padding:0;display:grid;gap:.6rem}
+.dlp-career-steps li{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;border-bottom:1px solid #f7f3ea;padding:.6rem 0}
+.dlp-career-step-number{display:grid;place-items:center;flex:0 0 30px;height:30px;border-radius:50%;background:#f1e3d0;color:#770101;font-weight:800}
+.dlp-career-steps li div{flex:1 1 170px;display:grid;gap:.15rem}
+.dlp-career-steps li small{color:#675d58}
+.dlp-career-steps li a,.dlp-career-actions a{color:#770101;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.dlp-career-actions{display:flex;flex-wrap:wrap;gap:1rem;margin-top:1rem}
+.dlp-career-note{font-size:.86rem;color:#675d58}
+@media(max-width:650px){.dlp-career-options{grid-template-columns:1fr}.dlp-career-steps li{align-items:flex-start}}
