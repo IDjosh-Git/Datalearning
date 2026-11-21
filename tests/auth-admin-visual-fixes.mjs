@@ -9,7 +9,7 @@ const adminCss = read('assets/styles/admin-unified-premium.css');
 
 // The isolated sign-in stylesheet must win over generic primary-button rules.
 const links = [...auth.matchAll(/<link\b[^>]*?href="([^"]+\.css(?:\?[^\"]*)?)"[^>]*>/gi)].map(m=>m[1]);
-assert(links.at(-1)?.includes('auth-entry-premium.css?v=20261113-auth-v4'), 'Sign-in stylesheet must be last and cache-busted');
+assert(links.some(h=>h.includes('auth-entry-premium.css?v=20261113-auth-v4')) && links.at(-1)?.includes('responsive-quality-pass.css'), 'Sign-in stylesheet must be cache-busted and shared responsive overrides last');
 assert(links.some(h=>h.includes('burnt-wood-theme.css')), 'Burnt Wood base tokens must be loaded');
 assert(authCss.includes('linear-gradient(123deg,#0B0909 0%,#023048 42%,#770101 100%)'), 'Hero must show all three Burnt Wood gradient colors');
 assert(authCss.includes('.auth-tab.active{color:#FFFFFF;background:#770101'), 'Active sign-in tab must be visibly burnt red');

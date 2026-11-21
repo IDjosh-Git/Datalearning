@@ -97,6 +97,33 @@
   updateName();window.addEventListener('dalp:auth-change',updateName);document.addEventListener('dalp:auth-change',updateName);
   document.addEventListener('click',e=>{if(!menu.contains(e.target))menu.open=false;});
   menu.addEventListener('keydown',e=>{if(e.key==='Escape'){menu.open=false;trigger.focus();}});
+  // Position the account popover within the *visible* viewport, including narrow phones.
+  const positionAccountPanel=()=>{
+   if(!menu.open)return;
+   const rect=trigger.getBoundingClientRect();
+   const viewport=window.visualViewport;
+   const viewLeft=viewport?.offsetLeft||0,viewTop=viewport?.offsetTop||0;
+   const viewWidth=viewport?.width||window.innerWidth,viewHeight=viewport?.height||window.innerHeight;
+   const margin=12,gap=8;
+   const width=Math.max(0,Math.min(320,viewWidth-margin*2));
+   const left=Math.max(viewLeft+margin,Math.min(rect.right-width,viewLeft+viewWidth-width-margin));
+   const below=Math.max(0,viewTop+viewHeight-rect.bottom-gap-margin);
+   const above=Math.max(0,rect.top-viewTop-gap-margin);
+   const placeAbove=below<220&&above>below;
+   const available=Math.max(0,placeAbove?above:below);
+   panel.style.setProperty('--dl-menu-width',width+'px');
+   panel.style.setProperty('--dl-menu-left',left+'px');
+   panel.style.setProperty('--dl-menu-height',available+'px');
+   panel.style.setProperty('--dl-menu-top',(placeAbove?Math.max(viewTop+margin,rect.top-gap-Math.min(panel.scrollHeight,available)):rect.bottom+gap)+'px');
+  };
+  document.addEventListener('pointerdown',event=>{if(menu.open&&!menu.contains(event.target))menu.open=false});
+  document.addEventListener('keydown',event=>{if(event.key==='Escape'&&menu.open){menu.open=false;trigger.focus({preventScroll:true})}});
+  menu.addEventListener('toggle',positionAccountPanel);
+  window.addEventListener('resize',positionAccountPanel,{passive:true});
+  window.addEventListener('scroll',positionAccountPanel,{passive:true,capture:true});
+  window.visualViewport?.addEventListener('resize',positionAccountPanel,{passive:true});
+  window.visualViewport?.addEventListener('scroll',positionAccountPanel,{passive:true});
+
   mobileToggle.remove();aside.remove();backdrop.remove();root.classList.add('ac-dashboard-no-sidebar');
  }
 
