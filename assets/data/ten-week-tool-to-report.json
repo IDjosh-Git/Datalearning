@@ -2090,8 +2090,8 @@
   "ai": [
     {
       "week": 1,
-      "title": "Getting to know AI tools for data analysis",
-      "goal": "Navigate a chat-based AI tool and understand what AI can and cannot verify on its own.",
+      "title": "AI Fundamentals for Data Analysts",
+      "goal": "Explain what AI can and cannot establish, protect data, and distinguish generated suggestions from verified evidence.",
       "where": "Open the DataLearning AI Tutor or a permitted AI assistant; locate chat input, file upload capability, history, privacy options and response controls.",
       "topics": [
         {
@@ -2112,8 +2112,8 @@
         }
       ],
       "worked": "Prompt: 'Explain the columns OrderID, Date, Revenue and Status to a beginner. State what cannot be inferred without records.'",
-      "task": "Ask the AI to classify five sample sales columns and audit its answer against a data dictionary.",
-      "check": "A good response identifies likely data types but flags uncertainty about field definitions.",
+      "task": "Identify three unsupported claims, redact sensitive fields, and record a verification plan.",
+      "check": "AI output is not evidence; use a source-of-truth calculation.",
       "trap": "Believing a confident response is automatically accurate or uploading private business spreadsheets.",
       "business": "A new analyst wants an AI assistant that supports learning without replacing human judgment.",
       "slug": "ai",
@@ -2142,8 +2142,8 @@
     },
     {
       "week": 2,
-      "title": "Writing clear prompts for analytical tasks",
-      "goal": "Build prompts with task, data context, constraints, expected format and verification rules.",
+      "title": "Prompt Engineering for Analytics",
+      "goal": "Write reusable analytical prompts with business objective, schema, scope, constraints and output format.",
       "where": "Use a prompt editor or the AI Tutor and compare a vague request with a structured version.",
       "topics": [
         {
@@ -2164,8 +2164,8 @@
         }
       ],
       "worked": "Prompt: 'Act as retail analyst. Using only the pasted five rows, calculate Paid revenue by Region, show your arithmetic, state exclusions, and flag missing values.'",
-      "task": "Write a reusable prompt that asks for a KPI summary from synthetic records and requires a quality checklist.",
-      "check": "The answer must show which rows count, the arithmetic and at least one limitation rather than invented figures.",
+      "task": "Test the prompt with an omitted status definition and revise it to prevent fabricated totals.",
+      "check": "A useful prompt requires an explicit metric definition and uncertainty handling.",
       "trap": "Asking 'analyse everything' and trusting fabricated sources or unsupported totals.",
       "business": "An operations manager wants comparable weekly KPI reports from an AI-assisted analyst.",
       "slug": "ai",
@@ -2194,8 +2194,8 @@
     },
     {
       "week": 3,
-      "title": "Using AI to understand and clean datasets",
-      "goal": "Ask AI for an audit plan and implement transformations in the actual tool rather than trusting prose.",
+      "title": "AI-Assisted Excel Analysis",
+      "goal": "Use AI to propose formulas and cleaning steps, then validate them in Excel.",
       "where": "In a chat tool paste a non-sensitive schema and five sample rows; request rules compatible with Excel or pandas.",
       "topics": [
         {
@@ -2216,8 +2216,8 @@
         }
       ],
       "worked": "Prompt: 'Given columns OrderID, Region, Date, Amount, write five validation checks; do not invent rows or results.'",
-      "task": "Create an AI-assisted cleaning checklist, run two checks in the practice dataset and show before/after counts.",
-      "check": "A valid checklist distinguishes detection from correction; each chosen transformation must be demonstrated with real input rows.",
+      "task": "Find a formula that accidentally includes refunded orders and correct the criteria.",
+      "check": "Verify formula ranges, statuses and the aggregation grain.",
       "trap": "Letting an assistant decide to delete missing records without evaluating analytical impact.",
       "business": "An analyst imports inconsistent branch reports and needs an auditable cleaning plan.",
       "slug": "ai",
@@ -2246,8 +2246,8 @@
     },
     {
       "week": 4,
-      "title": "Generating and checking Excel formulas with AI",
-      "goal": "Use AI to draft formulas while personally verifying references and edge cases.",
+      "title": "AI-Assisted SQL",
+      "goal": "Generate and debug SQL while independently checking joins, filters and aggregation.",
       "where": "Ask for the target Excel version, table fields, criteria and three test cases before accepting a generated formula.",
       "topics": [
         {
@@ -2268,8 +2268,8 @@
         }
       ],
       "worked": "Prompt: 'Write an Excel SUMIFS formula for tblSales Revenue where Status=Paid and Region=North. Explain each argument and add a test.'",
-      "task": "Ask AI for a SUMIFS and XLOOKUP formula, then test both on a small synthetic table.",
-      "check": "The Paid North result matches hand arithmetic; an unknown product ID returns an explicit missing value.",
+      "task": "Fix a one-to-many join that doubles revenue and document a reconciliation query.",
+      "check": "Check join cardinality and compare row counts before trusting totals.",
       "trap": "Pasting a formula whose workbook/table names do not exist, then assuming a #NAME? error is harmless.",
       "business": "A finance analyst wants to accelerate spreadsheet construction without weakening controls.",
       "slug": "ai",
@@ -2298,8 +2298,8 @@
     },
     {
       "week": 5,
-      "title": "Generating and validating SQL with AI",
-      "goal": "Request readable SELECT queries and verify schema, join grain and source totals before using results.",
+      "title": "AI-Assisted Power BI and DAX",
+      "goal": "Use AI to draft DAX measures and Power Query transformations and verify filter context.",
       "where": "Provide an invented database schema in the AI Tutor and run approved read-only SQL in the Practice Arena.",
       "topics": [
         {
@@ -2320,8 +2320,8 @@
         }
       ],
       "worked": "Prompt: 'Given orders(order_id,product_id,revenue,status) and products(product_id,category), write a LEFT JOIN summary by category and explain fanout checks.'",
-      "task": "Generate a SQL reporting query, execute it against the practice schema, fix incompatible names and reconcile totals.",
-      "check": "A valid join preserves orders when the dimension keys are unique; documented missing matches remain visible.",
+      "task": "Find why ALL(Date) wrongly ignores a selected month and repair the measure.",
+      "check": "Test measures under at least two slicer combinations.",
       "trap": "Running generated UPDATE, DELETE or unverified queries on production systems.",
       "business": "A business analyst needs a trustworthy category sales extract without memorising every SQL function.",
       "slug": "ai",
@@ -2350,8 +2350,8 @@
     },
     {
       "week": 6,
-      "title": "AI-assisted Python analysis and debugging",
-      "goal": "Use AI to explain code, diagnose errors and draft reproducible pandas transformations.",
+      "title": "AI-Assisted Python",
+      "goal": "Use AI for pandas code generation, debugging and test design without skipping validation.",
       "where": "Share a minimal synthetic traceback and short code snippet, then test the proposed change in the Python editor.",
       "topics": [
         {
@@ -2372,8 +2372,8 @@
         }
       ],
       "worked": "Prompt: 'Explain why df[Revenue].sum() raises NameError, correct the code, and create an assertion for Paid revenue.'",
-      "task": "Fix an intentionally broken pandas aggregation and write one automated or manual validation check.",
-      "check": "Code must execute without hiding errors; revenue output matches an independent filtered sum.",
+      "task": "Write assertions for row counts, unique IDs and independently calculated totals.",
+      "check": "Run code and inspect exceptions, dtypes and assertions; prose alone is insufficient.",
       "trap": "Blindly running generated pip commands or exposing secrets in error logs shared with AI.",
       "business": "A data team wants an assistant to reduce debugging time while keeping changes reviewable.",
       "slug": "ai",
@@ -2402,8 +2402,8 @@
     },
     {
       "week": 7,
-      "title": "AI-supported EDA, visuals and evidence-based insight",
-      "goal": "Use AI to suggest appropriate charts and draft explanations from verified results.",
+      "title": "Data Cleaning and Quality Assurance",
+      "goal": "Apply AI suggestions to missing values, duplicates and anomalies with auditable rules.",
       "where": "Provide calculated KPIs, column definitions, audience and reporting period before asking for chart recommendations.",
       "topics": [
         {
@@ -2424,8 +2424,8 @@
         }
       ],
       "worked": "Prompt: 'Paid revenue fell from 150000 to 135000. Draft two factual insights and one hypothesis to investigate; do not claim causation.'",
-      "task": "Ask AI for chart recommendations and a 100-word summary, then correct unsupported claims.",
-      "check": "The reported month-on-month change is -10% and the causal explanation remains a hypothesis.",
+      "task": "Create an exception log and justify which records to correct, exclude or escalate.",
+      "check": "Never silently delete outliers or overwrite the raw dataset.",
       "trap": "Letting an AI assistant invent a market trend or source not supplied in the data.",
       "business": "A sales director wants a concise report that distinguishes measured facts from suggested follow-ups.",
       "slug": "ai",
@@ -2454,8 +2454,8 @@
     },
     {
       "week": 8,
-      "title": "Designing dashboards with AI assistance",
-      "goal": "Use AI to critique dashboard wireframes and propose layouts that make KPIs and filters understandable.",
+      "title": "Analytical Storytelling with AI",
+      "goal": "Use AI to draft executive narratives grounded in reproducible metrics and uncertainty.",
       "where": "Share only fictional dashboard requirements or a safe mock screenshot; request a concrete layout and interaction checklist.",
       "topics": [
         {
@@ -2476,8 +2476,8 @@
         }
       ],
       "worked": "Prompt: 'Design a 16:9 retail dashboard wireframe with Revenue, Orders, AOV, trend, region ranking and a filter panel. Explain reading order.'",
-      "task": "Sketch a dashboard based on AI suggestions and annotate each visual with the business question it answers.",
-      "check": "Every visual has a purpose, consistent filters and a reproducible metric definition.",
+      "task": "Rewrite three overconfident claims into evidence-based findings and limitations.",
+      "check": "Every number and causal claim must be traceable.",
       "trap": "Treating a generated dashboard image as evidence of working relationships or real KPI calculations.",
       "business": "A new BI team needs fast layout ideas but must ensure the published report remains technically sound.",
       "slug": "ai",
@@ -2506,8 +2506,8 @@
     },
     {
       "week": 9,
-      "title": "Reviewing AI-written reports and building a safe workflow",
-      "goal": "Create a reliable human approval path for AI-generated analysis and reporting deliverables.",
+      "title": "Workflow Automation and AI Governance",
+      "goal": "Design a human-reviewed AI workflow with privacy controls, reproducibility and approval gates.",
       "where": "Prepare a draft report from verified synthetic KPIs, then audit the numbers, citations and confidential content.",
       "topics": [
         {
@@ -2528,8 +2528,8 @@
         }
       ],
       "worked": "Review checklist: Claim → Source → Calculation → Evidence → Reviewer → Approved?",
-      "task": "Audit a one-page AI-generated executive summary, correct at least two weaknesses and write an AI-use disclosure.",
-      "check": "Every headline statistic appears in your evidence register, and recommendations are identified as recommendations.",
+      "task": "Identify data leakage, unchecked model output and missing approval controls.",
+      "check": "Automation must fail safely and preserve an audit trail.",
       "trap": "Allowing an agent to email an unverified management report without human sign-off.",
       "business": "A finance unit is piloting AI-supported reports and needs a defensible audit trail.",
       "slug": "ai",
@@ -2558,8 +2558,8 @@
     },
     {
       "week": 10,
-      "title": "AI analytics capstone: verified end-to-end insight pack",
-      "goal": "Deliver an AI-assisted analysis that is independently verified and transparently documented.",
+      "title": "Capstone: End-to-End AI-Assisted Analysis",
+      "goal": "Deliver a defensible analysis with source data, AI assistance log, reproducible checks and management report.",
       "where": "Select a synthetic dataset and record the prompts, tool outputs, tests and final human decisions in a project folder.",
       "topics": [
         {
@@ -2580,8 +2580,8 @@
         }
       ],
       "worked": "Deliverables: prompts.md, validation.csv, dashboard/report.pdf and source spreadsheet or script\nControls: no invented facts; no unapproved disclosure; approval before distribution",
-      "task": "Submit an analysis report, prompt audit trail, original calculations, dashboard screenshot/mock and accountable recommendation.",
-      "check": "Instructor can reproduce numerical findings independently; the AI-use statement clearly separates automation from human verification.",
+      "task": "Submit source-to-output reconciliation, corrected AI errors, prompt log and a one-page report.",
+      "check": "A passing submission must independently reproduce results and disclose limitations.",
       "trap": "Submitting attractive but fictional AI-generated charts as if they were calculated from the project dataset.",
       "business": "A fictional retail leadership team wants an accelerated but trustworthy analysis using AI under documented human oversight.",
       "slug": "ai",

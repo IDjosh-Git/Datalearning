@@ -1,0 +1,656 @@
+[
+  {
+    "group": "SQL",
+    "title": "CTE monthly revenue",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 1 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        "2026-11-01",
+        230.0
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "LAG month-over-month",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 1 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        "2026-11-01",
+        230.0,
+        null
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "Anti join unmatched products",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 0 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": []
+  },
+  {
+    "group": "SQL",
+    "title": "Top 3 products in each region",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 2 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        "North",
+        "P1",
+        180.0,
+        1
+      ],
+      [
+        "North",
+        "P3",
+        50.0,
+        2
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "Gross Sales for North by region",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 1 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        250.0
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "Discount Amount for North by region",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 1 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        20.0
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "Order Value for North by region",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 1 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        230.0
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "Refund Amount for Online by channel",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 1 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        0.0
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "Tax Amount for Completed by status",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 1 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        23.0
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "Cost for Electronics by category",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 1 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        180.0
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "Shipping Cost for Electronics by category",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 1 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        15.0
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "Gross Sales for Ada by sales rep",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 1 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        250.0
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "Discount Amount for Ada by sales rep",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 1 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        20.0
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "Order Value for Ada by sales rep",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 1 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        230.0
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "Net Revenue for Nigeria by country",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 1 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        230.0
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "Units Sold for Nigeria by country",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 1 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        6
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "Refund Amount for Nigeria by country",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 1 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        0.0
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "Profit for Retail by segment",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 1 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        50.0
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "Tax Amount for Retail by segment",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 1 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        23.0
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "Cost for Lagos by warehouse",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 1 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        180.0
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "Shipping Cost for Lagos by warehouse",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 1 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        15.0
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "Gross Sales for NGN by currency",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 1 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        850.0
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "Discount Amount for NGN by currency",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 1 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        20.0
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "Order Value for NGN by currency",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 1 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        230.0
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "Net Revenue for Card by payment method",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 1 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        230.0
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "Units Sold for Card by payment method",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 1 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        3
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "Refund Amount for Card by payment method",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 1 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        0.0
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze refund amount across region",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 2 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        "South",
+        0.0
+      ],
+      [
+        "North",
+        0.0
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze tax amount across channel",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 2 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        "Online",
+        11.5
+      ],
+      [
+        "Store",
+        0.0
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze cost across status",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 2 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        "Completed",
+        90.0
+      ],
+      [
+        "Cancelled",
+        0.0
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze shipping cost across status",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 2 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        "Completed",
+        7.5
+      ],
+      [
+        "Cancelled",
+        0.0
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze gross sales across category",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 2 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        "Furniture",
+        600.0
+      ],
+      [
+        "Electronics",
+        125.0
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze discount amount across category",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 2 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        "Electronics",
+        10.0
+      ],
+      [
+        "Furniture",
+        0.0
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze order value across category",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 2 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        "Electronics",
+        115.0
+      ],
+      [
+        "Furniture",
+        0.0
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze refund amount across sales rep",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 2 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        "Bola",
+        0.0
+      ],
+      [
+        "Ada",
+        0.0
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze profit across country",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 1 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        "Nigeria",
+        16.666666666666668
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze tax amount across country",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 1 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        "Nigeria",
+        7.666666666666667
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze cost across segment",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 2 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        "Retail",
+        90.0
+      ],
+      [
+        "Corporate",
+        0.0
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze shipping cost across segment",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 2 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        "Retail",
+        7.5
+      ],
+      [
+        "Corporate",
+        0.0
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze gross sales across warehouse",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 2 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        "Abuja",
+        600.0
+      ],
+      [
+        "Lagos",
+        125.0
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze discount amount across warehouse",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 2 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        "Lagos",
+        10.0
+      ],
+      [
+        "Abuja",
+        0.0
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze order value across warehouse",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 2 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        "Lagos",
+        115.0
+      ],
+      [
+        "Abuja",
+        0.0
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze net revenue across currency",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 1 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        "NGN",
+        76.66666666666667
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze units sold across currency",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 1 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        "NGN",
+        2.0
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze refund amount across currency",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 1 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        "NGN",
+        0.0
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze profit across payment method",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 2 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        "Card",
+        25.0
+      ],
+      [
+        "Cash",
+        0.0
+      ]
+    ]
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze tax amount across payment method",
+    "status": "executed_sqlite_with_fixture",
+    "detail": "Executed using synthetic orders/products/customers fixture; sampled 2 rows; SQLite DATE_TRUNC shim where needed",
+    "sample": [
+      [
+        "Card",
+        11.5
+      ],
+      [
+        "Cash",
+        0.0
+      ]
+    ]
+  },
+  {
+    "group": "Python",
+    "title": "groupby: revenue by region",
+    "status": "executed_python_with_fixture",
+    "detail": "  region  revenue\n0  North      250\n",
+    "sample": []
+  },
+  {
+    "group": "Python",
+    "title": "merge: safe customer lookup",
+    "status": "executed_python_with_fixture",
+    "detail": "_merge\nboth          3\nleft_only     0\nright_only    0\nName: count, dtype: int64\n",
+    "sample": []
+  },
+  {
+    "group": "Python",
+    "title": "pivot_table: report by region",
+    "status": "executed_python_with_fixture",
+    "detail": "status  Cancelled  Completed\nregion                      \nNorth           0        250\nSouth         600          0\n",
+    "sample": []
+  },
+  {
+    "group": "Python",
+    "title": "Rank regions by KPI",
+    "status": "executed_python_with_fixture",
+    "detail": "",
+    "sample": []
+  },
+  {
+    "group": "Python",
+    "title": "plot: build a simple KPI chart",
+    "status": "executed_python_with_fixture",
+    "detail": "",
+    "sample": []
+  },
+  {
+    "group": "Python",
+    "title": "Dashboard preparation: KPI summary",
+    "status": "executed_python_with_fixture",
+    "detail": "{'total_revenue': 250.0, 'orders': 2, 'regions': 1}\n",
+    "sample": []
+  },
+  {
+    "group": "Python",
+    "title": "Report export: write an Excel workbook",
+    "status": "executed_python_with_fixture",
+    "detail": "",
+    "sample": []
+  }
+]

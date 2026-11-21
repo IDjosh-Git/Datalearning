@@ -25,6 +25,27 @@
     if (!map) return {};
     try { return window.ZAHProgressCloud.readLocal(map.key) || {}; } catch (_) {return {};}
   };
+  const WEEK_PASS_PERCENT = 80;
+  const quizStorageKey = (uid,slug,week) => `dalp-academy-quiz:${uid||'guest'}:${slug}:${week}`;
+  function readQuizBest(uid,slug,week){
+    try {
+      const result=JSON.parse(window.DALP_STORAGE.getItem(quizStorageKey(uid,slug,week))||'{}');
+      return Number(result.bestPercent ?? (result.total ? 100*Number(result.best||0)/Number(result.total) : 0))||0;
+    } catch (_) {return 0;}
+  }
+  async function verifiedWeekScore(slug,week){
+    const u=await user();
+    const local=readQuizBest(u?.id,slug,week);
+    if(u && window.ZAH_DB?.client){
+      try{
+        const {data,error}=await window.ZAH_DB.client.from('quiz_results')
+          .select('percentage').eq('user_id',u.id).eq('course_slug',slug).eq('week_no',week).maybeSingle();
+        if(error)throw error;
+        return {percent:Math.max(local,Number(data?.percentage)||0),user:u};
+      }catch(e){return {percent:local,user:u,offline:true};}
+    }
+    return {percent:local,user:u,offline:true};
+  }
   const completedCount = slug => Object.values(readProgress(slug)).filter(v => v === true).length;
   const percent = slug => Math.min(100, Math.round(completedCount(slug) * 100 / (courses[slug]?.weeks.length || 10)));
   const user = async () => {
@@ -249,10 +270,10 @@
         ai:[['A05','Machine learning'],['E05','Deep learning'],['E06','Data governance']]
       };
       const deepDive = `<section class="za-lesson-block za-career-bridge" id="zaCareerBridge" aria-label="Continue learning at higher proficiency levels">
-          <span class="za-block-kicker">WHAT COMES NEXT</span><h2>Continue from core lessons to industry mastery</h2>
-          <p>These 10 weekly lessons build your foundation. Extend the same skills through the four-stage DataLearning curriculum, with dedicated examples, case studies and practical exercises.</p>
+          <span class="za-block-kicker">WHAT COMES NEXT</span><h2>Explore specialist learning after this course</h2>
+          <p>You have reached the final week of this course. The Advanced Learning Library offers optional specialist modules, worked examples and challenges to help you explore the next level. These modules do not award course completion or certification.</p>
           <div class="za-career-links">${(enrichment[slug]||[]).map(([id,title])=>`<a href="${base}career-path.html#pathway-${id}"><span>${safe(id)}</span><strong>${safe(title)}</strong><span aria-hidden="true">↗</span></a>`).join('')}</div>
-          <a class="za-career-all" href="${base}career-path.html#masterLearningPath">View the complete Beginner → Expert roadmap ↗</a>
+          <a class="za-career-all" href="${base}career-path.html#masterLearningPath">Explore the Advanced Learning Library ↗</a>
         </section>`;
       const formulaWeeks = {
         excel:{3:'SUM',4:'TRIM',5:'SUMIFS',6:'LET',7:'chart',8:'SUMIFS',9:'SUMIFS',10:'XLOOKUP'},
@@ -271,7 +292,7 @@
       const journey = window.DALP_TOOL_JOURNEYS?.[slug];
       const journeyIndex = Math.min(5, Math.floor((week - 1) * 6 / path.weeks.length));
       const journeyStep = journey?.stages?.[journeyIndex];
-      const journeyHtml = journeyStep ? `<section class="za-lesson-block za-tool-journey" aria-label="End-to-end analysis workflow"><span class="za-block-kicker">TOOL-TO-REPORT LEARNING JOURNEY · STAGE ${journeyIndex+1} OF 6</span><h2>${safe(journeyStep.heading)}</h2><p>${safe(journeyStep.detail)}</p><p class="za-journey-check"><strong>Practical checkpoint:</strong> ${safe(journeyStep.task)}</p>${['python','ai'].includes(slug)?'':`<a href="${base}career-path.html">Explore the complete data career path →</a>`}</section>` : '';
+      const journeyHtml = journeyStep ? `<section class="za-lesson-block za-tool-journey" aria-label="End-to-end analysis workflow"><span class="za-block-kicker">TOOL-TO-REPORT LEARNING JOURNEY · STAGE ${journeyIndex+1} OF 6</span><h2>${safe(journeyStep.heading)}</h2><p>${safe(journeyStep.detail)}</p><p class="za-journey-check"><strong>Practical checkpoint:</strong> ${safe(journeyStep.task)}</p></section>` : '';
       // Course-specific coaching: avoid a one-size-fits-all hint for nine distinct tools.
       const practiceCoaching = {
         introduction: {hint:'First write the decision the analysis should support. Identify the unit of observation, a measurable outcome, and a meaningful comparison.',check:'Can someone else identify the metric, population, comparison and decision from your question?',mistake:'A broad question such as “How are sales?” cannot be tested without a defined metric and period.'},
@@ -322,7 +343,7 @@
           <details class="za-exercise-solution"><summary>Show solution and explanation — open after your attempt</summary><div class="za-solution">${safe(record.solution)}</div><p><strong>Why a common approach fails:</strong> ${safe(record.pitfall)}</p><p>${safe(coach.mistake)} Compare the method, intermediate steps and final interpretation with your own work.</p></details>
           ${educator ? `<div class="za-practice-transfer"><h3>Apply the skill to a new situation</h3><p>${safe(educator.extension)}</p><p><strong>Success check:</strong> ${safe(educator.evidence)}</p></div>` : ''}
           <div class="za-practice-support"><h3>If you are stuck</h3><p>Review the worked example and guided steps above, try the hint, then compare your attempt with the solution. Revisit the practice file and relevant reference material before continuing.</p>${formulaHref ? `<a href="${formulaHref}">Open the verified formula and code reference for this week</a>` : ''}</div></section>
-        <section class="za-lesson-block za-lesson-recap" id="zaRecap"><div class="za-block-head"><span class="za-block-ico" aria-hidden="true">✓</span><div><span class="za-block-kicker">LEARNING RECAP</span><h2>Check your understanding</h2></div></div><p class="za-recap-lead">Before you move on, explain the main idea in your own words and confirm that your calculations or decisions can be checked independently.</p><div class="za-recap-card"><strong>What a correct result should show</strong><p>${safe(guide?.verify || record.outcome)}</p></div><div class="za-recap-card za-recap-warning"><strong>Remember this limitation</strong><p>${safe(record.pitfall)}.</p></div><p class="za-recap-next">When you are ready, select <b>Questions to Try</b> below. Questions open on a separate assessment page; completing the lesson and submitting a quiz remain separate actions.</p></section>${capstoneProjectHtml}${['python','ai'].includes(slug)?'':deepDive}`;
+        <section class="za-lesson-block za-lesson-recap" id="zaRecap"><div class="za-block-head"><span class="za-block-ico" aria-hidden="true">✓</span><div><span class="za-block-kicker">LEARNING RECAP</span><h2>Check your understanding</h2></div></div><p class="za-recap-lead">Before you move on, explain the main idea in your own words and confirm that your calculations or decisions can be checked independently.</p><div class="za-recap-card"><strong>What a correct result should show</strong><p>${safe(guide?.verify || record.outcome)}</p></div><div class="za-recap-card za-recap-warning"><strong>Remember this limitation</strong><p>${safe(record.pitfall)}.</p></div><p class="za-recap-next">When you are ready, select <b>Questions to Try</b> below. Questions open on a separate assessment page; completing the lesson and submitting a quiz remain separate actions.</p></section>${capstoneProjectHtml}${week===path.weeks.length?deepDive:''}`;
       all('.za-lesson-sections button',one('#zaLessonBody')).forEach(button=>button.addEventListener('click',()=>{
         const section=document.getElementById(button.dataset.jump);
         section?.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
@@ -330,18 +351,48 @@
       const next=path.weeks[week]?`${courseHref(slug)}?week=${week+1}`:base+'capstone.html?course='+encodeURIComponent(slug);
       const done=!!readProgress(slug)[String(week)];
       const practiceLink=['sql','excel','python'].includes(slug)?`<a class="za-btn za-btn-line" href="${base}practice.html?tool=${encodeURIComponent(slug)}&week=${week}&lesson=${encodeURIComponent(record.title)}&return=${encodeURIComponent(courseHref(slug)+'?week='+week+'#zaExercise')}" aria-label="Practise ${safe(path.title)} in the Practice Arena">Practice Arena ↗</a>`:'';
-      const roadmapLink=`<a class="za-btn za-btn-line" href="${base}career-path.html#guidedCourses">Learning roadmap ↗</a>`;
-      one('#zaLessonActions').innerHTML=`<button id="zaMarkWeek" type="button" class="za-btn za-btn-line">${done?'✓ Marked as complete':'✓ Mark week complete'}</button><a class="za-btn za-btn-primary" href="${quizHref(slug,week)}">Questions to Try ↗</a><a class="za-btn za-btn-line" href="${next}">${week===path.weeks.length?'Capstone project ↗':'Next week →'}</a>${practiceLink}${roadmapLink}${week===path.weeks.length?`<a class="za-btn za-btn-mastery" href="${masteryHref(slug)}">✦ Mastery Assessment · ${masteryCount(path)} Questions ↗</a>`:''}<span class="za-save-status" id="zaSaveStatus" role="status" aria-live="polite"></span>`;
-      one('#zaMarkWeek').addEventListener('click', async function(){
-        this.disabled=true;one('#zaSaveStatus').textContent='Saving your week…';
+      const roadmapLink=``;
+      one('#zaLessonActions').innerHTML=`<button id="zaMarkWeek" type="button" class="za-btn za-btn-line">${done?'✓ Previously completed':'Check completion eligibility'}</button><a class="za-btn za-btn-primary" href="${quizHref(slug,week)}">Questions to Try ↗</a><a class="za-btn za-btn-line" href="${next}">${week===path.weeks.length?'Capstone project ↗':'Next week →'}</a>${practiceLink}${roadmapLink}${week===path.weeks.length?`<a class="za-btn za-btn-mastery" href="${masteryHref(slug)}">✦ Mastery Assessment · ${masteryCount(path)} Questions ↗</a>`:''}<span class="za-save-status" id="zaSaveStatus" role="status" aria-live="polite"></span>`;
+      const completionButton=one('#zaMarkWeek');
+      const completionStatus=one('#zaSaveStatus');
+      async function refreshCompletionEligibility(){
+        if(done){
+          completionButton.textContent='✓ Previously completed';
+          completionButton.disabled=true;
+          completionStatus.textContent='Your existing completion is preserved.';
+          return;
+        }
+        completionButton.disabled=true;
+        completionStatus.textContent='Checking weekly assessment…';
+        const result=await verifiedWeekScore(slug,week);
+        const passed=result.percent>=WEEK_PASS_PERCENT;
+        completionButton.disabled=!passed;
+        completionButton.textContent=passed?'✓ Mark week complete':'Assessment required · 80% to pass';
+        completionStatus.textContent=passed
+          ? `Best verified assessment score: ${Math.round(result.percent)}%. You can complete this week.`
+          : `Best recorded assessment score: ${Math.round(result.percent)}%. Complete the weekly assessment with at least ${WEEK_PASS_PERCENT}% to unlock completion.`;
+      }
+      completionButton.addEventListener('click', async function(){
+        const eligible=await verifiedWeekScore(slug,week);
+        if(eligible.percent<WEEK_PASS_PERCENT){
+          await refreshCompletionEligibility();return;
+        }
+        this.disabled=true;completionStatus.textContent='Saving your week…';
         try{
           const result=await window.ZAHProgressCloud.saveWeek(slug,week,true);
-          this.textContent=result.ok?'✓ Marked as complete':'Retry saving week';
-          one('#zaSaveStatus').textContent=result.ok?'Week completed and synced to your account.':'This completion has not reached your account yet. Keep this page open and retry saving before leaving.';
+          if(result.ok){
+            this.textContent='✓ Marked as complete';
+            completionStatus.textContent='Week completed and synced to your account.';
+          } else {
+            this.textContent='Retry saving week';
+            completionStatus.textContent='Your completion is pending cloud sync. Please retry.';
+          }
           progressView();
-        }catch(error){one('#zaSaveStatus').textContent='Unable to save this week right now. Please retry.';}
-        finally{this.disabled=false;}
+        }catch(error){completionStatus.textContent='Unable to save this week right now. Please retry.';}
+        finally{if(this.textContent!=='✓ Marked as complete')this.disabled=false;}
       });
+      void refreshCompletionEligibility();
+      window.addEventListener('pageshow',()=>{if(current===week)void refreshCompletionEligibility();},{once:true});
       all('.za-week-link',list).forEach(button=>button.addEventListener('click',()=>{
         const n=Number(button.dataset.week);showLesson(n);if(aside.classList.contains('is-open'))setAside(false);
         if(window.matchMedia('(max-width:960px)').matches)one('.za-lesson-hero')?.scrollIntoView({block:'start',behavior:'smooth'});
@@ -555,13 +606,25 @@
     async function save(score){
       const u=await user();
       const localKey=`dalp-academy-quiz:${u?.id||'guest'}:${slug}:${rawWeek}`;
-      try{const prior=JSON.parse(window.DALP_STORAGE.getItem(localKey)||'{}');window.DALP_STORAGE.setItem(localKey,JSON.stringify({best:Math.max(prior.best||0,score),latest:score,total:questions.length,at:new Date().toISOString()}));}catch(_){/* storage optional */}
+      try{const prior=JSON.parse(window.DALP_STORAGE.getItem(localKey)||'{}');window.DALP_STORAGE.setItem(localKey,JSON.stringify({best:Math.max(prior.best||0,score),bestPercent:Math.max(prior.bestPercent||0,Math.round(100*score/questions.length)),latest:score,total:questions.length,at:new Date().toISOString()}));}catch(_){/* storage optional */}
       if(!u || !window.ZAH_DB?.client){message.textContent='Quiz result saved on this device. Sign in to store results in Supabase.';return;}
       const percentage=Math.round(100*score/questions.length);
       let table,record,conflict;
       if(isMastery){table='mastery_results';conflict='user_id,course_slug';record={user_id:u.id,course_slug:slug,score:Math.round(score*10/questions.length),total:10,percentage,submitted_at:new Date().toISOString()};}
       else{table='quiz_results';conflict='user_id,course_slug,week_no';record={user_id:u.id,course_slug:slug,week_no:week,score,answered:questions.length,total:questions.length,percentage,submitted_at:new Date().toISOString()};}
       try{
+        if(!isMastery){
+          const {data:previous,error:readError}=await window.ZAH_DB.client.from('quiz_results')
+            .select('percentage,score,answered,total').eq('user_id',u.id)
+            .eq('course_slug',slug).eq('week_no',week).maybeSingle();
+          if(readError)throw readError;
+          if(previous && Number(previous.percentage)>percentage){
+            record.percentage=Number(previous.percentage);
+            record.score=Number(previous.score);
+            record.answered=Number(previous.answered);
+            record.total=Number(previous.total);
+          }
+        }
         const {error}=await window.ZAH_DB.client.from(table).upsert(record,{onConflict:conflict});if(error)throw error;
         message.textContent=isMastery?'Mastery Assessment saved to your DataLearning account.':'Weekly quiz result synced to your DataLearning account.';
       }catch(error){console.warn('Quiz result sync unavailable',error?.message);message.textContent='Your result is saved locally; cloud sync could not be completed. You can retry later.';}

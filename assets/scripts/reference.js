@@ -25,6 +25,66 @@
   let active = null;
   let previousFocus = null;
   let toastTimer;
+  let cloudUser = null;
+  let cloudReady = false;
+  let pendingCloud = Promise.resolve();
+  const knownKeys = new Set(rows.map(row => `${row.group}|${row.title}`));
+  const syncStatus = document.getElementById('referenceSyncStatus');
+  function setSyncStatus(message) { if (syncStatus) syncStatus.textContent = message; }
+  function enqueueCloud(task) {
+    pendingCloud = pendingCloud.then(task).catch(() => {
+      setSyncStatus('Cloud sync unavailable. Bookmarks are saved on this device.');
+    });
+  }
+  async function initialiseCloud() {
+    await Promise.resolve(window.DALP_AUTH_RESTORE).catch(() => {});
+    const client = window.ZAH_DB?.client;
+    if (!client) { setSyncStatus('Bookmarks are saved on this device.'); return; }
+    try {
+      const {data, error} = await client.auth.getUser();
+      if (error || !data?.user || data.user.is_anonymous) {
+        setSyncStatus('Sign in to sync saved examples across devices.');
+        return;
+      }
+      cloudUser = data.user.id;
+      const {data:remote, error:readError} = await client.from('reference_bookmarks')
+        .select('reference_key').eq('user_id', cloudUser);
+      if (readError) throw readError;
+      const serverKeys = new Set((remote || []).map(x => x.reference_key).filter(k => knownKeys.has(k)));
+      const localKeys = [...bookmarks].filter(k => knownKeys.has(k));
+      const missing = localKeys.filter(k => !serverKeys.has(k));
+      if (missing.length) {
+        const {error:upsertError} = await client.from('reference_bookmarks')
+          .upsert(missing.map(reference_key => ({user_id:cloudUser, reference_key})),
+            {onConflict:'user_id,reference_key', ignoreDuplicates:true});
+        if (upsertError) throw upsertError;
+      }
+      bookmarks = new Set([...serverKeys, ...localKeys]);
+      persist();
+      cloudReady = true;
+      setSyncStatus('Saved examples synced with your account.');
+      render();
+    } catch {
+      cloudReady = false;
+      setSyncStatus('Cloud sync unavailable. Bookmarks are saved on this device.');
+    }
+  }
+  function syncBookmark(key, isSaved) {
+    if (!cloudReady || !cloudUser) return;
+    const userId = cloudUser;
+    enqueueCloud(async () => {
+      const client = window.ZAH_DB?.client;
+      if (!client) throw new Error('Cloud unavailable');
+      const {data:auth} = await client.auth.getUser();
+      if (auth?.user?.id !== userId) throw new Error('Session changed');
+      const query = isSaved
+        ? client.from('reference_bookmarks').upsert({user_id:userId,reference_key:key},
+            {onConflict:'user_id,reference_key'})
+        : client.from('reference_bookmarks').delete().eq('user_id',userId).eq('reference_key',key);
+      const {error} = await query;
+      if (error) throw error;
+    });
+  }
   try {
     const stored = JSON.parse(window.DALP_STORAGE.getItem(STORAGE) || '[]');
     if (Array.isArray(stored)) bookmarks = new Set(stored.filter(value => typeof value === 'string'));
@@ -75,6 +135,37 @@
     $('referenceDialogCode').textContent = row.code;
     $('referenceDialogMeaning').textContent = row.meaning;
     $('referenceDialogWatch').textContent = row.watch;
+    const example = $('referenceDialogExample');
+    example.replaceChildren();
+    const worked = row.workedExample;
+    if (worked) {
+      const input = make('pre', 'ref-example-input', worked.input);
+      const expected = make('p', 'ref-example-result', `Expected: ${worked.expected}`);
+      example.append(input, expected);
+      if(worked.runtimeEvidence)example.append(make('p','ref-example-runtime',`Runtime note: ${worked.runtimeEvidence}`));
+      example.append(make('p','ref-example-status',worked.validationStatus==='executed_sqlite_with_fixture'?'Executed with synthetic SQLite fixture (not yet PostgreSQL-certified).':worked.validationStatus==='executed_python_with_fixture'?'Executed with synthetic Python/pandas fixture (check real-data semantics).':worked.validationStatus==='executed_sqlite'?'Executed successfully against a synthetic SQLite fixture; PostgreSQL-specific compatibility not established.':worked.validationStatus==='executed_python'?'Executed successfully in a synthetic local Python/pandas fixture; business correctness still requires review.':worked.validationStatus==='sql_not_portable_or_missing_fixture'||worked.validationStatus==='python_error_or_missing_fixture'?'Execution attempted but failed because of runtime compatibility, missing sample fields or other errors.': 'Guided example — not runtime-executed or independently verified.'));
+      if (worked.steps) example.append(make('p', 'ref-example-steps', `Steps: ${worked.steps}`));
+    } else {
+      example.append(make('p', 'ref-example-note', 'Use a small synthetic dataset to verify this expression before applying it to real data. No verified sample output is provided for this entry.'));
+    }
+    $('referenceDialogVerify').textContent = row.verify || 'Recalculate a small sample independently, check row counts and data types, then test an edge case before reusing this code.';
+    const practice = $('referenceDialogPractice');
+    const practiceGroups = ['SQL','Excel','Python'];
+    practice.hidden = !practiceGroups.includes(row.group);
+    if (!practice.hidden) practice.href = `practice.html?subject=${encodeURIComponent(row.group.toLowerCase())}`;
+    const related = $('referenceDialogRelated');
+    related.replaceChildren();
+    const peers = rows.filter(item => item !== row && item.group === row.group).slice(0, 3);
+    if (peers.length) {
+      related.append(make('h3', '', 'Related examples'));
+      peers.forEach(item => {
+        const button = make('button', 'ref-related-item', item.title);
+        button.type = 'button';
+        button.addEventListener('click', () => openDialog(item, previousFocus));
+        related.append(button);
+      });
+    }
+
     const docs = $('referenceDialogDocs');
     docs.hidden = !row.link;
     if (row.link) docs.href = row.link;
@@ -130,6 +221,7 @@
       const key = keyOf(row);
       if (bookmarks.has(key)) bookmarks.delete(key); else bookmarks.add(key);
       persist();
+      syncBookmark(key, bookmarks.has(key));
       render();
       showToast(bookmarks.has(key) ? 'Example saved' : 'Removed from saved examples');
     });
@@ -155,7 +247,7 @@
       (group === 'All' || row.group === group) &&
       (difficulty === 'All' || row.level === difficulty) &&
       (!savedOnly || bookmarks.has(keyOf(row))) &&
-      (!query || [row.title, row.meaning, row.code, row.watch, row.group, row.level].join(' ').toLowerCase().includes(query))
+      (!query || [row.title, row.meaning, row.code, row.watch, row.group, row.level, row.verify || '', row.keywords || ''].join(' ').toLowerCase().includes(query))
     );
     const pages = Math.max(1, Math.ceil(matches.length / PAGE_SIZE));
     page = Math.min(Math.max(1, page), pages);
@@ -199,4 +291,5 @@
   if (params.has('q')) search.value = params.get('q').slice(0, 150);
   if (params.has('group') && ['Excel','SQL','DAX','Power Query','Python','Power Query M'].includes(params.get('group'))) category.value = params.get('group');
   render();
+  void initialiseCloud();
 })();

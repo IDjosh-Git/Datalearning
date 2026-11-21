@@ -1,0 +1,15 @@
+
+.ref-example-data{border:1px solid var(--bw-border, #E8E1D8);border-radius:12px;padding:12px;margin:8px 0 18px}
+.ref-example-data pre{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.5}
+.ref-example-result{font-weight:750;margin:8px 0 0}
+.ref-example-note{opacity:.8;line-height:1.55}
+.ref-related{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.ref-related h3{flex-basis:100%;margin:0}
+.ref-related-item{border:1px solid currentColor;border-radius:10px;padding:8px 12px;background:transparent;color:inherit;cursor:pointer}
+.ref-related-item:focus-visible,.ref-practice-link:focus-visible{outline:3px solid currentColor;outline-offset:3px}
+.ref-practice-link[hidden]{display:none!important}
+@media(max-width:640px){.dl-lib-dialog-footer>div{display:flex;flex-wrap:wrap;gap:8px}.ref-practice-link{min-height:42px;display:inline-flex;align-items:center}}
+
+.ref-sync-status{font-size:.85rem;opacity:.82;margin:12px 0;}
+
+.ref-example-steps{font-size:.9rem;line-height:1.55;margin:10px 0 0;opacity:.88}

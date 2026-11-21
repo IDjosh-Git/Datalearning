@@ -14,7 +14,7 @@ for (const token of ['function masteryCourseSelection()', 'if(!slug&&rawWeek===\
 assert(quiz.includes('mastery-exam-bank.js') && quiz.includes('mastery-assessment.css'));
 for (const key of ['.za-mastery-course-grid', '.za-mastery-launch', '.za-mastery-course-card:focus-visible', '.za-mastery-switch', '@media(max-width:650px)']) assert(mastery.includes(key), `Missing premium exam style ${key}`);
 for (const key of ['justify-items:center', 'grid-template-columns:minmax(0,1fr)!important', 'text-align:center', 'max-width:none!important']) assert(reference.includes(key), `Reference Library title must remain centered: ${key}`);
-assert(academy.includes("${[\'python\',\'ai\'].includes(slug)?\'\':deepDive}"), 'Python/AI should not render redundant end-of-course career links');
+assert(academy.includes('zaCareerBridge'), 'Career bridge must remain available where relevant');
 assert(practice.includes('practice-arena-premium-final.css') && !practice.includes('arena-mobile-depth.js'));
 assert(!practice.includes('practice-arena-refined.css') && !practice.includes('practice-arena-studio-premium.css'));
 assert(arena.includes('#practiceDetail[data-active-editor="SQL"] #practiceCheck{display:none!important;}'), 'Duplicate SQL Run Query must be hidden');

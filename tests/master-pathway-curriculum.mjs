@@ -26,7 +26,7 @@ assert.equal(context.window.DALP_MASTER_PATHWAY.modules.length,31);
 const catalog=read('career-path.html');
 for(const x of ['id="masterLearningPath"','master-pathway-data.js','master-pathway.js','master-pathway.css'])assert(catalog.includes(x),`Catalog missing ${x}`);
 const renderer=read('assets/scripts/master-pathway.js');
-for(const x of ['data-level','aria-pressed','data-jump-module','caseStudy','microProject','modelAnswer','prerequisites','filter(m)','aria-live','Collapse all','dlp-guided-grid','courseCard','dlp-related-links'])assert(renderer.includes(x),`Pathway explorer missing ${x}`);
+for(const x of ['data-level','aria-pressed','data-jump-module','caseStudy','microProject','modelAnswer','prerequisites','filter(m)','aria-live','Collapse all','dlp-library-navigation','courseLinks','dlp-related-links'])assert(renderer.includes(x),`Pathway explorer missing ${x}`);
 const app=read('assets/scripts/academy-app.js');
 for(const slug of ['introduction','excel','sql','powerbi','tableau','powerquery','statistics']){
  const link=data.courseBridges[slug];assert(link.length>=3&&link.every(id=>codes.has(id)));

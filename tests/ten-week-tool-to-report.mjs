@@ -17,8 +17,8 @@ let count=0, words=0;
 for(const slug of ordered){
  const weeks=modules[slug];assert.equal(weeks.length,10,`${slug} requires a 10-week progression`);
  const first=weeks[0].title.toLowerCase();assert(/workspace|environment|interface|databases|python|tools|finding|discovering|analyst/.test(first),`${slug} must orient tool beginners`);
- assert.match(weeks[7].title.toLowerCase(),/dashboard|report|layout|reporting|planning/,`${slug} week 8 should teach report/dashboard building`);
- assert.match(weeks[8].title.toLowerCase(),/present|report|optimis|review|pipeline|publish|story|explain|writing|reading|hypothesis/,`${slug} week 9 should teach communication / handover`);
+ assert.match(weeks[7].title.toLowerCase(),/dashboard|report|layout|reporting|planning|storytell/,`${slug} week 8 should teach report/dashboard building`);
+ assert.match(weeks[8].title.toLowerCase(),/present|report|optimis|review|pipeline|publish|story|explain|writing|reading|hypothesis|governance/,`${slug} week 9 should teach communication / handover`);
  assert.match(weeks[9].title.toLowerCase(),/capstone|portfolio/,`${slug} week 10 must be a project`);
  assert.equal(media[slug].length,10);
  const page=read(`courses/${slug}.html`);

@@ -40,7 +40,13 @@
      toggleSubmit();notice('Unable to connect to the learning platform. Please retry.','warning',true);return false;
    }
    try{
-     // getSession identifies an ordinary signed-out visitor; getUser then verifies an existing session with Supabase Auth.
+     // Supabase is configured with persistSession:false: its session is restored
+     // asynchronously from the secure hosting cookie. Wait for that restoration
+     // before deciding that an already signed-in learner is signed out.
+     await Promise.resolve(window.DALP_AUTH_RESTORE).catch(error=>{
+       console.warn('Capstone session restoration could not finish',error);
+     });
+     if(id!==refreshId||selectedCourse!==course)return false;
      const {data:sessionData,error:sessionError}=await db.auth.getSession();
      if(id!==refreshId||selectedCourse!==course)return false;
      if(sessionError&&!missingSession(sessionError))throw sessionError;

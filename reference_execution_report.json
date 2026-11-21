@@ -1,0 +1,590 @@
+[
+  {
+    "group": "SQL",
+    "title": "SELECT / inspect the table",
+    "status": "executed_sqlite",
+    "detail": "3 rows sampled"
+  },
+  {
+    "group": "SQL",
+    "title": "WHERE / completed orders",
+    "status": "executed_sqlite",
+    "detail": "0 rows sampled"
+  },
+  {
+    "group": "SQL",
+    "title": "ORDER BY / stable ranking",
+    "status": "executed_sqlite",
+    "detail": "3 rows sampled"
+  },
+  {
+    "group": "SQL",
+    "title": "GROUP BY / revenue by region",
+    "status": "executed_sqlite",
+    "detail": "1 rows sampled"
+  },
+  {
+    "group": "SQL",
+    "title": "HAVING / filter groups",
+    "status": "executed_sqlite",
+    "detail": "0 rows sampled"
+  },
+  {
+    "group": "SQL",
+    "title": "INNER JOIN / bring in customers",
+    "status": "executed_sqlite",
+    "detail": "3 rows sampled"
+  },
+  {
+    "group": "SQL",
+    "title": "LEFT JOIN / find missing matches",
+    "status": "executed_sqlite",
+    "detail": "0 rows sampled"
+  },
+  {
+    "group": "SQL",
+    "title": "CASE / segment by value",
+    "status": "executed_sqlite",
+    "detail": "3 rows sampled"
+  },
+  {
+    "group": "SQL",
+    "title": "CTE / readable query",
+    "status": "executed_sqlite",
+    "detail": "1 rows sampled"
+  },
+  {
+    "group": "SQL",
+    "title": "ROW_NUMBER / latest order per customer",
+    "status": "executed_sqlite",
+    "detail": "2 rows sampled"
+  },
+  {
+    "group": "SQL",
+    "title": "LAG / previous month revenue",
+    "status": "executed_sqlite",
+    "detail": "1 rows sampled"
+  },
+  {
+    "group": "SQL",
+    "title": "COUNT DISTINCT / unique buyers",
+    "status": "executed_sqlite",
+    "detail": "1 rows sampled"
+  },
+  {
+    "group": "SQL",
+    "title": "SQLite date grouping",
+    "status": "executed_sqlite",
+    "detail": "1 rows sampled"
+  },
+  {
+    "group": "SQL",
+    "title": "NULL handling / COALESCE",
+    "status": "executed_sqlite",
+    "detail": "3 rows sampled"
+  },
+  {
+    "group": "SQL",
+    "title": "EXPLAIN QUERY PLAN / performance",
+    "status": "executed_sqlite",
+    "detail": "1 rows sampled"
+  },
+  {
+    "group": "SQL",
+    "title": "Validation / join row counts",
+    "status": "executed_sqlite",
+    "detail": "1 rows sampled"
+  },
+  {
+    "group": "SQL",
+    "title": "Revenue reconciliation",
+    "status": "executed_sqlite",
+    "detail": "1 rows sampled"
+  },
+  {
+    "group": "SQL",
+    "title": "CASE sales band",
+    "status": "executed_sqlite",
+    "detail": "3 rows sampled"
+  },
+  {
+    "group": "SQL",
+    "title": "NULL-safe revenue",
+    "status": "executed_sqlite",
+    "detail": "1 rows sampled"
+  },
+  {
+    "group": "SQL",
+    "title": "COUNT distinct customers",
+    "status": "executed_sqlite",
+    "detail": "1 rows sampled"
+  },
+  {
+    "group": "SQL",
+    "title": "CTE monthly revenue",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such function: DATE_TRUNC"
+  },
+  {
+    "group": "SQL",
+    "title": "ROW_NUMBER latest order",
+    "status": "executed_sqlite",
+    "detail": "3 rows sampled"
+  },
+  {
+    "group": "SQL",
+    "title": "Running revenue window",
+    "status": "executed_sqlite",
+    "detail": "2 rows sampled"
+  },
+  {
+    "group": "SQL",
+    "title": "LAG month-over-month",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such function: DATE_TRUNC"
+  },
+  {
+    "group": "SQL",
+    "title": "HAVING significant regions",
+    "status": "executed_sqlite",
+    "detail": "0 rows sampled"
+  },
+  {
+    "group": "SQL",
+    "title": "Duplicate order identifiers",
+    "status": "executed_sqlite",
+    "detail": "0 rows sampled"
+  },
+  {
+    "group": "SQL",
+    "title": "Anti join unmatched products",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: o.product_id"
+  },
+  {
+    "group": "SQL",
+    "title": "Conversion rate by region",
+    "status": "executed_sqlite",
+    "detail": "2 rows sampled"
+  },
+  {
+    "group": "SQL",
+    "title": "Top 3 products in each region",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: product_id"
+  },
+  {
+    "group": "SQL",
+    "title": "Gross Sales for North by region",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: gross_sales"
+  },
+  {
+    "group": "SQL",
+    "title": "Discount Amount for North by region",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: discount_amount"
+  },
+  {
+    "group": "SQL",
+    "title": "Order Value for North by region",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: order_value"
+  },
+  {
+    "group": "SQL",
+    "title": "Net Revenue for Online by channel",
+    "status": "executed_sqlite",
+    "detail": "1 rows sampled"
+  },
+  {
+    "group": "SQL",
+    "title": "Units Sold for Online by channel",
+    "status": "executed_sqlite",
+    "detail": "1 rows sampled"
+  },
+  {
+    "group": "SQL",
+    "title": "Refund Amount for Online by channel",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: refund_amount"
+  },
+  {
+    "group": "SQL",
+    "title": "Profit for Completed by status",
+    "status": "executed_sqlite",
+    "detail": "1 rows sampled"
+  },
+  {
+    "group": "SQL",
+    "title": "Tax Amount for Completed by status",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: tax_amount"
+  },
+  {
+    "group": "SQL",
+    "title": "Cost for Electronics by category",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: cost"
+  },
+  {
+    "group": "SQL",
+    "title": "Shipping Cost for Electronics by category",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: shipping_cost"
+  },
+  {
+    "group": "SQL",
+    "title": "Gross Sales for Ada by sales rep",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: gross_sales"
+  },
+  {
+    "group": "SQL",
+    "title": "Discount Amount for Ada by sales rep",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: discount_amount"
+  },
+  {
+    "group": "SQL",
+    "title": "Order Value for Ada by sales rep",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: order_value"
+  },
+  {
+    "group": "SQL",
+    "title": "Net Revenue for Nigeria by country",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: country"
+  },
+  {
+    "group": "SQL",
+    "title": "Units Sold for Nigeria by country",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: country"
+  },
+  {
+    "group": "SQL",
+    "title": "Refund Amount for Nigeria by country",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: refund_amount"
+  },
+  {
+    "group": "SQL",
+    "title": "Profit for Retail by segment",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: segment"
+  },
+  {
+    "group": "SQL",
+    "title": "Tax Amount for Retail by segment",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: tax_amount"
+  },
+  {
+    "group": "SQL",
+    "title": "Cost for Lagos by warehouse",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: cost"
+  },
+  {
+    "group": "SQL",
+    "title": "Shipping Cost for Lagos by warehouse",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: shipping_cost"
+  },
+  {
+    "group": "SQL",
+    "title": "Gross Sales for NGN by currency",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: gross_sales"
+  },
+  {
+    "group": "SQL",
+    "title": "Discount Amount for NGN by currency",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: discount_amount"
+  },
+  {
+    "group": "SQL",
+    "title": "Order Value for NGN by currency",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: order_value"
+  },
+  {
+    "group": "SQL",
+    "title": "Net Revenue for Card by payment method",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: payment_method"
+  },
+  {
+    "group": "SQL",
+    "title": "Units Sold for Card by payment method",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: payment_method"
+  },
+  {
+    "group": "SQL",
+    "title": "Refund Amount for Card by payment method",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: refund_amount"
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze net revenue across region",
+    "status": "executed_sqlite",
+    "detail": "2 rows sampled"
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze units sold across region",
+    "status": "executed_sqlite",
+    "detail": "2 rows sampled"
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze refund amount across region",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: refund_amount"
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze profit across channel",
+    "status": "executed_sqlite",
+    "detail": "2 rows sampled"
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze tax amount across channel",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: tax_amount"
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze cost across status",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: cost"
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze shipping cost across status",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: shipping_cost"
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze gross sales across category",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: gross_sales"
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze discount amount across category",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: discount_amount"
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze order value across category",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: order_value"
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze net revenue across sales rep",
+    "status": "executed_sqlite",
+    "detail": "2 rows sampled"
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze units sold across sales rep",
+    "status": "executed_sqlite",
+    "detail": "2 rows sampled"
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze refund amount across sales rep",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: refund_amount"
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze profit across country",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: country"
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze tax amount across country",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: country"
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze cost across segment",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: segment"
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze shipping cost across segment",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: segment"
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze gross sales across warehouse",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: warehouse"
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze discount amount across warehouse",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: warehouse"
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze order value across warehouse",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: warehouse"
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze net revenue across currency",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: currency"
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze units sold across currency",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: currency"
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze refund amount across currency",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: currency"
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze profit across payment method",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: payment_method"
+  },
+  {
+    "group": "SQL",
+    "title": "SQL: Analyze tax amount across payment method",
+    "status": "sql_not_portable_or_missing_fixture",
+    "detail": "no such column: payment_method"
+  },
+  {
+    "group": "Python",
+    "title": "Variables: calculate revenue",
+    "status": "executed_python",
+    "detail": "1000"
+  },
+  {
+    "group": "Python",
+    "title": "Reusable function for net sales",
+    "status": "executed_python",
+    "detail": "4050.0"
+  },
+  {
+    "group": "Python",
+    "title": "read_csv: import a dataset",
+    "status": "executed_python",
+    "detail": "6-11-02  South  ...       130         0      0\n2      O03  2026-11-03  North  ...        30        50     20\n\n[3 rows x 15 columns]\n(3, 15)"
+  },
+  {
+    "group": "Python",
+    "title": "Data types: inspect columns",
+    "status": "executed_python",
+    "detail": "3 non-null      int64  \n 14  profit        3 non-null      int64  \ndtypes: float64(1), int64(5), object(9)\nmemory usage: 492.0+ bytes\nNone"
+  },
+  {
+    "group": "Python",
+    "title": "Missing values: audit nulls",
+    "status": "executed_python",
+    "detail": "Series([], dtype: int64)"
+  },
+  {
+    "group": "Python",
+    "title": "Text cleaning: strip whitespace",
+    "status": "executed_python",
+    "detail": ""
+  },
+  {
+    "group": "Python",
+    "title": "to_numeric: convert price safely",
+    "status": "executed_python",
+    "detail": "on, status, customer_id, product, category, channel, sales_rep, quantity, unit_price, discount_pct, unit_cost, net_sales, profit]\nIndex: []"
+  },
+  {
+    "group": "Python",
+    "title": "Duplicates: check business keys",
+    "status": "executed_python",
+    "detail": "on, status, customer_id, product, category, channel, sales_rep, quantity, unit_price, discount_pct, unit_cost, net_sales, profit]\nIndex: []"
+  },
+  {
+    "group": "Python",
+    "title": "Filtering completed orders",
+    "status": "executed_python",
+    "detail": ""
+  },
+  {
+    "group": "Python",
+    "title": "groupby: revenue by region",
+    "status": "python_error_or_missing_fixture",
+    "detail": "ine 5, in <module>\n    completed['revenue'] = completed['quantity'] * completed['unit_price']\n                           ^^^^^^^^^\nNameError: name 'completed' is not defined. Did you mean: 'complex'?"
+  },
+  {
+    "group": "Python",
+    "title": "merge: safe customer lookup",
+    "status": "python_error_or_missing_fixture",
+    "detail": "ders.merge(customers[['customer_id','segment']], on='customer_id', how='left', validate='many_to_one', indicator=True)\n                            ^^^^^^^^^\nNameError: name 'customers' is not defined"
+  },
+  {
+    "group": "Python",
+    "title": "Dates: group into months",
+    "status": "executed_python",
+    "detail": ""
+  },
+  {
+    "group": "Python",
+    "title": "pivot_table: report by region",
+    "status": "python_error_or_missing_fixture",
+    "detail": ",\n    ...<9 lines>...\n        sort,\n    )\n  File \"/opt/pyvenv/lib/python3.13/site-packages/pandas/core/reshape/pivot.py\", line 148, in __internal_pivot_table\n    raise KeyError(i)\nKeyError: 'revenue'"
+  },
+  {
+    "group": "Python",
+    "title": "Rank regions by KPI",
+    "status": "python_error_or_missing_fixture",
+    "detail": "string>\", line 5, in <module>\n    region_kpis['rank'] = region_kpis['revenue'].rank(ascending=False, method='dense')\n                          ^^^^^^^^^^^\nNameError: name 'region_kpis' is not defined"
+  },
+  {
+    "group": "Python",
+    "title": "plot: build a simple KPI chart",
+    "status": "python_error_or_missing_fixture",
+    "detail": "call last):\n  File \"<string>\", line 6, in <module>\n    region_kpis.sort_values('revenue').plot.barh(x='region', y='revenue', legend=False)\n    ^^^^^^^^^^^\nNameError: name 'region_kpis' is not defined"
+  },
+  {
+    "group": "Python",
+    "title": "Dashboard preparation: KPI summary",
+    "status": "python_error_or_missing_fixture",
+    "detail": "File \"<string>\", line 6, in <module>\n    'total_revenue': float(completed['revenue'].sum()),\n                           ^^^^^^^^^\nNameError: name 'completed' is not defined. Did you mean: 'complex'?"
+  },
+  {
+    "group": "Python",
+    "title": "Report export: write an Excel workbook",
+    "status": "python_error_or_missing_fixture",
+    "detail": "(most recent call last):\n  File \"<string>\", line 6, in <module>\n    region_kpis.to_excel(writer, sheet_name='Regional KPIs', index=False)\n    ^^^^^^^^^^^\nNameError: name 'region_kpis' is not defined"
+  },
+  {
+    "group": "Python",
+    "title": "Pipeline: verify required fields",
+    "status": "executed_python",
+    "detail": ""
+  }
+]

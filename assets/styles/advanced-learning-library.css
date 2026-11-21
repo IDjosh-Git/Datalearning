@@ -1,0 +1,8 @@
+
+/* Distinct specialist library navigation; career planning remains in Career Path Explorer. */
+.dlp-library-navigation { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin:22px 0 30px; }
+.dlp-library-navigation a { display:flex; flex-direction:column; gap:6px; padding:18px; border:1px solid var(--bw-border, #E8E1D8); border-radius:16px; text-decoration:none; background:rgba(255,255,255,.055); color:inherit; }
+.dlp-library-navigation a strong { font-size:1rem; font-weight:800; }
+.dlp-library-navigation a span { font-size:.87rem; opacity:.8; }
+.dlp-library-navigation a:hover, .dlp-library-navigation a:focus-visible { border-color:currentColor; }
+@media(max-width:680px){.dlp-library-navigation{grid-template-columns:1fr;gap:9px}.dlp-library-navigation a{padding:14px 16px}}

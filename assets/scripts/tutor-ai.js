@@ -6,7 +6,10 @@
  const status=$('aiStatus'),note=$('chatNote'),followups=$('tutorFollowups'),send=$('sendQuestion'),cancel=$('cancelTutor');
  const privacy=$('tutorPrivacy');
  let enabled=false,mode='offline',provider='AI',model='',history=[],controller=null,lastPrompt='';
- const MAX_HISTORY=6;
+ const MAX_HISTORY=6;let cloudReady=false;
+ async function restoreCloud(){try{await Promise.resolve(window.DALP_AUTH_RESTORE).catch(()=>{});const r=await fetch('/api/ai-history',{credentials:'same-origin',cache:'no-store'});if(!r.ok)return;const data=await r.json();cloudReady=true;if(Array.isArray(data.messages)){history=data.messages.filter(m=>['user','assistant'].includes(m.role)&&typeof m.content==='string').slice(-40);if(history.length){for(const m of history)addBubble(m.content,m.role,m.role==='assistant'?'Saved AI response':'');statusText('Account conversation restored.')}}}catch{cloudReady=false}}
+ async function saveCloud(){if(!cloudReady)return;try{await fetch('/api/ai-history',{method:'PUT',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:history.slice(-40)})})}catch{statusText('Could not save AI history')}}
+ async function clearCloud(){if(!cloudReady)return;try{await fetch('/api/ai-history',{method:'DELETE',credentials:'same-origin',headers:{'Content-Type':'application/json'}})}catch{statusText('Could not clear AI history')}}
  const safeText=(node,str)=>node.append(document.createTextNode(str));
  function statusText(message){status.textContent=message}
  function updateMode(){
@@ -14,7 +17,7 @@
   live.disabled=!enabled;
   help.textContent=mode==='live'?`${provider} · ${model} · account sign-in required. Usage limits apply.`:enabled?`Offline knowledge guide. Switch to ${provider} for live questions.`:'Live AI is not set up. The built-in knowledge guide remains available.';
   statusText(mode==='live'?`Live AI · ${provider}`:'Offline guide · ready');
-  note.textContent=mode==='live'?'Enter to send · Shift+Enter for a new line. Messages stay in this tab; responses are AI-generated.':'Enter to send · Shift+Enter for a new line. Offline knowledge progress syncs to Supabase when signed in.';
+  note.textContent=mode==='live'?'Enter to send · Shift+Enter for a new line. Conversations sync privately to your account; responses stream as they arrive.':'Enter to send · Shift+Enter for a new line. Offline knowledge progress syncs to Supabase when signed in.';
   if(privacy)privacy.firstChild.textContent=mode==='live'?`Live AI sends your question and up to ${MAX_HISTORY} recent messages to ${provider}. Provider retention and processing policies apply. `:'Offline guide answers do not send your question to an AI provider. ';
   const policy=$('tutorProviderPrivacy');if(policy){policy.hidden=mode!=='live';policy.href=provider==='OpenAI'?'https://developers.openai.com/api/docs/guides/your-data':'https://console.groq.com/docs/your-data';}
   followups.hidden=mode!=='live'||!history.some(x=>x.role==='assistant');
@@ -30,7 +33,7 @@
  function newMode(value){
   if(value==='live'&&!enabled)return;
   if(controller)controller.abort();
-  mode=value;history=[];followups.hidden=true;
+  mode=value;followups.hidden=true;
   // Avoid accidentally forwarding a prior offline exercise as live AI conversation context.
   updateMode();
  }
@@ -55,17 +58,22 @@
   setBusy(true);
   const waiting=addBubble('Working through your question…','assistant','AI tutor · generating');waiting.classList.add('tutor-loading');
   try{
-   const response=await fetch('/api/tutor',{method:'POST',headers:{'Content-Type':'application/json'},credentials:'same-origin',cache:'no-store',body:JSON.stringify({question:original,topic:topic.value,history:historyAtStart}),signal});
-   const data=await response.json().catch(()=>({}));
-   if(!response.ok)throw Error(typeof data.error==='string'?data.error:'The request could not be completed.');
-   if(typeof data.answer!=='string'||!data.answer.trim())throw Error('No answer was returned. Please retry.');
-   waiting.remove();addBubble(original,'user');addBubble(data.answer,'assistant',`${provider} · AI explanation`);
-   history=[...history,{role:'user',content:original.slice(0,900)},{role:'assistant',content:data.answer.slice(0,900)}].slice(-MAX_HISTORY);
+   const response=await fetch('/api/tutor',{method:'POST',headers:{'Content-Type':'application/json','Accept':'text/event-stream'},credentials:'same-origin',cache:'no-store',body:JSON.stringify({stream:true,question:original,topic:topic.value,history:historyAtStart}),signal});
+   if(!response.ok){const data=await response.json().catch(()=>({}));throw Error(data.error||'The request could not be completed.')}
+   if(!response.body)throw Error('Streaming is not supported by the connection.');
+   const answerNode=waiting.querySelector('.tutor-answer');const reader=response.body.getReader();const decoder=new TextDecoder();let buffer='',answer='',finished=false;
+   while(true){const {done,value}=await reader.read();if(done)break;buffer+=decoder.decode(value,{stream:true});const frames=buffer.split(/\r?\n\r?\n/);buffer=frames.pop()||'';
+    for(const frame of frames){const type=frame.match(/^event:\s*(\S+)/m)?.[1];const line=frame.split(/\r?\n/).find(x=>x.startsWith('data:'));if(!line)continue;let data;try{data=JSON.parse(line.slice(5))}catch{continue}
+     if(type==='delta'&&typeof data.text==='string'){answer+=data.text;answerNode.replaceChildren();window.DALP_AI_RESPONSE.render(answerNode,answer);log.scrollTop=log.scrollHeight}
+     if(type==='done')finished=true;
+     if(type==='error')throw Error(data.error||'The stream was interrupted.');
+    }
+   }
+   if(!finished||!answer.trim())throw Error('The AI response was incomplete. Please retry.');
+   waiting.remove();addBubble(original,'user');addBubble(answer,'assistant',`${provider} · AI explanation`);
+   history=[...history,{role:'user',content:original.slice(0,5000)},{role:'assistant',content:answer.slice(0,5000)}].slice(-40);
+   await saveCloud();
    input.value='';lastPrompt='';
-   const related=Array.isArray(data.resources)?data.resources:[];
-   if(related.length){const resources=document.createElement('div');resources.className='tutor-ai-resources';safeText(resources,'Related learning resources: ');
-    for(const r of related){if(typeof r?.title!=='string'||typeof r?.href!=='string'||!/^\/(courses\/(introduction|excel|sql|powerbi|python|ai)\.html|practice\.html|reference\.html|capstone-guide\.html)$/.test(r.href))continue;
-     const a=document.createElement('a');a.textContent=r.title;a.href=r.href;resources.append(a)}log.append(resources)}
    followups.hidden=false;
   }catch(e){
    waiting.remove();if(signal.aborted){statusText('Generation stopped. Your draft is still available.');return}
@@ -75,7 +83,7 @@
  }
  form.addEventListener('submit',e=>{if(mode!=='live')return;e.preventDefault();e.stopImmediatePropagation();const question=input.value.trim();if(!question){input.focus();return}void sendAI(question)},true);
  cancel.addEventListener('click',()=>{if(controller){controller.abort();statusText('Request cancelled.');}},true);
- function afterNativeClear(){if(log.querySelectorAll('.bubble').length>1)return;history=[];controller?.abort();followups.hidden=true;}
+ function afterNativeClear(){if(log.querySelectorAll('.bubble').length>1)return;history=[];controller?.abort();followups.hidden=true;void clearCloud();}
  $('clearChat').addEventListener('click',afterNativeClear);
  $('topReset').addEventListener('click',afterNativeClear);
  followups.querySelectorAll('[data-followup]').forEach(b=>b.addEventListener('click',()=>{if(mode!=='live'||controller)return;const q=b.dataset.followup;input.value=q;void sendAI(q)}));
@@ -104,9 +112,9 @@
  }
  if(mobile.addEventListener)mobile.addEventListener('change',arrange);else mobile.addListener?.(arrange);
  arrange();
- // Clear is intentionally session-only: chat messages are never saved to window.DALP_STORAGE.
+ // Live AI history is stored only in account-owned Supabase rows, never browser storage.
  const qp=new URLSearchParams(location.search);if(qp.get('topic')&&[...topic.options].some(o=>o.value===qp.get('topic')))topic.value=qp.get('topic');
  if(qp.get('mode')==='hint'&&qp.get('q')){const input=input;if(input)input.value=('Use Socratic tutoring. Give one progressive hint at a time; do not reveal the full solution unless I explicitly request it. '+qp.get('q')).slice(0,2000);}
- topic.addEventListener('change',()=>{history=[];followups.hidden=true;statusText(`Context changed to ${topic.options[topic.selectedIndex].text}`)});
- void inspect();
+ topic.addEventListener('change',()=>{followups.hidden=true;statusText(`Context changed to ${topic.options[topic.selectedIndex].text}`)});
+ void inspect();void restoreCloud();
 })();

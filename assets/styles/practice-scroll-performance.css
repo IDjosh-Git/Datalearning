@@ -1,0 +1,8 @@
+/* Reduce costly paint effects on mobile without disabling editor scrolling. */
+@media (hover:none),(max-width:767px){
+body[data-responsive-page="practice"] .arena-hero-steps li,body[data-responsive-page="practice"] .hub-dialog,body[data-responsive-page="practice"] .hub-topbar,body[data-responsive-page="practice"] .pc-detail{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+body[data-responsive-page="practice"] .arena-subject-options button,body[data-responsive-page="practice"] .pc-item,body[data-responsive-page="practice"] .pc-detail{box-shadow:none!important}
+body[data-responsive-page="practice"] .ide-grid-scroll,body[data-responsive-page="practice"] .hub-cards{-webkit-overflow-scrolling:touch;touch-action:pan-y}
+body[data-responsive-page="practice"] .ide-grid-scroll{overscroll-behavior-y:auto}
+}
+@media(prefers-reduced-motion:reduce){body[data-responsive-page="practice"] *,body[data-responsive-page="practice"] *::before,body[data-responsive-page="practice"] *::after{scroll-behavior:auto!important}}

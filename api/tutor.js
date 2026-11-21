@@ -63,6 +63,40 @@ async function requestModel(config,question,history,topic){
  if(typeof answer!=='string'||!answer.trim()){const err=new Error('EMPTY_ANSWER');err.kind='empty';throw err}
  return answer.trim().slice(0,10000);
 }
+
+async function streamModel(config,question,history,topic,res){
+ const groq=config.name==='groq';
+ const instructions=instructionFor(topic)+appContextFor(question,topic);
+ const input=[...history,{role:'user',content:question}];
+ const payload=groq?{model:config.model,messages:[{role:'system',content:instructions},...input],max_completion_tokens:1200,stream:true}:{model:config.model,instructions,input,max_output_tokens:1000,store:false,stream:true};
+ const url=groq?'https://api.groq.com/openai/v1/chat/completions':'https://api.openai.com/v1/responses';
+ const upstream=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json',Authorization:`Bearer ${config.key}`},body:JSON.stringify(payload),signal:AbortSignal.timeout(55000)});
+ if(!upstream.ok||!upstream.body)throw Object.assign(new Error('PROVIDER_UNAVAILABLE'),{kind:upstream.status===429?'rate_limit':'provider'});
+ res.statusCode=200;
+ for(const [key,value] of Object.entries({'Content-Type':'text/event-stream; charset=utf-8','Cache-Control':'private, no-store, no-transform','X-Content-Type-Options':'nosniff','Vary':'Cookie, Origin','X-Accel-Buffering':'no'}))res.setHeader(key,value);
+ const emit=(type,value)=>res.write(`event: ${type}\ndata: ${JSON.stringify(value)}\n\n`);
+ const reader=upstream.body.getReader();const decoder=new TextDecoder();let buffer='',answer='';
+ try{
+  while(true){
+   const {done,value}=await reader.read();if(done)break;
+   buffer+=decoder.decode(value,{stream:true});
+   const frames=buffer.split(/\r?\n\r?\n/);buffer=frames.pop()||'';
+   for(const frame of frames){
+    const lines=frame.split(/\r?\n/).filter(x=>x.startsWith('data:')).map(x=>x.slice(5).trim());
+    if(!lines.length||lines[0]==='[DONE]')continue;
+    let event;try{event=JSON.parse(lines.join('\n'))}catch{continue}
+    let delta='';
+    if(groq)delta=event?.choices?.[0]?.delta?.content||'';
+    else if(event?.type==='response.output_text.delta')delta=event.delta||'';
+    if(typeof delta==='string'&&delta&&answer.length<10000){delta=delta.slice(0,10000-answer.length);answer+=delta;emit('delta',{text:delta})}
+   }
+  }
+  if(!answer.trim())emit('error',{error:'The provider returned no readable answer.'});
+  else emit('done',{provider:config.name});
+ }catch{emit('error',{error:'The response stream was interrupted.'})}
+ finally{await reader.cancel().catch(()=>{});res.end()}
+}
+
 export default async function handler(req,res){
  const config=provider();
  if(req.method==='GET')return reply(res,200,{aiEnabled:config.configured,mode:config.configured?'live':'reference',provider:config.name,model:config.configured?config.model:null,requiresSignIn:true,privacy:config.name==='groq'?'Questions sent to Groq when live AI is used.':'Questions sent to OpenAI when live AI is used.'});
@@ -80,6 +114,7 @@ export default async function handler(req,res){
  const topic=allowedTopics.includes(body.topic)?body.topic:'general';
  if(!allow(verified.userId))return reply(res,429,{error:'Tutor request limit reached. Try again later or use the offline guide.',code:'app_limit'},{'Retry-After':'60'});
  try{
+  if(body.stream===true)return await streamModel(config,question.trim(),history,topic,res);
   const answer=await requestModel(config,question.trim(),history,topic);
   const appResource=appResourceFor(question,topic);
   const resources=[...resourcesFor(topic).map(x=>({title:x.title,href:x.href}))];

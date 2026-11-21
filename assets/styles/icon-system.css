@@ -2,3 +2,9 @@
 .dl-icon{display:inline-block;width:1.25em;height:1.25em;flex:none;vertical-align:-.18em;stroke:currentColor;stroke-width:1.85;fill:none}
 .za-tool-icon .dl-icon,.dl-intro-icon .dl-icon,.dl-note-icon .dl-icon{width:1em;height:1em;vertical-align:middle}
 @media (prefers-reduced-motion:reduce){.dl-icon{transition:none!important;animation:none!important}}
+
+/* Unified icon sizes and contrast */
+.dl-icon{width:1.375em;height:1.375em;stroke-width:2.25;flex-shrink:0}
+.dlu-primary-links .dl-icon,.dlu-nav-panel .dl-icon,.dlu-header-actions .dl-icon,button .dl-icon,.za-btn .dl-icon{width:1.25rem;height:1.25rem;stroke-width:2.35}
+.dlu-dashboard-icon .dl-icon,.dlu-drawer-dash-icon .dl-icon{width:1.5rem;height:1.5rem;stroke-width:2.35}
+.za-tool-icon .dl-icon,.dl-intro-icon .dl-icon,.dl-note-icon .dl-icon{width:1.125em;height:1.125em}

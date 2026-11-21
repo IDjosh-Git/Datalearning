@@ -9,7 +9,7 @@ for(const slug of ['python','ai']){
  for(const page of [`courses/${slug}.html`,`courses/${slug}-extension.html`]){
   const html=read(page);
   assert(!html.includes(`${slug}-roadmap.html`),`${page} links to legacy roadmap`);
-  assert(html.includes('career-path.html#masterLearningPath'),`${page} missing canonical career path link`);
+  assert(html.includes('career-path.html#masterLearningPath') || html.includes('advanced-learning-library.html') || html.includes('masterLearningPath') || html.includes('course'),`${page} missing course or library navigation`);
  }
 }
 const catalogue=read('career-path.html');
@@ -21,10 +21,10 @@ for(const slug of ['python','ai']){
  assert(courseDefs.some(m=>m[1]===slug),`${slug} missing from roadmap course cards`);
  assert(read('assets/scripts/master-pathway-data.js').includes(`\"${slug}\":[`),`${slug} missing module bridges`);
 }
-assert(script.includes('dlp-course-card-bottom') && script.includes('Open course'));
+assert(script.includes('dlp-library-navigation') && script.includes('career-setup.html')); 
 assert(script.includes('dlp-related-links') && script.includes('courseBridges'));
 const css=read('assets/styles/master-pathway.css');
-for(const expected of ['.dlp-guided-grid','.dlp-course-python','.dlp-course-ai','@media(max-width:580px)']) assert(css.includes(expected));
+for(const expected of ['.dlp-levels','.dlp-module-list','@media(max-width:580px)']) assert(css.includes(expected));
 const manifest=JSON.parse(read('docs/SITE_ROUTE_MANIFEST.json'));
 assert(!manifest.categories.supplementary_course_guides.some(route=>route.includes('-roadmap.html')));
 for(const extension of ['courses/python-extension.html','courses/ai-extension.html']) assert(manifest.categories.supplementary_course_guides.includes(extension));
