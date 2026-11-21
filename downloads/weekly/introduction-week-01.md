@@ -1,4 +1,4 @@
-# Data Analysis · Week 01 · The data analyst's workspace and way of thinking
+# Data Analysis · Week 01 · Introduction to Data Analysis and the Analyst Workspace
 
 > DataLearning comprehensive practical lesson. Data is fictional. This worksheet supports the full in-app explanation and independent practice. Do not overwrite your raw source file.
 
@@ -49,7 +49,7 @@ Question: 'Which region had the largest decline in paid revenue this quarter?'
 Plan: data source → quality check → KPI → chart → explanation
 ```
 
-**How to interpret the output:** The data analyst's workspace and way of thinking begins with a practical objective: Learn the full analysis workflow and recognise the interfaces analysts commonly use before specialising. In Data Analysis, begin by understanding the workspace and the data rather than memorising a command. Business questions: start from the decision and identify a measurable outcome Tool roles: Excel handles small tables, SQL retrieves data, and BI tools show dashboards Practice these ideas on a small synthetic sample first. Notice where the tool shows inputs, intermediate results and errors; then describe in plain language what each operation does and what it does not prove. Keep original records separate from working calculations so you can trace any surprising result back to its source.
+**How to interpret the output:** Introduction to Data Analysis and the Analyst Workspace begins with a practical objective: Learn the full analysis workflow and recognise the interfaces analysts commonly use before specialising. In Data Analysis, begin by understanding the workspace and the data rather than memorising a command. Business questions: start from the decision and identify a measurable outcome Tool roles: Excel handles small tables, SQL retrieves data, and BI tools show dashboards Practice these ideas on a small synthetic sample first. Notice where the tool shows inputs, intermediate results and errors; then describe in plain language what each operation does and what it does not prove. Keep original records separate from working calculations so you can trace any surprising result back to its source.
 
 ## Business case study
 Business case: A new analyst is asked why last month's sales dipped and needs a safe, structured investigation plan. Your role is to deliver a result that a manager can trust and act upon, not merely a screenshot. First describe what records are included and excluded. Next perform the method described in this week, and record any changes to the source. Use the worked example as a starting point but test it with different values; finally communicate one relevant observation, one limitation and a follow-up.
@@ -72,3 +72,20 @@ Expected evidence: Your question names a metric, comparison period, audience and
 
 ---
 **Progress note:** Completing this worksheet is practice. Marking a week complete, passing an assessment and submitting an instructor-reviewed capstone are separate actions in DataLearning.
+
+## Before you begin: What is data analysis?
+Data are recorded facts such as quantities, prices and dates. Data analysis means asking a question, checking and organising those facts, calculating and interpreting results, then communicating what the evidence supports.
+
+Four questions analysts ask: descriptive (what happened?), diagnostic (why?), predictive (what might happen?) and prescriptive (what should we do?). An analyst defines metrics, verifies data, interprets findings and explains limitations.
+
+### First worked example
+A Lagos kiosk sells 2 notebooks at ₦1,500 and 3 pens at ₦500. Notebook revenue is ₦3,000; pen revenue is ₦1,500; total revenue is ₦4,500. Notebooks contribute more revenue in this example. This is not evidence of higher profit because costs were not supplied.
+
+### Try it
+Make your own three-product sales table. Calculate each revenue, check the total manually, and state one conclusion and one limitation.
+
+### Updated task
+Explain data and data analysis in your own words. Calculate both product revenues and total revenue, identify the larger revenue contributor, and write one business question that requires additional data.
+
+### Updated check
+Notebook revenue ₦3,000; pen revenue ₦1,500; total ₦4,500. Distinguish revenue from profit and explain that more transactions or costs would be needed to recommend inventory changes.

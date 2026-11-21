@@ -106,6 +106,7 @@
  arrange();
  // Clear is intentionally session-only: chat messages are never saved to window.DALP_STORAGE.
  const qp=new URLSearchParams(location.search);if(qp.get('topic')&&[...topic.options].some(o=>o.value===qp.get('topic')))topic.value=qp.get('topic');
+ if(qp.get('mode')==='hint'&&qp.get('q')){const input=input;if(input)input.value=('Use Socratic tutoring. Give one progressive hint at a time; do not reveal the full solution unless I explicitly request it. '+qp.get('q')).slice(0,2000);}
  topic.addEventListener('change',()=>{history=[];followups.hidden=true;statusText(`Context changed to ${topic.options[topic.selectedIndex].text}`)});
  void inspect();
 })();

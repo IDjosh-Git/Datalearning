@@ -19,8 +19,8 @@ for (const page of pages) {
   assert.equal(hits.length, 1, `${page} must use the current theme exactly once`);
   const links = [...html.matchAll(/<link\b[^>]*?href="([^"]+\.css(?:\?[^"]*)?)"[^>]*>/gi)].map(match => match[1]);
   assert(links.length > 0, `${page} must have styles`);
-  assert(links[links.length - 1].includes('responsive-quality-pass.css') || links[links.length - 1].includes('burnt-wood-theme.css') || (page === 'tutor.html' && links[links.length - 1].includes('ai-response-premium.css')) || (page === 'auth.html' && links[links.length - 1].includes('auth-entry-premium.css')) || (page === 'index.html' && links[links.length - 1].includes('home-premium-20261114.css')),
-    `${page}: canonical theme or isolated route-specific stylesheet must be last`);
+  assert(links[links.length - 1].includes('premium-color-system.css'),
+    `${page}: shared premium colour system must be the final stylesheet`);
   assert(!/#(?:F27329|254559|203F58|35637C|F9F7F6|6590A4|F2A675|2E4098|172848)(?![a-f\d])/i.test(html),
     `${page}: retired color remains in markup`);
 }

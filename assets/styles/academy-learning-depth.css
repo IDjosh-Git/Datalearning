@@ -32,3 +32,13 @@
 .za-learning-depth-next{margin:20px 0 0;padding:16px 20px;background:var(--bw-ivory);border-left:3px solid var(--bw-copper);border-radius:0 12px 12px 0;font-size:.88rem;color:#675D58;line-height:1.75}
 @media(max-width:1100px){.za-learning-concepts{grid-template-columns:1fr}.za-learning-concept{padding:18px}}
 @media(max-width:680px){.za-learning-depth{padding:20px 16px}.za-learning-interpretation{grid-template-columns:1fr}.za-learning-depth-worked{padding:15px;font-size:.78rem}.za-learning-concept{padding:16px}.za-learning-process li{padding:12px 2px}}
+
+/* Seven-stage instructional pathway, with full-width demonstrations and accessible mobile reading. */
+.za-teacher-journey{display:grid;gap:13px;margin:22px 0}
+.za-teacher-journey article{padding:20px 22px;background:#fff;border:1px solid #E8E1D8;border-radius:15px;border-left:4px solid var(--bw-copper,#C58A69)}
+.za-teacher-journey article:nth-child(3),.za-teacher-journey article:nth-child(6){background:#F7F3EA}
+.za-teacher-journey span{display:block;font-size:.7rem;font-weight:850;letter-spacing:.09em;color:var(--bw-burgundy,#770101)}
+.za-teacher-journey h4{margin:7px 0 10px;color:var(--bw-midnight,#023048);font-size:1rem}
+.za-teacher-journey p,.za-teacher-journey li{font-size:.91rem;line-height:1.8;color:#675D58;overflow-wrap:anywhere}
+.za-teacher-journey p{margin:8px 0}.za-teacher-journey ol{padding-left:1.5rem;margin:10px 0}.za-teacher-journey li{padding:5px 0}
+@media(max-width:680px){.za-teacher-journey article{padding:16px 15px}}

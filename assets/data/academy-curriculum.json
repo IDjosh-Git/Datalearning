@@ -2,58 +2,58 @@
   {
     "slug": "introduction",
     "title": "Data Analysis",
-    "tagline": "A complete analyst workflow: business question, trustworthy records, KPIs, visual evidence, dashboard and executive presentation.",
+    "tagline": "Start with what data and data analysis mean, learn the analytical process, then build trustworthy KPIs, visuals and business recommendations.",
     "icon": "compass",
     "number": "01",
     "weeks": [
       {
         "week": 1,
-        "title": "The data analyst's workspace and way of thinking",
-        "outcome": "Learn the full analysis workflow and recognise the interfaces analysts commonly use before specialising.",
-        "example": "Business example: A new analyst is asked why last month's sales dipped and needs a safe, structured investigation plan. Worked solution or syntax:\nQuestion: 'Which region had the largest decline in paid revenue this quarter?'\nPlan: data source → quality check → KPI → chart → explanation",
-        "exercise": "Write a focused business question and identify which tools and dataset fields can answer it.",
-        "solution": "Your question names a metric, comparison period, audience and decision that could follow.",
-        "pitfall": "Opening a dashboard tool before checking what is being measured and why.",
+        "title": "Introduction to Data Analysis and the Analyst Workspace",
+        "outcome": "Define data and data analysis, distinguish raw records from insights, explain the analyst role and four types of analytics, and complete a first guided sales investigation.",
+        "example": "A Lagos kiosk sells 2 notebooks at ₦1,500 each and 3 pens at ₦500 each. Revenue = (2 × 1,500) + (3 × 500) = ₦4,500. Notebooks generate ₦3,000 and pens ₦1,500. The notebook category contributes more revenue, but revenue alone does not establish profit.",
+        "exercise": "Explain data and data analysis in your own words. Calculate both product revenues and total revenue, identify the larger revenue contributor, and write one business question that requires additional data.",
+        "solution": "Notebook revenue ₦3,000; pen revenue ₦1,500; total ₦4,500. Distinguish revenue from profit and explain that more transactions or costs would be needed to recommend inventory changes.",
+        "pitfall": "Confusing data with insight, revenue with profit, or treating two example products as enough evidence to predict future demand.",
         "questions": [
           {
-            "q": "What is the correct starting action for this lesson?",
+            "q": "What is data analysis?",
             "choices": [
-              "Delete the raw dataset before reviewing it.",
-              "Start with a dashboard image and guess the source.",
-              "Open a spreadsheet or supplied dataset viewer, locate file tabs, fields and rows, and identify where Excel, SQL and BI fit."
-            ],
-            "answer": 2,
-            "why": "Open a spreadsheet or supplied dataset viewer, locate file tabs, fields and rows, and identify where Excel, SQL and BI fit. This reflects the actual Week 1 skill: Learn the full analysis workflow and recognise the interfaces analysts commonly use before specialising.. Your question names a metric, comparison period, audience and decision that could follow."
-          },
-          {
-            "q": "What would demonstrate a correct result?",
-            "choices": [
-              "An output copied from another tool without checking the source.",
-              "Your question names a metric, comparison period, audience and decision that could follow.",
-              "A visually appealing screenshot without verified calculations."
+              "Creating charts without checking source records",
+              "Examining and interpreting data to answer questions and support decisions",
+              "Copying numbers into a spreadsheet"
             ],
             "answer": 1,
-            "why": "Your question names a metric, comparison period, audience and decision that could follow. This reflects the actual Week 1 skill: Learn the full analysis workflow and recognise the interfaces analysts commonly use before specialising.. Your question names a metric, comparison period, audience and decision that could follow."
+            "why": "Data analysis includes defining the question, checking the data, examining patterns and explaining what findings mean."
           },
           {
-            "q": "Which mistake should be avoided?",
+            "q": "What is the kiosk total revenue?",
             "choices": [
-              "Opening a dashboard tool before checking what is being measured and why.",
-              "Documenting source data and confirming keys.",
-              "Checking results against an independent sample."
+              "₦3,000",
+              "₦4,500",
+              "₦5,000"
+            ],
+            "answer": 1,
+            "why": "2 × ₦1,500 + 3 × ₦500 = ₦4,500."
+          },
+          {
+            "q": "Which type of analytics asks why a result happened?",
+            "choices": [
+              "Descriptive",
+              "Diagnostic",
+              "Predictive"
+            ],
+            "answer": 1,
+            "why": "Diagnostic analysis investigates reasons behind an observed result; descriptive analysis describes what happened."
+          },
+          {
+            "q": "What can we safely conclude from the kiosk example?",
+            "choices": [
+              "Notebooks produced more revenue in the sample",
+              "Notebooks always have higher profit",
+              "Pens will sell less next month"
             ],
             "answer": 0,
-            "why": "Opening a dashboard tool before checking what is being measured and why. This reflects the actual Week 1 skill: Learn the full analysis workflow and recognise the interfaces analysts commonly use before specialising.. Your question names a metric, comparison period, audience and decision that could follow."
-          },
-          {
-            "q": "What practical task should you complete?",
-            "choices": [
-              "Read the lesson title only without testing the example.",
-              "Submit a generic description unrelated to the dataset.",
-              "Write a focused business question and identify which tools and dataset fields can answer it."
-            ],
-            "answer": 2,
-            "why": "Write a focused business question and identify which tools and dataset fields can answer it. This reflects the actual Week 1 skill: Learn the full analysis workflow and recognise the interfaces analysts commonly use before specialising.. Your question names a metric, comparison period, audience and decision that could follow."
+            "why": "The two sample calculations support only a revenue comparison, not profit or a forecast."
           }
         ]
       },

@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const read=p=>readFileSync(p,'utf8');
+const mastery=read('assets/scripts/mastery-feedback.js');
+const practical=read('assets/scripts/practical-evidence.js');
+const tutor=read('assets/scripts/tutor-ai.js');
+const coach=read('learning-coach.html');
+assert.match(mastery,/DALP_CLOUD_WORKSPACE\.persist\(STORAGE_KEY\)/);
+assert.match(mastery,/dalp:cloud-hydrated/);
+assert.match(mastery,/DALP_STORAGE/);
+assert.match(practical,/DALP_CLOUD_WORKSPACE\.persist\(key\(select\.value\)\)/);
+assert.match(practical,/not a grade/i);
+assert.match(coach,/id="practical-rubric"/);
+assert.match(coach,/practical-evidence\.js/);
+assert.match(tutor,/Socratic tutoring/);
+assert.match(tutor,/mode'\)==='hint'/);
+console.log('PASS mastery cloud state, practical evidence rubric, tutor progressive hint integration');

@@ -7,8 +7,8 @@
       "where": "Open Excel, choose Blank workbook, locate Home and Data ribbons, Name Box, formula bar, sheet tabs and Save As.",
       "topics": [
         {
-          "heading": "Workbook versus worksheet",
-          "explanation": "a workbook is the file and sheets organise different tables"
+          "heading": "Orientation: What is Excel and why do analysts use it?",
+          "explanation": "What is Excel and why do analysts use it?: A workbook contains worksheets; a cell stores a value or formula. Start with the grid, rows, columns and a small sales calculation before shortcuts or dashboards. Workbook versus worksheet: a workbook is the file and sheets organise different tables"
         },
         {
           "heading": "Cell addresses",
@@ -529,8 +529,8 @@
       "where": "Install or open Power BI Desktop, select a blank report and locate Home > Get Data, Transform Data, fields and visualizations panes.",
       "topics": [
         {
-          "heading": "Report view",
-          "explanation": "design the canvas that viewers will interact with"
+          "heading": "Orientation: What is Power BI and how does a report work?",
+          "explanation": "What is Power BI and how does a report work?: Power BI connects to data, transforms it, models relationships and presents measures in interactive reports. Distinguish source, model, measure and visual before exploring the interface. Report view: design the canvas that viewers will interact with"
         },
         {
           "heading": "Data view",
@@ -1051,8 +1051,8 @@
       "where": "Open the SQL Practice Arena or SQLite client; identify connection, schema browser, query editor, Run button and result grid.",
       "topics": [
         {
-          "heading": "Database versus table",
-          "explanation": "the database stores related tables and views"
+          "heading": "Orientation: What is SQL and what problem does it solve?",
+          "explanation": "What is SQL and what problem does it solve?: A relational database organises records into tables; SQL is a language for asking precise questions about those records. Explain table, row, column and query before writing syntax. Database versus table: the database stores related tables and views"
         },
         {
           "heading": "Columns and rows",
@@ -1573,8 +1573,8 @@
       "where": "Open the Python Practice Arena or Jupyter notebook; identify code cells, Run, output area, file browser and error traceback.",
       "topics": [
         {
-          "heading": "Interpreter",
-          "explanation": "executes Python expressions and statements in sequence"
+          "heading": "Orientation: What is Python and why use it for data analysis?",
+          "explanation": "What is Python and why use it for data analysis?: Python is a programming language used to automate repeatable analysis. Start with an input, a calculation and a printed output before notebooks, packages and pandas. Interpreter: executes Python expressions and statements in sequence"
         },
         {
           "heading": "Variables",
@@ -2095,8 +2095,8 @@
       "where": "Open the DataLearning AI Tutor or a permitted AI assistant; locate chat input, file upload capability, history, privacy options and response controls.",
       "topics": [
         {
-          "heading": "Assistant versus source",
-          "explanation": "a model predicts text and does not automatically know live company data"
+          "heading": "Orientation: What is AI and what can an analyst safely delegate?",
+          "explanation": "What is AI and what can an analyst safely delegate?: AI tools can draft, summarise and suggest calculations, but outputs require checking. Distinguish a prompt, generated response, source evidence and verified answer. Assistant versus source: a model predicts text and does not automatically know live company data"
         },
         {
           "heading": "Inputs",
@@ -2617,8 +2617,8 @@
       "where": "Open Tableau Public or Desktop, connect to a CSV, inspect the Data Source grid and create a new Worksheet.",
       "topics": [
         {
-          "heading": "Start page",
-          "explanation": "connects to files or authorised servers"
+          "heading": "Orientation: What is Tableau and what is a visual analysis?",
+          "explanation": "What is Tableau and what is a visual analysis?: Tableau connects data to visual marks. Explain dimension, measure, worksheet and dashboard with a tiny sales example before arranging shelves. Start page: connects to files or authorised servers"
         },
         {
           "heading": "Data pane",
@@ -3139,8 +3139,8 @@
       "where": "Open Excel > Data > Get Data or Power BI Desktop > Transform Data; locate Queries, Applied Steps and data preview.",
       "topics": [
         {
-          "heading": "Source connections",
-          "explanation": "determine where the file is read during refresh"
+          "heading": "Orientation: What is Power Query and why transform data?",
+          "explanation": "What is Power Query and why transform data?: Power Query records repeatable data-cleaning steps. Compare messy raw records with a cleaned output before introducing the query editor. Source connections: determine where the file is read during refresh"
         },
         {
           "heading": "Preview grid",
@@ -3661,8 +3661,8 @@
       "where": "Open Excel, inspect the Data tab and enable Analysis ToolPak when available; alternatively use pandas describe() in a notebook.",
       "topics": [
         {
-          "heading": "Measurement types",
-          "explanation": "categorical, ordinal and numeric variables require different summaries"
+          "heading": "Orientation: What is statistics and why does uncertainty matter?",
+          "explanation": "What is statistics and why does uncertainty matter?: Statistics describes variation and draws cautious conclusions from data. Begin with a small collection of sales values and distinguish a population from a sample. Measurement types: categorical, ordinal and numeric variables require different summaries"
         },
         {
           "heading": "Population versus sample",
@@ -4178,32 +4178,32 @@
   "introduction": [
     {
       "week": 1,
-      "title": "The data analyst's workspace and way of thinking",
-      "goal": "Learn the full analysis workflow and recognise the interfaces analysts commonly use before specialising.",
+      "title": "Introduction to Data Analysis and the Analyst Workspace",
+      "goal": "Define data and data analysis, distinguish raw records from insights, explain the analyst role and four types of analytics, and complete a first guided sales investigation.",
       "where": "Open a spreadsheet or supplied dataset viewer, locate file tabs, fields and rows, and identify where Excel, SQL and BI fit.",
       "topics": [
         {
-          "heading": "Business questions",
-          "explanation": "start from the decision and identify a measurable outcome"
+          "heading": "Orientation: What is data?",
+          "explanation": "What is data?: Data are recorded facts, such as a product, quantity, price, date or customer identifier. Data can be numbers, text, dates or categories. What is data analysis?: Data analysis is a systematic process of asking a question, collecting and checking records, organising and calculating, interpreting results, and communicating evidence for a decision. Why analyse data?: A business uses analysis to identify sales trends, compare performance, detect problems and choose actions with evidence rather than guesses. Four types of analytics: Descriptive asks what happened; diagnostic asks why; predictive estimates what may happen; prescriptive compares what actions to take. Forecasts and recommendations need more evidence than a tiny sample. Who is a data analyst?: An analyst translates stakeholder questions into measurable definitions, prepares reliable data, calculates and validates metrics, and communicates findings and limitations."
         },
         {
-          "heading": "Tool roles",
-          "explanation": "Excel handles small tables, SQL retrieves data, and BI tools show dashboards"
+          "heading": "The analysis process",
+          "explanation": "Ask → collect → inspect → clean → analyse → visualise → interpret → communicate → review. The process is iterative, not a one-way checklist."
         },
         {
-          "heading": "Data lifecycle",
-          "explanation": "collect, clean, analyse, visualise and communicate"
+          "heading": "Tools and their roles",
+          "explanation": "Excel can inspect and calculate; SQL retrieves and summarises database records; Power BI and Tableau support interactive reporting; Python can automate and analyse. A tool is a means, not the definition of analysis."
         },
         {
-          "heading": "Evidence",
-          "explanation": "distinguish observation, hypotheses and decisions."
+          "heading": "First guided investigation",
+          "explanation": "Use the kiosk example: identify the question, calculate each product revenue, reconcile the total and explain what cannot be inferred about profit or demand."
         }
       ],
-      "worked": "Question: 'Which region had the largest decline in paid revenue this quarter?'\nPlan: data source → quality check → KPI → chart → explanation",
-      "task": "Write a focused business question and identify which tools and dataset fields can answer it.",
-      "check": "Your question names a metric, comparison period, audience and decision that could follow.",
-      "trap": "Opening a dashboard tool before checking what is being measured and why.",
-      "business": "A new analyst is asked why last month's sales dipped and needs a safe, structured investigation plan.",
+      "worked": "A Lagos kiosk sells 2 notebooks at ₦1,500 each and 3 pens at ₦500 each. Revenue = (2 × 1,500) + (3 × 500) = ₦4,500. Notebooks generate ₦3,000 and pens ₦1,500. The notebook category contributes more revenue, but revenue alone does not establish profit.",
+      "task": "Explain data and data analysis in your own words. Calculate both product revenues and total revenue, identify the larger revenue contributor, and write one business question that requires additional data.",
+      "check": "Notebook revenue ₦3,000; pen revenue ₦1,500; total ₦4,500. Distinguish revenue from profit and explain that more transactions or costs would be needed to recommend inventory changes.",
+      "trap": "Confusing data with insight, revenue with profit, or treating two example products as enough evidence to predict future demand.",
+      "business": "A new learner first needs to understand how raw sales records become an answer to a real business question.",
       "slug": "introduction",
       "courseLabel": "Data Analysis",
       "stage": "Orientation",

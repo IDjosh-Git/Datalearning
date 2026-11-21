@@ -1,0 +1,13 @@
+/* DataLearning premium palette: shared visual layer, intentionally last. */
+:root{--dl-ink:#023048;--dl-paper:#F0EDDE;--dl-card:#FFFFFF;--dl-accent:#C58A69;--dl-accent-dark:#770101;--dl-danger:#770101;--dl-outline:#D9BFA4;--dl-focus:#023048;color-scheme:light}
+html{background:var(--dl-paper)}
+body{accent-color:var(--dl-ink)}
+:where(.za-page,.ps-page,.dl-page,.admin-page){--premium-ink:#023048;--premium-surface:#FFFFFF;--premium-canvas:#F0EDDE}
+:where(.za-page,.ps-page,.dl-page,.admin-page) :is(button,a,input,select,textarea):focus-visible{outline:3px solid var(--dl-focus);outline-offset:3px}
+:where(.za-page,.ps-page,.dl-page,.admin-page) :is(input,select,textarea){max-width:100%}
+:where(.za-page,.ps-page,.dl-page,.admin-page) :is(.za-card,.za-progress-card,.ps-card,.dl-card){border-color:rgba(2,48,72,.13)}
+/* Product artwork must not be tinted by theme filters or inherited icon colour. */
+img.dl-course-logo,img[src*="/icons/icon-excel.svg"],img[src*="/icons/icon-powerbi.svg"],img[src*="/icons/icon-python.svg"],img[src*="/icons/icon-sql.svg"],img[src*="/icons/icon-tableau.svg"],img[src*="/icons/icon-powerquery.svg"]{filter:none!important;mix-blend-mode:normal!important;object-fit:contain!important}
+:where(.za-card-icon,.ps-course-icon,.dl-brand-aside-mark,.dl-brand-hero-mark):has(img.dl-course-logo){isolation:isolate}
+@media(max-width:600px){:where(.za-page,.ps-page,.dl-page,.admin-page) :is(.za-card,.za-progress-card,.ps-card,.dl-card){min-width:0} :where(.za-page,.ps-page,.dl-page,.admin-page) :is(table,pre){max-width:100%} :where(.za-page,.ps-page,.dl-page,.admin-page) pre{overflow-x:auto}}
+@media(prefers-reduced-motion:reduce){:where(.za-page,.ps-page,.dl-page,.admin-page) *{scroll-behavior:auto!important}}

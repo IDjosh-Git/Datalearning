@@ -12,5 +12,5 @@ assert.match(finalCss,/overflow-x:auto!important/);
 assert.match(finalCss,/white-space:normal!important/);
 const at=html.indexOf('ai-response-premium.css');
 const lastStyle=html.lastIndexOf('<link');
-assert(at>0 && at>html.indexOf('tutor.css') && html.slice(lastStyle).includes('responsive-quality-pass.css'), 'Tutor response styling must follow old skins and shared responsive stylesheet must be last');
+assert(at>0 && at>html.indexOf('tutor.css') && html.slice(lastStyle).includes('premium-color-system.css') && html.includes('responsive-quality-pass.css'), 'Tutor response styling must follow old skins and shared responsive stylesheet must be last');
 console.log('PASS Tutor rich-text layout: inline emphasis, content-sized cards, responsive text and tables.');

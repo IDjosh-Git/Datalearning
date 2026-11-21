@@ -1,0 +1,5 @@
+/* Connected learning journey: progressive, responsive and accessible. */
+.dlp-learning-journey{display:flex;flex-wrap:wrap;align-items:center;gap:.65rem 1rem;margin:1.25rem 0;padding:1rem 1.15rem;background:#F7F3EA;border:1px solid #D9BFA4;border-radius:16px;color:#023048}
+.dlp-learning-journey strong{width:100%;font-weight:800}.dlp-learning-journey span{font-size:.88rem}.dlp-learning-journey a{font-weight:700;color:#770101;text-decoration:underline;text-underline-offset:3px}
+.dlp-related-courses p{line-height:1.6}.dlp-related-links{display:flex;flex-wrap:wrap;gap:.6rem}.dlp-related-links a{display:inline-flex;align-items:center;min-height:42px}
+@media(max-width:640px){.dlp-learning-journey{display:grid;gap:.65rem}.dlp-related-links{display:grid;grid-template-columns:1fr}.dlp-related-links a{width:100%}}

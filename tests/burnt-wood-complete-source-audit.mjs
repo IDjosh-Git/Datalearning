@@ -26,6 +26,8 @@ const rgb = new Set([...palette].filter(x=>x.length===6).map(x=>[
   parseInt(x.slice(0,2),16),parseInt(x.slice(2,4),16),parseInt(x.slice(4,6),16)
 ].join(',')));
 rgb.add('0,0,0');
+// Product artwork is deliberately exempt from the UI theme palette.
+const productIconPalette = new Set(['107c41','185c37','21a366','33c481','e6ad10','f2c811','f8d34f','ffe78b','306998','ffd43b','e97627','1f78b4','4e79a7','217346','a9d18e','c74634','00758f','f29111','50a5b5']);
 const issues=[];
 let colors=0;
 for (const file of files) {
@@ -37,7 +39,7 @@ for (const file of files) {
     if (hex.length===8) hex=hex.slice(0,6);
     if (hex.length!==6) continue; // e.g. #215 is an anchor, not a color.
     colors++;
-    if (!palette.has(hex)) issues.push(`${file}: #${match[1]}`);
+    if (!palette.has(hex) && !(file.startsWith('assets/icons/icon-') && productIconPalette.has(hex))) issues.push(`${file}: #${match[1]}`);
   }
   for (const match of source.matchAll(/\brgba?\(\s*(\d+)\s*[, ]\s*(\d+)\s*[, ]\s*(\d+)/gi)) {
     colors++;

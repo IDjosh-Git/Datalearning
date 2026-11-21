@@ -169,6 +169,7 @@
       // AI and Python use the same guided reading/steps structure as all other courses.
       const guide = window.DALP_GUIDED_LESSONS?.[slug]?.[week-1] || rebuiltModule?.guide;
       const media = window.DALP_WEEK_MEDIA?.[slug]?.[week-1];
+      const conceptDiagram = window.DALP_CONCEPT_DIAGRAMS?.[`${slug}:${week}`];
       const educator = window.DALP_EDUCATOR_DEPTH?.[slug]?.[week-1];
       const masterclassHtml = path.specialist ? (window.DALP_TEN_WEEK_UI?.renderSpecialist?.(rebuiltModule,base) || '') : (window.DALP_TEN_WEEK_UI?.renderCore?.(rebuiltModule,base) || '');
       const capstoneProjectHtml = week === 10 && !path.specialist ? (window.DALP_TEN_WEEK_UI?.renderCapstone?.(rebuiltModule,base) || '') : '';
@@ -193,6 +194,15 @@
           <article class="za-learning-concept"><span>01 · UNDERSTAND</span><h4>Begin with the why</h4><p>${safe(educator.foundation)}</p></article>
           <article class="za-learning-concept"><span>02 · SEE IT WORK</span><h4>Small worked example</h4><p>${safe(educator.worked)}</p></article>
           <article class="za-learning-concept"><span>03 · CHECK THE REASONING</span><h4>Why the method works</h4><p>Identify the input, the transformation, and the expected output. Explain which assumption could change the result.</p></article>
+        </div>
+        <div class="za-teacher-journey" aria-label="Seven stages of guided instruction">
+          <article><span>01 · WHY IT MATTERS</span><h4>Start with the business question</h4><p>${safe(educator.whyItMatters)}</p></article>
+          <article><span>02 · UNDERSTAND</span><h4>Explain the idea simply</h4><p>${safe(educator.foundation)}</p></article>
+          <article><span>03 · WATCH THE METHOD</span><h4>Step-by-step demonstration</h4><ol>${educator.walkthrough.map(step=>`<li>${safe(step)}</li>`).join('')}</ol></article>
+          <article><span>04 · INTERPRET</span><h4>What the result means</h4><p>${safe(educator.outputMeaning)}</p></article>
+          <article><span>05 · DEBUG</span><h4>Recognise and correct a common mistake</h4><p>${safe(educator.commonMistake)}</p></article>
+          <article><span>06 · PRACTISE</span><h4>Guided attempt</h4><p>${safe(educator.guidedPractice)}</p><h4>Independent challenge</h4><p>${safe(educator.independentPractice)}</p></article>
+          <article><span>07 · APPLY PROFESSIONALLY</span><h4>Prove and explain your result</h4><p>${safe(educator.verification)}</p><p>${safe(educator.reflection)}</p></article>
         </div>
         <h3>Turn this week's idea into a working result</h3>
         <ol class="za-learning-process">
@@ -295,6 +305,7 @@
           <img src="${base}assets/images/lesson-interfaces/${safe(slug)}-week-${week}.${slug==='excel'&&week===1?'png':'svg'}" alt="Illustrated interface for ${safe(path.title)} Week ${week}: ${safe(record.title)}" width="1200" height="600" loading="lazy" decoding="async" />
           <figcaption><strong>Study the visual:</strong> ${safe(record.outcome)}. This topic-specific diagram illustrates the workflow or analytical concept; use your practice dataset to reproduce and verify it.</figcaption>
         </figure>
+        ${conceptDiagram ? `<figure class="za-concept-diagram" aria-label="Concept diagram: ${safe(conceptDiagram.title)}"><div class="za-concept-diagram-heading"><span>CONCEPT EXPLAINED VISUALLY</span><h2>${safe(conceptDiagram.title)}</h2></div><img src="${base}assets/images/lesson-concepts/${safe(conceptDiagram.file)}" width="720" height="${slug==='powerbi'&&week===3?880:440}" loading="lazy" decoding="async" alt="${safe(conceptDiagram.description)}"><figcaption>${safe(conceptDiagram.description)} <strong>Try it:</strong> Identify the inputs, follow the connections, and explain what changes in the output.</figcaption></figure>` : ''}
         ${kitHtml}
         ${formulaHtml}
         ${masterclassHtml}
@@ -317,7 +328,9 @@
       }));
       const next=path.weeks[week]?`${courseHref(slug)}?week=${week+1}`:base+'capstone.html?course='+encodeURIComponent(slug);
       const done=!!readProgress(slug)[String(week)];
-      one('#zaLessonActions').innerHTML=`<button id="zaMarkWeek" type="button" class="za-btn za-btn-line">${done?'✓ Marked as complete':'✓ Mark week complete'}</button><a class="za-btn za-btn-primary" href="${quizHref(slug,week)}">Questions to Try ↗</a><a class="za-btn za-btn-line" href="${next}">${week===path.weeks.length?'Capstone project ↗':'Next week →'}</a>${week===path.weeks.length?`<a class="za-btn za-btn-mastery" href="${masteryHref(slug)}">✦ Mastery Assessment · ${masteryCount(path)} Questions ↗</a>`:''}<span class="za-save-status" id="zaSaveStatus" role="status" aria-live="polite"></span>`;
+      const practiceLink=['sql','excel','python'].includes(slug)?`<a class="za-btn za-btn-line" href="${base}practice.html?tool=${encodeURIComponent(slug)}" aria-label="Practise ${safe(path.title)} in the Practice Arena">Practice Arena ↗</a>`:'';
+      const roadmapLink=`<a class="za-btn za-btn-line" href="${base}career-path.html#guidedCourses">Learning roadmap ↗</a>`;
+      one('#zaLessonActions').innerHTML=`<button id="zaMarkWeek" type="button" class="za-btn za-btn-line">${done?'✓ Marked as complete':'✓ Mark week complete'}</button><a class="za-btn za-btn-primary" href="${quizHref(slug,week)}">Questions to Try ↗</a><a class="za-btn za-btn-line" href="${next}">${week===path.weeks.length?'Capstone project ↗':'Next week →'}</a>${practiceLink}${roadmapLink}${week===path.weeks.length?`<a class="za-btn za-btn-mastery" href="${masteryHref(slug)}">✦ Mastery Assessment · ${masteryCount(path)} Questions ↗</a>`:''}<span class="za-save-status" id="zaSaveStatus" role="status" aria-live="polite"></span>`;
       one('#zaMarkWeek').addEventListener('click', async function(){
         this.disabled=true;one('#zaSaveStatus').textContent='Saving your week…';
         try{

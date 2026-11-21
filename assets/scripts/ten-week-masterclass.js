@@ -25,10 +25,13 @@
   function capstone(module,base){
     if(!module || module.week!==10) return '';
     const slug=module.slug;
+    const brief=window.DALP_CAPSTONE_BRIEFS?.[slug];
+    const detailed=brief?`<div class="dlm-detailed-brief" aria-label="Detailed capstone project brief"><p><strong>Project ${esc(brief.id)} · Rubric version ${esc(brief.version)}</strong></p><h3>${esc(brief.title)}</h3><p>${esc(brief.scenario)}</p><h3>Dataset specification</h3><p>${esc(brief.dataset)}</p><h3>Business and technical requirements</h3><ol>${asList(brief.tasks)}</ol><h3>Required submission files</h3><ul>${asList(brief.deliverables)}</ul><h3>How to verify your work</h3><ul>${asList(brief.validation)}</ul><h3>Assessment Desk scoring (100 points)</h3><ul>${asList(brief.rubric.map(r=>r.name+' — '+r.points+' points'))}</ul><p><strong>Current passing score: ${brief.passingScore}/100.</strong> ${esc(brief.grading)}</p><a class="dlm-secondary" href="${base}capstone.html?course=${encodeURIComponent(slug)}#submissionSection">Open the matching Assessment Desk submission</a></div>`:'';
     return `<section class="dlm-capstone" id="dlmCapstoneProject" aria-labelledby="dlm-capstone-title">
       <div class="dlm-capstone-top"><span class="dlm-kicker">WEEK 10 · INDEPENDENT PROJECT</span><span class="dlm-capstone-status">Instructor-reviewed · 100 points</span></div>
       <h2 id="dlm-capstone-title">Your final ${esc(module.courseLabel)} capstone</h2>
       <p class="dlm-lead">${esc(module.business)} You are now expected to apply the entire ten-week process independently, from source inspection through analysis, visual delivery and presentation. The project is assessed for reasoning and reproducibility—not appearance alone.</p>
+      ${detailed}
       <div class="dlm-capstone-grid"><div><h3>Project instructions</h3><ol>${asList([
        'Define the decision question, audience, date range and unambiguous KPI definitions.',
        'Download the weekly practice dataset or use another legally shareable, non-confidential dataset. Save the original separately and provide its source.',
