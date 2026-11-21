@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600" role="img" aria-label="EXCEL week 2: Entering, formatting and organising data concept diagram">
+<rect x="0" y="0" width="1200" height="600" rx="0" fill="#F0EDDE" stroke="none"/>
+<rect x="0" y="0" width="1200" height="112" rx="0" fill="#0B0909" stroke="none"/>
+<rect x="0" y="108" width="1200" height="5" rx="0" fill="#C58A69" stroke="none"/>
+<text x="48" y="42" fill="#D9BFA4" font-size="17" font-family="Inter,Arial,sans-serif" font-weight="700">EXCEL  /  WEEK 02</text>
+<text x="48" y="85" fill="#FFFFFF" font-size="29" font-family="Inter,Arial,sans-serif" font-weight="700">Entering, formatting and organising data</text>
+<text x="49" y="148" fill="#675D58" font-size="17" font-family="Inter,Arial,sans-serif" font-weight="600">Worksheet → Analysis → Report</text>
+<rect x="55" y="192" width="1090" height="305" rx="18" fill="#FFFFFF" stroke="#E8E1D8"/>
+<rect x="80" y="219" width="1040" height="47" rx="9" fill="#023048" stroke="none"/>
+<text x="100" y="251" fill="#FFFFFF" font-size="19" font-family="Inter,Arial,sans-serif" font-weight="700">Order ID</text>
+<text x="351" y="251" fill="#FFFFFF" font-size="19" font-family="Inter,Arial,sans-serif" font-weight="700">Region</text>
+<text x="602" y="251" fill="#FFFFFF" font-size="19" font-family="Inter,Arial,sans-serif" font-weight="700">Sales</text>
+<text x="853" y="251" fill="#FFFFFF" font-size="19" font-family="Inter,Arial,sans-serif" font-weight="700">Status</text>
+<rect x="80" y="274" width="1040" height="48" rx="5" fill="#F6F0E8" stroke="none"/>
+<text x="100" y="305" fill="#023048" font-size="20" font-family="Inter,Arial,sans-serif" font-weight="500">1001</text>
+<text x="351" y="305" fill="#023048" font-size="20" font-family="Inter,Arial,sans-serif" font-weight="500">East</text>
+<text x="602" y="305" fill="#023048" font-size="20" font-family="Inter,Arial,sans-serif" font-weight="500">₦ 42,000</text>
+<text x="853" y="305" fill="#023048" font-size="20" font-family="Inter,Arial,sans-serif" font-weight="500">Valid</text>
+<text x="100" y="355" fill="#023048" font-size="20" font-family="Inter,Arial,sans-serif" font-weight="500">1002</text>
+<text x="351" y="355" fill="#023048" font-size="20" font-family="Inter,Arial,sans-serif" font-weight="500">West</text>
+<text x="602" y="355" fill="#023048" font-size="20" font-family="Inter,Arial,sans-serif" font-weight="500">₦ 29,500</text>
+<text x="853" y="355" fill="#023048" font-size="20" font-family="Inter,Arial,sans-serif" font-weight="500">Review</text>
+<rect x="80" y="374" width="1040" height="48" rx="5" fill="#F6F0E8" stroke="none"/>
+<text x="100" y="405" fill="#023048" font-size="20" font-family="Inter,Arial,sans-serif" font-weight="500">1003</text>
+<text x="351" y="405" fill="#023048" font-size="20" font-family="Inter,Arial,sans-serif" font-weight="500">North</text>
+<text x="602" y="405" fill="#023048" font-size="20" font-family="Inter,Arial,sans-serif" font-weight="500">₦ 64,000</text>
+<text x="853" y="405" fill="#023048" font-size="20" font-family="Inter,Arial,sans-serif" font-weight="500">Valid</text>
+<text x="100" y="455" fill="#023048" font-size="20" font-family="Inter,Arial,sans-serif" font-weight="500">1004</text>
+<text x="351" y="455" fill="#023048" font-size="20" font-family="Inter,Arial,sans-serif" font-weight="500">South</text>
+<text x="602" y="455" fill="#023048" font-size="20" font-family="Inter,Arial,sans-serif" font-weight="500">₦ 37,200</text>
+<text x="853" y="455" fill="#023048" font-size="20" font-family="Inter,Arial,sans-serif" font-weight="500">Valid</text>
+<rect x="55" y="535" width="1090" height="42" rx="12" fill="#F6F0E8" stroke="none"/>
+<text x="77" y="563" fill="#023048" font-size="16" font-family="Inter,Arial,sans-serif" font-weight="600">LEARNING CHECK  ·  Identify the input, the method, and how you would verify the result.</text>
+</svg>

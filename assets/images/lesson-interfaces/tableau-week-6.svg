@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600" role="img" aria-label="TABLEAU week 6: Level of detail and advanced aggregate reasoning concept diagram">
+<rect x="0" y="0" width="1200" height="600" rx="0" fill="#F0EDDE" stroke="none"/>
+<rect x="0" y="0" width="1200" height="112" rx="0" fill="#0B0909" stroke="none"/>
+<rect x="0" y="108" width="1200" height="5" rx="0" fill="#C58A69" stroke="none"/>
+<text x="48" y="42" fill="#D9BFA4" font-size="17" font-family="Inter,Arial,sans-serif" font-weight="700">TABLEAU  /  WEEK 06</text>
+<text x="48" y="85" fill="#FFFFFF" font-size="29" font-family="Inter,Arial,sans-serif" font-weight="700">Level of detail and advanced aggregate reasoning</text>
+<text x="49" y="148" fill="#675D58" font-size="17" font-family="Inter,Arial,sans-serif" font-weight="600">Fields → Visuals → Story</text>
+<rect x="55" y="190" width="700" height="314" rx="18" fill="#FFFFFF" stroke="#E8E1D8"/>
+<rect x="780" y="190" width="365" height="314" rx="18" fill="#FFFFFF" stroke="#E8E1D8"/>
+<rect x="110" y="312" width="65" height="130" rx="5" fill="#C58A69" stroke="none"/>
+<rect x="223" y="212" width="65" height="230" rx="5" fill="#023048" stroke="none"/>
+<rect x="336" y="272" width="65" height="170" rx="5" fill="#C58A69" stroke="none"/>
+<rect x="449" y="167" width="65" height="275" rx="5" fill="#023048" stroke="none"/>
+<rect x="562" y="234" width="65" height="208" rx="5" fill="#C58A69" stroke="none"/>
+<text x="804" y="265" fill="#023048" font-size="18" font-family="Inter,Arial,sans-serif" font-weight="600">FIXED [Region]:</text>
+<text x="804" y="289" fill="#023048" font-size="18" font-family="Inter,Arial,sans-serif" font-weight="600">SUM([Sales])</text>
+<text x="804" y="344" fill="#023048" font-size="18" font-family="Inter,Arial,sans-serif" font-weight="600">LOD calculation</text>
+<text x="804" y="423" fill="#023048" font-size="18" font-family="Inter,Arial,sans-serif" font-weight="600">Compare against totals</text>
+<rect x="55" y="535" width="1090" height="42" rx="12" fill="#F6F0E8" stroke="none"/>
+<text x="77" y="563" fill="#023048" font-size="16" font-family="Inter,Arial,sans-serif" font-weight="600">LEARNING CHECK  ·  Identify the input, the method, and how you would verify the result.</text>
+</svg>

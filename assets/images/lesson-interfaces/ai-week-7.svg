@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600" role="img" aria-label="AI FOR ANALYSIS week 7: AI-supported EDA, visuals and evidence-based insight concept diagram">
+<rect x="0" y="0" width="1200" height="600" rx="0" fill="#F0EDDE" stroke="none"/>
+<rect x="0" y="0" width="1200" height="112" rx="0" fill="#0B0909" stroke="none"/>
+<rect x="0" y="108" width="1200" height="5" rx="0" fill="#C58A69" stroke="none"/>
+<text x="48" y="42" fill="#D9BFA4" font-size="17" font-family="Inter,Arial,sans-serif" font-weight="700">AI FOR ANALYSIS  /  WEEK 07</text>
+<text x="48" y="85" fill="#FFFFFF" font-size="29" font-family="Inter,Arial,sans-serif" font-weight="700">AI-supported EDA, visuals and evidence-based insight</text>
+<text x="49" y="148" fill="#675D58" font-size="17" font-family="Inter,Arial,sans-serif" font-weight="600">Prompt → Verify → Explain</text>
+<rect x="55" y="190" width="700" height="314" rx="18" fill="#FFFFFF" stroke="#E8E1D8"/>
+<rect x="780" y="190" width="365" height="314" rx="18" fill="#FFFFFF" stroke="#E8E1D8"/>
+<polyline points="104,418 205,381 306,396 407,307 508,335 609,244 701,222" fill="none" stroke="#C58A69" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="104" cy="418" r="8" fill="#023048"/>
+<circle cx="205" cy="381" r="8" fill="#023048"/>
+<circle cx="306" cy="396" r="8" fill="#023048"/>
+<circle cx="407" cy="307" r="8" fill="#023048"/>
+<circle cx="508" cy="335" r="8" fill="#023048"/>
+<circle cx="609" cy="244" r="8" fill="#023048"/>
+<circle cx="701" cy="222" r="8" fill="#023048"/>
+<text x="804" y="265" fill="#023048" font-size="18" font-family="Inter,Arial,sans-serif" font-weight="600">EDA prompt</text>
+<text x="804" y="344" fill="#023048" font-size="18" font-family="Inter,Arial,sans-serif" font-weight="600">Check chart claims</text>
+<text x="804" y="423" fill="#023048" font-size="18" font-family="Inter,Arial,sans-serif" font-weight="600">Cite actual figures</text>
+<rect x="55" y="535" width="1090" height="42" rx="12" fill="#F6F0E8" stroke="none"/>
+<text x="77" y="563" fill="#023048" font-size="16" font-family="Inter,Arial,sans-serif" font-weight="600">LEARNING CHECK  ·  Identify the input, the method, and how you would verify the result.</text>
+</svg>

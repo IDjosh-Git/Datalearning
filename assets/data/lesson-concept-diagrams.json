@@ -1,0 +1,102 @@
+{
+  "powerbi:3": {
+    "title": "Star and snowflake schemas",
+    "description": "Compare direct fact-to-dimension relationships with a normalised product dimension.",
+    "file": "powerbi-week-3.svg"
+  },
+  "powerbi:4": {
+    "title": "How filter context works",
+    "description": "A slicer restricts dimension rows; the relationship filters the fact table before the measure is evaluated.",
+    "file": "powerbi-week-4.svg"
+  },
+  "powerbi:5": {
+    "title": "Period comparison",
+    "description": "A proper date dimension supports current-period and previous-period calculations.",
+    "file": "powerbi-week-5.svg"
+  },
+  "sql:4": {
+    "title": "Understanding SQL JOINs",
+    "description": "The join key connects tables; one-to-many joins can repeat a customer row for each matching order.",
+    "file": "sql-week-4.svg"
+  },
+  "sql:3": {
+    "title": "WHERE versus HAVING",
+    "description": "WHERE filters source rows before grouping; HAVING filters aggregated groups afterwards.",
+    "file": "sql-week-3.svg"
+  },
+  "sql:7": {
+    "title": "Window function flow",
+    "description": "Window functions calculate across related rows while preserving the original row grain.",
+    "file": "sql-week-7.svg"
+  },
+  "excel:3": {
+    "title": "Relative and absolute cell references",
+    "description": "Copying a formula moves B2 and C2, while $F$1 stays fixed.",
+    "file": "excel-week-3.svg"
+  },
+  "excel:6": {
+    "title": "How a PivotTable summarises data",
+    "description": "Raw transaction rows are grouped into categories and aggregated into a compact report.",
+    "file": "excel-week-6.svg"
+  },
+  "powerquery:6": {
+    "title": "Append monthly files",
+    "description": "Append stacks matching columns vertically; verify types and source periods.",
+    "file": "powerquery-week-6.svg"
+  },
+  "powerquery:7": {
+    "title": "Merge versus append",
+    "description": "Merge adds columns by matching a key; append adds rows with compatible schemas.",
+    "file": "powerquery-week-7.svg"
+  },
+  "powerquery:9": {
+    "title": "Refreshable transformation pipeline",
+    "description": "Power Query records transformations that can be replayed on refreshed source data.",
+    "file": "powerquery-week-9.svg"
+  },
+  "introduction:1": {
+    "title": "The data analysis process",
+    "description": "A business question leads to data, cleaning, analysis and a decision\u2014not simply a chart.",
+    "file": "introduction-week-1.svg"
+  },
+  "introduction:3": {
+    "title": "Grain and unique keys",
+    "description": "Three order lines may represent only two distinct orders.",
+    "file": "introduction-week-3.svg"
+  },
+  "statistics:7": {
+    "title": "Correlation is not causation",
+    "description": "A relationship between variables does not, by itself, establish a causal mechanism.",
+    "file": "statistics-week-7.svg"
+  },
+  "statistics:8": {
+    "title": "Confidence intervals",
+    "description": "Repeated sampling produces intervals; a 95% method covers the fixed population value about 95% of the time.",
+    "file": "statistics-week-8.svg"
+  },
+  "tableau:6": {
+    "title": "Level of detail expressions",
+    "description": "FIXED calculations can operate at a specified dimensional grain rather than the visible chart grain.",
+    "file": "tableau-week-6.svg"
+  },
+  "tableau:7": {
+    "title": "Running total",
+    "description": "Table calculations work over marks in a view according to addressing and partitioning.",
+    "file": "tableau-week-7.svg"
+  },
+  "python:3": {
+    "title": "Variables and data transformations",
+    "description": "Follow an input through a calculation and inspect the output.",
+    "file": "python-week-3.svg"
+  },
+  "python:6": {
+    "title": "DataFrame grouping",
+    "description": "Group rows by a category, aggregate a metric and check the resulting grain.",
+    "file": "python-week-6.svg"
+  },
+  "ai:3": {
+    "title": "Verify an AI-generated result",
+    "description": "Treat generated code and answers as hypotheses until checked against source data.",
+    "file": "ai-week-3.svg"
+  }
+}
