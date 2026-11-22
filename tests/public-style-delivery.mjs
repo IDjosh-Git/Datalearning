@@ -7,7 +7,7 @@ for(const page of ['public-pages/landing.html','public-pages/start-here.html','c
  assert(html.includes('id="public-critical-styles"'),page+' must embed critical styles');
  assert(html.includes('.premium-hero{'),page+' must include premium layout styles');
  assert(html.includes('.brand img{'),page+' must constrain brand logo');
- assert(html.includes('<link rel="stylesheet" href="/public-course-guide.css">'),page+' must retain external CSS');
+ assert(/<link\b[^>]*href="\/public-course-guide\.css"[^>]*>/.test(html),page+' must retain external CSS');
  assert(html.includes('width="42"')||html.includes('width="44"'),page+' must constrain logo dimensions');
 }
 assert(css.includes('.hero-visual>img{'));

@@ -8,6 +8,7 @@ import { fileURLToPath } from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const pagesDir = path.join(root, 'courses');
 const pages = [
+  ...fs.readdirSync(path.join(root,'public-pages')).filter(f=>f.endsWith('.html')).map(f=>path.join(root,'public-pages',f)),
   ...fs.readdirSync(root).filter(f => f.endsWith('.html')).map(f => path.join(root, f)),
   ...fs.readdirSync(pagesDir).filter(f => f.endsWith('.html')).map(f => path.join(pagesDir, f)),
 ];

@@ -5,7 +5,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=p=>fs.readFileSync(path.join(root,p),'utf8');
-const pages=[...fs.readdirSync(root).filter(x=>x.endsWith('.html')).map(x=>x),
+const pages=[...fs.readdirSync(path.join(root,'public-pages')).filter(x=>x.endsWith('.html')).map(x=>'public-pages/'+x),...fs.readdirSync(root).filter(x=>x.endsWith('.html')).map(x=>x),
  ...fs.readdirSync(path.join(root,'courses')).filter(x=>x.endsWith('.html')).map(x=>'courses/'+x)];
 const practiceOnly='practice-workspace-premium.css';
 const allStyles=fs.readdirSync(path.join(root,'assets/styles')).filter(x=>x.endsWith('.css'));
@@ -16,7 +16,7 @@ for(const page of pages){
  assert.equal(linked.length,new Set(linked).size,`${page}: duplicate stylesheet linked`);
  for(const href of linked){
   if(/^https?:\/\//.test(href))continue;
-  assert(fs.existsSync(path.resolve(root,path.dirname(page),href)),`${page}: missing CSS ${href}`);
+  assert(fs.existsSync((href.startsWith('/')?path.join(root,href):path.resolve(root,path.dirname(page),href))),`${page}: missing CSS ${href}`);
  }
  if(html.includes(practiceOnly)){
   assert.equal(page,'studio.html',`${page}: obsolete Practice Studio stylesheet is loaded outside Studio`);

@@ -37,8 +37,8 @@ for(const file of ['assets/scripts/private-navigation.js','assets/scripts/premiu
  assert(read(file).includes('index.html#zaDiscoverCards'));
 }
 const redirect=JSON.parse(read('vercel.json')).redirects.find(x=>x.source==='/catalog.html');
-assert.equal(redirect.destination,'/index.html#zaDiscoverCards');
-assert.equal(redirect.permanent,false,'replace previously permanent catalogue redirect');
+assert.equal(redirect.destination,'/courses');
+assert.equal(redirect.permanent,true,'obsolete public catalogue must redirect permanently');
 // Execute the real shared controller: menu state, keyboard focus and current link.
 const classes=new Set(),events={},windowEvents={};let mediaChange;
 const make=href=>({href,attrs:{},handlers:{},isConnected:true,hidden:false,

@@ -168,6 +168,14 @@
     {
       "source": "/practice",
       "destination": "/practice.html"
+    },
+    {
+      "source": "/free-lesson",
+      "destination": "/public-pages/free-lesson.html"
+    },
+    {
+      "source": "/career-paths",
+      "destination": "/public-pages/career-paths.html"
     }
   ],
   "outputDirectory": "dist",
@@ -228,21 +236,6 @@
       "permanent": false
     },
     {
-      "source": "/catalog.html",
-      "destination": "/index.html#zaDiscoverCards",
-      "permanent": false
-    },
-    {
-      "source": "/landing.html",
-      "destination": "/",
-      "permanent": true
-    },
-    {
-      "source": "/start-here.html",
-      "destination": "/start-here",
-      "permanent": true
-    },
-    {
       "source": "/overview.html",
       "destination": "/account.html#course-progress-heading",
       "permanent": false
@@ -256,6 +249,21 @@
       "source": "/progress.html",
       "destination": "/admin.html#admin-learners",
       "permanent": false
+    },
+    {
+      "source": "/landing.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/catalog.html",
+      "destination": "/courses",
+      "permanent": true
+    },
+    {
+      "source": "/start-here.html",
+      "destination": "/start-here",
+      "permanent": true
     }
   ]
 }
