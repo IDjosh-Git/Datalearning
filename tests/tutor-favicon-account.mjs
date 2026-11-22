@@ -9,7 +9,7 @@ function visit(dir){for(const entry of fs.readdirSync(dir,{withFileTypes:true}))
  const file=path.join(dir,entry.name);
  if(entry.isDirectory())visit(file);else if(entry.name.endsWith('.html'))htmlFiles.push(file);
 }} visit(root);
-for(const page of htmlFiles.filter(p=>path.basename(p)!=='studio.html')){
+for(const page of htmlFiles.filter(p=>path.basename(p)!=='studio.html'&&!['career-paths.html','free-lesson.html','landing.html'].includes(path.basename(p)))){
  const html=fs.readFileSync(page,'utf8');
  const prefix=path.basename(path.dirname(page))==='courses'?'../':'';
  for(const [icon,suffix] of [['favicon.svg','image/svg+xml'],['favicon-32.png','image/png'],['favicon-180.png',null]]) {

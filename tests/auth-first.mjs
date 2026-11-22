@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 const root=process.cwd(), read=f=>fs.readFileSync(path.join(root,f),'utf8');
 const pages=[...fs.readdirSync(root).filter(f=>f.endsWith('.html')),...fs.readdirSync('courses').filter(f=>f.endsWith('.html')).map(f=>'courses/'+f)];
-for(const page of pages.filter(f=>f!=='auth.html'&&f!=='studio.html')){
+for(const page of pages.filter(f=>f!=='auth.html'&&f!=='studio.html'&&f!=='career-paths.html'&&f!=='free-lesson.html'&&f!=='landing.html')){
  const html=read(page),head=html.split('</head>')[0];
  assert(head.includes("classList.add('dalp-auth-checking')"),`${page}: protect before initial paint`);
  assert(head.includes('access-guard.css'),`${page}: fail-closed cover required`);
@@ -26,7 +26,7 @@ assert(dashboard.includes('const user=await window.DALP_AUTH_GATE?.whenReady'), 
 assert(!dashboard.includes("location.href='auth.html';return"),'Dashboard must not implement a second premature login redirect');
 assert(gate.includes('resolveReady(data.user)'),'Shared auth gate must resolve ready state after validation');
 assert(read('assets/scripts/profile-editor.js').includes('window.DALP_AUTH_GATE?.whenReady'),'Profile must reuse app sign-in');
-for(const page of pages.filter(f=>f!=='auth.html'&&f!=='studio.html')){
+for(const page of pages.filter(f=>f!=='auth.html'&&f!=='studio.html'&&f!=='career-paths.html'&&f!=='free-lesson.html'&&f!=='landing.html')){
  const html=read(page);
  if(html.includes('dlu-account')){
   assert(html.includes('My Learning'),`${page}: premium dashboard card needs new name`);

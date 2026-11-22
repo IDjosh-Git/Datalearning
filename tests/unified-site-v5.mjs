@@ -27,7 +27,7 @@ const doc={currentScript:{src:'https://example.com/site/assets/scripts/public-fo
 vm.runInNewContext(js,{document:doc,URL,Date});
 assert.equal(created.length,1);
 assert.equal(created[0].className,'dalp-public-footer dlx-v5-footer');
-for(const link of ['courses/tableau.html','courses/powerquery.html','courses/statistics.html','study-tools.html','learning-coach.html','learning-lab.html','tutor.html','verify.html'])assert(created[0].innerHTML.includes(link),`Footer missing ${link}`);
+for(const link of ['catalog.html','public-pages/start-here.html','career-paths.html','free-lesson.html','auth.html'])assert(created[0].innerHTML.includes(link),`Footer missing ${link}`);
 const coach=read('learning-coach.html'),lab=read('learning-lab.html'),tutor=read('tutor.html');
 for(const id of ['ss-plan-form','ss-session-list','ss-reveal','ss-save','study-plan'])assert(coach.includes(id),`Coach functionality lost: ${id}`);
 for(const id of ['labSearch','labCards','labGroup','labMode'])assert(lab.includes(id),`Lab functionality lost: ${id}`);

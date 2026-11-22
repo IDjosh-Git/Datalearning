@@ -12,7 +12,7 @@ const catalogue=read('course-info/catalog.html');
 assert.match(catalogue,/id="dlCourseSearch"/);
 assert.match(catalogue,/id="dlCourseGrid"/);
 assert.match(catalogue,/input\.addEventListener\('input',update/);
-assert.equal((catalogue.match(/class="card"/g)||[]).length,9);
+assert.equal((catalogue.match(/class="card dl-compact-course"/g)||[]).length,9);
 assert.match(read('public-pages/free-lesson.html'),/id="preview-next"/);
 assert.match(read('public-pages/career-paths.html'),/id="career-next"/);
 assert.match(read('assets/scripts/home-weekly-photo.js'),/\/assets\/images\/capstone-dashboard-preview\.webp/);

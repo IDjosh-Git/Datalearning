@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+const home=fs.readFileSync(new URL('../index.html',import.meta.url),'utf8');
+const app=fs.readFileSync(new URL('../assets/scripts/academy-app.js',import.meta.url),'utf8');
+assert(home.includes('FEATURED COURSES'));
+assert(home.includes('View all 9 courses'));
+assert(home.includes('href="/courses"'));
+assert(app.includes("const featured=['excel','sql','powerbi']"));
+assert(app.includes('featured.map(path=>renderCard(path))'));
+assert(!app.includes('node.innerHTML=completeCatalog.map(path=>renderCard(path)).join'));
+assert(home.includes('id="zaDiscoverCards"'));
+console.log('PASS homepage featured courses: three selected, canonical catalogue link, no full grid');

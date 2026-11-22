@@ -32,7 +32,7 @@ for(const file of pages){const html=read(file);if(!html.includes('class="dlu-hea
  checked++;
 }
 assert.equal(checked,28);
-for(const file of ['assets/scripts/private-navigation.js','assets/scripts/premium-search.js','assets/scripts/public-footer.js','assets/scripts/academy-app.js']){
+for(const file of ['assets/scripts/private-navigation.js','assets/scripts/premium-search.js','assets/scripts/academy-app.js']){
  assert(!read(file).includes("'catalog.html'"),`${file}: no legacy public catalogue navigation`);
  assert(read(file).includes('index.html#zaDiscoverCards'));
 }

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 const read=p=>fs.readFileSync(new URL('../'+p,import.meta.url),'utf8');
 const slugs=['introduction','excel','sql','powerbi','tableau','powerquery','statistics','python','ai'];
 const catalog=read('course-info/catalog.html');
-assert.equal((catalog.match(/class="card"/g)||[]).length,9);
+assert.equal((catalog.match(/class="card dl-compact-course"/g)||[]).length,9);
 for(const slug of slugs){
  assert.match(catalog,new RegExp(`href="/courses/${slug}"`));
  const html=read(`course-info/${slug}.html`);

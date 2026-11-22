@@ -1,0 +1,12 @@
+/* Compact canonical /courses catalogue */
+body .course-grid,body .catalog-grid,body .cards-grid,body .grid:has(>.dl-compact-course){display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:stretch}
+body article.dl-compact-course{display:flex;flex-direction:column;min-width:0;min-height:0;margin:0!important;padding:22px!important;border-radius:17px;background:white;box-shadow:0 8px 22px #02304810}
+body .dl-compact-course .dl-compact-tag{margin:0 0 10px;font-size:11px;letter-spacing:.09em;font-weight:800;text-transform:uppercase;color:#675D58}
+body .dl-compact-course h2{font-size:clamp(19px,1.7vw,23px);line-height:1.25;margin:0 0 10px}
+body .dl-compact-course h2 a{text-decoration:none;color:#0B0909}
+body .dl-compact-course .dl-compact-description{font-size:13px;line-height:1.6;margin:0 0 14px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+body .dl-compact-course .dl-compact-meta{margin-top:auto;display:flex;gap:7px;flex-wrap:wrap;padding-bottom:15px;color:#675D58;font-size:11px;font-weight:700}
+body .dl-compact-course .dl-compact-meta span{background:#F7F3EA;border-radius:8px;padding:5px 8px}
+body .dl-compact-course .dl-compact-action{display:block;text-align:center;padding:11px 14px;border-radius:10px;background:#0B0909;color:white;text-decoration:none;font-size:13px;font-weight:800}
+@media(max-width:950px){body .course-grid,body .catalog-grid,body .cards-grid,body .grid:has(>.dl-compact-course){grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:610px){body .course-grid,body .catalog-grid,body .cards-grid,body .grid:has(>.dl-compact-course){grid-template-columns:1fr}body article.dl-compact-course{padding:19px!important}}

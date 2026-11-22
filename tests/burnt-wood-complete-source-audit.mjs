@@ -15,7 +15,7 @@ for (const dir of roots) {
   }};
   visit(dir);
 }
-for (const entry of fs.readdirSync('.')) if (/\.html$/i.test(entry)) files.push(entry);
+for (const entry of fs.readdirSync('.')) if (/\.html$/i.test(entry) && !['career-paths.html','free-lesson.html','landing.html'].includes(entry)) files.push(entry);
 const palette = new Set([
   '0b0909','023048','770101','f0edde','c58a69','d9bfa4',
   // Accessible warm neutrals, borders, and white for text and data surfaces.

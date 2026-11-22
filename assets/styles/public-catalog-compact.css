@@ -1,0 +1,14 @@
+/* Public catalogue: scan-first compact cards; syllabus stays on the course page. */
+body.za-courses #zaCatalogCards.za-catalog-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:stretch}
+body.za-courses #zaCatalogCards .dlc-compact-card{min-height:0;display:flex;flex-direction:column;border-radius:18px;overflow:hidden;transform:none}
+body.za-courses #zaCatalogCards .dlc-compact-card .za-catalog-intro{display:flex;flex-direction:column;flex:1;padding:22px;gap:0}
+body.za-courses #zaCatalogCards .dlc-compact-card .za-catalog-meta{margin-bottom:12px}
+body.za-courses #zaCatalogCards .dlc-compact-card .za-card-icon{width:46px;height:46px;min-width:46px;font-size:23px;border-radius:13px}
+body.za-courses #zaCatalogCards .dlc-compact-card h3{font-size:clamp(18px,1.7vw,22px);margin:12px 0 7px}
+body.za-courses #zaCatalogCards .dlc-compact-card .za-catalog-intro>p{font-size:13px;line-height:1.55;flex:none;margin:0 0 14px;min-height:0;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
+body.za-courses #zaCatalogCards .dlc-compact-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto;margin-bottom:15px;font-size:11px;font-weight:750;color:#675D58}
+body.za-courses #zaCatalogCards .dlc-compact-meta span+span:before{content:'·';margin-right:8px}
+body.za-courses #zaCatalogCards .dlc-compact-card .za-catalog-links{margin-top:0}
+body.za-courses #zaCatalogCards .dlc-compact-card .za-btn-primary{width:100%;justify-content:center;text-align:center}
+@media(max-width:980px){body.za-courses #zaCatalogCards.za-catalog-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){body.za-courses #zaCatalogCards.za-catalog-grid{grid-template-columns:1fr;gap:14px}body.za-courses #zaCatalogCards .dlc-compact-card .za-catalog-intro{padding:19px}}

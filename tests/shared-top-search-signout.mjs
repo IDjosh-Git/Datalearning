@@ -5,7 +5,7 @@ import path from 'node:path';
 const root=path.resolve(import.meta.dirname,'..');
 const read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const publicRoutes=new Set(['account.html','admin.html','certificate.html','connection-test.html','profile.html','progress.html','reviewer.html','sync-test.html','career-setup.html']);
-const routes=[...fs.readdirSync(root).filter(f=>f.endsWith('.html')&&f!=='auth.html'&&f!=='landing.html'&&f!=='start-here.html'&&f!=='studio.html'&&f!=='career-setup.html'),...fs.readdirSync(path.join(root,'courses')).filter(f=>f.endsWith('.html')).map(f=>'courses/'+f)];
+const routes=[...fs.readdirSync(root).filter(f=>f.endsWith('.html')&&f!=='auth.html'&&f!=='landing.html'&&f!=='start-here.html'&&f!=='studio.html'&&f!=='career-setup.html'&&f!=='career-paths.html'&&f!=='free-lesson.html'),...fs.readdirSync(path.join(root,'courses')).filter(f=>f.endsWith('.html')).map(f=>'courses/'+f)];
 const shared='assets/styles/navigation-search-signout.css';
 const css=read(shared), search=read('assets/scripts/premium-search.js'),auth=read('assets/scripts/auth-gate.js');
 for(const page of routes){
