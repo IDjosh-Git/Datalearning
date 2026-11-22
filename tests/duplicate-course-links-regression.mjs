@@ -1,0 +1,11 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+const home=fs.readFileSync('index.html','utf8');
+const catalog=fs.readFileSync('course-info/catalog.html','utf8');
+const generator=fs.readFileSync('tools-generate-public.mjs','utf8');
+assert.doesNotMatch(home,/Browse all courses ↗/i,'Remove redundant all-courses button');
+assert.match(home,/View all 9 courses/i,'Keep signed-in expansion control');
+assert.equal((catalog.match(/class="dl-compact-action"/g)||[]).length,9);
+assert.equal((catalog.match(/<h2><a href="\/courses\//g)||[]).length,0);
+assert.doesNotMatch(generator,/<h2><a href="\/courses\/\$\{esc\(c.slug\)\}"/);
+console.log('PASS no duplicate course links within catalogue cards or Discover all-courses CTA');

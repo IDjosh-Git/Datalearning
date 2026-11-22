@@ -10,8 +10,8 @@ for(const file of pages){const html=read(file);if(!html.includes('class="dlu-hea
  const courseLink=[...header.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g)].find(x=>x[2].trim()==='Courses');
  assert(courseLink,`${file}: course navigation exists`);
  const courseURL=new URL(courseLink[1],`https://example.test/${file}`);
- assert.equal(courseURL.pathname,'/courses',`${file}: Courses opens the canonical syllabus catalogue`);
- assert.equal(courseURL.hash,'');
+ assert.equal(courseURL.pathname,'/index.html',`${file}: Courses stays inside the authenticated Academy`);
+ assert.equal(courseURL.hash,'#zaDiscoverCards');
  const drawer=html.slice(html.indexOf('id="dluNavPanel"'),html.indexOf('<main'));
  const drawerCourse=[...drawer.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g)].find(x=>x[2].trim().startsWith('Courses '));
  assert(drawerCourse,`${file}: mobile Courses link exists`);

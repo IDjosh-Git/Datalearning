@@ -88,7 +88,7 @@
       else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
     });
   }
-  function discover(){const node=one('#zaDiscoverCards');if(!node)return;const featured=['excel','sql','powerbi'].map(slug=>completeCatalog.find(path=>path.slug===slug)).filter(Boolean);node.innerHTML=featured.map(path=>renderCard(path)).join('');}
+  function discover(){const node=one('#zaDiscoverCards');if(!node)return;const featured=['excel','sql','powerbi'].map(slug=>completeCatalog.find(path=>path.slug===slug)).filter(Boolean);const showAll=/(?:^|[?&])all=1(?:&|$)/.test((window.location&&window.location.search)||'');node.innerHTML=(showAll?completeCatalog:featured).map(path=>renderCard(path)).join('');}
   function catalogPage(){
     const box=one('#zaCatalogCards'),search=one('#zaCourseSearch'),empty=one('#zaCatalogEmpty');
     if(!box||!search)return;
