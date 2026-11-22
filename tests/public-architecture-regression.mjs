@@ -7,7 +7,7 @@ const links=['/','/courses','/start-here','/career-paths','/free-lesson','/auth.
 for(const p of pages){
  const html=read(p);
  assert.equal((html.match(/class="dlp-header"/g)||[]).length,1,`${p}: exactly one public header`);
- assert.equal((html.match(/class="dlp-footer"/g)||[]).length,1,`${p}: exactly one footer`);
+ assert(html.includes("public-site-footer.js"),`${p}: canonical public footer component missing`);
  for(const route of links)assert(html.includes(`href="${route}"`),`${p}: missing ${route}`);
  assert(!html.includes('auth-gate.js'),`${p}: public page cannot require browser auth gate`);
  assert(!html.includes('class="dlu-header"'),`${p}: old learner header must not be stacked`);

@@ -10,22 +10,22 @@ for(const file of pages){const html=read(file);if(!html.includes('class="dlu-hea
  const courseLink=[...header.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g)].find(x=>x[2].trim()==='Courses');
  assert(courseLink,`${file}: course navigation exists`);
  const courseURL=new URL(courseLink[1],`https://example.test/${file}`);
- assert.equal(courseURL.pathname,'/index.html',`${file}: Courses stays in authenticated Discover`);
- assert.equal(courseURL.hash,'#zaDiscoverCards');
+ assert.equal(courseURL.pathname,'/courses',`${file}: Courses opens the canonical syllabus catalogue`);
+ assert.equal(courseURL.hash,'');
  const drawer=html.slice(html.indexOf('id="dluNavPanel"'),html.indexOf('<main'));
  const drawerCourse=[...drawer.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g)].find(x=>x[2].trim().startsWith('Courses '));
  assert(drawerCourse,`${file}: mobile Courses link exists`);
  assert.equal(new URL(drawerCourse[1],`https://example.test/${file}`).href,courseURL.href,`${file}: desktop and mobile course navigation agree`);
  for(const match of drawer.matchAll(/href="([^"]+)"/g)){
   const url=new URL(match[1],`https://example.test/${file}`);
-  assert(fs.existsSync('.'+url.pathname),`${file}: missing mobile destination ${url.pathname}`);
-  assert.notEqual(restrictedKind(url.pathname),'public',`${file}: mobile nav stays authenticated`);
+  assert(url.pathname==='/courses'||fs.existsSync('.'+url.pathname),`${file}: missing mobile destination ${url.pathname}`);
+  if(url.pathname!=='/courses')assert.notEqual(restrictedKind(url.pathname),'public',`${file}: other mobile nav stays authenticated`);
  }
  for(const match of header.matchAll(/href="([^"]+)"/g)){
   const url=new URL(match[1],`https://example.test/${file}`);
   assert.equal(url.origin,'https://example.test');
-  assert(fs.existsSync('.'+url.pathname),`${file}: missing ${url.pathname}`);
-  assert.notEqual(restrictedKind(url.pathname),'public',`${file}: signed-in nav must not drop into public catalogue`);
+  assert(url.pathname==='/courses'||fs.existsSync('.'+url.pathname),`${file}: missing ${url.pathname}`);
+  if(url.pathname!=='/courses')assert.notEqual(restrictedKind(url.pathname),'public',`${file}: other signed-in nav stays authenticated`);
   if(url.hash)assert(read('.'+url.pathname).includes(`id="${url.hash.slice(1)}"`),`missing anchor ${url.href}`);
   links++;
  }
