@@ -16,7 +16,7 @@ for(const name of styles){
  }
 }
 assert(refs>5000,`Expected shared CSS tokens throughout the app, found ${refs}`);
-const pages=fs.readdirSync('.').filter(x=>x.endsWith('.html'));
+const pages=fs.readdirSync('.').filter(x=>x.endsWith('.html')&&x!=='studio.html');
 for(const page of pages){
  const html=fs.readFileSync(page,'utf8');
  assert(html.includes('burnt-wood-theme.css'),`${page}: missing final theme definitions`);

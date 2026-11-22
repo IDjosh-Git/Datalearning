@@ -15,7 +15,6 @@ const records=[
  ['courses/python.html','Python analytics','Courses','pandas, NumPy and reproducible analysis','coding statistics automation dataframe'],
  ['courses/ai.html','AI integration','Courses','Verified AI workflows for data analysis','prompting automation responsible chatgpt'],
  ['practice.html','Practice Arena','Study tools','SQL, Excel and Python challenges with working editor','challenge editor run code grade skills'],
- ['studio.html','Practice Studio','Study tools','Guided hands-on learning and exercises','studio project'],
  ['study-tools.html','Study Tools hub','Study tools','Find the right study and practice tool','all learning tools study hub planner'],
  ['learning-lab.html','Learning Lab','Study tools','Review explanations and save understanding status','study review reading confidence library'],
  ['certificate.html','Certificates','My workspace','View and verify completed course achievements','certificate award completion verification'],

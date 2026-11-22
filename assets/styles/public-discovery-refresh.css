@@ -1,0 +1,14 @@
+/* Shared public discovery improvements; isolated from authenticated workspaces. */
+.dl-public-photo{position:relative;overflow:hidden;border-radius:24px;margin:0;min-height:340px;background:rgb(2,48,72);box-shadow:0 20px 45px rgba(11,9,9,.2)}
+.dl-public-photo img{display:block;width:100%;height:clamp(340px,37vw,520px);object-fit:cover;object-position:center}
+.dl-public-photo figcaption{position:absolute;bottom:0;left:0;right:0;padding:32px 20px 18px;background:linear-gradient(transparent,rgba(11,9,9,.2));color:rgb(2,48,72);font-weight:650}
+.dl-public-choice{max-width:1180px;margin:clamp(30px,5vw,72px) auto;padding:0 22px}
+.dl-public-choice h2{font-size:clamp(1.5rem,3vw,2.4rem);line-height:1.2;margin:.3em 0}
+.dl-choice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:22px}
+.dl-choice-grid a{display:flex;flex-direction:column;gap:10px;text-decoration:none;color:inherit;border:1px solid rgb(2,48,72);background:rgb(2,48,72);border-radius:17px;padding:22px;min-height:155px;transition:transform .16s ease,border-color .16s ease}
+.dl-choice-grid a:hover{transform:translateY(-2px);border-color:rgb(2,48,72)}
+.dl-choice-grid strong{font-size:1.08rem}.dl-choice-grid span{font-size:.94rem;line-height:1.5}.dl-choice-grid b{margin-top:auto;color:rgb(2,48,72);font-size:.92rem}
+.dl-catalog-tools{margin:20px auto 28px;max-width:650px}.dl-catalog-tools label{display:block;font-weight:700;margin-bottom:8px}.dl-catalog-tools input{width:100%;padding:14px 17px;border:1px solid rgb(2,48,72);border-radius:12px;background:rgb(2,48,72);color:rgb(2,48,72);font:inherit}.dl-catalog-tools p{margin:8px 0;font-size:.92rem}
+#dlCourseGrid>.card[hidden]{display:none!important}
+@media(max-width:700px){.dl-choice-grid{grid-template-columns:1fr}.dl-public-photo{min-height:250px;border-radius:17px}.dl-public-photo img{height:290px}.dl-public-choice{padding:0 16px}.dl-choice-grid a{min-height:135px}}
+@media(prefers-reduced-motion:reduce){.dl-choice-grid a{transition:none}.dl-choice-grid a:hover{transform:none}}

@@ -42,8 +42,21 @@ function attachEditor(textarea){
  textarea.setAttribute('autocomplete','off');
  textarea.setAttribute('wrap','soft');
  textarea.classList.add('sql-editor-textarea');
- let frame=0,composing=false;
- const alignScroll=()=>{code.scrollTop=textarea.scrollTop;code.scrollLeft=textarea.scrollLeft;lines.scrollTop=textarea.scrollTop};
+ let frame=0,scrollFrame=0,composing=false;
+ // The native textarea is the only scroll owner. Batch overlay positioning to
+ // one animation frame: three synchronous scroll writes on each wheel/touch
+ // event previously forced extra layout work during inertial scrolling.
+ const alignScroll=()=>{
+  if(scrollFrame)return;
+  scrollFrame=requestAnimationFrame(()=>{
+   scrollFrame=0;
+   if(!textarea.isConnected)return;
+   const top=textarea.scrollTop,left=textarea.scrollLeft;
+   if(code.scrollTop!==top)code.scrollTop=top;
+   if(code.scrollLeft!==left)code.scrollLeft=left;
+   if(lines.scrollTop!==top)lines.scrollTop=top;
+  });
+ };
  const paint=()=>{frame=0;if(!textarea.isConnected)return;
   code.innerHTML=highlight(textarea.value)+'\n';
   lines.textContent=Array.from({length:Math.max(5,textarea.value.split('\n').length)},(_,i)=>i+1).join('\n');

@@ -25,7 +25,7 @@
    nav.addEventListener('click',event=>{
     const btn=event.target.closest('button[data-pane]');if(!btn)return;
     const panel=btn.dataset.pane==='output'?shell.querySelector('.ide-secondary'):shell.querySelector('.ide-primary');
-    panel?.scrollIntoView({block:'start',behavior:'smooth'});
+    panel?.scrollIntoView({block:'start',behavior:'auto'});
    });
   }
  }

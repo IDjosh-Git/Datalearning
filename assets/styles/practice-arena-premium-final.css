@@ -2187,3 +2187,8 @@ html[data-theme] body[data-responsive-page="practice"] #practiceDetail[data-acti
  html[data-theme] body[data-responsive-page="practice"] #practiceDetail[data-active-editor="Excel"] .ide-result-body{padding:17px 14px}
  html[data-theme] body[data-responsive-page="practice"] #practiceDetail[data-active-editor="Excel"] :is(.ide-result-formula,.ide-result-note){padding-inline:14px}
 }
+
+/* Arena scroll responsiveness: native input, no forced animation. */
+html:has(body[data-responsive-page="practice"]){scroll-behavior:auto!important}
+body[data-responsive-page="practice"] :is(.ide-grid-scroll,.ide-results-tabs,.ide-console,.ide-primary,.ide-secondary){scroll-behavior:auto!important;-webkit-overflow-scrolling:touch}
+@media (hover:none) and (pointer:coarse){body[data-responsive-page="practice"]::before{display:none!important}}

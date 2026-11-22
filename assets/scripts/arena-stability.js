@@ -20,7 +20,7 @@ function apply(){scheduled=false;try{
    const button=e.target.closest('[data-arena-view]');if(!button)return;
    const panel=button.dataset.arenaView==='output'?shell.querySelector('.ide-secondary'):shell.querySelector('.ide-primary');
    select(button.dataset.arenaView,shell);
-   panel?.scrollIntoView({block:'start',behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+   panel?.scrollIntoView({block:'start',behavior:'auto'});
   });
  }
  // A newly selected challenge always opens the relevant editor, rather than

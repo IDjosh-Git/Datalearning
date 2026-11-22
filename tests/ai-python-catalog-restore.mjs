@@ -50,7 +50,7 @@ for(const p of pages){
  assert(html.includes(`href="${prefix}ai.html"`),`${p} missing AI course menu link`);
  assert(html.includes(`href="${prefix}python.html"`),`${p} missing Python course menu link`);
 }
-assert(navigationPages>=29,'Course menus should be available after authentication');
+assert(navigationPages>=28,'Course menus should be available after authentication');
 assert(!read('auth.html').includes('NINE LEARNING PATHS'),'Sign-in must not expose app navigation');
 assert(read('courses/ai.html').includes('href="../prompt-library.html"'),'Prompt Library link must remain');
 console.log(`PASS AI/Python restoration: 9 searchable catalogue courses, 2 specialist cards, home discovery, 10 weeks, ${navigationPages} public course menus, prompt library`);

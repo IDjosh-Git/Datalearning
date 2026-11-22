@@ -163,7 +163,7 @@
     },
     {
       "source": "/studio",
-      "destination": "/studio.html"
+      "destination": "/practice.html"
     },
     {
       "source": "/practice",
@@ -172,6 +172,11 @@
   ],
   "outputDirectory": "dist",
   "redirects": [
+    {
+      "source": "/studio.html",
+      "destination": "/practice.html",
+      "permanent": false
+    },
     {
       "source": "/courses/python-extension.html",
       "destination": "/courses/python.html",

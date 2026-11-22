@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const read=p=>readFileSync(new URL('../'+p,import.meta.url),'utf8');
+const js=read('assets/scripts/arena-upgrade.js');
+const css=read('assets/styles/practice-scroll-performance.css');
+const html=read('practice.html');
+assert.match(js,/scrollFrame=requestAnimationFrame/,'scroll overlay updates should be batched');
+assert.match(js,/if\(code.scrollTop!==top\)/,'avoid unnecessary overlay scroll writes');
+assert.match(js,/textarea.addEventListener\('scroll',alignScroll,\{passive:true\}\)/);
+assert.match(css,/#practiceAnswer\.sql-editor-textarea,#pythonCode/);
+assert.match(css,/\.ide-grid-scroll\{[\s\S]*?touch-action:pan-x pan-y!important/);
+assert.match(html,/practice-scroll-performance\.css\?v=20261122-editor-scroll/);
+console.log('Editor scroll performance regression: passed');

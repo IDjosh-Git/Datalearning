@@ -17,7 +17,7 @@ assert(fs.existsSync(path.join(root,'api/tutor.js')));
 assert(fs.existsSync(path.join(root,'lib/server-auth.js')));
 assert(pkg.scripts['verify:deployment'],'Missing deployment verification command');
 let count=0;
-for (const page of ['practice.html','index.html','studio.html']) {
+for (const page of ['practice.html','index.html']) {
  const html=read(page);
  for(const hit of html.matchAll(/<(?:script|link|img|source)\b[^>]*?\b(?:src|href)\s*=\s*(["'])(.*?)\1/gi)) {
   const uri=hit[2];if(/^(?:[a-z]+:|\/\/|#)/i.test(uri))continue;

@@ -4,10 +4,10 @@ import path from 'node:path';
 
 const root = process.cwd();
 const pages = [
-  ...fs.readdirSync(root).filter(name => name.endsWith('.html') && name !== 'career-setup.html'),
+  ...fs.readdirSync(root).filter(name => name.endsWith('.html') && name !== 'career-setup.html' && name !== 'studio.html'),
   ...fs.readdirSync('courses').filter(name => name.endsWith('.html')).map(name => `courses/${name}`)
 ];
-assert.equal(pages.length, 38, 'All 38 pages must share the same theme');
+assert.equal(pages.length, 37, 'All 37 active pages must share the same theme');
 const themePath = 'assets/styles/palette-premium-20261113.css';
 const theme = fs.readFileSync(themePath, 'utf8');
 const cssFiles = fs.readdirSync('assets/styles').filter(name => name.endsWith('.css'));

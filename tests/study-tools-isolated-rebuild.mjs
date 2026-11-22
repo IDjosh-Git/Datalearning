@@ -8,14 +8,14 @@ const hub=read('study-tools.html');
 for (const [name,destination] of [
  ['Learning Coach','learning-coach.html'], ['Learning Lab','learning-lab.html'],
  ['AI Tutor','tutor.html'],['Practice Arena','practice.html'],
- ['Practice Studio','studio.html'],['Reference Library','reference.html'],
+ ['Reference Library','reference.html'],
  ['Prompt Library','prompt-library.html']
 ]) {
  assert(hub.includes(`href="${destination}"`),`Study Tools ${name} must have an independent destination: ${destination}`);
 }
 const coach=read('learning-coach.html'); const lab=read('learning-lab.html');
-const studio=read('studio.html');const ref=read('reference.html');const capstone=read('capstone.html');
-for(const page of [coach,lab,studio,ref]) {
+const ref=read('reference.html');const capstone=read('capstone.html');
+for(const page of [coach,lab,ref]) {
  assert(page.includes('study-tools-refined.css'),'New premium CSS missing');
  assert.equal((page.match(/class="dlst-hero"/g)||[]).length,1,'Only one primary hero per tool');
  assert(page.includes('public-footer.js'),'Public footer must remain on tool route');
@@ -28,19 +28,16 @@ for(const id of ['labSearch','labCards','labGroup','labMode','labReset']){
  assert(lab.includes(`id="${id}"`),`Lab controller target missing: ${id}`);
  assert(!coach.includes(`id="${id}"`),`Learning Lab section leaked into Coach: ${id}`);
 }
-for(const id of ['ps-workspace','ps-course-nav','ps-skill-list','ps-reveal','ps-answer','ps-restore'])assert(studio.includes(`id="${id}"`),`Practice Studio controller broken: ${id}`);
 for(const id of ['referenceSearch','referenceResults','categoryFilter','levelFilter','savedFilter','clearSearch']) assert(ref.includes(`id="${id}"`),`Reference Library controller broken: ${id}`);
-const src=read('assets/scripts/study-success.js');const st=read('assets/scripts/course-studio.js');
+const src=read('assets/scripts/study-success.js');
 for(const slug of ['introduction','excel','sql','powerbi','tableau','powerquery','statistics']){
  assert(coach.includes(`value="${slug}"`),`Coach lacks ${slug}`);
  assert(src.includes(`${slug}:`),`Coach JS lacks ${slug}`);
- assert(st.includes(`${slug}:`),`Practice Studio lacks ${slug}`);
 }
-const dbsrc=read('assets/scripts/course-studio-data.js');for(const slug of ['tableau','powerquery','statistics'])assert(dbsrc.includes(`"${slug}"`),`Practice data lacks ${slug}`);
 assert(coach.includes('study-success.js')&&!coach.includes('src="assets/scripts/learning-lab.js"'),'Coach must run only Coach controller');
 assert(lab.includes('learning-lab.js')&&!lab.includes('src="assets/scripts/study-success.js"'),'Lab must run only Lab controller');
 assert(lab.includes('study-tools-route-compat.js'),'Legacy coach hash bookmarks must redirect');
 assert(capstone.includes('dlst-privacy-note')&&capstone.includes('capstoneForm'),'Privacy notice and capstone submission must be preserved');
 assert(read('assets/scripts/public-footer.js').includes("['Learning Coach','learning-coach.html']"),'Footer Coach link must target its page');
 assert(read('assets/styles/study-tools-refined.css').includes('prefers-reduced-motion'),'Reduced motion missing');
-console.log('PASS isolated Study Tools pages, seven learning paths, unique navigation, capstone privacy and preserved controllers');
+console.log('PASS isolated Study Tools pages, six learning destinations, unique navigation, capstone privacy and preserved controllers');

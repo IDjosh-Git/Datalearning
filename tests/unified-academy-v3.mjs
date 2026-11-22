@@ -3,7 +3,7 @@ import path from 'node:path';
 import assert from 'node:assert/strict';
 const ROOT=path.resolve(import.meta.dirname,'..');
 const load=f=>fs.readFileSync(path.join(ROOT,f),'utf8');
-const publicRoutes=['capstone','capstone-guide','tutor','practice','learning-lab','learning-coach','reference','prompt-library','studio','preview','verify'];
+const publicRoutes=['capstone','capstone-guide','tutor','practice','learning-lab','learning-coach','reference','prompt-library','preview','verify'];
 const privateRoutes=['account','profile','admin','progress','reviewer','certificate','connection-test','sync-test'];
 const curriculum=['introduction','excel','sql','powerbi','tableau','powerquery','statistics'];
 for(const route of publicRoutes){const src=load(route+'.html');assert.match(src,/unified-academy-v3\.css/);assert.match(src,/public-header-unified\.js/);assert.match(src,/class="dlu-header"/);assert.match(src,/id="dluNavPanel"/);assert.match(src,/id="dluNavClose"/);assert.match(src,/public-header-unified\.js/);for(const slug of curriculum)assert.match(src,new RegExp(`courses/${slug}\\.html`));assert.doesNotMatch(src,/class="dalp-global-header"/,`${route}: retired duplicate header must be removed`);}

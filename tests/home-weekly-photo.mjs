@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const html = readFileSync('index.html','utf8');
+const js = readFileSync('assets/scripts/home-weekly-photo.js','utf8');
+const css = readFileSync('assets/styles/home-weekly-photo.css','utf8');
+assert.match(html,/id="dlWeeklyHeroImage"/);
+assert.match(html,/home-weekly-photo\.js/);
+assert.match(html,/home-weekly-photo\.css/);
+assert.match(js,/isoWeekKey\(new Date\(\)\)/);
+assert.match(js,/photos\[isoWeekKey\(new Date\(\)\) % photos\.length\]/);
+assert.match(js,/img\.onerror/);
+assert.match(js,/capstone-dashboard-preview\.webp/);
+assert.match(css,/object-fit:cover/);
+console.log('PASS weekly photo rotation, responsive cover, and offline fallback');

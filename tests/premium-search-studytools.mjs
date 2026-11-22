@@ -4,7 +4,7 @@ import path from 'node:path';
 const root=path.resolve(import.meta.dirname,'..');
 const read=(p)=>fs.readFileSync(path.join(root,p),'utf8');
 const privateRoutes=new Set(['account.html','admin.html','certificate.html','connection-test.html','profile.html','progress.html','reviewer.html','sync-test.html','career-setup.html']);
-const publicRoutes=[...fs.readdirSync(root).filter(x=>x.endsWith('.html')&&!privateRoutes.has(x)&&x!=='auth.html'&&x!=='landing.html'&&x!=='start-here.html'),...fs.readdirSync(path.join(root,'courses')).filter(x=>x.endsWith('.html')).map(x=>'courses/'+x)];
+const publicRoutes=[...fs.readdirSync(root).filter(x=>x.endsWith('.html')&&!privateRoutes.has(x)&&x!=='auth.html'&&x!=='landing.html'&&x!=='start-here.html'&&x!=='studio.html'),...fs.readdirSync(path.join(root,'courses')).filter(x=>x.endsWith('.html')).map(x=>'courses/'+x)];
 const css='assets/styles/public-search-premium.css';
 for(const page of publicRoutes){
  const html=read(page);const base=page.startsWith('courses/')?'../':'';
@@ -23,7 +23,7 @@ const unified=read('assets/styles/navigation-search-signout.css');
 assert(unified.includes('premium-search-trigger.dalp-unified-search')&&unified.includes('.dalp-public-session-card'),'Shared search and session card styles are present');
 for(const token of ['dialog.premium-search-dialog','ps-result-grid','max-width:640px','dlx-tools-grid>.dlx-tools-card>a::after','focus-visible','prefers-reduced-motion'])assert(styles.includes(token),`Search style missing: ${token}`);
 const hub=read('study-tools.html');
-const destinations=['learning-coach.html','learning-lab.html','tutor.html','practice.html','studio.html','reference.html','prompt-library.html'];
-assert.equal((hub.match(/class="dlx-tools-action"/g)||[]).length,7,'Seven clearly accessible action links');
+const destinations=['learning-coach.html','learning-lab.html','tutor.html','practice.html','reference.html','prompt-library.html'];
+assert.equal((hub.match(/class="dlx-tools-action"/g)||[]).length,6,'Six clearly accessible action links');
 for(const page of destinations){assert(hub.includes(`href="${page}"`),`${page}: missing tools action`);assert(fs.existsSync(path.join(root,page)),`${page}: destination file missing`)}
 console.log(`PASS premium search on ${publicRoutes.length} public routes, seven entire-card Study Tools links, 7 real destinations`);

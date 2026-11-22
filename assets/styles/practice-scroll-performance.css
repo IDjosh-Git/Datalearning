@@ -6,3 +6,28 @@ body[data-responsive-page="practice"] .ide-grid-scroll,body[data-responsive-page
 body[data-responsive-page="practice"] .ide-grid-scroll{overscroll-behavior-y:auto}
 }
 @media(prefers-reduced-motion:reduce){body[data-responsive-page="practice"] *,body[data-responsive-page="practice"] *::before,body[data-responsive-page="practice"] *::after{scroll-behavior:auto!important}}
+
+/* Editor-specific scroll ownership: native input scrolling must not be trapped
+   by parent flex panels or by the spreadsheet's horizontal-only container. */
+body[data-responsive-page="practice"] #practiceDetail :is(#practiceAnswer.sql-editor-textarea,#pythonCode){
+  overflow-y:auto!important;overflow-x:auto!important;
+  overscroll-behavior:contain!important;
+  touch-action:pan-x pan-y!important;
+  -webkit-overflow-scrolling:touch;
+  scroll-behavior:auto!important;
+}
+body[data-responsive-page="practice"] #practiceDetail :is(.arena-code,.arena-editor,.ide-editor,.ide-primary){
+  min-height:0;min-width:0;
+}
+body[data-responsive-page="practice"] #practiceDetail .ide-grid-scroll{
+  touch-action:pan-x pan-y!important;
+  overflow-x:auto!important;
+  overscroll-behavior-x:contain;
+}
+/* Avoid costly paint layers on actively scrolling editor panes. */
+@media (hover:none),(pointer:coarse){
+ body[data-responsive-page="practice"] #practiceDetail :is(.ide-primary,.ide-secondary,.arena-editor,.ide-sheet-editor,.arena-code){
+   backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+   background-image:none!important;
+ }
+}

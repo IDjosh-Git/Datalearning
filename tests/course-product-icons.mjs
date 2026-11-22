@@ -16,8 +16,7 @@ for(const s of slugs){
 }
 assert.match(read('assets/scripts/academy-app.js'),/class="dl-course-logo"/, 'Course catalogue should use image elements, not glyphs');
 assert.match(read('assets/scripts/specialist-course-data.js'),/Python for Data Analytics/);
-assert.match(read('assets/scripts/course-studio.js'),/data-brand-course="\$\{k\}"/);
 assert.match(read('assets/scripts/course-brand-assets.js'),/python-logo-only\.svg/);
 assert.match(read('assets/scripts/course-brand-assets.js'),/Power-Query-Colored\.svg/);
-for(const page of ['catalog.html','index.html','overview.html','studio.html'])assert.match(read(page),/course-brand-assets\.css/);
+for(const page of ['catalog.html','index.html','overview.html'])assert.match(read(page),/course-brand-assets\.css/);
 console.log('PASS course brand imagery: 9 local course assets, authentic product marks, course reader/catalog/studio integration, offline fallback, source credits');

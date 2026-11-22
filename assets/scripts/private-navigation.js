@@ -33,7 +33,7 @@
  const learnerNav=[
   {caption:'ACADEMY',items:[['Learning Dashboard','account.html','account'],['Explore courses','index.html#zaDiscoverCards','catalog'],['Practice Arena','practice.html','practice'],['AI Tutor','tutor.html','tutor']]}
  ];
- const moreNav=[['Study Tools','study-tools.html','study'],['Study plan','learning-coach.html','study-plan'],['Practice Studio','studio.html','studio'],['Learning Lab','learning-lab.html','lab'],['Capstone Studio','capstone.html','capstone'],['Certificates','account.html#certificates','certificate']];
+ const moreNav=[['Study Tools','study-tools.html','study'],['Study plan','learning-coach.html','study-plan'],['Learning Lab','learning-lab.html','lab'],['Capstone Studio','capstone.html','capstone'],['Certificates','account.html#certificates','certificate']];
  const adminNav=[
   {caption:'ADMINISTRATION',items:[['Admin overview','admin.html','overview'],['Learners & Progress','admin.html#admin-learners','learners'],['Courses analysis','admin.html#admin-courses','courses'],['Review desk','reviewer.html','reviews']]}
  ];

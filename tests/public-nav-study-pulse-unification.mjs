@@ -5,7 +5,7 @@ import path from 'node:path';
 const root=path.resolve(import.meta.dirname,'..');
 const read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const privateRoutes=new Set(['account.html','admin.html','certificate.html','connection-test.html','profile.html','progress.html','reviewer.html','sync-test.html','career-setup.html']);
-const pages=[...fs.readdirSync(root).filter(f=>f.endsWith('.html')&&!privateRoutes.has(f)&&f!=='auth.html'&&f!=='landing.html'&&f!=='start-here.html'),...fs.readdirSync(path.join(root,'courses')).filter(f=>f.endsWith('.html')).map(f=>'courses/'+f)];
+const pages=[...fs.readdirSync(root).filter(f=>f.endsWith('.html')&&!privateRoutes.has(f)&&f!=='auth.html'&&f!=='landing.html'&&f!=='start-here.html'&&f!=='studio.html'),...fs.readdirSync(path.join(root,'courses')).filter(f=>f.endsWith('.html')).map(f=>'courses/'+f)];
 const navs=['index.html','index.html#zaDiscoverCards','study-tools.html','practice.html','tutor.html','capstone.html'];
 for(const p of pages){
  const src=read(p),base=p.startsWith('courses/')?'../':'';
