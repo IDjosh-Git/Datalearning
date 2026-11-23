@@ -1,16 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 146" role="img" aria-labelledby="t d">
-<title id="t">DataLearning wordmark</title>
-<desc id="d">The DataLearning badge with a Blueprint and Melon wordmark and Learn Build Grow tagline</desc>
-<defs>
-<linearGradient id="badge" x1="8" y1="7" x2="97" y2="106" gradientUnits="userSpaceOnUse"><stop stop-color="#023048"/><stop offset="1" stop-color="#023048"/></linearGradient>
-</defs>
-<rect x="5" y="5" width="112" height="112" rx="31" fill="url(#C58A69ge)"/>
-<path d="M25 93V70a8 8 0 0 1 8-8h9a8 8 0 0 1 8 8v23Z" fill="#E9DDD0"/>
-<path d="M54 93V57a8 8 0 0 1 8-8h9a8 8 0 0 1 8 8v36Z" fill="#F7F2EA"/>
-<path d="M83 93V39a8 8 0 0 1 8-8h9a8 8 0 0 1 8 8v54Z" fill="#C58A69"/>
-<path d="M24 62 46 40l16 8 25-27" fill="none" stroke="#EAD7C0" stroke-linecap="round" stroke-linejoin="round" stroke-width="6"/>
-<path d="M77 21h11v11" fill="none" stroke="#EAD7C0" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"/>
-<text x="139" y="78" font-family="Plus Jakarta Sans, DM Sans, Arial, sans-serif" font-weight="800" font-size="61" letter-spacing="-3.4" fill="#023048">data</text>
-<text x="264" y="78" font-family="Plus Jakarta Sans, DM Sans, Arial, sans-serif" font-weight="800" font-size="61" letter-spacing="-3.4" fill="#770101">learning</text>
-<text x="142" y="110" font-family="DM Sans, Arial, sans-serif" font-weight="700" font-size="15" letter-spacing="4.5" fill="#675D58">LEARN · BUILD · GROW</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 146" role="img" aria-labelledby="wordmark-title wordmark-desc">
+  <title id="wordmark-title">DataLearning</title>
+  <desc id="wordmark-desc">DataLearning wordmark with a deep teal D badge and copper accents.</desc>
+  <defs>
+    <linearGradient id="brand-bg" x1="12" y1="8" x2="100" y2="104" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#183047"/>
+      <stop offset="1" stop-color="#123B4A"/>
+    </linearGradient>
+    <linearGradient id="brand-copper" x1="32" y1="36" x2="72" y2="83" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#D9BFA4"/>
+      <stop offset="1" stop-color="#B66B42"/>
+    </linearGradient>
+  </defs>
+  <rect x="5" y="5" width="112" height="112" rx="31" fill="url(#brand-bg)"/>
+  <rect x="8" y="8" width="106" height="106" rx="28" fill="none" stroke="#FFFFFF" stroke-opacity=".2"/>
+  <path d="M25 29h22c19 0 32 11 32 32S66 93 47 93H25V29Z" fill="none" stroke="#F7F2EA" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M39 84V72M51 84V62M63 84V52" fill="none" stroke="url(#brand-copper)" stroke-width="6" stroke-linecap="round"/>
+  <text x="140" y="70" font-family="Plus Jakarta Sans, DM Sans, Arial, sans-serif" font-weight="800" font-size="48" letter-spacing="-2.4" fill="#183047">Data</text>
+  <text x="250" y="70" font-family="Plus Jakarta Sans, DM Sans, Arial, sans-serif" font-weight="800" font-size="48" letter-spacing="-2.4" fill="#B66B42">Learning</text>
+  <text x="142" y="106" font-family="DM Sans, Arial, sans-serif" font-weight="700" font-size="13" letter-spacing="4" fill="#675D58">LEARN · BUILD · GROW</text>
 </svg>
