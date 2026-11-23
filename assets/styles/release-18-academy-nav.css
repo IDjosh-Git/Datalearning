@@ -1,0 +1,11 @@
+/* Release 18: shared Academy navigation and My Learning section tabs. */
+body>.dlu-header{position:sticky;top:0;z-index:1000;width:100%;}
+body>.dlu-nav-panel:not([hidden]){z-index:1100;}
+body[data-private-workspace]>.dlu-header{position:relative;z-index:1000;}
+body[data-private-workspace]>.dlu-nav-panel:not([hidden]){position:fixed;}
+body[data-private-workspace] .dlu-header-inner{max-width:1700px;}
+body[data-private-workspace] .dlu-header,body[data-private-workspace] .dlu-nav-panel{font-family:inherit;}
+body .my-learning-tabs{display:flex!important;visibility:visible!important;opacity:1!important;gap:.55rem;overflow-x:auto;scrollbar-width:thin;padding:.8rem .15rem 1rem;max-width:100%;}
+body .my-learning-tabs a{display:inline-flex!important;align-items:center;flex:0 0 auto;white-space:nowrap;min-height:40px;}
+body .my-learning-tabs a:focus-visible{outline:3px solid var(--brand-primary,#123B4A);outline-offset:2px;}
+@media(max-width:1100px){body .dlu-header .dlu-menu-open-button{display:flex!important;}}
