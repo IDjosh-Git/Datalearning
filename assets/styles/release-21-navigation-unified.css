@@ -1,0 +1,40 @@
+/* Release 21: one visual contract for Academy navigation, public and authenticated. */
+:root{--academy-nav-bg:var(--dl-brand-secondary,#183047);--academy-nav-text:#fff;--academy-nav-muted:#F0EDDE;--academy-nav-hover:rgba(255,255,255,.13);--academy-nav-line:rgba(255,255,255,.2);--academy-nav-focus:#fff}
+/* Public Academy header: all destinations, same background, same foreground. */
+html body>.dlu-header,html body .dlu-header{background:var(--academy-nav-bg)!important;background-color:var(--academy-nav-bg)!important;color:var(--academy-nav-text)!important;border-bottom:1px solid var(--academy-nav-line)!important;box-shadow:0 6px 20px rgba(18,59,74,.13)!important;backdrop-filter:none!important}
+html body .dlu-header :is(.dlu-brand,.dlu-brand-name,.dlu-brand-name b,.dlu-brand-caption,.dlu-primary-links a,.dlx-nav-main,.dlx-nav-toggle,.dlu-menu-open-button){color:var(--academy-nav-text)!important}
+html body .dlu-header .dlu-brand-caption{color:var(--academy-nav-muted)!important}
+html body .dlu-header .dlu-brand-mark{background:rgba(255,255,255,.96)!important;border-color:rgba(255,255,255,.5)!important}
+html body .dlu-header .dlu-primary-links :is(a,.dlx-nav-toggle):hover,html body .dlu-header .dlu-primary-links a[aria-current=page],html body .dlu-header .dlu-primary-links a[aria-current=true]{background:var(--academy-nav-hover)!important;color:#fff!important}
+html body .dlu-header .dlx-nav-item:has(>a[aria-current=page])>.dlx-nav-toggle{background:var(--academy-nav-hover)!important}
+html body .dlu-header .dlu-primary-links a[aria-current=page]::after{background:#fff!important}
+html body .dlu-header .dlu-account{background:#fff!important;color:var(--academy-nav-bg)!important;border-color:#fff!important}
+html body .dlu-header .dlu-account :is(span,svg){color:var(--academy-nav-bg)!important}
+html body .dlu-header .dlu-menu-open-button,html body .dlu-header-actions .premium-search-trigger{background:var(--academy-nav-hover)!important;color:#fff!important;border-color:var(--academy-nav-line)!important}
+html body .dlu-header-actions .premium-search-trigger svg{stroke:#fff!important}
+/* Dropdowns are light surfaces: never inherit the header's white text. */
+html body .dlu-header .dlx-nav-submenu,html body .dlu-header .dlu-dropdown{background:#fff!important;color:var(--dl-text,#172B3A)!important;border:1px solid var(--dl-border,#D8E1E8)!important;box-shadow:0 18px 46px rgba(18,59,74,.16)!important}
+html body .dlu-header .dlx-nav-submenu :is(a,span,.dlx-submenu-title),html body .dlu-header .dlu-dropdown :is(a,span){color:var(--dl-text,#172B3A)!important}
+html body .dlu-header .dlx-nav-submenu a:hover,html body .dlu-header .dlu-dropdown a:hover{background:#F8FAFC!important;color:var(--dl-brand-primary,#123B4A)!important}
+/* Private learner top bar: the same surface and readable text as the Academy. */
+html body .ac-topbar{background:var(--academy-nav-bg)!important;color:#fff!important;border-bottom:1px solid var(--academy-nav-line)!important}
+html body .ac-topbar :is(a,button,.ac-secure,.ac-trail,.ac-crumb,.ac-topbar-title){color:#fff!important}
+html body .ac-topbar :is(a,button):hover{background:var(--academy-nav-hover)!important}
+html body .ac-topbar :is(input,select){color:var(--dl-text,#172B3A)!important;background:#fff!important}
+/* My Learning section tabs use a consistent high-contrast selected state. */
+html body .my-learning-tabs{background:transparent!important}
+html body .my-learning-tabs a{color:var(--dl-brand-primary,#123B4A)!important;background:#fff!important;border:1px solid var(--dl-border,#D8E1E8)!important}
+html body .my-learning-tabs a:is([aria-current=page],[aria-selected=true],.active,.is-active){color:#fff!important;background:var(--dl-brand-primary,#123B4A)!important;border-color:var(--dl-brand-primary,#123B4A)!important}
+/* Mobile menu: consistent palette and contrast regardless of source page. */
+html body .dlu-nav-panel{background:var(--dl-brand-background,#F8FAFC)!important;color:var(--dl-text,#172B3A)!important}
+html body .dlu-nav-head{background:var(--academy-nav-bg)!important;border-bottom-color:var(--academy-nav-line)!important}
+html body .dlu-nav-head :is(.dlu-brand,.dlu-brand-name,.dlu-brand-name b,.dlu-brand-caption){color:#fff!important}
+html body .dlu-nav-close{background:var(--academy-nav-hover)!important;color:#fff!important;border:1px solid var(--academy-nav-line)!important}
+html body .dlu-nav-panel .dlu-nav-group :is(h2,summary){color:var(--dl-brand-primary,#123B4A)!important}
+html body .dlu-nav-panel .dlu-nav-group a{color:var(--dl-text,#172B3A)!important;background:#fff!important;border-color:var(--dl-border,#D8E1E8)!important}
+html body .dlu-nav-panel .dlu-nav-group a:hover{background:#F8FAFC!important}
+/* Sign-in and registration top line shares brand colour and focus behaviour. */
+html body.auth-page .auth-topline{color:var(--dl-brand-primary,#123B4A)!important}
+html body :is(.dlu-header,.ac-topbar,.dlu-nav-head) :is(a,button):focus-visible{outline:3px solid #fff!important;outline-offset:3px!important}
+html body .dlu-header .dlx-nav-submenu :is(a,button):focus-visible{outline:3px solid var(--dl-brand-primary,#123B4A)!important}
+@media(max-width:1100px){html body .dlu-header .dlu-menu-open-button{display:flex!important}}
