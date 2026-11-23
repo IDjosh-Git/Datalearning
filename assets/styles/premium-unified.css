@@ -8055,3 +8055,22 @@ html:has(body[data-responsive-page="practice"]){scroll-behavior:auto!important}
 body[data-responsive-page="practice"] :is(.pc-editor,.pc-results,.ide-results,.pc-detail,.pc-sheet,.pc-schema,#practiceList){scroll-behavior:auto!important}
 @media(prefers-reduced-motion:reduce){.dl-float-jump-latest{transition:none!important}}
 
+
+
+
+/* Toasts stay clear of the floating AI launcher and Study Pulse controls. */
+html:root body :is(.toast.show,.dl-lib-toast.show){
+  inset:auto max(16px,env(safe-area-inset-right,0px)) calc(154px + env(safe-area-inset-bottom,0px)) auto!important;
+  z-index:2147481002!important;
+  width:min(380px,calc(100vw - 32px))!important;
+  max-width:calc(100vw - 32px)!important;
+  overflow-wrap:anywhere;
+}
+@media(max-width:600px){
+  html:root body :is(.toast.show,.dl-lib-toast.show){
+    right:max(12px,env(safe-area-inset-right,0px))!important;
+    bottom:calc(218px + env(safe-area-inset-bottom,0px))!important;
+    width:min(360px,calc(100vw - 24px))!important;
+    max-width:calc(100vw - 24px)!important;
+  }
+}
