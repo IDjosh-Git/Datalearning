@@ -151,3 +151,12 @@ html body :is(.dlp-hero, .dalp-feature-header, .dlx-hub-hero, .dlst-hero, .dlx-t
   html body.public-guide .start-hero .hero-visual p { margin: 0; }
 }
 
+
+html[data-brand-pending] body #dlxPageLoader { background: #F8FAFC; }
+html[data-brand-pending] body #dlxPageLoader .dlx-loader-content {
+  background: #fff;
+  border-color: #d8e1e8;
+}
+html[data-brand-pending] body #dlxPageLoader :is(.dlx-loader-wordmark,.dlx-loader-status,.dlx-loader-kicker) {
+  color: #172b3a;
+}

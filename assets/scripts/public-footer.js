@@ -33,7 +33,7 @@
       ['Capstone projects', 'capstone.html']
     ]],
     ['Study Tools', [
-      ['AI Tutor', 'tutor.html'],
+      ['Prompt Library', 'prompt-library.html'],
       ['Learning Lab', 'learning-lab.html'],
       ['Learning Coach', 'learning-coach.html'],
       ['Reference Lab', 'reference.html']

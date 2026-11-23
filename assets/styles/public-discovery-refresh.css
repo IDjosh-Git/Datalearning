@@ -1,7 +1,7 @@
 /* Shared public discovery improvements; isolated from authenticated workspaces. */
 .dl-public-photo{position:relative;overflow:hidden;border-radius:24px;margin:0;min-height:340px;background:rgb(2,48,72);box-shadow:0 20px 45px rgba(11,9,9,.2)}
 .dl-public-photo img{display:block;width:100%;height:clamp(340px,37vw,520px);object-fit:cover;object-position:center}
-.dl-public-photo figcaption{position:absolute;bottom:0;left:0;right:0;padding:32px 20px 18px;background:linear-gradient(transparent,rgba(11,9,9,.2));color:rgb(2,48,72);font-weight:650}
+.dl-public-photo figcaption{position:absolute;bottom:0;left:0;right:0;padding:32px 20px 18px;background:linear-gradient(transparent,rgba(11,9,9,.88));color:#fff;font-weight:650}
 .dl-public-choice{max-width:1180px;margin:clamp(30px,5vw,72px) auto;padding:0 22px}
 .dl-public-choice h2{font-size:clamp(1.5rem,3vw,2.4rem);line-height:1.2;margin:.3em 0}
 .dl-choice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:22px}
@@ -12,3 +12,15 @@
 #dlCourseGrid>.card[hidden]{display:none!important}
 @media(max-width:700px){.dl-choice-grid{grid-template-columns:1fr}.dl-public-photo{min-height:250px;border-radius:17px}.dl-public-photo img{height:290px}.dl-public-choice{padding:0 16px}.dl-choice-grid a{min-height:135px}}
 @media(prefers-reduced-motion:reduce){.dl-choice-grid a{transition:none}.dl-choice-grid a:hover{transform:none}}
+
+.premium-hero.dl-landing-home {
+  grid-template-columns: minmax(0,.85fr) minmax(0,1.15fr);
+  gap: clamp(16px, 2.5vw, 34px);
+  padding: clamp(20px, 3vw, 42px);
+  min-height: 0;
+}
+.dl-landing-home .dl-public-photo { width: 100%; min-width: 0; }
+@media (max-width: 900px) {
+  .premium-hero.dl-landing-home { grid-template-columns: minmax(0,1fr); }
+}
+

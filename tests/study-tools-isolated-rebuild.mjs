@@ -7,12 +7,13 @@ const read=x=>fs.readFileSync(path.join(root,x),'utf8');
 const hub=read('study-tools.html');
 for (const [name,destination] of [
  ['Learning Coach','learning-coach.html'], ['Learning Lab','learning-lab.html'],
- ['AI Tutor','tutor.html'],['Practice Arena','practice.html'],
+ ['Practice Arena','practice.html'],
  ['Reference Library','reference.html'],
  ['Prompt Library','prompt-library.html']
 ]) {
  assert(hub.includes(`href="${destination}"`),`Study Tools ${name} must have an independent destination: ${destination}`);
 }
+assert(!hub.includes('href="tutor.html"'),'Tutor is listed in the main navigation');
 const coach=read('learning-coach.html'); const lab=read('learning-lab.html');
 const ref=read('reference.html');const capstone=read('capstone.html');
 for(const page of [coach,lab,ref]) {

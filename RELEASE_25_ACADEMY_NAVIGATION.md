@@ -33,3 +33,9 @@ The signed-in Discover Courses hero and the public course catalogue intro use le
 ## Public and learner navigation
 
 Public pages show Home, Start Here, course outlines, Career Paths, Free Lesson and Sign in. Their footer helps visitors choose a first course or create an account. Learner pages keep the study destinations and search. Their footer has four link groups in a wider layout and includes Admin. The existing administrator authorization still protects that destination.
+
+## Home image and first-paint update
+
+AI Tutor is available directly from learner navigation and search. The Study Tools grid uses its remaining five cards across the available width. The public home and Discover give the hero photograph the larger desktop column and the full content width on smaller screens.
+
+The published palette now starts resolving in the document head and is applied before page content becomes visible. An initial request that fails uses the default palette. Later failures leave the last published palette applied on the open page. Local Edge checks used an intentionally delayed branding response.

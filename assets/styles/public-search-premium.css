@@ -121,3 +121,13 @@ body .dlx-tools-grid>.dlx-tools-card>a::after{content:"";position:absolute!impor
 body .dlx-tools-grid>.dlx-tools-card>a:focus-visible{outline:3px solid var(--bw-copper)!important;outline-offset:4px!important}
 body .dlx-tools-grid>.dlx-tools-card:has(>a:focus-visible){outline:3px solid var(--bw-copper)!important;outline-offset:4px!important}
 @media(prefers-reduced-motion:reduce){body .dlx-tools-grid>.dlx-tools-card{transition:none!important;transform:none!important}}
+
+/* Five study tool cards span the full row at each breakpoint. */
+@media (min-width: 1161px) {
+  body .dlx-tools-grid { grid-template-columns: repeat(6,minmax(0,1fr)); }
+  body .dlx-tools-grid > article { grid-column: span 2; }
+  body .dlx-tools-grid > article:nth-child(n+4) { grid-column: span 3; }
+}
+@media (min-width: 761px) and (max-width: 1160px) {
+  body .dlx-tools-grid > article:last-child { grid-column: 1/-1; }
+}

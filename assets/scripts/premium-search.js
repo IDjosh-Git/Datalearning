@@ -18,7 +18,7 @@ const records=[
  ['study-tools.html','Study Tools hub','Study tools','Find the right study and practice tool','all learning tools study hub planner'],
  ['learning-lab.html','Learning Lab','Study tools','Review explanations and save understanding status','study review reading confidence library'],
  ['certificate.html','Certificates','My workspace','View and verify completed course achievements','certificate award completion verification'],
- ['tutor.html','AI Learning Tutor','Study tools','Guided explanations, follow-up questions and knowledge checks','coach tutor chat explain'],
+ ['tutor.html','AI Learning Tutor','AI Tutor','Guided explanations, follow-up questions and knowledge checks','coach tutor chat explain'],
  ['reference.html','Reference library','Study tools','Formulas and worked examples across analytics tools','dax formulas excel sql functions'],
  ['learning-coach.html','Learning Coach','Study tools','Personal seven-session study routes and active recall','study plan learning schedule guided recall learning lab weekly goals reflection flashcards recap'],
  ['prompt-library.html','AI prompt library','Study tools','Practical prompts for analysts','ai chatgpt prompts'],
@@ -58,7 +58,7 @@ function init(){if(document.getElementById('premiumSearchDialog'))return;
  function render(){const q=inp.value.trim().toLowerCase(),parts=q.split(/\s+/).filter(Boolean);
   const scored=records.map((r,i)=>{const search=(r[1]+' '+r[2]+' '+r[3]+' '+r[4]).toLowerCase();let score=0;for(const term of parts){if(!search.includes(term))return null;score+=r[1].toLowerCase().startsWith(term)?8:r[1].toLowerCase().includes(term)?5:2;}return {...{r,i,score}};}).filter(Boolean).sort((a,b)=>b.score-a.score||a.i-b.i);
   const filtered=activeFilter==='all'?scored:scored.filter(x=>x.r[2]===activeFilter);
-  const visible=(q?filtered:filtered.filter(x=>activeFilter!=='all'||['Courses','Study tools'].includes(x.r[2])||x.r[0]==='index.html')).slice(0,20);
+  const visible=(q?filtered:filtered.filter(x=>activeFilter!=='all'||['Courses','Study tools','AI Tutor'].includes(x.r[2])||x.r[0]==='index.html')).slice(0,20);
   results.replaceChildren();cards=[];
   for(const {r} of visible){const a=document.createElement('a');a.className='ps-card';a.href=destination(r[0]);const left=document.createElement('span');left.className='ps-icon';left.textContent=({Courses:'▦','Study tools':'✦','My workspace':'◉',Explore:'◎'})[r[2]]||'◎';const copy=document.createElement('span');copy.className='ps-copy';const badge=document.createElement('small');badge.textContent=r[2];const name=document.createElement('strong');name.textContent=r[1];const note=document.createElement('span');note.textContent=r[3];copy.append(badge,name,note);const arrow=document.createElement('span');arrow.className='ps-arrow';arrow.textContent='↗';a.append(left,copy,arrow);results.append(a);cards.push(a);}
   if(!cards.length){const empty=document.createElement('p');empty.className='ps-empty';empty.textContent='No matching destination. Try “Excel”, “SQL”, “Tutor”, “Practice” or “DAX”.';results.append(empty);}

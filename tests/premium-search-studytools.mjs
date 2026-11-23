@@ -23,7 +23,7 @@ const unified=read('assets/styles/navigation-search-signout.css');
 assert(unified.includes('premium-search-trigger.dalp-unified-search')&&unified.includes('.dalp-public-session-card'),'Shared search and session card styles are present');
 for(const token of ['dialog.premium-search-dialog','ps-result-grid','max-width:640px','dlx-tools-grid>.dlx-tools-card>a::after','focus-visible','prefers-reduced-motion'])assert(styles.includes(token),`Search style missing: ${token}`);
 const hub=read('study-tools.html');
-const destinations=['learning-coach.html','learning-lab.html','tutor.html','practice.html','reference.html','prompt-library.html'];
-assert.equal((hub.match(/class="dlx-tools-action"/g)||[]).length,6,'Six clearly accessible action links');
+const destinations=['learning-coach.html','learning-lab.html','practice.html','reference.html','prompt-library.html'];
+assert.equal((hub.match(/class="dlx-tools-action"/g)||[]).length,5,'Five clearly accessible action links');
 for(const page of destinations){assert(hub.includes(`href="${page}"`),`${page}: missing tools action`);assert(fs.existsSync(path.join(root,page)),`${page}: destination file missing`)}
 console.log(`PASS premium search on ${publicRoutes.length} public routes, seven entire-card Study Tools links, 7 real destinations`);

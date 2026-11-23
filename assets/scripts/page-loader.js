@@ -9,7 +9,7 @@
  let ready=document.readyState!=='loading';
  let finished=false,finishTimer=null,authResult=null;
  function finish(){
-  if(finished||!ready)return;
+  if(finished||!ready||root.dataset.brandPending!==undefined)return;
   // Authentication remains fail-closed: do NOT dismiss until the guard approves or shows recovery.
   if(root.classList.contains('dalp-auth-checking') && authResult!=='error' && authResult!=='denied')return;
   const remaining=Math.max(0,MIN_VISIBLE-(performance.now()-shownAt));
@@ -20,6 +20,7 @@
  }
  if(!ready)document.addEventListener('DOMContentLoaded',()=>{ready=true;finish()},{once:true});
  else finish();
+ window.addEventListener('datalearning:brand-settled',finish);
  window.addEventListener('dalp:auth-ready',()=>{authResult='ready';finish()});
  window.addEventListener('dalp:auth-gate-state',event=>{
   authResult=event.detail?.state||null;
@@ -28,3 +29,4 @@
  window.addEventListener('pageshow',event=>{if(event.persisted){ready=true;finish()}});
  setTimeout(()=>{if(!root.classList.contains('dalp-auth-checking')){ready=true;finish()}},MAX_PUBLIC_WAIT);
 })();
+
