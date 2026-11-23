@@ -53,8 +53,9 @@
   }
   function toast(message) {
     const element = $('promptToast');
-    element.textContent = message;
-    element.classList.add('show');
+    const kind = /unavailable|failed|save a prompt|select the full/i.test(message) ? 'critical' : 'routine';
+    if (window.DALP_NOTIFICATION_POLICY) window.DALP_NOTIFICATION_POLICY.feedback(element, message, kind);
+    else { element.textContent = message; element.classList.toggle('show', kind === 'critical'); }
     clearTimeout(toastHandle);
     toastHandle = setTimeout(() => element.classList.remove('show'), 2400);
   }

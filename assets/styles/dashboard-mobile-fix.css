@@ -88,3 +88,13 @@ html[data-theme] body.ac-ready.ac-dashboard-no-sidebar .ac-topbar :is(a,summary,
 }
 @media(max-width:360px){html[data-theme] body.ac-ready.ac-dashboard-no-sidebar .ac-dashboard-quicklink{padding-inline:7px!important;font-size:10px!important}html[data-theme] body.ac-ready.ac-dashboard-no-sidebar .ac-account-avatar{width:30px!important;height:30px!important}}
 @media(prefers-reduced-motion:reduce){html[data-theme] body.ac-ready.ac-dashboard-no-sidebar .ac-topbar *{transition:none!important}}
+
+/* Release 6: prevent dashboard cards, grids and long labels from forcing
+   horizontal page scrolling on narrow devices. Scoped to learner dashboard. */
+@media (max-width: 600px) {
+  body.dalp-account-page :is(main, section, article, .card, .mld-record-card) { min-width: 0; max-width: 100%; }
+  body.dalp-account-page :is(h1,h2,h3,p,.mld-course-subtitle) { overflow-wrap: anywhere; }
+  body.dalp-account-page :is(button,a,input,select,textarea) { max-width: 100%; }
+  body.dalp-account-page :is(.mld-sync-banner,.mld-record-title) { min-width: 0; }
+  body.dalp-account-page :is(.table-responsive,.table-wrap) { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+}

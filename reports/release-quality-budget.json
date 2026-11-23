@@ -1,0 +1,26 @@
+{
+  "generatedAt": "2026-11-22T16:09:48.424Z",
+  "note": "Referenced local CSS/JS uncompressed sizes; not network transfer or Core Web Vitals.",
+  "pages": [
+    {
+      "page": "index.html",
+      "assetCount": 39,
+      "uncompressedKB": 1197
+    },
+    {
+      "page": "account.html",
+      "assetCount": 42,
+      "uncompressedKB": 1113
+    },
+    {
+      "page": "catalog.html",
+      "assetCount": 40,
+      "uncompressedKB": 1238
+    },
+    {
+      "page": "auth.html",
+      "assetCount": 12,
+      "uncompressedKB": 79
+    }
+  ]
+}

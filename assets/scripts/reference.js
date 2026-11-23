@@ -100,8 +100,9 @@
   function keyOf(row) { return `${row.group}|${row.title}`; }
   function showToast(message) {
     const toast = $('referenceToast');
-    toast.textContent = message;
-    toast.classList.add('show');
+    const kind = /unavailable|failed|select the code/i.test(message) ? 'critical' : 'routine';
+    if (window.DALP_NOTIFICATION_POLICY) window.DALP_NOTIFICATION_POLICY.feedback(toast, message, kind);
+    else { toast.textContent = message; toast.classList.toggle('show', kind === 'critical'); }
     clearTimeout(toastTimer);
     toastTimer = setTimeout(() => toast.classList.remove('show'), 2400);
   }

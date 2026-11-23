@@ -1,0 +1,12 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+const css=fs.readFileSync('assets/styles/public-header-unified.css','utf8');
+const pulse=fs.readFileSync('assets/scripts/learner-companion.js','utf8');
+const ai=fs.readFileSync('assets/scripts/floating-learning-ai.js','utf8');
+assert.match(css,/Release 7: coordinated right-edge floating actions/);
+assert.match(css,/calc\(154px \+ env\(safe-area-inset-bottom\)\)/);
+assert.match(css,/body\.lc-dialog-open \.dl-float-coach/);
+assert.match(css,/\.dl-float-coach\.is-open\) \.lc-launch/);
+assert.match(pulse,/lc-pulse-trigger/);
+assert.match(ai,/dl-float-launcher/);
+console.log('Floating action layout source checks passed');

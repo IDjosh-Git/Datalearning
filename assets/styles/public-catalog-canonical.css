@@ -10,3 +10,6 @@ body .dl-compact-course .dl-compact-meta span{background:#F7F3EA;border-radius:8
 body .dl-compact-course .dl-compact-action{display:block;text-align:center;padding:11px 14px;border-radius:10px;background:#0B0909;color:white;text-decoration:none;font-size:13px;font-weight:800}
 @media(max-width:950px){body .course-grid,body .catalog-grid,body .cards-grid,body .grid:has(>.dl-compact-course){grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:610px){body .course-grid,body .catalog-grid,body .cards-grid,body .grid:has(>.dl-compact-course){grid-template-columns:1fr}body article.dl-compact-course{padding:19px!important}}
+
+body article.dl-compact-course[hidden]{display:none!important}
+.dl-catalog-tools select{width:100%;min-height:44px;border:1px solid #E2DCD3;border-radius:10px;padding:10px 12px;background:#fff;color:#0b0909;margin:7px 0 12px}

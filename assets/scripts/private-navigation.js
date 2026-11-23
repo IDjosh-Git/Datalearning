@@ -31,7 +31,7 @@
  // Academy remains available to every signed-in learner, including administrators.
  // Administration only appears after the server-backed site_admins role is verified.
  const learnerNav=[
-  {caption:'ACADEMY',items:[['Learning Dashboard','account.html','account'],['Explore courses','index.html#zaDiscoverCards','catalog'],['Practice Arena','practice.html','practice'],['AI Tutor','tutor.html','tutor']]}
+  {caption:'ACADEMY',items:[['Learning Dashboard','account.html','account'],['Courses','index.html#zaDiscoverCards','catalog'],['Practice Arena','practice.html','practice'],['AI Tutor','tutor.html','tutor']]}
  ];
  const moreNav=[['Study Tools','study-tools.html','study'],['Study plan','learning-coach.html','study-plan'],['Learning Lab','learning-lab.html','lab'],['Capstone Studio','capstone.html','capstone'],['Certificates','account.html#certificates','certificate']];
  const adminNav=[
@@ -59,7 +59,7 @@
  const adminSummary=document.createElement('summary');adminSummary.textContent='Reports & admin tools';
  const adminLinks=document.createElement('div');adminLinks.className='ac-more-links';
  adminMoreNav.forEach(item=>adminLinks.append(navLink(item)));adminTools.append(adminSummary,adminLinks);navEl.append(adminTools);
- if(!adminWorkspace){const academyLink=navLink(['Discover the academy','index.html','portal']);academyLink.classList.add('ac-academy-link');navEl.append(academyLink);}
+ 
  aside.append(navEl);
  const bottom=document.createElement('div');bottom.className='ac-side-bottom';
  bottom.innerHTML=''; // Profile remains in the top bar; account identity lives above Sign out.
@@ -83,7 +83,7 @@
  const right=document.createElement('div');right.className='ac-top-actions';
  right.innerHTML='<span class="ac-secure"><span class="ac-secure-dot" aria-hidden="true"></span> '+(adminWorkspace?'Admin workspace':'Learner space')+'</span>'; if(compactDashboard)right.replaceChildren(); // Keep the learner dashboard header minimal.
  if(compactDashboard){
-  const home=document.createElement('a');home.href='index.html#zaDiscoverCards';home.className='ac-dashboard-quicklink';home.textContent='Discover courses';
+  const home=document.createElement('a');home.href='index.html#zaDiscoverCards';home.className='ac-dashboard-quicklink';home.textContent='Courses';
   const menu=document.createElement('details');menu.className='ac-account-menu';
   const trigger=document.createElement('summary');trigger.className='ac-account-trigger';trigger.innerHTML='<span class="ac-account-avatar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M5.5 20c.4-3.7 2.7-5.5 6.5-5.5s6.1 1.8 6.5 5.5"/></svg></span><span class="ac-account-copy"><span class="ac-account-overline">MY WORKSPACE</span><span class="ac-account-display">My account</span></span><span class="ac-account-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>';trigger.setAttribute('aria-label','Account menu');
   const panel=document.createElement('div');panel.className='ac-account-panel';

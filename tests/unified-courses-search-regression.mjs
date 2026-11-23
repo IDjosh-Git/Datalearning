@@ -1,0 +1,13 @@
+import fs from 'node:fs';import assert from 'node:assert/strict';import vm from 'node:vm';
+const root=new URL('../',import.meta.url);const read=p=>fs.readFileSync(new URL(p,root),'utf8');
+const html=read('course-info/catalog.html');const script=html.match(/<script>\s*(\/\* Public catalogue:[\s\S]*?)<\/script>/)?.[1];assert(script,'generated public filter script must exist');
+const cards=['Data Analysis','Excel Analytics','SQL for Analytics','Power BI','Tableau','Power Query','Introductory Statistics','Python for Data Analytics','AI for Data Analysis'].map(textContent=>({textContent,hidden:false,dataset:{}}));
+const listeners={};const input={value:'',addEventListener:(n,fn)=>listeners['search:'+n]=fn};const filter={value:'all',addEventListener:(n,fn)=>listeners['filter:'+n]=fn};const count={textContent:''};const grid={querySelectorAll:()=>cards};const nodes={dlCourseSearch:input,dlCourseFilter:filter,dlCourseGrid:grid,dlCourseCount:count};
+vm.runInNewContext(script,{document:{getElementById:id=>nodes[id]}});assert.equal(cards.filter(x=>!x.hidden).length,9);
+input.value='sql';listeners['search:input']();assert.deepEqual(cards.filter(x=>!x.hidden).map(x=>x.textContent),['SQL for Analytics']);
+input.value='';filter.value='bi';listeners['filter:change']();assert.deepEqual(cards.filter(x=>!x.hidden).map(x=>x.textContent),['Power BI','Tableau']);
+input.value='not a course';listeners['search:input']();assert.equal(cards.filter(x=>!x.hidden).length,0);assert.match(count.textContent,/No courses match/);
+assert.match(read('assets/styles/public-catalog-canonical.css'),/\.dl-compact-course\[hidden\]\{display:none!important\}/);
+assert(!read('index.html').includes('View all 9 courses ↗'));
+assert.match(read('assets/scripts/academy-app.js'),/node\.innerHTML=completeCatalog\.map\(path=>renderCard\(path\)\)/);
+console.log('PASS public search/category filtering and authenticated nine-course catalogue');

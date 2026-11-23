@@ -1,0 +1,15 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+const read = path => fs.readFileSync(new URL('../'+path,import.meta.url),'utf8');
+const search = read('assets/scripts/premium-search.js');
+const policy = read('assets/scripts/notification-policy.js');
+const css = read('assets/styles/notification-policy.css');
+const academy = read('assets/scripts/academy-app.js');
+assert.match(search,/index\.html#zaDiscoverCards/,'Quick search must point to authenticated Academy courses');
+assert.doesNotMatch(search,/\['catalog\.html'/,'Quick search must not link to public catalogue');
+assert.match(academy,/completeCatalog\.map\(path=>renderCard\(path\)\)/,'All nine courses shown');
+assert.match(policy,/kind === 'critical'/,'Critical errors must remain visible');
+assert.match(policy,/aria-live/,'Feedback must be announced to assistive technology');
+assert.match(css,/prefers-reduced-motion/,'Reduced motion supported');
+assert.match(read('course-info/catalog.html'),/dlCourseSearch/,'Public search preserved');
+console.log('PASS phase five journey, navigation, feedback, accessibility');
