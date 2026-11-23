@@ -8,6 +8,8 @@ body[data-responsive-page="practice"] .ide-grid-scroll{overscroll-behavior-y:aut
 @media(prefers-reduced-motion:reduce){body[data-responsive-page="practice"] *,body[data-responsive-page="practice"] *::before,body[data-responsive-page="practice"] *::after{scroll-behavior:auto!important}}
 
 
+
+
 /* Editor-specific scroll ownership: native input scrolling must not be trapped
    by parent flex panels or by the spreadsheet's horizontal-only container. */
 body[data-responsive-page="practice"] #practiceDetail :is(#practiceAnswer.sql-editor-textarea,#pythonCode){
@@ -35,8 +37,9 @@ body[data-responsive-page="practice"] #practiceDetail .ide-grid-scroll{
 
 
 
-/* Release 25: keep the Arena responsive while scrolling and use the shared brand palette. */
-body[data-responsive-page="practice"]{--dlp-night:var(--dl-brand-secondary,#183047);--dlp-navy:var(--dl-brand-primary,#123B4A);--dlp-text:var(--dl-text,#172B3A);--dlp-muted:var(--dl-muted,#526475);--dlp-line:var(--dl-border,#D8E1E8);--dlp-melon:var(--dl-brand-accent,#B66B42);--dlp-mist:var(--dl-brand-background,#F8FAFC);scroll-behavior:auto!important;overscroll-behavior-y:auto!important;touch-action:pan-y}
+
+/* Release 25: align Arena surfaces with the shared brand and reduce scroll repaint work. */
+body[data-responsive-page="practice"]{--dlp-night:var(--dl-brand-secondary,#183047);--dlp-navy:var(--dl-brand-primary,#123B4A);--dlp-text:var(--dl-text,#172B3A);--dlp-muted:var(--dl-muted,#526475);--dlp-line:var(--dl-border,#D8E1E8);--dlp-melon:var(--dl-brand-accent,#B66B42);--dlp-mist:var(--dl-brand-background,#F8FAFC);scroll-behavior:auto!important;overscroll-behavior-y:auto!important}
 body[data-responsive-page="practice"] :is(.pc-hero,.hub-topbar){background:linear-gradient(120deg,var(--dl-brand-secondary,#183047),var(--dl-brand-primary,#123B4A))!important;color:#fff!important}
 body[data-responsive-page="practice"] .pc-hero :is(h1,h2,p,.eyebrow,.kicker){color:#fff!important}
 body[data-responsive-page="practice"] :is(.pc-item,.pc-detail,.hub-dialog,.arena-subject-options button){border-color:var(--dl-border,#D8E1E8)!important}
