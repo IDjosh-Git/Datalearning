@@ -7365,7 +7365,7 @@ html[data-theme="light"] body[data-responsive-page="practice"] #challengeModal.h
   html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-main .tutor-toolbar .tutor-identity > div:last-child{
     min-width:0!important;overflow:hidden!important;
   }
-  html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-main .tutor-toolbar .tutor-identity h2{
+  html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-main .tutor-toolbar .tutor-identity h1{
     overflow:hidden;text-overflow:ellipsis;white-space:nowrap!important;
   }
   html[data-theme="light"] body[data-responsive-page="tutor"] .tutor-main .tutor-toolbar #tutorToolsToggle{
@@ -8054,3 +8054,4 @@ html body[data-responsive-page="practice"] :is(textarea,input,[contenteditable="
 html:has(body[data-responsive-page="practice"]){scroll-behavior:auto!important}
 body[data-responsive-page="practice"] :is(.pc-editor,.pc-results,.ide-results,.pc-detail,.pc-sheet,.pc-schema,#practiceList){scroll-behavior:auto!important}
 @media(prefers-reduced-motion:reduce){.dl-float-jump-latest{transition:none!important}}
+

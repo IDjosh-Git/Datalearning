@@ -11,7 +11,9 @@ for(const route of ['public-pages/landing.html','public-pages/start-here.html','
  assert(html.includes('public-footer.js'),`${route}: missing shared footer script`);
 }
 const footer=read('assets/scripts/public-footer.js');
-for(const name of ['Home','All Courses','Start Here','Career Paths','Free Lesson','Sign In'])assert(footer.includes(`'${name}'`));
+for(const name of ['Explore all courses','Start Here','Career paths','Free lesson','Sign in','Create an account'])assert(footer.includes(`'${name}'`));
 const css=read('assets/styles/public-catalog-canonical.css');
 for(const token of ['repeat(3,minmax(0,1fr))','repeat(2,minmax(0,1fr))','grid-template-columns:1fr'])assert(css.includes(token));
 console.log('PASS canonical compact catalogue and shared footer across public pages');
+
+

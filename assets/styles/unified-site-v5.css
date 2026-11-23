@@ -208,7 +208,7 @@ html body.dlx-rebuilt[data-responsive-page="tutor"] main.tutor-main .tutor-chat>
 html body.dlx-rebuilt[data-responsive-page="tutor"] main.tutor-main .tutor-chat .chat-head{display:flex!important;align-items:center!important;min-height:76px!important;flex:0 0 auto!important;gap:11px!important;padding:11px clamp(12px,2vw,22px)!important;border-radius:0!important;background:linear-gradient(115deg,var(--bw-midnight),var(--bw-midnight) 77%,var(--bw-midnight))!important;box-shadow:0 6px 15px rgba(2,48,72,.15)!important}
 html body.dlx-rebuilt[data-responsive-page="tutor"] main.tutor-main .tutor-chat .tutor-avatar{width:40px;height:40px;border-radius:13px!important;background:linear-gradient(145deg,#FFFFFF,#F8EFE4)!important;color:var(--bw-midnight)!important;box-shadow:inset 0 0 0 1px #E2DCD3,0 5px 16px #02304842!important}
 html body.dlx-rebuilt[data-responsive-page="tutor"] main.tutor-main .tutor-chat .tutor-identity{min-width:0!important;flex:1 1 auto!important}
-html body.dlx-rebuilt[data-responsive-page="tutor"] main.tutor-main .tutor-chat .tutor-identity h2{font-size:clamp(1rem,1.2vw,1.17rem)!important;margin:1px 0!important;color:#FFFFFF!important}
+html body.dlx-rebuilt[data-responsive-page="tutor"] main.tutor-main .tutor-chat .tutor-identity h1{font-size:clamp(1rem,1.2vw,1.17rem)!important;margin:1px 0!important;color:#FFFFFF!important}
 html body.dlx-rebuilt[data-responsive-page="tutor"] main.tutor-main .tutor-chat .tutor-subtitle{color:#E9DDD0!important;font-size:.75rem!important}
 html body.dlx-rebuilt[data-responsive-page="tutor"] main.tutor-main .tutor-chat .tutor-toolbar-actions{display:flex!important;align-items:center!important;flex:0 0 auto!important;gap:5px!important}
 html body.dlx-rebuilt[data-responsive-page="tutor"] main.tutor-main .tutor-chat .tutor-toolbar-btn,html body.dlx-rebuilt[data-responsive-page="tutor"] main.tutor-main .tutor-chat #tutorToolsToggle{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:5px!important;min-width:38px!important;min-height:38px!important;width:auto!important;margin:0!important;padding:8px 10px!important;border:1px solid #AFA39A70!important;border-radius:10px!important;color:#FFFFFF!important;-webkit-text-fill-color:#FFFFFF!important;background:#FFFFFF17!important;box-shadow:none!important;white-space:nowrap!important}
@@ -238,7 +238,7 @@ html body.dlx-rebuilt[data-responsive-page="tutor"] main.tutor-main .tutor-grid{
  html body.dlx-rebuilt[data-responsive-page="tutor"] main.tutor-main .tutor-chat .tutor-toolbar-btn span{display:none!important}
  html body.dlx-rebuilt[data-responsive-page="tutor"] main.tutor-main .tutor-chat .tutor-toolbar-btn,html body.dlx-rebuilt[data-responsive-page="tutor"] main.tutor-main .tutor-chat #tutorToolsToggle{min-width:34px!important;min-height:36px!important;padding:6px!important}
  html body.dlx-rebuilt[data-responsive-page="tutor"] main.tutor-main .tutor-chat .tutor-mobile-back{display:none!important}
- html body.dlx-rebuilt[data-responsive-page="tutor"] main.tutor-main .tutor-chat .tutor-identity h2{font-size:.99rem!important}
+ html body.dlx-rebuilt[data-responsive-page="tutor"] main.tutor-main .tutor-chat .tutor-identity h1{font-size:.99rem!important}
  html body.dlx-rebuilt[data-responsive-page="tutor"] main.tutor-main .tutor-chat .tutor-subtitle{display:none!important}
  html body.dlx-rebuilt[data-responsive-page="tutor"] main.tutor-main .tutor-chat .messages{padding:14px!important;scrollbar-gutter:auto!important}
  html body.dlx-rebuilt[data-responsive-page="tutor"] main.tutor-main .tutor-chat .tutor-composer{padding:9px 10px!important}
@@ -280,3 +280,4 @@ html body.dlx-rebuilt[data-responsive-page="tutor"] main.tutor-main .tutor-welco
  html body.dlx-rebuilt[data-responsive-page="tutor"] main.tutor-main .tutor-chat .tutor-toolbar-actions .tutor-toolbar-btn{width:35px!important;min-width:35px!important;max-width:35px!important;flex:0 0 35px!important;padding:4px!important}
 }
 @media(min-width:901px){html body.dlx-rebuilt[data-responsive-page="tutor"] main.tutor-main .tutor-chat #tutorToolsToggle{display:none!important}}
+

@@ -24,3 +24,159 @@
   .premium-hero.dl-landing-home { grid-template-columns: minmax(0,1fr); }
 }
 
+
+/* Public layouts share the homepage's spacing, surfaces and published palette. */
+body.dl-public-feature {
+  margin: 0;
+  background: var(--dl-brand-background, #f8fafc);
+  color: #172b3a;
+  font: 1rem/1.65 system-ui, sans-serif;
+}
+body.dl-public-feature .dlp-main {
+  width: min(100% - 32px, 1180px);
+  max-width: none;
+  padding: clamp(22px, 4vw, 52px) 0 clamp(30px, 5vw, 64px);
+  margin: auto;
+}
+html body .dl-public-feature-hero, html body.public-guide .intro.dl-catalog-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(240px, 1fr);
+  align-items: center;
+  gap: clamp(18px, 4vw, 48px);
+  padding: clamp(22px, 4vw, 48px);
+  margin: 0 0 28px;
+  border: 0;
+  border-radius: 24px;
+  color: #fff;
+  background: linear-gradient(125deg,var(--dl-brand-secondary,#183047),var(--dl-brand-primary,#123b4a)) !important;
+}
+html body .dl-public-feature-hero h1, html body.public-guide .intro.dl-catalog-hero h1 {
+  font-size: clamp(2rem, 4.3vw, 3.6rem);
+  max-width: 20ch;
+  line-height: 1.08;
+  letter-spacing: -.045em;
+  margin: 8px 0 12px;
+  text-wrap: balance;
+}
+html body .dl-public-feature-hero p, html body.public-guide .intro.dl-catalog-hero p { margin: 0; color: #fff; }
+.dl-public-feature-hero .dlp-kicker, .dl-catalog-hero .eyebrow { font-size: .76rem; text-transform: uppercase; letter-spacing: .1em; font-weight: 800; }
+.dl-public-feature-side, .dl-catalog-start {
+  background: #fff;
+  color: #172b3a;
+  border-radius: 16px;
+  padding: clamp(16px, 2vw, 26px);
+  box-shadow: 0 8px 24px #172b3a22;
+}
+html body .dl-public-feature-side p, html body.public-guide .dl-catalog-start p { color: #526475; margin: 4px 0 12px; }
+.dl-catalog-start > a, .dl-career-card a, .dl-public-lesson-aside a { color: var(--dl-brand-primary,#123b4a); font-weight: 700; text-underline-offset: 3px; }
+.dl-public-feature :is(.dlp-btn,.dlp-secondary) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 8px 14px;
+  margin: 4px 8px 0 0;
+  border-radius: 9px;
+  font-weight: 750;
+  text-decoration: none;
+  border: 1px solid var(--dl-brand-primary,#123b4a);
+}
+.dl-public-feature .dlp-btn { background: var(--dl-brand-primary,#123b4a); color: #fff; }
+.dl-public-feature .dlp-secondary { background: #fff; color: var(--dl-brand-primary,#123b4a); }
+.dl-public-feature :is(.dlp-btn,.dlp-secondary):hover { text-decoration: underline; }
+.dl-public-content { margin-block: 34px; }
+.dl-public-content h2, .dlp-next h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); letter-spacing: -.025em; margin: 0 0 12px; }
+.dlp-paths { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; align-items: stretch; }
+.dl-career-card, .dl-public-feature .dlp-lesson, .dl-public-lesson-aside nav, .dl-public-feature .dlp-next {
+  background: #fff;
+  border: 1px solid #d8e1e8;
+  border-radius: 18px;
+  padding: clamp(17px, 2vw, 28px);
+}
+.dl-career-card h3 { font-size: 1.25rem; line-height: 1.25; margin: 0; }
+.dl-career-card h4 { margin: 18px 0 8px; font-size: .84rem; }
+.dl-career-card p, .dl-public-note { color: #526475; }
+.dl-career-card ol { margin: 0; padding-inline-start: 1.5rem; }
+.dl-career-card li { padding: 6px 2px; border-top: 1px solid #d8e1e8; }
+.dl-public-note { font-size: .875rem; }
+.dl-public-lesson-layout {
+  display: grid;
+  grid-template-columns: minmax(0,3fr) minmax(210px,1fr);
+  align-items: start;
+  gap: 18px;
+  margin-bottom: 24px;
+}
+html body .dl-public-lesson-aside nav { display: grid; min-height: 0; justify-content: stretch; gap: 8px; margin: 0; box-shadow: none; }
+.dl-public-lesson-aside h2 { margin: 0; font-size: 1.05rem; }
+.dl-public-feature :is(#sample-lesson,#analysis-steps,#try-it) { scroll-margin-top: 88px; }
+.dl-public-feature .lesson-heading { display: flex; align-items: center; gap: 12px; }
+.dl-public-feature .lesson-number { background: var(--dl-brand-secondary,#183047); color: #fff; padding: 8px 12px; border-radius: 9px; font-weight: 800; }
+.dl-public-feature .lesson-heading :is(p,h2) { margin: 0; }
+.dl-public-feature .lesson-heading p { font-size: .75rem; color: #526475; font-weight: 750; }
+.dl-public-feature .intro-lesson > :is(p,.idea-card,.try-card) { max-width: 72ch; }
+.dl-public-feature :is(.idea-card,.try-card) { background: #f8fafc; border: 1px solid #d8e1e8; padding: 16px; border-radius: 12px; }
+.dl-public-feature :is(.idea-card,.try-card) p { margin: 4px 0 0; }
+.dl-public-feature .three-points { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 10px; }
+.dl-public-feature .three-points > div { border: 1px solid #d8e1e8; border-radius: 12px; padding: 12px; }
+.dl-public-feature .three-points :is(b,span) { display: block; }
+.dl-public-feature .three-points p { margin-bottom: 0; }
+
+/* Align the catalogue controls and cards to the same edges. */
+html body.public-guide main .dl-catalog-tools {
+  display: grid;
+  grid-template-columns: minmax(0,2fr) minmax(0,1fr);
+  align-items: end;
+  gap: 10px 14px;
+  max-width: none;
+  margin: 0 0 20px;
+  padding: 16px;
+}
+.dl-catalog-tools .dl-catalog-field :is(input,select) {
+  width: 100%;
+  min-height: 44px;
+  margin: 0;
+  padding: 8px 12px;
+  border: 1px solid #526475;
+}
+.dl-catalog-tools .dl-catalog-field label { margin-bottom: 4px; }
+.dl-catalog-tools #dlCourseCount { grid-column: 1/-1; margin: 0; color: #526475; }
+html body.public-guide #dlCourseGrid { margin-top: 0; }
+html body.public-guide article.dl-compact-course .dl-compact-description { display:block; overflow:visible; }
+html body.public-guide .dl-compact-course .dl-compact-action { background:var(--dl-brand-primary,#123b4a); }
+@media (max-width: 760px) {
+  html body .dl-public-feature-hero, html body.public-guide .intro.dl-catalog-hero,
+  .dlp-paths, .dl-public-lesson-layout { grid-template-columns: minmax(0,1fr); }
+  .dl-public-lesson-aside { grid-row: 1; }
+}
+@media (max-width: 480px) {
+  html body.public-guide main .dl-catalog-tools, .dl-public-feature .three-points { grid-template-columns: minmax(0,1fr); }
+}
+
+/* Starting-point cards on public pages use the same readable links and surfaces. */
+html body .dl-choice-grid a {
+  background: #fff;
+  color: #172b3a;
+  border-color: #d8e1e8;
+}
+html body .dl-choice-grid a b { color: var(--dl-brand-primary,#123b4a); }
+html body .dl-choice-grid a:hover { border-color: var(--dl-brand-primary,#123b4a); }
+
+html body.public-guide main:has(>.dl-catalog-hero) {
+  width: min(100% - 32px, 1180px);
+  max-width: none;
+  padding-inline: 0;
+  margin-inline: auto;
+}
+html body.public-guide .intro.dl-catalog-hero .dl-catalog-start p {
+  color: #526475;
+  margin: 4px 0 12px;
+}
+html body.public-guide .intro.dl-catalog-hero .dl-catalog-start a {
+  color: var(--dl-brand-primary,#123b4a);
+}
+
+body.public-guide, body.dl-public-feature { background: var(--dl-brand-background,#f8fafc); }
+html body.public-guide main:has(>.dl-catalog-hero) { padding-top: clamp(22px,4vw,52px); }
+.dl-compact-card-head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.dl-compact-card-head img { flex: none; object-fit: contain; }
+.dl-compact-card-head .dl-compact-tag { margin: 0; }

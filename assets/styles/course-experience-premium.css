@@ -198,3 +198,14 @@ body.za-courses .dlc-mastery-row>a:focus-visible{outline:3px solid var(--bw-copp
 body.za-progress .za-mastery-progress-link{display:inline-flex;align-items:center;gap:4px;color:var(--bw-midnight)!important;font-size:12px;font-weight:800;text-decoration:underline;text-underline-offset:3px}
 @media(max-height:660px){body.za-lesson .za-mastery-aside-card{padding:9px 12px;margin-bottom:7px}body.za-lesson .za-mastery-aside-card p{font-size:10px}}
 @media(max-width:520px){body.za-courses .dlc-mastery-row>a{width:100%;justify-content:center}body.za-lesson .za-lesson-bottom .za-btn-mastery{flex-basis:100%}}
+
+/* Keep the lesson section shortcuts visible on narrow screens. */
+@media (max-width: 680px) {
+  body.za-lesson .za-lesson-sections {
+    display: grid;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    overflow: visible;
+  }
+  body.za-lesson .za-section-toc-title { grid-column: 1/-1; }
+  body.za-lesson .za-lesson-sections button { white-space: normal; overflow-wrap: anywhere; }
+}

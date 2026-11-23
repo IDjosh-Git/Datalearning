@@ -39,3 +39,11 @@ Public pages show Home, Start Here, course outlines, Career Paths, Free Lesson a
 AI Tutor is available directly from learner navigation and search. The Study Tools grid uses its remaining five cards across the available width. The public home and Discover give the hero photograph the larger desktop column and the full content width on smaller screens.
 
 The published palette now starts resolving in the document head and is applied before page content becomes visible. An initial request that fails uses the default palette. Later failures leave the last published palette applied on the open page. Local Edge checks used an intentionally delayed branding response.
+
+## Public experience and app audit
+
+- The Explore Courses catalogue now has aligned search and category controls, course icons, and a visible link to the introductory course.
+- Career Paths presents three suggested training sequences with direct links to course syllabi. Free Lesson places the worked example and exercise in a readable lesson layout with section shortcuts.
+- The visitor footer aligns with the home page content width. Both footer layouts use their available space at desktop and phone widths.
+- The desktop and mobile layout audit covered 50 routes, including nine public outlines, nine lesson workspaces, signed-in tools, admin screens, sign-in, and the legacy Questions redirect. It caught clipped lesson section controls and a missing primary heading in AI Tutor. Final Edge checks passed at 1440 and 390 CSS pixels with no page-level horizontal overflow.
+- The browser audit used simulated authentication and branding. It checked layout and landmarks across the route list, and exercised catalogue filters, career links and sample lesson anchors. Live services and production were outside this audit.

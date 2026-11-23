@@ -16,7 +16,8 @@
       ['Career paths', 'career-paths']
     ]],
     ['Account', [
-      ['Sign in', 'auth.html']
+      ['Sign in', 'auth.html'],
+      ['Create an account', 'auth.html?mode=create']
     ]]
   ];
   const learnerColumns = [
