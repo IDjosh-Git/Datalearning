@@ -1,6 +1,6 @@
 /* DataLearning Premium Search — accessible in-page command search, no external requests. */
 (()=>{'use strict';
-const base=location.pathname.includes('/courses/')?'../':'';
+const base='/';
 const records=[
  ['account.html#course-progress-heading','My progress','My workspace','Review completed weeks across all nine courses','insights popularity trends overview statistics learners'],
  ['index.html','Discover','Explore','Choose a learning goal and start your next skill','discover find my path start goal home'],
@@ -29,7 +29,7 @@ const records=[
  ];
 const searchIcon='<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="7.5"/><path d="m16 16 5 5"/></svg>';
 function init(){if(document.getElementById('premiumSearchDialog'))return;
- const unifiedHeader=document.querySelector('.dlu-header .dlu-header-actions');
+ const unifiedHeader=document.querySelector('.academy-header .academy-actions, .dlu-header .dlu-header-actions');
  const header=document.querySelector('.dalp-global-header .dalp-global-inner');
  const privateTop=document.querySelector('.ac-topbar .ac-top-actions');
  const quizTop=document.querySelector('.dl-quiz-nav-actions');
@@ -47,12 +47,20 @@ function init(){if(document.getElementById('premiumSearchDialog'))return;
  const inp=dlg.querySelector('#psInput'),results=dlg.querySelector('#psResults'),count=dlg.querySelector('#psCount');let cards=[],activeFilter='all';
  const filterButtons=[...dlg.querySelectorAll('.ps-filter')];
  filterButtons.forEach(button=>button.addEventListener('click',()=>{activeFilter=button.dataset.filter;filterButtons.forEach(b=>b.setAttribute('aria-pressed',String(b===button)));render();inp.focus({preventScroll:true});}));
+ function destination(path){
+  const academy=document.querySelector('[data-academy-navigation]');
+  if(!academy||academy.dataset.academySignedIn==='true'||window.DALP_AUTH_GATE)return base+path;
+  if(/^courses\/[a-z]+\.html$/.test(path))return base+path.replace(/\.html$/,'');
+  if(path==='index.html')return base;
+  if(path==='index.html#zaDiscoverCards')return '/courses';
+  return base+path;
+ }
  function render(){const q=inp.value.trim().toLowerCase(),parts=q.split(/\s+/).filter(Boolean);
   const scored=records.map((r,i)=>{const search=(r[1]+' '+r[2]+' '+r[3]+' '+r[4]).toLowerCase();let score=0;for(const term of parts){if(!search.includes(term))return null;score+=r[1].toLowerCase().startsWith(term)?8:r[1].toLowerCase().includes(term)?5:2;}return {...{r,i,score}};}).filter(Boolean).sort((a,b)=>b.score-a.score||a.i-b.i);
   const filtered=activeFilter==='all'?scored:scored.filter(x=>x.r[2]===activeFilter);
   const visible=(q?filtered:filtered.filter(x=>activeFilter!=='all'||['Courses','Study tools'].includes(x.r[2])||x.r[0]==='index.html')).slice(0,20);
   results.replaceChildren();cards=[];
-  for(const {r} of visible){const a=document.createElement('a');a.className='ps-card';a.href=base+r[0];const left=document.createElement('span');left.className='ps-icon';left.textContent=({Courses:'▦','Study tools':'✦','My workspace':'◉',Explore:'◎'})[r[2]]||'◎';const copy=document.createElement('span');copy.className='ps-copy';const badge=document.createElement('small');badge.textContent=r[2];const name=document.createElement('strong');name.textContent=r[1];const note=document.createElement('span');note.textContent=r[3];copy.append(badge,name,note);const arrow=document.createElement('span');arrow.className='ps-arrow';arrow.textContent='↗';a.append(left,copy,arrow);results.append(a);cards.push(a);}
+  for(const {r} of visible){const a=document.createElement('a');a.className='ps-card';a.href=destination(r[0]);const left=document.createElement('span');left.className='ps-icon';left.textContent=({Courses:'▦','Study tools':'✦','My workspace':'◉',Explore:'◎'})[r[2]]||'◎';const copy=document.createElement('span');copy.className='ps-copy';const badge=document.createElement('small');badge.textContent=r[2];const name=document.createElement('strong');name.textContent=r[1];const note=document.createElement('span');note.textContent=r[3];copy.append(badge,name,note);const arrow=document.createElement('span');arrow.className='ps-arrow';arrow.textContent='↗';a.append(left,copy,arrow);results.append(a);cards.push(a);}
   if(!cards.length){const empty=document.createElement('p');empty.className='ps-empty';empty.textContent='No matching destination. Try “Excel”, “SQL”, “Tutor”, “Practice” or “DAX”.';results.append(empty);}
   count.textContent=cards.length+' result'+(cards.length===1?'':'s');
  }

@@ -8,7 +8,7 @@ const publicRoutes=[...fs.readdirSync(root).filter(x=>x.endsWith('.html')&&!priv
 const css='assets/styles/public-search-premium.css';
 for(const page of publicRoutes){
  const html=read(page);const base=page.startsWith('courses/')?'../':'';
- assert.equal((html.match(/id="dluNavPanel"/g)||[]).length,1,`${page}: shared nav`);
+ assert.equal((html.match(/data-academy-navigation/g)||[]).length,1,`${page}: shared nav`);
  assert.equal((html.match(/premium-search\.js/g)||[]).length,1,`${page}: one search script`);
  assert.equal((html.match(/public-search-premium\.css/g)||[]).length,1,`${page}: one shared search style`);
  const head=html.split('</head>')[0];

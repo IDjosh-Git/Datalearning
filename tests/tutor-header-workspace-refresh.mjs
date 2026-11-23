@@ -15,6 +15,7 @@ assert(css.includes('main.tutor-main .tutor-sidebar.tutor-drawer-open'), 'Mobile
 assert(css.includes('main.tutor-main .tutor-chat .messages{display:flex'), 'Independent message scroller missing');
 assert(css.includes('main.tutor-main .tutor-chat .tutor-toolbar-actions #clearChat{display:inline-flex'), 'Clear Chat must remain visible on mobile');
 assert(coach.includes("launch.className='lc-launch lc-pulse-trigger'")&&coach.includes('Study Pulse')&&!coach.includes('function placeLaunch()'), 'Study Pulse must remain a floating shortcut, not a header item');
-assert(search.includes("const unifiedHeader=document.querySelector('.dlu-header .dlu-header-actions')"), 'Search must use the unified public header utility area');
+assert(search.includes(".academy-header .academy-actions"), 'Search must use the unified public header utility area');
 assert(drawer.includes("getElementById('tutorCloseSettings')"), 'Full-height settings drawer must have a close action');
 console.log('PASS Tutor header/workspace: single immersive screen, top-anchored settings drawer, compact coach/search controls, mobile chat actions');
+

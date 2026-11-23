@@ -14,9 +14,9 @@ for(const page of routes){
  assert.equal((html.match(/premium-search\.js/g)||[]).length,1,`${page}: one working search controller`);
  assert(html.includes(`href="${pre}${shared}?v=20261112-unified"`),`${page}: stylesheet uses correct relative path`);
  const head=html.split('</head>')[0], lastStyle=head.lastIndexOf('navigation-search-signout.css');
- assert(lastStyle>head.indexOf('public-search-premium.css'),`${page}: shared search skin after previous search styles`);
+ assert(lastStyle>head.indexOf('public-search-premium.css') || (html.includes('data-academy-navigation') && head.indexOf('academy-navigation.css')>lastStyle),`${page}: shared search skin after previous search styles`);
  if(!publicRoutes.has(page)){
-  assert(html.includes('class="dlu-header"'),`${page}: unified header preserved`);
+  assert(html.includes('data-academy-navigation'),`${page}: unified header preserved`);
  }
 }
 assert(!read('auth.html').includes('navigation-search-signout.css'),'Sign-in entry does not expose learning header');

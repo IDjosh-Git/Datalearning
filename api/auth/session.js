@@ -70,6 +70,11 @@ export default async function handler(req,res){
  if(!['POST','GET','DELETE'].includes(req.method))return reply(res,405,{error:'Method not allowed'},{Allow:'GET, POST, DELETE'});
  if(req.method!=='GET'&&!sameOrigin(req))return reply(res,403,{error:'Request not permitted'});
  if(req.method==='GET'){
+  if(new URL(req.url||'/','http://localhost').searchParams.get('status')==='1'){
+   const token=readServerToken(req.headers.cookie||'');
+   const status=tokenSecondsLeft(token)>0?await verifyAccount(token):{ok:false};
+   return reply(res,200,{signedIn:status.ok});
+  }
   const continueTo=resumeTarget(req);
   const refresh=cookieRefresh(req); const token=readServerToken(req.headers.cookie||'');
   if(!refresh)return expiredSession(req,res,continueTo);

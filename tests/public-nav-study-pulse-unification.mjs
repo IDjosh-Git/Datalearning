@@ -9,16 +9,11 @@ const pages=[...fs.readdirSync(root).filter(f=>f.endsWith('.html')&&!privateRout
 const navs=['index.html','catalog.html','study-tools.html','practice-hub.html','practice.html','tutor.html','capstone.html'];
 for(const p of pages){
  const src=read(p),base=p.startsWith('courses/')?'../':'';
- assert.equal((src.match(/class="dlu-header"/g)||[]).length,1,`${p}: one public header`);
- assert.equal((src.match(/id="dluNavPanel"/g)||[]).length,1,`${p}: one full-screen navigation drawer`);
- assert.equal((src.match(/id="dluNavOpen"/g)||[]).length,1,`${p}: mobile open control`);
- assert.equal((src.match(/id="dluNavClose"/g)||[]).length,1,`${p}: close control`);
- assert(!src.includes('class="za-header"')&&!src.includes('class="dlx-header"')&&!src.includes('class="dalp-global-header"'),`${p}: old navigation markup removed`);
- for(const dest of navs)assert(src.includes(`href="${base}${dest}"`) || src.includes(`href="${dest}"`),`${p}: missing common nav destination ${dest}`);
- for(const fname of (['career-paths.html','free-lesson.html'].includes(p)?['public-header-unified.js']:['public-header-unified.js','premium-search.js','learner-companion.js'])){
-  assert.equal((src.match(new RegExp(`src="${base}assets/scripts/${fname.replaceAll('.','\\.')}"`,'g'))||[]).length,1,`${p}: ${fname} included once`);
- }
- assert(src.includes(`href="${base}assets/styles/public-header-unified.css"`),`${p}: unified styles missing`);
+ assert.equal((src.match(/data-academy-navigation/g)||[]).length,1,p+": one shared mount");
+ assert(!/<header[^>]*class="(?:dlu|dlp)-header"/.test(src));
+ for(const name of ['academy-navigation.js','premium-search.js'])assert(src.includes(name));
+ if(!['career-paths.html','free-lesson.html'].includes(p))assert(src.includes('learner-companion.js'));
+ assert(src.includes('academy-navigation.css'));
  assert(!src.includes('public-navigation.js')&&!src.includes('unified-academy-shell.js'),`${p}: legacy controller still linked`);
 }
 for(const p of privateRoutes){const src=read(p);assert(!src.includes('class="dlu-header"'),`${p}: protected workspace must keep role-aware nav`)}
@@ -29,7 +24,7 @@ assert(coach.includes('Study Pulse'));
 assert(!coach.includes('function placeLaunch()'),'The floating widget must not move into the header');
 for(const token of ['dalp-companion-v1:', 'Log learning session','lc-goal','data-action="bookmark"','data-action="import"'])assert(coach.includes(token),`Study Pulse lost original habit-tracking feature ${token}`);
 const css=read('assets/styles/public-header-unified.css');
-for(const token of ['dlu-nav-panel:not([hidden])','height:100dvh!important','transform:none!important','lc-pulse-trigger','lc-pulse-panel','calc(17px + env(safe-area-inset-left))'])assert(css.includes(token),`Unification style missing ${token}`);
-const nav=read('assets/scripts/public-header-unified.js');
-for(const token of ['aria-expanded','Escape','shiftKey','Tab','focus(','dlu-nav-open'])assert(nav.includes(token));
+for(const token of ['lc-pulse-trigger','lc-pulse-panel','calc(17px + env(safe-area-inset-left))'])assert(css.includes(token),`Unification style missing ${token}`);
+const nav=read('assets/scripts/academy-navigation.js');
+for(const token of ['aria-expanded','Escape','showModal','focus('])assert(nav.includes(token));
 console.log(`PASS public navigation & Study Pulse: ${pages.length} public pages, protected navigation intact, one floating habits control`);

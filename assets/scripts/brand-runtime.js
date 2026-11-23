@@ -3,8 +3,14 @@
  const fallback={name:'DataLearning',primary:'#123B4A',secondary:'#183047',accent:'#B66B42',background:'#F8FAFC',logo:null};
  let current=null;const originalTitle=document.title;
  const validHex=x=>/^#[0-9a-fA-F]{6}$/.test(x||'');
+ const readableOnWhite=hex=>{
+  const rgb=[1,3,5].map(i=>parseInt(hex.slice(i,i+2),16)/255)
+    .map(channel=>channel<=.04045?channel/12.92:((channel+.055)/1.055)**2.4);
+  return 1.05/(.05+.2126*rgb[0]+.7152*rgb[1]+.0722*rgb[2])>=4.5;
+ };
  function apply(input){
   const b={...fallback,...input};if(!['primary','secondary','accent','background'].every(k=>validHex(b[k])))return;
+  for(const key of ['primary','secondary'])if(!readableOnWhite(b[key]))b[key]=fallback[key];
   const root=document.documentElement;const values={'--dl-brand-primary':b.primary,'--dl-brand-secondary':b.secondary,'--dl-brand-accent':b.accent,'--dl-brand-background':b.background,'--dl-paper':b.background,'--dl-ink':b.secondary,'--dl-accent':b.accent,'--dl-accent-dark':b.primary,'--dl-outline':'#D8E1E8','--ui-accent':b.primary,'--ui-accent-strong':b.primary,'--ui-blue':b.secondary,'--ui-deep':b.secondary,'--ui-ink':b.secondary,'--brand-navy':b.secondary,'--brand-blue':b.secondary,'--brand-orange':b.primary,'--brand-accent':b.accent,'--auth-navy':b.secondary,'--auth-coral':b.primary,'--accent':b.primary,'--primary':b.secondary,'--ink':b.secondary,'--navy':b.secondary,'--bw-midnight':b.secondary,'--bw-burgundy':b.primary,'--bw-copper':b.accent,'--ui-paper':b.background,'--paper':b.background,'--bw-ivory':b.background,'--bw-nav-gradient':`linear-gradient(145deg,${b.secondary},${b.primary})`,'--bw-top-gradient':`linear-gradient(105deg,${b.secondary},${b.primary})`};
   for(const [k,v] of Object.entries(values))root.style.setProperty(k,v);
   root.style.setProperty('--ui-gradient',`linear-gradient(116deg,${b.secondary},${b.primary})`);root.style.setProperty('--dl-gradient-hero',`linear-gradient(115deg,${b.secondary},${b.primary})`);

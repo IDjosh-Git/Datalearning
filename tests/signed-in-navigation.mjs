@@ -1,13 +1,66 @@
-import fs from 'node:fs';import assert from 'node:assert/strict';
-const destinations=[['My Learning','account.html'],['Explore Courses','index.html#zaDiscoverCards'],['Practice Hub','practice-hub.html'],['AI Tutor','tutor.html'],['Study Tools','study-tools.html']];
-let count=0;
-for(const file of [...fs.readdirSync('.').filter(x=>x.endsWith('.html')),...fs.readdirSync('courses').filter(x=>x.endsWith('.html')).map(x=>'courses/'+x)]){
- const html=fs.readFileSync(file,'utf8');if(!html.includes('class="dlu-header"'))continue;
- const header=html.match(/<header\b[^>]*class="dlu-header"[\s\S]*?<\/header>/)?.[0];assert(header,file);
- const nav=header.match(/<nav aria-label="Main navigation" class="dlu-primary-links">([\s\S]*?)<\/nav>/)?.[1];assert(nav,file);
- const links=[...nav.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*class="dlx-nav-main"[^>]*>(.*?)<\/a>/g)];
- assert.equal(links.length,5,`${file} five primary links`);
- for(let i=0;i<5;i++){const [label,dest]=destinations[i];assert.equal(links[i][2],label,`${file} label`);const target=new URL(links[i][1],`https://example.test/${file}`);assert.equal(target.pathname,'/'+dest.split('#')[0]);assert.equal(target.hash,dest.includes('#')?'#'+dest.split('#')[1]:'');assert(fs.existsSync(dest.split('#')[0]));assert(nav.includes(`id="dlx-submenu-${i}"`));}
- assert(html.includes('dlx-drawer-group'),`${file} missing mobile groups`);assert(!html.includes('dlu-dashboard-compact'),`${file} duplicate My Learning shortcut`);count++;
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import vm from 'node:vm';
+import {restrictedKind} from '../lib/server-auth.js';
+import session from '../api/auth/session.js';
+
+const read = file => fs.readFileSync(new URL('../'+file, import.meta.url), 'utf8');
+const asset = '/assets/scripts/academy-navigation.js';
+const desktop = new Map();
+const mobile = new Map();
+const routes = [
+  ['/', 'public-pages/landing.html', 'Explore Courses'],
+  ['/courses', 'course-info/catalog.html', 'Explore Courses'],
+  ['/courses/excel', 'course-info/excel.html', 'Explore Courses'],
+  ['/course-info/sql.html', 'course-info/sql.html', 'Explore Courses'],
+  ['/courses/python.html', 'courses/python.html', 'Explore Courses'],
+  ['/account.html', 'account.html', 'My Learning'],
+  ['/profile.html', 'profile.html', 'My Learning'],
+  ['/certificate.html', 'certificate.html', 'My Learning'],
+  ['/tutor.html', 'tutor.html', 'AI Tutor'],
+  ['/practice', 'practice.html', 'Practice Hub'],
+  ['/study-tools.html', 'study-tools.html', 'Study Tools']
+];
+for (const [path, file, selected] of routes) {
+  const html = read(file);
+  assert.equal(html.match(/data-academy-navigation/g)?.length, 1, file);
+  assert.equal(html.match(/academy-navigation\.js/g)?.length, 1, file);
+  assert.doesNotMatch(html, /<header[^>]+class="(?:dlu|dlp)-header"/, file);
+  const groups = Array.from({length:10}, (_, i) => ({
+    toggleAttribute(name, value) {
+      assert.equal(name,'data-current-group');
+      if(value)(i<5?desktop:mobile).set(path,i%5);
+    }
+  }));
+  const element = {addEventListener(){}, querySelector(){return this}};
+  const mount = {...element, dataset:{}, querySelectorAll(selector) {
+    return selector.includes('.academy-nav-group,') ? groups : [];
+  }};
+  vm.runInNewContext(read(asset.slice(1)), {
+    document:{querySelector:()=>mount, querySelectorAll:()=>[], addEventListener(){}},
+    location:new URL(path,'https://example.test'), URL,
+    window:{addEventListener(){}, dispatchEvent(){}}, Event, matchMedia:()=>element,
+    fetch:async()=>({ok:true,json:async()=>({signedIn:false})})
+  });
+  const destinations = [...mount.innerHTML.matchAll(/class="academy-group-link" href="([^"]+)">([^<]+)/g)];
+  assert.equal(destinations.length,5);
+  assert.equal(destinations[desktop.get(path)]?.[2], selected, path);
+  assert.equal(mobile.get(path), desktop.get(path), path);
+  assert.equal(destinations[1][1], '/courses');
+  assert.equal((mount.innerHTML.match(/<dialog/g)||[]).length, 1);
+  assert.match(mount.innerHTML, /data-academy-profile href="\/auth.html"/);
 }
-assert.equal(count,31);console.log(`PASS ${count} shared headers, five distinct primary destinations, desktop dropdowns and mobile groups`);
+for(const assetPath of [asset,'/assets/scripts/premium-search.js','/assets/scripts/public-footer.js','/assets/styles/academy-navigation.css','/api/branding']){
+  assert.equal(restrictedKind(assetPath),'public');
+}
+for(const path of ['/account.html','/tutor.html','/courses/excel.html','/assets/scripts/tutor.js','/assets/scripts/admin-console.js']){
+  assert.notEqual(restrictedKind(path),'public');
+}
+const headers = new Map();
+const res = {setHeader:(key,value)=>headers.set(key,value),end:body=>{res.body=JSON.parse(body)}};
+await session({method:'GET',url:'/api/auth/session?status=1',headers:{}},res);
+assert.equal(res.statusCode,200);
+assert.deepEqual(res.body,{signedIn:false});
+assert.equal(headers.has('Set-Cookie'),false);
+assert.match(headers.get('Cache-Control'),/no-store/);
+console.log('PASS shared Academy navigation on public, generated and protected routes, selected groups and anonymous session privacy');

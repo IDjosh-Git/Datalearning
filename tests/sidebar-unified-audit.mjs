@@ -21,8 +21,9 @@ const sharedLesson=read('assets/scripts/academy-app.js');
 for(const required of ["open?.addEventListener('click'","close?.addEventListener('click'","event.key==='Escape'","const setAside=show=>","close?.focus()"] )assert(sharedLesson.includes(required),`Modern Academy lesson drawer missing ${required}`);
 for(const p of ['tutor.html','practice.html'])assert.match(read(p),/sidebar-consistency\.css\?v=sidebar-audit-20261110-r1/);
 assert(read('practice.html').includes('id="hubClose" type="button"><span aria-hidden="true">&#023048;</span><span>Close</span>'),'Practice Arena challenge sheet has a labelled Close action');
-assert(read('assets/scripts/public-header-unified.js').includes("close.innerHTML='<span aria-hidden"),'All public pages need a labelled navigation close');
+assert(read('assets/scripts/academy-navigation.js').includes("academy-menu-close"),'All public pages need a labelled navigation close');
 assert(read('assets/scripts/learner-companion.js').includes('<span>Close</span>'),'Study Pulse needs a labelled close');
 assert(read('assets/styles/public-header-unified.css').includes('Study Pulse follows the same legible mobile close-button convention'));
 assert(read('assets/scripts/tutor-workspace.js').includes("closeButton?.addEventListener('click',()=>close(true))"),'Keep existing premium Tutor drawer');
 console.log('PASS sidebar consolidation: eight private routes, two native Academy lesson drawers, Studio skills, AI Tutor, public navigation and Study Pulse');
+

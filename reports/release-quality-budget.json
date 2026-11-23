@@ -1,26 +1,26 @@
 {
-  "generatedAt": "2026-11-22T16:09:48.424Z",
+  "generatedAt": "2026-11-23T11:49:00.149Z",
   "note": "Referenced local CSS/JS uncompressed sizes; not network transfer or Core Web Vitals.",
   "pages": [
     {
       "page": "index.html",
-      "assetCount": 39,
-      "uncompressedKB": 1197
+      "assetCount": 44,
+      "uncompressedKB": 1261
     },
     {
       "page": "account.html",
-      "assetCount": 42,
-      "uncompressedKB": 1113
+      "assetCount": 50,
+      "uncompressedKB": 1183
     },
     {
       "page": "catalog.html",
-      "assetCount": 40,
-      "uncompressedKB": 1238
+      "assetCount": 45,
+      "uncompressedKB": 1313
     },
     {
       "page": "auth.html",
-      "assetCount": 12,
-      "uncompressedKB": 79
+      "assetCount": 16,
+      "uncompressedKB": 126
     }
   ]
 }

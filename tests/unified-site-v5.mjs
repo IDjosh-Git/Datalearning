@@ -10,16 +10,16 @@ const protectedPages=new Set(['account.html','admin.html','profile.html','progre
 const publicPages=[...fs.readdirSync(root).filter(f=>f.endsWith('.html')&&!protectedPages.has(f)&&f!=='auth.html'&&f!=='landing.html'&&f!=='start-here.html'&&f!=='studio.html'&&f!=='free-lesson.html'&&f!=='career-paths.html'),...fs.readdirSync(path.join(root,'courses')).filter(f=>f.endsWith('.html')).map(f=>'courses/'+f)];
 for(const f of publicPages){
  const html=read(f);const nested=f.startsWith('courses/');
- const script=(nested?'../':'')+'assets/scripts/public-footer.js';
+ const script='/assets/scripts/public-footer.js?v=r25';
  assert.equal(html.split(`src="${script}"`).length-1,1,`${f}: exactly one site-wide footer script`);
  assert(!/<footer\b/i.test(html),`${f}: legacy inline footer must be removed`);
  assert(html.includes('unified-site-v5.css'),`${f}: shared typography / footer CSS missing`);
- assert(html.includes('study-tools.html')||f==='questions.html',`${f}: Study Tools route missing`);
+ assert(read('assets/scripts/academy-navigation.js').includes('study-tools.html'),`${f}: Study Tools route missing`);
 }
 assert(!read('auth.html').includes('public-footer.js'),'Entry must not initialize the full learning app before sign-in');
 for(const f of protectedPages){
  assert(read(f).includes('unified-site-v5.css'),`${f}: consistent private UI CSS missing`);
- assert(!read(f).includes('public-footer.js'),`${f}: public footer must not attach to guarded workspace`);
+ assert(read(f).includes('public-footer.js')===['account.html','profile.html','career-setup.html','certificate.html'].includes(f),`${f}: public footer must not attach to guarded workspace`);
 }
 const js=read('assets/scripts/public-footer.js');
 const created=[];
@@ -27,7 +27,7 @@ const doc={currentScript:{src:'https://example.com/site/assets/scripts/public-fo
 vm.runInNewContext(js,{document:doc,URL,Date});
 assert.equal(created.length,1);
 assert.equal(created[0].className,'dalp-public-footer dlx-v5-footer');
-for(const link of ['catalog.html','public-pages/start-here.html','career-paths.html','free-lesson.html','auth.html'])assert(created[0].innerHTML.includes(link),`Footer missing ${link}`);
+for(const link of ['/courses','public-pages/start-here.html','/career-paths','/free-lesson','auth.html'])assert(created[0].innerHTML.includes(link),`Footer missing ${link}`);
 const coach=read('learning-coach.html'),lab=read('learning-lab.html'),tutor=read('tutor.html');
 for(const id of ['ss-plan-form','ss-session-list','ss-reveal','ss-save','study-plan'])assert(coach.includes(id),`Coach functionality lost: ${id}`);
 for(const id of ['labSearch','labCards','labGroup','labMode'])assert(lab.includes(id),`Lab functionality lost: ${id}`);

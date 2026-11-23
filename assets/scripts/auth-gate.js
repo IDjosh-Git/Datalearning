@@ -34,7 +34,7 @@
  }
  function showError(){paint('error');}
  function addSignOut(){
-  if(document.body?.dataset.adminConsole)return; // Private workspace owns its own account card.
+  if(document.body?.dataset.adminConsole||document.querySelector('[data-academy-navigation]'))return; // Private workspace owns its own account card.
   const safeExit=async button=>{
    if(button?.disabled)return;
    document.querySelectorAll('[data-dalp-signout]').forEach(node=>{node.disabled=true;node.setAttribute('aria-busy','true');});

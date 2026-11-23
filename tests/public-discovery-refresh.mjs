@@ -4,7 +4,7 @@ const read=p=>fs.readFileSync(p,'utf8');
 const landing=read('public-pages/landing.html');
 assert.match(landing,/id="dlWeeklyHeroImage"/);
 assert.match(landing,/home-weekly-photo\.js/);
-for(const link of ['/start-here','/courses','/career-paths','/free-lesson'])assert(landing.includes(`href="${link}"`),`Homepage must link to ${link}`);
+for(const link of ['/start-here','/courses','/career-paths','/free-lesson'])assert(read('assets/scripts/academy-navigation.js').includes(JSON.stringify(link)),'Homepage navigation must link to '+link);
 const start=read('public-pages/start-here.html');
 assert.match(start,/id="start-route-title"/);
 for(const path of ['/courses/introduction','/courses/excel','/courses/sql'])assert(start.includes(`href="${path}"`));

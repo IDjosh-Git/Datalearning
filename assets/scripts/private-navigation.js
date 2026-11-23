@@ -73,7 +73,8 @@
  bottom.append(logout);aside.append(bottom);
  // The learner dashboard is the navigation hub itself. Avoid a second sidebar navigator.
  // Keep account access and sign-out in the compact dashboard header.
- const compactDashboard=current==='account'||current==='profile';
+ const sharedAcademy=!adminWorkspace && Boolean(document.querySelector('[data-academy-navigation]'));
+ const compactDashboard=sharedAcademy || current==='account'||current==='profile';
 
  const backdrop=document.createElement('div');backdrop.className='ac-nav-overlay';backdrop.setAttribute('aria-hidden','true');
  const frame=document.createElement('div');frame.className='ac-main-frame';
@@ -83,7 +84,7 @@
  const trail=document.createElement('div');trail.className='ac-breadcrumb';trail.innerHTML='<span class="ac-breadcrumb-prefix">Workspace</span><span class="ac-crumb-divider" aria-hidden="true">/</span><strong>'+(titles[current]||'Learning Dashboard')+'</strong>';
  const right=document.createElement('div');right.className='ac-top-actions';
  right.innerHTML='<span class="ac-secure"><span class="ac-secure-dot" aria-hidden="true"></span> '+(adminWorkspace?'Admin workspace':'Learner space')+'</span>'; if(compactDashboard)right.replaceChildren(); // Keep the learner dashboard header minimal.
- if(compactDashboard){
+ if(compactDashboard&&!sharedAcademy){
   const home=document.createElement('a');home.href='index.html#zaDiscoverCards';home.className='ac-dashboard-quicklink';home.textContent='Courses';
   const menu=document.createElement('details');menu.className='ac-account-menu';
   const trigger=document.createElement('summary');trigger.className='ac-account-trigger';trigger.innerHTML='<span class="ac-account-avatar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M5.5 20c.4-3.7 2.7-5.5 6.5-5.5s6.1 1.8 6.5 5.5"/></svg></span><span class="ac-account-copy"><span class="ac-account-overline">MY WORKSPACE</span><span class="ac-account-display">My account</span></span><span class="ac-account-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>';trigger.setAttribute('aria-label','Account menu');
@@ -130,7 +131,8 @@
 
  header.append(...(compactDashboard?[]:[mobileToggle]),...(compactDashboard?[]:[trail]),right);
  const area=document.createElement('div');area.className='ac-page-area';
- main.parentNode.insertBefore(shell,main);if(compactDashboard)shell.append(frame);else shell.append(aside,backdrop,frame);frame.append(header,area);area.append(main);
+ main.parentNode.insertBefore(shell,main);if(compactDashboard)shell.append(frame);else shell.append(aside,backdrop,frame);frame.append(...(sharedAcademy?[]:[header]),area);area.append(main);
+ if(sharedAcademy)root.classList.add('ac-dashboard-no-sidebar');
  root.classList.add('ac-ready');
  const bp=window.matchMedia('(min-width: 1025px)');let drawerPreviousFocus=null;
  function closeMenu(){const wasOpen=root.classList.contains('ac-menu-open');root.classList.remove('ac-menu-open');mobileToggle.setAttribute('aria-expanded','false');mobileToggle.setAttribute('aria-label','Open navigation');aside.inert=!bp.matches;if(wasOpen&&drawerPreviousFocus?.isConnected)drawerPreviousFocus.focus({preventScroll:true});drawerPreviousFocus=null;}

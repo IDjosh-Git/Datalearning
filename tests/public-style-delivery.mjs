@@ -8,7 +8,7 @@ for(const page of ['public-pages/landing.html','public-pages/start-here.html','c
  assert(html.includes('.premium-hero{'),page+' must include premium layout styles');
  assert(html.includes('.brand img{'),page+' must constrain brand logo');
  assert(/<link\b[^>]*href="\/public-course-guide\.css"[^>]*>/.test(html),page+' must retain external CSS');
- assert(html.includes('width="42"')||html.includes('width="44"'),page+' must constrain logo dimensions');
+ assert(read('assets/scripts/academy-navigation.js').includes('width="36" height="36"'),page+' must constrain logo dimensions');
 }
 assert(css.includes('.hero-visual>img{'));
 console.log('PASS all 12 public pages self-style without relying on external CSS');

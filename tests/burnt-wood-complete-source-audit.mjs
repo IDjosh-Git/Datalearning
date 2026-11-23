@@ -40,7 +40,7 @@ for (const file of files) {
     if (hex.length===8) hex=hex.slice(0,6);
     if (hex.length!==6) continue; // e.g. #215 is an anchor, not a color.
     colors++;
-    if (!palette.has(hex) && !(file.startsWith('assets/icons/icon-') && productIconPalette.has(hex))) issues.push(`${file}: #${match[1]}`);
+    if (!palette.has(hex) && !(file.replaceAll(path.sep,'/').startsWith('assets/icons/icon-') && productIconPalette.has(hex))) issues.push(`${file}: #${match[1]}`);
   }
   for (const match of source.matchAll(/\brgba?\(\s*(\d+)\s*[, ]\s*(\d+)\s*[, ]\s*(\d+)/gi)) {
     colors++;
@@ -49,7 +49,7 @@ for (const file of files) {
   if (/\bhsla?\s*\(/i.test(source)) issues.push(`${file}: HSL literal requires review`);
 }
 assert.deepEqual(issues.slice(0,30),[],`${issues.length} non-theme colors remain in source`);
-const pages=files.filter(p=>p.endsWith('.html') && !p.includes('assets/') && p!=='studio.html');
+const pages=files.filter(p=>p.endsWith('.html') && !p.replaceAll(path.sep,'/').includes('assets/') && p!=='studio.html');
 for (const page of pages) {
   const html=fs.readFileSync(page,'utf8');
   assert(html.includes('burnt-wood-theme.css'),`${page}: canonical theme stylesheet missing`);
