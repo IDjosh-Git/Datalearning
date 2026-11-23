@@ -47,3 +47,7 @@ The published palette now starts resolving in the document head and is applied b
 - The visitor footer aligns with the home page content width. Both footer layouts use their available space at desktop and phone widths.
 - The desktop and mobile layout audit covered 50 routes, including nine public outlines, nine lesson workspaces, signed-in tools, admin screens, sign-in, and the legacy Questions redirect. It caught clipped lesson section controls and a missing primary heading in AI Tutor. Final Edge checks passed at 1440 and 390 CSS pixels with no page-level horizontal overflow.
 - The browser audit used simulated authentication and branding. It checked layout and landmarks across the route list, and exercised catalogue filters, career links and sample lesson anchors. Live services and production were outside this audit.
+
+## Windows desktop width
+
+Page frames, headers and footers use the available desktop width with a 16–28 px side gutter. This covers the public site, learner tools and courses, sign-in, and administrative workspaces. Long-form reading and printable certificate dimensions retain their own layout. Home images load a local dashboard preview immediately and swap in the weekly photograph after it loads.

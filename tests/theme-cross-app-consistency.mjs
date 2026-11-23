@@ -19,8 +19,9 @@ for (const page of pages) {
   assert.equal(hits.length, 1, `${page} must use the current theme exactly once`);
   const links = [...html.matchAll(/<link\b[^>]*?href="([^"]+\.css(?:\?[^"]*)?)"[^>]*>/gi)].map(match => match[1]);
   assert(links.length > 0, `${page} must have styles`);
-  assert(links[links.length - 1].includes('premium-color-system.css') || links[links.length - 1].includes('public-footer-unified.css') || links[links.length - 1].includes('public-catalog-canonical.css'),
-    `${page}: shared premium colour system must be the final stylesheet`);
+  const lastBeforeDesktop = links.filter(link => !link.includes('desktop-layout.css')).at(-1);
+  assert(lastBeforeDesktop.includes('premium-color-system.css') || lastBeforeDesktop.includes('public-footer-unified.css') || lastBeforeDesktop.includes('public-catalog-canonical.css'),
+    `${page}: shared premium colour system must be the final theme stylesheet`);
   assert(!/#(?:F27329|254559|203F58|35637C|F9F7F6|6590A4|F2A675|2E4098|172848)(?![a-f\d])/i.test(html),
     `${page}: retired color remains in markup`);
 }

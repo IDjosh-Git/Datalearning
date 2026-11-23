@@ -1,0 +1,75 @@
+/* Expand desktop page frames without stretching prose, tables, forms or dialogs. */
+@media (min-width: 769px) {
+  :root {
+    --dl-desktop-gutter: clamp(16px, 1.5vw, 28px);
+    --dl-desktop-width: calc(100% - 2 * var(--dl-desktop-gutter));
+  }
+
+  html:root body :is(
+    main.dlp-main, main.dlx-practice-hub, main.dlst-main, main.cap-guide,
+    main.pc-wrap, main.sample-shell, main.verify-shell, main.dl-library,
+    main.px-utility-main, .dlx-tools-shell, .za-course-frame, .auth-shell,
+    .za-discover .dl-home-hero, .za-discover main > .za-container,
+    .za-discover .za-band > .za-container, .za-courses main > .za-container,
+    .za-quiz-page
+  ),
+  html:root body:is(.home, .public-guide, .dalp-career-setup) > main,
+  html:root body.public-guide main:has(> .dl-catalog-hero),
+  html:root body .academy-header-row,
+  html:root body footer.dalp-public-footer .dlx-v5-footer-container {
+    width: var(--dl-desktop-width) !important;
+    max-width: none !important;
+    margin-inline: auto !important;
+  }
+
+  html:root body:is(.home, .public-guide, .dlp-page) > main,
+  html:root body main:where(.dlx-practice-hub),
+  html:root body .academy-header-row {
+    padding-inline: 0 !important;
+  }
+
+  /* The private frame already sits beside a sidebar or inside a full-width shell. */
+  html:root body.ac-ready .ac-main-frame {
+    width: 100% !important;
+    max-width: none !important;
+  }
+  html:root body.ac-ready .ac-page-area {
+    width: 100% !important;
+    max-width: none !important;
+    padding-inline: var(--dl-desktop-gutter) !important;
+  }
+  html:root body.ac-ready .ac-page-area > main,
+  html:root body.ac-ready main :is(.mld-container, .profile-shell, .cert-view-wrap, .review-content),
+  html:root body[data-library-page] .dl-library :is(.dlx-v5-context-strip, .dlst-hero, .dl-lib-container),
+  html:root body main.verify-shell > .verify-wrap,
+  html:root body .auth-shell > .auth-layout {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  html:root body[data-responsive-page="tutor"] main.tutor-main > .tutor-shell,
+  html:root body[data-responsive-page="capstone"] main :is(.cap-hero > .wrap, .cap-content) {
+    width: var(--dl-desktop-width) !important;
+    max-width: none !important;
+    margin-inline: auto !important;
+  }
+
+  html:root body footer.dalp-public-footer .dlx-v5-footer-container {
+    padding-inline: 0 !important;
+  }
+
+  html:root body main:is(.dl-library, .dalp-cert-viewer) {
+    padding-inline: 0 !important;
+  }
+  html:root[data-theme] body[data-responsive-page="certificate"] main.dalp-cert-viewer .cert-view-wrap {
+    width: 100% !important;
+    max-width: none !important;
+    padding-inline: 0 !important;
+    margin-inline: auto !important;
+  }
+  html:root body.ac-ready .ac-page-area main :is(.cert-view-wrap, .px-utility-main),
+  html:root body.ac-ready .ac-page-area > main.px-utility-main {
+    width: 100% !important;
+    padding-inline: 0 !important;
+  }
+}

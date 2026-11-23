@@ -19,15 +19,15 @@
     const caption = document.getElementById('dlWeeklyHeroCaption');
     if (!img) return;
     const item = photos[isoWeekKey(new Date()) % photos.length];
-    img.alt = item.alt;
-    img.onerror = function () {
-      img.onerror = null;
-      img.src = '/assets/images/capstone-dashboard-preview.webp';
-      img.alt = 'Example DataLearning analytics dashboard';
-      if (caption) caption.textContent = 'Explore data skills through practical projects.';
+    const photo = new Image();
+    photo.referrerPolicy = 'no-referrer';
+    photo.onload = function () {
+      img.src = photo.src;
+      img.alt = item.alt;
+      if (caption) caption.textContent = item.caption;
     };
-    img.src = 'https://images.unsplash.com/' + item.id + '?auto=format&fit=crop&w=1100&q=80';
-    if (caption) caption.textContent = item.caption;
+    photo.src = 'https://images.unsplash.com/' + item.id + '?auto=format&fit=crop&w=1600&q=80';
+    if (!img.getAttribute('src')) img.src = '/assets/images/capstone-dashboard-preview.webp';
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, {once:true});
   else init();
