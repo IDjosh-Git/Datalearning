@@ -38,6 +38,6 @@ assert(coach.includes('study-success.js')&&!coach.includes('src="assets/scripts/
 assert(lab.includes('learning-lab.js')&&!lab.includes('src="assets/scripts/study-success.js"'),'Lab must run only Lab controller');
 assert(lab.includes('study-tools-route-compat.js'),'Legacy coach hash bookmarks must redirect');
 assert(capstone.includes('dlst-privacy-note')&&capstone.includes('capstoneForm'),'Privacy notice and capstone submission must be preserved');
-assert(read('assets/scripts/public-footer.js').includes("['Learning Coach','learning-coach.html']"),'Footer Coach link must target its page');
+assert(read('assets/scripts/public-footer.js').includes("['Learning Coach', 'learning-coach.html']"),'Footer Coach link must target its page');
 assert(read('assets/styles/study-tools-refined.css').includes('prefers-reduced-motion'),'Reduced motion missing');
 console.log('PASS isolated Study Tools pages, six learning destinations, unique navigation, capstone privacy and preserved controllers');

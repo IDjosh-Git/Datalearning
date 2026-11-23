@@ -9,7 +9,10 @@ const asset = '/assets/scripts/academy-navigation.js';
 const desktop = new Map();
 const mobile = new Map();
 const routes = [
-  ['/', 'public-pages/landing.html', 'Explore Courses'],
+  ['/', 'public-pages/landing.html', 'Home'],
+  ['/start-here', 'public-pages/start-here.html', 'Start Here'],
+  ['/free-lesson', 'public-pages/free-lesson.html', 'Free Lesson'],
+  ['/career-paths', 'public-pages/career-paths.html', 'Career Paths'],
   ['/courses', 'course-info/catalog.html', 'Explore Courses'],
   ['/courses/excel', 'course-info/excel.html', 'Explore Courses'],
   ['/course-info/sql.html', 'course-info/sql.html', 'Explore Courses'],
@@ -33,7 +36,8 @@ for (const [path, file, selected] of routes) {
     }
   }));
   const element = {addEventListener(){}, querySelector(){return this}};
-  const mount = {...element, dataset:{}, querySelectorAll(selector) {
+  const visitor = html.includes('data-academy-audience="visitor"');
+  const mount = {...element, dataset:visitor ? {academyAudience:'visitor'} : {}, querySelectorAll(selector) {
     return selector.includes('.academy-nav-group,') ? groups : [];
   }};
   vm.runInNewContext(read(asset.slice(1)), {
@@ -46,10 +50,16 @@ for (const [path, file, selected] of routes) {
   assert.equal(destinations.length,5);
   assert.equal(destinations[desktop.get(path)]?.[2], selected, path);
   assert.equal(mobile.get(path), desktop.get(path), path);
-  assert.equal(destinations[1][1], '/index.html#zaDiscoverCards');
-  for(const slug of ['introduction','excel','sql','powerbi','tableau','powerquery','statistics','python','ai'])assert(mount.innerHTML.includes('/courses/'+slug+'.html'));
+  assert.equal(destinations[visitor?2:1][1], visitor?'/courses':'/index.html#zaDiscoverCards');
+  const suffix = visitor ? '' : '.html';
+  for(const slug of ['introduction','excel','sql','powerbi','tableau','powerquery','statistics','python','ai']){
+    assert(mount.innerHTML.includes('href="/courses/'+slug+suffix+'"'));
+  }
   assert.equal((mount.innerHTML.match(/<dialog/g)||[]).length, 1);
-  assert.match(mount.innerHTML, /data-academy-profile href="\/auth.html"/);
+  if (visitor){
+    assert.match(mount.innerHTML, /academy-visitor-signin/);
+    assert.doesNotMatch(mount.innerHTML, /href="\/(account|tutor|practice-hub|study-tools)\.html"/);
+  } else assert.match(mount.innerHTML, /data-academy-profile href="\/auth.html"/);
 }
 for(const assetPath of [asset,'/assets/scripts/premium-search.js','/assets/scripts/public-footer.js','/assets/styles/academy-navigation.css','/api/branding']){
   assert.equal(restrictedKind(assetPath),'public');

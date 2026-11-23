@@ -215,3 +215,13 @@ html body [data-academy-navigation] :is(.academy-primary, .academy-menu nav) {
 }
 html body [data-academy-navigation] .academy-primary { padding: 0; }
 html body [data-academy-navigation] .academy-menu nav { display: grid; }
+
+html body [data-academy-audience="visitor"] .academy-account .academy-visitor-signin {
+  background: #fff;
+  color: var(--academy-ink) !important;
+  padding-inline: 16px;
+}
+html body [data-academy-audience="visitor"] .academy-menu [data-current-group] > a {
+  background: var(--academy-tint);
+  text-decoration: underline;
+}

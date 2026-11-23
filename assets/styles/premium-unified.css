@@ -3338,7 +3338,7 @@ html[data-theme="light"] body[data-responsive-page="tutor"]{
   display:flex;flex-direction:column;
 }
 html[data-theme="light"] body[data-responsive-page="tutor"] .dalp-global-header{flex:none;z-index:90;}
-html[data-theme="light"] body[data-responsive-page="tutor"] :is(.dalp-public-footer,.dalp-floating-lab){display:none!important;}
+html[data-theme="light"] body[data-responsive-page="tutor"] .dalp-floating-lab{display:none!important;}
 html[data-theme="light"] body[data-responsive-page="tutor"] main.tutor-main{
   flex:1 1 auto;min-height:0!important;height:auto!important;overflow:hidden!important;
   padding:clamp(8px,1.25vh,14px) 0!important;margin:0!important;max-width:100%;

@@ -29,3 +29,7 @@ The signed-in Discover Courses hero and the public course catalogue intro use le
 - Desktop and mobile use matching disclosure icons and link cards. The course links remain keyboard accessible.
 - Learner and public heroes use the published palette. Study Tools, Practice Hub, Reference, Profile and Start Here have adjusted narrow-screen layouts.
 - Pages request the published palette early and hold content during the short initial theme check. The default palette is available if the branding request fails.
+
+## Public and learner navigation
+
+Public pages show Home, Start Here, course outlines, Career Paths, Free Lesson and Sign in. Their footer helps visitors choose a first course or create an account. Learner pages keep the study destinations and search. Their footer has four link groups in a wider layout and includes Admin. The existing administrator authorization still protects that destination.

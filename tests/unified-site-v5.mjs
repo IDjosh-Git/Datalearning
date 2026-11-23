@@ -10,7 +10,7 @@ const protectedPages=new Set(['account.html','admin.html','profile.html','progre
 const publicPages=[...fs.readdirSync(root).filter(f=>f.endsWith('.html')&&!protectedPages.has(f)&&f!=='auth.html'&&f!=='landing.html'&&f!=='start-here.html'&&f!=='studio.html'&&f!=='free-lesson.html'&&f!=='career-paths.html'),...fs.readdirSync(path.join(root,'courses')).filter(f=>f.endsWith('.html')).map(f=>'courses/'+f)];
 for(const f of publicPages){
  const html=read(f);const nested=f.startsWith('courses/');
- const script='/assets/scripts/public-footer.js?v=r25';
+ const script='/assets/scripts/public-footer.js?v=r25-audience';
  assert.equal(html.split(`src="${script}"`).length-1,1,`${f}: exactly one site-wide footer script`);
  assert(!/<footer\b/i.test(html),`${f}: legacy inline footer must be removed`);
  assert(html.includes('unified-site-v5.css'),`${f}: shared typography / footer CSS missing`);
@@ -22,12 +22,25 @@ for(const f of protectedPages){
  assert(read(f).includes('public-footer.js')===['account.html','profile.html','career-setup.html','certificate.html'].includes(f),`${f}: public footer must not attach to guarded workspace`);
 }
 const js=read('assets/scripts/public-footer.js');
-const created=[];
-const doc={currentScript:{src:'https://example.com/site/assets/scripts/public-footer.js'},readyState:'complete',querySelector:()=>null,createElement:()=>({setAttribute(){}}),body:{appendChild:n=>created.push(n)}};
-vm.runInNewContext(js,{document:doc,URL,Date});
-assert.equal(created.length,1);
-assert.equal(created[0].className,'dalp-public-footer dlx-v5-footer');
-for(const link of ['/courses','public-pages/start-here.html','/career-paths','/free-lesson','auth.html'])assert(created[0].innerHTML.includes(link),`Footer missing ${link}`);
+function footerFor(audience){
+ const created=[];
+ const footer={setAttribute(){},querySelectorAll:()=>[]};
+ const doc={
+  currentScript:{src:'https://example.com/assets/scripts/public-footer.js'},readyState:'complete',
+  querySelector:()=>({dataset:{academyAudience:audience}}),querySelectorAll:()=>[],
+  createElement:()=>footer,body:{appendChild:node=>created.push(node)}
+ };
+ vm.runInNewContext(js,{document:doc,URL,Date});
+ assert.equal(created.length,1);
+ return {footer};
+}
+const visitor=footerFor('visitor');
+assert.match(visitor.footer.className,/dl-footer-visitor/);
+for(const link of ['/courses','/start-here','/career-paths','/free-lesson','auth.html'])assert(visitor.footer.innerHTML.includes(link), 'Visitor footer missing '+link);
+assert.doesNotMatch(visitor.footer.innerHTML,/admin\.html|tutor\.html|account\.html/);
+const learner=footerFor();
+assert.match(learner.footer.className,/dl-footer-learner/);
+assert.match(learner.footer.innerHTML,/admin\.html">Admin<\/a>/);
 const coach=read('learning-coach.html'),lab=read('learning-lab.html'),tutor=read('tutor.html');
 for(const id of ['ss-plan-form','ss-session-list','ss-reveal','ss-save','study-plan'])assert(coach.includes(id),`Coach functionality lost: ${id}`);
 for(const id of ['labSearch','labCards','labGroup','labMode'])assert(lab.includes(id),`Lab functionality lost: ${id}`);
