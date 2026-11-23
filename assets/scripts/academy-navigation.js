@@ -10,20 +10,21 @@
       ["Certificates", "certificate.html"],
       ["Career Roadmap", "career-setup.html"]
     ]],
-    ["Explore Courses", "/courses", [
+    ["Explore Courses", "/index.html#zaDiscoverCards", [
+      ["Public Course Catalogue", "/courses"],
       ["Start Here", "/start-here"],
       ["Free Lesson", "/free-lesson"],
       ["Career Paths", "/career-paths"],
       ["Course Previews", "preview.html"],
-      ["Data Analysis", "/courses/introduction"],
-      ["Excel", "/courses/excel"],
-      ["SQL", "/courses/sql"],
-      ["Power BI", "/courses/powerbi"],
-      ["Tableau", "/courses/tableau"],
-      ["Power Query", "/courses/powerquery"],
-      ["Statistics", "/courses/statistics"],
-      ["Python", "/courses/python"],
-      ["AI for Data Analysis", "/courses/ai"]
+      ["Data Analysis", "/courses/introduction.html"],
+      ["Excel", "/courses/excel.html"],
+      ["SQL", "/courses/sql.html"],
+      ["Power BI", "/courses/powerbi.html"],
+      ["Tableau", "/courses/tableau.html"],
+      ["Power Query", "/courses/powerquery.html"],
+      ["Statistics", "/courses/statistics.html"],
+      ["Python", "/courses/python.html"],
+      ["AI for Data Analysis", "/courses/ai.html"]
     ]],
     ["Practice Hub", "practice-hub.html", [
       ["Practice Arena", "practice.html"],
@@ -61,15 +62,26 @@
   };
   const brand = '<a href="/" class="academy-brand"><img data-academy-logo src="/assets/icons/da-logo.svg" width="36" height="36" alt=""><span data-academy-name>DataLearning</span></a>';
   const account = '<div class="academy-account"><a data-academy-profile href="/auth.html">Sign in</a><button type="button" data-academy-signout hidden>Sign out</button></div>';
-  const groupLinks = items => items.map(([label, href]) => link(label, href)).join('');
+  const chevron = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  const arrow = '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  const groupLinks = items => items.map(([label, href]) => link('<span>' + label + '</span>' + arrow, href, 'academy-panel-link')).join('');
+  const panelLinks = (label, href, items) => {
+    const entries = items.filter(([, target]) => target !== href);
+    if (label !== 'Explore Courses') return '<div class="academy-panel-links">' + groupLinks(entries) + '</div>';
+    const courses = entries.filter(([, target]) => target.startsWith('/courses/'));
+    const resources = entries.filter(([, target]) => !target.startsWith('/courses/'));
+    return '<div class="academy-panel-links academy-course-links">' + groupLinks(courses) + '</div>' +
+      '<div class="academy-panel-links academy-course-resources">' + groupLinks(resources) + '</div>';
+  };
   const desktop = groups.map(([label, href, items], i) =>
     '<div class="academy-nav-group">' + link(label, href, 'academy-group-link') +
-    '<button type="button" class="academy-disclosure" aria-label="' + label + ' options" aria-expanded="false" aria-controls="academy-section-' + i + '">⌄</button>' +
-    '<div class="academy-dropdown" id="academy-section-' + i + '" hidden>' +
-    groupLinks(items.filter(([, target]) => target !== href)) + '</div></div>').join('');
+    '<button type="button" class="academy-disclosure" aria-label="' + label + ' options" aria-expanded="false" aria-controls="academy-section-' + i + '">' + chevron + '</button>' +
+    '<div class="academy-dropdown' + (i === 1 ? ' academy-dropdown-courses' : '') + '" id="academy-section-' + i + '" hidden>' +
+    '<p class="academy-panel-heading">' + (i === 1 ? 'Choose a course to study' : label) + '</p>' +
+    panelLinks(label, href, items) + '</div></div>').join('');
   const mobile = groups.map(([label, href, items]) =>
-    '<details><summary>' + label + '</summary>' + link('Open ' + label, href) +
-    groupLinks(items.filter(([, target]) => target !== href)) + '</details>').join('');
+    '<details><summary>' + label + chevron + '</summary>' + link(label === 'Explore Courses' ? 'Browse courses to study' : 'Open ' + label, href, 'academy-panel-link academy-panel-primary') +
+    panelLinks(label, href, items) + '</details>').join('');
   mount.innerHTML = '<header class="academy-header" aria-label="DataLearning site navigation">' +
     '<div class="academy-header-row">' + brand + '<nav class="academy-primary" aria-label="Academy">' + desktop +
     '</nav><div class="academy-actions">' + account + '</div>' +
@@ -133,7 +145,7 @@
     });
     mount.querySelectorAll('nav a').forEach(anchor => {
       const target = new URL(anchor.href);
-      if (route(target.pathname) === current && (!target.hash || target.hash === location.hash)) {
+      if (target.pathname === location.pathname && (!target.hash || target.hash === location.hash)) {
         anchor.setAttribute('aria-current', target.hash ? 'location' : 'page');
       } else anchor.removeAttribute('aria-current');
     });
@@ -195,3 +207,4 @@
   updateBrand(window.DataLearningBrand?.current);
   window.addEventListener('datalearning:brand', event => updateBrand(event.detail));
 })();
+

@@ -11,7 +11,7 @@ for(const route of privateRoutes){const src=load(route+'.html');assert.match(src
 const account=load('account.html');for(const slug of curriculum)assert.match(account,new RegExp(`data-track="${slug}"`));assert.match(account,/coreUnitTotal=Object\.values\(trackUnits\)/);assert.match(account,/coreTracks\.has/);assert.match(account,/id="accountSyncNow"/);assert.match(account,/void loadProgress\(\)/);
 const auth=load('auth.html');assert.match(auth,/class="auth-topline"/);assert.match(auth,/auth-entry-premium.css/);assert.doesNotMatch(auth,/href="catalog.html"/);
 const css=load('assets/styles/unified-academy-v3.css');assert.match(css,/dlx-nav-dialog:not\(\[hidden\]\)/);assert.match(css,/dlx-menu-open \.dl-float-coach/);assert.match(css,/admin-page \.ac-command-hero/);assert.match(css,/dalp-feature-header\.dalp-themed-hero/);
-const nav=load('assets/scripts/academy-navigation.js');for(const slug of curriculum)assert(nav.includes('/courses/'+slug));for(const token of ['aria-expanded','Escape','showModal','focus('])assert.ok(nav.includes(token));
+const nav=load('assets/scripts/academy-navigation.js');for(const slug of curriculum)assert(nav.includes('/courses/'+slug+'.html'));for(const token of ['aria-expanded','Escape','showModal','focus('])assert.ok(nav.includes(token));
 for(const [f,required] of [['tutor.html','chatForm'],['practice.html','practiceDetail'],['capstone.html','capstoneForm'],['auth.html','signupForm'],['learning-coach.html','ss-plan-form'],['certificate.html','dalp-cert-viewer']])assert.ok(load(f).includes(required),`${f}: missing ${required}`);
 console.log(`PASS unified academy: ${publicRoutes.length} public screens, ${privateRoutes.length} protected screens, seven course cards, preserved feature IDs and full-screen nav`);
 

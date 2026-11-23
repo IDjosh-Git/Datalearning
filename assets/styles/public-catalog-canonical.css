@@ -1,4 +1,14 @@
 /* Compact canonical /courses catalogue */
+.public-guide .intro.dl-catalog-hero {
+  padding: clamp(18px, 3vw, 34px) clamp(16px, 3.5vw, 42px);
+  min-height: 0;
+}
+.public-guide .dl-catalog-hero h1 {
+  font-size: clamp(1.85rem, 4vw, 3rem);
+  line-height: 1.12;
+  margin: 6px 0 8px;
+}
+.public-guide .dl-catalog-hero p { margin: 0; }
 body .course-grid,body .catalog-grid,body .cards-grid,body .grid:has(>.dl-compact-course){display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:stretch}
 body article.dl-compact-course{display:flex;flex-direction:column;min-width:0;min-height:0;margin:0!important;padding:22px!important;border-radius:17px;background:white;box-shadow:0 8px 22px #02304810}
 body .dl-compact-course .dl-compact-tag{margin:0 0 10px;font-size:11px;letter-spacing:.09em;font-weight:800;text-transform:uppercase;color:#675D58}
@@ -77,3 +87,13 @@ html body footer.dalp-public-footer .dlx-v5-footer-base{border-top:1px solid var
 html body :is(.dlu-header,.za-header,.dlx-header,.dlp-header,.ac-topbar,footer.dalp-public-footer) :is(a,button):focus-visible{outline:3px solid #fff!important;outline-offset:3px!important}
 html body footer.dalp-public-footer .dlx-v5-footer-primary:focus-visible{outline-color:#172B3A!important}
 @media(max-width:700px){html body footer.dalp-public-footer .dlx-v5-footer-body{grid-template-columns:repeat(2,minmax(0,1fr))!important}html body footer.dalp-public-footer .dlx-v5-footer-identity{grid-column:1/-1}}
+
+html body.public-guide .dl-catalog-tools input[type="search"] {
+  background: #fff !important;
+  color: #172b3a !important;
+  border-color: #526475;
+}
+html body.public-guide .dl-catalog-tools input[type="search"]::placeholder {
+  color: #526475;
+  opacity: 1;
+}

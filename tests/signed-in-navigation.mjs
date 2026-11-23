@@ -46,7 +46,8 @@ for (const [path, file, selected] of routes) {
   assert.equal(destinations.length,5);
   assert.equal(destinations[desktop.get(path)]?.[2], selected, path);
   assert.equal(mobile.get(path), desktop.get(path), path);
-  assert.equal(destinations[1][1], '/courses');
+  assert.equal(destinations[1][1], '/index.html#zaDiscoverCards');
+  for(const slug of ['introduction','excel','sql','powerbi','tableau','powerquery','statistics','python','ai'])assert(mount.innerHTML.includes('/courses/'+slug+'.html'));
   assert.equal((mount.innerHTML.match(/<dialog/g)||[]).length, 1);
   assert.match(mount.innerHTML, /data-academy-profile href="\/auth.html"/);
 }

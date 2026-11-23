@@ -22,10 +22,22 @@
   if(b.logo){document.querySelectorAll('img[src*="da-logo"],img[data-brand-logo],.dlp-brand img').forEach(el=>{el.src=b.logo;el.alt=name+' logo'});}
   current=b;window.dispatchEvent(new CustomEvent('datalearning:brand',{detail:{...b}}));
  }
- async function refresh(){try{const r=await fetch('/api/branding',{cache:'no-store',credentials:'same-origin'});if(!r.ok)throw Error('unavailable');const data=await r.json();apply(data)}catch{if(!current)apply(fallback)}}
+ async function refresh(initial=false){
+  try{
+   const response=initial&&window.DataLearningFirstBrand
+     ? await window.DataLearningFirstBrand
+     : await fetch('/api/branding',{cache:'no-store',credentials:'same-origin'}).then(r=>r.ok?r.json():null);
+   if(response)apply(response);
+  }catch{
+   // Keep the last validated palette on a transient network failure.
+  }finally{
+   if(!current)apply(fallback);
+   if(initial)delete document.documentElement.dataset.brandPending;
+  }
+ }
  window.DataLearningBrand={refresh,apply,defaults:fallback,get current(){return current}};
- refresh();document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh()});
- window.addEventListener('focus',()=>refresh());
+ void refresh(true);document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh()});
+ window.addEventListener('focus',()=>{if(current)void refresh()});
  // Refresh while a tab remains open, including on other devices, without requiring sign-in.
  setInterval(()=>{if(!document.hidden)refresh()},30000);
 })();

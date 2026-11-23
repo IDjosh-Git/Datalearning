@@ -18,3 +18,14 @@ Edge was checked locally at 1440 and 390 CSS pixels. Coverage included the publi
 
 No production deployment was made.
 
+
+## Discover Courses layout update
+
+The signed-in Discover Courses hero and the public course catalogue intro use less vertical space. The Discover photo, actions and course statistics remain in the layout, with a shorter photo crop and a compact statistics row on phones.
+
+## Navigation and visual polish
+
+- Explore Courses opens the Discover study grid. Its dropdown lists nine study workspaces, with the public catalogue and previews grouped below them.
+- Desktop and mobile use matching disclosure icons and link cards. The course links remain keyboard accessible.
+- Learner and public heroes use the published palette. Study Tools, Practice Hub, Reference, Profile and Start Here have adjusted narrow-screen layouts.
+- Pages request the published palette early and hold content during the short initial theme check. The default palette is available if the branding request fails.

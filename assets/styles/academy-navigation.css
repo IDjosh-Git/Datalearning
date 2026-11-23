@@ -149,3 +149,69 @@ html body .my-learning-tabs a:is([aria-current], [aria-selected=true], .active, 
 }
 
 
+
+/* Disclosure controls and link panels use the same visual hierarchy on every route. */
+html body [data-academy-navigation] .academy-disclosure {
+  width: 34px;
+  justify-content: center;
+  padding: 0;
+  border-radius: 9px;
+}
+.academy-disclosure svg, .academy-menu summary svg { flex: none; transition: transform .16s ease; }
+.academy-disclosure[aria-expanded=true] svg, .academy-menu details[open] summary svg { transform: rotate(180deg); }
+html body [data-academy-navigation] .academy-disclosure[aria-expanded=true] {
+  background: #fff;
+  color: var(--academy-ink);
+}
+html body [data-academy-navigation] .academy-dropdown {
+  top: calc(100% + 10px);
+  min-width: 246px;
+  max-height: min(65vh, 540px);
+  padding: 12px;
+  border-radius: 16px;
+  border-top: 3px solid var(--academy-primary);
+  box-shadow: 0 18px 46px #172b3a33;
+  overscroll-behavior: contain;
+}
+html body [data-academy-navigation] .academy-dropdown-courses { width: min(540px, 50vw); }
+.academy-panel-heading {
+  margin: 0 0 8px;
+  padding: 8px 12px;
+  color: var(--academy-ink);
+  font-size: 13px;
+  font-weight: 750;
+  letter-spacing: .025em;
+}
+.academy-panel-links { display: grid; gap: 4px; }
+.academy-course-links { grid-template-columns: repeat(2,minmax(0,1fr)); }
+.academy-course-resources { padding-top: 8px; margin-top: 8px; border-top: 1px solid #d8e1e8; }
+.academy-dropdown-courses .academy-course-resources { grid-template-columns: repeat(2,minmax(0,1fr)); }
+html body [data-academy-navigation] :is(.academy-dropdown, .academy-menu nav) .academy-panel-link {
+  justify-content: space-between;
+  gap: 8px;
+  border-radius: 9px;
+  background: #f8fafc;
+  text-decoration: none;
+}
+html body [data-academy-navigation] :is(.academy-dropdown, .academy-menu nav) .academy-panel-link:is(:hover,[aria-current]) {
+  background: #e8e1d8 !important;
+  text-decoration: underline;
+}
+.academy-panel-link svg { flex: none; }
+html body [data-academy-navigation] .academy-menu summary { display: flex; justify-content: space-between; align-items: center; }
+.academy-menu details { margin-bottom: 6px; border: 1px solid #d8e1e8; border-radius: 12px; padding: 4px; }
+.academy-menu details[open] .academy-panel-primary { margin-bottom: 6px; font-weight: 800; }
+@media(prefers-reduced-motion:reduce) {
+  .academy-disclosure svg, .academy-menu summary svg { transition: none; }
+}
+
+/* Guide pages also have a site-wide nav rule. Keep it outside this component. */
+html body [data-academy-navigation] :is(.academy-primary, .academy-menu nav) {
+  min-height: 0;
+  max-width: none;
+  margin: 0;
+  background: transparent;
+  box-shadow: none;
+}
+html body [data-academy-navigation] .academy-primary { padding: 0; }
+html body [data-academy-navigation] .academy-menu nav { display: grid; }
