@@ -1,0 +1,66 @@
+/* Release 20 — single last-loaded layout and colour contract.
+   Keep authored page-specific layouts; normalize their common foundations here.
+   All brand colours resolve from Admin > Appearance at runtime. */
+:root{
+  --dl-page-max:1200px;--dl-reading-max:760px;--dl-page-gutter:clamp(16px,3vw,40px);
+  --dl-space-1:4px;--dl-space-2:8px;--dl-space-3:12px;--dl-space-4:16px;
+  --dl-space-6:24px;--dl-space-8:32px;--dl-space-12:48px;
+  --dl-radius-sm:10px;--dl-radius-md:16px;--dl-radius-lg:24px;
+  --dl-shadow-card:0 12px 34px rgba(18,59,74,.065);
+  --dl-shadow-float:0 22px 56px rgba(18,59,74,.13);
+  --dl-text:#172B3A;--dl-muted:#526475;--dl-border:#D8E1E8;--dl-surface:#fff;
+  --dl-danger:#B42318;--dl-brand-primary:#123B4A;--dl-brand-secondary:#183047;
+  --dl-brand-accent:#B66B42;--dl-brand-background:#F8FAFC;
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:100px;-webkit-text-size-adjust:100%}
+body{min-width:320px;max-width:100%;margin:0;color:var(--dl-text);background-color:var(--dl-brand-background);overflow-x:clip}
+img,svg,video,canvas{max-width:100%}
+img,video{height:auto}
+:is(main,article,section,aside,header,footer,nav){min-width:0}
+:is(h1,h2,h3,h4,p,li){overflow-wrap:break-word}
+:is(h1,h2,h3){text-wrap:balance}
+:is(p,li){line-height:1.6}
+:is(button,input,select,textarea){font:inherit}
+:is(button,a,input,select,textarea,[role="button"]){-webkit-tap-highlight-color:transparent}
+:is(button,[role="button"]){cursor:pointer}
+:is(button,input,select,textarea){max-width:100%}
+:is(input,select,textarea){min-height:42px}
+:is(input,select,textarea):not([type="checkbox"]):not([type="radio"]){border-color:var(--dl-border)}
+:is(input,textarea)::placeholder{color:var(--dl-muted);opacity:1}
+:is(a,button,input,select,textarea,[tabindex]):focus-visible{outline:3px solid var(--dl-brand-primary)!important;outline-offset:3px}
+:is(.dlu-header,.dlp-header,.ac-topbar,.private-header,.admin-topbar) :is(a,button,[tabindex]):focus-visible,
+:is(.dl-home-hero,.dlp-hero,.admin-hero,.dashboard-hero) :is(a,button,[tabindex]):focus-visible{outline-color:#fff!important}
+/* Keep readable page widths without disturbing full-width banners or dashboard grids. */
+:is(.za-container,.dlp-container,.dlx-container,.dlc-container,.public-container,.academy-container){width:min(var(--dl-page-max),calc(100% - 2 * var(--dl-page-gutter)));max-width:var(--dl-page-max);margin-inline:auto}
+:is(.za-card,.za-course-card,.dlc-course-card,.dlx-hub-card,.dlp-paths article,.ac-card,.admin-card,.course-card,.dl-card){border-color:var(--dl-border);box-shadow:var(--dl-shadow-card)}
+:is(.za-card,.za-course-card,.dlc-course-card,.dlx-hub-card,.dlp-paths article,.ac-card,.admin-card,.course-card,.dl-card):where(:not([class*="dark"])){background-color:var(--dl-surface)}
+:is(.dlu-header,.dlp-header,.ac-topbar,.admin-topbar,.private-header){background-color:var(--dl-brand-secondary)!important}
+:is(.btn-primary,.button-primary,.primary-btn,.auth-submit,.btn--primary,.za-btn-primary):not(.danger):not([data-variant="danger"]){background:var(--dl-brand-primary)!important;border-color:var(--dl-brand-primary)!important;color:#fff!important}
+:is(.btn-primary,.button-primary,.primary-btn,.auth-submit,.btn--primary,.za-btn-primary):not(.danger):not([data-variant="danger"]):hover{filter:brightness(.92)}
+:is(.text-danger,.error-text,.field-error){color:var(--dl-danger)}
+/* Avoid clipped dropdowns, long tab rows, and overflowing grids. */
+:is(.dlu-dropdown,.dlp-dropdown,.nav-dropdown){max-width:min(94vw,760px)}
+:is(.ac-section-tabs,.my-learning-tabs,.learning-tabs,[role="tablist"]){max-width:100%;overflow-x:auto;overscroll-behavior-inline:contain;scrollbar-width:thin}
+:is(.ac-section-tabs,.my-learning-tabs,.learning-tabs,[role="tablist"]) > *{flex-shrink:0}
+:is(.za-course-grid,.dlc-course-grid,.dlx-hub-grid,.dlp-paths,.r17-pathway-grid){min-width:0}
+:is(.za-course-grid,.dlc-course-grid,.dlx-hub-grid,.dlp-paths,.r17-pathway-grid) > *{min-width:0}
+/* Footer and branding are live-token surfaces. */
+footer.dalp-public-footer,.dlp-footer.dalp-public-footer{background:var(--dl-brand-secondary)!important;color:#fff!important}
+footer.dalp-public-footer :is(a,p),.dlp-footer.dalp-public-footer :is(a,p){color:#FFFFFF!important}
+#brandSettings{color:var(--dl-text);background:var(--dl-surface);border-color:var(--dl-border)}
+@media(max-width:768px){
+ :root{--dl-page-gutter:16px}
+ body{overflow-x:clip}
+ :is(.za-container,.dlp-container,.dlx-container,.dlc-container,.public-container,.academy-container){width:calc(100% - 32px)}
+ :is(.za-course-grid,.dlc-course-grid,.dlx-hub-grid,.dlp-paths,.r17-pathway-grid){grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))}
+ :is(.dl-home-hero,.dlp-hero,.academy-hero){max-width:100%}
+}
+@media(max-width:480px){
+ :root{--dl-page-gutter:12px}
+ :is(.za-container,.dlp-container,.dlx-container,.dlc-container,.public-container,.academy-container){width:calc(100% - 24px)}
+ :is(.za-course-grid,.dlc-course-grid,.dlx-hub-grid,.dlp-paths,.r17-pathway-grid){grid-template-columns:minmax(0,1fr)}
+}
+@media(prefers-reduced-motion:reduce){html:focus-within{scroll-behavior:auto}}
+@media(forced-colors:active){:is(a,button,input,select,textarea):focus-visible{outline:2px solid Highlight!important}}

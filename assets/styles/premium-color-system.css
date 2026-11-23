@@ -119,3 +119,37 @@ body.za-discover :is(a,button):focus-visible,body.auth-page :is(a,button,input):
 @media(max-width:900px){body.za-discover .r17-pathway-inner{grid-template-columns:1fr}body.auth-page .auth-shell{width:min(700px,calc(100% - 28px))}}
 @media(max-width:640px){body.za-discover .dl-home-hero{border-radius:22px;padding:34px 22px}body.za-discover .dl-home-hero h1{font-size:clamp(2.55rem,10vw,3.5rem)}body.za-discover .dl-home-intro{padding:18px}body.za-discover .r17-pathway-grid{gap:10px}body.za-discover .r17-pathway-grid article{padding:17px}body.za-discover .r17-pathway-grid article:nth-child(2),body.za-discover .r17-pathway-grid article:nth-child(4){transform:none}body.auth-page .auth-shell{width:calc(100% - 20px);padding:12px 0}body.auth-page .auth-layout{border-radius:19px}}
 @media(prefers-reduced-motion:reduce){body.za-discover .za-course-card,body.za-discover .za-tool-grid>a{transition:none!important;transform:none!important}}
+
+/* Release 19 — consolidated semantic colour contracts. Keep this block last. */
+:root{
+ --dl-text:#172B3A;--dl-muted:#526475;--dl-border:#D8E1E8;
+ --dl-surface:#FFFFFF;--dl-danger:#B42318;--dl-success:#123B4A;
+ --dl-paper:var(--dl-brand-background,#F8FAFC);
+ --dl-ink:var(--dl-brand-secondary,#183047);
+ --dl-accent:var(--dl-brand-accent,#B66B42);
+ --dl-accent-dark:var(--dl-brand-primary,#123B4A);
+ --dl-outline:var(--dl-border);--dl-focus:var(--dl-brand-primary,#123B4A);
+}
+html body{background-color:var(--dl-brand-background,#F8FAFC);color:var(--dl-text)}
+/* Cross-page navigation, footer, card, form and button treatments are driven by published branding. */
+html body :is(.dlu-header,.dlp-header,.ac-topbar,.admin-topbar,.private-header){background-color:var(--dl-brand-secondary,#183047)!important}
+html body :is(.dlu-header,.dlp-header,.ac-topbar) :is(a,button){color:#FFFFFF}
+html body :is(.za-course-card,.dlc-course-card,.dlx-hub-card,.dlp-paths article,.za-card,.ac-card,.admin-card,.course-card){border-color:var(--dl-border);}
+html body :is(input,select,textarea){color:var(--dl-text);border-color:var(--dl-border)}
+html body :is(input,textarea)::placeholder{color:var(--dl-muted);opacity:1}
+html body :is(.btn-primary,.button-primary,.primary-btn,.auth-submit,.btn--primary,.za-btn-primary):not(.danger):not([data-variant=danger]){background:var(--dl-brand-primary,#123B4A)!important;border-color:var(--dl-brand-primary,#123B4A)!important;color:#FFFFFF!important}
+html body :is(a,button,input,select,textarea,[tabindex]):focus-visible{outline:3px solid var(--dl-brand-primary,#123B4A)!important;outline-offset:3px}
+html body :is(.dlu-header,.dlp-header,.ac-topbar) :is(a,button):focus-visible{outline-color:#FFFFFF!important}
+/* Footer formerly retained the old black/ivory palette; use live brand tokens. */
+html body footer.dalp-public-footer,html body .dlp-footer.dalp-public-footer{background:var(--dl-brand-secondary,#183047)!important;color:#F7F2EA!important}
+html body footer.dalp-public-footer .dlx-v5-footer-banner{background:var(--dl-brand-primary,#123B4A)!important}
+html body footer.dalp-public-footer :is(a,p,.dlx-v5-footer-col a),html body .dlp-footer.dalp-public-footer :is(a,p){color:#F7F2EA!important}
+html body footer.dalp-public-footer :is(.dlx-v5-footer-base,.dlx-v5-footer-brand strong span),html body .dlp-footer.dalp-public-footer .dlp-footer-copy{color:#E9DDD0!important}
+html body footer.dalp-public-footer .dlx-v5-footer-primary{background:#FFFFFF!important;color:var(--dl-brand-secondary,#183047)!important}
+html body footer.dalp-public-footer .dlx-v5-footer-secondary{background:transparent!important;color:#FFFFFF!important;border-color:#AFA39A!important}
+html body #brandSettings{background:var(--dl-surface);border-color:var(--dl-border);color:var(--dl-text)}
+html body #brandSettings :is(input,button){border-color:var(--dl-border);color:var(--dl-text)}
+html body #brandSettings button[type=submit]{background:var(--dl-brand-primary,#123B4A)!important;color:#FFFFFF!important;border-color:var(--dl-brand-primary,#123B4A)!important}
+/* Error colour is semantic, never derived from the decorative accent. */
+html body :is(.text-danger,.error-text,.field-error){color:var(--dl-danger,#B42318)}
+@media(forced-colors:active){html body :is(a,button,input,select,textarea):focus-visible{outline:2px solid Highlight!important}}
