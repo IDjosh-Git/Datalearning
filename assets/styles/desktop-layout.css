@@ -146,7 +146,7 @@ html body [data-academy-navigation] header.academy-header :is(a,button):is(:hove
   stroke: #183047 !important;
 }
 html body [data-academy-navigation] header.academy-header :is(.academy-dropdown,.academy-menu) :is(a,button):is(:hover,:focus-visible) {
-  background:  !important;
+  background: var(--academy-nav-muted) !important;
   color: #183047 !important;
 }
 
