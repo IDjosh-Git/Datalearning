@@ -15,7 +15,7 @@ body :is(.za-menu-content,.dlx-nav-scroll) a[data-study-tools-mobile]{min-height
 
 @media(min-width:1150px) and (max-width:1340px){}
 /* FULL PUBLIC FOOTER -- one render, one language, one layout */
-html body .dalp-public-footer.dlx-v5-footer{display:block!important;position:relative!important;z-index:3!important;margin:clamp(36px,5.6vw,88px) 0 0!important;padding:0 clamp(14px,3vw,42px) 24px!important;width:100%!important;max-width:none!important;min-height:0!important;background:#F7F2EA!important;border-top:1px solid #E8E1D8!important;color:var(--bw-midnight)!important;overflow:hidden!important;box-shadow:none!important;isolation:isolate}
+html body .dalp-public-footer.dlx-v5-footer{display:block!important;position:relative!important;z-index:3!important;margin:clamp(36px,5.6vw,88px) 0 0!important;padding:0 clamp(14px,3vw,42px) 24px!important;width:100%!important;max-width:none!important;min-height:0!important;background:var(--dl-brand-secondary,#183047)!important;border-top:1px solid #FFFFFF33!important;color:#FFFFFF!important;overflow:hidden!important;box-shadow:none!important;isolation:isolate}
 body .dlx-v5-footer *{min-width:0;box-sizing:border-box}
 body .dlx-v5-footer-container{max-width:1510px;margin:0 auto}
 body .dlx-v5-footer-banner{position:relative;isolation:isolate;display:flex;align-items:center;justify-content:space-between;gap:clamp(20px,4vw,60px);background:linear-gradient(125deg,var(--bw-midnight) 0%,var(--bw-midnight) 60%,var(--bw-midnight) 100%)!important;border:1px solid var(--bw-burgundy);border-radius:0 0 27px 27px;padding:clamp(28px,4.5vw,64px);overflow:hidden;color:#FFFFFF!important;box-shadow:0 22px 44px #02304824}
@@ -169,7 +169,7 @@ body.dlx-rebuilt[data-responsive-page=tutor] .tutor-intro{display:none!important
 
 @media(max-width:520px){}
 /* Signed-in workspaces: premium typography and consistent control dimensions. */
-body.dlx-rebuilt[data-private-workspace="true"] .ac-topbar{background:#FFFFFFF7!important;border-bottom:1px solid #E8E1D8!important;box-shadow:0 4px 20px #0230480B!important}
+/* Removed obsolete light private topbar: canonical navigation is in release-23-navigation-footer.css. */
 body.dlx-rebuilt[data-private-workspace="true"] .ac-sidebar{background:linear-gradient(175deg,var(--bw-midnight),var(--bw-midnight))!important;color:#F7F3EA!important;border-right:1px solid var(--bw-midnight)!important}
 body.dlx-rebuilt[data-private-workspace="true"] .ac-side-nav .ac-side-link{border-radius:11px!important;min-height:44px;transition:background .15s}
 body.dlx-rebuilt[data-private-workspace="true"] :is(.ac-section,.ip-panel,.dalp-account-card,.profile-card){border-radius:17px!important;border-color:#E8E1D8!important;background:#FFFFFF!important;box-shadow:0 10px 30px #0230480C!important}

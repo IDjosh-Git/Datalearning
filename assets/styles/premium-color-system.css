@@ -154,44 +154,66 @@ html body #brandSettings button[type=submit]{background:var(--dl-brand-primary,#
 html body :is(.text-danger,.error-text,.field-error){color:var(--dl-danger,#B42318)}
 @media(forced-colors:active){html body :is(a,button,input,select,textarea):focus-visible{outline:2px solid Highlight!important}}
 
-/* Release 21 unified Academy navigation contract */
-/* Release 21: one visual contract for Academy navigation, public and authenticated. */
-:root{--academy-nav-bg:var(--dl-brand-secondary,#183047);--academy-nav-text:#fff;--academy-nav-muted:#F0EDDE;--academy-nav-hover:rgba(255,255,255,.13);--academy-nav-line:rgba(255,255,255,.2);--academy-nav-focus:#fff}
-/* Public Academy header: all destinations, same background, same foreground. */
-html body>.dlu-header,html body .dlu-header{background:var(--academy-nav-bg)!important;background-color:var(--academy-nav-bg)!important;color:var(--academy-nav-text)!important;border-bottom:1px solid var(--academy-nav-line)!important;box-shadow:0 6px 20px rgba(18,59,74,.13)!important;backdrop-filter:none!important}
-html body .dlu-header :is(.dlu-brand,.dlu-brand-name,.dlu-brand-name b,.dlu-brand-caption,.dlu-primary-links a,.dlx-nav-main,.dlx-nav-toggle,.dlu-menu-open-button){color:var(--academy-nav-text)!important}
-html body .dlu-header .dlu-brand-caption{color:var(--academy-nav-muted)!important}
-html body .dlu-header .dlu-brand-mark{background:rgba(255,255,255,.96)!important;border-color:rgba(255,255,255,.5)!important}
-html body .dlu-header .dlu-primary-links :is(a,.dlx-nav-toggle):hover,html body .dlu-header .dlu-primary-links a[aria-current=page],html body .dlu-header .dlu-primary-links a[aria-current=true]{background:var(--academy-nav-hover)!important;color:#fff!important}
-html body .dlu-header .dlx-nav-item:has(>a[aria-current=page])>.dlx-nav-toggle{background:var(--academy-nav-hover)!important}
-html body .dlu-header .dlu-primary-links a[aria-current=page]::after{background:#fff!important}
-html body .dlu-header .dlu-account{background:#fff!important;color:var(--academy-nav-bg)!important;border-color:#fff!important}
-html body .dlu-header .dlu-account :is(span,svg){color:var(--academy-nav-bg)!important}
-html body .dlu-header .dlu-menu-open-button,html body .dlu-header-actions .premium-search-trigger{background:var(--academy-nav-hover)!important;color:#fff!important;border-color:var(--academy-nav-line)!important}
-html body .dlu-header-actions .premium-search-trigger svg{stroke:#fff!important}
-/* Dropdowns are light surfaces: never inherit the header's white text. */
-html body .dlu-header .dlx-nav-submenu,html body .dlu-header .dlu-dropdown{background:#fff!important;color:var(--dl-text,#172B3A)!important;border:1px solid var(--dl-border,#D8E1E8)!important;box-shadow:0 18px 46px rgba(18,59,74,.16)!important}
-html body .dlu-header .dlx-nav-submenu :is(a,span,.dlx-submenu-title),html body .dlu-header .dlu-dropdown :is(a,span){color:var(--dl-text,#172B3A)!important}
-html body .dlu-header .dlx-nav-submenu a:hover,html body .dlu-header .dlu-dropdown a:hover{background:#F8FAFC!important;color:var(--dl-brand-primary,#123B4A)!important}
-/* Private learner top bar: the same surface and readable text as the Academy. */
-html body .ac-topbar{background:var(--academy-nav-bg)!important;color:#fff!important;border-bottom:1px solid var(--academy-nav-line)!important}
-html body .ac-topbar :is(a,button,.ac-secure,.ac-trail,.ac-crumb,.ac-topbar-title){color:#fff!important}
-html body .ac-topbar :is(a,button):hover{background:var(--academy-nav-hover)!important}
-html body .ac-topbar :is(input,select){color:var(--dl-text,#172B3A)!important;background:#fff!important}
-/* My Learning section tabs use a consistent high-contrast selected state. */
-html body .my-learning-tabs{background:transparent!important}
-html body .my-learning-tabs a{color:var(--dl-brand-primary,#123B4A)!important;background:#fff!important;border:1px solid var(--dl-border,#D8E1E8)!important}
-html body .my-learning-tabs a:is([aria-current=page],[aria-selected=true],.active,.is-active){color:#fff!important;background:var(--dl-brand-primary,#123B4A)!important;border-color:var(--dl-brand-primary,#123B4A)!important}
-/* Mobile menu: consistent palette and contrast regardless of source page. */
-html body .dlu-nav-panel{background:var(--dl-brand-background,#F8FAFC)!important;color:var(--dl-text,#172B3A)!important}
-html body .dlu-nav-head{background:var(--academy-nav-bg)!important;border-bottom-color:var(--academy-nav-line)!important}
-html body .dlu-nav-head :is(.dlu-brand,.dlu-brand-name,.dlu-brand-name b,.dlu-brand-caption){color:#fff!important}
-html body .dlu-nav-close{background:var(--academy-nav-hover)!important;color:#fff!important;border:1px solid var(--academy-nav-line)!important}
-html body .dlu-nav-panel .dlu-nav-group :is(h2,summary){color:var(--dl-brand-primary,#123B4A)!important}
-html body .dlu-nav-panel .dlu-nav-group a{color:var(--dl-text,#172B3A)!important;background:#fff!important;border-color:var(--dl-border,#D8E1E8)!important}
-html body .dlu-nav-panel .dlu-nav-group a:hover{background:#F8FAFC!important}
-/* Sign-in and registration top line shares brand colour and focus behaviour. */
-html body.auth-page .auth-topline{color:var(--dl-brand-primary,#123B4A)!important}
-html body :is(.dlu-header,.ac-topbar,.dlu-nav-head) :is(a,button):focus-visible{outline:3px solid #fff!important;outline-offset:3px!important}
-html body .dlu-header .dlx-nav-submenu :is(a,button):focus-visible{outline:3px solid var(--dl-brand-primary,#123B4A)!important}
-@media(max-width:1100px){html body .dlu-header .dlu-menu-open-button{display:flex!important}}
+/* Release 22: canonical contrast contract. This file must load after legacy styles. */
+:root{--academy-nav-bg:var(--dl-brand-secondary,#183047);--academy-nav-fg:#FFFFFF;--academy-nav-muted:#E9DDD0;--academy-nav-selected:rgba(255,255,255,.17);--academy-footer-bg:var(--dl-brand-secondary,#183047);--academy-footer-fg:#FFFFFF;--academy-footer-muted:#E9DDD0}
+/* Header: one dark surface on public, private, and legacy page shells. */
+html body :is(header.dlu-header,header.za-header,header.dlx-header,.dlp-header,.ac-topbar,.admin-topbar,.private-header){background:var(--academy-nav-bg)!important;background-color:var(--academy-nav-bg)!important;color:var(--academy-nav-fg)!important;border-bottom:1px solid #FFFFFF33!important;backdrop-filter:none!important}
+html body :is(.dlu-header,.za-header,.dlx-header,.dlp-header,.ac-topbar) :is(.dlu-brand,.dlu-brand-name,.dlu-brand-caption,.za-brand,.dlx-brand,.dlu-primary-links>a,.dlx-nav-main,.dlx-nav-toggle,.ac-topbar-title,.ac-crumb,.ac-trail,.ac-secure){color:var(--academy-nav-fg)!important}
+html body :is(.dlu-header,.za-header,.dlx-header,.dlp-header,.ac-topbar) :is(.dlu-primary-links>a,.dlx-nav-toggle,.za-nav>a,.dlx-topnav>a,.ac-topbar-link):is(:hover,[aria-current=page],[aria-current=true],[aria-selected=true],.active,.is-active){background:var(--academy-nav-selected)!important;color:#FFFFFF!important;border-color:#FFFFFF55!important}
+html body .dlu-header .dlx-nav-item:has(>a[aria-current=page])>.dlx-nav-toggle{background:var(--academy-nav-selected)!important;color:#FFFFFF!important}
+html body :is(.dlu-header,.za-header,.dlx-header,.ac-topbar) :is(.premium-search-trigger,.dlu-menu-open-button,.ac-mobile-menu){color:#FFFFFF!important;background:#FFFFFF1D!important;border-color:#FFFFFF55!important}
+html body :is(.dlu-header,.za-header,.dlx-header,.ac-topbar) :is(.premium-search-trigger,.dlu-menu-open-button,.ac-mobile-menu) svg{stroke:#FFFFFF!important;color:#FFFFFF!important}
+/* Light controls inside dark header must always have dark text. */
+html body :is(.dlu-header,.za-header,.dlx-header,.ac-topbar) :is(input,select,.premium-search-input){background:#FFFFFF!important;color:#172B3A!important;border-color:#D8E1E8!important}
+html body :is(.dlu-header,.za-header,.dlx-header,.ac-topbar) :is(input,select)::placeholder{color:#526475!important;opacity:1}
+html body .dlu-header :is(.dlu-account,.dlu-account span),html body .ac-topbar .ac-topbar-profile{color:#172B3A!important}
+/* Dropdowns and expanded menus are light panels with dark foreground. */
+html body .dlu-header :is(.dlx-nav-submenu,.dlu-dropdown),html body :is(.za-header,.dlx-header) :is(.za-dropdown,.dlx-dropdown){background:#FFFFFF!important;color:#172B3A!important;border:1px solid #D8E1E8!important}
+html body .dlu-header :is(.dlx-nav-submenu,.dlu-dropdown) :is(a,button,span),html body :is(.za-header,.dlx-header) :is(.za-dropdown,.dlx-dropdown) :is(a,button,span){color:#172B3A!important}
+html body .dlu-header :is(.dlx-nav-submenu,.dlu-dropdown) a:is(:hover,[aria-current=page]){background:#F6F0E8!important;color:#123B4A!important}
+/* Public footer: defeat legacy light footer plus light text combination. */
+html body footer.dalp-public-footer.dlx-v5-footer,html body footer.dalp-public-footer,html body .dlp-footer.dalp-public-footer{background:var(--academy-footer-bg)!important;background-color:var(--academy-footer-bg)!important;color:var(--academy-footer-fg)!important;border-top:1px solid #FFFFFF33!important}
+html body footer.dalp-public-footer :is(.dlx-v5-footer-container,.dlx-v5-footer-body,.dlx-v5-footer-identity,.dlx-v5-footer-col,.dlx-v5-footer-base,.dlx-v5-footer-brand){background:transparent!important;color:var(--academy-footer-fg)!important}
+html body footer.dalp-public-footer :is(.dlx-v5-footer-col h3,.dlx-v5-footer-brand strong,.dlx-v5-footer-brand strong span,.dlx-v5-footer-brand small,.dlx-v5-footer-col a,.dlx-v5-footer-identity>p,.dlx-v5-footer-base,.dlx-v5-footer-base a,.dlx-v5-footer-brand,.dlx-v5-footer-trust){color:var(--academy-footer-fg)!important}
+html body footer.dalp-public-footer :is(.dlx-v5-footer-col a,.dlx-v5-footer-identity>p,.dlx-v5-footer-brand small,.dlx-v5-footer-base){color:var(--academy-footer-muted)!important}
+html body footer.dalp-public-footer .dlx-v5-footer-banner{background:var(--dl-brand-primary,#123B4A)!important;border-color:#FFFFFF33!important;color:#FFFFFF!important}
+html body footer.dalp-public-footer .dlx-v5-footer-banner :is(h2,h2 em,p,.dlx-v5-overline){color:#FFFFFF!important}
+html body footer.dalp-public-footer .dlx-v5-footer-primary{background:#FFFFFF!important;color:#172B3A!important;border-color:#FFFFFF!important}
+html body footer.dalp-public-footer .dlx-v5-footer-secondary{background:transparent!important;color:#FFFFFF!important;border-color:#FFFFFF99!important}
+html body footer.dalp-public-footer .dlx-v5-footer-base{border-top-color:#FFFFFF44!important}
+/* Selected tabs must never use light text on a light surface. */
+html body :is(.my-learning-tabs,.ac-tabs,.dl-tabs) :is(a,button)[aria-current=page],html body :is(.my-learning-tabs,.ac-tabs,.dl-tabs) :is(a,button)[aria-selected=true],html body :is(.my-learning-tabs,.ac-tabs,.dl-tabs) :is(a,button).active{background:var(--dl-brand-primary,#123B4A)!important;color:#FFFFFF!important;border-color:var(--dl-brand-primary,#123B4A)!important}
+html body :is(.my-learning-tabs,.ac-tabs,.dl-tabs) :is(a,button):not([aria-current=page]):not([aria-selected=true]):not(.active){background:#FFFFFF!important;color:#172B3A!important}
+html body :is(.dlu-header,.ac-topbar,footer.dalp-public-footer) :is(a,button):focus-visible{outline:3px solid #FFFFFF!important;outline-offset:3px!important}
+html body footer.dalp-public-footer .dlx-v5-footer-primary:focus-visible{outline:3px solid #172B3A!important;outline-offset:3px!important}
+@media(max-width:700px){html body footer.dalp-public-footer .dlx-v5-footer-body{grid-template-columns:repeat(2,minmax(0,1fr))!important}html body footer.dalp-public-footer .dlx-v5-footer-identity{grid-column:1/-1}}
+
+/* Release 23: authoritative Academy navigation/footer visual contract.
+   Load last on all HTML documents, including generated public course pages.
+   Do not style generic application buttons or content surfaces here. */
+:root{--r23-header-bg:var(--dl-brand-secondary,#183047);--r23-header-fg:#fff;--r23-header-muted:#F7F2EA;--r23-header-active:rgba(255,255,255,.19);--r23-header-stroke:rgba(255,255,255,.32);--r23-footer-bg:var(--dl-brand-secondary,#183047)}
+/* Every header variant, including signed-in AI Tutor and My Learning. */
+html body :is(header.dlu-header,header.za-header,header.dlx-header,header.dlp-header,.ac-topbar,.private-header,.admin-topbar),
+html body.dlx-rebuilt[data-private-workspace="true"] .ac-topbar{background:var(--r23-header-bg)!important;background-color:var(--r23-header-bg)!important;color:var(--r23-header-fg)!important;border-bottom:1px solid var(--r23-header-stroke)!important;box-shadow:0 3px 16px #02304822!important;backdrop-filter:none!important}
+html body :is(.dlu-header,.za-header,.dlx-header,.dlp-header,.ac-topbar,.private-header,.admin-topbar) :is(.dlu-brand,.dlu-brand-name,.dlu-brand-name b,.dlu-brand-caption,.za-brand,.dlx-brand,.dlp-brand,.dlp-brand b,.dlx-nav-main,.dlx-nav-toggle,.dlu-primary-links>a,.za-nav>a,.dlx-topnav>a,.dlp-links>a,.ac-topbar-title,.ac-trail,.ac-crumb,.ac-secure){color:#fff!important;text-shadow:none!important}
+html body :is(.dlu-header,.za-header,.dlx-header,.dlp-header,.ac-topbar,.private-header,.admin-topbar) :is(.dlx-nav-main,.dlx-nav-toggle,.dlu-primary-links>a,.za-nav>a,.dlx-topnav>a,.dlp-links>a,.ac-topbar-link):is(:hover,:focus-visible,[aria-current="page"],[aria-current="true"],[aria-selected="true"],.active,.is-active){background:var(--r23-header-active)!important;color:#fff!important;border-color:var(--r23-header-stroke)!important}
+html body :is(.dlu-header,.za-header,.dlx-header,.dlp-header,.ac-topbar) :is(.premium-search-trigger,.dlu-menu-open-button,.dlp-menu,.ac-mobile-menu){background:var(--r23-header-active)!important;color:#fff!important;border:1px solid var(--r23-header-stroke)!important}
+/* Explicitly pair light dropdowns and input surfaces with dark text. */
+html body :is(.dlu-header,.za-header,.dlx-header,.dlp-header,.ac-topbar) :is(.dlx-nav-submenu,.dlu-dropdown,.za-dropdown,.dlp-dropdown){background:#fff!important;color:#172B3A!important;border:1px solid #D8E1E8!important}
+html body :is(.dlu-header,.za-header,.dlx-header,.dlp-header,.ac-topbar) :is(.dlx-nav-submenu,.dlu-dropdown,.za-dropdown,.dlp-dropdown) :is(a,button,span,p,small,strong){color:#172B3A!important}
+html body :is(.dlu-header,.za-header,.dlx-header,.dlp-header,.ac-topbar) :is(input,select,.premium-search-input){background:#fff!important;color:#172B3A!important}
+html body :is(.dlu-header,.za-header,.dlx-header,.dlp-header,.ac-topbar) :is(input,select)::placeholder{color:#526475!important;opacity:1}
+/* Public footer: override historic beige background AND the matching beige foreground. */
+html body footer.dalp-public-footer,html body footer.dalp-public-footer.dlx-v5-footer,html body .dlp-footer.dalp-public-footer{background:var(--r23-footer-bg)!important;background-color:var(--r23-footer-bg)!important;color:#fff!important;border-color:var(--r23-header-stroke)!important}
+html body footer.dalp-public-footer :is(.dlx-v5-footer-container,.dlx-v5-footer-body,.dlx-v5-footer-identity,.dlx-v5-footer-col,.dlx-v5-footer-base,.dlp-footer-inner,.dlp-footer-copy){background:transparent!important;color:#F7F2EA!important}
+html body footer.dalp-public-footer :is(h2,h3,strong,.dlx-v5-footer-brand,.dlx-v5-footer-brand strong,.dlx-v5-footer-col h3){color:#fff!important}
+html body footer.dalp-public-footer :is(p,small,.dlx-v5-footer-col a,.dlx-v5-footer-base,.dlx-v5-footer-base a,.dlp-footer-copy,.dlp-footer-brand p,.dlp-footer nav a){color:#F7F2EA!important;opacity:1!important}
+html body footer.dalp-public-footer :is(a,.dlx-v5-footer-col a){text-decoration-color:currentColor!important}
+html body footer.dalp-public-footer .dlx-v5-footer-banner{background:var(--dl-brand-primary,#123B4A)!important;color:#fff!important}
+html body footer.dalp-public-footer .dlx-v5-footer-banner :is(h2,h2 em,p,small,.dlx-v5-overline){color:#fff!important}
+html body footer.dalp-public-footer .dlx-v5-footer-primary{background:#fff!important;color:#172B3A!important}
+html body footer.dalp-public-footer .dlx-v5-footer-secondary{background:transparent!important;color:#fff!important;border-color:#FFFFFF99!important}
+html body footer.dalp-public-footer .dlx-v5-footer-base{border-top:1px solid var(--r23-header-stroke)!important}
+html body :is(.dlu-header,.za-header,.dlx-header,.dlp-header,.ac-topbar,footer.dalp-public-footer) :is(a,button):focus-visible{outline:3px solid #fff!important;outline-offset:3px!important}
+html body footer.dalp-public-footer .dlx-v5-footer-primary:focus-visible{outline-color:#172B3A!important}
+@media(max-width:700px){html body footer.dalp-public-footer .dlx-v5-footer-body{grid-template-columns:repeat(2,minmax(0,1fr))!important}html body footer.dalp-public-footer .dlx-v5-footer-identity{grid-column:1/-1}}
