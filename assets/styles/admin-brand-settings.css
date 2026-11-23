@@ -7,3 +7,10 @@ body[data-admin-console="overview"] #brandSettings[data-active]{display:block;ma
 body[data-admin-view="appearance"] .dalp-admin-main{min-width:0}
 #brandSettings h1{font-size:clamp(1.8rem,3vw,2.5rem);margin:8px 0 12px;letter-spacing:-.035em}
 #brandSettings .ac-section-eyebrow{color:var(--brand-primary,var(--dl-brand-primary,#123B4A))}
+
+
+/* Appearance publishing feedback: clear states and safe text wrapping. */
+#brandSettingsMessage{box-sizing:border-box;display:block;margin:0;padding:12px 14px;border:1px solid #CBD7DC;border-radius:12px;background:#F1F5F6;color:#123B4A;font-size:.9rem;line-height:1.5;overflow-wrap:anywhere}
+#brandSettingsMessage[data-state="error"]{border-color:#E7B9B5;background:#FFF1EF;color:#7A1F1B}
+#brandSettingsMessage[data-state="success"]{border-color:#B9D9C2;background:#EDF8F0;color:#18552B}
+#brandSettingsMessage[data-state="info"]{border-color:#CBD7DC;background:#F1F5F6;color:#123B4A}
