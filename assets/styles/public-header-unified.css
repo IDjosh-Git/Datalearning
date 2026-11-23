@@ -225,3 +225,16 @@ html body:has(.dl-float-coach.is-open) .lc-launch.lc-pulse-trigger {visibility:h
 @media(max-width:1100px){.dlu-header-actions .dlu-dashboard-compact{display:none!important}}
 @media(max-width:600px){body>.dlu-header,body .dlu-header{min-height:62px!important}.dlu-header-inner{min-height:62px!important}.dlu-nav-scroll{padding-bottom:calc(92px + env(safe-area-inset-bottom))}}
 @media(prefers-reduced-motion:reduce){.dlu-primary-links a{transition:none}}
+
+/* Release 9: premium navigation with existing design tokens. */
+body .dlu-primary-links{gap:clamp(2px,.35vw,8px)}
+body .dlu-primary-links a{font-weight:750;letter-spacing:-.015em;border:1px solid transparent;transition:background .2s,border-color .2s,transform .2s}
+body .dlu-primary-links a:hover{background:var(--dlu-soft)!important;border-color:var(--dlu-border);transform:translateY(-1px)}
+body .dlu-primary-links a[aria-current]{background:var(--dlu-soft)!important;border-color:var(--dlu-border)!important}
+body .dlu-primary-links a[aria-current]::after{background:var(--bw-copper)!important;height:3px}
+body .dlu-header-actions .dlu-profile-shortcut{min-height:40px;padding:0 13px;border-radius:12px;background:var(--bw-midnight)!important;color:white!important;gap:8px}
+body .dlu-header-actions .dlu-profile-shortcut span:first-child{display:grid;place-items:center;width:23px;height:23px;border-radius:50%;background:rgba(255,255,255,.15);font-size:13px}
+body .dlu-nav-group.dlu-nav-primary a{background:white;border:1px solid var(--dlu-border);font-weight:800}
+body .dlu-nav-group.dlu-nav-primary a[aria-current]{background:var(--dlu-soft);border-color:var(--bw-copper)}
+@media(max-width:1100px){body .dlu-header-actions .dlu-profile-shortcut{display:none!important}}
+@media(prefers-reduced-motion:reduce){body .dlu-primary-links a{transition:none!important}body .dlu-primary-links a:hover{transform:none!important}}
