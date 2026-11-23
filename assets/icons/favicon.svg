@@ -1,35 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-labelledby="brand-title brand-desc">
-  <title id="brand-title">DataLearning premium logo</title>
-  <desc id="brand-desc">A premium rounded-square badge with luminous data bars and an upward insight line.</desc>
+  <title id="brand-title">DataLearning</title>
+  <desc id="brand-desc">A refined deep teal badge with an ivory D and rising copper data bars.</desc>
   <defs>
-    <linearGradient id="bg" x1="10" x2="86" y1="8" y2="90" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#0B0909"/>
-      <stop offset="0.55" stop-color="#023048"/>
-      <stop offset="1" stop-color="#023048"/>
+    <linearGradient id="brand-bg" x1="12" y1="8" x2="84" y2="88" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#183047"/>
+      <stop offset="1" stop-color="#123B4A"/>
     </linearGradient>
-    <linearGradient id="glow" x1="22" x2="74" y1="18" y2="76" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#D9BFA4"/>
-      <stop offset="1" stop-color="#C58A69"/>
+    <linearGradient id="brand-copper" x1="38" y1="36" x2="63" y2="65" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#D9BFA4"/>
+      <stop offset="1" stop-color="#B66B42"/>
     </linearGradient>
-    <linearGradient id="mint" x1="22" x2="65" y1="26" y2="78" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#F6F0E8"/>
-      <stop offset="1" stop-color="#D9BFA4"/>
-    </linearGradient>
-    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#023048" flood-opacity="0.22"/>
-    </filter>
   </defs>
-  <rect x="4" y="4" width="88" height="88" rx="26" fill="url(#bg)"/>
-  <rect x="6.5" y="6.5" width="83" height="83" rx="23.5" fill="none" stroke="rgba(255,255,255,.18)"/>
-  <path d="M16 23c10-9 25-13 44-12 6 0 12 .6 19 1.8v13.7c-7.3-1.8-13.7-2.7-19.3-2.7-17.8 0-31.9 4.5-43.7 13.7Z" fill="rgba(255,255,255,.09)"/>
-  <g filter="url(#shadow)">
-    <rect x="20" y="46" width="14" height="24" rx="6" fill="url(#mint)"/>
-    <rect x="41" y="36" width="14" height="34" rx="6" fill="#EEE7DD"/>
-    <rect x="62" y="25" width="14" height="45" rx="6" fill="url(#glow)"/>
-  </g>
-  <path d="M22 56.5 34 44l11 5 22-22" fill="none" stroke="#EAD7C0" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"/>
-  <path d="M59.5 27H73v13.5" fill="none" stroke="#EAD7C0" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.4"/>
-  <circle cx="34" cy="44" r="3.2" fill="#EAD7C0"/>
-  <circle cx="45" cy="49" r="3.2" fill="#EAD7C0"/>
-  <circle cx="67" cy="27" r="3.2" fill="#EAD7C0"/>
+  <rect x="4" y="4" width="88" height="88" rx="25" fill="url(#brand-bg)"/>
+  <rect x="6.5" y="6.5" width="83" height="83" rx="22.5" fill="none" stroke="#FFFFFF" stroke-opacity=".2"/>
+  <path d="M27 25h17c15 0 25 9 25 23S59 71 44 71H27V25Z" fill="none" stroke="#F7F2EA" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M38 62V54M47 62V47M56 62V39" fill="none" stroke="url(#brand-copper)" stroke-width="5.5" stroke-linecap="round"/>
 </svg>
