@@ -5,6 +5,7 @@
     --dl-desktop-width: calc(100% - 2 * var(--dl-desktop-gutter));
   }
 
+
   html:root body :is(
     main.dlp-main, main.dlx-practice-hub, main.dlst-main, main.cap-guide,
     main.pc-wrap, main.sample-shell, main.verify-shell, main.dl-library,
@@ -22,11 +23,13 @@
     margin-inline: auto !important;
   }
 
+
   html:root body:is(.home, .public-guide, .dlp-page) > main,
   html:root body main:where(.dlx-practice-hub),
   html:root body .academy-header-row {
     padding-inline: 0 !important;
   }
+
 
   /* The private frame already sits beside a sidebar or inside a full-width shell. */
   html:root body.ac-ready .ac-main-frame {
@@ -47,6 +50,7 @@
     max-width: none !important;
   }
 
+
   html:root body[data-responsive-page="tutor"] main.tutor-main > .tutor-shell,
   html:root body[data-responsive-page="capstone"] main :is(.cap-hero > .wrap, .cap-content) {
     width: var(--dl-desktop-width) !important;
@@ -54,9 +58,11 @@
     margin-inline: auto !important;
   }
 
+
   html:root body footer.dalp-public-footer .dlx-v5-footer-container {
     padding-inline: 0 !important;
   }
+
 
   html:root body main:is(.dl-library, .dalp-cert-viewer) {
     padding-inline: 0 !important;
@@ -74,6 +80,7 @@
   }
 }
 
+
 /* Match the navigation and footer content rails on phones and smaller windows. */
 @media (max-width: 768px) {
   html:root body .academy-header-row,
@@ -86,6 +93,7 @@
   html:root body .academy-menu-head { padding-inline: 16px; }
 }
 
+
 /* Keep the navigation centred regardless of the account controls on either side. */
 @media (min-width: 1280px) {
   html:root body .academy-header-row {
@@ -95,3 +103,33 @@
   html:root body .academy-header-row > .academy-brand { justify-self: start; }
   html:root body .academy-header-row > .academy-actions { justify-self: end; }
 }
+
+
+
+/* Release 25: consistent public chrome and a roomier AI Tutor workspace. */
+:root{--dl-public-header-height:72px}
+html body header.academy-header{min-height:var(--dl-public-header-height)!important;background:var(--dl-brand-secondary,#183047)!important;color:#fff!important;box-shadow:0 4px 20px rgba(24,48,71,.1)!important;font-family:"DM Sans","Plus Jakarta Sans",system-ui,sans-serif!important}
+html body header.academy-header .academy-header-row{min-height:var(--dl-public-header-height)!important;display:flex;align-items:center;gap:clamp(16px,2vw,32px)}
+html body header.academy-header .academy-brand{flex:0 0 auto;gap:12px}
+html body header.academy-header .academy-brand img{width:38px!important;height:38px!important;object-fit:contain;filter:none!important}
+html body header.academy-header :is(.academy-primary,.academy-actions){align-items:center;gap:clamp(8px,1vw,16px)}
+html body header.academy-header :is(a,button,.academy-brand){color:#fff!important}
+html body header.academy-header :is(.academy-group-link,.academy-disclosure,.academy-actions a,.academy-actions button){border-radius:999px!important}
+html body header.academy-header :is(.academy-group-link,.academy-disclosure):is(:hover,:focus-visible,[aria-current="page"],.active),html body header.academy-header .academy-actions :is(a,button):is(:hover,:focus-visible){background:rgba(255,255,255,.14)!important;border-color:rgba(255,255,255,.32)!important}
+html body header.academy-header :is(.academy-dropdown,.academy-menu){border:1px solid var(--dl-border,#D8E1E8)!important;border-radius:16px!important;box-shadow:0 20px 55px rgba(24,48,71,.18)!important}
+html body header.academy-header :is(.academy-dropdown,.academy-menu) :is(a,button){color:var(--dl-text,#172B3A)!important}
+html body footer.dalp-public-footer{font-family:"DM Sans","Plus Jakarta Sans",system-ui,sans-serif!important}
+html body footer.dalp-public-footer .dlx-v5-footer-container{width:min(calc(100% - clamp(32px,4vw,72px)),1440px)!important;max-width:none!important;margin-inline:auto!important}
+html body footer.dalp-public-footer .dlx-v5-footer-body{align-items:start;gap:clamp(24px,4vw,64px)!important;padding-block:clamp(36px,5vw,64px)!important}
+html body footer.dalp-public-footer .dlx-v5-footer-identity img{width:42px!important;height:42px!important;object-fit:contain;filter:none!important}
+html body footer.dalp-public-footer :is(.dlx-v5-footer-col a,.dlx-v5-footer-base a){text-underline-offset:4px}
+html body footer.dalp-public-footer :is(a,button):focus-visible{outline:3px solid #fff!important;outline-offset:3px!important}
+@media(max-width:768px){:root{--dl-public-header-height:64px}html body header.academy-header .academy-header-row{width:calc(100% - 32px)!important;gap:12px}html body header.academy-header .academy-brand img{width:34px!important;height:34px!important}html body footer.dalp-public-footer .dlx-v5-footer-container{width:calc(100% - 32px)!important}}
+
+/* AI Tutor: taller rounded workspace; its settings panel sits beside chat. */
+html body.dlx-rebuilt[data-responsive-page="tutor"] main.tutor-main{height:max(680px,calc(100dvh - 84px))!important;min-height:680px!important;padding-block:20px!important}
+html body.dlx-rebuilt[data-responsive-page="tutor"] main.tutor-main>.tutor-shell{height:100%!important;min-height:0!important}
+html body.dlx-rebuilt[data-responsive-page="tutor"] .tutor-grid{height:100%!important;min-height:0!important;grid-template-columns:minmax(0,1fr) minmax(260px,320px)!important;align-items:stretch!important;gap:20px!important}
+html body.dlx-rebuilt[data-responsive-page="tutor"] .tutor-grid>.tutor-sidebar{grid-column:2!important;grid-row:1!important;position:relative!important;inset:auto!important;transform:none!important;height:100%!important;min-height:0!important;border-radius:24px!important;overflow:auto!important;border:1px solid var(--dl-border,#D8E1E8)!important;box-shadow:0 18px 50px rgba(24,48,71,.08)!important}
+html body.dlx-rebuilt[data-responsive-page="tutor"] .tutor-grid>:not(.tutor-sidebar){grid-column:1!important;height:100%!important;min-height:0!important;border-radius:24px!important;overflow:hidden!important;border:1px solid var(--dl-border,#D8E1E8)!important;box-shadow:0 18px 50px rgba(24,48,71,.1)!important}
+@media(max-width:900px){html body.dlx-rebuilt[data-responsive-page="tutor"] main.tutor-main{height:auto!important;min-height:calc(100dvh - 64px)!important;padding:16px 0 24px!important}html body.dlx-rebuilt[data-responsive-page="tutor"] main.tutor-main>.tutor-shell{height:auto!important}html body.dlx-rebuilt[data-responsive-page="tutor"] .tutor-grid{display:block!important;height:auto!important}html body.dlx-rebuilt[data-responsive-page="tutor"] .tutor-grid>:not(.tutor-sidebar){width:100%!important;height:min(76dvh,760px)!important;min-height:560px!important;border-radius:22px!important}html body.dlx-rebuilt[data-responsive-page="tutor"] .tutor-grid>.tutor-sidebar{position:fixed!important;top:0!important;right:0!important;bottom:0!important;left:auto!important;z-index:1200!important;width:min(88vw,360px)!important;height:100dvh!important;min-height:100dvh!important;border-radius:22px 0 0 22px!important;transform:translateX(106%)!important;transition:transform .24s ease!important}html body.dlx-rebuilt[data-responsive-page="tutor"] .tutor-grid>.tutor-sidebar.tutor-drawer-open{transform:translateX(0)!important}}
