@@ -1,5 +1,5 @@
 /* Published brand tokens override historic decorative red while retaining semantic danger. */
-:root{--dl-brand-primary:#023048;--dl-brand-secondary:#0B0909;--dl-brand-accent:#C58A69;--dl-brand-background:#F0EDDE}
+:root{--dl-brand-primary:#123B4A;--dl-brand-secondary:#183047;--dl-brand-accent:#B66B42;--dl-brand-background:#F8FAFC}
 html body{background-color:var(--dl-brand-background)}
 html body :is(.site-header,.top-nav,.app-header,.private-header,.admin-topbar,.ac-topbar,.ac-sidebar,.dlu-header){background:var(--dl-brand-secondary)!important}
 html body :is(.admin-header,.admin-hero,.admin-page-header,.private-page-header,.private-hero,.page-hero,.dashboard-hero,.course-hero,.academy-hero,.dlx-private-hero,.admin-banner,.profile-hero,.tutor-hero,.progress-hero){background:linear-gradient(118deg,var(--dl-brand-secondary),var(--dl-brand-primary))!important}
@@ -8,3 +8,42 @@ html body :is(.dlu-nav-link:hover,.dlu-dropdown-link:hover,.ac-side-link:is(:hov
 html body :is(a,button,input,select,textarea):focus-visible{outline-color:var(--dl-brand-accent)!important}
 html body :is(.dlp-brand,.dlu-brand,.ac-brand){color:var(--dl-brand-secondary)}
 /* Do not overwrite errors, destructive actions, or critical alerts. */
+
+
+/* Release 16: shared accessible modern learning palette.
+   Published Admin Appearance colours are authoritative; neutral UI tokens stay stable. */
+:root{
+ --dl-text:#172B3A;--dl-muted:#526475;--dl-border:#D8E1E8;--dl-surface:#FFFFFF;
+ --dl-brand-primary:#123B4A;--dl-brand-secondary:#183047;
+ --dl-brand-accent:#B66B42;--dl-brand-background:#F8FAFC;
+ --dl-danger:#B42318;--dl-focus-ring:#B66B42;
+ --dl-paper:var(--dl-brand-background);--dl-ink:var(--dl-brand-secondary);
+ --dl-accent:var(--dl-brand-accent);--dl-accent-dark:var(--dl-brand-primary);
+ --dl-outline:var(--dl-border);--dl-focus:var(--dl-brand-primary);
+}
+html,body{background-color:var(--dl-brand-background)}
+body{color:var(--dl-text)}
+:where(.za-page,.ps-page,.dl-page,.admin-page,.public-guide){
+ --premium-ink:var(--dl-text);--premium-surface:var(--dl-surface);
+ --premium-canvas:var(--dl-brand-background);
+}
+html body :is(.site-header,.top-nav,.app-header,.private-header,.admin-topbar,.ac-topbar,.ac-sidebar,.dlu-header,.dlp-header){
+ background:var(--dl-brand-secondary)!important;color:#FFFFFF!important;
+}
+html body :is(.dlu-header,.dlp-header,.ac-topbar) a,
+html body :is(.dlu-header,.dlp-header,.ac-topbar) button{color:#FFFFFF}
+html body :is(.za-card,.za-progress-card,.ps-card,.dl-card,.ac-card,.admin-card,.course-card,.dl-catalog-card){
+ background-color:var(--dl-surface);border-color:var(--dl-border);
+}
+html body :is(.btn-primary,.button-primary,.primary-btn,.auth-submit,.btn--primary,.za-btn-primary,button[type=submit]:not(.icon-button):not(.search-trigger)):not(.danger):not([data-variant=danger]){
+ background:var(--dl-brand-primary)!important;border-color:var(--dl-brand-primary)!important;color:#FFFFFF!important;
+}
+html body :is(.btn-primary,.button-primary,.primary-btn,.auth-submit,.btn--primary,.za-btn-primary):hover{filter:brightness(.91)}
+html body :is(.za-section-kicker,.za-section-head p,.dl-muted,.text-muted,.ac-muted){color:var(--dl-muted)}
+html body :is(input,select,textarea){border-color:var(--dl-border);color:var(--dl-text)}
+html body :is(input,textarea)::placeholder{color:var(--dl-muted);opacity:1}
+html body :is(a,button,input,select,textarea,[tabindex]):focus-visible{outline:3px solid var(--dl-brand-primary)!important;outline-offset:3px}
+html body :is(.dlu-primary-links,.dlp-links) a:focus-visible{outline-color:#FFFFFF!important}
+html body :is(.ac-side-link[aria-current=page],.ac-side-link.ac-selected){border-inline-start:3px solid var(--dl-brand-accent)}
+html body :is(.error,.alert-danger,.text-danger,[role=alert]){--dl-danger:#B42318}
+@media(prefers-reduced-motion:reduce){html:focus-within{scroll-behavior:auto}}

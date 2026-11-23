@@ -20,7 +20,8 @@ const palette = new Set([
   '0b0909','023048','770101','f0edde','c58a69','d9bfa4',
   // Accessible warm neutrals, borders, and white for text and data surfaces.
   'ffffff','e9ddd0','675d58','f6f0e8','f7f3ea','e8e1d8','afa39a',
-  'f8efe4','f1e3d0','e2dcd3','eee7dd','f7f2ea','ead7c0'
+  'f8efe4','f1e3d0','e2dcd3','eee7dd','f7f2ea','ead7c0',
+  '123b4a','183047','b66b42','f8fafc','172b3a','526475','d8e1e8','b42318'
 ]);
 const rgb = new Set([...palette].filter(x=>x.length===6).map(x=>[
   parseInt(x.slice(0,2),16),parseInt(x.slice(2,4),16),parseInt(x.slice(4,6),16)

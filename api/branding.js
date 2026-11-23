@@ -1,5 +1,5 @@
 import {AUTH_URL,readServerToken,verifyAccount,verifyAdmin} from '../lib/server-auth.js';
-const DEFAULT={name:'DataLearning',primary:'#023048',secondary:'#0B0909',accent:'#C58A69',background:'#F0EDDE',logo:null,version:0};
+const DEFAULT={name:'DataLearning',primary:'#123B4A',secondary:'#183047',accent:'#B66B42',background:'#F8FAFC',logo:null,version:0};
 const hex=v=>typeof v==='string'&&/^#[0-9a-fA-F]{6}$/.test(v);
 const luminance=hex=>{const x=[1,3,5].map(i=>parseInt(hex.slice(i,i+2),16)/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4);return .2126*x[0]+.7152*x[1]+.0722*x[2]};
 const contrast=(a,b)=>{const x=luminance(a),y=luminance(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05)};

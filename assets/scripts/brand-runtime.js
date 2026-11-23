@@ -1,11 +1,11 @@
 /* Shared published branding: fetch from server on every page; never use local storage as authority. */
 (()=>{'use strict';
- const fallback={name:'DataLearning',primary:'#023048',secondary:'#0B0909',accent:'#C58A69',background:'#F0EDDE',logo:null};
+ const fallback={name:'DataLearning',primary:'#123B4A',secondary:'#183047',accent:'#B66B42',background:'#F8FAFC',logo:null};
  let current=null;const originalTitle=document.title;
  const validHex=x=>/^#[0-9a-fA-F]{6}$/.test(x||'');
  function apply(input){
   const b={...fallback,...input};if(!['primary','secondary','accent','background'].every(k=>validHex(b[k])))return;
-  const root=document.documentElement;const values={'--dl-brand-primary':b.primary,'--dl-brand-secondary':b.secondary,'--dl-brand-accent':b.accent,'--dl-brand-background':b.background,'--ui-accent':b.primary,'--ui-accent-strong':b.primary,'--ui-blue':b.secondary,'--ui-deep':b.secondary,'--ui-ink':b.secondary,'--brand-navy':b.secondary,'--brand-blue':b.secondary,'--brand-orange':b.primary,'--brand-accent':b.accent,'--auth-navy':b.secondary,'--auth-coral':b.primary,'--accent':b.primary,'--primary':b.secondary,'--ink':b.secondary,'--navy':b.secondary,'--bw-midnight':b.secondary,'--bw-burgundy':b.primary,'--bw-copper':b.accent,'--ui-paper':b.background,'--paper':b.background,'--bw-ivory':b.background,'--bw-nav-gradient':`linear-gradient(145deg,${b.secondary},${b.primary})`,'--bw-top-gradient':`linear-gradient(105deg,${b.secondary},${b.primary})`};
+  const root=document.documentElement;const values={'--dl-brand-primary':b.primary,'--dl-brand-secondary':b.secondary,'--dl-brand-accent':b.accent,'--dl-brand-background':b.background,'--dl-paper':b.background,'--dl-ink':b.secondary,'--dl-accent':b.accent,'--dl-accent-dark':b.primary,'--dl-outline':'#D8E1E8','--ui-accent':b.primary,'--ui-accent-strong':b.primary,'--ui-blue':b.secondary,'--ui-deep':b.secondary,'--ui-ink':b.secondary,'--brand-navy':b.secondary,'--brand-blue':b.secondary,'--brand-orange':b.primary,'--brand-accent':b.accent,'--auth-navy':b.secondary,'--auth-coral':b.primary,'--accent':b.primary,'--primary':b.secondary,'--ink':b.secondary,'--navy':b.secondary,'--bw-midnight':b.secondary,'--bw-burgundy':b.primary,'--bw-copper':b.accent,'--ui-paper':b.background,'--paper':b.background,'--bw-ivory':b.background,'--bw-nav-gradient':`linear-gradient(145deg,${b.secondary},${b.primary})`,'--bw-top-gradient':`linear-gradient(105deg,${b.secondary},${b.primary})`};
   for(const [k,v] of Object.entries(values))root.style.setProperty(k,v);
   root.style.setProperty('--ui-gradient',`linear-gradient(116deg,${b.secondary},${b.primary})`);root.style.setProperty('--dl-gradient-hero',`linear-gradient(115deg,${b.secondary},${b.primary})`);
   root.dataset.brandReady='true';

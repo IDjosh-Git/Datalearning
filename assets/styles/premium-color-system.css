@@ -1,8 +1,8 @@
 /* DataLearning premium palette: shared visual layer, intentionally last. */
-:root{--dl-ink:#023048;--dl-paper:#F0EDDE;--dl-card:#FFFFFF;--dl-accent:#C58A69;--dl-accent-dark:#770101;--dl-danger:#770101;--dl-outline:#D9BFA4;--dl-focus:#023048;color-scheme:light}
+:root{--dl-ink:#123B4A;--dl-paper:#F8FAFC;--dl-card:#FFFFFF;--dl-accent:#B66B42;--dl-accent-dark:#770101;--dl-danger:#770101;--dl-outline:#D9BFA4;--dl-focus:#123B4A;color-scheme:light}
 html{background:var(--dl-paper)}
 body{accent-color:var(--dl-ink)}
-:where(.za-page,.ps-page,.dl-page,.admin-page){--premium-ink:#023048;--premium-surface:#FFFFFF;--premium-canvas:#F0EDDE}
+:where(.za-page,.ps-page,.dl-page,.admin-page){--premium-ink:#123B4A;--premium-surface:#FFFFFF;--premium-canvas:#F8FAFC}
 :where(.za-page,.ps-page,.dl-page,.admin-page) :is(button,a,input,select,textarea):focus-visible{outline:3px solid var(--dl-focus);outline-offset:3px}
 :where(.za-page,.ps-page,.dl-page,.admin-page) :is(input,select,textarea){max-width:100%}
 :where(.za-page,.ps-page,.dl-page,.admin-page) :is(.za-card,.za-progress-card,.ps-card,.dl-card){border-color:rgba(2,48,72,.13)}
@@ -14,7 +14,7 @@ img.dl-course-logo,img[src*="/icons/icon-excel.svg"],img[src*="/icons/icon-power
 
 /* Release 14 central brand overrides */
 /* Published brand tokens override historic decorative red while retaining semantic danger. */
-:root{--dl-brand-primary:#023048;--dl-brand-secondary:#0B0909;--dl-brand-accent:#C58A69;--dl-brand-background:#F0EDDE}
+:root{--dl-brand-primary:#123B4A;--dl-brand-secondary:#183047;--dl-brand-accent:#B66B42;--dl-brand-background:#F8FAFC}
 html body{background-color:var(--dl-brand-background)}
 html body :is(.site-header,.top-nav,.app-header,.private-header,.admin-topbar,.ac-topbar,.ac-sidebar,.dlu-header){background:var(--dl-brand-secondary)!important}
 html body :is(.admin-header,.admin-hero,.admin-page-header,.private-page-header,.private-hero,.page-hero,.dashboard-hero,.course-hero,.academy-hero,.dlx-private-hero,.admin-banner,.profile-hero,.tutor-hero,.progress-hero){background:linear-gradient(118deg,var(--dl-brand-secondary),var(--dl-brand-primary))!important}
@@ -23,3 +23,99 @@ html body :is(.dlu-nav-link:hover,.dlu-dropdown-link:hover,.ac-side-link:is(:hov
 html body :is(a,button,input,select,textarea):focus-visible{outline-color:var(--dl-brand-accent)!important}
 html body :is(.dlp-brand,.dlu-brand,.ac-brand){color:var(--dl-brand-secondary)}
 /* Do not overwrite errors, destructive actions, or critical alerts. */
+
+
+/* Release 16: shared accessible modern learning palette.
+   Published Admin Appearance colours are authoritative; neutral UI tokens stay stable. */
+:root{
+ --dl-text:#172B3A;--dl-muted:#526475;--dl-border:#D8E1E8;--dl-surface:#FFFFFF;
+ --dl-brand-primary:#123B4A;--dl-brand-secondary:#183047;
+ --dl-brand-accent:#B66B42;--dl-brand-background:#F8FAFC;
+ --dl-danger:#B42318;--dl-focus-ring:#B66B42;
+ --dl-paper:var(--dl-brand-background);--dl-ink:var(--dl-brand-secondary);
+ --dl-accent:var(--dl-brand-accent);--dl-accent-dark:var(--dl-brand-primary);
+ --dl-outline:var(--dl-border);--dl-focus:var(--dl-brand-primary);
+}
+html,body{background-color:var(--dl-brand-background)}
+body{color:var(--dl-text)}
+:where(.za-page,.ps-page,.dl-page,.admin-page,.public-guide){
+ --premium-ink:var(--dl-text);--premium-surface:var(--dl-surface);
+ --premium-canvas:var(--dl-brand-background);
+}
+html body :is(.site-header,.top-nav,.app-header,.private-header,.admin-topbar,.ac-topbar,.ac-sidebar,.dlu-header,.dlp-header){
+ background:var(--dl-brand-secondary)!important;color:#FFFFFF!important;
+}
+html body :is(.dlu-header,.dlp-header,.ac-topbar) a,
+html body :is(.dlu-header,.dlp-header,.ac-topbar) button{color:#FFFFFF}
+html body :is(.za-card,.za-progress-card,.ps-card,.dl-card,.ac-card,.admin-card,.course-card,.dl-catalog-card){
+ background-color:var(--dl-surface);border-color:var(--dl-border);
+}
+html body :is(.btn-primary,.button-primary,.primary-btn,.auth-submit,.btn--primary,.za-btn-primary,button[type=submit]:not(.icon-button):not(.search-trigger)):not(.danger):not([data-variant=danger]){
+ background:var(--dl-brand-primary)!important;border-color:var(--dl-brand-primary)!important;color:#FFFFFF!important;
+}
+html body :is(.btn-primary,.button-primary,.primary-btn,.auth-submit,.btn--primary,.za-btn-primary):hover{filter:brightness(.91)}
+html body :is(.za-section-kicker,.za-section-head p,.dl-muted,.text-muted,.ac-muted){color:var(--dl-muted)}
+html body :is(input,select,textarea){border-color:var(--dl-border);color:var(--dl-text)}
+html body :is(input,textarea)::placeholder{color:var(--dl-muted);opacity:1}
+html body :is(a,button,input,select,textarea,[tabindex]):focus-visible{outline:3px solid var(--dl-brand-primary)!important;outline-offset:3px}
+html body :is(.dlu-primary-links,.dlp-links) a:focus-visible{outline-color:#FFFFFF!important}
+html body :is(.ac-side-link[aria-current=page],.ac-side-link.ac-selected){border-inline-start:3px solid var(--dl-brand-accent)}
+html body :is(.error,.alert-danger,.text-danger,[role=alert]){--dl-danger:#B42318}
+@media(prefers-reduced-motion:reduce){html:focus-within{scroll-behavior:auto}}
+
+/* Release 17 — premium public experience. Public routes only; central brand tokens remain authoritative. */
+:root{--r17-radius:24px;--r17-shadow:0 22px 70px rgba(18,59,74,.09);--r17-line:#D8E1E8}
+body.za-discover,body.za-courses,body.za-tools,body.dlp-page,body.dlx-rebuilt,body.auth-page{background:var(--dl-brand-background,#F8FAFC);color:#172B3A}
+body.za-discover #main-content,body.za-courses main,body.za-tools main{overflow:visible}
+body.za-discover .dl-home-hero{position:relative;overflow:hidden;isolation:isolate;min-height:590px;background:radial-gradient(ellipse at 87% 12%,rgba(182,107,66,.25),transparent 43%),radial-gradient(ellipse at 5% 105%,rgba(182,107,66,.16),transparent 48%),linear-gradient(125deg,var(--dl-brand-secondary,#183047),var(--dl-brand-primary,#123B4A))!important;border:1px solid rgba(255,255,255,.12);border-radius:32px;box-shadow:0 30px 80px rgba(18,59,74,.19)}
+body.za-discover .dl-home-hero h1{font-size:clamp(3rem,5vw,5.5rem);line-height:1.065;letter-spacing:-.065em;max-width:800px}
+body.za-discover .dl-home-hero h1 em{color:#E9DDD0!important}
+body.za-discover .dl-home-hero p{color:#F0EDDE;line-height:1.78;max-width:580px}
+body.za-discover .dl-home-hero .za-eyebrow{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.27);color:#FFFFFF}
+body.za-discover .dl-home-hero .za-btn-primary{background:#FFFFFF!important;color:var(--dl-brand-primary,#123B4A)!important;border-color:#FFFFFF!important;box-shadow:0 15px 35px rgba(0,0,0,.16)}
+body.za-discover .dl-home-hero .za-btn-outline-light{background:rgba(255,255,255,.08)!important;border-color:rgba(255,255,255,.45)!important;color:#FFFFFF!important}
+body.za-discover .dl-home-hero .za-hero-micro span{color:#F0EDDE;border-left-color:#E9DDD0}
+body.za-discover .dl-home-hero .za-hero-micro b{color:#FFFFFF}
+body.za-discover .dl-home-intro{margin-top:16px;padding:22px 26px;border:1px solid var(--r17-line);border-radius:18px;background:#FFFFFF;box-shadow:0 8px 25px rgba(18,59,74,.035)}
+body.za-discover .dl-intro-icon{background:#F8FAFC;color:var(--dl-brand-primary,#123B4A)}
+body.za-discover .za-section,body.za-courses .za-container,body.za-tools .dlx-hub-section{padding-top:clamp(48px,6vw,92px);padding-bottom:clamp(42px,5vw,78px)}
+body.za-discover .za-section-head h2,body.za-courses h1,body.za-tools h1,body.dlp-page h1{color:var(--dl-brand-primary,#123B4A);letter-spacing:-.045em;line-height:1.14}
+body.za-discover .za-section-head h2 span{color:var(--dl-brand-primary,#123B4A)}
+body.za-discover .za-section-head p,body.za-courses .za-page-heading p,body.za-tools .dlx-hub-hero p{color:#526475;line-height:1.75}
+body.za-discover .za-course-card,body.za-discover .za-tool-grid>a,body.za-courses .dlc-course-card,body.za-courses .za-course-card,body.za-tools .dlx-hub-card,body.dlp-page .dlp-paths article{background:#FFFFFF;border:1px solid var(--r17-line);border-radius:22px;box-shadow:var(--r17-shadow);overflow:hidden}
+body.za-discover .za-course-card:hover,body.za-discover .za-tool-grid>a:hover,body.za-courses .za-course-card:hover{transform:translateY(-4px);box-shadow:0 28px 65px rgba(18,59,74,.13)}
+body.za-discover .za-band{background:linear-gradient(130deg,#F8FAFC,#F8FAFC 62%,#F8FAFC);border-block:1px solid var(--r17-line)}
+body.za-discover .za-journey article,body.za-discover .za-step-stack article{border-color:var(--r17-line)}
+body.za-discover .za-tool-grid>a b{color:var(--dl-brand-primary,#123B4A)}
+body.za-discover .r17-pathway{padding:clamp(52px,7vw,100px) 0}
+body.za-discover .r17-pathway-inner{display:grid;grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr);align-items:center;gap:clamp(26px,6vw,90px)}
+body.za-discover .r17-pathway h2{font-size:clamp(2rem,3.6vw,3.5rem);line-height:1.13;letter-spacing:-.05em;color:var(--dl-brand-primary,#123B4A);margin:14px 0 20px}
+body.za-discover .r17-pathway p{line-height:1.8;color:#526475;max-width:520px}
+body.za-discover .r17-pathway .r17-action{display:inline-flex;align-items:center;justify-content:center;min-height:50px;margin-top:22px;padding:13px 20px;background:var(--dl-brand-primary,#123B4A);color:#FFFFFF;border-radius:12px;text-decoration:none;font-weight:750}
+body.za-discover .r17-pathway-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+body.za-discover .r17-pathway-grid article{padding:clamp(19px,2.3vw,30px);background:#FFFFFF;border:1px solid var(--r17-line);border-radius:20px;box-shadow:0 12px 38px rgba(18,59,74,.055)}
+body.za-discover .r17-pathway-grid article span{display:grid;place-items:center;width:44px;height:44px;background:#F8FAFC;color:var(--dl-brand-primary,#123B4A);border-radius:13px;font-size:1.1rem;font-weight:800}
+body.za-discover .r17-pathway-grid h3{margin:19px 0 8px;color:var(--dl-brand-primary,#123B4A);font-size:1.08rem}
+body.za-discover .r17-pathway-grid p{font-size:.88rem;line-height:1.65;margin:0}
+body.za-discover .r17-pathway-grid article:nth-child(2){transform:translateY(20px)}
+body.za-discover .r17-pathway-grid article:nth-child(4){transform:translateY(20px)}
+body.auth-page .auth-shell{width:min(1240px,calc(100% - 48px));padding:24px 0;gap:20px}
+body.auth-page .auth-layout{border-radius:28px;border:1px solid var(--r17-line);box-shadow:0 30px 90px rgba(18,59,74,.13);overflow:hidden}
+body.auth-page .auth-story{background:radial-gradient(ellipse at 90% 10%,rgba(182,107,66,.26),transparent 40%),linear-gradient(135deg,var(--dl-brand-secondary,#183047),var(--dl-brand-primary,#123B4A))!important}
+body.auth-page .auth-forms{background:#FFFFFF}
+body.auth-page .auth-tabs{background:#F8FAFC;border-color:#D8E1E8}
+body.auth-page .auth-field input{border-color:#D8E1E8;border-radius:11px;background:#FFFFFF;min-height:48px}
+body.auth-page .auth-field input:focus{border-color:var(--dl-brand-primary,#123B4A);box-shadow:0 0 0 3px rgba(18,59,74,.1)}
+html body.auth-page button.auth-submit[type=submit],html[data-theme=light] body.auth-page button.auth-submit[type=submit],html[data-theme=light] body.auth-page .auth-submit{background:var(--dl-brand-primary,#123B4A)!important;background-image:none!important;border-color:var(--dl-brand-primary,#123B4A)!important;box-shadow:0 12px 26px rgba(18,59,74,.16)}
+html body.auth-page button.auth-submit[type=submit]:hover,html[data-theme=light] body.auth-page .auth-submit:hover{background:var(--dl-brand-secondary,#183047)!important;background-image:none!important}
+body.auth-page .auth-course-chips span{color:#FFFFFF;border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.09)}
+body.auth-page .auth-benefit{border-color:rgba(255,255,255,.18);background:rgba(255,255,255,.075)}
+body.za-courses .dlc-catalog-hero,body.za-tools .dlx-hub-hero,body.dlp-page .dlp-hero{border-radius:26px;box-shadow:0 20px 60px rgba(18,59,74,.09)}
+body.za-courses .dlc-catalog-hero{background:linear-gradient(125deg,#F8FAFC,#FFFFFF 60%,#F8FAFC);border:1px solid var(--r17-line)}
+body.dlp-page .dlp-hero{background:linear-gradient(135deg,var(--dl-brand-secondary,#183047),var(--dl-brand-primary,#123B4A));color:#FFFFFF}
+body.dlp-page .dlp-hero h1{color:#FFFFFF}
+body.dlp-page .dlp-paths{gap:18px}
+body.za-discover :is(a,button):focus-visible,body.auth-page :is(a,button,input):focus-visible,body.za-courses :is(a,button,input):focus-visible{outline:3px solid #D9BFA4!important;outline-offset:3px}
+@media(max-width:900px){body.za-discover .r17-pathway-inner{grid-template-columns:1fr}body.auth-page .auth-shell{width:min(700px,calc(100% - 28px))}}
+@media(max-width:640px){body.za-discover .dl-home-hero{border-radius:22px;padding:34px 22px}body.za-discover .dl-home-hero h1{font-size:clamp(2.55rem,10vw,3.5rem)}body.za-discover .dl-home-intro{padding:18px}body.za-discover .r17-pathway-grid{gap:10px}body.za-discover .r17-pathway-grid article{padding:17px}body.za-discover .r17-pathway-grid article:nth-child(2),body.za-discover .r17-pathway-grid article:nth-child(4){transform:none}body.auth-page .auth-shell{width:calc(100% - 20px);padding:12px 0}body.auth-page .auth-layout{border-radius:19px}}
+@media(prefers-reduced-motion:reduce){body.za-discover .za-course-card,body.za-discover .za-tool-grid>a{transition:none!important;transform:none!important}}
