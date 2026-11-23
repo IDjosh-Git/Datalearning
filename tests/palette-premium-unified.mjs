@@ -4,7 +4,7 @@ import path from 'node:path';
 const pages=[...fs.readdirSync('.').filter(x=>x.endsWith('.html')&&x!=='career-setup.html'&&x!=='studio.html'&&x!=='landing.html'&&x!=='career-paths.html'&&x!=='free-lesson.html'),...fs.readdirSync('courses').filter(x=>x.endsWith('.html')).map(x=>'courses/'+x)];
 const theme=fs.readFileSync('assets/styles/palette-premium-20261113.css','utf8');
 const loader=fs.readFileSync('assets/styles/page-loader.css','utf8');
-assert.equal(pages.length,37);
+assert.equal(pages.length,38);
 for(const page of pages){
  const html=fs.readFileSync(page,'utf8');
  assert.equal((html.match(/palette-premium-20261113\.css/g)||[]).length,1,`${page}: exactly one canonical palette`);

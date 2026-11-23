@@ -6,7 +6,7 @@
    function updateActiveNavigation(){
      const aliases={'/dashboard':'/index.html','/practice':'/practice.html','/overview':'/account.html','/studio':'/studio.html'};
      const currentPath=aliases[location.pathname]||location.pathname;
-     const courseSection=currentPath.endsWith('/index.html')&&location.hash==='#zaDiscoverCards';
+     const courseSection=false;
      document.querySelectorAll('.dlu-primary-links a[href],#dluNavPanel a[href]').forEach(anchor=>{
        const target=new URL(anchor.href,location.href);
        const match=target.pathname===currentPath && (target.hash ? target.hash===location.hash : !courseSection);
