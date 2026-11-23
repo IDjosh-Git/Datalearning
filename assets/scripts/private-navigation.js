@@ -7,6 +7,7 @@
  const paths={dashboard:'account.html',academy:'index.html',courses:'index.html#zaDiscoverCards',practice:'practice.html',tools:'study-tools.html',tutor:'tutor.html',profile:'profile.html'};
  const icons={
   overview:'<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
+  appearance:'<circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18c1.7 0 2.6-1.4 2.1-2.6-.4-1.1.3-2.1 1.7-2.1h1.7a4.5 4.5 0 0 0 4.5-4.5"/><circle cx="7.5" cy="11" r=".8"/><circle cx="11" cy="7.5" r=".8"/><circle cx="16" cy="8" r=".8"/>',
   courses:'<path d="M4 19.5V5a2 2 0 0 1 2-2h14v18H6a2 2 0 0 1 0-4h14"/><path d="M8 7h8m-8 4h6"/>',
   learners:'<circle cx="9" cy="8" r="3"/><path d="M3 21v-2a6 6 0 0 1 12 0v2M17 8h5m-2.5-2.5v5"/>',
   progress:'<path d="M3 17.5 9 11l4 3 8-9"/><path d="M16 5h5v5M3 21h18"/>',
@@ -35,7 +36,7 @@
  ];
  const moreNav=[['Study Tools','study-tools.html','study'],['Study plan','learning-coach.html','study-plan'],['Learning Lab','learning-lab.html','lab'],['Capstone Studio','capstone.html','capstone'],['Certificates','account.html#certificates','certificate']];
  const adminNav=[
-  {caption:'ADMINISTRATION',items:[['Admin overview','admin.html','overview'],['Learners & Progress','admin.html#admin-learners','learners'],['Courses analysis','admin.html#admin-courses','courses'],['Review desk','reviewer.html','reviews']]}
+  {caption:'ADMINISTRATION',items:[['Admin overview','admin.html','overview'],['Learners & Progress','admin.html#admin-learners','learners'],['Courses analysis','admin.html#admin-courses','courses'],['Review desk','reviewer.html','reviews'],['Appearance','admin.html#admin-appearance','appearance']]}
  ];
  const adminMoreNav=[['Connection check','connection-test.html','connection'],['Progress sync','sync-test.html','sync']];
  const adminPages=new Set(['overview','reviews','connection','sync']);
@@ -140,7 +141,7 @@
  aside.inert=!bp.matches;bp.addEventListener?.('change',()=>{if(bp.matches)closeMenu();else if(!root.classList.contains('ac-menu-open'))aside.inert=true});
  // Admin overview, course analysis and learner management are exclusive views,
  // not three consecutive anchor sections. No content is recreated and no data is lost.
- function adminViewForHash(hash){return hash==='#admin-courses'?'courses':hash==='#admin-learners'?'learners':'overview';}
+ function adminViewForHash(hash){return hash==='#admin-courses'?'courses':hash==='#admin-learners'?'learners':hash==='#admin-appearance'?'appearance':'overview';}
  let lastAdminView=null;
  function showAdminView(){
   if(current!=='overview')return;
@@ -166,8 +167,8 @@
  function updateActive(){
   showAdminView();
   const h=location.hash;
-  const active=current==='overview'?(h==='#admin-courses'?'courses':h==='#admin-learners'?'learners':'overview'):current==='account'&&h==='#certificates'?'certificate':current;
-  if(current==='overview')trail.querySelector('strong').textContent=({learners:'Learners & Progress',courses:'Courses analysis',overview:'Admin overview'})[active];
+  const active=current==='overview'?(h==='#admin-courses'?'courses':h==='#admin-learners'?'learners':h==='#admin-appearance'?'appearance':'overview'):current==='account'&&h==='#certificates'?'certificate':current;
+  if(current==='overview')trail.querySelector('strong').textContent=({learners:'Learners & Progress',courses:'Courses analysis',appearance:'Appearance',overview:'Admin overview'})[active];
   navEl.querySelectorAll('.ac-side-link').forEach(a=>{const match=a.dataset.section===active;a.classList.toggle('ac-selected',match);if(match)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
   if(extras.querySelector('.ac-selected'))extras.open=true;
   if(adminTools.querySelector('.ac-selected'))adminTools.open=true;
@@ -179,7 +180,7 @@
  navEl.addEventListener('click',event=>{
   const anchor=event.target.closest('a[href]');if(current!=='overview'||!anchor)return;
   const target=new URL(anchor.href,location.href);
-  if(target.pathname!==location.pathname||!['','#admin-courses','#admin-learners'].includes(target.hash))return;
+  if(target.pathname!==location.pathname||!['','#admin-courses','#admin-learners','#admin-appearance'].includes(target.hash))return;
   event.preventDefault();
   if(location.hash!==target.hash)history.pushState(null,'',target.hash||target.pathname+target.search);
   switchAdminView();

@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const read=f=>readFileSync(new URL('../'+f,import.meta.url),'utf8');
+const nav=read('assets/scripts/private-navigation.js');
+const html=read('admin.html');
+const css=read('assets/styles/admin-brand-settings.css');
+assert.match(nav,/\['Appearance','admin\.html#admin-appearance','appearance'\]/);
+assert.match(nav,/hash==='#admin-appearance'\?'appearance'/);
+assert.match(nav,/h==='#admin-appearance'\?'appearance'/);
+assert.match(nav,/'#admin-appearance'\]\.includes/);
+assert.match(html,/id="brandSettings" class="ac-admin-view" data-admin-panel="appearance"/);
+assert.match(css,/#brandSettings:not\(\[data-active\]\)\{display:none!important\}/);
+assert.match(html,/id="brandSettingsForm"/);
+assert.match(html,/id="brandReset"/);
+console.log('PASS Appearance sidebar route, isolated admin panel, controls and active navigation');

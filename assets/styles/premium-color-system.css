@@ -11,3 +11,15 @@ img.dl-course-logo,img[src*="/icons/icon-excel.svg"],img[src*="/icons/icon-power
 :where(.za-card-icon,.ps-course-icon,.dl-brand-aside-mark,.dl-brand-hero-mark):has(img.dl-course-logo){isolation:isolate}
 @media(max-width:600px){:where(.za-page,.ps-page,.dl-page,.admin-page) :is(.za-card,.za-progress-card,.ps-card,.dl-card){min-width:0} :where(.za-page,.ps-page,.dl-page,.admin-page) :is(table,pre){max-width:100%} :where(.za-page,.ps-page,.dl-page,.admin-page) pre{overflow-x:auto}}
 @media(prefers-reduced-motion:reduce){:where(.za-page,.ps-page,.dl-page,.admin-page) *{scroll-behavior:auto!important}}
+
+/* Release 14 central brand overrides */
+/* Published brand tokens override historic decorative red while retaining semantic danger. */
+:root{--dl-brand-primary:#023048;--dl-brand-secondary:#0B0909;--dl-brand-accent:#C58A69;--dl-brand-background:#F0EDDE}
+html body{background-color:var(--dl-brand-background)}
+html body :is(.site-header,.top-nav,.app-header,.private-header,.admin-topbar,.ac-topbar,.ac-sidebar,.dlu-header){background:var(--dl-brand-secondary)!important}
+html body :is(.admin-header,.admin-hero,.admin-page-header,.private-page-header,.private-hero,.page-hero,.dashboard-hero,.course-hero,.academy-hero,.dlx-private-hero,.admin-banner,.profile-hero,.tutor-hero,.progress-hero){background:linear-gradient(118deg,var(--dl-brand-secondary),var(--dl-brand-primary))!important}
+html body :is(.btn-primary,.button-primary,.primary-btn,.auth-submit,.btn--primary,button[type="submit"]:not(.icon-button):not(.search-trigger)):not(.danger):not([data-variant="danger"]){background:var(--dl-brand-primary)!important;border-color:var(--dl-brand-primary)!important;color:white!important}
+html body :is(.dlu-nav-link:hover,.dlu-dropdown-link:hover,.ac-side-link:is(:hover,.ac-selected,[aria-current="page"])){border-color:var(--dl-brand-accent)!important}
+html body :is(a,button,input,select,textarea):focus-visible{outline-color:var(--dl-brand-accent)!important}
+html body :is(.dlp-brand,.dlu-brand,.ac-brand){color:var(--dl-brand-secondary)}
+/* Do not overwrite errors, destructive actions, or critical alerts. */
