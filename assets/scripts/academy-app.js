@@ -27,6 +27,14 @@
   };
   const WEEK_PASS_PERCENT = 80;
   const quizStorageKey = (uid,slug,week) => `dalp-academy-quiz:${uid||'guest'}:${slug}:${week}`;
+  function lessonVisual(path, description, width, height) {
+    const href = safe(base + path);
+    return `<div class="za-visual-stage" role="region" aria-label="Lesson visual" tabindex="0">
+      <img src="${href}" alt="${safe(description)}" width="${width}" height="${height}" loading="lazy" decoding="async">
+    </div><div class="za-visual-actions"><span>Scroll to inspect the diagram</span>
+      <a href="${href}" target="_blank" rel="noopener">Open full-size visual ↗</a>
+    </div>`;
+  }
   function readQuizBest(uid,slug,week){
     try {
       const result=JSON.parse(window.DALP_STORAGE.getItem(quizStorageKey(uid,slug,week))||'{}');
@@ -323,10 +331,10 @@
         <section class="za-lesson-block za-lesson-objective" id="zaGoals"><div class="za-block-head"><span class="za-block-ico" aria-hidden="true">◎</span><div><span class="za-block-kicker">01 · LEARNING GOAL</span><h2>What you will understand</h2></div></div><p>${safe(record.outcome)}.</p><p><strong>Learning evidence:</strong> ${safe(educator?.evidence || record.exercise)}</p><div class="za-tip"><b>How to study this module:</b> Read both explanations, follow the guided workflow, examine the example, and solve the exercise before opening its answer. Finish with the separate weekly questions.</div></section>
         <figure class="za-week-interface-visual" id="zaVisualGuide">
           <div class="za-week-interface-head"><div><span>VISUAL LEARNING GUIDE · WEEK ${num(week)}</span><h2>${safe(record.title)}</h2></div><span class="za-visual-badge">Illustrative interface</span></div>
-          <img src="${base}assets/images/lesson-interfaces/${safe(slug)}-week-${week}.${slug==='excel'&&week===1?'png':'svg'}" alt="Illustrated interface for ${safe(path.title)} Week ${week}: ${safe(record.title)}" width="1200" height="600" loading="lazy" decoding="async" />
+          ${lessonVisual(`assets/images/lesson-interfaces/${slug}-week-${week}.${slug==='excel'&&week===1?'png':'svg'}`, `Illustrated interface for ${path.title} Week ${week}: ${record.title}`, 1200, 600)}
           <figcaption><strong>Study the visual:</strong> ${safe(record.outcome)}. This topic-specific diagram illustrates the workflow or analytical concept; use your practice dataset to reproduce and verify it.</figcaption>
         </figure>
-        ${conceptDiagram ? `<figure class="za-concept-diagram" aria-label="Concept diagram: ${safe(conceptDiagram.title)}"><div class="za-concept-diagram-heading"><span>CONCEPT EXPLAINED VISUALLY</span><h2>${safe(conceptDiagram.title)}</h2></div><img src="${base}assets/images/lesson-concepts/${safe(conceptDiagram.file)}" width="720" height="${slug==='powerbi'&&week===3?880:440}" loading="lazy" decoding="async" alt="${safe(conceptDiagram.description)}"><figcaption>${safe(conceptDiagram.description)} <strong>Try it:</strong> Identify the inputs, follow the connections, and explain what changes in the output.</figcaption></figure>` : ''}
+        ${conceptDiagram ? `<figure class="za-concept-diagram" aria-label="Concept diagram: ${safe(conceptDiagram.title)}"><div class="za-concept-diagram-heading"><span>CONCEPT EXPLAINED VISUALLY</span><h2>${safe(conceptDiagram.title)}</h2></div>${lessonVisual('assets/images/lesson-concepts/'+conceptDiagram.file, conceptDiagram.description, 720, slug==='powerbi'&&week===3?880:440)}<figcaption>${safe(conceptDiagram.description)} <strong>Try it:</strong> Identify the inputs, follow the connections, and explain what changes in the output.</figcaption></figure>` : ''}
         ${kitHtml}
         ${formulaHtml}
         ${masterclassHtml}

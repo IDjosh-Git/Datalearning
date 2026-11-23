@@ -7,3 +7,46 @@
 .za-week-interface-visual img{display:block;width:100%;height:auto;max-height:590px;object-fit:contain;aspect-ratio:2/1;border:1px solid #E9DDD0;border-radius:15px;background:var(--bw-ivory)}
 .za-week-interface-visual figcaption{padding-top:14px;font-size:14px;line-height:1.65;color:#675D58}
 @media(max-width:640px){.za-week-interface-visual{margin:14px -2px 22px;padding:12px;border-radius:16px}.za-week-interface-visual img{border-radius:9px}.za-week-interface-visual figcaption{font-size:13px}.za-visual-badge{font-size:10px}}
+
+/* A shared presentation for interfaces and concept diagrams. */
+body.za-lesson :is(.za-week-interface-visual,.za-concept-diagram) {
+  padding: clamp(14px, 2.2vw, 26px);
+  margin-inline: 0;
+  border-color: #d8e1e8;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 8px 26px #172b3a0d;
+}
+body.za-lesson :is(.za-week-interface-head,.za-concept-diagram-heading) h2 {
+  font-family: var(--dl-font-heading);
+  color: #172b3a;
+}
+body.za-lesson .za-visual-badge { background: #f8fafc; color: #526475; border: 1px solid #d8e1e8; }
+.za-visual-stage {
+  display: grid;
+  justify-items: center;
+  border: 1px solid #d8e1e8;
+  border-radius: 12px;
+  overflow: auto;
+  background: #f8fafc;
+  overscroll-behavior-inline: contain;
+}
+body.za-lesson .za-visual-stage img {
+  display: block;
+  height: auto;
+  border: 0;
+  border-radius: 0;
+  max-height: none;
+  background: transparent;
+}
+body.za-lesson .za-concept-diagram .za-visual-stage img { width: min(100%, 820px); }
+.za-visual-actions { display: flex; justify-content: flex-end; gap: 12px; align-items: baseline; flex-wrap: wrap; margin-top: 8px; }
+.za-visual-actions span { display: none; color: #526475; font-size: .78rem; }
+.za-visual-actions a { color: var(--dl-brand-primary,#123b4a); font-weight: 700; font-size: .85rem; text-underline-offset: 3px; }
+@media (max-width: 680px) {
+  .za-visual-stage { justify-items: start; }
+  body.za-lesson .za-visual-stage img,
+  body.za-lesson .za-concept-diagram .za-visual-stage img { width: max(100%, 620px); max-width: none; }
+  .za-visual-actions { justify-content: space-between; }
+  .za-visual-actions span { display: inline; }
+}

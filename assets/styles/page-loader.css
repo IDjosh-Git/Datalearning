@@ -47,3 +47,32 @@ html.dlx-loader-leaving #dlxPageLoader{display:grid;opacity:0;visibility:hidden;
 @media(prefers-reduced-motion:reduce){#dlxPageLoader{transition:none}#dlxPageLoader .dlx-loader-orbit,#dlxPageLoader .dlx-loader-track span{animation:none}#dlxPageLoader .dlx-loader-track span{width:75%}}
 /* The auth gate is still fail-closed. This is the sole loading overlay during verification. */
 html.dalp-auth-checking.dlx-loader-pending body>#dlxPageLoader{display:grid!important;z-index:2147483645!important}
+
+/* One compact loading state, independent of when the published theme arrives. */
+html body #dlxPageLoader {
+  background: #f8fafc !important;
+  color: #172b3a;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  transition-duration: .16s;
+}
+html body #dlxPageLoader .dlx-loader-content {
+  width: min(100%, 290px);
+  gap: 6px;
+  padding: 20px 24px;
+  border: 1px solid #d8e1e8;
+  border-radius: 18px;
+  background: #fff !important;
+  box-shadow: 0 12px 34px #172b3a16;
+}
+html body #dlxPageLoader :is(.dlx-loader-ambient,.dlx-loader-orbit,.dlx-loader-orbit-spark,.dlx-loader-eyebrow,.dlx-loader-signoff) { display: none; }
+html body #dlxPageLoader .dlx-loader-art { width: 52px; height: 52px; margin: 0; filter: none; }
+html body #dlxPageLoader .dlx-loader-art svg { width: 48px; height: 48px; filter: none; }
+html body #dlxPageLoader :is(.dlx-loader-wordmark,.dlx-loader-wordmark span,.dlx-loader-message) { color: #172b3a !important; }
+html body #dlxPageLoader .dlx-loader-wordmark { font-size: 1.25rem; white-space: normal; overflow-wrap: anywhere; }
+html body #dlxPageLoader .dlx-loader-message { margin: 0 0 8px; }
+html body #dlxPageLoader .dlx-loader-track span { background: #123b4a; }
+html.dlx-loader-leaving body #dlxPageLoader { visibility: hidden !important; }
+@media(prefers-reduced-motion:reduce) {
+  html body #dlxPageLoader { transition: none; }
+}

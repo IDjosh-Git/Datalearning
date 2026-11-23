@@ -51,3 +51,21 @@ The published palette now starts resolving in the document head and is applied b
 ## Windows desktop width
 
 Page frames, headers and footers use the available desktop width with a 16–28 px side gutter. This covers the public site, learner tools and courses, sign-in, and administrative workspaces. Long-form reading and printable certificate dimensions retain their own layout. Home images load a local dashboard preview immediately and swap in the weekly photograph after it loads.
+
+## Alignment, loading and certificate records
+
+Navigation and footer content use matching horizontal margins on desktop and mobile. The compact loader uses one neutral surface and dismisses when page styling and, where necessary, access verification are ready. Public routes use the same loader.
+
+The Certificates route now lists the signed-in learner’s issued records without requiring a certificate ID. Active records open the existing certificate preview and download controls. Revoked records are identified and have no preview link. Learning Progress counts active certificates and distinguishes a fetch failure from an empty list. Certificate access remains subject to the existing database policies.
+
+## Shared interface polish and local fonts
+
+DM Sans is the interface typeface and Plus Jakarta Sans is used for page headings. The app ships the font files and their Open Font Licences. Public previews, learner tools, sign-in and administration use these fonts without external font requests. Typography, card presentation and control spacing share the same design rules. My Learning’s mobile section links wrap into two columns, and the selected section is visually distinct.
+
+The layout audit checked 50 routes at 1440 and 390 CSS pixels in Edge with external font requests blocked. Protected-page checks used simulated authentication.
+
+## Course reader and diagrams
+
+All nine course workspaces use a tighter sidebar gap and fill the remaining lesson width. Mobile lesson content shares the same page gutters instead of adding a second inset. My Learning enrolment sits beside the week counter, using the already verified learner session and retaining the enrolment action.
+
+The 90 weekly visuals and 20 supplemental concept diagrams share a framed layout and a full-size link. The illustrations have updated colours and typography. Excel Week 1 keeps its product screenshot within the shared presentation. Small screens can scroll the diagram rather than reducing its labels to unreadable text. Edge checked all 90 weeks at desktop and phone widths, with simulated enrolment.

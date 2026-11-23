@@ -73,3 +73,25 @@
     padding-inline: 0 !important;
   }
 }
+
+/* Match the navigation and footer content rails on phones and smaller windows. */
+@media (max-width: 768px) {
+  html:root body .academy-header-row,
+  html:root body footer.dalp-public-footer .dlx-v5-footer-container {
+    width: calc(100% - 32px) !important;
+    max-width: none !important;
+    padding-inline: 0 !important;
+    margin-inline: auto !important;
+  }
+  html:root body .academy-menu-head { padding-inline: 16px; }
+}
+
+/* Keep the navigation centred regardless of the account controls on either side. */
+@media (min-width: 1280px) {
+  html:root body .academy-header-row {
+    display: grid;
+    grid-template-columns: minmax(0,1fr) auto minmax(0,1fr);
+  }
+  html:root body .academy-header-row > .academy-brand { justify-self: start; }
+  html:root body .academy-header-row > .academy-actions { justify-self: end; }
+}

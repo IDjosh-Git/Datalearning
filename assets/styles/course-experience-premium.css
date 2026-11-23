@@ -209,3 +209,79 @@ body.za-progress .za-mastery-progress-link{display:inline-flex;align-items:cente
   body.za-lesson .za-section-toc-title { grid-column: 1/-1; }
   body.za-lesson .za-lesson-sections button { white-space: normal; overflow-wrap: anywhere; }
 }
+
+/* Course rail and lesson canvas share the site gutter with no second inset. */
+html:root body.za-lesson .za-course-frame {
+  padding-inline: 0;
+}
+html:root body.za-lesson .za-course-main {
+  width: 100%;
+  max-width: none;
+  padding-inline: 0;
+}
+@media (min-width: 961px) {
+  html:root body.za-lesson .za-course-frame {
+    grid-template-columns: clamp(220px, 18vw, 278px) minmax(0,1fr);
+    gap: clamp(14px, 1.4vw, 24px);
+    padding-top: 18px;
+  }
+  html:root body.za-lesson .za-course-aside {
+    top: 80px;
+    height: min(calc(100dvh - 96px), 940px);
+    min-height: 0;
+    border: 1px solid #d8e1e8;
+    border-radius: 16px;
+  }
+  html:root body.za-lesson .za-course-main { padding-top: 0; }
+}
+@media (max-width: 768px) {
+  html:root body.za-lesson .za-course-frame { width: calc(100% - 32px); }
+}
+html:root body.za-lesson .za-course-toolbar { flex-wrap: wrap; row-gap: 10px; }
+.za-course-meta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-inline-start: auto;
+  min-width: 0;
+}
+html:root body.za-lesson .za-week-counter {
+  display: grid;
+  place-items: center;
+  min-height: 42px;
+  background: #fff;
+  border-color: #d8e1e8;
+  color: var(--dl-brand-primary,#123b4a);
+  font-variant-numeric: tabular-nums;
+}
+.dlc-enrol {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  min-height: 42px;
+  padding: 6px 10px;
+  background: #fff;
+  border: 1px solid #d8e1e8;
+  border-radius: 9px;
+  color: #172b3a;
+}
+.dlc-enrol strong { display: block; font-size: .77rem; line-height: 1.2; }
+.dlc-enrol .dlc-enrol-status { margin: 2px 0 0; font-size: .72rem; line-height: 1.35; color: #526475; }
+.dlc-enrol[data-enrolled="true"] { border-inline-start: 3px solid var(--dl-brand-primary,#123b4a); }
+.dlc-enrol-button {
+  background: var(--dl-brand-primary,#123b4a);
+  color: #fff;
+  border: 0;
+  border-radius: 7px;
+  padding: 6px 9px;
+  min-height: 36px;
+  font-size: .73rem;
+  font-weight: 750;
+}
+.dlc-enrol-button[hidden] { display: none !important; }
+@media (max-width: 620px) {
+  .za-course-meta { justify-content: flex-start; flex: 1 1 100%; margin-inline-start: 0; }
+  .dlc-enrol { flex: 1 1 auto; flex-wrap: wrap; }
+}
