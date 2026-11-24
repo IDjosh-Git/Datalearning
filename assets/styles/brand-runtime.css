@@ -528,5 +528,5 @@ html body [data-academy-navigation] .academy-header .academy-menu-button svg{col
 /* Reserve the phone viewport for page content and avoid overlapping utility buttons. */
 @media(max-width:600px){
   html body{padding-bottom:calc(72px + env(safe-area-inset-bottom))!important}
-  html body :is(.back-to-top,#backToTop,.scroll-to-top,[data-back-to-top],.experience-back-top){display:none!important}
-}
+  
+  html body :is(.back-to-top,[id="backToTop"],.scroll-to-top,[data-back-to-top],.experience-back-top){display:none!important}
