@@ -580,3 +580,12 @@ html[data-brand-contrast] body .dl-public-feature-side p{color:#526475!important
  html body #dl-float-coach:not(.is-open) .dl-float-launcher{width:46px!important;height:46px!important;min-width:46px!important;min-height:46px!important}
  html body .lc-launch.lc-pulse-trigger{position:fixed!important;left:auto!important;right:calc(14px + env(safe-area-inset-right))!important;bottom:calc(14px + env(safe-area-inset-bottom))!important;transform:none!important;width:46px!important;height:46px!important;min-width:46px!important;min-height:46px!important;max-width:46px!important;z-index:2147482401!important}
 }
+
+
+/* The private dashboard's Explore courses action follows the published appearance palette. */
+html body.dalp-account-page main a.mld-btn-primary[href*="zaDiscoverCards"],
+html body.dalp-account-page main a.mld-btn-primary[href*="zaDiscoverCards"]:hover{
+ background:var(--dl-brand-primary,#123B4A)!important;
+ border-color:var(--dl-brand-primary,#123B4A)!important;
+ color:#FFFFFF!important;-webkit-text-fill-color:#FFFFFF!important;
+}

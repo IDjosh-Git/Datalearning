@@ -25,3 +25,33 @@ body[data-responsive-page="learning-coach"] #practicalCriteria label{display:fle
 body[data-responsive-page="learning-coach"] .mastery-shell :is(button,select,textarea,a):focus-visible{outline:3px solid var(--bw-copper)!important;outline-offset:3px!important}
 @media(max-width:760px){body[data-responsive-page="learning-coach"] .mastery-shell{gap:14px!important;margin-top:24px!important}body[data-responsive-page="learning-coach"] .mastery-shell .mastery-hero{border-radius:17px!important}body[data-responsive-page="learning-coach"] .mastery-shell .mastery-panel{border-radius:16px!important}body[data-responsive-page="learning-coach"] #masteryQuestion{padding:13px!important}}
 @media(prefers-reduced-motion:reduce){body[data-responsive-page="learning-coach"] .ss-session{transition:none!important;transform:none!important}}
+
+
+/* Learning Coach responsive width and stacking pass. */
+body[data-responsive-page="learning-coach"] main.dlst-main{
+ width:min(1360px,calc(100% - 48px))!important;max-width:none!important;min-width:0!important;
+}
+body[data-responsive-page="learning-coach"] :is(.dlst-hero,.dlst-hero>*,.ss-workspace,.ss-layout,.ss-layout>*,.ss-recall-grid,.ss-recall-grid>*){
+ min-width:0!important;max-width:100%!important;
+}
+body[data-responsive-page="learning-coach"] .ss-layout{
+ grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)!important;width:100%!important;
+}
+body[data-responsive-page="learning-coach"] .ss-recall-grid{
+ grid-template-columns:minmax(0,1.35fr) minmax(0,.65fr)!important;
+}
+body[data-responsive-page="learning-coach"] :is(.ss-setup,.ss-plan,.ss-recall,.ss-session){
+ width:100%!important;max-width:none!important;overflow-wrap:anywhere;
+}
+@media(max-width:1000px){
+ body[data-responsive-page="learning-coach"] main.dlst-main{width:calc(100% - 36px)!important}
+ body[data-responsive-page="learning-coach"] .ss-layout,
+ body[data-responsive-page="learning-coach"] .ss-recall-grid{grid-template-columns:minmax(0,1fr)!important}
+}
+@media(max-width:760px){
+ body[data-responsive-page="learning-coach"] main.dlst-main{width:calc(100% - 28px)!important;padding-inline:0!important}
+ body[data-responsive-page="learning-coach"] :is(.dlst-hero,.mastery-shell .mastery-hero){grid-template-columns:minmax(0,1fr)!important;padding:clamp(18px,5vw,25px)!important}
+ body[data-responsive-page="learning-coach"] .dlst-hero-art{display:none!important}
+ body[data-responsive-page="learning-coach"] :is(.ss-setup,.ss-plan,.ss-recall){padding:clamp(14px,4vw,18px)!important}
+ body[data-responsive-page="learning-coach"] .ss-layout{gap:14px!important}
+}
