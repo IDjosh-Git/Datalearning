@@ -215,7 +215,7 @@
   function updateBrand(brand) {
     if (!brand) return;
     mount.querySelectorAll('[data-academy-name]').forEach(node => { node.textContent = brand.name || 'DataLearning'; });
-    mount.querySelectorAll('[data-academy-logo]').forEach(node => { node.src = brand.logo || '/assets/icons/da-logo.svg'; node.alt = ''; });
+    mount.querySelectorAll('[data-academy-logo]').forEach(node => { node.src = window.DataLearningBrand?.logoFor?.(brand) || brand.logo || '/assets/icons/da-logo.svg'; node.alt = ''; });
   }
   updateBrand(window.DataLearningBrand?.current);
   window.addEventListener('datalearning:brand', event => updateBrand(event.detail));

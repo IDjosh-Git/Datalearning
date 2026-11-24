@@ -36,8 +36,10 @@ footer.dalp-public-footer :is(.dlx-v5-footer-primary, .dlx-v5-footer-secondary) 
   font-weight: 800;
 }
 html body footer.dalp-public-footer.dlx-v5-footer .dlx-v5-footer-primary {
-  background: #fff !important;
-  color: #172b3a !important;
+  background: #172B3A !important;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  border: 1px solid #172B3A !important;
 }
 html body footer.dalp-public-footer.dlx-v5-footer .dlx-v5-footer-secondary {
   background: transparent !important;

@@ -92,7 +92,7 @@
       if (!brand) return;
       footer.querySelectorAll('[data-footer-name]').forEach(node => { node.textContent = brand.name || 'DataLearning'; });
       const logo = footer.querySelector('[data-footer-logo]');
-      if (logo) { logo.src = brand.logo || url('assets/icons/da-logo.svg'); logo.alt = ''; }
+      if (logo) { logo.src = view?.DataLearningBrand?.logoFor?.(brand) || brand.logo || url('assets/icons/da-logo.svg'); logo.alt = ''; }
     };
     updateBrand(view?.DataLearningBrand?.current);
     view?.addEventListener('datalearning:brand', event => updateBrand(event.detail));

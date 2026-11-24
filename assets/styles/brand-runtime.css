@@ -528,7 +528,7 @@ html body [data-academy-navigation] .academy-header .academy-menu-button svg{col
 
 /* Reserve the phone viewport for page content and avoid overlapping utility buttons. */
 @media(max-width:600px){
-  html body{padding-bottom:calc(72px + env(safe-area-inset-bottom))!important}
+  html body{padding-bottom:0!important}
   
   html body :is(.back-to-top,[id="backToTop"],.scroll-to-top,[data-back-to-top],.experience-back-top){display:none!important}
 
@@ -561,3 +561,11 @@ html body.home .hero-actions a.cta.ghost {
   -webkit-text-fill-color: var(--dl-brand-secondary, #023048) !important;
   border-color: var(--dl-brand-secondary, #023048) !important;
 }
+
+
+/* Align the two mobile learning helpers on one fixed action rail. */
+@media(max-width:600px){
+ html body #dl-float-coach:not(.is-open){position:fixed!important;left:auto!important;right:calc(68px + env(safe-area-inset-right))!important;bottom:calc(14px + env(safe-area-inset-bottom))!important;transform:none!important;z-index:2147482400!important}
+ html body .lc-launch.lc-pulse-trigger{position:fixed!important;left:auto!important;right:calc(12px + env(safe-area-inset-right))!important;bottom:calc(14px + env(safe-area-inset-bottom))!important;transform:none!important;width:46px!important;height:46px!important;min-width:46px!important;min-height:46px!important;max-width:46px!important;z-index:2147482401!important}
+}
+html,body{min-height:100%;background-color:var(--dl-brand-background,#F8FAFC)}
