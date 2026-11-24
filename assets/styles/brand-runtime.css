@@ -1,3 +1,4 @@
+
 /* dm-sans-latin-ext-wght-normal */
 @font-face {
   font-family: 'DM Sans';
@@ -106,7 +107,7 @@ html body :is(.ac-side-link[aria-current=page],.ac-side-link.ac-selected){border
 html body :is(.error,.alert-danger,.text-danger,[role=alert]){--dl-danger:#B42318}
 @media(prefers-reduced-motion:reduce){html:focus-within{scroll-behavior:auto}}
 
-/* Release 19 — consolidated semantic colour contracts. Keep this block last. */
+/* Release 19 - consolidated semantic colour contracts. Keep this block last. */
 :root{
  --dl-text:#172B3A;--dl-muted:#526475;--dl-border:#D8E1E8;
  --dl-surface:#FFFFFF;--dl-danger:#B42318;--dl-success:#123B4A;
@@ -330,7 +331,7 @@ body footer :is(a,p,span,small,strong),.dlp-footer :is(a,p,span,small,strong),.d
 #dlxPageLoader .dlx-loader-art{width:104px;height:78px;margin:0 0 8px;filter:none}#dlxPageLoader .dlx-loader-art.has-brand-logo :is(svg,.dlx-loader-orbit,.dlx-loader-orbit-spark){display:none!important}#dlxPageLoader .dlx-loader-brand-logo{display:block;width:auto;height:auto;max-width:118px;max-height:72px;object-fit:contain;border-radius:10px}
 
 
-/* Live Appearance — cover legacy homepage calls to action and labels. */
+/* Live Appearance - cover legacy homepage calls to action and labels. */
 html body :is(a.cta:not(.ghost),button.cta:not(.ghost),.cta:not(.ghost),a.primary-cta,button.primary-cta,[role=button].primary-cta,a[class*=primary-action],button[class*=primary-action]):not(.danger):not(.btn-danger):not([data-variant=danger]){background:var(--dl-brand-primary)!important;background-image:none!important;color:#fff!important;border-color:var(--dl-brand-primary)!important;-webkit-text-fill-color:#fff!important}
 html body :is(a.cta.ghost,button.cta.ghost,.cta.ghost,a.secondary-cta,button.secondary-cta){background:var(--dl-soft)!important;color:var(--dl-brand-secondary)!important;border-color:var(--dl-border)!important;-webkit-text-fill-color:var(--dl-brand-secondary)!important}
 html body main :is(.eyebrow,.kicker,.section-kicker,.hero-kicker,.overline){color:var(--dl-brand-accent)!important}
@@ -530,3 +531,22 @@ html body [data-academy-navigation] .academy-header .academy-menu-button svg{col
   html body{padding-bottom:calc(72px + env(safe-area-inset-bottom))!important}
   
   html body :is(.back-to-top,[id="backToTop"],.scroll-to-top,[data-back-to-top],.experience-back-top){display:none!important}
+
+
+/* Runtime contrast pass: keep page copy readable when Admin Appearance changes the canvas. */
+html[data-brand-contrast="light-on-dark"] body :is(h1,h2,h3,h4,p,li,label,small,dt,dd,th,td,legend,.text-muted,.dl-muted,.za-muted,.ac-muted,.section-description):not(.text-danger):not(.error):not([role="alert"]) {
+  color: var(--dl-text, #FFFFFF) !important;
+}
+html[data-brand-contrast="light-on-dark"] body :is(.dlu-header,.dlp-header,.ac-topbar,.admin-topbar,.private-header,.za-hero,.dl-home-hero,.dlp-hero,.admin-header,.admin-hero,.admin-page-header,.private-page-header,.private-hero,.page-hero,.dashboard-hero,.course-hero,.academy-hero,.dlx-private-hero,.admin-banner,.profile-hero,.tutor-hero,.progress-hero) :is(h1,h2,h3,h4,p,li,label,small,a,button,span) {
+  color: #FFFFFF !important;
+}
+html body :is(.za-card,.za-progress-card,.ps-card,.dl-card,.ac-card,.admin-card,.course-card,.dl-catalog-card,.za-course-card,.dlc-course-card,.dlx-hub-card,.dlp-paths article,.ac-stat-card,.ac-kpi-card,.ac-metric-card,.stat-card,.mld-stat,.dashboard-card) {
+  color: var(--dl-surface-text, #172B3A);
+}
+html body :is(.za-card,.za-progress-card,.ps-card,.dl-card,.ac-card,.admin-card,.course-card,.dl-catalog-card,.za-course-card,.dlc-course-card,.dlx-hub-card,.dlp-paths article,.ac-stat-card,.ac-kpi-card,.ac-metric-card,.stat-card,.mld-stat,.dashboard-card) :is(h1,h2,h3,h4,p,li,label,small,dt,dd,th,td,legend) {
+  color: var(--dl-surface-text, #172B3A) !important;
+}
+html body :is(.text-danger,.error-text,.field-error,.alert-danger,[role="alert"]) {
+  color: var(--dl-danger, #B42318) !important;
+}
+
