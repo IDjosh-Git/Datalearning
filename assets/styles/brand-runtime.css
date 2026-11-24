@@ -569,3 +569,14 @@ html body.home .hero-actions a.cta.ghost {
  html body .lc-launch.lc-pulse-trigger{position:fixed!important;left:auto!important;right:calc(12px + env(safe-area-inset-right))!important;bottom:calc(14px + env(safe-area-inset-bottom))!important;transform:none!important;width:46px!important;height:46px!important;min-width:46px!important;min-height:46px!important;max-width:46px!important;z-index:2147482401!important}
 }
 html,body{min-height:100%;background-color:var(--dl-brand-background,#F8FAFC)}
+
+
+/* Keep the lesson summary dark inside its light card on the dark hero. */
+html[data-brand-contrast] body .dl-public-feature-side p{color:#526475!important;-webkit-text-fill-color:#526475!important}
+
+/* Stack the AI coach above Study Pulse on phones with a consistent right edge. */
+@media(max-width:600px){
+ html body #dl-float-coach:not(.is-open){position:fixed!important;left:auto!important;right:calc(14px + env(safe-area-inset-right))!important;bottom:calc(68px + env(safe-area-inset-bottom))!important;transform:none!important;width:46px!important;height:46px!important;z-index:2147482400!important}
+ html body #dl-float-coach:not(.is-open) .dl-float-launcher{width:46px!important;height:46px!important;min-width:46px!important;min-height:46px!important}
+ html body .lc-launch.lc-pulse-trigger{position:fixed!important;left:auto!important;right:calc(14px + env(safe-area-inset-right))!important;bottom:calc(14px + env(safe-area-inset-bottom))!important;transform:none!important;width:46px!important;height:46px!important;min-width:46px!important;min-height:46px!important;max-width:46px!important;z-index:2147482401!important}
+}
