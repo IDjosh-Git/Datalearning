@@ -506,3 +506,6 @@ html body [data-academy-navigation] .academy-header .academy-menu-button svg{col
  html body #dl-float-coach:not(.is-open){right:calc(12px + env(safe-area-inset-right))!important;bottom:calc(84px + env(safe-area-inset-bottom))!important}
  html body .lc-launch.lc-pulse-trigger{right:calc(12px + env(safe-area-inset-right))!important;bottom:calc(154px + env(safe-area-inset-bottom))!important}
 }
+
+/* Practice uses its own fixed action rail; keep draft recovery on the open left edge. */
+@media(max-width:760px){html body.dlx-rebuilt[data-responsive-page="practice"] #dalp-recovery-access{left:max(12px,env(safe-area-inset-left))!important;right:auto!important;bottom:calc(14px + env(safe-area-inset-bottom))!important;max-width:min(210px,calc(100vw - 112px))!important}}
