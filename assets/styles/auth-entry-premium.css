@@ -35,6 +35,7 @@ html[data-theme="light"] body.auth-page button.auth-submit[type="submit"]{
   border:1px solid rgba(11,9,9,.16)!important;
   color:#FFFFFF!important;-webkit-text-fill-color:#FFFFFF!important;
   box-shadow:0 12px 24px rgba(119,1,1,.21);
+}
 
 /* Compact sign-in layout: keep the form focused and the entry page within the viewport. */
 @media (min-width: 901px) {
