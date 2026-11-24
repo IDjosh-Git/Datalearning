@@ -6,7 +6,6 @@
 <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/favicon-180.png">
 
-
 <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0"></script>
 <script defer src="assets/scripts/supabase-config.js"></script>
 <script defer src="assets/scripts/server-session.js"></script>
@@ -15,7 +14,6 @@
 <script defer src="assets/scripts/auth-flow.js"></script>
 <link rel="stylesheet" href="assets/styles/icon-system.css"><link rel="stylesheet" href="assets/styles/palette-premium-20261113.css?v=20261113-theme-v3"/><link rel="stylesheet" href="assets/styles/burnt-wood-theme.css?v=20261113c" />
 <link rel="stylesheet" href="assets/styles/auth-entry-premium.css?v=20261124-fit" data-auth-theme="burnt-wood"/>
-
 
 <link rel="stylesheet" href="assets/styles/responsive-quality-pass.css?v=20261121" /><script defer src="assets/scripts/icon-system.js"></script><link rel="stylesheet" href="/assets/styles/brand-runtime.css?v=r25-type"><link rel="stylesheet" href="/assets/styles/release-20-layout-system.css?v=r20"><link rel="stylesheet" href="/assets/styles/release-21-navigation-unified.css?v=r21"/><link rel="stylesheet" href="/assets/styles/desktop-layout.css?v=r25-desktop"><link rel="stylesheet" href="assets/styles/premium-color-system.css?v=20261121" /></head><body class="auth-page" data-auth-mode="login">
 <a class="auth-skip" href="#main-content">Skip to sign-in</a>
@@ -36,3 +34,265 @@
    <p>
     Learn Excel, SQL, Power BI, Tableau, Power Query, Python, AI, Statistics and Data Analysis through practical, guided lessons. Your workspace opens after secure sign-in.
    </p>
+   <div class="auth-course-chips">
+    <span>
+     Excel
+    </span>
+    <span>
+     SQL
+    </span>
+    <span>
+     Power BI
+    </span>
+    <span>
+     Tableau
+    </span>
+    <span>
+     Power Query
+    </span>
+    <span>
+     Statistics
+    </span>
+   </div>
+   <div class="auth-benefits">
+    <div class="auth-benefit">
+     <svg fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24">
+      <path d="M4 12a8 8 0 1 0 2.3-5.7L4 8.6">
+      </path>
+      <path d="M4 4v4.6h4.6">
+      </path>
+     </svg>
+     <div>
+      <b>
+       Everything in one learning account
+      </b>
+      <span>
+       Course and quiz progress stays with your account.
+      </span>
+     </div>
+    </div>
+    <div class="auth-benefit">
+     <svg fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24">
+      <rect height="16" rx="3" width="18" x="3" y="4">
+      </rect>
+      <path d="M8 9h8M8 13h5">
+      </path>
+     </svg>
+     <div>
+      <b>
+       One path, every device
+      </b>
+      <span>
+       Continue on your phone, tablet or laptop.
+      </span>
+     </div>
+    </div>
+    <div class="auth-benefit">
+     <svg fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24">
+      <path d="M12 3 4.5 6v5.4c0 4.5 3 7.8 7.5 9.6 4.5-1.8 7.5-5.1V6L12 3Z">
+      </path>
+      <path d="m9 12 2 2 4-4">
+      </path>
+     </svg>
+     <div>
+      <b>
+       Your own learning record
+      </b>
+      <span>
+       Your progress is private, and your instructors can support you when you need help.
+      </span>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div class="auth-story-foot">
+   Personal learning space &middot; Securely signed in
+  </div>
+ </section>
+ <section aria-label="Learner and administrator sign-in and registration" class="auth-forms">
+  <div class="auth-heading">
+   <small>
+    YOUR LEARNING SPACE
+   </small>
+   <h2 id="authTitle">
+    Welcome back
+   </h2>
+   <p id="authSubtitle">
+    Sign in to pick up exactly where you left off.
+   </p>
+  </div>
+  <div aria-live="assertive" class="auth-msg warn" hidden="" id="configWarn" role="alert">
+  </div>
+  <div aria-label="Account action" class="auth-tabs" id="authTabs" role="tablist">
+   <button aria-controls="loginPanel" aria-selected="true" class="auth-tab active" id="signInTab" role="tab" type="button">
+    Sign in
+   </button>
+   <button aria-controls="signupPanel" aria-selected="false" class="auth-tab" id="createTab" role="tab" type="button">
+    Create account
+   </button>
+  </div>
+  <section aria-labelledby="signInTab" class="auth-panel" id="loginPanel" role="tabpanel">
+   <form id="loginForm" novalidate="">
+    <div class="auth-field">
+     <label for="loginEmail">
+      Email address
+     </label>
+     <input autocomplete="email" id="loginEmail" inputmode="email" name="email" placeholder="you@example.com" required="" type="email"/>
+    </div>
+    <div class="auth-field">
+     <label for="loginPassword">
+      Password
+     </label>
+     <div class="auth-input-wrap">
+      <input autocomplete="current-password" id="loginPassword" name="password" placeholder="Enter your password" required="" type="password"/>
+      <button aria-label="Show password" class="auth-eye" data-password-toggle="loginPassword" type="button">
+       Show
+      </button>
+     </div>
+    </div>
+    <div class="auth-inline-row">
+     <button class="auth-inline-link" data-auth-mode="forgot" type="button">
+      Forgot password?
+     </button>
+    </div>
+    <button class="auth-submit" data-busy-text="Signing in&hellip;" id="loginBtn" type="submit">
+     Sign in
+    </button>
+    <div aria-live="polite" class="auth-msg" hidden="" id="loginMsg" role="status">
+    </div>
+   </form>
+   <div class="auth-separator auth-google" hidden="">
+    <span>
+     or
+    </span>
+   </div>
+   <button class="auth-google auth-google-btn" hidden="" type="button">
+    Continue with a connected account
+   </button>
+   <p class="auth-switch">
+    New to the learning path?
+    <button data-auth-mode="create" type="button">
+     Create an account
+    </button>
+   </p>
+  </section>
+  <section aria-labelledby="createTab" class="auth-panel" hidden="" id="signupPanel" role="tabpanel">
+   <form id="signupForm" novalidate="">
+    <div class="auth-field">
+     <label for="fullName">
+      Full name
+     </label>
+     <input autocomplete="name" id="fullName" maxlength="120" name="name" placeholder="Your full name" required="" type="text"/>
+    </div>
+    <div class="auth-field">
+     <label for="signupEmail">
+      Email address
+     </label>
+     <input autocomplete="email" id="signupEmail" inputmode="email" name="email" placeholder="you@example.com" required="" type="email"/>
+    </div>
+    <div class="auth-field">
+     <label for="signupPassword">
+      Create password
+     </label>
+     <div class="auth-input-wrap">
+      <input autocomplete="new-password" id="signupPassword" minlength="8" name="password" placeholder="At least 8 characters" required="" type="password"/>
+      <button aria-label="Show password" class="auth-eye" data-password-toggle="signupPassword" type="button">
+       Show
+      </button>
+     </div>
+     <small class="auth-field-hint">
+      Use at least 8 characters. A unique passphrase is recommended.
+     </small>
+    </div>
+    <div class="auth-field">
+     <label for="signupConfirm">
+      Confirm password
+     </label>
+     <div class="auth-input-wrap">
+      <input autocomplete="new-password" id="signupConfirm" minlength="8" name="confirmPassword" placeholder="Re-enter your password" required="" type="password"/>
+      <button aria-label="Show password" class="auth-eye" data-password-toggle="signupConfirm" type="button">
+       Show
+      </button>
+     </div>
+    </div>
+    <button class="auth-submit" data-busy-text="Creating account&hellip;" id="signupBtn" type="submit">
+     Create account
+    </button>
+    <div aria-live="polite" class="auth-msg" hidden="" id="signupMsg" role="status">
+    </div>
+   </form>
+   <p class="auth-switch">
+    Already have an account?
+    <button data-auth-mode="login" type="button">
+     Sign in
+    </button>
+   </p>
+  </section>
+  <section class="auth-panel" hidden="" id="forgotPanel">
+   <form id="forgotForm" novalidate="">
+    <div class="auth-field">
+     <label for="forgotEmail">
+      Account email address
+     </label>
+     <input autocomplete="email" id="forgotEmail" placeholder="you@example.com" required="" type="email"/>
+    </div>
+    <button class="auth-submit" data-busy-text="Sending link&hellip;" id="forgotBtn" type="submit">
+     Send reset link
+    </button>
+    <div aria-live="polite" class="auth-msg" hidden="" id="forgotMsg" role="status">
+    </div>
+   </form>
+   <p class="auth-switch">
+    <button data-auth-mode="login" type="button">
+     &larr; Back to sign in
+    </button>
+   </p>
+  </section>
+  <section class="auth-panel" hidden="" id="resetPanel">
+   <form id="resetForm" novalidate="">
+    <div class="auth-field">
+     <label for="newPassword">
+      New password
+     </label>
+     <div class="auth-input-wrap">
+      <input autocomplete="new-password" id="newPassword" minlength="8" placeholder="At least 8 characters" required="" type="password"/>
+      <button aria-label="Show password" class="auth-eye" data-password-toggle="newPassword" type="button">
+       Show
+      </button>
+     </div>
+    </div>
+    <div class="auth-field">
+     <label for="confirmNewPassword">
+      Confirm new password
+     </label>
+     <div class="auth-input-wrap">
+      <input autocomplete="new-password" id="confirmNewPassword" minlength="8" placeholder="Confirm new password" required="" type="password"/>
+      <button aria-label="Show password" class="auth-eye" data-password-toggle="confirmNewPassword" type="button">
+       Show
+      </button>
+     </div>
+    </div>
+    <button class="auth-submit" data-busy-text="Updating password&hellip;" id="resetBtn" type="submit">
+     Update password
+    </button>
+    <div aria-live="polite" class="auth-msg" hidden="" id="resetMsg" role="status">
+    </div>
+   </form>
+   <p class="auth-switch">
+    <button data-auth-mode="login" type="button">
+     Back to sign in
+    </button>
+   </p>
+  </section>
+  <div class="auth-account-note">
+   <span aria-hidden="true">
+    ✦
+   </span>
+   <p>
+    Your learning, in one secure account. New here? Create your learner account to get started. Administrators can sign in with their existing account.
+   </p>
+  </div>
+ </section>
+</main>
+
+<footer class="auth-minimal-foot"><span>© 2026 DataLearning</span><span>One account for every course, practice session and assessment.</span></footer></div></body></html>
