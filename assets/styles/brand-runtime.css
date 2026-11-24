@@ -497,3 +497,12 @@ html body #dlxPageLoader .dlx-loader-art.has-brand-logo>svg{display:none!importa
 html body #dlxPageLoader .dlx-loader-art .dlx-loader-brand-logo{display:block;width:clamp(64px,18vw,88px);height:clamp(64px,18vw,88px);object-fit:contain;border-radius:18px}
 html body #dlxPageLoader .dlx-loader-art.has-brand-logo{width:112px;height:112px;margin-bottom:8px}
 html body #dlxPageLoader .dlx-loader-art.has-brand-logo .dlx-loader-brand-logo{width:76px;height:76px;padding:8px;background:var(--dl-brand-background,#F8FAFC);border:1px solid var(--dl-border,#D8E1E8);box-shadow:0 8px 24px color-mix(in srgb,var(--dl-brand-secondary,#183047) 16%,transparent)}
+
+/* Clear touch controls on small screens and keep overlay actions apart. */
+html body [data-academy-navigation] .academy-header .academy-menu-button{background:transparent!important;color:#fff!important;border:1px solid #ffffff70!important}
+html body [data-academy-navigation] .academy-header .academy-menu-button svg{color:currentColor!important;stroke:currentColor!important}
+@media(max-width:600px){
+ html body #dalp-recovery-access{left:max(12px,env(safe-area-inset-left))!important;right:auto!important;bottom:calc(14px + env(safe-area-inset-bottom))!important;max-width:min(210px,calc(100vw - 112px))!important;z-index:2147482400!important}
+ html body #dl-float-coach:not(.is-open){right:calc(12px + env(safe-area-inset-right))!important;bottom:calc(84px + env(safe-area-inset-bottom))!important}
+ html body .lc-launch.lc-pulse-trigger{right:calc(12px + env(safe-area-inset-right))!important;bottom:calc(154px + env(safe-area-inset-bottom))!important}
+}
