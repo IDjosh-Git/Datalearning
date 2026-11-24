@@ -26,6 +26,6 @@ export default async function handler(req,res){
  if(contrast(data.background,data.secondary)<4.5)return reply(res,400,{error:'Background and secondary text colours need 4.5:1 contrast'});
  const logo=data.logo===null?null:String(data.logo||'');
  if(logo&&!/^data:image\/(png|jpeg|webp);base64,[a-zA-Z0-9+/=]+$/.test(logo))return reply(res,400,{error:'Logo must be PNG, JPEG or WebP'});
- if(logo&&logo.length>190000)return reply(res,413,{error:'Logo exceeds 140 KB; resize it before uploading'});
+ if(logo&&logo.length>2100000)return reply(res,413,{error:'Logo exceeds 1.5 MB; resize it before uploading'});
  try{const rows=await db('PATCH',{name,primary:data.primary,secondary:data.secondary,accent:data.accent,background:data.background,logo,version:Date.now()});if(!rows.length)throw Error('Missing row');return reply(res,200,clean(rows[0]))}catch{return reply(res,503,{error:'Unable to publish branding. Apply database migration and configure server key.'})}
 }
