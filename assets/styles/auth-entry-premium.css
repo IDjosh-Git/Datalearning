@@ -25,6 +25,7 @@ button,input{font:inherit}button{cursor:pointer}button:disabled{cursor:wait;opac
 @media(max-width:360px){.auth-shell{width:calc(100% - 12px)}.auth-forms{padding:24px 16px 22px}.auth-story{padding:24px 17px}.auth-brand-wordmark{font-size:17px}.auth-secure-chip{padding:8px}.auth-course-chips{gap:5px}.auth-course-chips span{font-size:9px;padding:6px 9px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
 
+
 /* Sign-in is intentionally the final stylesheet on auth.html. This scoped rule
    outranks the shared primary-button rules without affecting learner/admin pages. */
 html[data-theme="light"] body.auth-page .auth-submit,
@@ -34,13 +35,37 @@ html[data-theme="light"] body.auth-page button.auth-submit[type="submit"]{
   border:1px solid rgba(11,9,9,.16)!important;
   color:#FFFFFF!important;-webkit-text-fill-color:#FFFFFF!important;
   box-shadow:0 12px 24px rgba(119,1,1,.21);
+
+/* Compact sign-in layout: keep the form focused and the entry page within the viewport. */
+@media (min-width: 901px) {
+  html[data-theme="light"] body.auth-page.auth-page .auth-shell {
+    width: min(1100px, calc(100% - 48px)) !important; max-width: 1100px !important;
+    height: 100dvh !important; min-height: 100dvh !important; padding: 12px 0 !important; gap: 10px !important; overflow: hidden !important;
+  }
+  html[data-theme="light"] body.auth-page.auth-page .auth-layout {
+    flex: 1 1 auto !important; height: auto !important; min-height: 0 !important;
+    grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr) !important;
+  }
+  html[data-theme="light"] body.auth-page.auth-page .auth-story { padding: clamp(22px, 2.6vw, 36px) !important; gap: 18px !important; }
+  html[data-theme="light"] body.auth-page.auth-page .auth-forms { padding: 22px clamp(22px, 3vw, 38px) !important; }
+  html[data-theme="light"] body.auth-page.auth-page .auth-panel { width: min(100%, 520px) !important; margin-inline: auto !important; }
 }
-html[data-theme="light"] body.auth-page .auth-submit:not(:disabled):hover{
-  background:linear-gradient(108deg,#023048 0%,#770101 100%)!important;
-  background-image:linear-gradient(108deg,#023048 0%,#770101 100%)!important;
-  box-shadow:0 17px 29px rgba(2,48,72,.22);
+@media (max-width: 900px) {
+  html[data-theme="light"] body.auth-page.auth-page .auth-shell {
+    width: min(620px, calc(100% - 28px)) !important; height: 100dvh !important; min-height: 100dvh !important;
+    padding: 12px 0 !important; gap: 10px !important; overflow: hidden !important;
+  }
+  html[data-theme="light"] body.auth-page.auth-page .auth-layout { flex: 1 1 auto !important; display: flex !important; min-height: 0 !important; height: auto !important; align-items: center !important; }
+  html[data-theme="light"] body.auth-page.auth-page .auth-story { display: none !important; }
+  html[data-theme="light"] body.auth-page.auth-page .auth-forms { width: 100% !important; min-height: 0 !important; padding: 20px clamp(18px, 4vw, 30px) !important; }
+  html[data-theme="light"] body.auth-page.auth-page .auth-panel { width: min(100%, 500px) !important; margin-inline: auto !important; }
+  html[data-theme="light"] body.auth-page.auth-page .auth-heading { margin-bottom: 14px !important; }
+  html[data-theme="light"] body.auth-page.auth-page .auth-heading h2 { font-size: clamp(25px, 4vw, 32px) !important; margin: 7px 0 !important; }
+  html[data-theme="light"] body.auth-page.auth-page .auth-account-note { margin-top: 14px !important; padding-top: 12px !important; }
+  html[data-theme="light"] body.auth-page.auth-page .auth-field { margin-bottom: 11px !important; }
+  html[data-theme="light"] body.auth-page.auth-page .auth-tabs { margin-bottom: 14px !important; }
 }
-body.auth-page .auth-secure-chip{background:#FFFFFF;border-color:#D9BFA4;color:#023048}
-body.auth-page .auth-benefit svg{stroke-width:2.35;color:#D9BFA4}
-body.auth-page .auth-course-chips span{border-color:rgba(217,191,164,.45);background:rgba(240,237,222,.11)}
-@media(max-width:900px){body.auth-page .auth-story{background:radial-gradient(circle at 92% 8%,rgba(197,138,105,.22),transparent 36%),linear-gradient(124deg,#0B0909 0%,#023048 45%,#770101 100%)}}
+@media (max-width: 600px) {
+  html[data-theme="light"] body.auth-page.auth-page .auth-shell { width: calc(100% - 20px) !important; }
+  html[data-theme="light"] body.auth-page.auth-page .auth-minimal-foot { justify-content: center !important; text-align: center !important; }
+}
