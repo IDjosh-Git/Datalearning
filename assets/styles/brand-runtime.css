@@ -552,6 +552,8 @@ html body :is(.text-danger,.error-text,.field-error,.alert-danger,[role="alert"]
 
 
 
+}
+
 /* Keep public homepage ghost links readable on the light hero surface. */
 html body.home .hero-actions a.cta.ghost {
   background: #F0EDDE !important;
