@@ -445,3 +445,18 @@ html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] main#main-con
 html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] main#main-content #practiceDetail .ide-primary .arena-lines{background:color-mix(in srgb,var(--dl-brand-primary,#123b4a) 5%,var(--dl-surface,#fff))!important;color:var(--dl-muted,#526475)!important;border-right:1px solid var(--dl-border,#d8e1e8)!important}
 html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] main#main-content #practiceDetail .ide-primary .arena-kw{color:var(--dl-brand-primary,#123b4a)!important;font-weight:800!important}
 @media(max-width:760px){html[data-theme] body.dlx-rebuilt[data-responsive-page="practice"] main#main-content>.hub-topbar{align-items:flex-start!important;flex-direction:column!important}.hub-topbar .hub-actions{width:100%;justify-content:space-between;flex-wrap:wrap}}
+
+
+/* Floating AI contrast: isolate the coach from generic dark-sidebar rules. */
+html body #dl-float-coach .dl-float-sidebar{background:var(--dl-brand-background,#F8FAFC)!important;color:var(--dl-text,#172B3A)!important;border-right:1px solid var(--dl-border,#D8E1E8)!important}
+html body #dl-float-coach .dl-float-sidebar :is(strong,span,p,small,div,a,button,svg){color:var(--dl-text,#172B3A)!important;-webkit-text-fill-color:var(--dl-text,#172B3A)!important}
+html body #dl-float-coach .dl-float-sidebar :is(.dl-float-actions button,.dl-float-suggestions button,.dl-float-sidebar-close){background:#fff!important;border:1px solid var(--dl-border,#D8E1E8)!important;color:var(--dl-text,#172B3A)!important;-webkit-text-fill-color:var(--dl-text,#172B3A)!important;border-radius:10px!important;min-height:40px!important}
+html body #dl-float-coach .dl-float-sidebar .dl-float-actions button.is-active{background:var(--dl-brand-primary,#123B4A)!important;border-color:var(--dl-brand-primary,#123B4A)!important;color:#fff!important;-webkit-text-fill-color:#fff!important}
+html body #dl-float-coach .dl-float-sidebar .dl-float-tutor-link{color:var(--dl-brand-primary,#123B4A)!important;-webkit-text-fill-color:var(--dl-brand-primary,#123B4A)!important}
+html body #dl-float-coach .dl-float-head :is(.dl-float-sidebar-toggle,.dl-float-expand,.dl-float-new,.dl-float-close){background:rgba(255,255,255,.16)!important;border:1px solid rgba(255,255,255,.48)!important;color:#fff!important;-webkit-text-fill-color:#fff!important}
+html body #dl-float-coach .dl-float-head :is(.dl-float-sidebar-toggle,.dl-float-expand,.dl-float-new,.dl-float-close) svg{stroke:#fff!important}
+html body #dl-float-coach .dl-float-launcher{background:linear-gradient(145deg,var(--dl-brand-primary,#123B4A),var(--dl-brand-secondary,#183047))!important;color:#fff!important;-webkit-text-fill-color:#fff!important}
+html body #dl-float-coach .dl-float-chat{background:#fff!important;color:var(--dl-text,#172B3A)!important}
+html body #dl-float-coach .dl-float-messages{background:var(--dl-brand-background,#F8FAFC)!important;color:var(--dl-text,#172B3A)!important}
+html body #dl-float-coach .dl-float-footer{background:var(--dl-brand-secondary,#183047)!important;color:#fff!important}
+html body #dl-float-coach :is(button,textarea,a):focus-visible{outline:3px solid var(--dl-brand-accent,#B66B42)!important;outline-offset:2px!important}
