@@ -13,3 +13,26 @@ body[data-admin-view="appearance"] .dalp-admin-main{min-width:0}
 #brandSettingsMessage[data-state="error"]{border-color:var(--dl-danger);background:var(--dl-brand-background);color:var(--dl-danger)}
 #brandSettingsMessage[data-state="success"]{border-color:var(--dl-brand-primary);background:var(--dl-brand-background);color:var(--dl-brand-primary)}
 #brandSettingsMessage[data-state="info"]{border-color:var(--dl-border);background:var(--dl-brand-background);color:var(--dl-text)}
+
+
+/* Premium Appearance workspace. Every surface follows the published brand palette. */
+#brandSettings{max-width:1100px!important;padding:clamp(22px,4vw,44px)!important;background:radial-gradient(ellipse at 100% 0%,color-mix(in srgb,var(--dl-brand-accent,#b66b42) 8%,transparent),transparent 34%),linear-gradient(145deg,var(--dl-surface,#fff),color-mix(in srgb,var(--dl-brand-primary,#123b4a) 3%,var(--dl-surface,#fff)))!important;border:1px solid color-mix(in srgb,var(--dl-brand-primary,#123b4a) 16%,var(--dl-border,#d8e1e8))!important;border-radius:24px!important;box-shadow:0 22px 56px color-mix(in srgb,var(--dl-brand-secondary,#183047) 10%,transparent)!important}
+#brandSettings>p{max-width:70ch;color:var(--dl-muted,#526475);margin:0 0 22px}
+#brandSettings h1{color:var(--dl-brand-secondary,#183047);line-height:1.08}
+#brandSettings .ac-section-eyebrow{display:inline-flex;align-items:center;padding:6px 10px;border:1px solid color-mix(in srgb,var(--dl-brand-accent,#b66b42) 30%,var(--dl-border,#d8e1e8));border-radius:7px;background:color-mix(in srgb,var(--dl-brand-accent,#b66b42) 9%,var(--dl-surface,#fff));color:var(--dl-brand-secondary,#183047)!important;font-size:.7rem;letter-spacing:.1em;font-weight:800}
+#brandSettingsForm{gap:20px}
+#brandSettings label{min-width:0;color:var(--dl-brand-secondary,#183047);line-height:1.45}
+#brandSettings .brand-fields{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+#brandSettings .brand-fields label{padding:14px;border:1px solid var(--dl-border,#d8e1e8);border-radius:14px;background:color-mix(in srgb,var(--dl-brand-background,#f8fafc) 72%,var(--dl-surface,#fff));}
+#brandSettings .brand-fields input[type=color]{height:56px;padding:5px;border-radius:10px;background:var(--dl-surface,#fff);cursor:pointer}
+#brandSettings input:not([type=color]){background:var(--dl-surface,#fff);color:var(--dl-text,#172b3a)}
+#brandSettings input[type=file]{min-height:76px;padding:18px;border:1px dashed color-mix(in srgb,var(--dl-brand-primary,#123b4a) 32%,var(--dl-border,#d8e1e8));background:color-mix(in srgb,var(--dl-brand-primary,#123b4a) 4%,var(--dl-surface,#fff));line-height:1.45;cursor:pointer}
+#brandPreview{min-height:128px;padding:22px;background:linear-gradient(115deg,var(--brand-preview-background,var(--dl-brand-background,#f8fafc)),color-mix(in srgb,var(--brand-preview-primary,var(--dl-brand-primary,#123b4a)) 7%,var(--brand-preview-background,var(--dl-brand-background,#f8fafc))));border-color:color-mix(in srgb,var(--brand-preview-primary,var(--dl-brand-primary,#123b4a)) 22%,var(--dl-border,#d8e1e8));box-shadow:inset 0 1px 0 #ffffff80,0 12px 28px color-mix(in srgb,var(--dl-brand-secondary,#183047) 7%,transparent)}
+#brandPreview img{width:88px;height:88px;padding:9px;border:1px solid var(--dl-border,#d8e1e8);border-radius:17px;background:var(--dl-surface,#fff);box-shadow:0 8px 20px color-mix(in srgb,var(--dl-brand-secondary,#183047) 10%,transparent)}
+#brandPreviewName{color:var(--brand-preview-secondary,var(--dl-brand-secondary,#183047));font-size:clamp(1.15rem,2.4vw,1.45rem);letter-spacing:-.03em}
+#brandSettings .brand-actions{gap:10px}
+#brandSettings .brand-actions button{min-height:46px;padding:11px 18px;border-radius:11px;transition:transform .16s ease,box-shadow .16s ease,background-color .16s ease}
+#brandSettings .brand-actions button:hover{transform:translateY(-1px);box-shadow:0 8px 20px color-mix(in srgb,var(--dl-brand-secondary,#183047) 12%,transparent)}
+#brandSettings .brand-actions button[type=submit]{background:linear-gradient(120deg,var(--dl-brand-primary,#123b4a),var(--dl-brand-secondary,#183047));color:#fff;border-color:var(--dl-brand-primary,#123b4a)}
+#brandSettingsMessage{margin-top:2px}
+@media(max-width:600px){#brandSettings{margin:12px 0!important;padding:20px 16px!important;border-radius:18px!important}#brandSettings .brand-fields{grid-template-columns:minmax(0,1fr)}#brandPreview{align-items:flex-start;padding:16px;gap:12px}#brandPreview img{width:68px;height:68px}#brandSettings .brand-actions{display:grid;grid-template-columns:1fr}#brandSettings .brand-actions button{width:100%;margin:0}}
