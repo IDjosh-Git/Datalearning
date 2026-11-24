@@ -550,3 +550,12 @@ html body :is(.text-danger,.error-text,.field-error,.alert-danger,[role="alert"]
   color: var(--dl-danger, #B42318) !important;
 }
 
+
+
+/* Keep public homepage ghost links readable on the light hero surface. */
+html body.home .hero-actions a.cta.ghost {
+  background: #F0EDDE !important;
+  color: var(--dl-brand-secondary, #023048) !important;
+  -webkit-text-fill-color: var(--dl-brand-secondary, #023048) !important;
+  border-color: var(--dl-brand-secondary, #023048) !important;
+}
