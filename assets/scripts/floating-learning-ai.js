@@ -1,3 +1,12 @@
+'use strict';
+  // Keep the site-wide floating AI colors independent from generic sidebar rules.
+  if (!document.querySelector('link[data-dl-floating-ai-contrast]')) {
+    const contrastStyles = document.createElement('link');
+    contrastStyles.rel = 'stylesheet';
+    contrastStyles.href = '/assets/styles/floating-ai-contrast-fix.css?v=20261124';
+    contrastStyles.dataset.dlFloatingAiContrast = 'true';
+    document.head.append(contrastStyles);
+  }
 /** DataLearning site-wide assistant: authenticated streaming AI with collapsible tools. */
 (() => {
   'use strict';
