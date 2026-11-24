@@ -68,4 +68,4 @@
 
 
 /* Reload the corrected palette stylesheet after its appearance pass. */
-document.addEventListener('DOMContentLoaded',()=>{const link=document.getElementById('dl-published-appearance');if(link)link.href='/assets/styles/brand-runtime.css?v=r29-contrast';});
+document.addEventListener('DOMContentLoaded',()=>{const link=document.getElementById('dl-published-appearance');if(link)link.href='/assets/styles/brand-runtime.css?v=r30-practice-audit';});
