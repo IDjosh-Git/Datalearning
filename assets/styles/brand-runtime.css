@@ -509,3 +509,17 @@ html body [data-academy-navigation] .academy-header .academy-menu-button svg{col
 
 /* Practice uses its own fixed action rail; keep draft recovery on the open left edge. */
 @media(max-width:760px){html body.dlx-rebuilt[data-responsive-page="practice"] #dalp-recovery-access{left:max(12px,env(safe-area-inset-left))!important;right:auto!important;bottom:calc(14px + env(safe-area-inset-bottom))!important;max-width:min(210px,calc(100vw - 112px))!important}}
+
+
+/* Mobile action rail: keep persistent helpers compact and off page controls. */
+@media(max-width:600px){
+  html body #dl-float-coach:not(.is-open){right:calc(68px + env(safe-area-inset-right))!important;bottom:calc(14px + env(safe-area-inset-bottom))!important}
+  html body #dl-float-coach:not(.is-open) .dl-float-launcher{width:46px!important;height:46px!important;min-width:46px!important;min-height:46px!important}
+  html body .lc-launch.lc-pulse-trigger{right:calc(12px + env(safe-area-inset-right))!important;bottom:calc(14px + env(safe-area-inset-bottom))!important;width:46px!important;height:46px!important;min-width:46px!important;min-height:46px!important;max-width:46px!important}
+  html body #dalp-recovery-access{max-width:min(42vw,164px)!important;font-size:.76rem!important;line-height:1.25!important}
+}
+@media(max-width:760px){
+  html body.dlx-rebuilt[data-responsive-page="practice"] #dl-float-coach:not(.is-open){right:calc(68px + env(safe-area-inset-right))!important;bottom:calc(14px + env(safe-area-inset-bottom))!important}
+  html body.dlx-rebuilt[data-responsive-page="practice"] .lc-launch.lc-pulse-trigger{right:calc(12px + env(safe-area-inset-right))!important;bottom:calc(14px + env(safe-area-inset-bottom))!important}
+  html body.dlx-rebuilt[data-responsive-page="practice"] #dalp-recovery-access{max-width:min(42vw,164px)!important;font-size:.76rem!important}
+}
