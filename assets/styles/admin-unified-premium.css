@@ -369,3 +369,6 @@ html[data-theme] body:is(.dalp-admin-page,[data-admin-console="reviews"]).ac-rea
   outline:3px solid var(--dl-brand-accent,#B66B42)!important;outline-offset:3px!important;
 }
 @media(prefers-reduced-motion:reduce){html[data-theme] body:is(.dalp-admin-page,[data-admin-console="reviews"]).ac-ready .ac-sidebar .ac-side-nav a.ac-side-link{transition:none!important;transform:none!important}}
+/* Keep sidebar labels legible while letting the selected border follow the appearance accent. */
+html[data-theme] body:is(.dalp-admin-page,[data-admin-console="reviews"]).ac-ready .ac-shell>.ac-sidebar{--admin-nav-muted:#fff}
+html[data-theme] body:is(.dalp-admin-page,[data-admin-console="reviews"]).ac-ready .ac-sidebar .ac-side-nav a.ac-side-link:is(.ac-selected,[aria-current="page"]){border-color:var(--dl-brand-accent,#B66B42)!important}
