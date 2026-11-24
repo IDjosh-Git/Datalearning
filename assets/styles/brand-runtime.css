@@ -523,3 +523,10 @@ html body [data-academy-navigation] .academy-header .academy-menu-button svg{col
   html body.dlx-rebuilt[data-responsive-page="practice"] .lc-launch.lc-pulse-trigger{right:calc(12px + env(safe-area-inset-right))!important;bottom:calc(14px + env(safe-area-inset-bottom))!important}
   html body.dlx-rebuilt[data-responsive-page="practice"] #dalp-recovery-access{max-width:min(42vw,164px)!important;font-size:.76rem!important}
 }
+
+
+/* Reserve the phone viewport for page content and avoid overlapping utility buttons. */
+@media(max-width:600px){
+  html body{padding-bottom:calc(72px + env(safe-area-inset-bottom))!important}
+  html body :is(.back-to-top,#backToTop,.scroll-to-top,[data-back-to-top],.experience-back-top){display:none!important}
+}
