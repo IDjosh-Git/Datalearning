@@ -468,3 +468,32 @@ html body #dl-float-coach .dl-float-sidebar-heading :is(strong,button){color:var
 html body #dl-float-coach .dl-float-chat .dl-float-status{background:#fff!important;color:var(--dl-muted,#526475)!important;border-bottom:1px solid var(--dl-border,#D8E1E8)!important}
 html body #dl-float-coach .dl-float-chat button:not(.dl-float-send){background:#fff!important;color:var(--dl-text,#172B3A)!important;-webkit-text-fill-color:var(--dl-text,#172B3A)!important;border:1px solid var(--dl-border,#D8E1E8)!important}
 html body #dl-float-coach .dl-float-chat .dl-float-send{background:var(--dl-brand-primary,#123B4A)!important;color:#fff!important;-webkit-text-fill-color:#fff!important;border:1px solid var(--dl-brand-primary,#123B4A)!important}
+
+
+/* Mobile polish: keep floating actions clear of app feedback and widen page content. */
+@media(max-width:600px){
+  html body :is(.toast.show,.notification-toast.is-visible,.toast.is-visible,[role="alert"].toast,[role="status"].toast){
+    position:fixed!important;inset:calc(72px + env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) auto max(12px,env(safe-area-inset-left))!important;
+    width:auto!important;max-width:460px!important;max-height:calc(100dvh - 100px)!important;margin-inline:auto!important;
+    overflow:auto!important;z-index:2147482500!important;transform:none!important;
+  }
+  html body .dl-float-coach:not(.is-open){right:calc(12px + env(safe-area-inset-right))!important;bottom:calc(84px + env(safe-area-inset-bottom))!important}
+  html body .lc-launch.lc-pulse-trigger,html body.dl-workspace .lc-launch.lc-pulse-trigger{
+    inset:auto calc(12px + env(safe-area-inset-right)) calc(154px + env(safe-area-inset-bottom)) auto!important;
+    width:48px!important;height:48px!important;min-width:48px!important;min-height:48px!important;max-width:48px!important;
+  }
+  html body .lc-panel.lc-pulse-panel{inset:auto 0 0 0!important;width:100vw!important;max-width:100vw!important;max-height:82dvh!important;border-radius:20px 20px 0 0!important}
+  html body .dl-float-coach.is-open{inset:auto 0 0 0!important;width:100vw!important;max-width:100vw!important}
+  html body :is(.back-to-top,#backToTop,.scroll-to-top,[data-back-to-top]){left:calc(12px + env(safe-area-inset-left))!important;right:auto!important;bottom:calc(14px + env(safe-area-inset-bottom))!important}
+  html body main :where(.page-container,.content-container,.site-container,.academy-container,.dlx-container,.dlp-container,.za-container,.wrap,.container){min-width:0;max-width:100%}
+}
+@media(max-width:380px){
+  html body #dl-float-coach .dl-float-launcher{width:48px!important;height:48px!important}
+  html body .lc-launch.lc-pulse-trigger{width:46px!important;height:46px!important;min-width:46px!important;min-height:46px!important}
+}
+/* The loader uses the published logo; never flash the legacy inline mark during brand fetch. */
+html[data-brand-pending] body #dlxPageLoader .dlx-loader-art svg{visibility:hidden}
+html body #dlxPageLoader .dlx-loader-art.has-brand-logo>svg{display:none!important}
+html body #dlxPageLoader .dlx-loader-art .dlx-loader-brand-logo{display:block;width:clamp(64px,18vw,88px);height:clamp(64px,18vw,88px);object-fit:contain;border-radius:18px}
+html body #dlxPageLoader .dlx-loader-art.has-brand-logo{width:112px;height:112px;margin-bottom:8px}
+html body #dlxPageLoader .dlx-loader-art.has-brand-logo .dlx-loader-brand-logo{width:76px;height:76px;padding:8px;background:var(--dl-brand-background,#F8FAFC);border:1px solid var(--dl-border,#D8E1E8);box-shadow:0 8px 24px color-mix(in srgb,var(--dl-brand-secondary,#183047) 16%,transparent)}
