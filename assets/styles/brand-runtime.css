@@ -460,3 +460,11 @@ html body #dl-float-coach .dl-float-chat{background:#fff!important;color:var(--d
 html body #dl-float-coach .dl-float-messages{background:var(--dl-brand-background,#F8FAFC)!important;color:var(--dl-text,#172B3A)!important}
 html body #dl-float-coach .dl-float-footer{background:var(--dl-brand-secondary,#183047)!important;color:#fff!important}
 html body #dl-float-coach :is(button,textarea,a):focus-visible{outline:3px solid var(--dl-brand-accent,#B66B42)!important;outline-offset:2px!important}
+
+
+/* Keep smaller floating AI surfaces readable on light chat backgrounds. */
+html body #dl-float-coach .dl-float-sidebar-heading{background:var(--dl-brand-background,#F8FAFC)!important;color:var(--dl-text,#172B3A)!important;border-bottom:1px solid var(--dl-border,#D8E1E8)!important}
+html body #dl-float-coach .dl-float-sidebar-heading :is(strong,button){color:var(--dl-text,#172B3A)!important;-webkit-text-fill-color:var(--dl-text,#172B3A)!important}
+html body #dl-float-coach .dl-float-chat .dl-float-status{background:#fff!important;color:var(--dl-muted,#526475)!important;border-bottom:1px solid var(--dl-border,#D8E1E8)!important}
+html body #dl-float-coach .dl-float-chat button:not(.dl-float-send){background:#fff!important;color:var(--dl-text,#172B3A)!important;-webkit-text-fill-color:var(--dl-text,#172B3A)!important;border:1px solid var(--dl-border,#D8E1E8)!important}
+html body #dl-float-coach .dl-float-chat .dl-float-send{background:var(--dl-brand-primary,#123B4A)!important;color:#fff!important;-webkit-text-fill-color:#fff!important;border:1px solid var(--dl-brand-primary,#123B4A)!important}
