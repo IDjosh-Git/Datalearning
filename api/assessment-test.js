@@ -18,12 +18,12 @@ export default async function handler(req,res){
  if(!['csv','sql','py','json','txt','xlsx','pbix','pdf'].includes(extension))return send(res,400,{error:'Choose a supported evidence type.'});
  const simulated={testMode:true,persisted:false,certificateIssued:false,certificateId:null,course};
  if(!['csv','sql','py','json'].includes(extension))return send(res,200,{...simulated,status:'needs_manual_review',reason:'Unsupported or non-machine-readable technical evidence; instructor fallback required.'});
- if(!process.env.OPENAI_API_KEY)return send(res,200,{...simulated,status:'needs_manual_review',reason:'AI provider unavailable; instructor fallback required.'});
+ if(!process.env.OPENAI_API_KEY&&!process.env.GROQ_API_KEY)return send(res,200,{...simulated,status:'needs_manual_review',reason:'AI provider unavailable; instructor fallback required.'});
  try{
-  const result=await grade({course_slug:course,project_title:title,project_summary:summary},{content:[{type:'input_text',text:`Synthetic test evidence (${extension}):\n${evidence}`}],technical:true,unsupported:false});
-  const scores=result.scores;const total=Object.values(RULES).reduce((n,k)=>n+scores[k],0);
+  const result=await grade({course_slug:course,project_title:title,project_summary:summary},{content:[{type:'input_text',text:`Synthetic test evidence (${extension}):\n${evidence}`}],technical:true,unsupported:false},{syntheticDryRun:true});
+  const scores=result.scores;const total=Object.keys(RULES).reduce((n,k)=>n+scores[k],0);
   const fallback=!!result.requires_manual_review||scores.technical_execution<14;
   const status=fallback?'needs_manual_review':total>=70?'approved':'revision_requested';
-  return send(res,200,{...simulated,status,score:total,scores,summary:result.summary,strengths:result.strengths,improvements:result.improvements,nextSteps:result.next_steps,reason:fallback?'Evidence requires instructor verification.':null,certificateWouldIssue:status==='approved',gradingModel:process.env.ASSESSMENT_MODEL||'gpt-4.1-mini'});
+  return send(res,200,{...simulated,status,score:total,scores,summary:result.summary,strengths:result.strengths,improvements:result.improvements,nextSteps:result.next_steps,reason:fallback?'Evidence requires instructor verification.':null,certificateWouldIssue:status==='approved',gradingModel:result.gradingModel});
  }catch(e){console.error('Assessment test failed:',e?.message);return send(res,200,{...simulated,status:'needs_manual_review',reason:'AI assessment unavailable; instructor fallback required.'});}
 }

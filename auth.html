@@ -16,39 +16,46 @@
 <link rel="stylesheet" href="assets/styles/auth-entry-premium.css?v=20261124-fit2" data-auth-theme="burnt-wood"/>
 
 <link rel="stylesheet" href="assets/styles/responsive-quality-pass.css?v=20261121" /><script defer src="assets/scripts/icon-system.js"></script><link rel="stylesheet" href="/assets/styles/brand-runtime.css?v=r25-type"><link rel="stylesheet" href="/assets/styles/release-20-layout-system.css?v=r20"><link rel="stylesheet" href="/assets/styles/release-21-navigation-unified.css?v=r21"/><link rel="stylesheet" href="/assets/styles/desktop-layout.css?v=r25-desktop"><link rel="stylesheet" href="assets/styles/premium-color-system.css?v=20261121" /><style id="auth-viewport-fit">
-@media (min-width:901px){
-html[data-theme="light"] body.auth-page.auth-page.auth-page.auth-page .auth-shell{width:min(1160px,calc(100% - 48px))!important;max-width:1160px!important;height:100dvh!important;min-height:100dvh!important;padding:12px 0!important;gap:10px!important;overflow:hidden!important}
-html[data-theme="light"] body.auth-page.auth-page.auth-page.auth-page .auth-layout{flex:1 1 auto!important;height:auto!important;min-height:0!important;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr)!important}
-html[data-theme="light"] body.auth-page.auth-page.auth-page.auth-page .auth-story{padding:clamp(22px,2.6vw,36px)!important;gap:18px!important}
-html[data-theme="light"] body.auth-page.auth-page.auth-page.auth-page .auth-forms{padding:22px clamp(22px,3vw,38px)!important}
-html[data-theme="light"] body.auth-page.auth-page.auth-page.auth-page .auth-panel{width:min(100%,520px)!important;margin-inline:auto!important}
+html body.auth-page.auth-page.auth-page.auth-page .auth-shell {
+  width:min(1160px,calc(100% - 40px)) !important;
+  max-width:1160px !important;
+  height:auto !important;
+  min-height:100svh !important;
+  overflow:visible !important;
+  padding:clamp(14px,3vh,30px) 0 max(16px,env(safe-area-inset-bottom)) !important;
 }
-@media(max-width:900px){
-html[data-theme="light"] body.auth-page.auth-page.auth-page.auth-page .auth-shell{width:min(620px,calc(100% - 28px))!important;height:100dvh!important;min-height:100dvh!important;padding:12px 0!important;gap:10px!important;overflow:hidden!important}
-html[data-theme="light"] body.auth-page.auth-page.auth-page.auth-page .auth-layout{flex:1 1 auto!important;display:flex!important;min-height:0!important;height:auto!important;align-items:center!important}
-html[data-theme="light"] body.auth-page.auth-page.auth-page.auth-page .auth-story{display:none!important}
-html[data-theme="light"] body.auth-page.auth-page.auth-page.auth-page .auth-forms{width:100%!important;min-height:0!important;padding:20px clamp(18px,4vw,30px)!important}
-html[data-theme="light"] body.auth-page.auth-page.auth-page.auth-page .auth-panel{width:min(100%,500px)!important;margin-inline:auto!important}
-html[data-theme="light"] body.auth-page.auth-page.auth-page.auth-page .auth-heading{margin-bottom:14px!important}
-html[data-theme="light"] body.auth-page.auth-page.auth-page.auth-page .auth-heading h2{font-size:clamp(25px,4vw,32px)!important;margin:7px 0!important}
-html[data-theme="light"] body.auth-page.auth-page.auth-page.auth-page .auth-account-note{margin-top:14px!important;padding-top:12px!important}
-html[data-theme="light"] body.auth-page.auth-page.auth-page.auth-page .auth-field{margin-bottom:11px!important}
-html[data-theme="light"] body.auth-page.auth-page.auth-page.auth-page .auth-tabs{margin-bottom:14px!important}
+html body.auth-page.auth-page.auth-page.auth-page .auth-layout {
+  flex:1 0 auto !important;
+  height:auto !important;
+  min-height:0 !important;
+  align-items:stretch !important;
+  grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr) !important;
 }
-@media(max-width:600px){html[data-theme="light"] body.auth-page.auth-page.auth-page.auth-page .auth-shell{width:calc(100% - 20px)!important}html[data-theme="light"] body.auth-page.auth-page.auth-page.auth-page .auth-minimal-foot{justify-content:center!important;text-align:center!important}}
-@media(max-height:800px) and (min-width:901px){
-html[data-theme="light"] body.auth-page.auth-page.auth-page.auth-page .auth-shell{padding:8px 0!important;gap:7px!important}
-html[data-theme="light"] body.auth-page.auth-page.auth-page.auth-page .auth-story{padding:18px clamp(22px,2.3vw,30px)!important;gap:12px!important}
-html[data-theme="light"] body.auth-page.auth-page.auth-page.auth-page .auth-kicker{padding:6px 9px!important;font-size:9px!important}
-html[data-theme="light"] body.auth-page.auth-page.auth-page.auth-page .auth-story h1{max-width:18ch!important;font-size:clamp(30px,3vw,38px)!important;line-height:1.04!important;margin:12px 0 10px!important}
-html[data-theme="light"] body.auth-page.auth-page.auth-page.auth-page .auth-story>div>p{font-size:12px!important;line-height:1.5!important}
-html[data-theme="light"] body.auth-page.auth-page.auth-page.auth-page .auth-course-chips{gap:6px!important;margin-top:12px!important}
-html[data-theme="light"] body.auth-page.auth-page.auth-page.auth-page .auth-course-chips span{padding:6px 9px!important}
-html[data-theme="light"] body.auth-page.auth-page.auth-page.auth-page .auth-benefits{gap:6px!important;margin-top:14px!important}
-html[data-theme="light"] body.auth-page.auth-page.auth-page.auth-page .auth-benefit{padding:8px 10px!important;border-radius:12px!important}
-html[data-theme="light"] body.auth-page.auth-page.auth-page.auth-page .auth-benefit svg{width:18px!important;height:18px!important}
-html[data-theme="light"] body.auth-page.auth-page.auth-page.auth-page .auth-benefit span{font-size:10px!important;line-height:1.4!important}
-html[data-theme="light"] body.auth-page.auth-page.auth-page.auth-page .auth-story-foot{font-size:9px!important}
+html body.auth-page.auth-page.auth-page.auth-page .auth-forms {
+  display:flex !important;
+  flex-direction:column !important;
+  justify-content:center !important;
+  min-width:0 !important;
+  padding:clamp(24px,4vw,56px) !important;
+}
+html body.auth-page.auth-page.auth-page.auth-page .auth-panel {
+  width:min(100%,500px) !important;
+  margin-inline:auto !important;
+}
+.auth-page .auth-input-wrap input {min-width:0;font-size:16px !important}
+.auth-page :is(.auth-eye,.auth-tab) {min-height:44px}
+.auth-page .auth-topline {flex-wrap:wrap;gap:10px}
+.auth-page .auth-msg {overflow-wrap:anywhere}
+@media (max-width:900px) {
+  html body.auth-page.auth-page.auth-page.auth-page .auth-shell {width:min(620px,calc(100% - 24px)) !important}
+  html body.auth-page.auth-page.auth-page.auth-page .auth-layout {display:block !important;flex-grow:0 !important}
+  html body.auth-page.auth-page.auth-page.auth-page .auth-story {display:none !important}
+  html body.auth-page.auth-page.auth-page.auth-page .auth-forms {padding:clamp(16px,5vw,34px) !important}
+}
+@media (max-width:480px) {
+  .auth-page .auth-secure-chip {display:none}
+  .auth-page .auth-minimal-foot {justify-content:center !important;text-align:center}
+  .auth-page .auth-minimal-foot span + span {display:none}
 }
 </style>
 </head><body class="auth-page" data-auth-mode="login">
@@ -325,7 +332,7 @@ html[data-theme="light"] body.auth-page.auth-page.auth-page.auth-page .auth-stor
     ✦
    </span>
    <p>
-    Your learning, in one secure account. New here? Create your learner account to get started. Administrators can sign in with their existing account.
+    Your account keeps your course progress, practice and assessments together.
    </p>
   </div>
  </section>
