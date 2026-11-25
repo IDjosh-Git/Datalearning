@@ -21,22 +21,22 @@
 body[data-responsive-page="reviewer"] .review-hero .wrap {padding-block:clamp(24px,4vw,48px)}
 body[data-responsive-page="reviewer"] .review-hero h1 {font-size:clamp(2rem,5vw,3.8rem);line-height:1.05;letter-spacing:-.045em}
 body[data-responsive-page="reviewer"] .review-stats {gap:clamp(10px,2vw,20px)}
-body[data-responsive-page="reviewer"] :is(.review-stat,.review-inbox,.review-detail,.review-test-launch) {border:1px solid var(--line,#d8e1ec);border-radius:18px;box-shadow:0 12px 34px #0f244911}
+body[data-responsive-page="reviewer"] :is(.review-stat,.review-inbox,.review-detail,.review-test-launch) {border:1px solid var(--line,#e9ddd0);border-radius:18px;box-shadow:0 12px 34px rgba(2,48,72,.07)}
 body[data-responsive-page="reviewer"] .review-shell {align-items:start;gap:clamp(12px,2vw,24px)}
-body[data-responsive-page="reviewer"] .review-test-launch {margin-block:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:18px 22px;background:var(--surface,#fff);color:var(--text,#152743)}
+body[data-responsive-page="reviewer"] .review-test-launch {margin-block:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:18px 22px;background:var(--surface,#fff);color:var(--text,#023048)}
 .review-test-launch p {margin:4px 0 0}
 .review-test-launch a {display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:8px 14px;border:1px solid currentColor;border-radius:12px}
-#assessmentTestMode {position:fixed;inset:0;margin:auto;width:min(780px,calc(100% - 24px));max-height:calc(100dvh - 24px);overflow:auto;padding:0;border:1px solid var(--line,#c9d6e8);border-radius:22px;background:var(--surface,#fff);color:var(--text,#162640);box-shadow:0 28px 90px #07152c66;overscroll-behavior:contain}
-#assessmentTestMode::backdrop {background:#07152cb3}
+#assessmentTestMode {position:fixed;inset:0;margin:auto;width:min(780px,calc(100% - 24px));max-height:calc(100dvh - 24px);overflow:auto;padding:0;border:1px solid var(--line,#e9ddd0);border-radius:22px;background:var(--surface,#fff);color:var(--text,#023048);box-shadow:0 28px 90px rgba(2,48,72,.40);overscroll-behavior:contain}
+#assessmentTestMode::backdrop {background:rgba(2,48,72,.70)}
 .review-test-inner {padding:clamp(16px,4vw,32px)}
 #assessmentTestMode .review-test-head {display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
 #assessmentTestMode h2 {font-size:clamp(1.55rem,4vw,2.35rem);margin:.25rem 0}
 #assessmentTestMode form {display:grid;gap:12px}
 #assessmentTestMode form label {display:grid;gap:5px;min-width:0;font-weight:650}
-#assessmentTestMode :is(input,select,textarea) {width:100%;min-width:0;padding:9px 12px;border:1px solid var(--line,#a8b9d2);border-radius:10px;font:inherit;background:var(--surface,#fff);color:var(--text,#162640)}
+#assessmentTestMode :is(input,select,textarea) {width:100%;min-width:0;padding:9px 12px;border:1px solid var(--line,#afa39a);border-radius:10px;font:inherit;background:var(--surface,#fff);color:var(--text,#023048)}
 #assessmentTestMode button {min-height:44px;padding:8px 14px;border-radius:10px}
-#assessmentTestMode #runAssessmentTest {justify-self:start;background:var(--dalp-brand-primary,#173b80);color:var(--dalp-brand-on-primary,#fff);border:0;font-weight:700}
-#assessmentTestMode #assessmentTestResult {white-space:pre-wrap;overflow-wrap:anywhere;padding:13px;border:1px solid var(--line,#c9d6e8);border-radius:12px;margin:0}
+#assessmentTestMode #runAssessmentTest {justify-self:start;background:var(--dalp-brand-primary,#770101);color:var(--dalp-brand-on-primary,#fff);border:0;font-weight:700}
+#assessmentTestMode #assessmentTestResult {white-space:pre-wrap;overflow-wrap:anywhere;padding:13px;border:1px solid var(--line,#e9ddd0);border-radius:12px;margin:0}
 @media (max-width:620px) {#assessmentTestMode .review-test-grid{display:grid;grid-template-columns:1fr}body[data-responsive-page="reviewer"] .review-shell{grid-template-columns:minmax(0,1fr)}}
 </style></head>
 <body data-admin-console="reviews" data-private-workspace="true" data-responsive-page="reviewer" class="dlx-rebuilt"><div id="dlxPageLoader" class="dlx-page-loader" role="status" aria-live="polite" aria-label="Loading DataLearning">
