@@ -76,3 +76,23 @@ body[data-responsive-page="learning-coach"] :is(.ss-setup,.ss-plan,.ss-recall,.s
   grid-column:1/-1!important;width:100%!important;max-width:100%!important;
  }
 }
+
+
+/* Keep session titles readable beside their action on mobile-sized cards. */
+@media(max-width:760px){
+ body[data-responsive-page="learning-coach"] .ss-session-heading{
+  display:grid!important;grid-template-columns:38px minmax(0,1fr) minmax(150px,min(32vw,220px))!important;
+  align-items:center!important;gap:12px!important;
+ }
+ body[data-responsive-page="learning-coach"] .ss-session-copy{min-width:0!important;}
+ body[data-responsive-page="learning-coach"] .ss-session-copy strong{overflow-wrap:normal!important;word-break:normal!important;hyphens:auto;}
+ body[data-responsive-page="learning-coach"] .ss-open-session{width:100%;max-width:220px;min-width:0;justify-self:end;white-space:normal!important;}
+}
+@media(max-width:560px){
+ body[data-responsive-page="learning-coach"] .ss-session-heading{
+  grid-template-columns:38px minmax(0,1fr)!important;
+ }
+ body[data-responsive-page="learning-coach"] .ss-open-session{
+  grid-column:2;justify-self:start;width:auto;max-width:100%;
+ }
+}
