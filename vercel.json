@@ -4,6 +4,10 @@
   "framework": null,
   "buildCommand": "npm run build",
   "cleanUrls": false,
+  "functions": {
+    "api/assessment-grade.js": { "maxDuration": 60 },
+    "api/assessment-test.js": { "maxDuration": 45 }
+  },
   "headers": [
     {
       "source": "/(.*)",

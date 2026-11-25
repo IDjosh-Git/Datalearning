@@ -24,6 +24,6 @@ export default async function handler(req,res){
   const scores=result.scores;const total=Object.keys(RULES).reduce((n,k)=>n+scores[k],0);
   const fallback=!!result.requires_manual_review||scores.technical_execution<14;
   const status=fallback?'needs_manual_review':total>=70?'approved':'revision_requested';
-  return send(res,200,{...simulated,status,score:total,scores,summary:result.summary,strengths:result.strengths,improvements:result.improvements,nextSteps:result.next_steps,reason:fallback?'Evidence requires instructor verification.':null,certificateWouldIssue:status==='approved',gradingModel:result.gradingModel});
+  return send(res,200,{...simulated,status,score:total,scores,summary:result.summary,strengths:result.strengths,improvements:result.improvements,nextSteps:result.next_steps,evidenceNotes:result.evidence_notes,reason:fallback?'Evidence requires instructor verification.':null,certificateWouldIssue:status==='approved',gradingModel:result.gradingModel});
  }catch(e){console.error('Assessment test failed:',e?.message);return send(res,200,{...simulated,status:'needs_manual_review',reason:'AI assessment unavailable; instructor fallback required.'});}
 }
