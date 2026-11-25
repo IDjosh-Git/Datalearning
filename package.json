@@ -24,6 +24,10 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "2.57.0",
-    "@vercel/functions": "3.11.3"
+    "@vercel/functions": "3.11.3",
+    "bmp-js": "0.1.0",
+    "heic-convert": "2.1.0",
+    "sharp": "0.35.5",
+    "word-extractor": "1.0.4"
   }
 }

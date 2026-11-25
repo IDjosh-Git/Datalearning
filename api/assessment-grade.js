@@ -1,5 +1,6 @@
 /* Server-only capstone assessment. Never trust a browser-supplied score. */
 import {createClient} from '@supabase/supabase-js';
+import {wordFormats,extraImageFormats,extractWordText,convertEvidenceImage} from '../lib/capstone-file-formats.js';
 import {readServerToken,verifyAccount,AUTH_URL} from '../lib/server-auth.js';
 
 const RULES={problem_and_objectives:25,data_preparation_and_quality:20,technical_execution:20,analysis_and_insights:20,communication_and_evidence:15};
@@ -20,7 +21,7 @@ async function evidence(db,row){
   if(!file.path?.startsWith(`${row.user_id}/${row.id}/`)||Number(file.size)>12582912)throw Error('INVALID_EVIDENCE');
   const ext=String(file.name||'').split('.').pop().toLowerCase();
   const label=`Attachment ${index+1} (${ext.slice(0,12)})`;
-  if(!supportedText.has(ext)&&!supportedImage.has(ext)&&ext!=='pdf'){
+  if(!supportedText.has(ext)&&!supportedImage.has(ext)&&!wordFormats.has(ext)&&!extraImageFormats.has(ext)&&ext!=='pdf'){
    limitations.push(label+' needs an instructor to inspect its native format.');
    continue;
   }
@@ -28,6 +29,23 @@ async function evidence(db,row){
   if(error||!data)throw Error('EVIDENCE_UNAVAILABLE');
   if(data.size>LIMIT){
    limitations.push(label+' exceeds the automated inspection limit.');
+   continue;
+  }
+  if(wordFormats.has(ext)||extraImageFormats.has(ext)){
+   try{
+    const bytes=Buffer.from(await data.arrayBuffer());
+    if(wordFormats.has(ext)){
+     const text=await extractWordText(bytes,ext);
+     if(!text)throw Error('Empty Word document');
+     content.push({type:'input_text',text:label+' extracted document text (embedded objects and macros were not evaluated):\n'+text});
+    }else{
+     const jpeg=await convertEvidenceImage(bytes,ext);
+     content.push({type:'input_text',text:label+' rendered first frame or page. Assess visible evidence only.'});
+     content.push({type:'input_image',image_url:'data:image/jpeg;base64,'+jpeg.toString('base64')});
+    }
+   }catch{
+    limitations.push(label+' could not be inspected automatically.');
+   }
    continue;
   }
   if(supportedText.has(ext)){
